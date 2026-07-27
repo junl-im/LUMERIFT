@@ -382,3 +382,9 @@
 - 원격 공지 캐시 및 폴백
 - Firestore Security Rules·Indexes·Emulator
 - Analytics·App Check 선택 초기화
+
+## v1.4.1
+
+- Firebase Rules·Indexes 배포 스크립트 누락 복구
+- `--only firestore` 공식 부분 배포 방식으로 통일
+- 로컬 프로젝트 루트 및 package.json 버전 확인 절차 추가

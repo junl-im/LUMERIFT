@@ -139,3 +139,9 @@
 - App Check 선택 초기화, Analytics 지연 초기화, Emulator 연결을 추가했다.
 - 사용자 UID 격리와 쿠폰 경로 차단을 포함한 Firestore Rules 및 복합 Indexes를 작성했다.
 - 무료 Spark 단계에서는 쿠폰·고가치 우편·서버 시간 출석을 클라이언트 최종 승인하지 않는 원칙을 확정했다.
+
+## v1.4.1
+
+- Firebase Rules·Indexes 배포 스크립트 누락 복구
+- `--only firestore` 공식 부분 배포 방식으로 통일
+- 로컬 프로젝트 루트 및 package.json 버전 확인 절차 추가

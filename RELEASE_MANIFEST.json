@@ -1,13 +1,14 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.4.0",
-  "baseVersion": "1.3.0",
+  "version": "1.4.1",
+  "baseVersion": "1.4.0",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.4.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.3.0_to_v1.4.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.4.1.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.4.0_to_v1.4.1.zip",
   "qualityStage": "production-candidate-open-art-pass",
   "features": [
+    "restores Firebase deployment npm scripts and uses official --only firestore partial deployment",
     "connects the bundled Firebase modular SDK to project lumerift-8db07",
     "adds anonymous, Google and email authentication with anonymous account linking",
     "adds persistent browser auth sessions and automatic session restoration",
@@ -40,6 +41,7 @@
     "visualGate": "operations screens require runtime connection, previews, save behavior and validation markers"
   },
   "verification": [
+    "package.json exposes firebase:deploy:rules, firebase:deploy:firestore and firebase:check",
     "Firebase config and firebase@12.16.0 modular imports are present",
     "three authentication provider flows and anonymous linking are present",
     "Firestore rules deny unspecified paths and isolate users by request.auth.uid",

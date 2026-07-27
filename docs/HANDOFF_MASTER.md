@@ -152,3 +152,9 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - Firestore Rules는 사용자 UID 격리, 공개 공지 읽기, 클라이언트 쿠폰 차단, 기본 거부를 적용한다.
 - App Check는 환경변수 사이트 키가 있을 때만 초기화하며 metrics 확인 전 enforcement를 켜지 않는다.
 - 상세 콘솔 설정과 배포 순서는 `docs/FIREBASE_SETUP_v1.4.0.md`에 기록한다.
+
+## v1.4.1
+
+- Firebase Rules·Indexes 배포 스크립트 누락 복구
+- `--only firestore` 공식 부분 배포 방식으로 통일
+- 로컬 프로젝트 루트 및 package.json 버전 확인 절차 추가

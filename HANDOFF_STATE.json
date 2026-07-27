@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "updatedAt": "2026-07-27",
-  "currentPhase": "v1.4 Firebase Authentication·Cloud Save·Firestore Security 기반 완료",
+  "currentPhase": "v1.4.1 Firebase 배포 스크립트 복구 완료",
   "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -71,7 +71,10 @@
     "Analytics 지원 환경 지연 초기화와 App Check 환경변수 초기화 지점 추가",
     "사용자 UID 격리·공지 읽기 전용·쿠폰 차단 Firestore 보안 규칙 작성",
     "공지·랭킹 복합 색인과 Firebase Local Emulator Suite 설정 추가",
-    "Firebase 설정·규칙·인증 흐름을 검사하는 validate:firebase 추가"
+    "Firebase 설정·규칙·인증 흐름을 검사하는 validate:firebase 추가",
+    "로컬 package.json 누락 시 발생하는 Missing script 오류 진단 및 Firebase 배포 스크립트 복구",
+    "Firebase CLI 최신 공식 부분 배포 방식인 --only firestore로 Rules와 Indexes 동시 배포 명령 통일",
+    "firebase:check 및 firebase:deploy:firestore 별칭 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
@@ -124,8 +127,8 @@
     "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.4.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.3.0_to_v1.4.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.4.1.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.4.0_to_v1.4.1.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 76566471,

@@ -1,6 +1,6 @@
 {
   "name": "lumerift-web-rpg",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -32,7 +32,9 @@
     "validate:mobile": "node scripts/validate-mobile-layout.mjs",
     "validate:firebase": "node scripts/validate-firebase.mjs",
     "firebase:emulators": "npx firebase-tools emulators:start --project lumerift-8db07",
-    "firebase:deploy:rules": "npx firebase-tools deploy --only firestore:rules,firestore:indexes --project lumerift-8db07"
+    "firebase:deploy:rules": "npx firebase-tools deploy --only firestore --project lumerift-8db07",
+    "firebase:deploy:firestore": "npx firebase-tools deploy --only firestore --project lumerift-8db07",
+    "firebase:check": "npx firebase-tools projects:list"
   },
   "dependencies": {
     "firebase": "12.16.0",

@@ -1,7 +1,7 @@
 {
   "version": 7,
   "game": "LUMERIFT",
-  "release": "1.4.0",
+  "release": "1.4.1",
   "distribution": "full-source-optimized",
   "bundles": {
     "core-ui": {

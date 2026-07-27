@@ -1,6 +1,12 @@
-# LUMERIFT: 균열의 계승자 v1.4.0
+# LUMERIFT: 균열의 계승자 v1.4.1
 
 세로형 9:16 모바일 웹 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase modular SDK 기반입니다.
+
+## v1.4.1 긴급 수정
+
+- Firebase Rules·Indexes 배포 npm 스크립트 복구
+- 최신 CLI 공식 형식 `--only firestore`로 배포 명령 통일
+- `firebase:check`, `firebase:deploy:firestore` 명령 추가
 
 ## v1.4.0 핵심 변경
 
@@ -24,3 +30,12 @@ npm run dev
 ```
 
 Firebase Console 설정과 규칙 배포는 `docs/FIREBASE_SETUP_v1.4.0.md`를 먼저 확인합니다.
+
+## Firestore 배포
+
+```bash
+npm run firebase:check
+npm run firebase:deploy:rules
+```
+
+스크립트가 보이지 않으면 프로젝트 루트의 `package.json`이 v1.4.1인지 확인합니다.

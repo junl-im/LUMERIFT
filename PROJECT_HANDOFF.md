@@ -1,6 +1,6 @@
 # LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.4.0  
+**현재 버전:** v1.4.1  
 **공개 주소:** https://junl-im.github.io/LUMERIFT/  
 **Firebase 프로젝트:** `lumerift-8db07`
 
@@ -13,7 +13,7 @@
 5. `docs/FIRESTORE_SECURITY_v1.4.0.md`
 6. `docs/ROADMAP.md`
 
-## v1.4.0 현재 상태
+## v1.4.1 현재 상태
 
 - npm `firebase@12.16.0` modular SDK 사용
 - 익명·Google·이메일 로그인과 익명 계정 연결 완료
@@ -24,3 +24,9 @@
 - 쿠폰·고가치 보상은 서버 검증 전까지 로컬 데모 상태
 
 모든 후속 릴리스는 Firebase 규칙 변경과 데이터 경로 변경을 `HANDOFF_STATE.json`과 `docs/HANDOFF_LOG.md`에 기록해야 합니다.
+
+## v1.4.1 긴급 수정
+
+- `npm run firebase:deploy:rules` 누락 문제 복구
+- 공식 배포 명령: `npx firebase-tools deploy --only firestore --project lumerift-8db07`
+- 현재 폴더의 `package.json`이 갱신되지 않으면 패치를 프로젝트 루트에 다시 덮어쓴다.
