@@ -65,11 +65,34 @@
 5. 시스템별 세부 문서
 6. 소스 코드 주석
 
-## 에셋 단계 표기
+## 에셋 단계 및 품질 진실성 규칙
 
-현재 자동 생성 에셋은 제작 규격과 런타임 검증용이다. 최종 상용 원화로 주장하지 않는다. 모든 신규 자산은 다음 중 하나로 표시한다.
+에셋 규모·용량·프레임 수와 시각적 완성도는 별개다. 구조용 자산을 최종급으로 보고하지 않는다.
+
+모든 신규 자산은 다음 중 하나로 표시한다.
 
 - `prototype`: 임시 기능 검증
-- `production-structure`: 경로·Atlas·성능 계약 검증 완료
-- `final-candidate`: 수작업 검수와 상용 후보
-- `final-approved`: 최종 승인
+- `production-structure`: 경로·Atlas·성능 계약 검증
+- `production-candidate-procedural`: 고해상도 절차형 제작 후보. 외부 아트 디렉션과 수작업 리터칭 전에는 final 또는 AAA라고 부르지 않는다.
+- `final-candidate`: 수작업 원화·리터칭·모바일 실기기 검수를 통과한 상용 후보
+- `final-approved`: 아트 디렉터 승인, 저작권 확인, 성능 QA까지 완료한 최종 자산
+
+### 필수 보고 항목
+
+에셋 릴리스는 반드시 다음을 기록한다.
+
+- 런타임 자산 용량과 원본 보관 자산 용량
+- Atlas 수, 프레임 수, 애니메이션 수
+- 해상도와 포맷
+- 현재 품질 단계
+- 최종 상용 원화 여부
+- Lazy Loading 및 초기 15MB 예산 영향
+
+`production-candidate-procedural` 이하 자산을 최종급으로 보고하지 않는다. 자동 생성 수량만으로 고품질·AAA·최종 완성을 주장하지 않는다.
+
+
+## Vite 8 빌드 규칙
+
+- `build.rollupOptions.output.manualChunks`는 반드시 함수 형식으로 작성한다.
+- 객체 별칭 형식은 TS2769 재발 원인이므로 금지한다.
+- CI는 Node.js 24 호환 GitHub Actions 메이저를 사용한다.

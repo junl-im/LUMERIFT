@@ -166,7 +166,7 @@ export class LobbyScene implements Scene {
     this.qualityButton.position.set(277, 846);
 
     const assetGallery = new UiButton({
-      label: '에셋 보관소 · v0.8 메가팩',
+      label: '에셋 품질 보관소 · v0.9',
       width: 390,
       height: 44,
       fontSize: 16,

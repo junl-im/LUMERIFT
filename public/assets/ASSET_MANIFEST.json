@@ -1,7 +1,7 @@
 {
-  "version": 3,
+  "version": 4,
   "game": "LUMERIFT",
-  "release": "0.8.0",
+  "release": "0.9.1",
   "bundles": {
     "core-ui": {
       "files": [
@@ -187,6 +187,134 @@
         "audio/ambient/ambient_07.opus"
       ],
       "bytes": 204616
+    },
+    "quality-heroes": {
+      "files": [
+        "atlases/quality/heroes/heroes_quality_01.json",
+        "atlases/quality/heroes/heroes_quality_01.webp"
+      ],
+      "bytes": 292390
+    },
+    "quality-bosses": {
+      "files": [
+        "atlases/quality/bosses/bosses_quality_01.json",
+        "atlases/quality/bosses/bosses_quality_01.webp",
+        "atlases/quality/bosses/bosses_quality_02.json",
+        "atlases/quality/bosses/bosses_quality_02.webp"
+      ],
+      "bytes": 346339
+    },
+    "quality-npc": {
+      "files": [
+        "atlases/quality/npc/npc_quality_01.json",
+        "atlases/quality/npc/npc_quality_01.webp",
+        "atlases/quality/npc/npc_quality_02.json",
+        "atlases/quality/npc/npc_quality_02.webp"
+      ],
+      "bytes": 361496
+    },
+    "quality-items": {
+      "files": [
+        "atlases/quality/items/items_quality_01.json",
+        "atlases/quality/items/items_quality_01.webp",
+        "atlases/quality/items/items_quality_02.json",
+        "atlases/quality/items/items_quality_02.webp",
+        "atlases/quality/items/items_quality_03.json",
+        "atlases/quality/items/items_quality_03.webp",
+        "atlases/quality/items/items_quality_04.json",
+        "atlases/quality/items/items_quality_04.webp",
+        "atlases/quality/items/items_quality_05.json",
+        "atlases/quality/items/items_quality_05.webp",
+        "atlases/quality/items/items_quality_06.json",
+        "atlases/quality/items/items_quality_06.webp"
+      ],
+      "bytes": 2925924
+    },
+    "quality-skills": {
+      "files": [
+        "atlases/quality/skills/skills_quality_01.json",
+        "atlases/quality/skills/skills_quality_01.webp",
+        "atlases/quality/skills/skills_quality_02.json",
+        "atlases/quality/skills/skills_quality_02.webp",
+        "atlases/quality/skills/skills_quality_03.json",
+        "atlases/quality/skills/skills_quality_03.webp",
+        "atlases/quality/skills/skills_quality_04.json",
+        "atlases/quality/skills/skills_quality_04.webp"
+      ],
+      "bytes": 1123718
+    },
+    "quality-environment": {
+      "files": [
+        "atlases/quality/environment/props_quality_01.json",
+        "atlases/quality/environment/props_quality_01.webp",
+        "atlases/quality/environment/props_quality_02.json",
+        "atlases/quality/environment/props_quality_02.webp",
+        "atlases/quality/environment/props_quality_03.json",
+        "atlases/quality/environment/props_quality_03.webp",
+        "atlases/quality/environment/props_quality_04.json",
+        "atlases/quality/environment/props_quality_04.webp",
+        "atlases/quality/environment/props_quality_05.json",
+        "atlases/quality/environment/props_quality_05.webp"
+      ],
+      "bytes": 1514287
+    },
+    "quality-vfx": {
+      "files": [
+        "atlases/quality/effects/vfx_quality_01.json",
+        "atlases/quality/effects/vfx_quality_01.webp",
+        "atlases/quality/effects/vfx_quality_02.json",
+        "atlases/quality/effects/vfx_quality_02.webp",
+        "atlases/quality/effects/vfx_quality_03.json",
+        "atlases/quality/effects/vfx_quality_03.webp",
+        "atlases/quality/effects/vfx_quality_04.json",
+        "atlases/quality/effects/vfx_quality_04.webp"
+      ],
+      "bytes": 3074366
+    },
+    "quality-ui": {
+      "files": [
+        "atlases/quality/ui/ui_quality_01.json",
+        "atlases/quality/ui/ui_quality_01.webp",
+        "atlases/quality/ui/ui_quality_02.json",
+        "atlases/quality/ui/ui_quality_02.webp"
+      ],
+      "bytes": 490162
+    },
+    "quality-keyart": {
+      "files": [
+        "loading/quality/verdant_rift_keyart_01.webp",
+        "loading/quality/verdant_rift_keyart_02.webp",
+        "loading/quality/sunken_dunes_keyart_01.webp",
+        "loading/quality/sunken_dunes_keyart_02.webp",
+        "loading/quality/frost_citadel_keyart_01.webp",
+        "loading/quality/frost_citadel_keyart_02.webp",
+        "loading/quality/ember_foundry_keyart_01.webp",
+        "loading/quality/ember_foundry_keyart_02.webp",
+        "loading/quality/neon_arcology_keyart_01.webp",
+        "loading/quality/neon_arcology_keyart_02.webp"
+      ],
+      "bytes": 1147164
+    },
+    "quality-backgrounds": {
+      "files": [
+        "maps/quality/chapter1/verdant_rift_battle_01.webp",
+        "maps/quality/chapter1/verdant_rift_battle_02.webp",
+        "maps/quality/chapter1/verdant_rift_battle_03.webp",
+        "maps/quality/chapter2/sunken_dunes_battle_01.webp",
+        "maps/quality/chapter2/sunken_dunes_battle_02.webp",
+        "maps/quality/chapter2/sunken_dunes_battle_03.webp",
+        "maps/quality/chapter3/frost_citadel_battle_01.webp",
+        "maps/quality/chapter3/frost_citadel_battle_02.webp",
+        "maps/quality/chapter3/frost_citadel_battle_03.webp",
+        "maps/quality/chapter4/ember_foundry_battle_01.webp",
+        "maps/quality/chapter4/ember_foundry_battle_02.webp",
+        "maps/quality/chapter4/ember_foundry_battle_03.webp",
+        "maps/quality/chapter5/neon_arcology_battle_01.webp",
+        "maps/quality/chapter5/neon_arcology_battle_02.webp",
+        "maps/quality/chapter5/neon_arcology_battle_03.webp"
+      ],
+      "bytes": 1631876
     }
-  }
+  },
+  "qualityStage": "production-candidate-procedural"
 }

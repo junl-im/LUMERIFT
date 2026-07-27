@@ -1,25 +1,37 @@
-# LUMERIFT: 균열의 계승자 v0.8.0
+# LUMERIFT: 균열의 계승자 v0.9.1
 
 Vite + TypeScript + PixiJS 8 + Firebase 기반 세로형 모바일 웹 액션 RPG입니다.
 
-## v0.8.0 핵심 결과
 
-- 총 16개 Atlas, 1,174 프레임, 127 애니메이션
-- 아이템 160종, 스킬 80종, 상태 효과 48종
-- UI 아이콘 96종, 몬스터 도감 48종, NPC 초상 32종
-- 환경 오브젝트 120종, VFX 24세트, 배지 64종
-- 튜토리얼 글리프 40종
-- 5개 지역, 총 15개 전투 배경
-- 로딩 키아트 8종과 브랜드 자산 3종
-- UI 12종, 전투 16종, 환경 8종의 신규 오디오
-- 런타임 에셋 보관소 갤러리
-- 영구 인수인계 문서와 자동 검증 체계
+## v0.9.1 빌드 복구 핫픽스
+
+- Vite 8에서 허용되지 않는 `manualChunks` 객체 별칭 형식을 함수 형식으로 교체
+- PixiJS와 Firebase 청크 분리 유지
+- GitHub Actions를 Node.js 24 기준으로 갱신
+- `validate:config`와 조기 `typecheck`로 동일 오류를 전체 검증 초반에 차단
+
+## v0.9.0 핵심 결과
+
+- v0.8 구조 검증팩을 유지하면서 신규 품질팩 추가
+- 신규 Atlas 26개, 프레임 1,300개, VFX 애니메이션 32개
+- 누적 Atlas 프레임 2,474개, 애니메이션 159개
+- 영웅 초상 8종, 보스 초상 12종, NPC 초상 16종
+- 장비·아이템 아이콘 384종, 스킬 아이콘 160종
+- 환경 오브젝트 240종, 프리미엄 UI 프레임 96종
+- VFX 32세트·384프레임
+- 5개 지역 키아트 10종, 전투 배경 15종
+- 런타임 WebP 품질 자산 약 12.31MiB
+- 보관용 고해상도 PNG 원본 약 458.36MiB
+- 분류별 Lazy Loading 에셋 품질 보관소
+- 품질 단계와 과장 보고 방지 자동 검사
+
+v0.9.0 자산은 `production-candidate-procedural` 단계입니다. 기존보다 해상도·디테일·규모가 크게 향상됐지만 **최종 상용 원화가 아니다**. 외부 아트 디렉션, 수작업 리터칭, 저작권 확인, 모바일 실기기 검수를 거쳐야 `final-candidate` 이상으로 승격할 수 있습니다.
 
 ## 현재 플레이 흐름
 
 ```text
 Boot → Login → Animated Lobby
-→ Asset Gallery / Inventory / Quest / Stage Select
+→ Quality Asset Gallery / Inventory / Quest / Stage Select
 → Stage 1-1 ~ 1-10 → Mobile Combat HUD
 → Boss Phase 1·2·3 → Reward → Growth
 ```
@@ -64,17 +76,21 @@ Firebase가 없어도 로컬 게스트 모드로 실행됩니다.
 
 ```bash
 npm run validate:handoff
+npm run validate:art
 npm run report:inventory
 npm run verify
 ```
 
-SVG 금지, 데이터 상호 참조, Atlas, 인수인계 상태, 상대 import, TypeScript, 테스트, Vite 빌드와 15MB 예산을 검사합니다.
+SVG 금지, 데이터 상호 참조, Atlas, 품질 단계, 원본·런타임 용량, 인수인계 상태, 상대 import, TypeScript, 테스트, Vite 빌드와 15MB 초기 예산을 검사합니다.
 
-## 에셋 생성
+## 에셋 재생성
 
 ```bash
 python tools/generate_runtime_assets.py
 python tools/generate_asset_megapack_v080.py
+python tools/generate_asset_qualitypack_v090.py
 ```
 
-현재 자동 생성 캐릭터·몬스터·아이콘·배경은 최종 상용 원화가 아니라 `production-structure` 단계의 제작 규격·런타임 검증 자산입니다.
+- `public/assets`: 게임 런타임 배포 자산
+- `art_source/v0.9.0`: 보관·후속 리터칭용 고해상도 PNG 원본
+- `art_source`는 GitHub Pages 배포 결과물에 포함하지 않습니다.

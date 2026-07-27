@@ -128,8 +128,27 @@ async function validateRequiredAnimations() {
   }
 }
 
+async function validateQualityPack() {
+  const summary = JSON.parse(await readFile('public/assets/QUALITYPACK_V090_SUMMARY.json', 'utf8'));
+  let frames = 0;
+  let animations = 0;
+  let atlases = 0;
+  for (const manifests of Object.values(summary.groups ?? {})) {
+    for (const entry of manifests) {
+      const atlas = JSON.parse(await readFile(`public/assets/${entry.json}`, 'utf8'));
+      frames += Object.keys(atlas.frames ?? {}).length;
+      animations += Object.keys(atlas.animations ?? {}).length;
+      atlases += 1;
+    }
+  }
+  if (atlases !== summary.counts.atlases) errors.push(`quality pack: Atlas ${atlases} != ${summary.counts.atlases}`);
+  if (frames !== summary.counts.frames) errors.push(`quality pack: 프레임 ${frames} != ${summary.counts.frames}`);
+  if (animations !== summary.counts.animations) errors.push(`quality pack: 애니메이션 ${animations} != ${summary.counts.animations}`);
+}
+
 await walk(root);
 await validateRequiredAnimations();
+await validateQualityPack();
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

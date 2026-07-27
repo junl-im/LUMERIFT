@@ -81,3 +81,262 @@ export const ASSET_MEGA_GALLERY_BUNDLE: AssetBundleDefinition = {
   ],
   estimatedBytes: 1_250_000,
 };
+
+export type QualityGalleryCategoryKind = 'atlas' | 'image';
+
+export interface QualityGalleryCategoryDefinition {
+  readonly id: string;
+  readonly label: string;
+  readonly kind: QualityGalleryCategoryKind;
+  readonly prefix?: string;
+  readonly atlasPaths: readonly string[];
+  readonly imagePaths: readonly string[];
+  readonly bundle: AssetBundleDefinition;
+}
+
+function qualityAssetUrls(paths: readonly string[]): readonly string[] {
+  return paths.map((path) => assetUrl(`assets/${path}`));
+}
+
+function qualityBundle(id: string, paths: readonly string[], estimatedBytes: number): AssetBundleDefinition {
+  return { id, urls: qualityAssetUrls(paths), estimatedBytes };
+}
+
+export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [
+  {
+    id: 'quality-heroes',
+    label: '영웅 초상 8종',
+    kind: 'atlas',
+    prefix: 'quality.hero.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/heroes/heroes_quality_01.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-heroes', [
+      'atlases/quality/heroes/heroes_quality_01.json',
+      'atlases/quality/heroes/heroes_quality_01.webp',
+    ], 292390),
+  },
+  {
+    id: 'quality-bosses',
+    label: '보스 초상 12종',
+    kind: 'atlas',
+    prefix: 'quality.boss.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/bosses/bosses_quality_01.json',
+      'atlases/quality/bosses/bosses_quality_02.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-bosses', [
+      'atlases/quality/bosses/bosses_quality_01.json',
+      'atlases/quality/bosses/bosses_quality_01.webp',
+      'atlases/quality/bosses/bosses_quality_02.json',
+      'atlases/quality/bosses/bosses_quality_02.webp',
+    ], 346339),
+  },
+  {
+    id: 'quality-npc',
+    label: 'NPC 초상 16종',
+    kind: 'atlas',
+    prefix: 'quality.npc.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/npc/npc_quality_01.json',
+      'atlases/quality/npc/npc_quality_02.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-npc', [
+      'atlases/quality/npc/npc_quality_01.json',
+      'atlases/quality/npc/npc_quality_01.webp',
+      'atlases/quality/npc/npc_quality_02.json',
+      'atlases/quality/npc/npc_quality_02.webp',
+    ], 361496),
+  },
+  {
+    id: 'quality-items',
+    label: '장비·아이템 아이콘 384종',
+    kind: 'atlas',
+    prefix: 'quality.item.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/items/items_quality_01.json',
+      'atlases/quality/items/items_quality_02.json',
+      'atlases/quality/items/items_quality_03.json',
+      'atlases/quality/items/items_quality_04.json',
+      'atlases/quality/items/items_quality_05.json',
+      'atlases/quality/items/items_quality_06.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-items', [
+      'atlases/quality/items/items_quality_01.json',
+      'atlases/quality/items/items_quality_01.webp',
+      'atlases/quality/items/items_quality_02.json',
+      'atlases/quality/items/items_quality_02.webp',
+      'atlases/quality/items/items_quality_03.json',
+      'atlases/quality/items/items_quality_03.webp',
+      'atlases/quality/items/items_quality_04.json',
+      'atlases/quality/items/items_quality_04.webp',
+      'atlases/quality/items/items_quality_05.json',
+      'atlases/quality/items/items_quality_05.webp',
+      'atlases/quality/items/items_quality_06.json',
+      'atlases/quality/items/items_quality_06.webp',
+    ], 2925924),
+  },
+  {
+    id: 'quality-skills',
+    label: '스킬 아이콘 160종',
+    kind: 'atlas',
+    prefix: 'quality.skill.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/skills/skills_quality_01.json',
+      'atlases/quality/skills/skills_quality_02.json',
+      'atlases/quality/skills/skills_quality_03.json',
+      'atlases/quality/skills/skills_quality_04.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-skills', [
+      'atlases/quality/skills/skills_quality_01.json',
+      'atlases/quality/skills/skills_quality_01.webp',
+      'atlases/quality/skills/skills_quality_02.json',
+      'atlases/quality/skills/skills_quality_02.webp',
+      'atlases/quality/skills/skills_quality_03.json',
+      'atlases/quality/skills/skills_quality_03.webp',
+      'atlases/quality/skills/skills_quality_04.json',
+      'atlases/quality/skills/skills_quality_04.webp',
+    ], 1123718),
+  },
+  {
+    id: 'quality-environment',
+    label: '환경 오브젝트 240종',
+    kind: 'atlas',
+    prefix: 'quality.prop.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/environment/props_quality_01.json',
+      'atlases/quality/environment/props_quality_02.json',
+      'atlases/quality/environment/props_quality_03.json',
+      'atlases/quality/environment/props_quality_04.json',
+      'atlases/quality/environment/props_quality_05.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-environment', [
+      'atlases/quality/environment/props_quality_01.json',
+      'atlases/quality/environment/props_quality_01.webp',
+      'atlases/quality/environment/props_quality_02.json',
+      'atlases/quality/environment/props_quality_02.webp',
+      'atlases/quality/environment/props_quality_03.json',
+      'atlases/quality/environment/props_quality_03.webp',
+      'atlases/quality/environment/props_quality_04.json',
+      'atlases/quality/environment/props_quality_04.webp',
+      'atlases/quality/environment/props_quality_05.json',
+      'atlases/quality/environment/props_quality_05.webp',
+    ], 1514287),
+  },
+  {
+    id: 'quality-vfx',
+    label: '전투 VFX 32세트·384프레임',
+    kind: 'atlas',
+    prefix: 'quality.vfx.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/effects/vfx_quality_01.json',
+      'atlases/quality/effects/vfx_quality_02.json',
+      'atlases/quality/effects/vfx_quality_03.json',
+      'atlases/quality/effects/vfx_quality_04.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-vfx', [
+      'atlases/quality/effects/vfx_quality_01.json',
+      'atlases/quality/effects/vfx_quality_01.webp',
+      'atlases/quality/effects/vfx_quality_02.json',
+      'atlases/quality/effects/vfx_quality_02.webp',
+      'atlases/quality/effects/vfx_quality_03.json',
+      'atlases/quality/effects/vfx_quality_03.webp',
+      'atlases/quality/effects/vfx_quality_04.json',
+      'atlases/quality/effects/vfx_quality_04.webp',
+    ], 3074366),
+  },
+  {
+    id: 'quality-ui',
+    label: '프리미엄 UI 프레임 96종',
+    kind: 'atlas',
+    prefix: 'quality.ui.',
+    atlasPaths: qualityAssetUrls([
+      'atlases/quality/ui/ui_quality_01.json',
+      'atlases/quality/ui/ui_quality_02.json',
+    ]),
+    imagePaths: [],
+    bundle: qualityBundle('quality-ui', [
+      'atlases/quality/ui/ui_quality_01.json',
+      'atlases/quality/ui/ui_quality_01.webp',
+      'atlases/quality/ui/ui_quality_02.json',
+      'atlases/quality/ui/ui_quality_02.webp',
+    ], 490162),
+  },
+  {
+    id: 'quality-keyart',
+    label: '지역 키아트 10종',
+    kind: 'image',
+    atlasPaths: [],
+    imagePaths: qualityAssetUrls([
+      'loading/quality/verdant_rift_keyart_01.webp',
+      'loading/quality/verdant_rift_keyart_02.webp',
+      'loading/quality/sunken_dunes_keyart_01.webp',
+      'loading/quality/sunken_dunes_keyart_02.webp',
+      'loading/quality/frost_citadel_keyart_01.webp',
+      'loading/quality/frost_citadel_keyart_02.webp',
+      'loading/quality/ember_foundry_keyart_01.webp',
+      'loading/quality/ember_foundry_keyart_02.webp',
+      'loading/quality/neon_arcology_keyart_01.webp',
+      'loading/quality/neon_arcology_keyart_02.webp',
+    ]),
+    bundle: qualityBundle('quality-keyart', [
+      'loading/quality/verdant_rift_keyart_01.webp',
+      'loading/quality/verdant_rift_keyart_02.webp',
+      'loading/quality/sunken_dunes_keyart_01.webp',
+      'loading/quality/sunken_dunes_keyart_02.webp',
+      'loading/quality/frost_citadel_keyart_01.webp',
+      'loading/quality/frost_citadel_keyart_02.webp',
+      'loading/quality/ember_foundry_keyart_01.webp',
+      'loading/quality/ember_foundry_keyart_02.webp',
+      'loading/quality/neon_arcology_keyart_01.webp',
+      'loading/quality/neon_arcology_keyart_02.webp',
+    ], 1147164),
+  },
+  {
+    id: 'quality-backgrounds',
+    label: '지역 전투 배경 15종',
+    kind: 'image',
+    atlasPaths: [],
+    imagePaths: qualityAssetUrls([
+      'maps/quality/chapter1/verdant_rift_battle_01.webp',
+      'maps/quality/chapter1/verdant_rift_battle_02.webp',
+      'maps/quality/chapter1/verdant_rift_battle_03.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_01.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_02.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_03.webp',
+      'maps/quality/chapter3/frost_citadel_battle_01.webp',
+      'maps/quality/chapter3/frost_citadel_battle_02.webp',
+      'maps/quality/chapter3/frost_citadel_battle_03.webp',
+      'maps/quality/chapter4/ember_foundry_battle_01.webp',
+      'maps/quality/chapter4/ember_foundry_battle_02.webp',
+      'maps/quality/chapter4/ember_foundry_battle_03.webp',
+      'maps/quality/chapter5/neon_arcology_battle_01.webp',
+      'maps/quality/chapter5/neon_arcology_battle_02.webp',
+      'maps/quality/chapter5/neon_arcology_battle_03.webp',
+    ]),
+    bundle: qualityBundle('quality-backgrounds', [
+      'maps/quality/chapter1/verdant_rift_battle_01.webp',
+      'maps/quality/chapter1/verdant_rift_battle_02.webp',
+      'maps/quality/chapter1/verdant_rift_battle_03.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_01.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_02.webp',
+      'maps/quality/chapter2/sunken_dunes_battle_03.webp',
+      'maps/quality/chapter3/frost_citadel_battle_01.webp',
+      'maps/quality/chapter3/frost_citadel_battle_02.webp',
+      'maps/quality/chapter3/frost_citadel_battle_03.webp',
+      'maps/quality/chapter4/ember_foundry_battle_01.webp',
+      'maps/quality/chapter4/ember_foundry_battle_02.webp',
+      'maps/quality/chapter4/ember_foundry_battle_03.webp',
+      'maps/quality/chapter5/neon_arcology_battle_01.webp',
+      'maps/quality/chapter5/neon_arcology_battle_02.webp',
+      'maps/quality/chapter5/neon_arcology_battle_03.webp',
+    ], 1631876),
+  },
+] as const;

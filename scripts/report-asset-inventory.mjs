@@ -1,5 +1,5 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
-import { extname, join, relative } from 'node:path';
+import { extname, join } from 'node:path';
 
 const root = 'public/assets';
 let files = 0;
@@ -37,22 +37,39 @@ async function walk(directory) {
 }
 
 await walk(root);
-const summary = JSON.parse(await readFile(join(root, 'MEGAPACK_V080_SUMMARY.json'), 'utf8'));
-const expectedFrames = 1174;
-const expectedAnimations = 127;
+const legacyFrames = 1174;
+const legacyAnimations = 127;
+const quality = JSON.parse(await readFile(join(root, 'QUALITYPACK_V090_SUMMARY.json'), 'utf8'));
+const expectedFrames = legacyFrames + quality.counts.frames;
+const expectedAnimations = legacyAnimations + quality.counts.animations;
 const errors = [];
 if (frames !== expectedFrames) errors.push(`Atlas 프레임 ${frames} != ${expectedFrames}`);
 if (animations !== expectedAnimations) errors.push(`Atlas 애니메이션 ${animations} != ${expectedAnimations}`);
-if (summary.counts.megaItems !== 160) errors.push('메가 아이템 수량 오류');
-if (summary.counts.environmentProps !== 120) errors.push('환경 오브젝트 수량 오류');
-if (summary.counts.mapBackgrounds !== 15) errors.push('맵 배경 수량 오류');
+if (quality.counts.itemIcons !== 384) errors.push('v0.9 아이템 수량 오류');
+if (quality.counts.environmentProps !== 240) errors.push('v0.9 환경 오브젝트 수량 오류');
+if (quality.counts.battleBackgrounds !== 15) errors.push('v0.9 배경 수량 오류');
 
-console.log(`Asset inventory: ${files} files, ${(bytes / 1024 / 1024).toFixed(2)} MiB`);
+let sourceFiles = 0;
+let sourceBytes = 0;
+async function walkSources(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) await walkSources(path);
+    else {
+      sourceFiles += 1;
+      sourceBytes += (await stat(path)).size;
+    }
+  }
+}
+await walkSources('art_source/v0.9.0');
+
+console.log(`Runtime asset inventory: ${files} files, ${(bytes / 1024 / 1024).toFixed(2)} MiB`);
+console.log(`Source master inventory: ${sourceFiles} files, ${(sourceBytes / 1024 / 1024).toFixed(2)} MiB`);
 console.log(`Atlas inventory: ${atlases} atlases, ${frames} frames, ${animations} animations`);
 console.log([...byExtension.entries()].sort((a,b) => b[1]-a[1]).map(([ext,count]) => `${ext}:${count}`).join(' '));
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS v0.8 mega asset inventory');
+  console.log('PASS v0.9 quality asset inventory');
 }

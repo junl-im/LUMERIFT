@@ -1,19 +1,24 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "0.8.0",
+  "version": "0.9.1",
   "baseVersion": "0.1.0",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v0.8.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.8.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v0.9.1.zip",
+  "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.9.1.zip",
+  "qualityStage": "production-candidate-procedural",
   "features": [
-    "large reproducible asset megapack with 1174 atlas frames and 127 animations",
-    "160 items, 80 skills, 48 statuses, 96 UI icons and 120 environment props",
-    "48 bestiary portraits, 32 NPC portraits, 64 emblems and 40 tutorial glyphs",
-    "24 six-frame VFX animations, 15 region backgrounds and eight loading key arts",
-    "36 new audio assets and optional lazy-loaded asset bundles",
-    "runtime asset gallery for visual inspection",
-    "persistent handoff documents, machine-readable state and automated handoff validation"
+    "Vite 8 compatible function-form manualChunks for PixiJS and Firebase",
+    "GitHub Actions Node 24 compatible action majors",
+    "early build-config validation and fast-fail TypeScript checking",
+    "26 new quality atlases with 1300 frames and 32 VFX animations",
+    "8 hero, 12 boss and 16 NPC portrait candidates",
+    "384 item icons, 160 skill icons, 240 environment props and 96 UI frames",
+    "10 regional key arts and 15 vertical battle backgrounds",
+    "458MiB high-resolution PNG source masters separated from 12.31MiB runtime WebP assets",
+    "category-level lazy-loaded quality asset gallery",
+    "automated quality-stage, scale, capacity and truthfulness validation",
+    "updated persistent handoff and release governance"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -32,13 +37,18 @@
       "gif",
       "bmp",
       "tiff"
-    ]
+    ],
+    "sourceDeployment": "art_source is archive-only and must not be copied into public/dist"
   },
   "verification": [
-    "asset policy and signatures",
-    "16 atlas bounds and 1174 frame inventory",
-    "127 animation references",
-    "13 asset bundle manifests",
+    "Vite 8 build configuration guard",
+    "Node 24 CI workflow syntax and action versions",
+    "asset policy and binary signatures",
+    "42 total atlas bounds and 2474 frame inventory",
+    "159 total animation references",
+    "26 v0.9 quality atlases and 1300 quality frames",
+    "23 asset bundle manifests plus category lazy loading contracts",
+    "458MiB source master and 12.31MiB runtime quality capacity gates",
     "handoff document and version consistency",
     "game data and relative imports",
     "initial payload source budget",

@@ -41,3 +41,25 @@
 - 에셋 보관소 런타임 갤러리
 - `AGENTS.md`, `HANDOFF_STATE.json`, `HANDOFF_MASTER.md`, `HANDOFF_LOG.md` 도입
 - 인수인계 자동 검증을 릴리스 필수 조건으로 고정
+
+## v0.9.0
+
+- v0.8 에셋이 기술 구조 검증에는 적합하지만 시각 품질·용량 기준에는 부족했음을 공식 기록
+- 신규 품질 Atlas 26개, 1,300프레임, 32 VFX 애니메이션 추가
+- 영웅 8, 보스 12, NPC 16 초상 후보 추가
+- 아이템 384, 스킬 160, 환경 오브젝트 240, UI 96 추가
+- 5개 지역 키아트 10종과 전투 배경 15종 추가
+- 런타임 WebP 12.31MiB와 고해상도 PNG 원본 458.36MiB 분리
+- 에셋 품질 보관소를 분류별 Lazy Loading 구조로 변경
+- `production-candidate-procedural` 품질 단계 도입
+- `validate:art` 품질·용량·과장 보고 방지 검사 추가
+- Firebase 운영 기반을 v0.10.0으로 이동
+
+
+## v0.9.1
+
+- GitHub Actions에서 발생한 `vite.config.ts TS2769` 원인 확인
+- Vite 8 비호환 `manualChunks` 객체 형식을 함수 형식으로 교체
+- checkout/setup-node를 v5, configure-pages를 v6, upload-pages-artifact를 v4로 갱신
+- CI Node.js를 24로 변경
+- `validate:config` 추가 및 typecheck 조기 실행 적용

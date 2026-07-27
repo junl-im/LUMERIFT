@@ -77,3 +77,13 @@ v0.6.0 제작 기준 이미지는 최종 상용 아트가 아니며, 향후 최�
 - 최종 상용 아트 교체 시 파일 경로와 프레임 키를 유지한다.
 - `tools/generate_asset_megapack_v080.py`가 원본 생성 규칙이다.
 - 대규모 Atlas는 초기 다운로드에 직접 포함하지 않고 별도 Bundle로 Lazy Loading한다.
+
+## v0.9.0 품질팩 계약
+
+- 프레임 접두사: `quality.hero.*`, `quality.boss.*`, `quality.npc.*`, `quality.item.*`, `quality.skill.*`, `quality.prop.*`, `quality.vfx.*`, `quality.ui.*`
+- 런타임: `public/assets/atlases/quality`, `public/assets/loading/quality`, `public/assets/maps/quality`
+- 원본: `art_source/v0.9.0`
+- 품질 단계: `production-candidate-procedural`
+- 최종 원화 교체 시 프레임 키와 번들 ID를 유지한다.
+- 단일 WebP는 4MB 이하를 유지한다.
+- 원본 PNG는 배포하지 않는다.

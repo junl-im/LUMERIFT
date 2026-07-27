@@ -31,3 +31,12 @@
 - `atlases/tutorial/tutorial_glyphs_v1.*`: 40개 튜토리얼 글리프
 
 현재 메가팩은 최종 상용 원화가 아닌 production-structure 단계다.
+
+## v0.9 품질팩
+
+- `QUALITYPACK_V090_SUMMARY.json`: 품질 단계·수량·용량·경로
+- `atlases/quality/`: 영웅·보스·NPC·아이템·스킬·환경·VFX·UI
+- `loading/quality/`: 720×1280 지역 키아트
+- `maps/quality/`: 720×1280 전투 배경
+- 원본 PNG는 프로젝트 루트 `art_source/v0.9.0`에 있으며 런타임 배포 대상이 아니다.
+

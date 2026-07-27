@@ -85,3 +85,24 @@ npm run dev
 - AGENTS와 4개 인수인계 핵심 파일 검사
 - package, brand, release, handoff, asset manifest 버전 일치 검사
 - 에셋 보관소 상대 import와 번들 경로 검사
+
+## v0.9.0 추가 검증
+
+- `scripts/validate-art-quality.mjs`
+  - 품질 단계 `production-candidate-procedural`
+  - 신규 Atlas 26개·프레임 1,300개·애니메이션 32개
+  - 런타임 품질팩 10MiB 이상
+  - 원본 PNG 300MiB 이상
+  - 원본·런타임 합계 350MiB 이상
+  - 품질 단계와 과장 보고 방지 문구
+- 누적 Atlas 기대치: 42개, 2,474프레임, 159애니메이션
+- ASSET_MANIFEST 품질 카테고리 번들 경로·바이트 검사
+- 에셋 품질 보관소 상대 import와 분류별 Lazy Loading 계약 검사
+
+
+## v0.9.1 빌드 복구 검증
+
+- `validate:config`: 객체형 manualChunks 재도입 방지
+- `tsc -b`: Vite 설정 포함 Strict TypeScript 검사
+- `vite build`: PixiJS/Firebase 함수형 청크 분할 확인
+- GitHub Actions: Node.js 24 및 최신 호환 메이저 확인

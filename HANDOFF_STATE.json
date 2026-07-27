@@ -1,28 +1,35 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "0.8.0",
+  "version": "0.9.1",
   "updatedAt": "2026-07-27",
-  "currentPhase": "대규모 에셋 기반 확장 및 인수인계 체계 고정",
-  "qualityStage": "production-structure",
+  "currentPhase": "Vite 8 빌드 복구 및 GitHub Actions Node 24 전환",
+  "qualityStage": "production-candidate-procedural",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
     "3연속 공격, 스킬 2종, 회피, 상태 이상, 보스 3페이즈",
     "스테이지 10개, 퀘스트, 장비, 인벤토리, 저장 데이터 v3",
-    "8방향 플레이어 Atlas와 몬스터·UI·장비·VFX 런타임 Atlas",
     "모바일 조이스틱, 쿨다운 HUD, 씬 페이드, 품질 자동 축소",
-    "v0.8 에셋 메가팩 1,174 Atlas 프레임과 127 애니메이션",
-    "15개 지역 배경, 8개 로딩 아트, 36개 신규 오디오 자산",
-    "에셋 보관소 런타임 갤러리",
-    "AGENTS·HANDOFF 문서와 자동 인수인계 검증"
+    "v0.8 구조 검증 메가팩 1,174 Atlas 프레임과 127 애니메이션",
+    "v0.9 품질팩 신규 26 Atlas, 1,300프레임, 32 VFX 애니메이션",
+    "고해상도 PNG 원본 58개와 런타임 WebP 품질 자산 분리",
+    "영웅 8, 보스 12, NPC 16, 아이템 384, 스킬 160, 환경 240",
+    "지역 키아트 10종과 전투 배경 15종",
+    "분류별 Lazy Loading 에셋 품질 보관소",
+    "품질 단계·용량·수량 진실성 자동 검증",
+    "AGENTS·HANDOFF 문서와 자동 인수인계 검증",
+    "Vite 8 manualChunks 객체 형식을 함수 형식으로 교체하여 TS2769 빌드 오류 수정",
+    "GitHub Actions checkout/setup-node/configure-pages/upload-pages-artifact 최신 Node 24 호환 메이저 적용",
+    "빌드 설정 사전 검증과 typecheck 조기 실패 순서 적용"
   ],
   "inProgress": [],
   "nextPlanned": [
     "Firebase 게스트 계정의 Google 계정 연결",
     "Cloud Save 버전 관리와 로컬·클라우드 충돌 해결",
     "공지, 7일 출석, 우편, 쿠폰, 주간·전체 랭킹",
-    "상용 후보 캐릭터·몬스터 원화 제작과 기존 런타임 키 교체",
+    "영웅·보스·NPC 원화의 수작업 리터칭과 final-candidate 승격",
+    "Chapter 1 전투 배경과 UI의 실제 런타임 교체",
     "실기기 npm install, Vite build, 모바일 브라우저 성능 검증"
   ],
   "immutableRules": [
@@ -32,15 +39,29 @@
     "Texture Atlas, Lazy Loading, Object Pool을 우선한다.",
     "MVP 전 실시간 MMO 기능을 추가하지 않는다.",
     "모든 릴리스에서 인수인계 파일을 갱신한다.",
-    "결과 보고 순서는 결과, 전체 ZIP, 패치 ZIP, 다음 업데이트다."
+    "결과 보고 순서는 결과, 전체 ZIP, 패치 ZIP, 다음 업데이트다.",
+    "절차형 제작 후보 자산을 최종 상용 원화 또는 AAA 최종급으로 보고하지 않는다."
   ],
+  "assetMetrics": {
+    "legacyAtlasFrames": 1174,
+    "legacyAnimations": 127,
+    "qualityPackAtlases": 26,
+    "qualityPackFrames": 1300,
+    "qualityPackAnimations": 32,
+    "totalAtlasFrames": 2474,
+    "totalAnimations": 159,
+    "qualityRuntimeBytes": 12907722,
+    "sourceMasterBytes": 480623215,
+    "combinedQualityBytes": 493530937
+  },
   "knownLimitations": [
-    "현재 자동 생성 캐릭터·몬스터·아이콘·배경은 최종 상용 원화가 아니다.",
-    "현재 작업 환경에서는 npm Registry 연결 제한으로 실제 프로덕션 빌드와 브라우저 실기동을 완료하지 못할 수 있다.",
-    "Firebase 운영 기능은 v0.9.0 이후 실제 연결한다."
+    "v0.9 자산은 고해상도 절차형 제작 후보이며 최종 수작업 상용 원화가 아니다.",
+    "고해상도 PNG 원본은 보관용이며 GitHub Pages 런타임 배포 대상이 아니다.",
+    "Firebase 운영 기능은 v0.10.0에서 실제 연결한다.",
+    "v0.9.1 빌드는 Node.js 24와 Vite 8.1.5 기준으로 검증한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v0.8.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.8.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v0.9.1.zip",
+    "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.9.1.zip"
   }
 }

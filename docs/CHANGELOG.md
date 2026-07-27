@@ -1,5 +1,43 @@
 # Changelog
 
+## v0.9.1 - 2026-07-27
+
+### Fixed
+
+- Vite 8 타입 검사에서 `manualChunks` 객체 별칭이 `ManualChunksFunction`과 충돌하던 TS2769 오류 수정
+- `manualChunks(id)` 함수로 PixiJS와 Firebase 청크 분리 유지
+
+### Changed
+
+- GitHub Actions를 Node.js 24 호환 메이저 버전으로 갱신
+- 전체 검증 시작 시 빌드 설정과 TypeScript를 먼저 검사하도록 순서 변경
+- 버전을 v0.9.1로 갱신
+
+## v0.9.0 - 2026-07-27
+
+### Added
+
+- 26개 신규 품질 Atlas와 1,300개 프레임
+- 영웅·보스·NPC 초상 후보 36종
+- 아이템 384종, 스킬 160종, 환경 오브젝트 240종
+- VFX 32세트·384프레임, UI 프레임 96종
+- 지역 키아트 10종과 전투 배경 15종
+- 고해상도 PNG 원본 458.36MiB
+- 분류별 Lazy Loading 에셋 품질 보관소
+- 아트 품질 단계 및 진실성 자동 검사
+
+### Changed
+
+- 버전을 v0.9.0으로 갱신
+- v0.8 메가팩을 구조 검증팩으로 재분류
+- 에셋 상태를 `production-candidate-procedural`로 명확히 표기
+- Firebase 운영 기반을 v0.10.0으로 이동
+
+### Known limitations
+
+- 신규 자산은 절차형 고해상도 제작 후보이며 최종 수작업 상용 원화가 아니다.
+- 고해상도 PNG 원본은 합성 마스터이며 레이어 PSD 원본은 후속 제작 대상이다.
+
 ## v0.8.0 - 2026-07-27
 
 ### Added
