@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "updatedAt": "2026-07-27",
-  "currentPhase": "v1.4.1 Firebase 배포 스크립트 복구 완료",
+  "currentPhase": "v1.4.2 Firebase App Check 완전 비활성화 완료",
   "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -74,12 +74,12 @@
     "Firebase 설정·규칙·인증 흐름을 검사하는 validate:firebase 추가",
     "로컬 package.json 누락 시 발생하는 Missing script 오류 진단 및 Firebase 배포 스크립트 복구",
     "Firebase CLI 최신 공식 부분 배포 방식인 --only firestore로 Rules와 Indexes 동시 배포 명령 통일",
-    "firebase:check 및 firebase:deploy:firestore 별칭 추가"
+    "firebase:check 및 firebase:deploy:firestore 별칭 추가",
+    "Firebase App Check SDK 초기화·reCAPTCHA 환경변수·GitHub Actions Secret 주입을 제거하고 Auth·Firestore만 유지"
   ],
   "inProgress": [],
   "nextPlanned": [
     "Firebase Console에 Firestore Rules와 Indexes 배포 후 실제 계정별 권한 검증",
-    "App Check reCAPTCHA 키 등록과 metrics 관찰 후 단계적 enforcement",
     "서버 검증 우편·출석·쿠폰을 위한 Cloud Run 또는 Cloud Functions 설계",
     "Cloud Save 충돌 선택 UI와 계정 병합 복구 화면",
     "주간·전체 랭킹과 내 순위 표시",
@@ -105,15 +105,16 @@
     "BAT 파일은 Windows 편의용 선택 도구이며 CI·빌드의 필수 구성으로 간주하지 않는다.",
     "주요 화면은 런타임 연결·미리보기·시각 감사·자동 검사를 모두 통과해야 UI·그래픽 완료로 기록한다.",
     "중요 운영 보상은 온라인 전환 시 서버 시간과 Cloud Functions에서 재검증한다.",
-    "Firebase Web Config는 공개 식별자이며 App Check secret·서비스 계정 키는 저장소에 커밋하지 않는다.",
     "Firestore는 기본 거부 규칙을 유지하고 사용자 데이터는 request.auth.uid 기준으로 격리한다.",
     "쿠폰·고가치 우편·출석 보상은 클라이언트만으로 최종 승인하지 않는다.",
-    "Firebase 무료 할당량 보호를 위해 공지 캐시와 Cloud Save 쓰기 최소화를 유지한다."
+    "Firebase 무료 할당량 보호를 위해 공지 캐시와 Cloud Save 쓰기 최소화를 유지한다.",
+    "Firebase App Check SDK·reCAPTCHA 키·GitHub Actions Secret·Console enforcement는 사용자의 명시적 재승인 전까지 비활성화한다.",
+    "서비스 계정 JSON과 Admin SDK 비공개 키는 저장소에 커밋하지 않는다."
   ],
   "assetMetrics": {
     "activeAtlasCount": 6,
     "activeRuntimeBytes": 3808909,
-    "fullProjectBytes": 101392931,
+    "fullProjectBytes": 101437471,
     "sourceArchiveIncludedInFull": true,
     "sourceArchiveFileCount": 80,
     "legacyArchiveIncludedInFull": true,
@@ -122,13 +123,13 @@
   "knownLimitations": [
     "현재 플레이어 프로필은 클라이언트 권한형 MVP라 골드·전투 결과의 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
     "쿠폰·서버 우편·서버 시간 출석은 Spark 단계에서 로컬 데모이며 Firestore coupons 경로는 차단되어 있다.",
-    "App Check는 사이트 키 설정과 metrics 확인 전까지 enforcement를 켜지 않는다.",
+    "App Check는 사용자 결정에 따라 비활성화되어 있으며 현재 보호 경계는 Firebase Authentication과 Firestore Security Rules다.",
     "플레이어·몬스터가 LUMERIFT 전용 독점 최종 원화는 아니다.",
     "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.4.1.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.4.0_to_v1.4.1.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.4.2.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.4.1_to_v1.4.2.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 76566471,

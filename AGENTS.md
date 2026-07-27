@@ -145,3 +145,7 @@
 - 쿠폰, 고가치 우편, 서버 출석 보상은 클라이언트 계산만으로 최종 승인하지 않는다.
 - 규칙 변경 시 `npm run validate:firebase`와 Emulator 권한 테스트를 수행하고 인수인계 파일을 갱신한다.
 - Spark 무료 할당량을 보호하기 위해 공지 캐시, 저장 쓰기 최소화, 무제한 실시간 리스너 금지를 유지한다.
+
+## Firebase App Check 고정 결정
+
+- Firebase App Check는 사용자의 명시적 재승인 전까지 SDK·reCAPTCHA 키·CI Secret·Console enforcement를 모두 비활성화한다.

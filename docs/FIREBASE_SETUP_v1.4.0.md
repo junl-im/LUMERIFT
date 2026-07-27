@@ -1,5 +1,7 @@
 # LUMERIFT Firebase 설정 가이드 v1.4.0
 
+> 현재 운영 기준은 `docs/FIREBASE_SETUP_v1.4.2.md`입니다. v1.4.2부터 App Check는 완전히 비활성화했습니다.
+
 ## 적용 프로젝트
 
 - Firebase project ID: `lumerift-8db07`
@@ -25,9 +27,9 @@ Firebase Web Config는 비밀키가 아니며 런타임 연결 식별자다. 프
 4. Analytics
    - 선택 사항. 프로덕션 빌드와 지원 브라우저에서만 지연 초기화된다.
 5. App Check
-   - reCAPTCHA v3 또는 Enterprise로 Web 앱 등록
-   - 사이트 키를 GitHub Actions 환경변수 또는 `.env`의 `VITE_FIREBASE_APPCHECK_SITE_KEY`에 설정
-   - 처음에는 enforcement를 끄고 metrics를 관찰한 뒤 Firestore/Auth 순서로 적용
+   - v1.4.2부터 사용하지 않음
+   - reCAPTCHA 키와 GitHub Secret을 설정하지 않음
+   - Firestore/Auth enforcement를 켜지 않음
 
 ## 규칙·색인 배포
 

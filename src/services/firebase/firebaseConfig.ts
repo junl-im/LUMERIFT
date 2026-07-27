@@ -34,9 +34,6 @@ export function shouldUseFirebaseEmulators(): boolean {
   return readEnv('VITE_FIREBASE_USE_EMULATORS') === 'true';
 }
 
-export function readAppCheckSiteKey(): string | undefined {
-  return readEnv('VITE_FIREBASE_APPCHECK_SITE_KEY');
-}
 
 function readEnv(key: string): string | undefined {
   const raw = import.meta.env[key];

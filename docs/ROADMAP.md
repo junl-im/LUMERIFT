@@ -214,5 +214,14 @@
 - Cloud Save 충돌 비교·선택 UI
 - 주간·전체 랭킹과 내 순위
 - 서버 검증 우편·출석·쿠폰 백엔드 설계
-- App Check metrics 확인 후 단계적 enforcement
+- App Check는 v1.4.2에서 비활성화하며 사용자 재승인 전까지 재도입하지 않음
 - LUMERIFT 전용 플레이어·몬스터 아트 제작 계속
+
+## 완료: v1.4.2 App Check 비활성화
+
+- [x] App Check SDK 초기화 제거
+- [x] reCAPTCHA 환경변수 제거
+- [x] GitHub Actions Secret 주입 제거
+- [x] Console enforcement 비활성화 규칙 고정
+- [x] Auth·Firestore·Cloud Save 유지
+

@@ -145,3 +145,11 @@
 - Firebase Rules·Indexes 배포 스크립트 누락 복구
 - `--only firestore` 공식 부분 배포 방식으로 통일
 - 로컬 프로젝트 루트 및 package.json 버전 확인 절차 추가
+
+## 2026-07-27 · v1.4.2
+
+- 사용자 결정에 따라 Firebase App Check를 완전히 비활성화했다.
+- 런타임 import, reCAPTCHA 키 환경변수, GitHub Actions Secret 주입을 제거했다.
+- `validate:firebase`가 App Check 코드 재도입을 자동으로 차단하도록 변경했다.
+- Authentication·Firestore·Cloud Save·Analytics는 유지한다.
+

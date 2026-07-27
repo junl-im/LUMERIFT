@@ -1,13 +1,14 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.4.1",
-  "baseVersion": "1.4.0",
+  "version": "1.4.2",
+  "baseVersion": "1.4.1",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.4.1.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.4.0_to_v1.4.1.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.4.2.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.4.1_to_v1.4.2.zip",
   "qualityStage": "production-candidate-open-art-pass",
   "features": [
+    "fully disables Firebase App Check while preserving Authentication, Firestore Cloud Save and Analytics",
     "restores Firebase deployment npm scripts and uses official --only firestore partial deployment",
     "connects the bundled Firebase modular SDK to project lumerift-8db07",
     "adds anonymous, Google and email authentication with anonymous account linking",
@@ -15,8 +16,8 @@
     "adds IndexedDB Firestore offline cache with multi-tab support",
     "adds local-first resilient Cloud Save and retry queue",
     "loads remote Firestore notices with a 15-minute cache and built-in fallback",
-    "adds optional Analytics and App Check initialization",
-    "adds owner-scoped Firestore rules, indexes and emulator configuration"
+    "adds owner-scoped Firestore rules, indexes and emulator configuration",
+    "removes reCAPTCHA site-key environment variables and GitHub Actions secret injection"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -46,7 +47,7 @@
     "three authentication provider flows and anonymous linking are present",
     "Firestore rules deny unspecified paths and isolate users by request.auth.uid",
     "coupon collections are blocked from client access",
-    "offline cache, retry queue, notices cache and App Check hook are present",
-    "handoff, archive and asset policies remain intact"
+    "handoff, archive and asset policies remain intact",
+    "runtime source, env template and GitHub workflows contain no App Check initialization or site-key injection"
   ]
 }

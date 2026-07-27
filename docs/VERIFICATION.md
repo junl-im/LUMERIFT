@@ -169,3 +169,13 @@ npm run dev
 - 누적 Atlas 49개·3,206프레임·451애니메이션 검사
 - 초기 입력 예상 0.61MB / 15MB 검사
 - 실제 npm 의존성 기반 최종 빌드는 Registry 사용 가능한 CI에서 확인
+
+## v1.4.2 Firebase App Check 비활성화 검증
+
+- FirebaseGateway에 `firebase/app-check` import가 없음
+- App Check 초기화 함수와 reCAPTCHA provider가 없음
+- `.env.example`에 App Check 사이트 키가 없음
+- GitHub Pages·Verify Workflow에 App Check Secret 주입이 없음
+- 익명·Google·이메일 Auth와 Firestore 오프라인 캐시 계약 유지
+- `validate:firebase`가 App Check 재도입을 실패 처리
+- 대체 Strict TypeScript 검사 통과

@@ -158,3 +158,12 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - Firebase Rules·Indexes 배포 스크립트 누락 복구
 - `--only firestore` 공식 부분 배포 방식으로 통일
 - 로컬 프로젝트 루트 및 package.json 버전 확인 절차 추가
+
+## v1.4.2 Firebase App Check 비활성화 기준선
+
+- Firebase App Check SDK와 reCAPTCHA provider 초기화를 제거했다.
+- `.env`, GitHub Actions, 런타임 코드에서 App Check 사이트 키를 사용하지 않는다.
+- Firebase Console의 Firestore·Authentication enforcement를 켜지 않는다.
+- 익명·Google·이메일 Authentication, Firestore Cloud Save, 오프라인 캐시와 Analytics는 그대로 유지한다.
+- App Check 재도입은 사용자의 명시적 승인 후 별도 버전에서만 허용한다.
+
