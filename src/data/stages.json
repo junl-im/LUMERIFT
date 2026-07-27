@@ -1,0 +1,1064 @@
+{
+  "version": 2,
+  "stages": [
+    {
+      "id": "stage_001",
+      "order": 1,
+      "label": "1-1 깨어난 균열",
+      "areaName": "오염된 루멘 숲",
+      "description": "이동과 공격을 익히는 첫 전투입니다.",
+      "nodeType": "normal",
+      "recommendedPower": 120,
+      "previousStageId": null,
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 205,
+        "gold": 355,
+        "firstClear": {
+          "exp": 155,
+          "gold": 250,
+          "itemIds": [
+            "weapon_rift_blade_common"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.525
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.48500000000000004
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.445
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "낮은 울음",
+          "spawnDelay": 0.35,
+          "enemies": [
+            {
+              "monsterId": "monster_crawler",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 430,
+              "y": 270
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "포자 반응",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_wisp",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 430,
+              "y": 270
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_002",
+      "order": 2,
+      "label": "1-2 숲의 속삭임",
+      "areaName": "오염된 루멘 숲",
+      "description": "원거리 표식을 피하며 적을 정리하세요.",
+      "nodeType": "normal",
+      "recommendedPower": 170,
+      "previousStageId": "stage_001",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 260,
+        "gold": 450,
+        "firstClear": {
+          "exp": 190,
+          "gold": 320,
+          "itemIds": [
+            "armor_scout_common"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.5
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.46
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.42
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "포자 군집",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_wisp",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "침식 흔적",
+          "spawnDelay": 0.9,
+          "enemies": [
+            {
+              "monsterId": "monster_spitter",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_003",
+      "order": 3,
+      "label": "1-3 무너진 초소",
+      "areaName": "오염된 루멘 숲",
+      "description": "단단한 파수병의 공격 전조를 확인하세요.",
+      "nodeType": "normal",
+      "recommendedPower": 230,
+      "previousStageId": "stage_002",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 315,
+        "gold": 545,
+        "firstClear": {
+          "exp": 225,
+          "gold": 390,
+          "itemIds": [
+            "accessory_lumen_common"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.47500000000000003
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.43500000000000005
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.395
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.18
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.155
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.13
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "초소 외곽",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_crawler",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "침식 사격",
+          "spawnDelay": 0.9,
+          "enemies": [
+            {
+              "monsterId": "monster_spitter",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_004",
+      "order": 4,
+      "label": "1-4 검은 수풀",
+      "areaName": "오염된 루멘 숲",
+      "description": "빠르게 접근하는 그림자 포식자를 상대합니다.",
+      "nodeType": "normal",
+      "recommendedPower": 300,
+      "previousStageId": "stage_003",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 370,
+        "gold": 640,
+        "firstClear": {
+          "exp": 260,
+          "gold": 460,
+          "itemIds": []
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.45000000000000007
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.4100000000000001
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.37000000000000005
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.192
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.167
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.14200000000000002
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "검은 잔상",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_shade",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "포식자 무리",
+          "spawnDelay": 1.0,
+          "enemies": [
+            {
+              "monsterId": "monster_shade",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_005",
+      "order": 5,
+      "label": "1-5 감시자의 문",
+      "areaName": "오염된 루멘 숲",
+      "description": "첫 정예 몬스터가 균열 입구를 지키고 있습니다.",
+      "nodeType": "elite",
+      "recommendedPower": 380,
+      "previousStageId": "stage_004",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 425,
+        "gold": 735,
+        "firstClear": {
+          "exp": 295,
+          "gold": 530,
+          "itemIds": [
+            "weapon_rift_blade_rare"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.42500000000000004
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.38500000000000006
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.34500000000000003
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.204
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.179
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.15399999999999997
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "감시병 전초",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_brute",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "정예 감시망",
+          "spawnDelay": 1.05,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_006",
+      "order": 6,
+      "label": "1-6 뒤틀린 회랑",
+      "areaName": "오염된 루멘 숲",
+      "description": "근거리와 원거리 적이 동시에 압박합니다.",
+      "nodeType": "normal",
+      "recommendedPower": 470,
+      "previousStageId": "stage_005",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 480,
+        "gold": 830,
+        "firstClear": {
+          "exp": 330,
+          "gold": 600,
+          "itemIds": []
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.4
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.36000000000000004
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.32
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.216
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.191
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.16599999999999998
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "교차 공격",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_spitter",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "파수 대열",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_brute",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_03",
+          "label": "회랑 봉쇄",
+          "spawnDelay": 1.1,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_007",
+      "order": 7,
+      "label": "1-7 오염의 샘",
+      "areaName": "오염된 루멘 숲",
+      "description": "추적 표식과 광역 파동을 사용하는 정예가 등장합니다.",
+      "nodeType": "elite",
+      "recommendedPower": 570,
+      "previousStageId": "stage_006",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 535,
+        "gold": 925,
+        "firstClear": {
+          "exp": 365,
+          "gold": 670,
+          "itemIds": [
+            "armor_warden_rare"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.375
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.335
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.295
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.22799999999999998
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.20299999999999999
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.178
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "샘의 수호체",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_wisp",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "오염된 치유자",
+          "spawnDelay": 1.1,
+          "enemies": [
+            {
+              "monsterId": "monster_mender",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_008",
+      "order": 8,
+      "label": "1-8 균열 폭풍",
+      "areaName": "오염된 루멘 숲",
+      "description": "다수의 빠른 적을 끊임없이 상대합니다.",
+      "nodeType": "normal",
+      "recommendedPower": 690,
+      "previousStageId": "stage_007",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 590,
+        "gold": 1020,
+        "firstClear": {
+          "exp": 400,
+          "gold": 740,
+          "itemIds": [
+            "accessory_core_rare"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.35000000000000003
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.31000000000000005
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.27
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.24
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.215
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.19
+          },
+          {
+            "itemId": "weapon_heir_heroic",
+            "chance": 0.035
+          },
+          {
+            "itemId": "armor_harbinger_heroic",
+            "chance": 0.027000000000000003
+          },
+          {
+            "itemId": "accessory_rift_heroic",
+            "chance": 0.019000000000000003
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "폭풍 전조",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_shade",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "침식 폭우",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_spitter",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_brute",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        },
+        {
+          "id": "wave_03",
+          "label": "정예 협공",
+          "spawnDelay": 1.15,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_mender",
+              "x": 430,
+              "y": 270
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_009",
+      "order": 9,
+      "label": "1-9 전령의 제단",
+      "areaName": "오염된 루멘 숲",
+      "description": "두 정예를 돌파하고 보스 제단을 개방하세요.",
+      "nodeType": "elite",
+      "recommendedPower": 820,
+      "previousStageId": "stage_008",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 645,
+        "gold": 1115,
+        "firstClear": {
+          "exp": 435,
+          "gold": 810,
+          "itemIds": []
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.32500000000000007
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.2850000000000001
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.24500000000000005
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.252
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.227
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.202
+          },
+          {
+            "itemId": "weapon_heir_heroic",
+            "chance": 0.05
+          },
+          {
+            "itemId": "armor_harbinger_heroic",
+            "chance": 0.042
+          },
+          {
+            "itemId": "accessory_rift_heroic",
+            "chance": 0.034
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "제단 외곽",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_brute",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "쌍둥이 감시",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_mender",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_crawler",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        },
+        {
+          "id": "wave_03",
+          "label": "마지막 봉인",
+          "spawnDelay": 1.2,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 270,
+              "y": 385
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_010",
+      "order": 10,
+      "label": "1-10 심연의 전령",
+      "areaName": "오염된 루멘 숲",
+      "description": "루멘 숲의 균열 핵에서 심연의 전령과 결전합니다.",
+      "nodeType": "boss",
+      "recommendedPower": 980,
+      "previousStageId": "stage_009",
+      "playerSpawn": {
+        "x": 270,
+        "y": 675
+      },
+      "rewards": {
+        "exp": 700,
+        "gold": 1210,
+        "firstClear": {
+          "exp": 470,
+          "gold": 880,
+          "itemIds": [
+            "weapon_heir_heroic"
+          ]
+        },
+        "dropTable": [
+          {
+            "itemId": "weapon_rift_blade_common",
+            "chance": 0.30000000000000004
+          },
+          {
+            "itemId": "armor_scout_common",
+            "chance": 0.26000000000000006
+          },
+          {
+            "itemId": "accessory_lumen_common",
+            "chance": 0.22000000000000003
+          },
+          {
+            "itemId": "weapon_rift_blade_rare",
+            "chance": 0.264
+          },
+          {
+            "itemId": "armor_warden_rare",
+            "chance": 0.23900000000000002
+          },
+          {
+            "itemId": "accessory_core_rare",
+            "chance": 0.21400000000000002
+          },
+          {
+            "itemId": "weapon_heir_heroic",
+            "chance": 0.065
+          },
+          {
+            "itemId": "armor_harbinger_heroic",
+            "chance": 0.057
+          },
+          {
+            "itemId": "accessory_rift_heroic",
+            "chance": 0.049
+          }
+        ]
+      },
+      "waves": [
+        {
+          "id": "wave_01",
+          "label": "제단 수호대",
+          "spawnDelay": 0.7,
+          "enemies": [
+            {
+              "monsterId": "monster_brute",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_shade",
+              "x": 430,
+              "y": 270
+            },
+            {
+              "monsterId": "monster_spitter",
+              "x": 270,
+              "y": 385
+            },
+            {
+              "monsterId": "monster_wisp",
+              "x": 150,
+              "y": 500
+            }
+          ]
+        },
+        {
+          "id": "wave_02",
+          "label": "균열 사제단",
+          "spawnDelay": 1.1,
+          "enemies": [
+            {
+              "monsterId": "monster_warden",
+              "x": 105,
+              "y": 255
+            },
+            {
+              "monsterId": "monster_mender",
+              "x": 430,
+              "y": 270
+            }
+          ]
+        },
+        {
+          "id": "wave_03",
+          "label": "심연의 전령",
+          "spawnDelay": 1.35,
+          "enemies": [
+            {
+              "monsterId": "boss_harbinger",
+              "x": 105,
+              "y": 255
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

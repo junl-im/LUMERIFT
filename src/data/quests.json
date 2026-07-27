@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "quests": [
+    {
+      "id": "main_001",
+      "type": "main",
+      "title": "첫 번째 균열",
+      "description": "스테이지 1-1을 완료하세요.",
+      "conditions": [
+        {
+          "type": "clearStage",
+          "targetId": "stage_001",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "exp": 120,
+        "gold": 300,
+        "itemIds": []
+      }
+    },
+    {
+      "id": "main_002",
+      "type": "main",
+      "title": "숲의 안쪽으로",
+      "description": "스테이지 1-3을 완료하세요.",
+      "prerequisiteQuestId": "main_001",
+      "conditions": [
+        {
+          "type": "clearStage",
+          "targetId": "stage_003",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "exp": 180,
+        "gold": 450,
+        "itemIds": [
+          "weapon_rift_blade_rare"
+        ]
+      }
+    },
+    {
+      "id": "main_003",
+      "type": "main",
+      "title": "계승자의 준비",
+      "description": "장비를 1회 강화하세요.",
+      "prerequisiteQuestId": "main_002",
+      "conditions": [
+        {
+          "type": "upgradeItem",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "exp": 160,
+        "gold": 500,
+        "itemIds": []
+      }
+    },
+    {
+      "id": "main_004",
+      "type": "main",
+      "title": "전리품 수집",
+      "description": "전투 보상 장비를 6개 획득하세요.",
+      "prerequisiteQuestId": "main_003",
+      "conditions": [
+        {
+          "type": "obtainItem",
+          "count": 6
+        }
+      ],
+      "rewards": {
+        "exp": 220,
+        "gold": 650,
+        "itemIds": [
+          "accessory_core_rare"
+        ]
+      }
+    },
+    {
+      "id": "main_005",
+      "type": "main",
+      "title": "감시자의 문",
+      "description": "스테이지 1-5를 완료하세요.",
+      "prerequisiteQuestId": "main_004",
+      "conditions": [
+        {
+          "type": "clearStage",
+          "targetId": "stage_005",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "exp": 300,
+        "gold": 850,
+        "itemIds": [
+          "armor_warden_rare"
+        ]
+      }
+    },
+    {
+      "id": "main_006",
+      "type": "main",
+      "title": "균열의 계승자",
+      "description": "스테이지 1-10의 보스를 처치하세요.",
+      "prerequisiteQuestId": "main_005",
+      "conditions": [
+        {
+          "type": "clearStage",
+          "targetId": "stage_010",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "exp": 700,
+        "gold": 2200,
+        "itemIds": [
+          "accessory_rift_heroic"
+        ]
+      }
+    },
+    {
+      "id": "daily_001",
+      "type": "daily",
+      "title": "일일 균열 정화",
+      "description": "아무 스테이지나 3회 완료하세요.",
+      "conditions": [
+        {
+          "type": "clearAnyStage",
+          "count": 3
+        }
+      ],
+      "rewards": {
+        "exp": 180,
+        "gold": 500,
+        "itemIds": []
+      }
+    },
+    {
+      "id": "daily_002",
+      "type": "daily",
+      "title": "오염체 토벌",
+      "description": "몬스터를 15마리 처치하세요.",
+      "conditions": [
+        {
+          "type": "defeatMonster",
+          "count": 15
+        }
+      ],
+      "rewards": {
+        "exp": 160,
+        "gold": 450,
+        "itemIds": []
+      }
+    },
+    {
+      "id": "daily_003",
+      "type": "daily",
+      "title": "장비 정비",
+      "description": "장비를 2회 강화하세요.",
+      "conditions": [
+        {
+          "type": "upgradeItem",
+          "count": 2
+        }
+      ],
+      "rewards": {
+        "exp": 140,
+        "gold": 400,
+        "itemIds": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "lumerift-web-rpg",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run",
+    "validate:assets": "node scripts/validate-assets.mjs",
+    "validate:bundle": "node scripts/validate-bundle.mjs",
+    "verify": "npm run validate:assets && npm run validate:data && npm run validate:atlas && npm run validate:manifest && npm run validate:source && npm run validate:handoff && npm run report:assets && npm run report:inventory && npm run typecheck && npm run test && npm run build && npm run validate:bundle",
+    "validate:source": "node scripts/check-source-imports.mjs",
+    "validate:data": "node scripts/validate-game-data.mjs",
+    "validate:atlas": "node scripts/validate-atlas.mjs",
+    "report:assets": "node scripts/report-asset-budget.mjs",
+    "validate:manifest": "node scripts/validate-asset-manifest.mjs",
+    "validate:handoff": "node scripts/validate-handoff.mjs",
+    "report:inventory": "node scripts/report-asset-inventory.mjs"
+  },
+  "dependencies": {
+    "firebase": "12.16.0",
+    "pixi.js": "8.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.1.5",
+    "vitest": "4.1.10"
+  }
+}

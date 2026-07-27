@@ -1,0 +1,48 @@
+{
+  "game": "LUMERIFT: 균열의 계승자",
+  "package": "lumerift-web-rpg",
+  "version": "0.8.0",
+  "baseVersion": "0.1.0",
+  "releaseDate": "2026-07-27",
+  "fullArchive": "LUMERIFT_FULL_v0.8.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.8.0.zip",
+  "features": [
+    "large reproducible asset megapack with 1174 atlas frames and 127 animations",
+    "160 items, 80 skills, 48 statuses, 96 UI icons and 120 environment props",
+    "48 bestiary portraits, 32 NPC portraits, 64 emblems and 40 tutorial glyphs",
+    "24 six-frame VFX animations, 15 region backgrounds and eight loading key arts",
+    "36 new audio assets and optional lazy-loaded asset bundles",
+    "runtime asset gallery for visual inspection",
+    "persistent handoff documents, machine-readable state and automated handoff validation"
+  ],
+  "assetPolicy": {
+    "allowedImages": [
+      "png",
+      "webp"
+    ],
+    "allowedAudio": [
+      "ogg",
+      "opus"
+    ],
+    "forbidden": [
+      "svg",
+      "svgz",
+      "jpg",
+      "jpeg",
+      "gif",
+      "bmp",
+      "tiff"
+    ]
+  },
+  "verification": [
+    "asset policy and signatures",
+    "16 atlas bounds and 1174 frame inventory",
+    "127 animation references",
+    "13 asset bundle manifests",
+    "handoff document and version consistency",
+    "game data and relative imports",
+    "initial payload source budget",
+    "cumulative patch equivalence",
+    "archive integrity"
+  ]
+}

@@ -1,0 +1,145 @@
+import { Container, Graphics, Text, TextStyle } from 'pixi.js';
+import type { AppContext } from '../app/AppContext';
+import { COLORS, DESIGN_WIDTH } from '../app/constants';
+import type { Scene } from '../core/scenes/Scene';
+import { conditionLabel, getQuestProgress, isQuestClaimed, isQuestUnlocked, claimQuestReward } from '../game/quests/questLogic';
+import type { QuestDefinition, QuestType } from '../game/quests/questTypes';
+import { createDefaultProfile, type PlayerProfile } from '../repositories/PlayerRepository';
+import { createBackground, createPanel } from '../ui/SceneChrome';
+import { UiButton } from '../ui/UiButton';
+import { LobbyScene } from './LobbyScene';
+
+const PAGE_SIZE = 4;
+
+export class QuestScene implements Scene {
+  public readonly view = new Container();
+  private profile?: PlayerProfile;
+
+  public constructor(
+    private readonly type: QuestType = 'main',
+    private readonly page = 0,
+  ) {}
+
+  public async enter(context: AppContext): Promise<void> {
+    const session = context.auth.currentSession;
+    if (!session) throw new Error('로그인 세션이 없습니다.');
+    this.profile = await context.playerRepository.load(session.uid)
+      ?? createDefaultProfile(session.uid, session.displayName);
+    await context.playerRepository.save(this.profile);
+
+    const all = context.gameData.questsInOrder.filter((quest) => quest.type === this.type);
+    const maxPage = Math.max(0, Math.ceil(all.length / PAGE_SIZE) - 1);
+    const safePage = Math.min(this.page, maxPage);
+    const quests = all.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
+
+    this.view.addChild(createBackground('작전 퀘스트', '조건을 달성하고 성장 재화와 장비를 수령하세요.'));
+    this.view.addChild(createPanel(20, 180, 500, 680));
+
+    this.createTabs(context);
+    quests.forEach((quest, index) => this.createQuestRow(context, quest, index));
+    this.createPageControls(context, safePage, maxPage);
+
+    const reset = new Text({
+      text: this.type === 'daily' ? `일일 기준일 ${this.profile.dailyQuestDate} · UTC 00:00 초기화` : '메인 퀘스트는 순서대로 개방됩니다.',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 13 }),
+    });
+    reset.anchor.set(0.5);
+    reset.position.set(DESIGN_WIDTH / 2, 838);
+
+    const back = new UiButton({
+      label: '거점으로',
+      width: 484,
+      height: 58,
+      tone: 'secondary',
+      onPress: async () => context.scenes.change(() => new LobbyScene()),
+    });
+    back.position.set(28, 876);
+    this.view.addChild(reset, back);
+  }
+
+  public exit(): void {}
+  public update(): void {}
+
+  private createTabs(context: AppContext): void {
+    const main = new UiButton({
+      label: '메인 퀘스트', width: 230, height: 52,
+      tone: this.type === 'main' ? 'primary' : 'secondary',
+      onPress: async () => context.scenes.change(() => new QuestScene('main')),
+    });
+    main.position.set(28, 202);
+    const daily = new UiButton({
+      label: '일일 퀘스트', width: 230, height: 52,
+      tone: this.type === 'daily' ? 'primary' : 'secondary',
+      onPress: async () => context.scenes.change(() => new QuestScene('daily')),
+    });
+    daily.position.set(282, 202);
+    this.view.addChild(main, daily);
+  }
+
+  private createQuestRow(context: AppContext, quest: QuestDefinition, index: number): void {
+    const profile = this.profile;
+    if (!profile) return;
+    const y = 274 + index * 126;
+    const unlocked = isQuestUnlocked(quest, profile);
+    const claimed = isQuestClaimed(quest, profile);
+    const progress = getQuestProgress(quest, profile);
+    const panel = new Graphics()
+      .roundRect(28, y, 484, 112, 18)
+      .fill({ color: COLORS.panelStrong, alpha: unlocked ? 0.98 : 0.55 })
+      .stroke({ color: progress.complete ? COLORS.accent : COLORS.primary, alpha: 0.24, width: 2 });
+    const title = new Text({
+      text: `${claimed ? '✓ ' : ''}${quest.title}`,
+      style: new TextStyle({ fill: unlocked ? COLORS.text : COLORS.muted, fontSize: 18, fontWeight: '700' }),
+    });
+    title.position.set(44, y + 14);
+    const condition = quest.conditions[0];
+    const detail = new Text({
+      text: unlocked
+        ? `${quest.description}\n${condition ? conditionLabel(condition, quest) : ''}  ${progress.current} / ${progress.target}`
+        : `선행 퀘스트 ${quest.prerequisiteQuestId ?? ''} 보상 수령 필요`,
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 13, lineHeight: 21, wordWrap: true, wordWrapWidth: 315 }),
+    });
+    detail.position.set(44, y + 45);
+    const reward = new Text({
+      text: `EXP ${quest.rewards.exp}\n${quest.rewards.gold} Gold${quest.rewards.itemIds.length ? `\n장비 ${quest.rewards.itemIds.length}` : ''}`,
+      style: new TextStyle({ fill: COLORS.warning, fontSize: 12, align: 'center', lineHeight: 18 }),
+    });
+    reward.anchor.set(0.5, 0);
+    reward.position.set(428, y + 12);
+    const claim = new UiButton({
+      label: claimed ? '수령 완료' : progress.complete ? '보상 수령' : '진행 중',
+      width: 132,
+      height: 42,
+      tone: progress.complete && !claimed ? 'primary' : 'secondary',
+      onPress: async () => {
+        if (!this.profile) return;
+        const updated = claimQuestReward(quest, this.profile, context.gameData);
+        if (updated === this.profile) return;
+        await context.playerRepository.save(updated);
+        await context.scenes.change(() => new QuestScene(this.type, this.page));
+      },
+    });
+    claim.position.set(362, y + 62);
+    claim.setEnabled(unlocked && progress.complete && !claimed);
+    this.view.addChild(panel, title, detail, reward, claim);
+  }
+
+  private createPageControls(context: AppContext, page: number, maxPage: number): void {
+    const previous = new UiButton({
+      label: '이전', width: 110, height: 44, tone: 'secondary',
+      onPress: async () => context.scenes.change(() => new QuestScene(this.type, Math.max(0, page - 1))),
+    });
+    previous.position.set(100, 790);
+    previous.setEnabled(page > 0);
+    const text = new Text({ text: `${page + 1} / ${maxPage + 1}`, style: new TextStyle({ fill: COLORS.text, fontSize: 15 }) });
+    text.anchor.set(0.5);
+    text.position.set(DESIGN_WIDTH / 2, 812);
+    const next = new UiButton({
+      label: '다음', width: 110, height: 44, tone: 'secondary',
+      onPress: async () => context.scenes.change(() => new QuestScene(this.type, Math.min(maxPage, page + 1))),
+    });
+    next.position.set(330, 790);
+    next.setEnabled(page < maxPage);
+    this.view.addChild(previous, text, next);
+  }
+}

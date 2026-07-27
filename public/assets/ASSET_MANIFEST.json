@@ -1,0 +1,192 @@
+{
+  "version": 3,
+  "game": "LUMERIFT",
+  "release": "0.8.0",
+  "bundles": {
+    "core-ui": {
+      "files": [
+        "atlases/ui/ui_skin_v1.json",
+        "atlases/ui/ui_skin_v1.webp",
+        "audio/ui/click_v1.ogg"
+      ],
+      "bytes": 11663
+    },
+    "equipment-ui": {
+      "files": [
+        "atlases/items/equipment_icons_v1.json",
+        "atlases/items/equipment_icons_v1.webp"
+      ],
+      "bytes": 6308
+    },
+    "lobby-character": {
+      "files": [
+        "atlases/player/player_v1.json",
+        "atlases/player/player_v1.webp",
+        "atlases/items/equipment_icons_v1.json",
+        "atlases/items/equipment_icons_v1.webp"
+      ],
+      "bytes": 166505
+    },
+    "battle-chapter-1": {
+      "files": [
+        "atlases/player/player_v1.json",
+        "atlases/player/player_v1.webp",
+        "atlases/monsters/monster_common_v1.json",
+        "atlases/monsters/monster_common_v1.webp",
+        "atlases/effects/combat_effects_v1.json",
+        "atlases/effects/combat_effects_v1.webp",
+        "atlases/items/equipment_icons_v1.json",
+        "atlases/items/equipment_icons_v1.webp",
+        "maps/chapter1/forest_rift_v1.webp",
+        "audio/combat/slash_v1.ogg",
+        "audio/combat/hit_v1.ogg",
+        "audio/combat/skill_v1.ogg",
+        "audio/combat/dodge_v1.ogg",
+        "audio/bgm/forest_rift_loop_v1.opus"
+      ],
+      "bytes": 320941
+    },
+    "asset-mega-gallery": {
+      "files": [
+        "atlases/items/mega_items_v1.json",
+        "atlases/items/mega_items_v1.webp",
+        "atlases/skills/skill_icons_v1.json",
+        "atlases/skills/skill_icons_v1.webp",
+        "atlases/status/status_icons_v1.json",
+        "atlases/status/status_icons_v1.webp",
+        "atlases/ui/ui_icons_v2.json",
+        "atlases/ui/ui_icons_v2.webp",
+        "atlases/bestiary/bestiary_portraits_v1.json",
+        "atlases/bestiary/bestiary_portraits_v1.webp",
+        "atlases/npc/npc_portraits_v1.json",
+        "atlases/npc/npc_portraits_v1.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp",
+        "atlases/effects/effects_mega_v1.json",
+        "atlases/effects/effects_mega_v1.webp",
+        "atlases/emblems/emblems_v1.json",
+        "atlases/emblems/emblems_v1.webp",
+        "atlases/tutorial/tutorial_glyphs_v1.json",
+        "atlases/tutorial/tutorial_glyphs_v1.webp"
+      ],
+      "bytes": 1347467
+    },
+    "chapter-1-environment": {
+      "files": [
+        "maps/chapter1/forest_v1.webp",
+        "maps/chapter1/forest_v2.webp",
+        "maps/chapter1/forest_v3.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp"
+      ],
+      "bytes": 221330
+    },
+    "chapter-2-environment": {
+      "files": [
+        "maps/chapter2/desert_ruins_v1.webp",
+        "maps/chapter2/desert_ruins_v2.webp",
+        "maps/chapter2/desert_ruins_v3.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp"
+      ],
+      "bytes": 202126
+    },
+    "chapter-3-environment": {
+      "files": [
+        "maps/chapter3/snow_citadel_v1.webp",
+        "maps/chapter3/snow_citadel_v2.webp",
+        "maps/chapter3/snow_citadel_v3.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp"
+      ],
+      "bytes": 236012
+    },
+    "chapter-4-environment": {
+      "files": [
+        "maps/chapter4/volcanic_forge_v1.webp",
+        "maps/chapter4/volcanic_forge_v2.webp",
+        "maps/chapter4/volcanic_forge_v3.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp"
+      ],
+      "bytes": 235286
+    },
+    "chapter-5-environment": {
+      "files": [
+        "maps/chapter5/neon_arcology_v1.webp",
+        "maps/chapter5/neon_arcology_v2.webp",
+        "maps/chapter5/neon_arcology_v3.webp",
+        "atlases/environment/environment_props_v1.json",
+        "atlases/environment/environment_props_v1.webp"
+      ],
+      "bytes": 214736
+    },
+    "loading-keyart": {
+      "files": [
+        "loading/loading_keyart_01.webp",
+        "loading/loading_keyart_02.webp",
+        "loading/loading_keyart_03.webp",
+        "loading/loading_keyart_04.webp",
+        "loading/loading_keyart_05.webp",
+        "loading/loading_keyart_06.webp",
+        "loading/loading_keyart_07.webp",
+        "loading/loading_keyart_08.webp"
+      ],
+      "bytes": 181378
+    },
+    "brand-kit": {
+      "files": [
+        "brand/lumerift_mark_1.webp",
+        "brand/lumerift_mark_2.webp",
+        "brand/lumerift_mark_3.webp"
+      ],
+      "bytes": 33280
+    },
+    "audio-megapack": {
+      "files": [
+        "audio/ui/click_v1.ogg",
+        "audio/ui/ui_00.ogg",
+        "audio/ui/ui_01.ogg",
+        "audio/ui/ui_02.ogg",
+        "audio/ui/ui_03.ogg",
+        "audio/ui/ui_04.ogg",
+        "audio/ui/ui_05.ogg",
+        "audio/ui/ui_06.ogg",
+        "audio/ui/ui_07.ogg",
+        "audio/ui/ui_08.ogg",
+        "audio/ui/ui_09.ogg",
+        "audio/ui/ui_10.ogg",
+        "audio/ui/ui_11.ogg",
+        "audio/combat/combat_00.ogg",
+        "audio/combat/combat_01.ogg",
+        "audio/combat/combat_02.ogg",
+        "audio/combat/combat_03.ogg",
+        "audio/combat/combat_04.ogg",
+        "audio/combat/combat_05.ogg",
+        "audio/combat/combat_06.ogg",
+        "audio/combat/combat_07.ogg",
+        "audio/combat/combat_08.ogg",
+        "audio/combat/combat_09.ogg",
+        "audio/combat/combat_10.ogg",
+        "audio/combat/combat_11.ogg",
+        "audio/combat/combat_12.ogg",
+        "audio/combat/combat_13.ogg",
+        "audio/combat/combat_14.ogg",
+        "audio/combat/combat_15.ogg",
+        "audio/combat/dodge_v1.ogg",
+        "audio/combat/hit_v1.ogg",
+        "audio/combat/skill_v1.ogg",
+        "audio/combat/slash_v1.ogg",
+        "audio/ambient/ambient_00.opus",
+        "audio/ambient/ambient_01.opus",
+        "audio/ambient/ambient_02.opus",
+        "audio/ambient/ambient_03.opus",
+        "audio/ambient/ambient_04.opus",
+        "audio/ambient/ambient_05.opus",
+        "audio/ambient/ambient_06.opus",
+        "audio/ambient/ambient_07.opus"
+      ],
+      "bytes": 204616
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "player": {
+    "id": "character_lumen_heir",
+    "name": "루멘 계승자",
+    "maxHp": 560,
+    "attack": 62,
+    "defense": 14,
+    "moveSpeed": 205,
+    "radius": 26,
+    "hitRecovery": 0.28,
+    "dodge": {
+      "duration": 0.26,
+      "speed": 520,
+      "cooldown": 1.2,
+      "invulnerability": 0.22
+    },
+    "comboActionIds": [
+      "basic_01",
+      "basic_02",
+      "basic_03"
+    ],
+    "skills": {
+      "skill1": "skill_01",
+      "skill2": "skill_02"
+    }
+  }
+}

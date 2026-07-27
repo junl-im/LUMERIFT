@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Player",
+  "type": "object",
+  "required": [
+    "version",
+    "player"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "player": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "maxHp",
+        "attack",
+        "defense",
+        "moveSpeed",
+        "radius",
+        "hitRecovery",
+        "dodge",
+        "comboActionIds",
+        "skills"
+      ]
+    }
+  }
+}

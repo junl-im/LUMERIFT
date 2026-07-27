@@ -1,0 +1,11 @@
+{
+  "name": "LUMERIFT: 균열의 계승자",
+  "short_name": "LUMERIFT",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090d18",
+  "theme_color": "#090d18",
+  "lang": "ko-KR",
+  "description": "판타지와 현대 문명이 교차하는 세로형 모바일 웹 액션 RPG"
+}

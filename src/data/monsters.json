@@ -1,0 +1,349 @@
+{
+  "version": 1,
+  "monsters": [
+    {
+      "id": "monster_crawler",
+      "name": "균열 추적자",
+      "rank": "normal",
+      "combat": {
+        "maxHp": 150,
+        "attack": 25,
+        "defense": 10,
+        "radius": 25,
+        "moveSpeed": 60,
+        "detectionRange": 520,
+        "hitRecovery": 0.2,
+        "statusDurationMultiplier": 1
+      },
+      "visual": {
+        "bodyColor": "#FFCE6A",
+        "accentColor": "#55E6BF",
+        "eyeColor": "#05070D"
+      },
+      "patterns": [
+        {
+          "id": "crawler_bite",
+          "label": "균열 물기",
+          "shape": "circle",
+          "targetMode": "self",
+          "damageMultiplier": 1,
+          "range": 86,
+          "triggerRange": 72,
+          "halfAngleDegrees": 180,
+          "cooldown": 1.25,
+          "windup": 0.34,
+          "duration": 0.62,
+          "effectColor": "#FFCE6A"
+        }
+      ]
+    },
+    {
+      "id": "monster_brute",
+      "name": "오염된 파수병",
+      "rank": "normal",
+      "combat": {
+        "maxHp": 280,
+        "attack": 39,
+        "defense": 18,
+        "radius": 34,
+        "moveSpeed": 44,
+        "detectionRange": 520,
+        "hitRecovery": 0.28,
+        "statusDurationMultiplier": 0.9
+      },
+      "visual": {
+        "bodyColor": "#FF6F86",
+        "accentColor": "#FFCE6A",
+        "eyeColor": "#05070D"
+      },
+      "patterns": [
+        {
+          "id": "brute_slam",
+          "label": "파수병 내려찍기",
+          "shape": "arc",
+          "targetMode": "self",
+          "damageMultiplier": 1.15,
+          "range": 118,
+          "triggerRange": 94,
+          "halfAngleDegrees": 76,
+          "cooldown": 1.75,
+          "windup": 0.52,
+          "duration": 0.92,
+          "effectColor": "#FF6F86"
+        }
+      ]
+    },
+    {
+      "id": "monster_warden",
+      "name": "균열 감시자",
+      "rank": "elite",
+      "combat": {
+        "maxHp": 520,
+        "attack": 43,
+        "defense": 24,
+        "radius": 38,
+        "moveSpeed": 50,
+        "detectionRange": 560,
+        "hitRecovery": 0.24,
+        "statusDurationMultiplier": 0.75
+      },
+      "visual": {
+        "bodyColor": "#9B78FF",
+        "accentColor": "#55E6BF",
+        "eyeColor": "#F4F7FF"
+      },
+      "patterns": [
+        {
+          "id": "warden_cleave",
+          "label": "감시자 절단",
+          "shape": "arc",
+          "targetMode": "self",
+          "damageMultiplier": 1.05,
+          "range": 135,
+          "triggerRange": 108,
+          "halfAngleDegrees": 82,
+          "cooldown": 1.4,
+          "windup": 0.42,
+          "duration": 0.74,
+          "effectColor": "#9B78FF"
+        },
+        {
+          "id": "warden_pulse",
+          "label": "균열 파동",
+          "shape": "circle",
+          "targetMode": "self",
+          "damageMultiplier": 1.35,
+          "range": 158,
+          "triggerRange": 170,
+          "halfAngleDegrees": 180,
+          "cooldown": 2.4,
+          "windup": 0.72,
+          "duration": 1.05,
+          "effectColor": "#55E6BF"
+        }
+      ]
+    },
+    {
+      "id": "boss_harbinger",
+      "name": "심연의 전령",
+      "rank": "boss",
+      "combat": {
+        "maxHp": 1900,
+        "attack": 54,
+        "defense": 32,
+        "radius": 52,
+        "moveSpeed": 42,
+        "detectionRange": 620,
+        "hitRecovery": 0.18,
+        "statusDurationMultiplier": 0.5
+      },
+      "visual": {
+        "bodyColor": "#6940A5",
+        "accentColor": "#D5A7FF",
+        "eyeColor": "#FFCE6A"
+      },
+      "patterns": [
+        {
+          "id": "boss_cleave",
+          "label": "심연 절단",
+          "shape": "arc",
+          "targetMode": "self",
+          "damageMultiplier": 1.15,
+          "range": 170,
+          "triggerRange": 138,
+          "halfAngleDegrees": 95,
+          "cooldown": 1.35,
+          "windup": 0.5,
+          "duration": 0.82,
+          "effectColor": "#D5A7FF"
+        },
+        {
+          "id": "boss_nova",
+          "label": "심연 폭발",
+          "shape": "circle",
+          "targetMode": "self",
+          "damageMultiplier": 1.45,
+          "range": 205,
+          "triggerRange": 230,
+          "halfAngleDegrees": 180,
+          "cooldown": 2.25,
+          "windup": 0.88,
+          "duration": 1.18,
+          "effectColor": "#FF6F86"
+        },
+        {
+          "id": "boss_rupture",
+          "label": "추적 균열",
+          "shape": "circle",
+          "targetMode": "playerLocked",
+          "damageMultiplier": 1.3,
+          "range": 105,
+          "triggerRange": 430,
+          "halfAngleDegrees": 180,
+          "cooldown": 2.65,
+          "windup": 1.02,
+          "duration": 1.28,
+          "effectColor": "#55E6BF"
+        }
+      ]
+    },
+    {
+      "id": "monster_wisp",
+      "name": "루멘 포자",
+      "rank": "normal",
+      "combat": {
+        "maxHp": 125,
+        "attack": 31,
+        "defense": 7,
+        "radius": 21,
+        "moveSpeed": 72,
+        "detectionRange": 540,
+        "hitRecovery": 0.16,
+        "statusDurationMultiplier": 1
+      },
+      "visual": {
+        "bodyColor": "#55E6BF",
+        "accentColor": "#D7FFF4",
+        "eyeColor": "#05070D"
+      },
+      "patterns": [
+        {
+          "id": "wisp_burst",
+          "label": "포자 폭발",
+          "shape": "circle",
+          "targetMode": "playerLocked",
+          "damageMultiplier": 0.9,
+          "range": 82,
+          "triggerRange": 360,
+          "halfAngleDegrees": 180,
+          "cooldown": 1.6,
+          "windup": 0.58,
+          "duration": 0.78,
+          "effectColor": "#55E6BF"
+        }
+      ]
+    },
+    {
+      "id": "monster_spitter",
+      "name": "균열 침식충",
+      "rank": "normal",
+      "combat": {
+        "maxHp": 185,
+        "attack": 35,
+        "defense": 11,
+        "radius": 27,
+        "moveSpeed": 48,
+        "detectionRange": 570,
+        "hitRecovery": 0.2,
+        "statusDurationMultiplier": 0.95
+      },
+      "visual": {
+        "bodyColor": "#C97A5C",
+        "accentColor": "#FFCE6A",
+        "eyeColor": "#F4F7FF"
+      },
+      "patterns": [
+        {
+          "id": "spitter_shot",
+          "label": "침식 탄환",
+          "shape": "circle",
+          "targetMode": "playerLocked",
+          "damageMultiplier": 1.05,
+          "range": 76,
+          "triggerRange": 420,
+          "halfAngleDegrees": 180,
+          "cooldown": 1.75,
+          "windup": 0.72,
+          "duration": 0.92,
+          "effectColor": "#FFCE6A"
+        }
+      ]
+    },
+    {
+      "id": "monster_shade",
+      "name": "그림자 포식자",
+      "rank": "normal",
+      "combat": {
+        "maxHp": 230,
+        "attack": 38,
+        "defense": 14,
+        "radius": 29,
+        "moveSpeed": 82,
+        "detectionRange": 600,
+        "hitRecovery": 0.17,
+        "statusDurationMultiplier": 0.85
+      },
+      "visual": {
+        "bodyColor": "#3E315E",
+        "accentColor": "#9B78FF",
+        "eyeColor": "#FF6F86"
+      },
+      "patterns": [
+        {
+          "id": "shade_dash",
+          "label": "그림자 급습",
+          "shape": "arc",
+          "targetMode": "self",
+          "damageMultiplier": 1.2,
+          "range": 132,
+          "triggerRange": 118,
+          "halfAngleDegrees": 58,
+          "cooldown": 1.55,
+          "windup": 0.32,
+          "duration": 0.68,
+          "effectColor": "#9B78FF"
+        }
+      ]
+    },
+    {
+      "id": "monster_mender",
+      "name": "오염된 치유자",
+      "rank": "elite",
+      "combat": {
+        "maxHp": 610,
+        "attack": 47,
+        "defense": 21,
+        "radius": 36,
+        "moveSpeed": 46,
+        "detectionRange": 590,
+        "hitRecovery": 0.22,
+        "statusDurationMultiplier": 0.7
+      },
+      "visual": {
+        "bodyColor": "#3A7165",
+        "accentColor": "#55E6BF",
+        "eyeColor": "#FFCE6A"
+      },
+      "patterns": [
+        {
+          "id": "mender_pulse",
+          "label": "오염 파동",
+          "shape": "circle",
+          "targetMode": "self",
+          "damageMultiplier": 1.18,
+          "range": 165,
+          "triggerRange": 190,
+          "halfAngleDegrees": 180,
+          "cooldown": 1.9,
+          "windup": 0.68,
+          "duration": 0.96,
+          "effectColor": "#55E6BF"
+        },
+        {
+          "id": "mender_mark",
+          "label": "추적 표식",
+          "shape": "circle",
+          "targetMode": "playerLocked",
+          "damageMultiplier": 1.4,
+          "range": 92,
+          "triggerRange": 450,
+          "halfAngleDegrees": 180,
+          "cooldown": 2.8,
+          "windup": 1.05,
+          "duration": 1.28,
+          "effectColor": "#FFCE6A"
+        }
+      ]
+    }
+  ]
+}

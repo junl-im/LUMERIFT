@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "game": "LUMERIFT: 균열의 계승자",
+  "version": "0.8.0",
+  "updatedAt": "2026-07-27",
+  "currentPhase": "대규모 에셋 기반 확장 및 인수인계 체계 고정",
+  "qualityStage": "production-structure",
+  "completed": [
+    "Vite + TypeScript + PixiJS 8 프로젝트 기반",
+    "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
+    "3연속 공격, 스킬 2종, 회피, 상태 이상, 보스 3페이즈",
+    "스테이지 10개, 퀘스트, 장비, 인벤토리, 저장 데이터 v3",
+    "8방향 플레이어 Atlas와 몬스터·UI·장비·VFX 런타임 Atlas",
+    "모바일 조이스틱, 쿨다운 HUD, 씬 페이드, 품질 자동 축소",
+    "v0.8 에셋 메가팩 1,174 Atlas 프레임과 127 애니메이션",
+    "15개 지역 배경, 8개 로딩 아트, 36개 신규 오디오 자산",
+    "에셋 보관소 런타임 갤러리",
+    "AGENTS·HANDOFF 문서와 자동 인수인계 검증"
+  ],
+  "inProgress": [],
+  "nextPlanned": [
+    "Firebase 게스트 계정의 Google 계정 연결",
+    "Cloud Save 버전 관리와 로컬·클라우드 충돌 해결",
+    "공지, 7일 출석, 우편, 쿠폰, 주간·전체 랭킹",
+    "상용 후보 캐릭터·몬스터 원화 제작과 기존 런타임 키 교체",
+    "실기기 npm install, Vite build, 모바일 브라우저 성능 검증"
+  ],
+  "immutableRules": [
+    "PNG/WebP만 사용하고 SVG를 금지한다.",
+    "모바일 웹 9:16과 60FPS 우선 원칙을 유지한다.",
+    "초기 다운로드 15MB 이하를 목표로 한다.",
+    "Texture Atlas, Lazy Loading, Object Pool을 우선한다.",
+    "MVP 전 실시간 MMO 기능을 추가하지 않는다.",
+    "모든 릴리스에서 인수인계 파일을 갱신한다.",
+    "결과 보고 순서는 결과, 전체 ZIP, 패치 ZIP, 다음 업데이트다."
+  ],
+  "knownLimitations": [
+    "현재 자동 생성 캐릭터·몬스터·아이콘·배경은 최종 상용 원화가 아니다.",
+    "현재 작업 환경에서는 npm Registry 연결 제한으로 실제 프로덕션 빌드와 브라우저 실기동을 완료하지 못할 수 있다.",
+    "Firebase 운영 기능은 v0.9.0 이후 실제 연결한다."
+  ],
+  "releaseArtifacts": {
+    "fullArchive": "LUMERIFT_FULL_v0.8.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.8.0.zip"
+  }
+}

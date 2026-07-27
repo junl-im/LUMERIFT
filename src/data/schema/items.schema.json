@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Items",
+  "type": "object",
+  "required": [
+    "version",
+    "items"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "slot",
+          "grade",
+          "baseStats",
+          "sellPrice",
+          "upgradeBaseCost",
+          "maxUpgrade"
+        ]
+      }
+    }
+  }
+}

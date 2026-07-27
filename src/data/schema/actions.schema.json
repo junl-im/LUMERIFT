@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Combat Actions",
+  "type": "object",
+  "required": [
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "kind",
+          "duration",
+          "hitTime",
+          "damageMultiplier",
+          "range",
+          "halfAngleDegrees",
+          "hitShape",
+          "cooldown",
+          "hitStop",
+          "shake",
+          "lungeDistance",
+          "effectColor"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "frames": {
+    "item.weapon_rift_blade_common": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.armor_scout_common": {
+      "frame": {
+        "x": 80,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.accessory_lumen_common": {
+      "frame": {
+        "x": 160,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.weapon_rift_blade_rare": {
+      "frame": {
+        "x": 0,
+        "y": 80,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.armor_warden_rare": {
+      "frame": {
+        "x": 80,
+        "y": 80,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.accessory_core_rare": {
+      "frame": {
+        "x": 160,
+        "y": 80,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.weapon_heir_heroic": {
+      "frame": {
+        "x": 0,
+        "y": 160,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.armor_harbinger_heroic": {
+      "frame": {
+        "x": 80,
+        "y": 160,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    },
+    "item.accessory_rift_heroic": {
+      "frame": {
+        "x": 160,
+        "y": 160,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.76
+      }
+    }
+  },
+  "animations": {},
+  "meta": {
+    "app": "LUMERIFT internal atlas generator",
+    "version": "1.0",
+    "image": "equipment_icons_v1.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 240,
+      "h": 240
+    },
+    "scale": "1"
+  }
+}

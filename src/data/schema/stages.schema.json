@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Stages",
+  "type": "object",
+  "required": [
+    "version",
+    "stages"
+  ],
+  "properties": {
+    "version": {
+      "const": 2
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "label",
+          "areaName",
+          "description",
+          "nodeType",
+          "recommendedPower",
+          "playerSpawn",
+          "rewards",
+          "waves"
+        ]
+      }
+    }
+  }
+}

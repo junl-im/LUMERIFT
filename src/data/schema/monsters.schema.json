@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Monsters",
+  "type": "object",
+  "required": [
+    "version",
+    "monsters"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "monsters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "rank",
+          "combat",
+          "visual",
+          "patterns"
+        ]
+      }
+    }
+  }
+}

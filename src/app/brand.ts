@@ -1,0 +1,15 @@
+export const BRAND = {
+  id: 'lumerift',
+  title: 'LUMERIFT',
+  koreanTitle: '루메리프트',
+  subtitle: '균열의 계승자',
+  fullTitle: 'LUMERIFT: 균열의 계승자',
+  version: '0.8.0',
+} as const;
+
+export const STORAGE_KEYS = {
+  localUid: `${BRAND.id}.localUid`,
+  fpsMode: `${BRAND.id}.fpsMode`,
+  graphicsQuality: `${BRAND.id}.graphicsQuality`,
+  profilePrefix: `${BRAND.id}.profile`,
+} as const;

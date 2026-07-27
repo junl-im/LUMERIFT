@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "actions": [
+    {
+      "id": "basic_01",
+      "label": "섬광 베기 I",
+      "kind": "basic",
+      "duration": 0.34,
+      "hitTime": 0.12,
+      "damageMultiplier": 0.88,
+      "range": 112,
+      "halfAngleDegrees": 58,
+      "hitShape": "arc",
+      "cooldown": 0,
+      "hitStop": 0.035,
+      "shake": 3,
+      "lungeDistance": 16,
+      "effectColor": "#A6ADFF"
+    },
+    {
+      "id": "basic_02",
+      "label": "섬광 베기 II",
+      "kind": "basic",
+      "duration": 0.38,
+      "hitTime": 0.14,
+      "damageMultiplier": 1.02,
+      "range": 122,
+      "halfAngleDegrees": 66,
+      "hitShape": "arc",
+      "cooldown": 0,
+      "hitStop": 0.045,
+      "shake": 4,
+      "lungeDistance": 20,
+      "effectColor": "#55E6BF",
+      "statusEffect": {
+        "id": "slow",
+        "chance": 0.35,
+        "duration": 1.8,
+        "potency": 0.25
+      }
+    },
+    {
+      "id": "basic_03",
+      "label": "균열 절단",
+      "kind": "basic",
+      "duration": 0.52,
+      "hitTime": 0.19,
+      "damageMultiplier": 1.48,
+      "range": 142,
+      "halfAngleDegrees": 78,
+      "hitShape": "arc",
+      "cooldown": 0,
+      "hitStop": 0.075,
+      "shake": 7,
+      "lungeDistance": 28,
+      "effectColor": "#FFCE6A"
+    },
+    {
+      "id": "skill_01",
+      "label": "루멘 크래시",
+      "kind": "skill1",
+      "duration": 0.68,
+      "hitTime": 0.27,
+      "damageMultiplier": 2.15,
+      "range": 205,
+      "halfAngleDegrees": 88,
+      "hitShape": "arc",
+      "cooldown": 4.5,
+      "hitStop": 0.09,
+      "shake": 9,
+      "lungeDistance": 44,
+      "effectColor": "#8CECFF",
+      "statusEffect": {
+        "id": "burn",
+        "chance": 1,
+        "duration": 4,
+        "potency": 14,
+        "tickInterval": 0.5
+      }
+    },
+    {
+      "id": "skill_02",
+      "label": "리프트 노바",
+      "kind": "skill2",
+      "duration": 0.92,
+      "hitTime": 0.42,
+      "damageMultiplier": 2.7,
+      "range": 190,
+      "halfAngleDegrees": 180,
+      "hitShape": "circle",
+      "cooldown": 7.5,
+      "hitStop": 0.12,
+      "shake": 12,
+      "lungeDistance": 0,
+      "effectColor": "#D5A7FF",
+      "statusEffect": {
+        "id": "slow",
+        "chance": 1,
+        "duration": 3.2,
+        "potency": 0.45
+      }
+    }
+  ]
+}

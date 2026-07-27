@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function owns(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read, create, update: if owns(uid);
+      allow delete: if false;
+
+      match /{document=**} {
+        allow read, write: if owns(uid);
+      }
+    }
+
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /gameConfig/{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /rankings/{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /coupons/{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

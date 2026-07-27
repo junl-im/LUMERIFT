@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUMERIFT Quests",
+  "type": "object",
+  "required": [
+    "version",
+    "quests"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "quests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "title",
+          "description",
+          "conditions",
+          "rewards"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "weapon_rift_blade_common",
+      "name": "금이 간 균열검",
+      "slot": "weapon",
+      "grade": "common",
+      "baseStats": {
+        "attack": 9,
+        "defense": 0,
+        "maxHp": 0
+      },
+      "sellPrice": 80,
+      "upgradeBaseCost": 120,
+      "maxUpgrade": 5
+    },
+    {
+      "id": "armor_scout_common",
+      "name": "정찰대 전투복",
+      "slot": "armor",
+      "grade": "common",
+      "baseStats": {
+        "attack": 0,
+        "defense": 7,
+        "maxHp": 35
+      },
+      "sellPrice": 75,
+      "upgradeBaseCost": 110,
+      "maxUpgrade": 5
+    },
+    {
+      "id": "accessory_lumen_common",
+      "name": "희미한 루멘석",
+      "slot": "accessory",
+      "grade": "common",
+      "baseStats": {
+        "attack": 3,
+        "defense": 2,
+        "maxHp": 20
+      },
+      "sellPrice": 65,
+      "upgradeBaseCost": 100,
+      "maxUpgrade": 5
+    },
+    {
+      "id": "weapon_rift_blade_rare",
+      "name": "푸른 균열검",
+      "slot": "weapon",
+      "grade": "rare",
+      "baseStats": {
+        "attack": 18,
+        "defense": 0,
+        "maxHp": 0
+      },
+      "sellPrice": 240,
+      "upgradeBaseCost": 260,
+      "maxUpgrade": 8
+    },
+    {
+      "id": "armor_warden_rare",
+      "name": "감시자의 갑주",
+      "slot": "armor",
+      "grade": "rare",
+      "baseStats": {
+        "attack": 0,
+        "defense": 15,
+        "maxHp": 75
+      },
+      "sellPrice": 230,
+      "upgradeBaseCost": 250,
+      "maxUpgrade": 8
+    },
+    {
+      "id": "accessory_core_rare",
+      "name": "응축 루멘 코어",
+      "slot": "accessory",
+      "grade": "rare",
+      "baseStats": {
+        "attack": 7,
+        "defense": 5,
+        "maxHp": 45
+      },
+      "sellPrice": 210,
+      "upgradeBaseCost": 230,
+      "maxUpgrade": 8
+    },
+    {
+      "id": "weapon_heir_heroic",
+      "name": "계승자의 광검",
+      "slot": "weapon",
+      "grade": "heroic",
+      "baseStats": {
+        "attack": 34,
+        "defense": 0,
+        "maxHp": 0
+      },
+      "sellPrice": 620,
+      "upgradeBaseCost": 520,
+      "maxUpgrade": 12
+    },
+    {
+      "id": "armor_harbinger_heroic",
+      "name": "전령의 균열갑",
+      "slot": "armor",
+      "grade": "heroic",
+      "baseStats": {
+        "attack": 0,
+        "defense": 28,
+        "maxHp": 145
+      },
+      "sellPrice": 600,
+      "upgradeBaseCost": 500,
+      "maxUpgrade": 12
+    },
+    {
+      "id": "accessory_rift_heroic",
+      "name": "심연 공명 장식",
+      "slot": "accessory",
+      "grade": "heroic",
+      "baseStats": {
+        "attack": 14,
+        "defense": 10,
+        "maxHp": 90
+      },
+      "sellPrice": 560,
+      "upgradeBaseCost": 470,
+      "maxUpgrade": 12
+    }
+  ]
+}
