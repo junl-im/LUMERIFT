@@ -13,10 +13,12 @@ import {
   ensureStarterInventory,
 } from '../game/items/inventoryLogic';
 import { countClaimableQuests } from '../game/quests/questLogic';
+import { operationNotificationCount } from '../game/operations/operationsLogic';
 import { StageSelectScene } from './StageSelectScene';
 import { QuestScene } from './QuestScene';
 import { InventoryScene } from './InventoryScene';
 import { AssetGalleryScene } from './AssetGalleryScene';
+import { OperationsScene } from './OperationsScene';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -46,13 +48,14 @@ export class LobbyScene implements Scene {
     const power = calculateTotalPower(context.gameData.player, this.profile, context.gameData);
     const claimableQuests = countClaimableQuests(this.profile, context.gameData);
     const clearedStages = Object.values(this.profile.stageProgress).filter((entry) => entry.clearCount > 0).length;
+    const operationAlerts = operationNotificationCount(this.profile);
 
     this.createBackdrop(backgroundTexture);
     this.createHeader(power);
     this.createHeroPresentation(portraitTexture);
     this.createMissionCard(power, equipment, clearedStages, claimableQuests);
     this.createPrimaryAction(context);
-    this.createNavigation(context, claimableQuests);
+    this.createNavigation(context, claimableQuests, operationAlerts);
     this.createDiagnostics();
   }
 
@@ -227,27 +230,28 @@ export class LobbyScene implements Scene {
     this.view.addChild(battle);
   }
 
-  private createNavigation(context: AppContext, claimableQuests: number): void {
+  private createNavigation(context: AppContext, claimableQuests: number, operationAlerts: number): void {
     const dock = createRasterPanel(18, 798, 504, 132, 'panel_strong');
     this.view.addChild(dock);
 
     const entries = [
       { label: '작전', active: true, press: async () => context.scenes.change(() => new StageSelectScene()) },
       { label: '장비', active: false, press: async () => context.scenes.change(() => new InventoryScene()) },
-      { label: claimableQuests > 0 ? `퀘스트 ${claimableQuests}` : '퀘스트', active: claimableQuests > 0, press: async () => context.scenes.change(() => new QuestScene()) },
+      { label: claimableQuests > 0 ? `퀘 ${claimableQuests}` : '퀘스트', active: claimableQuests > 0, press: async () => context.scenes.change(() => new QuestScene()) },
+      { label: operationAlerts > 0 ? `소식 ${operationAlerts}` : '소식', active: operationAlerts > 0, press: async () => context.scenes.change(() => new OperationsScene()) },
       { label: '도감', active: false, press: async () => context.scenes.change(() => new AssetGalleryScene()) },
     ];
 
     entries.forEach((entry, index) => {
       const button = new UiButton({
         label: entry.label,
-        width: 112,
+        width: 91,
         height: 72,
         tone: entry.active ? 'primary' : 'secondary',
-        fontSize: 14,
+        fontSize: 12,
         onPress: entry.press,
       });
-      button.position.set(30 + index * 123, 820);
+      button.position.set(30 + index * 98, 820);
       this.view.addChild(button);
     });
 

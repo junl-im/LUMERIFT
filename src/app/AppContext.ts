@@ -8,6 +8,7 @@ import type { AssetManager } from '../core/assets/AssetManager';
 import type { AudioManager } from '../core/audio/AudioManager';
 import type { GameDataRegistry } from '../game/data/GameDataRegistry';
 import type { GraphicsQualityController } from '../core/graphics/GraphicsQualityController';
+import type { OperationsContentService } from '../services/operations/OperationsContentService';
 
 export interface AppContext {
   readonly auth: AuthService;
@@ -20,4 +21,5 @@ export interface AppContext {
   readonly scenes: SceneManager;
   readonly assets: AssetManager;
   readonly audio: AudioManager;
+  readonly operationsContent: OperationsContentService;
 }

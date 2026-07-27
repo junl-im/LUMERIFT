@@ -1,6 +1,8 @@
 import type { EquipmentSlot, InventoryItem } from '../game/items/itemTypes';
+import { createDefaultOperationsState, normalizeOperationsState } from '../game/operations/operationsLogic';
+import type { PlayerOperationsState } from '../game/operations/operationsTypes';
 
-export const PLAYER_SAVE_VERSION = 3;
+export const PLAYER_SAVE_VERSION = 4;
 
 export interface StageProgress {
   clearCount: number;
@@ -26,7 +28,7 @@ export interface PlayerTutorialState {
 }
 
 export interface PlayerProfile {
-  readonly saveVersion: 3;
+  readonly saveVersion: 4;
   readonly uid: string;
   nickname: string;
   level: number;
@@ -42,6 +44,7 @@ export interface PlayerProfile {
   statistics: PlayerStatistics;
   dailyStatistics: PlayerStatistics;
   tutorial: PlayerTutorialState;
+  operations: PlayerOperationsState;
   updatedAt: number;
 }
 
@@ -78,6 +81,7 @@ export function createDefaultProfile(uid: string, nickname: string): PlayerProfi
       itemsObtained: 0,
     },
     tutorial: { completed: false, skipped: false },
+    operations: createDefaultOperationsState(),
     updatedAt: Date.now(),
   };
 }
@@ -124,6 +128,7 @@ export function migratePlayerProfile(
       ? { monstersDefeated: 0, stagesCleared: 0, equipmentUpgrades: 0, itemsObtained: 0 }
       : parseStatistics(value.dailyStatistics),
     tutorial: parseTutorial(value.tutorial),
+    operations: normalizeOperationsState(value.operations),
     updatedAt: nonNegativeNumber(value.updatedAt, Date.now()),
   };
 }

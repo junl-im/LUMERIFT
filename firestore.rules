@@ -9,17 +9,74 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == uid;
     }
 
+    function validProfile(uid) {
+      return owns(uid)
+        && request.resource.data.keys().hasOnly([
+          'saveVersion', 'uid', 'nickname', 'level', 'exp', 'highestStage', 'gold',
+          'inventory', 'equipped', 'stageProgress', 'questClaims', 'dailyQuestDate',
+          'dailyQuestClaims', 'statistics', 'dailyStatistics', 'tutorial', 'operations',
+          'updatedAt', 'serverUpdatedAt'
+        ])
+        && request.resource.data.uid == uid
+        && request.resource.data.saveVersion is int
+        && request.resource.data.saveVersion >= 4
+        && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() >= 1
+        && request.resource.data.nickname.size() <= 24
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1
+        && request.resource.data.level <= 999
+        && request.resource.data.exp is number
+        && request.resource.data.exp >= 0
+        && request.resource.data.highestStage is int
+        && request.resource.data.highestStage >= 1
+        && request.resource.data.highestStage <= 999
+        && request.resource.data.gold is number
+        && request.resource.data.gold >= 0
+        && request.resource.data.inventory is map
+        && request.resource.data.equipped is map
+        && request.resource.data.stageProgress is map
+        && request.resource.data.questClaims is map
+        && request.resource.data.dailyQuestDate is string
+        && request.resource.data.dailyQuestClaims is map
+        && request.resource.data.statistics is map
+        && request.resource.data.dailyStatistics is map
+        && request.resource.data.tutorial is map
+        && request.resource.data.operations is map
+        && request.resource.data.updatedAt is number
+        && request.resource.data.serverUpdatedAt is timestamp;
+    }
+
     match /users/{uid} {
-      allow read, create, update: if owns(uid);
+      allow get: if owns(uid);
+      allow list: if false;
+      allow create: if validProfile(uid);
+      allow update: if validProfile(uid) && request.resource.data.uid == resource.data.uid;
       allow delete: if false;
 
-      match /{document=**} {
+      match /mail/{mailId} {
+        allow get, list: if owns(uid);
+        allow create, delete: if false;
+        allow update: if owns(uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['claimed', 'claimedAt'])
+          && request.resource.data.claimed == true
+          && request.resource.data.claimedAt == request.time;
+      }
+
+      match /attendance/{cycleId} {
+        allow get, list: if owns(uid);
+        allow write: if false;
+      }
+
+      match /private/{document=**} {
         allow read, write: if owns(uid);
       }
     }
 
     match /notices/{noticeId} {
-      allow read: if true;
+      // 목록 쿼리는 where('published', '==', true)를 포함해야 합니다.
+      // 게시 시작/종료 시각은 관리자 측에서 published 값을 전환해 관리합니다.
+      allow get, list: if resource.data.published == true;
       allow write: if false;
     }
 
@@ -28,12 +85,33 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /rankings/{document=**} {
+    match /rankings/{uid} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if owns(uid)
+        && request.resource.data.keys().hasOnly(['uid', 'nickname', 'score', 'stage', 'updatedAt'])
+        && request.resource.data.uid == uid
+        && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() <= 24
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 999999999
+        && request.resource.data.stage is int
+        && request.resource.data.stage >= 1
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
     }
 
+    // 쿠폰 원문과 보상은 클라이언트가 읽거나 쓰면 안 됩니다.
+    // 안전한 쿠폰 지급은 Admin SDK 또는 Cloud Functions/Cloud Run에서 처리합니다.
     match /coupons/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /couponRedemptions/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /{document=**} {
       allow read, write: if false;
     }
   }

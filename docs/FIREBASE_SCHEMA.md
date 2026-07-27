@@ -88,3 +88,18 @@ gameConfig/current
 - `tutorial`: 완료 또는 건너뛰기 상태
 
 Cloud Functions 도입 시 일일 날짜와 중요 보상 지급은 서버 시간을 기준으로 재검증한다.
+
+## Player Save v4 · 운영 상태
+
+`users/{uid}`에 다음 운영 상태를 추가한다.
+
+```text
+operations
+├─ attendanceCycleKey
+├─ attendanceClaims: number[]
+├─ noticeReads: { [noticeId]: timestamp }
+├─ mailClaims: { [mailId]: timestamp }
+└─ redeemedCoupons: { [code]: timestamp }
+```
+
+현재 v1.3.0은 로컬 정적 운영 데이터로 동작한다. Firebase 운영 전환 시 공지·우편·쿠폰 원본과 보상 지급은 읽기 전용 컬렉션 및 Cloud Functions에서 검증한다.

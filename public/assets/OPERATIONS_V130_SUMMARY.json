@@ -1,0 +1,23 @@
+{
+  "game": "LUMERIFT: 균열의 계승자",
+  "release": "1.3.0",
+  "qualityStage": "production-candidate-open-art-pass",
+  "runtimeFiles": 2,
+  "runtimeBytes": 54246,
+  "atlasFrames": 12,
+  "features": [
+    "notice",
+    "attendance",
+    "mail",
+    "coupon",
+    "reward icons",
+    "status icons"
+  ],
+  "sourceMaster": "art_source/owned/v1.3.0/operations_ui_master_v1.3.0.png",
+  "previews": [
+    "docs/previews/v1.3.0_notice_preview.webp",
+    "docs/previews/v1.3.0_attendance_preview.webp",
+    "docs/previews/v1.3.0_mail_preview.webp",
+    "docs/previews/v1.3.0_coupon_preview.webp"
+  ]
+}

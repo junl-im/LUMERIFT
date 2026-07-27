@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { migratePlayerProfile, PLAYER_SAVE_VERSION } from './PlayerRepository';
 
 describe('player save migration', () => {
-  it('migrates v1 profile into v3 progression structure', () => {
+  it('migrates v1 profile into the current progression structure', () => {
     const migrated = migratePlayerProfile({
       uid: 'old',
       nickname: '이전 계승자',
@@ -19,9 +19,10 @@ describe('player save migration', () => {
     expect(migrated.stageProgress).toEqual({});
     expect(migrated.statistics.stagesCleared).toBe(0);
     expect(migrated.tutorial.completed).toBe(false);
+    expect(migrated.operations.attendanceClaims).toEqual([]);
   });
 
-  it('preserves v2 equipment while adding v3 fields', () => {
+  it('preserves v2 equipment while adding current fields', () => {
     const migrated = migratePlayerProfile({
       saveVersion: 2,
       nickname: '장비 계승자',

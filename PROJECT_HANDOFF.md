@@ -1,29 +1,26 @@
 # LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.2.0  
-**현재 단계:** UI·그래픽 전면 점검과 5개 주요 화면 Visual Reset 완료  
-**품질 단계:** `production-candidate-open-art-pass`
+**현재 버전:** v1.4.0  
+**공개 주소:** https://junl-im.github.io/LUMERIFT/  
+**Firebase 프로젝트:** `lumerift-8db07`
 
-## 시작 순서
+## 작업 시작 전 필독
 
 1. `AGENTS.md`
-2. `docs/HANDOFF_MASTER.md`
-3. `HANDOFF_STATE.json`
-4. `docs/HANDOFF_LOG.md`
-5. `docs/VISUAL_AUDIT_v1.2.0.md`
+2. `HANDOFF_STATE.json`
+3. `docs/HANDOFF_MASTER.md`
+4. `docs/FIREBASE_SETUP_v1.4.0.md`
+5. `docs/FIRESTORE_SECURITY_v1.4.0.md`
+6. `docs/ROADMAP.md`
 
-## v1.2.0 현재 상태
+## v1.4.0 현재 상태
 
-- 공통 UI를 Obsidian·Gold·Teal 체계로 교체했다.
-- 로비·전투·인벤토리·스테이지·결과 화면의 정보 구조를 다시 설계했다.
-- 플레이어와 몬스터 기본 Atlas는 v2 통합 색보정 경로를 사용한다.
-- 기존 v1 공개 아트와 모든 모바일 제작용 원본·라이선스·레거시 자산은 FULL 패키지에 보존한다.
-- 캐릭터·몬스터는 독점 최종 원화가 아니며 전용 8방향 리디자인이 계속 필요하다.
+- npm `firebase@12.16.0` modular SDK 사용
+- 익명·Google·이메일 로그인과 익명 계정 연결 완료
+- Firestore 사용자 프로필 Cloud Save와 IndexedDB 오프라인 캐시 완료
+- 로컬 우선 저장 및 실패 재시도 대기열 완료
+- 원격 공지 조회·캐시·내장 공지 폴백 완료
+- Firestore Rules·Indexes·Emulator 구성 완료
+- 쿠폰·고가치 보상은 서버 검증 전까지 로컬 데모 상태
 
-## 다음 우선순위
-
-1. 퀘스트·공지·출석·우편·쿠폰 화면을 동일 UI 체계로 통일
-2. LUMERIFT 전용 플레이어 8방향 원화 제작
-3. Chapter 1 일반 5종·정예 2종·보스 1종 동일 화풍 제작
-4. Android Chrome·iOS Safari 실기기 시각·성능 검수
-5. Firebase 운영 기능
+모든 후속 릴리스는 Firebase 규칙 변경과 데이터 경로 변경을 `HANDOFF_STATE.json`과 `docs/HANDOFF_LOG.md`에 기록해야 합니다.

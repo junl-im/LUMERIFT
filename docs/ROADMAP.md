@@ -184,3 +184,35 @@
 - [ ] 전용 플레이어 8방향 원화 샘플
 - [ ] 일반 몬스터·정예·보스 동일 화풍 샘플
 - [ ] Android·iOS 실기기 시각·성능 QA
+
+## 완료: v1.3.0 운영 UI·저장 v4·모바일 레이아웃
+
+- [x] 공지·출석·우편·쿠폰 공통 UI
+- [x] 로비 소식 메뉴와 알림 개수
+- [x] Player Save v4 운영 이력
+- [x] 주간 출석과 중복 수령 방지
+- [x] 우편 개별·일괄 수령
+- [x] 쿠폰 만료·중복 사용 검증
+- [x] 퀘스트 카드 공통 디자인 적용
+- [x] Safe Area·100dvh·visualViewport 대응
+- [x] 운영 UI 미리보기·자동 검사
+
+## 다음: v1.4.0 Firebase 운영·Cloud Save
+
+- [ ] Firebase 원격 공지·우편 데이터
+- [ ] 서버 시간 기반 출석
+- [ ] Cloud Functions 쿠폰·보상 검증
+- [ ] 게스트 → Google 계정 연결
+- [ ] 로컬·클라우드 저장 충돌 비교
+- [ ] 저장 실패 재시도 큐
+- [ ] Android·iOS 실기기 QA
+- [ ] LUMERIFT 전용 플레이어·몬스터 아트 제작
+
+## v1.5.0 계획
+
+- Firebase Console 배포 결과와 실제 권한 테스트 반영
+- Cloud Save 충돌 비교·선택 UI
+- 주간·전체 랭킹과 내 순위
+- 서버 검증 우편·출석·쿠폰 백엔드 설계
+- App Check metrics 확인 후 단계적 enforcement
+- LUMERIFT 전용 플레이어·몬스터 아트 제작 계속

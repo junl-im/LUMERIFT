@@ -1,11 +1,8 @@
-# LUMERIFT v1.0.3 → v1.2.0 패치
+# LUMERIFT v1.3.0 → v1.4.0
 
-{
-  "game": "LUMERIFT: 균열의 계승자",
-  "fromVersion": "1.0.3",
-  "toVersion": "1.2.0",
-  "changedOrAddedFiles": 124,
-  "deletedFiles": 0,
-  "apply": "프로젝트 루트에 덮어쓴 뒤 PATCH_DELETE_LIST.txt의 실제 경로를 삭제하고 npm run verify 실행",
-  "note": "v1.1.0은 미배포 작업본이므로 v1.0.3에서 v1.2.0으로 직접 패치한다."
-}
+Firebase Authentication·Cloud Save·Firestore Rules 패치입니다.
+
+- 기본 Firebase project: `lumerift-8db07`
+- Auth: 익명, Google, 이메일
+- Firestore: 사용자 프로필, 원격 공지, IndexedDB 캐시
+- 배포 전 `docs/FIREBASE_SETUP_v1.4.0.md` 확인

@@ -83,6 +83,10 @@ async function validateRequiredAnimations() {
     'weapon_rift_blade_rare','armor_warden_rare','accessory_core_rare',
     'weapon_heir_heroic','armor_harbinger_heroic','accessory_rift_heroic',
   ]) if (!equipment.frames?.[`item.${itemId}`]) errors.push(`equipment atlas: 필수 프레임 누락 item.${itemId}`);
+  const operations = JSON.parse(await readFile('public/assets/live/v3/atlases/operations/operations_ui_v3.json', 'utf8'));
+  for (const frame of ['notice_bell','attendance_calendar','mail_envelope','coupon_seal','reward_chest','reward_gold','reward_crystal','reward_essence','status_claimed','status_locked']) {
+    if (!operations.frames?.[frame]) errors.push(`operations atlas: 필수 프레임 누락 ${frame}`);
+  }
 }
 
 await walk(root);

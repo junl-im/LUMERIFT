@@ -1,4 +1,4 @@
-import { Container, Graphics, Text, TextStyle } from 'pixi.js';
+import { Container, Text, TextStyle } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
@@ -6,6 +6,8 @@ import { conditionLabel, getQuestProgress, isQuestClaimed, isQuestUnlocked, clai
 import type { QuestDefinition, QuestType } from '../game/quests/questTypes';
 import { createDefaultProfile, type PlayerProfile } from '../repositories/PlayerRepository';
 import { createBackground, createPanel } from '../ui/SceneChrome';
+import { createBadge, createProgressBar } from '../ui/PremiumUi';
+import { createRasterPanel } from '../ui/UiSkin';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 
@@ -83,15 +85,19 @@ export class QuestScene implements Scene {
     const unlocked = isQuestUnlocked(quest, profile);
     const claimed = isQuestClaimed(quest, profile);
     const progress = getQuestProgress(quest, profile);
-    const panel = new Graphics()
-      .roundRect(28, y, 484, 112, 18)
-      .fill({ color: COLORS.panelStrong, alpha: unlocked ? 0.98 : 0.55 })
-      .stroke({ color: progress.complete ? COLORS.accent : COLORS.primary, alpha: 0.24, width: 2 });
+    const panel = createRasterPanel(28, y, 484, 112, progress.complete && !claimed ? 'panel_gold' : 'panel');
+    panel.alpha = unlocked ? 1 : 0.52;
     const title = new Text({
       text: `${claimed ? '✓ ' : ''}${quest.title}`,
       style: new TextStyle({ fill: unlocked ? COLORS.text : COLORS.muted, fontSize: 18, fontWeight: '700' }),
     });
     title.position.set(44, y + 14);
+    const state = createBadge(
+      claimed ? '수령 완료' : progress.complete ? '완료' : unlocked ? '진행 중' : '잠김',
+      claimed ? 'secondary' : progress.complete ? 'success' : unlocked ? 'primary' : 'secondary',
+    );
+    state.position.set(348, y + 12);
+    state.scale.set(0.76);
     const condition = quest.conditions[0];
     const detail = new Text({
       text: unlocked
@@ -105,7 +111,7 @@ export class QuestScene implements Scene {
       style: new TextStyle({ fill: COLORS.warning, fontSize: 12, align: 'center', lineHeight: 18 }),
     });
     reward.anchor.set(0.5, 0);
-    reward.position.set(428, y + 12);
+    reward.position.set(428, y + 38);
     const claim = new UiButton({
       label: claimed ? '수령 완료' : progress.complete ? '보상 수령' : '진행 중',
       width: 132,
@@ -119,9 +125,11 @@ export class QuestScene implements Scene {
         await context.scenes.change(() => new QuestScene(this.type, this.page));
       },
     });
-    claim.position.set(362, y + 62);
+    claim.position.set(362, y + 65);
     claim.setEnabled(unlocked && progress.complete && !claimed);
-    this.view.addChild(panel, title, detail, reward, claim);
+    const bar = createProgressBar(290, progress.target > 0 ? progress.current / progress.target : 0, progress.complete ? 'success' : 'primary', 7);
+    bar.position.set(44, y + 96);
+    this.view.addChild(panel, title, state, detail, reward, bar, claim);
   }
 
   private createPageControls(context: AppContext, page: number, maxPage: number): void {

@@ -1,7 +1,7 @@
 {
-  "version": 6,
+  "version": 7,
   "game": "LUMERIFT",
-  "release": "1.2.0",
+  "release": "1.4.0",
   "distribution": "full-source-optimized",
   "bundles": {
     "core-ui": {
@@ -52,6 +52,16 @@
         "audio/bgm/forest_rift_loop_v1.opus"
       ],
       "bytes": 3677487
+    },
+    "operations-ui-v3": {
+      "files": [
+        "live/v3/atlases/operations/operations_ui_v3.json",
+        "live/v3/atlases/operations/operations_ui_v3.webp",
+        "live/v2/atlases/ui/ui_obsidian_v2.json",
+        "live/v2/atlases/ui/ui_obsidian_v2.webp",
+        "live/v2/backgrounds/lobby_forest_v2.webp"
+      ],
+      "bytes": 295773
     }
   }
 }

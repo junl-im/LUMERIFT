@@ -1,21 +1,21 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.2.0",
-  "baseVersion": "1.0.3",
+  "version": "1.4.0",
+  "baseVersion": "1.3.0",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.2.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.0.3_to_v1.2.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.4.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.3.0_to_v1.4.0.zip",
   "qualityStage": "production-candidate-open-art-pass",
   "features": [
-    "replaces the prior neon dashboard look with a unified obsidian, gold and teal visual system",
-    "rebuilds lobby, battle HUD, inventory, stage select and result information hierarchy",
-    "moves inventory from text rows to a 3 by 4 equipment grid with direct equipment states",
-    "adds distinct normal, elite, boss and locked stage node presentation",
-    "aligns battle HP fill coordinates with the rebuilt HUD geometry",
-    "switches default player and monster atlases to a unified contrast and outline art pass",
-    "adds visual audit documentation, five release previews and visual regression checks",
-    "keeps mobile production source masters, licenses and archived assets in the FULL package"
+    "connects the bundled Firebase modular SDK to project lumerift-8db07",
+    "adds anonymous, Google and email authentication with anonymous account linking",
+    "adds persistent browser auth sessions and automatic session restoration",
+    "adds IndexedDB Firestore offline cache with multi-tab support",
+    "adds local-first resilient Cloud Save and retry queue",
+    "loads remote Firestore notices with a 15-minute cache and built-in fallback",
+    "adds optional Analytics and App Check initialization",
+    "adds owner-scoped Firestore rules, indexes and emulator configuration"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,13 +37,14 @@
     ],
     "sourceDeployment": "FULL includes mobile production masters and archives; art_source stays outside public and is not deployed",
     "legacyRuntime": "archived candidates remain preserved but are not referenced by the default AssetCatalog",
-    "visualGate": "a screen is not complete without a preview, runtime connection, visual audit and validation markers"
+    "visualGate": "operations screens require runtime connection, previews, save behavior and validation markers"
   },
   "verification": [
-    "v1.2 UI, player, monster, background and portrait paths are active in AssetCatalog",
-    "five major screens satisfy visual reset markers and previews exist",
-    "active atlases preserve animation contracts and all source archives remain present",
-    "initial payload remains below 15 MB and reports use decimal MB",
-    "handoff, version, archive and strict TypeScript alternative checks pass"
+    "Firebase config and firebase@12.16.0 modular imports are present",
+    "three authentication provider flows and anonymous linking are present",
+    "Firestore rules deny unspecified paths and isolate users by request.auth.uid",
+    "coupon collections are blocked from client access",
+    "offline cache, retry queue, notices cache and App Check hook are present",
+    "handoff, archive and asset policies remain intact"
   ]
 }

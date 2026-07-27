@@ -159,3 +159,13 @@ npm run dev
 - 5개 화면 미리보기 존재
 - 대체 Strict TypeScript 검사 통과
 - 실제 npm 의존성 기반 최종 빌드는 Registry 사용 가능한 CI에서 확인
+
+## v1.3.0 운영·모바일 검증
+
+- `validate:operations`: 운영 Atlas 12프레임, 4개 화면, 저장 v4, 로비 연결 검사
+- `validate:mobile`: viewport-fit, Safe Area, 100dvh, visualViewport, 키보드 오프셋 검사
+- 운영 로직 테스트: 출석 중복 방지, 주간 주기, 우편 일괄 수령, 쿠폰 중복 방지
+- 대체 Strict TypeScript 검사 통과
+- 누적 Atlas 49개·3,206프레임·451애니메이션 검사
+- 초기 입력 예상 0.61MB / 15MB 검사
+- 실제 npm 의존성 기반 최종 빌드는 Registry 사용 가능한 CI에서 확인

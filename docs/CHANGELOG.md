@@ -349,3 +349,36 @@
 
 - 캐릭터와 몬스터는 LUMERIFT 전용 독점 최종 원화가 아니다.
 - 실기기 Safe Area·폰트·GPU 메모리 검수가 필요하다.
+
+## v1.3.0
+
+### Added
+
+- 공지·출석·우편·쿠폰 통합 `OperationsScene`
+- 운영·보상 아이콘 WebP Atlas 12종
+- 주간 출석 보상과 우편 개별·일괄 수령
+- 쿠폰 만료·중복 사용 검증
+- Player Save v4 운영 상태
+- Safe Area·동적 뷰포트·가상 키보드 레이아웃 컨트롤러
+- 운영 화면 미리보기 4종
+- `validate:operations`, `validate:mobile`
+
+### Changed
+
+- 로비 하단 탐색을 5개 메뉴로 확장하고 소식 알림 개수 표시
+- 퀘스트 카드를 공통 금속 패널·상태 배지·진행 바로 통일
+- 운영 보상이 실제 골드·인벤토리에 반영되도록 변경
+
+### Known limitations
+
+- 운영 원본 데이터와 보상 검증은 아직 로컬이며 Firebase·Cloud Functions 전환이 필요하다.
+- 플레이어·몬스터 독점 최종 원화 제작은 계속 필요하다.
+
+## v1.4.0 - 2026-07-27
+
+- Firebase npm modular SDK 실제 프로젝트 연결
+- 익명·Google·이메일 Authentication 및 계정 연결
+- Firestore 오프라인 캐시와 resilient Cloud Save
+- 원격 공지 캐시 및 폴백
+- Firestore Security Rules·Indexes·Emulator
+- Analytics·App Check 선택 초기화

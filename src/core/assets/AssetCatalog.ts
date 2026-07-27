@@ -20,6 +20,7 @@ export const ASSET_PATHS = {
   lobbyBackground: assetUrl('assets/live/v2/backgrounds/lobby_forest_v2.webp'),
   heroPortrait: assetUrl('assets/live/v2/portraits/hero_v2.webp'),
   bossPortrait: assetUrl('assets/live/v2/portraits/boss_v2.webp'),
+  operationsAtlas: assetUrl('assets/live/v3/atlases/operations/operations_ui_v3.json'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -44,6 +45,13 @@ export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
   urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.equipmentAtlas],
   estimatedBytes: 260_000,
+};
+
+
+export const OPERATIONS_UI_BUNDLE: AssetBundleDefinition = {
+  id: 'operations-ui-v3',
+  urls: [ASSET_PATHS.operationsAtlas, ASSET_PATHS.uiAtlas, ASSET_PATHS.lobbyBackground],
+  estimatedBytes: 330_000,
 };
 
 export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
@@ -110,5 +118,13 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     atlasPaths: [ASSET_PATHS.uiAtlas],
     imagePaths: [],
     bundle: { id: 'live-ui-gallery', urls: [ASSET_PATHS.uiAtlas], estimatedBytes: 30_000 },
+  },
+  {
+    id: 'operations-ui',
+    label: '운영 UI·보상 아이콘',
+    kind: 'atlas',
+    atlasPaths: [ASSET_PATHS.operationsAtlas],
+    imagePaths: [],
+    bundle: { id: 'operations-ui-gallery', urls: [ASSET_PATHS.operationsAtlas], estimatedBytes: 60_000 },
   },
 ] as const;

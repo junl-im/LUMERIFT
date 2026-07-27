@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "updatedAt": "2026-07-27",
-  "currentPhase": "v1.2 UI·그래픽 전면 점검 및 로비·전투·인벤토리·스테이지·결과 Visual Reset 완료",
+  "currentPhase": "v1.4 Firebase Authentication·Cloud Save·Firestore Security 기반 완료",
   "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -50,15 +50,37 @@
     "결과 화면을 등급 메달·전투 통계·보상·다음 행동 순서로 재구성",
     "플레이어·몬스터 Atlas에 공통 대비·윤곽·색온도 통합 패스 적용",
     "로비·전투 배경과 영웅·보스 초상 v2 기본 경로 적용",
-    "5개 주요 화면 미리보기와 validate:ui·validate:liveart v1.2 계약 추가"
+    "5개 주요 화면 미리보기와 validate:ui·validate:liveart v1.2 계약 추가",
+    "공지·출석·우편·쿠폰 통합 운영실을 로비 기본 탐색에 연결",
+    "운영 UI WebP Atlas 12프레임과 모바일 제작용 원본 추가",
+    "주간 출석·우편 개별/일괄 수령·쿠폰 검증 로직 구현",
+    "Player Save v4에 출석·공지 읽음·우편 수령·쿠폰 사용 이력 추가",
+    "v1~v3 저장 데이터의 v4 자동 마이그레이션과 중복 보상 방지",
+    "퀘스트 카드에 공통 패널·상태 배지·진행 바 디자인 적용",
+    "로비 소식 메뉴에 미확인 공지·출석·우편 알림 개수 표시",
+    "Safe Area·100dvh·visualViewport·가상 키보드 오프셋 적용",
+    "운영 화면 미리보기 4종과 validate:operations·validate:mobile 추가",
+    "누적 49 Atlas·3,206프레임·451애니메이션으로 자산 계약 갱신",
+    "LUMERIFT 전용 8방향 플레이어·Chapter 1 몬스터의 피벗·색·광원·모션 프레임 제작 규격 확정",
+    "Firebase 프로젝트 lumerift-8db07 공개 Web Config를 npm modular SDK 기본 설정으로 연결",
+    "익명·Google·이메일 회원가입/로그인과 브라우저 세션 자동 복원 구현",
+    "익명 계정에 Google 또는 이메일 자격 증명을 연결해 UID와 진행 데이터 유지",
+    "Firestore IndexedDB 다중 탭 오프라인 캐시와 메모리 캐시 폴백 적용",
+    "로컬 우선 Cloud Save·최신 updatedAt 선택·저장 실패 재시도 대기열 구현",
+    "Firestore 원격 공지 조회·15분 캐시·내장 공지 폴백 구현",
+    "Analytics 지원 환경 지연 초기화와 App Check 환경변수 초기화 지점 추가",
+    "사용자 UID 격리·공지 읽기 전용·쿠폰 차단 Firestore 보안 규칙 작성",
+    "공지·랭킹 복합 색인과 Firebase Local Emulator Suite 설정 추가",
+    "Firebase 설정·규칙·인증 흐름을 검사하는 validate:firebase 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "퀘스트·공지·출석·우편·쿠폰 화면을 v1.2 공통 UI 체계로 통일",
-    "LUMERIFT 전용 플레이어 8방향 원화와 공격·스킬·피격·사망 모션 제작",
-    "Chapter 1 몬스터 5종·정예 2종·보스 1종 동일 화풍 리디자인",
-    "Android Chrome·iOS Safari에서 Safe Area·폰트·GPU 메모리·FPS 검수",
-    "Firebase 게스트 계정의 Google 연결과 Cloud Save 충돌 해결"
+    "Firebase Console에 Firestore Rules와 Indexes 배포 후 실제 계정별 권한 검증",
+    "App Check reCAPTCHA 키 등록과 metrics 관찰 후 단계적 enforcement",
+    "서버 검증 우편·출석·쿠폰을 위한 Cloud Run 또는 Cloud Functions 설계",
+    "Cloud Save 충돌 선택 UI와 계정 병합 복구 화면",
+    "주간·전체 랭킹과 내 순위 표시",
+    "LUMERIFT 전용 플레이어·Chapter 1 몬스터 동일 화풍 제작"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -78,30 +100,36 @@
     "전체 통합본의 원본은 모바일 제작용 마스터 규격을 사용하며 불필요한 초고해상도·비압축 PNG를 금지한다.",
     "제3자 공개 원본은 라이선스와 재가공 근거 보존을 위해 원본 상태로 유지할 수 있다.",
     "BAT 파일은 Windows 편의용 선택 도구이며 CI·빌드의 필수 구성으로 간주하지 않는다.",
-    "주요 화면은 런타임 연결·미리보기·시각 감사·자동 검사를 모두 통과해야 UI·그래픽 완료로 기록한다."
+    "주요 화면은 런타임 연결·미리보기·시각 감사·자동 검사를 모두 통과해야 UI·그래픽 완료로 기록한다.",
+    "중요 운영 보상은 온라인 전환 시 서버 시간과 Cloud Functions에서 재검증한다.",
+    "Firebase Web Config는 공개 식별자이며 App Check secret·서비스 계정 키는 저장소에 커밋하지 않는다.",
+    "Firestore는 기본 거부 규칙을 유지하고 사용자 데이터는 request.auth.uid 기준으로 격리한다.",
+    "쿠폰·고가치 우편·출석 보상은 클라이언트만으로 최종 승인하지 않는다.",
+    "Firebase 무료 할당량 보호를 위해 공지 캐시와 Cloud Save 쓰기 최소화를 유지한다."
   ],
   "assetMetrics": {
-    "activeAtlasCount": 5,
-    "activeRuntimeBytes": 3783015,
-    "fullProjectBytes": 101024073,
+    "activeAtlasCount": 6,
+    "activeRuntimeBytes": 3808909,
+    "fullProjectBytes": 101392931,
     "sourceArchiveIncludedInFull": true,
-    "sourceArchiveFileCount": 79,
+    "sourceArchiveFileCount": 80,
     "legacyArchiveIncludedInFull": true,
     "legacyRuntimeDefaultEnabled": false
   },
   "knownLimitations": [
-    "v1.2는 화면 구조와 색·명암을 통일했지만 플레이어·몬스터가 LUMERIFT 전용 독점 원화는 아니다.",
-    "공개 원본 간 형태 언어와 묘사 수준 차이는 완전히 제거되지 않았으며 전용 아트 제작이 필요하다.",
-    "실제 Android Chrome·iOS Safari의 Safe Area, 폰트 크기, WebGL 메모리와 FPS 검수가 남아 있다.",
-    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 설치 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
+    "현재 플레이어 프로필은 클라이언트 권한형 MVP라 골드·전투 결과의 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
+    "쿠폰·서버 우편·서버 시간 출석은 Spark 단계에서 로컬 데모이며 Firestore coupons 경로는 차단되어 있다.",
+    "App Check는 사이트 키 설정과 metrics 확인 전까지 enforcement를 켜지 않는다.",
+    "플레이어·몬스터가 LUMERIFT 전용 독점 최종 원화는 아니다.",
+    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.2.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.0.3_to_v1.2.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.4.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.3.0_to_v1.4.0.zip"
   },
   "sourceArtMetrics": {
-    "totalBytes": 76463711,
-    "ownedProductionBytes": 54332766,
+    "totalBytes": 76566471,
+    "ownedProductionBytes": 54435526,
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
   }

@@ -13,6 +13,7 @@ export class FirestorePlayerRepository implements PlayerRepository {
   public async save(profile: PlayerProfile): Promise<void> {
     await setDoc(doc(this.db, 'users', profile.uid), {
       ...profile,
+      uid: profile.uid,
       updatedAt: Date.now(),
       serverUpdatedAt: serverTimestamp(),
     }, { merge: true });

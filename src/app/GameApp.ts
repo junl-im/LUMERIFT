@@ -9,17 +9,21 @@ import { FirebaseGateway } from '../services/firebase/FirebaseGateway';
 import { AuthService } from '../services/auth/AuthService';
 import { LocalPlayerRepository } from '../repositories/LocalPlayerRepository';
 import { FirestorePlayerRepository } from '../repositories/FirestorePlayerRepository';
+import { ResilientPlayerRepository } from '../repositories/ResilientPlayerRepository';
 import { BootScene } from '../scenes/BootScene';
 import { AssetManager } from '../core/assets/AssetManager';
 import { AudioManager } from '../core/audio/AudioManager';
 import { BRAND } from './brand';
 import { GameDataRegistry } from '../game/data/GameDataRegistry';
 import { GraphicsQualityController } from '../core/graphics/GraphicsQualityController';
+import { MobileViewportController } from '../core/layout/MobileViewportController';
+import { OperationsContentService } from '../services/operations/OperationsContentService';
 
 export class GameApp {
   private readonly pixi = new Application();
   private readonly gameRoot = new Container();
   private readonly input = new InputManager();
+  private readonly mobileViewport = new MobileViewportController();
   private resizeObserver?: ResizeObserver;
   private assets?: AssetManager;
   private audio?: AudioManager;
@@ -28,6 +32,7 @@ export class GameApp {
   public constructor(private readonly host: HTMLDivElement) {}
 
   public async start(): Promise<void> {
+    this.mobileViewport.start();
     const resolution = Math.min(window.devicePixelRatio || 1, 2);
 
     await this.pixi.init({
@@ -57,9 +62,13 @@ export class GameApp {
     await firebase.initialize();
 
     const auth = new AuthService(firebase);
+    await auth.restoreSession();
+    const localPlayerRepository = new LocalPlayerRepository();
     const playerRepository = firebase.isConfigured && firebase.db
-      ? new FirestorePlayerRepository(firebase.db)
-      : new LocalPlayerRepository();
+      ? new ResilientPlayerRepository(localPlayerRepository, new FirestorePlayerRepository(firebase.db))
+      : localPlayerRepository;
+
+    const operationsContent = new OperationsContentService(firebase.db);
 
     const scenes = new SceneManager(this.gameRoot, {
       width: DESIGN_WIDTH,
@@ -77,6 +86,7 @@ export class GameApp {
       scenes,
       assets,
       audio,
+      operationsContent,
     };
 
     scenes.setContext(context);
@@ -121,6 +131,7 @@ export class GameApp {
 
   private destroy(): void {
     this.resizeObserver?.disconnect();
+    this.mobileViewport.destroy();
     this.input.detach();
     if (this.uiPressHandler) window.removeEventListener('lumerift:ui-press', this.uiPressHandler);
     this.audio?.release();

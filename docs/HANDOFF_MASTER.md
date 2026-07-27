@@ -128,3 +128,27 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 인벤토리는 아이콘 그리드, 스테이지는 노드 경로, 결과는 등급·보상 중심 구조를 사용한다.
 - 화면 완료는 런타임 연결·미리보기·시각 감사·자동 검사까지 통과해야 한다.
 - 공개 원본 통합 패스는 최종 독점 원화가 아니며 품질 단계는 `production-candidate-open-art-pass`를 유지한다.
+
+## v1.3.0 운영 UI·저장 v4 기준선
+
+- 로비 하단에 `소식` 메뉴를 추가하고 미확인 공지·오늘 출석·미수령 우편 개수를 표시한다.
+- `OperationsScene`은 공지·출석·우편·쿠폰 네 탭을 공통 Obsidian·Gold·Teal 체계로 제공한다.
+- `PlayerProfile.saveVersion`은 4이며 `operations`에 출석 주기, 공지 읽음, 우편 수령, 쿠폰 사용 이력을 저장한다.
+- v1~v3 저장 데이터는 로드 시 v4로 자동 마이그레이션한다.
+- 운영 보상은 실제 골드와 인벤토리에 반영하며 중복 수령을 방지한다.
+- 운영 Atlas는 `public/assets/live/v3/atlases/operations`에서 화면 진입 시 Lazy Loading한다.
+- 모바일 레이아웃은 Safe Area, `100dvh`, `visualViewport`, 가상 키보드 오프셋을 사용한다.
+- 현재 운영 데이터는 로컬 정적 데이터이며 Firebase 원격 운영과 서버 보상 검증은 다음 단계다.
+
+## v1.4.0 Firebase Authentication·Cloud Save 기준선
+
+- 공개 URL은 `https://junl-im.github.io/LUMERIFT/`다.
+- Firebase project ID는 `lumerift-8db07`이며 npm `firebase@12.16.0` modular API를 사용한다.
+- 익명·Google·이메일 인증을 지원하고 익명 계정은 `linkWithPopup` 또는 `linkWithCredential`로 승격한다.
+- Auth는 browser local persistence를 사용하며 앱 시작 시 세션을 복원한다.
+- Firestore는 IndexedDB persistent local cache와 multi-tab manager를 사용하고 실패 시 메모리 캐시로 전환한다.
+- Cloud Save는 로컬 저장을 먼저 완료한 뒤 원격 저장하며 실패 데이터는 localStorage 대기열에 보존한다.
+- 공지는 Firestore에서 읽고 15분 캐시하며 실패 시 내장 공지로 폴백한다.
+- Firestore Rules는 사용자 UID 격리, 공개 공지 읽기, 클라이언트 쿠폰 차단, 기본 거부를 적용한다.
+- App Check는 환경변수 사이트 키가 있을 때만 초기화하며 metrics 확인 전 enforcement를 켜지 않는다.
+- 상세 콘솔 설정과 배포 순서는 `docs/FIREBASE_SETUP_v1.4.0.md`에 기록한다.
