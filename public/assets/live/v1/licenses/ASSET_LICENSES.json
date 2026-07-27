@@ -1,0 +1,89 @@
+{
+  "release": "1.0.0",
+  "qualityStage": "production-candidate-open-art-pass",
+  "policy": "Only assets with explicit redistributable licenses are included. Procedural v0.9 art is retained only as legacy/non-default content.",
+  "assets": [
+    {
+      "id": "fantasy-rpg-background",
+      "usage": [
+        "lobby background",
+        "chapter 1 battle background"
+      ],
+      "creator": "AliHamieh",
+      "license": "CC0 1.0",
+      "source": "OpenGameArt: Fantasy RPG Background",
+      "url": "https://opengameart.org/content/fantasy-rpg-background"
+    },
+    {
+      "id": "character-portrait",
+      "usage": [
+        "lobby hero portrait"
+      ],
+      "creator": "zonked",
+      "license": "CC0 1.0",
+      "source": "OpenGameArt: Character Portrait",
+      "url": "https://opengameart.org/content/character-portrait"
+    },
+    {
+      "id": "isometric-knight",
+      "usage": [
+        "player combat sprite"
+      ],
+      "creator": "VWolfdog; based on Clint Bellanger Base Human Mesh",
+      "license": "CC-BY 3.0",
+      "source": "OpenGameArt: Isometric Knight NPC",
+      "url": "https://lpc.opengameart.org/content/isometric-knight-npc"
+    },
+    {
+      "id": "orc-flare-sheets",
+      "usage": [
+        "normal and elite combat sprites"
+      ],
+      "creator": "johndh and Clint Bellanger",
+      "license": "CC-BY-SA 3.0",
+      "source": "OpenGameArt: Orc FLARE sprite sheets",
+      "url": "https://opengameart.org/content/orc-flare-sprite-sheets"
+    },
+    {
+      "id": "werebear-flare-sheet",
+      "usage": [
+        "elite combat sprite"
+      ],
+      "creator": "johndh and Clint Bellanger",
+      "license": "CC-BY-SA 3.0",
+      "source": "OpenGameArt: Werebear FLARE sprite sheets",
+      "url": "https://opengameart.org/content/werebear-flare-sprite-sheets"
+    },
+    {
+      "id": "spider-flare-sheets",
+      "usage": [
+        "normal combat sprites"
+      ],
+      "creator": "Wciow and John.d.h / FLARE contributors",
+      "license": "CC-BY-SA 3.0",
+      "source": "OpenGameArt: Spider FLARE sprite sheets",
+      "url": "https://opengameart.org/content/spider-flare-sprite-sheets"
+    },
+    {
+      "id": "flare-troll",
+      "usage": [
+        "boss combat sprite"
+      ],
+      "creator": "VWolfdog; based on Clint Bellanger Base Human Mesh",
+      "license": "CC-BY 3.0",
+      "source": "OpenGameArt: FLARE Model - Troll",
+      "url": "https://opengameart.org/content/flare-model-troll"
+    },
+    {
+      "id": "questquest-illustrations",
+      "usage": [
+        "boss portrait",
+        "bestiary portrait candidates"
+      ],
+      "creator": "Justin Nichol",
+      "license": "CC-BY 4.0",
+      "source": "GitHub: JustinNichol/questquest",
+      "url": "https://github.com/JustinNichol/questquest"
+    }
+  ]
+}

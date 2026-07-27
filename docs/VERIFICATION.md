@@ -106,3 +106,13 @@ npm run dev
 - `tsc -b`: Vite 설정 포함 Strict TypeScript 검사
 - `vite build`: PixiJS/Firebase 함수형 청크 분할 확인
 - GitHub Actions: Node.js 24 및 최신 호환 메이저 확인
+
+## v1.0.0 실사용 아트 검증
+
+- 라이브 Atlas 3개·354프레임·146애니메이션
+- 몬스터 8종별 6개 상태 애니메이션 계약
+- 기본 AssetCatalog이 실제 라이브 아트 경로를 가리키는지 검사
+- 로비·전투·영웅·보스·UI 필수 파일 검사
+- 제3자 라이선스 8개 그룹과 NOTICE·문서 검사
+- 누적 45 Atlas·2,828프레임·305애니메이션 검사
+- 초기 입력 추정 약 491KiB / 15MiB 검사

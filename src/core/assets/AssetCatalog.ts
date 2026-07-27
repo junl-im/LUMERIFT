@@ -11,12 +11,15 @@ export function assetUrl(path: string): string {
 }
 
 export const ASSET_PATHS = {
-  uiAtlas: assetUrl('assets/atlases/ui/ui_skin_v1.json'),
-  playerAtlas: assetUrl('assets/atlases/player/player_v1.json'),
-  monsterAtlas: assetUrl('assets/atlases/monsters/monster_common_v1.json'),
+  uiAtlas: assetUrl('assets/live/v1/atlases/ui/ui_live_v1.json'),
+  playerAtlas: assetUrl('assets/live/v1/atlases/player/player_live_v1.json'),
+  monsterAtlas: assetUrl('assets/live/v1/atlases/monsters/monsters_live_v1.json'),
   effectsAtlas: assetUrl('assets/atlases/effects/combat_effects_v1.json'),
   equipmentAtlas: assetUrl('assets/atlases/items/equipment_icons_v1.json'),
-  forestMap: assetUrl('assets/maps/chapter1/forest_rift_v1.webp'),
+  forestMap: assetUrl('assets/live/v1/backgrounds/battle_forest_live_v1.webp'),
+  lobbyBackground: assetUrl('assets/live/v1/backgrounds/lobby_forest_live_v1.webp'),
+  heroPortrait: assetUrl('assets/live/v1/portraits/hero_live_v1.webp'),
+  bossPortrait: assetUrl('assets/live/v1/portraits/boss_harbinger_live_v1.webp'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -49,8 +52,8 @@ export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
 
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
-  urls: [ASSET_PATHS.playerAtlas, ASSET_PATHS.equipmentAtlas],
-  estimatedBytes: 105_000,
+  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.equipmentAtlas],
+  estimatedBytes: 260_000,
 };
 
 export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
@@ -61,8 +64,9 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.effectsAtlas,
     ASSET_PATHS.equipmentAtlas,
     ASSET_PATHS.forestMap,
+    ASSET_PATHS.bossPortrait,
   ],
-  estimatedBytes: 360_000,
+  estimatedBytes: 4_150_000,
 };
 
 export const ASSET_MEGA_GALLERY_BUNDLE: AssetBundleDefinition = {
@@ -103,6 +107,40 @@ function qualityBundle(id: string, paths: readonly string[], estimatedBytes: num
 }
 
 export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [
+  {
+    id: 'live-scenes',
+    label: 'v1.0 실사용 화면·초상',
+    kind: 'image',
+    atlasPaths: [],
+    imagePaths: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.forestMap, ASSET_PATHS.heroPortrait, ASSET_PATHS.bossPortrait],
+    bundle: { id: 'live-scenes-gallery', urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.forestMap, ASSET_PATHS.heroPortrait, ASSET_PATHS.bossPortrait], estimatedBytes: 380_000 },
+  },
+  {
+    id: 'live-player',
+    label: 'v1.0 실전 플레이어 모션',
+    kind: 'atlas',
+    prefix: 'knight_',
+    atlasPaths: [ASSET_PATHS.playerAtlas],
+    imagePaths: [],
+    bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 850_000 },
+  },
+  {
+    id: 'live-monsters',
+    label: 'v1.0 실전 몬스터 8종',
+    kind: 'atlas',
+    prefix: 'monster_',
+    atlasPaths: [ASSET_PATHS.monsterAtlas],
+    imagePaths: [],
+    bundle: { id: 'live-monsters-gallery', urls: [ASSET_PATHS.monsterAtlas], estimatedBytes: 3_050_000 },
+  },
+  {
+    id: 'live-ui',
+    label: 'v1.0 실사용 UI 스킨',
+    kind: 'atlas',
+    atlasPaths: [ASSET_PATHS.uiAtlas],
+    imagePaths: [],
+    bundle: { id: 'live-ui-gallery', urls: [ASSET_PATHS.uiAtlas], estimatedBytes: 30_000 },
+  },
   {
     id: 'quality-heroes',
     label: '영웅 초상 8종',

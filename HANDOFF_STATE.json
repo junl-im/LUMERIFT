@@ -1,36 +1,35 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "updatedAt": "2026-07-27",
-  "currentPhase": "Vite 8 빌드 복구 및 GitHub Actions Node 24 전환",
-  "qualityStage": "production-candidate-procedural",
+  "currentPhase": "실제 게임용 공개 라이선스 아트의 기본 런타임 적용과 UI·전투 화면 리빌드",
+  "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
     "3연속 공격, 스킬 2종, 회피, 상태 이상, 보스 3페이즈",
     "스테이지 10개, 퀘스트, 장비, 인벤토리, 저장 데이터 v3",
     "모바일 조이스틱, 쿨다운 HUD, 씬 페이드, 품질 자동 축소",
-    "v0.8 구조 검증 메가팩 1,174 Atlas 프레임과 127 애니메이션",
-    "v0.9 품질팩 신규 26 Atlas, 1,300프레임, 32 VFX 애니메이션",
-    "고해상도 PNG 원본 58개와 런타임 WebP 품질 자산 분리",
-    "영웅 8, 보스 12, NPC 16, 아이템 384, 스킬 160, 환경 240",
-    "지역 키아트 10종과 전투 배경 15종",
-    "분류별 Lazy Loading 에셋 품질 보관소",
-    "품질 단계·용량·수량 진실성 자동 검증",
-    "AGENTS·HANDOFF 문서와 자동 인수인계 검증",
-    "Vite 8 manualChunks 객체 형식을 함수 형식으로 교체하여 TS2769 빌드 오류 수정",
-    "GitHub Actions checkout/setup-node/configure-pages/upload-pages-artifact 최신 Node 24 호환 메이저 적용",
-    "빌드 설정 사전 검증과 typecheck 조기 실패 순서 적용"
+    "Vite 8 manualChunks 함수 형식과 Node.js 24 CI 복구",
+    "명시적 재배포 라이선스가 있는 실제 게임용 원본 8개 그룹 확보",
+    "실제 8방향 FLARE 몬스터 시트 8종을 종별 런타임 애니메이션으로 연결",
+    "실제 Isometric Knight 시트를 플레이어 기본 전투 Atlas로 연결",
+    "실제 판타지 배경과 캐릭터·보스 초상을 로비와 전투 기본 화면에 연결",
+    "금속·유리 질감 NineSlice UI 18종과 로비·보스 HUD 리빌드",
+    "기존 절차형 v0.9 자산을 기본 표시에서 제외하고 레거시 보관소로 분리",
+    "제3자 출처·저작자·라이선스·가공 범위를 파일 단위로 기록",
+    "실사용 아트 전용 자동 검증과 로비·전투 미리보기 추가",
+    "총 45 Atlas, 2,828프레임, 305애니메이션으로 누적 자산 계약 확장"
   ],
   "inProgress": [],
   "nextPlanned": [
+    "LUMERIFT 전용 독점 플레이어 원화와 진짜 8방향 모션 제작",
+    "Chapter 1 전용 몬스터·보스 아트의 세계관 통일 리디자인",
+    "스킬 버튼·아이콘·인벤토리·스테이지 선택 화면의 실사용 UI 2차 리빌드",
+    "Android Chrome·iOS Safari에서 실제 WebGL 메모리와 FPS 측정",
     "Firebase 게스트 계정의 Google 계정 연결",
-    "Cloud Save 버전 관리와 로컬·클라우드 충돌 해결",
-    "공지, 7일 출석, 우편, 쿠폰, 주간·전체 랭킹",
-    "영웅·보스·NPC 원화의 수작업 리터칭과 final-candidate 승격",
-    "Chapter 1 전투 배경과 UI의 실제 런타임 교체",
-    "실기기 npm install, Vite build, 모바일 브라우저 성능 검증"
+    "Cloud Save 충돌 해결과 공지·출석·우편·쿠폰·랭킹"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -40,28 +39,34 @@
     "MVP 전 실시간 MMO 기능을 추가하지 않는다.",
     "모든 릴리스에서 인수인계 파일을 갱신한다.",
     "결과 보고 순서는 결과, 전체 ZIP, 패치 ZIP, 다음 업데이트다.",
-    "절차형 제작 후보 자산을 최종 상용 원화 또는 AAA 최종급으로 보고하지 않는다."
+    "절차형 제작 후보 자산을 최종 상용 원화 또는 AAA 최종급으로 보고하지 않는다.",
+    "외부 자산은 명시적 재배포 라이선스와 저작자 표시를 확인한 뒤에만 포함한다.",
+    "실제 런타임 기본 화면에 연결되지 않은 자산을 실사용 완료로 기록하지 않는다."
   ],
   "assetMetrics": {
-    "legacyAtlasFrames": 1174,
-    "legacyAnimations": 127,
-    "qualityPackAtlases": 26,
-    "qualityPackFrames": 1300,
-    "qualityPackAnimations": 32,
-    "totalAtlasFrames": 2474,
-    "totalAnimations": 159,
-    "qualityRuntimeBytes": 12907722,
-    "sourceMasterBytes": 480623215,
-    "combinedQualityBytes": 493530937
+    "legacyAtlasFrames": 2474,
+    "legacyAnimations": 159,
+    "liveArtAtlases": 3,
+    "liveArtFrames": 354,
+    "liveArtAnimations": 146,
+    "liveMonsterSpecies": 8,
+    "liveUiFrames": 18,
+    "totalAtlases": 45,
+    "totalAtlasFrames": 2828,
+    "totalAnimations": 305,
+    "liveRuntimeBytes": 4257025,
+    "openArtSourceBytes": 22130945,
+    "allSourceMasterBytes": 502764271
   },
   "knownLimitations": [
-    "v0.9 자산은 고해상도 절차형 제작 후보이며 최종 수작업 상용 원화가 아니다.",
-    "고해상도 PNG 원본은 보관용이며 GitHub Pages 런타임 배포 대상이 아니다.",
-    "Firebase 운영 기능은 v0.10.0에서 실제 연결한다.",
-    "v0.9.1 빌드는 Node.js 24와 Vite 8.1.5 기준으로 검증한다."
+    "v1.0 자산은 실제 게임용 공개 라이선스 원본을 사용하지만 LUMERIFT 전용 독점 원화는 아니다.",
+    "플레이어 원본 시트는 공개된 단일 연속 동작을 8개 논리 방향 계약에 매핑·미러링하므로 최종 8방향 전용 모션 제작이 필요하다.",
+    "여러 공개 프로젝트의 원본을 통합했으므로 이전 절차형 자산보다 품질은 높지만 완전한 세계관·비율 통일을 위한 2차 아트 디렉션이 필요하다.",
+    "CC BY-SA 파생 몬스터 Atlas는 저작자 표시와 동일 라이선스 조건을 유지해야 한다.",
+    "npm Registry 제한 환경에서는 실제 Vite production build와 모바일 브라우저 실기동을 별도 환경에서 확인해야 한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v0.9.1.zip",
-    "patchArchive": "LUMERIFT_PATCH_v0.1.0_to_v0.9.1.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.0.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v0.9.1_to_v1.0.0.zip"
   }
 }

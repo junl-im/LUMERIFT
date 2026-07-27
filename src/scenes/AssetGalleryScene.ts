@@ -21,7 +21,7 @@ export class AssetGalleryScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('에셋 품질 보관소', 'v0.9.0 제작 후보 자산을 분류별 Lazy Loading으로 검수합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.0 실사용 오픈아트와 기존 구조 검증 자산을 분리해 검수합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 636));
 
     this.categoryText = new Text({
@@ -32,7 +32,7 @@ export class AssetGalleryScene implements Scene {
     this.categoryText.position.set(DESIGN_WIDTH / 2, 214);
 
     const qualityNote = new Text({
-      text: 'production-candidate-procedural · 최종 상용 원화 아님',
+      text: '앞 4개 분류: production-candidate-open-art-pass · 이후: v0.9 legacy procedural',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 12, align: 'center' }),
     });
     qualityNote.anchor.set(0.5);

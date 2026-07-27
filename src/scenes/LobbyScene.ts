@@ -1,9 +1,9 @@
-import { AnimatedSprite, Container, Graphics, Sprite, Text, TextStyle, type Spritesheet, type Texture } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
 import { ASSET_PATHS, LOBBY_CHARACTER_BUNDLE } from '../core/assets/AssetCatalog';
-import { createBackground, createPanel } from '../ui/SceneChrome';
+import { createRasterPanel } from '../ui/UiSkin';
 import { UiButton } from '../ui/UiButton';
 import { createDefaultProfile, type PlayerProfile } from '../repositories/PlayerRepository';
 import {
@@ -26,8 +26,7 @@ export class LobbyScene implements Scene {
   private qualityButton?: UiButton;
   private diagnosticsElapsed = 0;
   private lobbyBundleLoaded = false;
-  private hero?: AnimatedSprite;
-  private heroAura?: Graphics;
+  private atmosphere?: Graphics;
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
@@ -41,160 +40,20 @@ export class LobbyScene implements Scene {
 
     await context.assets.loadBundle(LOBBY_CHARACTER_BUNDLE);
     this.lobbyBundleLoaded = true;
-    const playerSheet = context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
-    const equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
+    const backgroundTexture = context.assets.get<Texture>(ASSET_PATHS.lobbyBackground);
+    const portraitTexture = context.assets.get<Texture>(ASSET_PATHS.heroPortrait);
 
     const equipment = calculateEquipmentSummary(this.profile, context.gameData);
     const power = calculateTotalPower(context.gameData.player, this.profile, context.gameData);
-
-    this.view.addChild(createBackground('루멘 거점', '획득한 장비를 강화하고 균열 전투에 다시 도전하세요.'));
-    this.view.addChild(createPanel(30, 195, 480, 500));
-
-    this.heroAura = new Graphics()
-      .circle(DESIGN_WIDTH / 2, 360, 130)
-      .fill({ color: COLORS.primary, alpha: 0.08 })
-      .circle(DESIGN_WIDTH / 2, 375, 72)
-      .fill({ color: COLORS.primary, alpha: 0.24 });
-    this.view.addChild(this.heroAura);
-
-    const idle = playerSheet?.animations['player.idle.s'] as Texture[] | undefined;
-    if (idle && idle.length > 0) {
-      this.hero = new AnimatedSprite({ textures: idle, animationSpeed: 0.1, loop: true, autoPlay: true });
-      this.hero.anchor.set(0.5, 0.76);
-      this.hero.scale.set(3.2);
-      this.hero.position.set(DESIGN_WIDTH / 2, 455);
-      this.view.addChild(this.hero);
-    } else {
-      const fallback = new Graphics()
-        .circle(DESIGN_WIDTH / 2, 325, 34)
-        .fill(COLORS.text)
-        .roundRect(DESIGN_WIDTH / 2 - 46, 360, 92, 130, 35)
-        .fill({ color: COLORS.primaryBright, alpha: 0.9 });
-      this.view.addChild(fallback);
-    }
-
-    const weaponUid = this.profile.equipped.weapon;
-    const weaponId = weaponUid ? this.profile.inventory[weaponUid]?.itemId : undefined;
-    const weaponTexture = weaponId ? equipmentSheet?.textures[`item.${weaponId}`] : undefined;
-    if (weaponTexture) {
-      const weapon = new Sprite(weaponTexture);
-      weapon.anchor.set(0.5);
-      weapon.scale.set(0.62);
-      weapon.rotation = -0.62;
-      weapon.position.set(DESIGN_WIDTH / 2 + 78, 376);
-      this.view.addChild(weapon);
-    }
-
-    const name = new Text({
-      text: this.profile.nickname,
-      style: new TextStyle({ fill: COLORS.text, fontSize: 28, fontWeight: '700' }),
-    });
-    name.anchor.set(0.5);
-    name.position.set(DESIGN_WIDTH / 2, 510);
-
-    const stats = new Text({
-      text: `Lv.${this.profile.level}  ·  전투력 ${power}  ·  Gold ${this.profile.gold.toLocaleString()}`,
-      style: new TextStyle({ fill: COLORS.text, fontSize: 17, fontWeight: '600' }),
-    });
-    stats.anchor.set(0.5);
-    stats.position.set(DESIGN_WIDTH / 2, 550);
-
-    const equipmentText = new Text({
-      text: `장비 보너스  공격 +${equipment.attack}  방어 +${equipment.defense}  HP +${equipment.maxHp}`,
-      style: new TextStyle({ fill: COLORS.accent, fontSize: 14 }),
-    });
-    equipmentText.anchor.set(0.5);
-    equipmentText.position.set(DESIGN_WIDTH / 2, 585);
-
     const claimableQuests = countClaimableQuests(this.profile, context.gameData);
     const clearedStages = Object.values(this.profile.stageProgress).filter((entry) => entry.clearCount > 0).length;
-    const dataStatus = new Text({
-      text: `스테이지 ${clearedStages}/10 · 장비 ${Object.keys(this.profile.inventory).length}개 · 수령 가능 퀘스트 ${claimableQuests}개`,
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 14 }),
-    });
-    dataStatus.anchor.set(0.5);
-    dataStatus.position.set(DESIGN_WIDTH / 2, 620);
 
-    const battle = new UiButton({
-      label: '스테이지 선택',
-      width: 390,
-      height: 60,
-      onPress: async () => context.scenes.change(() => new StageSelectScene()),
-    });
-    battle.position.set(75, 700);
-
-    const inventory = new UiButton({
-      label: '장비·인벤토리',
-      width: 188,
-      height: 56,
-      tone: 'secondary',
-      onPress: async () => context.scenes.change(() => new InventoryScene()),
-    });
-    inventory.position.set(75, 775);
-
-    const quests = new UiButton({
-      label: claimableQuests > 0 ? `퀘스트 (${claimableQuests})` : '퀘스트',
-      width: 188,
-      height: 56,
-      tone: claimableQuests > 0 ? 'primary' : 'secondary',
-      onPress: async () => context.scenes.change(() => new QuestScene()),
-    });
-    quests.position.set(277, 775);
-
-    this.fpsButton = new UiButton({
-      label: this.fpsLabel(),
-      width: 188,
-      height: 52,
-      tone: 'secondary',
-      onPress: () => {
-        context.frameRate.cycleMode();
-        this.fpsButton?.setLabel(this.fpsLabel());
-      },
-    });
-    this.fpsButton.position.set(75, 846);
-
-    this.qualityButton = new UiButton({
-      label: this.qualityLabel(),
-      width: 188,
-      height: 52,
-      tone: 'secondary',
-      onPress: () => {
-        context.graphicsQuality.cycle();
-        this.qualityButton?.setLabel(this.qualityLabel());
-      },
-    });
-    this.qualityButton.position.set(277, 846);
-
-    const assetGallery = new UiButton({
-      label: '에셋 품질 보관소 · v0.9',
-      width: 390,
-      height: 44,
-      fontSize: 16,
-      tone: 'secondary',
-      onPress: async () => context.scenes.change(() => new AssetGalleryScene()),
-    });
-    assetGallery.position.set(75, 906);
-
-    this.fpsText = new Text({
-      text: '',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 12 }),
-    });
-    this.fpsText.anchor.set(1, 1);
-    this.fpsText.position.set(DESIGN_WIDTH - 12, DESIGN_HEIGHT - 6);
-
-    this.view.addChild(
-      name,
-      stats,
-      equipmentText,
-      dataStatus,
-      battle,
-      inventory,
-      quests,
-      this.fpsButton,
-      this.qualityButton,
-      assetGallery,
-      this.fpsText,
-    );
+    this.createBackdrop(backgroundTexture);
+    this.createHeader(power);
+    this.createHeroCard(portraitTexture);
+    this.createStatusPanel(power, equipment, clearedStages, claimableQuests);
+    this.createNavigation(context, claimableQuests);
+    this.createDiagnostics();
   }
 
   public async exit(): Promise<void> {
@@ -205,8 +64,9 @@ export class LobbyScene implements Scene {
   }
 
   public update(deltaSeconds: number): void {
-    if (this.heroAura && this.context?.graphicsQuality.current.backgroundAnimationRate) {
-      this.heroAura.rotation += deltaSeconds * 0.08 * this.context.graphicsQuality.current.backgroundAnimationRate;
+    if (this.atmosphere && this.context?.graphicsQuality.current.backgroundAnimationRate) {
+      this.atmosphere.rotation += deltaSeconds * 0.018 * this.context.graphicsQuality.current.backgroundAnimationRate;
+      this.atmosphere.alpha = 0.65 + Math.sin(performance.now() * 0.0007) * 0.12;
     }
 
     this.diagnosticsElapsed += deltaSeconds;
@@ -219,12 +79,221 @@ export class LobbyScene implements Scene {
     this.fpsText.text = `${this.context.performance.fps} FPS · ${this.context.performance.tier} · Assets ${assets.loadedUrls}/${assets.activeBundles} · Audio ${audio.cached}${heap}`;
   }
 
+  private createBackdrop(texture?: Texture): void {
+    if (texture) {
+      const backdrop = new Sprite(texture);
+      backdrop.width = DESIGN_WIDTH;
+      backdrop.height = DESIGN_HEIGHT;
+      this.view.addChild(backdrop);
+    } else {
+      this.view.addChild(new Graphics().rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT).fill(COLORS.background));
+    }
+
+    const shade = new Graphics()
+      .rect(0, 0, DESIGN_WIDTH, 170)
+      .fill({ color: 0x04080f, alpha: 0.46 })
+      .rect(0, 570, DESIGN_WIDTH, DESIGN_HEIGHT - 570)
+      .fill({ color: 0x04070d, alpha: 0.72 });
+    this.atmosphere = new Graphics()
+      .circle(460, 250, 170)
+      .fill({ color: COLORS.accent, alpha: 0.08 })
+      .circle(80, 560, 190)
+      .fill({ color: COLORS.warning, alpha: 0.035 });
+    this.view.addChild(shade, this.atmosphere);
+  }
+
+  private createHeader(power: number): void {
+    const topBar = createRasterPanel(16, 18, DESIGN_WIDTH - 32, 112, 'panel_strong');
+    const brand = new Text({
+      text: 'LUMERIFT',
+      style: new TextStyle({ fill: 0xf1dfaa, fontSize: 31, fontWeight: '800', letterSpacing: 4 }),
+    });
+    brand.position.set(32, 31);
+
+    const chapter = new Text({
+      text: '균열의 계승자 · 루멘 전초기지',
+      style: new TextStyle({ fill: 0xaeddd2, fontSize: 13, fontWeight: '600', letterSpacing: 1 }),
+    });
+    chapter.position.set(34, 72);
+
+    const powerChip = createRasterPanel(340, 38, 166, 66, 'resource_chip');
+    const powerLabel = new Text({
+      text: '전투력',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 12, fontWeight: '600' }),
+    });
+    powerLabel.position.set(357, 49);
+    const powerValue = new Text({
+      text: power.toLocaleString(),
+      style: new TextStyle({ fill: 0xffd778, fontSize: 25, fontWeight: '800' }),
+    });
+    powerValue.position.set(355, 67);
+
+    this.view.addChild(topBar, brand, chapter, powerChip, powerLabel, powerValue);
+  }
+
+  private createHeroCard(texture?: Texture): void {
+    const frame = createRasterPanel(18, 148, 318, 448, 'frame_portrait');
+    this.view.addChild(frame);
+
+    if (texture) {
+      const portrait = new Sprite(texture);
+      portrait.position.set(30, 160);
+      portrait.width = 294;
+      portrait.height = 392;
+      this.view.addChild(portrait);
+    }
+
+    const namePlate = createRasterPanel(32, 522, 290, 60, 'panel_gold');
+    const name = new Text({
+      text: this.profile?.nickname ?? '계승자',
+      style: new TextStyle({ fill: 0xffe5aa, fontSize: 23, fontWeight: '800' }),
+    });
+    name.anchor.set(0.5);
+    name.position.set(177, 544);
+    const role = new Text({
+      text: `Lv.${this.profile?.level ?? 1} · 균열 추적자`,
+      style: new TextStyle({ fill: 0xbfdad4, fontSize: 12, fontWeight: '600' }),
+    });
+    role.anchor.set(0.5);
+    role.position.set(177, 567);
+    this.view.addChild(namePlate, name, role);
+  }
+
+  private createStatusPanel(
+    power: number,
+    equipment: { readonly attack: number; readonly defense: number; readonly maxHp: number },
+    clearedStages: number,
+    claimableQuests: number,
+  ): void {
+    const panel = createRasterPanel(346, 148, 176, 448, 'panel');
+    const heading = new Text({
+      text: 'FIELD STATUS',
+      style: new TextStyle({ fill: 0xe5d59f, fontSize: 13, fontWeight: '800', letterSpacing: 1 }),
+    });
+    heading.position.set(366, 169);
+
+    const divider = new Graphics()
+      .rect(366, 199, 136, 2)
+      .fill({ color: 0xcab274, alpha: 0.55 });
+
+    const rows = [
+      ['POWER', power.toLocaleString(), 0xffd778],
+      ['ATTACK', `+${equipment.attack}`, 0xff9b7b],
+      ['DEFENSE', `+${equipment.defense}`, 0x82d6ff],
+      ['MAX HP', `+${equipment.maxHp}`, 0x72e4bd],
+      ['STAGE', `${clearedStages} / 10`, 0xc8b4ff],
+      ['QUEST', claimableQuests > 0 ? `${claimableQuests} READY` : 'CLEAR', claimableQuests > 0 ? 0xffd778 : 0x72e4bd],
+    ] as const;
+
+    const children: Container[] = [panel, heading, divider];
+    rows.forEach(([label, value, color], index) => {
+      const y = 222 + index * 51;
+      const labelText = new Text({
+        text: label,
+        style: new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '700', letterSpacing: 1 }),
+      });
+      labelText.position.set(366, y);
+      const valueText = new Text({
+        text: value,
+        style: new TextStyle({ fill: color, fontSize: 18, fontWeight: '800' }),
+      });
+      valueText.position.set(366, y + 17);
+      children.push(labelText, valueText);
+    });
+    this.view.addChild(...children);
+  }
+
+  private createNavigation(context: AppContext, claimableQuests: number): void {
+    const battle = new UiButton({
+      label: '균열 작전 개시',
+      width: 500,
+      height: 64,
+      onPress: async () => context.scenes.change(() => new StageSelectScene()),
+    });
+    battle.position.set(20, 620);
+
+    const inventory = new UiButton({
+      label: '장비·인벤토리',
+      width: 242,
+      height: 54,
+      tone: 'secondary',
+      fontSize: 17,
+      onPress: async () => context.scenes.change(() => new InventoryScene()),
+    });
+    inventory.position.set(20, 700);
+
+    const quests = new UiButton({
+      label: claimableQuests > 0 ? `퀘스트 보상 ${claimableQuests}` : '퀘스트',
+      width: 242,
+      height: 54,
+      tone: claimableQuests > 0 ? 'primary' : 'secondary',
+      fontSize: 17,
+      onPress: async () => context.scenes.change(() => new QuestScene()),
+    });
+    quests.position.set(278, 700);
+
+    this.fpsButton = new UiButton({
+      label: this.fpsLabel(),
+      width: 242,
+      height: 50,
+      tone: 'secondary',
+      fontSize: 15,
+      onPress: () => {
+        context.frameRate.cycleMode();
+        this.fpsButton?.setLabel(this.fpsLabel());
+      },
+    });
+    this.fpsButton.position.set(20, 770);
+
+    this.qualityButton = new UiButton({
+      label: this.qualityLabel(),
+      width: 242,
+      height: 50,
+      tone: 'secondary',
+      fontSize: 15,
+      onPress: () => {
+        context.graphicsQuality.cycle();
+        this.qualityButton?.setLabel(this.qualityLabel());
+      },
+    });
+    this.qualityButton.position.set(278, 770);
+
+    const assetGallery = new UiButton({
+      label: '아트 보관소 · 라이선스 및 교체 현황',
+      width: 500,
+      height: 48,
+      fontSize: 15,
+      tone: 'secondary',
+      onPress: async () => context.scenes.change(() => new AssetGalleryScene()),
+    });
+    assetGallery.position.set(20, 836);
+
+    const notice = new Text({
+      text: 'CHAPTER 1 · 안개숲 균열  |  production-candidate open-art pass',
+      style: new TextStyle({ fill: 0x91aaa5, fontSize: 11, fontWeight: '600' }),
+    });
+    notice.anchor.set(0.5);
+    notice.position.set(DESIGN_WIDTH / 2, 905);
+
+    this.view.addChild(battle, inventory, quests, this.fpsButton, this.qualityButton, assetGallery, notice);
+  }
+
+  private createDiagnostics(): void {
+    this.fpsText = new Text({
+      text: '',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 10 }),
+    });
+    this.fpsText.anchor.set(1, 1);
+    this.fpsText.position.set(DESIGN_WIDTH - 10, DESIGN_HEIGHT - 5);
+    this.view.addChild(this.fpsText);
+  }
+
   private fpsLabel(): string {
     const mode = this.context?.frameRate.currentMode ?? 'auto';
-    return `FPS: ${mode === 'auto' ? '자동' : mode}`;
+    return `FPS · ${mode === 'auto' ? '자동' : mode}`;
   }
 
   private qualityLabel(): string {
-    return `그래픽: ${this.context?.graphicsQuality.current.label ?? '균형'}`;
+    return `그래픽 · ${this.context?.graphicsQuality.current.label ?? '균형'}`;
   }
 }

@@ -1,15 +1,15 @@
 {
   "version": 4,
   "game": "LUMERIFT",
-  "release": "0.9.1",
+  "release": "1.0.0",
   "bundles": {
     "core-ui": {
       "files": [
-        "atlases/ui/ui_skin_v1.json",
-        "atlases/ui/ui_skin_v1.webp",
+        "live/v1/atlases/ui/ui_live_v1.json",
+        "live/v1/atlases/ui/ui_live_v1.webp",
         "audio/ui/click_v1.ogg"
       ],
-      "bytes": 11663
+      "bytes": 25080
     },
     "equipment-ui": {
       "files": [
@@ -20,31 +20,36 @@
     },
     "lobby-character": {
       "files": [
-        "atlases/player/player_v1.json",
-        "atlases/player/player_v1.webp",
+        "live/v1/backgrounds/lobby_forest_live_v1.webp",
+        "live/v1/portraits/hero_live_v1.webp",
+        "live/v1/atlases/ui/ui_live_v1.json",
+        "live/v1/atlases/ui/ui_live_v1.webp",
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp"
       ],
-      "bytes": 166505
+      "bytes": 253731
     },
     "battle-chapter-1": {
       "files": [
-        "atlases/player/player_v1.json",
-        "atlases/player/player_v1.webp",
-        "atlases/monsters/monster_common_v1.json",
-        "atlases/monsters/monster_common_v1.webp",
+        "live/v1/atlases/player/player_live_v1.json",
+        "live/v1/atlases/player/player_live_v1.webp",
+        "live/v1/atlases/monsters/monsters_live_v1.json",
+        "live/v1/atlases/monsters/monsters_live_v1.webp",
+        "live/v1/atlases/ui/ui_live_v1.json",
+        "live/v1/atlases/ui/ui_live_v1.webp",
+        "live/v1/backgrounds/battle_forest_live_v1.webp",
+        "live/v1/portraits/boss_harbinger_live_v1.webp",
         "atlases/effects/combat_effects_v1.json",
         "atlases/effects/combat_effects_v1.webp",
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp",
-        "maps/chapter1/forest_rift_v1.webp",
         "audio/combat/slash_v1.ogg",
         "audio/combat/hit_v1.ogg",
         "audio/combat/skill_v1.ogg",
         "audio/combat/dodge_v1.ogg",
         "audio/bgm/forest_rift_loop_v1.opus"
       ],
-      "bytes": 320941
+      "bytes": 4106119
     },
     "asset-mega-gallery": {
       "files": [
@@ -314,6 +319,23 @@
         "maps/quality/chapter5/neon_arcology_battle_03.webp"
       ],
       "bytes": 1631876
+    },
+    "live-art-v1": {
+      "files": [
+        "live/v1/atlases/player/player_live_v1.json",
+        "live/v1/atlases/player/player_live_v1.webp",
+        "live/v1/atlases/monsters/monsters_live_v1.json",
+        "live/v1/atlases/monsters/monsters_live_v1.webp",
+        "live/v1/atlases/ui/ui_live_v1.json",
+        "live/v1/atlases/ui/ui_live_v1.webp",
+        "live/v1/backgrounds/lobby_forest_live_v1.webp",
+        "live/v1/backgrounds/battle_forest_live_v1.webp",
+        "live/v1/portraits/hero_live_v1.webp",
+        "live/v1/portraits/boss_harbinger_live_v1.webp",
+        "live/v1/licenses/ASSET_LICENSES.json",
+        "live/v1/licenses/NOTICE.txt"
+      ],
+      "bytes": 4257025
     }
   },
   "qualityStage": "production-candidate-procedural"

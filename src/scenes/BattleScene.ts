@@ -6,6 +6,7 @@ import { ObjectPool } from '../core/pooling/ObjectPool';
 import { ASSET_PATHS, BATTLE_CHAPTER_1_BUNDLE } from '../core/assets/AssetCatalog';
 import { CombatActionButton } from '../ui/CombatActionButton';
 import { VirtualJoystick } from '../ui/VirtualJoystick';
+import { createRasterPanel } from '../ui/UiSkin';
 import { BattleVfxSystem } from '../game/presentation/BattleVfxSystem';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
 import { PlayerCombatController } from '../game/actors/player/PlayerCombatController';
@@ -72,6 +73,7 @@ export class BattleScene implements Scene {
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
   private mapTexture?: Texture;
+  private bossPortraitTexture?: Texture;
   private vfx?: BattleVfxSystem;
   private ambientLayer?: Container;
   private readonly textureWarmupLayer = new Container();
@@ -205,6 +207,7 @@ export class BattleScene implements Scene {
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
     this.mapTexture = context.assets.get<Texture>(ASSET_PATHS.forestMap);
+    this.bossPortraitTexture = context.assets.get<Texture>(ASSET_PATHS.bossPortrait);
     context.audio.preload(ASSET_PATHS.slash, 'sfx');
     context.audio.preload(ASSET_PATHS.hit, 'sfx');
     context.audio.preload(ASSET_PATHS.skill, 'sfx');
@@ -353,7 +356,7 @@ export class BattleScene implements Scene {
       .rect(-80, -80, DESIGN_WIDTH + 160, DESIGN_HEIGHT + 160)
       .fill({ color: palette.background, alpha: this.mapTexture ? 0.34 : 1 })
       .rect(-30, BATTLE_TOP - 35, DESIGN_WIDTH + 60, BATTLE_BOTTOM - BATTLE_TOP + 75)
-      .fill(palette.ground)
+      .fill({ color: palette.ground, alpha: this.mapTexture ? 0.2 : 1 })
       .circle(105, 285, 92)
       .fill({ color: palette.patchA, alpha: 0.52 })
       .circle(445, 575, 128)
@@ -384,10 +387,7 @@ export class BattleScene implements Scene {
     const stage = this.stage;
     if (!stage) return;
 
-    const topPanel = new Graphics()
-      .roundRect(14, 14, DESIGN_WIDTH - 28, 98, 20)
-      .fill({ color: COLORS.panel, alpha: 0.9 })
-      .stroke({ color: 0xffffff, alpha: 0.1, width: 2 });
+    const topPanel = createRasterPanel(14, 14, DESIGN_WIDTH - 28, 98, 'panel_strong');
 
     const title = new Text({
       text: `${stage.label} · ${stage.areaName}`,
@@ -417,15 +417,20 @@ export class BattleScene implements Scene {
     });
     this.pauseButton.position.set(462, 34);
 
-    const bossBackground = new Graphics()
-      .roundRect(14, 120, DESIGN_WIDTH - 28, 52, 16)
-      .fill({ color: COLORS.panel, alpha: 0.92 })
-      .stroke({ color: COLORS.danger, alpha: 0.28, width: 2 });
+    const bossBackground = createRasterPanel(14, 120, DESIGN_WIDTH - 28, 58, 'boss_panel');
     const bossTrack = new Graphics()
-      .roundRect(112, 142, 390, 14, 7)
+      .roundRect(86, 148, 416, 13, 7)
       .fill(COLORS.panelStrong);
-    this.bossNameText.position.set(30, 132);
-    this.bossPanel.addChild(bossBackground, bossTrack, this.bossHpFill, this.bossNameText);
+    this.bossNameText.position.set(86, 130);
+    const bossPortrait = this.bossPortraitTexture ? new Sprite(this.bossPortraitTexture) : undefined;
+    if (bossPortrait) {
+      bossPortrait.position.set(24, 126);
+      bossPortrait.width = 46;
+      bossPortrait.height = 46;
+    }
+    this.bossPanel.addChild(bossBackground);
+    if (bossPortrait) this.bossPanel.addChild(bossPortrait);
+    this.bossPanel.addChild(bossTrack, this.bossHpFill, this.bossNameText);
     this.bossPanel.visible = false;
 
     const guide = new Text({
@@ -1055,7 +1060,7 @@ export class BattleScene implements Scene {
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
     this.bossNameText.text = `${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
     this.bossHpFill.clear()
-      .roundRect(112, 142, 390 * hpRatio, 14, 7)
+      .roundRect(86, 148, 416 * hpRatio, 13, 7)
       .fill(COLORS.danger);
   }
 

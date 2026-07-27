@@ -13,6 +13,7 @@ export class PlayerActorView {
   private readonly weapon = new Graphics();
   private readonly sprite?: AnimatedSprite;
   private readonly equipmentLayer?: Sprite;
+  private readonly spriteBaseScale = 1.05;
   private animationKey = '';
 
   public constructor(
@@ -42,7 +43,7 @@ export class PlayerActorView {
     if (initial && initial.length > 0) {
       this.sprite = new AnimatedSprite({ textures: initial, animationSpeed: 0.12, loop: true, autoPlay: true });
       this.sprite.anchor.set(0.5, 0.76);
-      this.sprite.scale.set(1.55);
+      this.sprite.scale.set(this.spriteBaseScale);
       this.body.visible = false;
       this.weapon.visible = false;
     }
@@ -57,7 +58,7 @@ export class PlayerActorView {
 
     this.root.addChild(shadow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
-    if (this.equipmentLayer) this.root.addChild(this.equipmentLayer);
+    if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
   }
 
   public update(controller: PlayerCombatController, elapsed: number, flashRemaining: number): void {
@@ -71,6 +72,9 @@ export class PlayerActorView {
     this.body.alpha = flashRemaining > 0 ? 0.45 : 1;
     if (this.sprite) {
       this.updateAnimation(controller);
+      const direction = directionFromVector(controller.facing);
+      const mirrored = direction === 'w' || direction === 'sw' || direction === 'nw';
+      this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, this.spriteBaseScale);
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
     }
     this.root.alpha = controller.isInvulnerable && Math.floor(elapsed * 26) % 2 === 0 ? 0.45 : 1;
@@ -102,6 +106,8 @@ export class MonsterActorView {
   private readonly telegraph = new Graphics();
   private readonly phaseAura = new Graphics();
   private readonly sprite?: AnimatedSprite;
+  private readonly spriteBaseScale: number;
+  private previousX?: number;
   private animationKey = '';
   private readonly statusText = new Text({
     text: '',
@@ -114,6 +120,7 @@ export class MonsterActorView {
     private readonly sheet?: Spritesheet,
   ) {
     const { combat, visual } = definition;
+    this.spriteBaseScale = combat.rank === 'boss' ? 1.22 : combat.rank === 'elite' ? 0.92 : 0.78;
     const shadow = new Graphics()
       .ellipse(0, combat.radius * 0.75, combat.radius * 1.05, combat.radius * 0.38)
       .fill({ color: COLORS.dark, alpha: 0.38 });
@@ -132,12 +139,12 @@ export class MonsterActorView {
         .stroke({ color: visual.accentColor, alpha: combat.rank === 'boss' ? 0.9 : 0.65, width: combat.rank === 'boss' ? 5 : 3 });
     }
 
-    const initial = sheet?.animations[`monster.${combat.rank}.idle`];
+    const initial = sheet?.animations[`monster.${combat.id}.idle`]
+      ?? sheet?.animations[`monster.${combat.rank}.idle`];
     if (initial && initial.length > 0) {
       this.sprite = new AnimatedSprite({ textures: initial, animationSpeed: 0.1, loop: true, autoPlay: true });
-      this.sprite.anchor.set(0.5, 0.76);
-      this.sprite.scale.set(combat.radius / 21);
-      this.sprite.tint = visual.bodyColor;
+      this.sprite.anchor.set(0.5, 0.82);
+      this.sprite.scale.set(this.spriteBaseScale);
       this.body.visible = false;
     }
 
@@ -155,10 +162,14 @@ export class MonsterActorView {
     deathElapsed: number,
   ): void {
     const { combat } = this.definition;
+    const deltaX = this.previousX === undefined ? 0 : controller.position.x - this.previousX;
+    this.previousX = controller.position.x;
     this.root.position.set(controller.position.x, controller.position.y);
     this.body.alpha = flashRemaining > 0 ? 0.38 : 1;
     if (this.sprite) {
       this.updateAnimation(controller.state);
+      const facingScale = deltaX < -0.08 ? -this.spriteBaseScale : this.spriteBaseScale;
+      this.sprite.scale.set(facingScale, this.spriteBaseScale);
       this.sprite.alpha = flashRemaining > 0 ? 0.4 : 1;
     }
     this.root.scale.set(scaleForMonsterState(controller.state));
@@ -177,11 +188,9 @@ export class MonsterActorView {
     }
 
     if (controller.state === 'telegraph' && this.quality.effectDensity > 0.6) {
-      const target = this.sprite ?? this.body;
-      target.rotation += deltaSeconds * (combat.rank === 'boss' ? 2.5 : 1.7);
+      this.phaseAura.alpha = 0.65 + Math.sin(performance.now() * 0.012) * 0.2;
     } else {
-      const target = this.sprite ?? this.body;
-      target.rotation *= Math.max(0, 1 - deltaSeconds * 12);
+      this.phaseAura.alpha = 1;
     }
   }
 
@@ -203,9 +212,11 @@ export class MonsterActorView {
     const sheet = this.sheet;
     if (!sprite || !sheet) return;
     const mapped = monsterAnimationState(state);
-    const key = `monster.${this.definition.combat.rank}.${mapped}`;
+    const preferredKey = `monster.${this.definition.combat.id}.${mapped}`;
+    const fallbackKey = `monster.${this.definition.combat.rank}.${mapped}`;
+    const textures = (sheet.animations[preferredKey] ?? sheet.animations[fallbackKey]) as Texture[] | undefined;
+    const key = sheet.animations[preferredKey] ? preferredKey : fallbackKey;
     if (key === this.animationKey) return;
-    const textures = sheet.animations[key] as Texture[] | undefined;
     if (!textures || textures.length === 0) return;
     this.animationKey = key;
     sprite.textures = textures;

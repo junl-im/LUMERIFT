@@ -1,0 +1,17 @@
+LUMERIFT v1.0.0 third-party art notices
+
+Complete attribution: docs/THIRD_PARTY_ASSETS.md
+Machine-readable record: public/assets/live/v1/licenses/ASSET_LICENSES.json
+
+OpenGameArt source links required by the FLARE asset notices:
+https://opengameart.org/content/orc-flare-sprite-sheets
+https://opengameart.org/content/werebear-flare-sprite-sheets
+https://opengameart.org/content/spider-flare-sprite-sheets
+https://opengameart.org/content/flare-model-troll
+https://lpc.opengameart.org/content/isometric-knight-npc
+
+QuestQuest source:
+https://github.com/JustinNichol/questquest
+
+Assets remain under their respective CC0, CC BY 3.0, CC BY-SA 3.0, or CC BY 4.0 terms.
+CC BY-SA derivative runtime sprite atlases remain available under CC BY-SA 3.0.

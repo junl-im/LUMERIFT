@@ -40,8 +40,9 @@ await walk(root);
 const legacyFrames = 1174;
 const legacyAnimations = 127;
 const quality = JSON.parse(await readFile(join(root, 'QUALITYPACK_V090_SUMMARY.json'), 'utf8'));
-const expectedFrames = legacyFrames + quality.counts.frames;
-const expectedAnimations = legacyAnimations + quality.counts.animations;
+const live = JSON.parse(await readFile(join(root, 'LIVE_ART_V100_SUMMARY.json'), 'utf8'));
+const expectedFrames = legacyFrames + quality.counts.frames + live.counts.frames;
+const expectedAnimations = legacyAnimations + quality.counts.animations + live.counts.animations;
 const errors = [];
 if (frames !== expectedFrames) errors.push(`Atlas 프레임 ${frames} != ${expectedFrames}`);
 if (animations !== expectedAnimations) errors.push(`Atlas 애니메이션 ${animations} != ${expectedAnimations}`);
@@ -71,5 +72,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS v0.9 quality asset inventory');
+  console.log('PASS v1.0 live + legacy quality asset inventory');
 }

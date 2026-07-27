@@ -63,3 +63,16 @@
 - checkout/setup-node를 v5, configure-pages를 v6, upload-pages-artifact를 v4로 갱신
 - CI Node.js를 24로 변경
 - `validate:config` 추가 및 typecheck 조기 실행 적용
+
+## v1.0.0
+
+- 기존 절차형 자산이 실제 게임용 품질 기대를 충족하지 못했음을 기록하고 기본 런타임에서 제외
+- CC0·CC BY·CC BY-SA·CC BY 4.0 공개 라이선스 원본 8개 그룹 확보
+- 실제 판타지 배경·영웅 초상·보스 초상을 로비와 전투에 연결
+- Isometric Knight 플레이어 Atlas와 FLARE 몬스터 8종 Atlas 연결
+- 몬스터별 Idle·Move·Attack·Hit·Die·Roar 애니메이션 키 적용
+- 금속·유리 질감 NineSlice UI 18종과 로비·보스 HUD 리빌드
+- 제3자 출처·라이선스·가공 범위 문서 및 NOTICE 추가
+- `validate:liveart`와 로비·전투 미리보기 추가
+- 품질 단계를 `production-candidate-open-art-pass`로 정의
+- 누적 45 Atlas·2,828프레임·305애니메이션으로 갱신

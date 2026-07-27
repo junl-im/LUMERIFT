@@ -1,40 +1,43 @@
-# LUMERIFT: 균열의 계승자 v0.9.1
+# LUMERIFT: 균열의 계승자 v1.0.0
 
 Vite + TypeScript + PixiJS 8 + Firebase 기반 세로형 모바일 웹 액션 RPG입니다.
 
+## v1.0.0 실제 게임용 비주얼 리빌드
 
-## v0.9.1 빌드 복구 핫픽스
+이번 버전은 수량 중심 절차형 자산을 기본 화면에서 제외하고, 명시적 재배포 라이선스가 있는 실제 게임용 원본을 로비와 전투의 기본 런타임에 연결했습니다.
 
-- Vite 8에서 허용되지 않는 `manualChunks` 객체 별칭 형식을 함수 형식으로 교체
-- PixiJS와 Firebase 청크 분리 유지
-- GitHub Actions를 Node.js 24 기준으로 갱신
-- `validate:config`와 조기 `typecheck`로 동일 오류를 전체 검증 초반에 차단
+- 실제 판타지 배경과 영웅 초상을 적용한 로비
+- 실제 Isometric Knight 플레이어 전투 Atlas
+- 오크·거미·웨어베어·트롤 기반 종별 몬스터 8종
+- 각 몬스터의 Idle·Move·Attack·Hit·Die·Roar 계약
+- 실제 보스 초상과 보스 HUD
+- 금속·유리 질감 NineSlice UI 18종
+- 제3자 저작자·라이선스·가공 내역 보존
+- 기존 v0.9 절차형 품질팩은 레거시 에셋 보관소로 분리
 
-## v0.9.0 핵심 결과
+현재 품질 단계는 `production-candidate-open-art-pass`입니다. 실제 게임에 사용 가능한 공개 라이선스 원본을 연결했지만 LUMERIFT 전용 독점 원화나 최종 상용 원화가 아니다. 최종 세계관 통일, 전용 8방향 플레이어 모션, 실기기 아트 QA를 거쳐야 `final-candidate` 이상으로 승격합니다.
 
-- v0.8 구조 검증팩을 유지하면서 신규 품질팩 추가
-- 신규 Atlas 26개, 프레임 1,300개, VFX 애니메이션 32개
-- 누적 Atlas 프레임 2,474개, 애니메이션 159개
-- 영웅 초상 8종, 보스 초상 12종, NPC 초상 16종
-- 장비·아이템 아이콘 384종, 스킬 아이콘 160종
-- 환경 오브젝트 240종, 프리미엄 UI 프레임 96종
-- VFX 32세트·384프레임
-- 5개 지역 키아트 10종, 전투 배경 15종
-- 런타임 WebP 품질 자산 약 12.31MiB
-- 보관용 고해상도 PNG 원본 약 458.36MiB
-- 분류별 Lazy Loading 에셋 품질 보관소
-- 품질 단계와 과장 보고 방지 자동 검사
+## 미리보기
 
-v0.9.0 자산은 `production-candidate-procedural` 단계입니다. 기존보다 해상도·디테일·규모가 크게 향상됐지만 **최종 상용 원화가 아니다**. 외부 아트 디렉션, 수작업 리터칭, 저작권 확인, 모바일 실기기 검수를 거쳐야 `final-candidate` 이상으로 승격할 수 있습니다.
+- `docs/previews/v1.0.0_lobby_preview.webp`
+- `docs/previews/v1.0.0_battle_preview.webp`
 
 ## 현재 플레이 흐름
 
 ```text
-Boot → Login → Animated Lobby
-→ Quality Asset Gallery / Inventory / Quest / Stage Select
-→ Stage 1-1 ~ 1-10 → Mobile Combat HUD
+Boot → Login → Live-art Lobby
+→ Inventory / Quest / Stage Select / Art Gallery
+→ Stage 1-1 ~ 1-10 → Live sprite Combat
 → Boss Phase 1·2·3 → Reward → Growth
 ```
+
+## 에셋과 라이선스
+
+- 런타임 기본 자산: `public/assets/live/v1`
+- 공개 원본 보관: `art_source/open_art/v1.0.0`
+- 라이선스 문서: `docs/THIRD_PARTY_ASSETS.md`
+- 기계 판독 라이선스: `public/assets/live/v1/licenses/ASSET_LICENSES.json`
+- `art_source`는 GitHub Pages 배포 결과물에 포함하지 않습니다.
 
 ## 작업자 인수인계
 
@@ -75,22 +78,20 @@ Firebase가 없어도 로컬 게스트 모드로 실행됩니다.
 ## 검증
 
 ```bash
+npm run validate:config
+npm run validate:liveart
 npm run validate:handoff
-npm run validate:art
 npm run report:inventory
 npm run verify
 ```
 
-SVG 금지, 데이터 상호 참조, Atlas, 품질 단계, 원본·런타임 용량, 인수인계 상태, 상대 import, TypeScript, 테스트, Vite 빌드와 15MB 초기 예산을 검사합니다.
+SVG 금지, 데이터 상호 참조, Atlas, 실사용 라이선스, 기본 런타임 연결, 인수인계 상태, 상대 import, TypeScript, 테스트, Vite 빌드와 15MB 초기 예산을 검사합니다.
 
 ## 에셋 재생성
 
 ```bash
-python tools/generate_runtime_assets.py
-python tools/generate_asset_megapack_v080.py
-python tools/generate_asset_qualitypack_v090.py
+python tools/build_live_art_v100.py
+python tools/render_v100_previews.py
 ```
 
-- `public/assets`: 게임 런타임 배포 자산
-- `art_source/v0.9.0`: 보관·후속 리터칭용 고해상도 PNG 원본
-- `art_source`는 GitHub Pages 배포 결과물에 포함하지 않습니다.
+기존 절차형 생성기는 레거시 보관소 유지·회귀 테스트 목적으로만 사용합니다.
