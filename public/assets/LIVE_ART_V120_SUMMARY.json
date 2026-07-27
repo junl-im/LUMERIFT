@@ -1,0 +1,20 @@
+{
+  "release": "1.2.0",
+  "qualityStage": "production-candidate-open-art-pass",
+  "runtimeFiles": 14,
+  "runtimeBytes": 3783015,
+  "uiSystem": "obsidian-gold-teal-v2",
+  "screens": [
+    "lobby",
+    "battle",
+    "inventory",
+    "stage-select",
+    "result"
+  ],
+  "actorArtPass": "unified-contrast-outline-v2",
+  "finalApproved": false,
+  "knownLimitations": [
+    "public-source actor art is not LUMERIFT-exclusive",
+    "mobile device visual QA is pending"
+  ]
+}

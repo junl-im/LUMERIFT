@@ -12,7 +12,6 @@ export interface CombatActionButtonOptions {
 
 export class CombatActionButton extends Container {
   private readonly radius: number;
-  private readonly background = new Graphics();
   private readonly cooldownOverlay = new Graphics();
   private readonly labelText: Text;
   private readonly cooldownText: Text;
@@ -21,39 +20,46 @@ export class CombatActionButton extends Container {
   public constructor(private readonly options: CombatActionButtonOptions) {
     super();
     this.radius = options.radius ?? 48;
-    const frameTexture = getUiTexture('skill_frame');
-
-    const color = options.tone === 'danger'
-      ? COLORS.danger
-      : options.tone === 'secondary'
-        ? COLORS.panelStrong
-        : COLORS.primary;
-    this.background
-      .circle(0, 0, this.radius)
-      .fill({ color, alpha: 0.94 })
-      .circle(0, 0, this.radius - 7)
-      .stroke({ color: COLORS.text, alpha: 0.16, width: 2 });
-    this.addChild(this.background);
+    const textureName = options.tone === 'secondary' ? 'skill_button' : 'action_button';
+    const frameTexture = getUiTexture(textureName) ?? getUiTexture('skill_frame');
 
     if (frameTexture) {
       const frame = new Sprite(frameTexture);
       frame.anchor.set(0.5);
-      frame.width = this.radius * 2.16;
-      frame.height = this.radius * 2.16;
+      frame.width = this.radius * 2.2;
+      frame.height = this.radius * 2.2;
       this.addChild(frame);
+    } else {
+      const color = options.tone === 'danger'
+        ? COLORS.danger
+        : options.tone === 'secondary'
+          ? COLORS.warning
+          : COLORS.primary;
+      this.addChild(new Graphics()
+        .circle(0, 0, this.radius)
+        .fill({ color: COLORS.panelStrong, alpha: 0.96 })
+        .stroke({ color, alpha: 0.92, width: 4 }));
     }
+
+    const inner = new Graphics()
+      .circle(0, 0, this.radius - 13)
+      .fill({ color: COLORS.dark, alpha: 0.22 })
+      .circle(0, 0, this.radius - 13)
+      .stroke({ color: 0xffffff, alpha: 0.08, width: 1 });
+    this.addChild(inner);
 
     this.labelText = new Text({
       text: options.label,
       style: new TextStyle({
         fill: COLORS.text,
-        fontSize: Math.max(14, Math.round(this.radius * 0.34)),
+        fontSize: Math.max(13, Math.round(this.radius * 0.31)),
         fontWeight: '700',
         align: 'center',
+        dropShadow: { color: COLORS.dark, alpha: 0.8, blur: 3, distance: 1 },
       }),
     });
     this.labelText.anchor.set(0.5);
-    this.labelText.position.set(0, 2);
+    this.labelText.position.set(0, 1);
 
     this.cooldownText = new Text({
       text: '',
@@ -66,9 +72,15 @@ export class CombatActionButton extends Container {
     this.eventMode = 'static';
     this.cursor = 'pointer';
     this.hitArea = {
-      contains: (x: number, y: number) => Math.hypot(x, y) <= this.radius * 1.08,
+      contains: (x: number, y: number) => Math.hypot(x, y) <= this.radius * 1.1,
     };
 
+    this.on('pointerover', () => {
+      if (this.enabled) this.alpha = 0.94;
+    });
+    this.on('pointerout', () => {
+      if (this.enabled) this.alpha = 1;
+    });
     this.on('pointerdown', () => {
       if (this.enabled) this.scale.set(0.94);
     });
@@ -86,26 +98,27 @@ export class CombatActionButton extends Container {
     this.cooldownOverlay.clear();
     this.cooldownText.visible = remaining > 0.01;
     this.cooldownText.text = remaining >= 1 ? remaining.toFixed(1) : remaining > 0.01 ? '0.x' : '';
-    this.labelText.alpha = remaining > 0.01 ? 0.42 : 1;
+    this.labelText.alpha = remaining > 0.01 ? 0.34 : 1;
 
     if (ratio <= 0) return;
     const start = -Math.PI / 2;
     const end = start + Math.PI * 2 * ratio;
     this.cooldownOverlay
       .moveTo(0, 0)
-      .arc(0, 0, this.radius - 3, start, end)
+      .arc(0, 0, this.radius - 9, start, end)
       .lineTo(0, 0)
-      .fill({ color: COLORS.dark, alpha: 0.72 });
+      .fill({ color: COLORS.dark, alpha: 0.76 });
   }
 
   public setEnabled(enabled: boolean): void {
     this.enabled = enabled;
     this.eventMode = enabled ? 'static' : 'none';
-    this.alpha = enabled ? 1 : 0.48;
+    this.alpha = enabled ? 1 : 0.4;
   }
 
   private release(activate: boolean): void {
     this.scale.set(1);
+    this.alpha = this.enabled ? 1 : 0.4;
     if (!activate || !this.enabled) return;
     window.dispatchEvent(new CustomEvent('lumerift:ui-press', { detail: ASSET_PATHS.uiClick }));
     this.options.onPress();

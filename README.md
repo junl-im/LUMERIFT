@@ -1,47 +1,42 @@
-# LUMERIFT: 균열의 계승자 v1.0.3
+# LUMERIFT: 균열의 계승자 v1.2.0
 
 Vite + TypeScript + PixiJS 8 + Firebase 기반 세로형 모바일 웹 액션 RPG입니다.
 
-## v1.0.3 전체 자산 보존 복구
+## v1.2.0 핵심 변경
 
-v1.0.2는 실행용 경량 배포본에 가까웠으며, 이를 전체 통합 ZIP으로 제공한 것은 잘못이었습니다. v1.0.3은 v1.0.0의 모든 고해상도 원본과 레거시 보관 자산을 복원하면서 v1.0.2의 TypeScript 빌드 수정은 그대로 유지합니다.
+### UI·그래픽 전면 점검
 
-전체 통합본 포함 범위:
+기존 화면은 기능은 동작했지만 대시보드형 패널 반복, 과도한 네온 테두리, 서로 다른 화풍의 배경·캐릭터·UI 충돌이 있었습니다. v1.2.0은 기능 추가보다 시각 구조를 먼저 재정비했습니다.
 
-- 현재 소스 코드·문서·설정·검증 도구
-- 실제 로비·전투 런타임 아트와 음원
-- `art_source` 고해상도 원본과 공개 원본
-- v0.8·v0.9 대규모 절차형 제작 후보 및 레거시 Atlas
-- 라이선스·NOTICE·인수인계 기록
+- 공통 Obsidian·Gold·Teal 디자인 시스템
+- 로비 정보 계층과 하단 탐색 재구성
+- 전투 HUD 압축 및 HP 게이지 좌표 정합성 수정
+- 인벤토리 3×4 아이템 그리드
+- 일반·정예·보스·잠금 스테이지 노드
+- 결과 등급·통계·보상 중심 재배치
+- 플레이어·몬스터 Atlas 공통 대비·윤곽 보정
+- 로비·전투 배경과 초상 v2 색감 통일
+- 5개 주요 화면 미리보기와 자동 시각 계약 검사
 
-중요한 구분:
-
-- **전체 통합 ZIP:** 개발·인수인계·재가공에 필요한 모든 파일 포함
-- **초기 다운로드 15MB 목표:** 사용자가 게임을 처음 열 때 로드되는 핵심 번들 기준
-- 원본과 레거시 자산은 GitHub Pages 초기 로딩에 포함되지 않으며 기본 AssetCatalog에서도 사용하지 않음
-
-사용자 보고 용량은 십진 단위 **MB**로 통일합니다.
+세부 판정은 `docs/VISUAL_AUDIT_v1.2.0.md`를 확인합니다.
 
 ## 현재 품질 단계
 
 `production-candidate-open-art-pass`
 
-실제 게임용 공개 라이선스 원본을 기본 화면에 적용한 단계이며, LUMERIFT 전용 독점 원화나 최종 상용 원화는 아닙니다.
+UI 구조와 명암 체계는 크게 개선됐지만, 캐릭터와 몬스터가 LUMERIFT 전용 독점 원화는 아니므로 `final-approved`로 기록하지 않습니다.
 
-## 에셋과 라이선스
+## 전체 패키지 정책
 
-- 런타임 자산: `public/assets`
-- 라이선스 문서: `docs/THIRD_PARTY_ASSETS.md`
-- 기계 판독 라이선스: `public/assets/live/v1/licenses/ASSET_LICENSES.json`
-- 고해상도 원본은 전체 통합 ZIP의 `art_source`에 포함되며 GitHub Pages 배포 대상에서는 제외됩니다.
+- FULL ZIP: 코드·문서·런타임 자산·모바일 제작용 원본·라이선스·레거시 보관 자산 포함
+- 경량본은 필요할 때만 RUNTIME 또는 DEPLOY 이름으로 별도 제공
+- 용량 보고는 십진 단위 MB 사용
+- 초기 다운로드 15MB 목표는 전체 프로젝트 용량이 아니라 최초 로드 번들 기준
 
-## 작업자 인수인계
+## BAT 파일
 
-1. `AGENTS.md`
-2. `docs/HANDOFF_MASTER.md`
-3. `HANDOFF_STATE.json`
-4. `docs/HANDOFF_LOG.md`
-5. `docs/MASTER_BIBLE.md`
+- `INSTALL_AND_START.bat`와 `VERIFY.bat`는 Windows 편의용 선택 도구입니다.
+- npm 명령과 GitHub Actions가 공식 기준이며 BAT 파일이 없어도 빌드·검증·배포할 수 있습니다.
 
 ## 실행
 
@@ -53,24 +48,21 @@ npm run dev
 
 Firebase가 없어도 로컬 게스트 모드로 실행됩니다.
 
-## 조작
-
-| 기능 | 키보드 | 모바일 |
-|---|---|---|
-| 이동 | WASD / 방향키 | 좌측 가상 조이스틱 |
-| 기본 공격 | J / Z / Enter | 공격 버튼 |
-| 스킬 1 | K / X | 크래시 버튼 |
-| 스킬 2 | L / C | 노바 버튼 |
-| 회피 | Space / Shift | 회피 버튼 |
-| 일시정지 | P / Esc | 우측 상단 버튼 |
-
-## 검증
+## 주요 검증
 
 ```bash
-npm run validate:config
-npm run validate:art
+npm run validate:ui
 npm run validate:liveart
+npm run validate:sourceart
+npm run validate:archive
 npm run validate:handoff
-npm run report:inventory
 npm run verify
 ```
+
+## 작업자 인수인계
+
+1. `AGENTS.md`
+2. `docs/HANDOFF_MASTER.md`
+3. `HANDOFF_STATE.json`
+4. `docs/HANDOFF_LOG.md`
+5. `docs/MASTER_BIBLE.md`

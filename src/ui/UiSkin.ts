@@ -4,14 +4,20 @@ import type { AssetManager } from '../core/assets/AssetManager';
 import { ASSET_PATHS, CORE_UI_BUNDLE } from '../core/assets/AssetCatalog';
 
 let sheet: Spritesheet | undefined;
+let sceneBackground: Texture | undefined;
 
 export async function initializeUiSkin(assets: AssetManager): Promise<void> {
   await assets.loadBundle(CORE_UI_BUNDLE);
   sheet = assets.get<Spritesheet>(ASSET_PATHS.uiAtlas);
+  sceneBackground = assets.get<Texture>(ASSET_PATHS.lobbyBackground);
 }
 
 export function getUiTexture(name: string): Texture | undefined {
   return sheet?.textures[name];
+}
+
+export function getSceneBackgroundTexture(): Texture | undefined {
+  return sceneBackground;
 }
 
 export function createRasterPanel(
@@ -24,17 +30,17 @@ export function createRasterPanel(
   const texture = getUiTexture(textureName);
   if (!texture) {
     return new Graphics()
-      .roundRect(x, y, width, height, 26)
-      .fill({ color: COLORS.panel, alpha: 0.92 })
-      .stroke({ color: 0xffffff, alpha: 0.11, width: 2 });
+      .roundRect(x, y, width, height, 24)
+      .fill({ color: COLORS.panel, alpha: 0.94 })
+      .stroke({ color: COLORS.warning, alpha: 0.45, width: 2 });
   }
 
   const panel = new NineSliceSprite({
     texture,
-    leftWidth: 24,
-    topHeight: 24,
-    rightWidth: 24,
-    bottomHeight: 24,
+    leftWidth: 34,
+    topHeight: 34,
+    rightWidth: 34,
+    bottomHeight: 34,
   });
   panel.position.set(x, y);
   panel.width = width;

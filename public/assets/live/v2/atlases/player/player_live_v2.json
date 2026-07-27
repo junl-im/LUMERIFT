@@ -1,0 +1,2458 @@
+{
+  "frames": {
+    "knight_00": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_01": {
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_02": {
+      "frame": {
+        "x": 384,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_03": {
+      "frame": {
+        "x": 576,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_04": {
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_05": {
+      "frame": {
+        "x": 960,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_06": {
+      "frame": {
+        "x": 1152,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_07": {
+      "frame": {
+        "x": 1344,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_08": {
+      "frame": {
+        "x": 1536,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_09": {
+      "frame": {
+        "x": 1728,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_10": {
+      "frame": {
+        "x": 1920,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_11": {
+      "frame": {
+        "x": 2112,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_12": {
+      "frame": {
+        "x": 2304,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_13": {
+      "frame": {
+        "x": 2496,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_14": {
+      "frame": {
+        "x": 2688,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_15": {
+      "frame": {
+        "x": 2880,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_16": {
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_17": {
+      "frame": {
+        "x": 192,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_18": {
+      "frame": {
+        "x": 384,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_19": {
+      "frame": {
+        "x": 576,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_20": {
+      "frame": {
+        "x": 768,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_21": {
+      "frame": {
+        "x": 960,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_22": {
+      "frame": {
+        "x": 1152,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_23": {
+      "frame": {
+        "x": 1344,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_24": {
+      "frame": {
+        "x": 1536,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_25": {
+      "frame": {
+        "x": 1728,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_26": {
+      "frame": {
+        "x": 1920,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_27": {
+      "frame": {
+        "x": 2112,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_28": {
+      "frame": {
+        "x": 2304,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_29": {
+      "frame": {
+        "x": 2496,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_30": {
+      "frame": {
+        "x": 2688,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_31": {
+      "frame": {
+        "x": 2880,
+        "y": 192,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_32": {
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_33": {
+      "frame": {
+        "x": 192,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_34": {
+      "frame": {
+        "x": 384,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_35": {
+      "frame": {
+        "x": 576,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_36": {
+      "frame": {
+        "x": 768,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_37": {
+      "frame": {
+        "x": 960,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_38": {
+      "frame": {
+        "x": 1152,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_39": {
+      "frame": {
+        "x": 1344,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_40": {
+      "frame": {
+        "x": 1536,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_41": {
+      "frame": {
+        "x": 1728,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_42": {
+      "frame": {
+        "x": 1920,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_43": {
+      "frame": {
+        "x": 2112,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_44": {
+      "frame": {
+        "x": 2304,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_45": {
+      "frame": {
+        "x": 2496,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_46": {
+      "frame": {
+        "x": 2688,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_47": {
+      "frame": {
+        "x": 2880,
+        "y": 384,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_48": {
+      "frame": {
+        "x": 0,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_49": {
+      "frame": {
+        "x": 192,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_50": {
+      "frame": {
+        "x": 384,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_51": {
+      "frame": {
+        "x": 576,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_52": {
+      "frame": {
+        "x": 768,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_53": {
+      "frame": {
+        "x": 960,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_54": {
+      "frame": {
+        "x": 1152,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_55": {
+      "frame": {
+        "x": 1344,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_56": {
+      "frame": {
+        "x": 1536,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_57": {
+      "frame": {
+        "x": 1728,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_58": {
+      "frame": {
+        "x": 1920,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_59": {
+      "frame": {
+        "x": 2112,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_60": {
+      "frame": {
+        "x": 2304,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_61": {
+      "frame": {
+        "x": 2496,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_62": {
+      "frame": {
+        "x": 2688,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_63": {
+      "frame": {
+        "x": 2880,
+        "y": 576,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_64": {
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_65": {
+      "frame": {
+        "x": 192,
+        "y": 768,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_66": {
+      "frame": {
+        "x": 384,
+        "y": 768,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    },
+    "knight_67": {
+      "frame": {
+        "x": 576,
+        "y": 768,
+        "w": 192,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 192,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      }
+    }
+  },
+  "animations": {
+    "player.idle.n": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.ne": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.e": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.se": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.s": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.sw": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.w": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.idle.nw": [
+      "knight_00",
+      "knight_01",
+      "knight_02",
+      "knight_03",
+      "knight_04",
+      "knight_05",
+      "knight_06",
+      "knight_07",
+      "knight_08",
+      "knight_09",
+      "knight_10",
+      "knight_11"
+    ],
+    "player.run.n": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.ne": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.e": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.se": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.s": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.sw": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.w": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.run.nw": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63",
+      "knight_64",
+      "knight_65",
+      "knight_66",
+      "knight_67"
+    ],
+    "player.attack1.n": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.ne": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.e": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.se": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.s": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.sw": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.w": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack1.nw": [
+      "knight_22",
+      "knight_23",
+      "knight_24",
+      "knight_25",
+      "knight_26",
+      "knight_27",
+      "knight_28"
+    ],
+    "player.attack2.n": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.ne": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.e": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.se": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.s": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.sw": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.w": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack2.nw": [
+      "knight_29",
+      "knight_30",
+      "knight_31",
+      "knight_32",
+      "knight_33",
+      "knight_34"
+    ],
+    "player.attack3.n": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.ne": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.e": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.se": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.s": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.sw": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.w": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.attack3.nw": [
+      "knight_35",
+      "knight_36",
+      "knight_37",
+      "knight_38",
+      "knight_39",
+      "knight_40"
+    ],
+    "player.skill1.n": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.ne": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.e": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.se": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.s": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.sw": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.w": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill1.nw": [
+      "knight_41",
+      "knight_42",
+      "knight_43",
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47"
+    ],
+    "player.skill2.n": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.ne": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.e": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.se": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.s": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.sw": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.w": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.skill2.nw": [
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.hit.n": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.ne": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.e": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.se": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.s": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.sw": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.w": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.hit.nw": [
+      "knight_42",
+      "knight_43",
+      "knight_44"
+    ],
+    "player.death.n": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.ne": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.e": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.se": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.s": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.sw": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.w": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.death.nw": [
+      "knight_44",
+      "knight_45",
+      "knight_46",
+      "knight_47",
+      "knight_48",
+      "knight_49",
+      "knight_50",
+      "knight_51",
+      "knight_52",
+      "knight_53",
+      "knight_54",
+      "knight_55"
+    ],
+    "player.dodge.n": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.ne": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.e": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.se": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.s": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.sw": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.w": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ],
+    "player.dodge.nw": [
+      "knight_56",
+      "knight_57",
+      "knight_58",
+      "knight_59",
+      "knight_60",
+      "knight_61",
+      "knight_62",
+      "knight_63"
+    ]
+  },
+  "meta": {
+    "app": "LUMERIFT live art pipeline v1.0.0",
+    "version": "1.0.0",
+    "image": "player_live_v2.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3072,
+      "h": 960
+    },
+    "scale": "1",
+    "artPass": "v1.2.0-unified-grade"
+  }
+}

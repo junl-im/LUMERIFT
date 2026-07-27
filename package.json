@@ -1,6 +1,6 @@
 {
   "name": "lumerift-web-rpg",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,7 @@
     "test": "vitest run",
     "validate:assets": "node scripts/validate-assets.mjs",
     "validate:bundle": "node scripts/validate-bundle.mjs",
-    "verify": "npm run validate:config && npm run typecheck && npm run validate:assets && npm run validate:data && npm run validate:atlas && npm run validate:manifest && npm run validate:art && npm run validate:archive && npm run validate:liveart && npm run validate:source && npm run validate:handoff && npm run report:assets && npm run report:inventory && npm run test && npm run build && npm run validate:bundle",
+    "verify": "npm run validate:config && npm run typecheck && npm run validate:assets && npm run validate:data && npm run validate:atlas && npm run validate:manifest && npm run validate:art && npm run validate:archive && npm run validate:sourceart && npm run validate:ui && npm run validate:liveart && npm run validate:source && npm run validate:handoff && npm run report:assets && npm run report:inventory && npm run test && npm run build && npm run validate:bundle",
     "validate:source": "node scripts/check-source-imports.mjs",
     "validate:data": "node scripts/validate-game-data.mjs",
     "validate:atlas": "node scripts/validate-atlas.mjs",
@@ -25,7 +25,9 @@
     "validate:art": "node scripts/validate-art-quality.mjs",
     "validate:config": "node scripts/validate-build-config.mjs",
     "validate:liveart": "node scripts/validate-live-art.mjs",
-    "validate:archive": "node scripts/validate-full-archive-content.mjs"
+    "validate:archive": "node scripts/validate-full-archive-content.mjs",
+    "validate:sourceart": "node scripts/validate-source-art.mjs",
+    "validate:ui": "node scripts/validate-ui-rebuild.mjs"
   },
   "dependencies": {
     "firebase": "12.16.0",

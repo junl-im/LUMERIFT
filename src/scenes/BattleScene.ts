@@ -342,43 +342,36 @@ export class BattleScene implements Scene {
   private createWorld(): void {
     const quality = this.quality;
     if (!quality) return;
-    const palette = stagePalette(this.stage?.order ?? 1);
 
     if (this.mapTexture) {
       const backdrop = new Sprite(this.mapTexture);
       backdrop.width = DESIGN_WIDTH;
       backdrop.height = DESIGN_HEIGHT;
-      backdrop.alpha = quality.mode === 'low' ? 0.58 : 0.82;
+      backdrop.alpha = quality.mode === 'low' ? 0.78 : 0.96;
       this.world.addChild(backdrop);
     }
 
-    const ground = new Graphics()
-      .rect(-80, -80, DESIGN_WIDTH + 160, DESIGN_HEIGHT + 160)
-      .fill({ color: palette.background, alpha: this.mapTexture ? 0.34 : 1 })
-      .rect(-30, BATTLE_TOP - 35, DESIGN_WIDTH + 60, BATTLE_BOTTOM - BATTLE_TOP + 75)
-      .fill({ color: palette.ground, alpha: this.mapTexture ? 0.2 : 1 })
-      .circle(105, 285, 92)
-      .fill({ color: palette.patchA, alpha: 0.52 })
-      .circle(445, 575, 128)
-      .fill({ color: palette.patchB, alpha: 0.42 })
-      .circle(275, 435, 72)
-      .fill({ color: COLORS.primary, alpha: 0.09 });
-
-    const arenaLines = new Graphics()
-      .circle(DESIGN_WIDTH / 2, 465, 178)
-      .stroke({ color: COLORS.accent, alpha: 0.08, width: 3 })
-      .circle(DESIGN_WIDTH / 2, 465, 250)
-      .stroke({ color: COLORS.primary, alpha: 0.06, width: 2 });
+    const arenaShade = new Graphics()
+      .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
+      .fill({ color: COLORS.dark, alpha: 0.08 })
+      .ellipse(DESIGN_WIDTH / 2, 500, 390, 560)
+      .fill({ color: 0x061116, alpha: 0.24 })
+      .ellipse(DESIGN_WIDTH / 2, 510, 378, 546)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.12, width: 2 });
 
     const ambient = new Container();
-    ambient.position.set(DESIGN_WIDTH / 2, 465);
-    arenaLines.position.set(-DESIGN_WIDTH / 2, -465);
-    ambient.addChild(arenaLines);
+    ambient.position.set(DESIGN_WIDTH / 2, 470);
+    const ring = new Graphics()
+      .ellipse(0, 0, 355, 500)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.055, width: 3 })
+      .ellipse(0, 0, 260, 380)
+      .stroke({ color: COLORS.warning, alpha: 0.035, width: 2 });
+    ambient.addChild(ring);
     this.ambientLayer = ambient;
 
     this.world.addChild(
-      ground,
-      createArenaDecorations(quality.worldDecorationCount),
+      arenaShade,
+      createArenaDecorations(Math.max(2, Math.floor(quality.worldDecorationCount * 0.45))),
       ambient,
     );
   }
@@ -387,69 +380,74 @@ export class BattleScene implements Scene {
     const stage = this.stage;
     if (!stage) return;
 
-    const topPanel = createRasterPanel(14, 14, DESIGN_WIDTH - 28, 98, 'panel_strong');
-
-    const title = new Text({
-      text: `${stage.label} · ${stage.areaName}`,
-      style: new TextStyle({ fill: COLORS.text, fontSize: 18, fontWeight: '700' }),
+    const playerPanel = createRasterPanel(14, 14, 268, 82, 'panel_glass');
+    const playerName = new Text({
+      text: `Lv.${this.profile?.level ?? 1}  ${this.profile?.nickname ?? '계승자'}`,
+      style: new TextStyle({ fill: COLORS.text, fontSize: 14, fontWeight: '700' }),
     });
-    title.position.set(28, 25);
-
+    playerName.position.set(30, 27);
     const hpTrack = new Graphics()
-      .roundRect(28, 63, 220, 23, 11)
-      .fill(COLORS.panelStrong)
-      .stroke({ color: 0xffffff, alpha: 0.1, width: 1 });
-    this.playerHpText.position.set(36, 66);
+      .roundRect(30, 58, 214, 18, 9)
+      .fill({ color: 0x03080c, alpha: 0.94 })
+      .stroke({ color: 0xffffff, alpha: 0.12, width: 1 });
+    this.playerHpText.anchor.set(1, 0.5);
+    this.playerHpText.position.set(265, 67);
 
-    this.waveText.anchor.set(0.5, 0);
-    this.waveText.position.set(355, 27);
-    this.enemyCountText.anchor.set(0.5, 0);
-    this.enemyCountText.position.set(355, 57);
-    this.comboText.anchor.set(0.5, 0);
-    this.comboText.position.set(355, 82);
+    const stagePanel = createRasterPanel(296, 14, 176, 60, 'panel_strong');
+    const stageText = new Text({
+      text: stage.label,
+      style: new TextStyle({ fill: 0xf4dca0, fontSize: 13, fontWeight: '700' }),
+    });
+    stageText.position.set(314, 27);
+    this.waveText.anchor.set(0, 0);
+    this.waveText.position.set(314, 50);
+    this.waveText.style = new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '700' });
+    this.enemyCountText.anchor.set(1, 0);
+    this.enemyCountText.position.set(455, 49);
+    this.enemyCountText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 11, fontWeight: '700' });
 
     this.pauseButton = new UiButton({
       label: 'Ⅱ',
-      width: 58,
-      height: 58,
+      width: 50,
+      height: 50,
       tone: 'secondary',
+      fontSize: 17,
       onPress: () => this.togglePause(),
     });
-    this.pauseButton.position.set(462, 34);
+    this.pauseButton.position.set(476, 19);
 
-    const bossBackground = createRasterPanel(14, 120, DESIGN_WIDTH - 28, 58, 'boss_panel');
+    const bossBackground = createRasterPanel(48, 106, 474, 68, 'boss_panel');
     const bossTrack = new Graphics()
-      .roundRect(86, 148, 416, 13, 7)
-      .fill(COLORS.panelStrong);
-    this.bossNameText.position.set(86, 130);
+      .roundRect(122, 145, 366, 13, 7)
+      .fill({ color: 0x03070b, alpha: 0.95 });
+    this.bossNameText.position.set(122, 119);
+    this.bossNameText.style = new TextStyle({ fill: COLORS.text, fontSize: 14, fontWeight: '700' });
     const bossPortrait = this.bossPortraitTexture ? new Sprite(this.bossPortraitTexture) : undefined;
     if (bossPortrait) {
-      bossPortrait.position.set(24, 126);
-      bossPortrait.width = 46;
-      bossPortrait.height = 46;
+      bossPortrait.position.set(56, 112);
+      bossPortrait.width = 54;
+      bossPortrait.height = 54;
     }
     this.bossPanel.addChild(bossBackground);
     if (bossPortrait) this.bossPanel.addChild(bossPortrait);
     this.bossPanel.addChild(bossTrack, this.bossHpFill, this.bossNameText);
     this.bossPanel.visible = false;
 
-    const guide = new Text({
-      text: '이동 조이스틱/WASD · J 공격 · K/L 스킬 · Space 회피 · P 일시정지',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 12 }),
-    });
-    guide.anchor.set(0.5);
-    guide.position.set(DESIGN_WIDTH / 2, 795);
+    const comboChip = createRasterPanel(184, 186, 172, 40, 'resource_chip');
+    this.comboText.anchor.set(0.5);
+    this.comboText.position.set(DESIGN_WIDTH / 2, 206);
+    this.comboText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 15, fontWeight: '700' });
 
     this.joystick = new VirtualJoystick({ radius: 66, deadZone: 0.2 });
-    this.joystick.position.set(88, 872);
+    this.joystick.position.set(88, 865);
 
     this.dodgeButton = new CombatActionButton({
       label: '회피',
-      radius: 37,
+      radius: 36,
       tone: 'secondary',
       onPress: () => this.requestDodge(this.resolveMoveAxis()),
     });
-    this.dodgeButton.position.set(205, 835);
+    this.dodgeButton.position.set(205, 842);
 
     this.skill2Button = new CombatActionButton({
       label: '노바',
@@ -457,7 +455,7 @@ export class BattleScene implements Scene {
       tone: 'secondary',
       onPress: () => this.requestSkill('skill2'),
     });
-    this.skill2Button.position.set(285, 884);
+    this.skill2Button.position.set(294, 884);
 
     this.skill1Button = new CombatActionButton({
       label: '크래시',
@@ -465,31 +463,33 @@ export class BattleScene implements Scene {
       tone: 'secondary',
       onPress: () => this.requestSkill('skill1'),
     });
-    this.skill1Button.position.set(374, 860);
+    this.skill1Button.position.set(385, 858);
 
     this.attackButton = new CombatActionButton({
       label: '공격',
-      radius: 58,
+      radius: 57,
       onPress: () => { this.player?.requestAttack(); },
     });
-    this.attackButton.position.set(475, 846);
+    this.attackButton.position.set(478, 838);
 
     this.announcementText.anchor.set(0.5);
-    this.announcementText.position.set(DESIGN_WIDTH / 2, 360);
+    this.announcementText.position.set(DESIGN_WIDTH / 2, 330);
     this.announcementText.visible = false;
 
     this.hud.addChild(
-      topPanel,
-      title,
+      playerPanel,
+      playerName,
       hpTrack,
       this.playerHpFill,
       this.playerHpText,
+      stagePanel,
+      stageText,
       this.waveText,
       this.enemyCountText,
-      this.comboText,
       this.pauseButton,
       this.bossPanel,
-      guide,
+      comboChip,
+      this.comboText,
       this.joystick,
       this.dodgeButton,
       this.skill2Button,
@@ -502,41 +502,39 @@ export class BattleScene implements Scene {
   private createPauseOverlay(): void {
     const blocker = new Graphics()
       .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
-      .fill({ color: COLORS.dark, alpha: 0.72 });
+      .fill({ color: COLORS.dark, alpha: 0.8 });
     blocker.eventMode = 'static';
     blocker.hitArea = {
       contains: (x: number, y: number) => x >= 0 && y >= 0 && x <= DESIGN_WIDTH && y <= DESIGN_HEIGHT,
     };
 
-    const panel = new Graphics()
-      .roundRect(70, 280, 400, 340, 28)
-      .fill({ color: COLORS.panel, alpha: 0.98 })
-      .stroke({ color: COLORS.primaryBright, alpha: 0.28, width: 2 });
-
+    const panel = createRasterPanel(66, 288, 408, 330, 'panel_gold');
     const title = new Text({
       text: '전투 일시정지',
-      style: new TextStyle({ fill: COLORS.text, fontSize: 34, fontWeight: '700' }),
+      style: new TextStyle({ fill: 0xf4dca0, fontSize: 31, fontWeight: '700' }),
     });
     title.anchor.set(0.5);
     title.position.set(DESIGN_WIDTH / 2, 350);
 
     const detail = new Text({
-      text: `그래픽 ${this.quality?.label ?? '균형'} · 전투 시간 정지`,
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 17 }),
+      text: `그래픽 ${this.quality?.label ?? '균형'}  ·  진행 상황은 유지됩니다`,
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 14 }),
     });
     detail.anchor.set(0.5);
-    detail.position.set(DESIGN_WIDTH / 2, 405);
+    detail.position.set(DESIGN_WIDTH / 2, 401);
 
     const resume = new UiButton({
       label: '전투 계속',
       width: 300,
+      height: 62,
       onPress: () => this.togglePause(false),
     });
-    resume.position.set(120, 460);
+    resume.position.set(120, 452);
 
     const lobby = new UiButton({
       label: '거점 복귀',
       width: 300,
+      height: 58,
       tone: 'secondary',
       onPress: async () => {
         if (!this.context) return;
@@ -544,7 +542,7 @@ export class BattleScene implements Scene {
         await this.context.scenes.change(() => new LobbyScene());
       },
     });
-    lobby.position.set(120, 545);
+    lobby.position.set(120, 532);
 
     this.pauseOverlay.addChild(blocker, panel, title, detail, resume, lobby);
     this.pauseOverlay.visible = false;
@@ -1024,7 +1022,7 @@ export class BattleScene implements Scene {
 
     const hpRatio = player.hp / player.maxHp;
     this.playerHpFill.clear()
-      .roundRect(28, 63, 220 * hpRatio, 23, 11)
+      .roundRect(32, 60, 210 * hpRatio, 14, 7)
       .fill(hpRatio > 0.3 ? COLORS.accent : COLORS.danger);
     this.playerHpText.text = `HP ${player.hp} / ${player.maxHp}`;
 
@@ -1060,7 +1058,7 @@ export class BattleScene implements Scene {
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
     this.bossNameText.text = `${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
     this.bossHpFill.clear()
-      .roundRect(86, 148, 416 * hpRatio, 13, 7)
+      .roundRect(124, 147, 362 * hpRatio, 9, 5)
       .fill(COLORS.danger);
   }
 
@@ -1209,14 +1207,6 @@ export class BattleScene implements Scene {
     this.activeDamage.add(floating);
     this.world.addChild(floating.text);
   }
-}
-
-function stagePalette(order: number): { background: number; ground: number; patchA: number; patchB: number } {
-  if (order >= 10) return { background: 0x140b18, ground: 0x28142f, patchA: 0x6940a5, patchB: 0x512844 };
-  if (order >= 8) return { background: 0x10101b, ground: 0x202039, patchA: 0x4d3c78, patchB: 0x274766 };
-  if (order >= 5) return { background: 0x0c141b, ground: 0x172b2d, patchA: 0x3a7165, patchB: 0x344e67 };
-  if (order >= 3) return { background: 0x0c1718, ground: 0x18312b, patchA: 0x4b704a, patchB: 0x355b62 };
-  return { background: 0x0b151c, ground: 0x13272b, patchA: 0x315f4d, patchB: 0x304a62 };
 }
 
 function definitionLabel(enemies: readonly EnemyActor[]): string {

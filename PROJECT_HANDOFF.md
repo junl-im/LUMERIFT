@@ -1,23 +1,29 @@
-# LUMERIFT 프로젝트 인수인계 시작점
+# LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.0.3
-**현재 단계:** 실제 공개 라이선스 게임 아트를 기본 런타임에 적용한 UI·그래픽 리빌드
+**현재 버전:** v1.2.0  
+**현재 단계:** UI·그래픽 전면 점검과 5개 주요 화면 Visual Reset 완료  
+**품질 단계:** `production-candidate-open-art-pass`
 
 ## 시작 순서
 
 1. `AGENTS.md`
-2. `docs/MASTER_BIBLE.md`
-3. `docs/HANDOFF_MASTER.md`
-4. `HANDOFF_STATE.json`
-5. `docs/HANDOFF_LOG.md` 마지막 기록
-6. `docs/THIRD_PARTY_ASSETS.md`
+2. `docs/HANDOFF_MASTER.md`
+3. `HANDOFF_STATE.json`
+4. `docs/HANDOFF_LOG.md`
+5. `docs/VISUAL_AUDIT_v1.2.0.md`
 
-## 현재 핵심 상태
+## v1.2.0 현재 상태
 
-- 기본 로비·전투는 `public/assets/live/v1` 실제 게임용 공개 아트를 사용한다.
-- v0.8·v0.9 절차형 자산은 삭제하지 않고 에셋 보관소의 레거시 분류로 유지한다.
-- 품질 단계는 `production-candidate-open-art-pass`이며 최종 독점 원화가 아니다.
-- 외부 자산을 교체·배포할 때 라이선스와 NOTICE를 반드시 유지한다.
-- 다음 아트 우선순위는 전용 플레이어 8방향, Chapter 1 세계관 통일, 인벤토리·스테이지 UI 2차 리빌드다.
+- 공통 UI를 Obsidian·Gold·Teal 체계로 교체했다.
+- 로비·전투·인벤토리·스테이지·결과 화면의 정보 구조를 다시 설계했다.
+- 플레이어와 몬스터 기본 Atlas는 v2 통합 색보정 경로를 사용한다.
+- 기존 v1 공개 아트와 모든 모바일 제작용 원본·라이선스·레거시 자산은 FULL 패키지에 보존한다.
+- 캐릭터·몬스터는 독점 최종 원화가 아니며 전용 8방향 리디자인이 계속 필요하다.
 
-작업 종료 전에는 인수인계 파일, 변경 기록, 로드맵, 릴리스 매니페스트를 갱신하고 전체 검증을 실행한다.
+## 다음 우선순위
+
+1. 퀘스트·공지·출석·우편·쿠폰 화면을 동일 UI 체계로 통일
+2. LUMERIFT 전용 플레이어 8방향 원화 제작
+3. Chapter 1 일반 5종·정예 2종·보스 1종 동일 화풍 제작
+4. Android Chrome·iOS Safari 실기기 시각·성능 검수
+5. Firebase 운영 기능

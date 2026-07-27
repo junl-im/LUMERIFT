@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "updatedAt": "2026-07-27",
-  "currentPhase": "v1.0 전체 자산 보존 패키징 복구 및 v1.1 UI 리빌드 준비",
+  "currentPhase": "v1.2 UI·그래픽 전면 점검 및 로비·전투·인벤토리·스테이지·결과 Visual Reset 완료",
   "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -32,16 +32,33 @@
     "전체 통합 ZIP과 경량 런타임 배포본의 역할을 분리하는 릴리스 규칙 확정",
     "전체본 자산 보존 여부를 검사하는 validate:archive 자동 검증 추가",
     "초기 다운로드 15MB와 전체 보관 자산 용량을 분리하여 검증하도록 수정",
-    "모든 사용자 용량 보고를 십진 단위 MB로 통일"
+    "모든 사용자 용량 보고를 십진 단위 MB로 통일",
+    "모바일 웹게임 제작 목적에 맞춰 LUMERIFT 소유 원본 PNG의 최대 해상도와 압축 예산을 재정의",
+    "art_source 전체 용량을 약 502.76MB에서 76.46MB로 줄이면서 공개 라이선스 원본 20개는 원본 상태로 보존",
+    "키아트·영웅·보스·NPC·아이템·스킬·UI 원본에 용도별 해상도 상한 적용",
+    "인벤토리 화면에 실제 등급 슬롯 프레임·장착 배지·강화 진행률·전투력 요약 카드 적용",
+    "스테이지 선택 화면에 진행률·경로선·선택 배지·전투력 준비도 표시 적용",
+    "전투 결과 화면에 등급 메달·통계 카드·금속 보상 패널 적용",
+    "BAT 파일을 Windows 선택 편의 도구로 명시하고 버전·Node 조건 갱신",
+    "원본 해상도와 전체 원본 용량을 검사하는 validate:sourceart 자동 검증 추가",
+    "기존 대시보드형·네온 반복 UI의 구조적 문제를 VISUAL_AUDIT_v1.2.0에 기록",
+    "Obsidian·Gold·Teal 기반 UI Atlas 30프레임과 공통 NineSlice 체계 적용",
+    "로비의 캐릭터·오늘의 작전·주 행동·하단 탐색 정보 계층 재구성",
+    "전투 HUD를 상단 압축형으로 재배치하고 HP·보스 게이지 갱신 좌표 정합성 수정",
+    "인벤토리를 5개 텍스트 행에서 3×4 장비 아이콘 그리드로 전면 교체",
+    "스테이지 선택을 일반·정예·보스·잠금 노드와 경로 기반 작전도로 교체",
+    "결과 화면을 등급 메달·전투 통계·보상·다음 행동 순서로 재구성",
+    "플레이어·몬스터 Atlas에 공통 대비·윤곽·색온도 통합 패스 적용",
+    "로비·전투 배경과 영웅·보스 초상 v2 기본 경로 적용",
+    "5개 주요 화면 미리보기와 validate:ui·validate:liveart v1.2 계약 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "LUMERIFT 전용 독점 플레이어 원화와 진짜 8방향 모션 제작",
-    "Chapter 1 전용 몬스터·보스 아트의 세계관 통일 리디자인",
-    "스킬 버튼·아이콘·인벤토리·스테이지 선택 화면의 실사용 UI 2차 리빌드",
-    "Android Chrome·iOS Safari에서 실제 WebGL 메모리와 FPS 측정",
-    "Firebase 게스트 계정의 Google 계정 연결",
-    "Cloud Save 충돌 해결과 공지·출석·우편·쿠폰·랭킹"
+    "퀘스트·공지·출석·우편·쿠폰 화면을 v1.2 공통 UI 체계로 통일",
+    "LUMERIFT 전용 플레이어 8방향 원화와 공격·스킬·피격·사망 모션 제작",
+    "Chapter 1 몬스터 5종·정예 2종·보스 1종 동일 화풍 리디자인",
+    "Android Chrome·iOS Safari에서 Safe Area·폰트·GPU 메모리·FPS 검수",
+    "Firebase 게스트 계정의 Google 연결과 Cloud Save 충돌 해결"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -55,28 +72,37 @@
     "외부 자산은 명시적 재배포 라이선스와 저작자 표시를 확인한 뒤에만 포함한다.",
     "실제 런타임 기본 화면에 연결되지 않은 자산을 실사용 완료로 기록하지 않는다.",
     "용량 보고는 기본적으로 십진 단위 MB를 사용하고 MiB는 기술 참고로만 사용한다.",
-    "전체 통합 ZIP에는 현재 코드·문서·런타임 자산·고해상도 원본·라이선스·레거시 보관 자산을 누락 없이 포함한다.",
+    "전체 통합 ZIP에는 현재 코드·문서·런타임 자산·모바일 제작용 원본·라이선스·레거시 보관 자산을 누락 없이 포함한다.",
     "경량 배포본이 필요하면 전체 통합 ZIP과 구분해 RUNTIME 또는 DEPLOY 패키지로 별도 제공한다.",
-    "초기 다운로드 15MB 제한은 최초 로드 번들 기준이며 전체 프로젝트 보관 용량 제한이 아니다."
+    "초기 다운로드 15MB 제한은 최초 로드 번들 기준이며 전체 프로젝트 보관 용량 제한이 아니다.",
+    "전체 통합본의 원본은 모바일 제작용 마스터 규격을 사용하며 불필요한 초고해상도·비압축 PNG를 금지한다.",
+    "제3자 공개 원본은 라이선스와 재가공 근거 보존을 위해 원본 상태로 유지할 수 있다.",
+    "BAT 파일은 Windows 편의용 선택 도구이며 CI·빌드의 필수 구성으로 간주하지 않는다.",
+    "주요 화면은 런타임 연결·미리보기·시각 감사·자동 검사를 모두 통과해야 UI·그래픽 완료로 기록한다."
   ],
   "assetMetrics": {
     "activeAtlasCount": 5,
-    "activeRuntimeBytes": 4342097,
-    "fullProjectBytes": 523265196,
+    "activeRuntimeBytes": 3783015,
+    "fullProjectBytes": 101024073,
     "sourceArchiveIncludedInFull": true,
     "sourceArchiveFileCount": 79,
     "legacyArchiveIncludedInFull": true,
     "legacyRuntimeDefaultEnabled": false
   },
   "knownLimitations": [
-    "v1.0 자산은 실제 게임용 공개 라이선스 원본을 사용하지만 LUMERIFT 전용 독점 원화는 아니다.",
-    "플레이어 원본 시트는 공개된 단일 연속 동작을 8개 논리 방향 계약에 매핑·미러링하므로 최종 8방향 전용 모션 제작이 필요하다.",
-    "CC BY-SA 파생 몬스터 Atlas는 저작자 표시와 동일 라이선스 조건을 유지해야 한다.",
-    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 설치 기반 전체 빌드는 GitHub Actions에서 최종 확인한다.",
-    "전체 통합 ZIP은 원본과 보관 자산을 포함하므로 압축 전 약 523MB이며, GitHub Pages 초기 다운로드에는 포함되지 않는다."
+    "v1.2는 화면 구조와 색·명암을 통일했지만 플레이어·몬스터가 LUMERIFT 전용 독점 원화는 아니다.",
+    "공개 원본 간 형태 언어와 묘사 수준 차이는 완전히 제거되지 않았으며 전용 아트 제작이 필요하다.",
+    "실제 Android Chrome·iOS Safari의 Safe Area, 폰트 크기, WebGL 메모리와 FPS 검수가 남아 있다.",
+    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 설치 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.0.3.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.0.2_to_v1.0.3.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.2.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.0.3_to_v1.2.0.zip"
+  },
+  "sourceArtMetrics": {
+    "totalBytes": 76463711,
+    "ownedProductionBytes": 54332766,
+    "thirdPartyOriginalsPreserved": true,
+    "maximumSourceBudgetBytes": 120000000
   }
 }

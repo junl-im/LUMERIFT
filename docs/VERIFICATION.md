@@ -140,3 +140,22 @@ npm run dev
 - 기본 AssetCatalog은 레거시 품질팩을 참조하지 않음
 - 전체 프로젝트 보관 용량과 초기 다운로드 15MB를 별도 검사
 - 사용자 보고 단위는 십진 MB
+
+## v1.1.0 모바일 원본·UI 검증
+
+- `validate:sourceart`: 79개, 76.46MB, 소유 원본 54.33MB 통과
+- `validate:archive`: 전체 원본·레거시 보관 자산 통과
+- Atlas: 45개·2,828프레임·305애니메이션 통과
+- 활성 런타임: 4.26MB 통과
+- 초기 입력 예상: 0.35MB / 15MB 통과
+- 인벤토리·스테이지 선택·결과 UI TypeScript 구문 및 상대 import 검사 통과
+- npm Registry 응답 제한으로 실제 의존성 기반 typecheck·Vitest·Vite build는 GitHub Actions에서 최종 확인 필요
+
+## v1.2.0 시각 리셋 검증
+
+- v2 UI·플레이어·몬스터·배경·초상 파일 존재
+- 로비·전투·인벤토리·스테이지·결과 코드 마커 검사
+- HP·보스 HP 갱신 좌표와 새 HUD 좌표 일치
+- 5개 화면 미리보기 존재
+- 대체 Strict TypeScript 검사 통과
+- 실제 npm 의존성 기반 최종 빌드는 Registry 사용 가능한 CI에서 확인

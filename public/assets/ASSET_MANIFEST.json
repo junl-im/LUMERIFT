@@ -1,16 +1,17 @@
 {
-  "version": 5,
+  "version": 6,
   "game": "LUMERIFT",
-  "release": "1.0.3",
-  "distribution": "runtime-source-optimized",
+  "release": "1.2.0",
+  "distribution": "full-source-optimized",
   "bundles": {
     "core-ui": {
       "files": [
-        "live/v1/atlases/ui/ui_live_v1.json",
-        "live/v1/atlases/ui/ui_live_v1.webp",
+        "live/v2/atlases/ui/ui_obsidian_v2.json",
+        "live/v2/atlases/ui/ui_obsidian_v2.webp",
+        "live/v2/backgrounds/lobby_forest_v2.webp",
         "audio/ui/click_v1.ogg"
       ],
-      "bytes": 25080
+      "bytes": 245014
     },
     "equipment-ui": {
       "files": [
@@ -21,25 +22,25 @@
     },
     "lobby-character": {
       "files": [
-        "live/v1/backgrounds/lobby_forest_live_v1.webp",
-        "live/v1/portraits/hero_live_v1.webp",
-        "live/v1/atlases/ui/ui_live_v1.json",
-        "live/v1/atlases/ui/ui_live_v1.webp",
+        "live/v2/backgrounds/lobby_forest_v2.webp",
+        "live/v2/portraits/hero_v2.webp",
+        "live/v2/atlases/ui/ui_obsidian_v2.json",
+        "live/v2/atlases/ui/ui_obsidian_v2.webp",
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp"
       ],
-      "bytes": 253731
+      "bytes": 370141
     },
     "battle-chapter-1": {
       "files": [
-        "live/v1/atlases/player/player_live_v1.json",
-        "live/v1/atlases/player/player_live_v1.webp",
-        "live/v1/atlases/monsters/monsters_live_v1.json",
-        "live/v1/atlases/monsters/monsters_live_v1.webp",
-        "live/v1/atlases/ui/ui_live_v1.json",
-        "live/v1/atlases/ui/ui_live_v1.webp",
-        "live/v1/backgrounds/battle_forest_live_v1.webp",
-        "live/v1/portraits/boss_harbinger_live_v1.webp",
+        "live/v2/atlases/player/player_live_v2.json",
+        "live/v2/atlases/player/player_live_v2.webp",
+        "live/v2/atlases/monsters/monsters_live_v2.json",
+        "live/v2/atlases/monsters/monsters_live_v2.webp",
+        "live/v2/atlases/ui/ui_obsidian_v2.json",
+        "live/v2/atlases/ui/ui_obsidian_v2.webp",
+        "live/v2/backgrounds/battle_forest_v2.webp",
+        "live/v2/portraits/boss_v2.webp",
         "atlases/effects/combat_effects_v1.json",
         "atlases/effects/combat_effects_v1.webp",
         "atlases/items/equipment_icons_v1.json",
@@ -50,7 +51,7 @@
         "audio/combat/dodge_v1.ogg",
         "audio/bgm/forest_rift_loop_v1.opus"
       ],
-      "bytes": 4106119
+      "bytes": 3677487
     }
   }
 }

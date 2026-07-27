@@ -53,9 +53,9 @@ async function validateAtlas(atlasPath, atlas) {
 }
 
 async function validateRequiredAnimations() {
-  const player = JSON.parse(await readFile('public/assets/live/v1/atlases/player/player_live_v1.json', 'utf8'));
-  const monsters = JSON.parse(await readFile('public/assets/live/v1/atlases/monsters/monsters_live_v1.json', 'utf8'));
-  const ui = JSON.parse(await readFile('public/assets/live/v1/atlases/ui/ui_live_v1.json', 'utf8'));
+  const player = JSON.parse(await readFile('public/assets/live/v2/atlases/player/player_live_v2.json', 'utf8'));
+  const monsters = JSON.parse(await readFile('public/assets/live/v2/atlases/monsters/monsters_live_v2.json', 'utf8'));
+  const ui = JSON.parse(await readFile('public/assets/live/v2/atlases/ui/ui_obsidian_v2.json', 'utf8'));
   const effects = JSON.parse(await readFile('public/assets/atlases/effects/combat_effects_v1.json', 'utf8'));
   const equipment = JSON.parse(await readFile('public/assets/atlases/items/equipment_icons_v1.json', 'utf8'));
   const playerStates = ['idle','run','attack1','attack2','attack3','skill1','skill2','hit','death','dodge'];

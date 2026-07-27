@@ -18,7 +18,7 @@ for (const marker of ['quality-', 'mega_items_v1', 'effects_mega_v1', 'maps/qual
   if (catalog.includes(marker)) errors.push(`기본 AssetCatalog이 레거시 보관 자산을 참조합니다: ${marker}`);
 }
 const agents = await readFile('AGENTS.md', 'utf8');
-for (const phrase of ['전체 통합 ZIP에는 코드·문서·런타임 자산·고해상도 원본', '경량 실행본', '초기 다운로드 15MB']) {
+for (const phrase of ['전체 통합 ZIP에는 코드·문서·런타임 자산·모바일 제작용 원본', '경량 실행본', '초기 다운로드 15MB']) {
   if (!agents.includes(phrase)) errors.push(`AGENTS 전체본 규칙 누락: ${phrase}`);
 }
 if (errors.length) {

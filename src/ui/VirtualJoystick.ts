@@ -1,6 +1,7 @@
-import { Container, Graphics, type FederatedPointerEvent } from 'pixi.js';
+import { Container, Graphics, Sprite, type FederatedPointerEvent } from 'pixi.js';
 import { COLORS } from '../app/constants';
 import type { Vec2 } from '../game/combat/geometry';
+import { getUiTexture } from './UiSkin';
 
 export interface VirtualJoystickOptions {
   readonly radius?: number;
@@ -10,7 +11,6 @@ export interface VirtualJoystickOptions {
 export class VirtualJoystick extends Container {
   private readonly radius: number;
   private readonly deadZone: number;
-  private readonly base = new Graphics();
   private readonly knob = new Graphics();
   private activePointerId?: number;
   private axisValue: Vec2 = { x: 0, y: 0 };
@@ -20,18 +20,37 @@ export class VirtualJoystick extends Container {
     this.radius = options.radius ?? 72;
     this.deadZone = options.deadZone ?? 0.18;
 
-    this.base
-      .circle(0, 0, this.radius)
-      .fill({ color: COLORS.panelStrong, alpha: 0.48 })
-      .circle(0, 0, this.radius - 8)
-      .stroke({ color: COLORS.primaryBright, alpha: 0.36, width: 3 });
-    this.knob
-      .circle(0, 0, this.radius * 0.42)
-      .fill({ color: COLORS.primary, alpha: 0.72 })
-      .circle(0, 0, this.radius * 0.34)
-      .stroke({ color: COLORS.text, alpha: 0.28, width: 2 });
+    const frameTexture = getUiTexture('action_button');
+    if (frameTexture) {
+      const frame = new Sprite(frameTexture);
+      frame.anchor.set(0.5);
+      frame.width = this.radius * 2.08;
+      frame.height = this.radius * 2.08;
+      frame.alpha = 0.72;
+      this.addChild(frame);
+    } else {
+      this.addChild(new Graphics()
+        .circle(0, 0, this.radius)
+        .fill({ color: COLORS.panelStrong, alpha: 0.46 })
+        .stroke({ color: COLORS.primaryBright, alpha: 0.62, width: 4 }));
+    }
 
-    this.addChild(this.base, this.knob);
+    const guide = new Graphics()
+      .circle(0, 0, this.radius - 14)
+      .stroke({ color: 0xffffff, alpha: 0.08, width: 2 })
+      .lineStyle({ color: COLORS.primaryBright, alpha: 0.1, width: 2 })
+      .moveTo(-this.radius + 28, 0)
+      .lineTo(this.radius - 28, 0)
+      .moveTo(0, -this.radius + 28)
+      .lineTo(0, this.radius - 28);
+
+    this.knob
+      .circle(0, 0, this.radius * 0.34)
+      .fill({ color: COLORS.primary, alpha: 0.84 })
+      .circle(0, 0, this.radius * 0.26)
+      .stroke({ color: COLORS.text, alpha: 0.42, width: 2 });
+
+    this.addChild(guide, this.knob);
     this.eventMode = 'static';
     this.cursor = 'pointer';
     this.hitArea = {
@@ -76,7 +95,7 @@ export class VirtualJoystick extends Container {
   private updateFromEvent(event: FederatedPointerEvent): void {
     const local = event.getLocalPosition(this);
     const distance = Math.hypot(local.x, local.y);
-    const maximum = this.radius * 0.82;
+    const maximum = this.radius * 0.74;
     const scale = distance > maximum && distance > 0 ? maximum / distance : 1;
     const x = local.x * scale;
     const y = local.y * scale;

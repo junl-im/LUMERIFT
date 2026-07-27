@@ -11,15 +11,15 @@ export function assetUrl(path: string): string {
 }
 
 export const ASSET_PATHS = {
-  uiAtlas: assetUrl('assets/live/v1/atlases/ui/ui_live_v1.json'),
-  playerAtlas: assetUrl('assets/live/v1/atlases/player/player_live_v1.json'),
-  monsterAtlas: assetUrl('assets/live/v1/atlases/monsters/monsters_live_v1.json'),
+  uiAtlas: assetUrl('assets/live/v2/atlases/ui/ui_obsidian_v2.json'),
+  playerAtlas: assetUrl('assets/live/v2/atlases/player/player_live_v2.json'),
+  monsterAtlas: assetUrl('assets/live/v2/atlases/monsters/monsters_live_v2.json'),
   effectsAtlas: assetUrl('assets/atlases/effects/combat_effects_v1.json'),
   equipmentAtlas: assetUrl('assets/atlases/items/equipment_icons_v1.json'),
-  forestMap: assetUrl('assets/live/v1/backgrounds/battle_forest_live_v1.webp'),
-  lobbyBackground: assetUrl('assets/live/v1/backgrounds/lobby_forest_live_v1.webp'),
-  heroPortrait: assetUrl('assets/live/v1/portraits/hero_live_v1.webp'),
-  bossPortrait: assetUrl('assets/live/v1/portraits/boss_harbinger_live_v1.webp'),
+  forestMap: assetUrl('assets/live/v2/backgrounds/battle_forest_v2.webp'),
+  lobbyBackground: assetUrl('assets/live/v2/backgrounds/lobby_forest_v2.webp'),
+  heroPortrait: assetUrl('assets/live/v2/portraits/hero_v2.webp'),
+  bossPortrait: assetUrl('assets/live/v2/portraits/boss_v2.webp'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -30,8 +30,8 @@ export const ASSET_PATHS = {
 
 export const CORE_UI_BUNDLE: AssetBundleDefinition = {
   id: 'core-ui',
-  urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiClick],
-  estimatedBytes: 26_000,
+  urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiClick, ASSET_PATHS.lobbyBackground],
+  estimatedBytes: 290_000,
 };
 
 export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
@@ -57,7 +57,7 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.forestMap,
     ASSET_PATHS.bossPortrait,
   ],
-  estimatedBytes: 4_200_000,
+  estimatedBytes: 4_600_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -92,7 +92,7 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     prefix: 'knight_',
     atlasPaths: [ASSET_PATHS.playerAtlas],
     imagePaths: [],
-    bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 850_000 },
+    bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 560_000 },
   },
   {
     id: 'live-monsters',
@@ -101,7 +101,7 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     prefix: 'monster_',
     atlasPaths: [ASSET_PATHS.monsterAtlas],
     imagePaths: [],
-    bundle: { id: 'live-monsters-gallery', urls: [ASSET_PATHS.monsterAtlas], estimatedBytes: 3_050_000 },
+    bundle: { id: 'live-monsters-gallery', urls: [ASSET_PATHS.monsterAtlas], estimatedBytes: 2_600_000 },
   },
   {
     id: 'live-ui',

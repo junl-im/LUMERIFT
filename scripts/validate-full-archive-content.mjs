@@ -24,7 +24,8 @@ try {
 }
 
 if (sourceFiles < 79) errors.push(`art_source 파일 수 부족: ${sourceFiles} / 79`);
-if (sourceBytes < 450_000_000) errors.push(`art_source 용량 부족: ${(sourceBytes / 1_000_000).toFixed(2)} MB / 450 MB`);
+if (sourceBytes < 60_000_000) errors.push(`art_source 용량이 예상보다 작음: ${(sourceBytes / 1_000_000).toFixed(2)} MB / 60 MB`);
+if (sourceBytes > 120_000_000) errors.push(`art_source 모바일 제작 예산 초과: ${(sourceBytes / 1_000_000).toFixed(2)} MB / 120 MB`);
 
 const archivedPaths = [
   'public/assets/MEGAPACK_V080_SUMMARY.json',

@@ -7,5 +7,5 @@
 - `atlases/items`: 장비 아이콘
 - `audio`: 실제 사용 중인 UI·전투·BGM 음원
 
-고해상도 원본, v0.8 메가팩, v0.9 절차형 품질팩과 미사용 챕터 자산은 기본 통합 ZIP에서 제외했습니다.
+이 디렉터리에는 런타임과 보관용 public 자산이 함께 있습니다. LUMERIFT 소유 제작 원본은 `art_source`에 모바일 제작용 해상도로 보관되며 GitHub Pages 배포에는 포함되지 않습니다.
 라이선스·출처 기록은 `docs/THIRD_PARTY_ASSETS.md`와 `live/v1/licenses`에 유지합니다.

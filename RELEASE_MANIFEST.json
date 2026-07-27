@@ -1,19 +1,21 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.0.3",
-  "baseVersion": "1.0.2",
+  "version": "1.2.0",
+  "baseVersion": "1.0.3",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.0.3.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.0.2_to_v1.0.3.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.2.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.0.3_to_v1.2.0.zip",
   "qualityStage": "production-candidate-open-art-pass",
   "features": [
-    "restores all high-resolution art_source masters omitted from v1.0.2",
-    "restores archived v0.8 and v0.9 asset packs without enabling them in the default runtime",
-    "keeps active live art, build hotfixes and TypeScript TS6133 fixes from v1.0.2",
-    "adds full archive completeness validation",
-    "separates initial 15 MB loading budget from total project archive size",
-    "uses decimal MB for user-facing capacity reports"
+    "replaces the prior neon dashboard look with a unified obsidian, gold and teal visual system",
+    "rebuilds lobby, battle HUD, inventory, stage select and result information hierarchy",
+    "moves inventory from text rows to a 3 by 4 equipment grid with direct equipment states",
+    "adds distinct normal, elite, boss and locked stage node presentation",
+    "aligns battle HP fill coordinates with the rebuilt HUD geometry",
+    "switches default player and monster atlases to a unified contrast and outline art pass",
+    "adds visual audit documentation, five release previews and visual regression checks",
+    "keeps mobile production source masters, licenses and archived assets in the FULL package"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -33,15 +35,15 @@
       "bmp",
       "tiff"
     ],
-    "sourceDeployment": "the FULL archive includes source masters and archived assets; art_source remains outside public and is not deployed by GitHub Pages",
-    "legacyRuntime": "archived assets are retained for handoff and future production but are not referenced by the default AssetCatalog",
-    "thirdPartyRequirement": "explicit redistribution license, attribution record and runtime usage mapping"
+    "sourceDeployment": "FULL includes mobile production masters and archives; art_source stays outside public and is not deployed",
+    "legacyRuntime": "archived candidates remain preserved but are not referenced by the default AssetCatalog",
+    "visualGate": "a screen is not complete without a preview, runtime connection, visual audit and validation markers"
   },
   "verification": [
-    "art_source exists with at least 79 files and 450 MB",
-    "archived public asset files remain present while default runtime references stay on live/v1",
-    "initial payload remains below 15 MB",
-    "full archive and v1.0.2 restoration patch integrity",
-    "handoff/version consistency and TypeScript regression checks"
+    "v1.2 UI, player, monster, background and portrait paths are active in AssetCatalog",
+    "five major screens satisfy visual reset markers and previews exist",
+    "active atlases preserve animation contracts and all source archives remain present",
+    "initial payload remains below 15 MB and reports use decimal MB",
+    "handoff, version, archive and strict TypeScript alternative checks pass"
   ]
 }
