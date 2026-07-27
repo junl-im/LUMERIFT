@@ -44,6 +44,11 @@ for (const phrase of ['결과', '전체 통합 ZIP', '덮어쓰기용 패치 ZIP
 if (state.releaseArtifacts?.fullArchive !== release.fullArchive) errors.push('전체 ZIP 이름이 HANDOFF_STATE와 RELEASE_MANIFEST에서 다릅니다.');
 if (state.releaseArtifacts?.patchArchive !== release.patchArchive) errors.push('패치 ZIP 이름이 HANDOFF_STATE와 RELEASE_MANIFEST에서 다릅니다.');
 
+
+for (const phrase of ['전체 통합 ZIP에는 코드·문서·런타임 자산·고해상도 원본', '경량 실행본', '초기 다운로드 15MB']) {
+  if (!agents.includes(phrase)) errors.push(`AGENTS 전체 보존 규칙 누락: ${phrase}`);
+}
+if (state.assetMetrics?.sourceArchiveIncludedInFull !== true) errors.push('HANDOFF_STATE에 전체 원본 보존 상태가 true가 아닙니다.');
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

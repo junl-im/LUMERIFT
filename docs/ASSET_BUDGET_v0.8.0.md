@@ -1,13 +1,13 @@
 # LUMERIFT v0.8.0 에셋 예산
 
 - public/assets 실제 파일: 108개
-- public/assets 총량: 약 2.49MiB
+- public/assets 총량: 약 2.49MB
 - 전체 Atlas: 16개
 - 전체 Atlas 프레임: 1,174개
 - 전체 애니메이션: 127개
 - Asset Manifest Bundle: 13개
-- 초기 로딩 입력 추정: 약 473.3KiB
-- 초기 다운로드 목표: 15MiB 이하
+- 초기 로딩 입력 추정: 약 473.3KB
+- 초기 다운로드 목표: 15MB 이하
 
 ## 운영 원칙
 

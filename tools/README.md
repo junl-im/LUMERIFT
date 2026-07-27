@@ -1,35 +1,5 @@
-# Asset tools
+# Tools
 
-`generate_runtime_assets.py`는 v0.7.0 제작 기준 WebP 캐릭터·몬스터·UI·VFX·장비 Atlas, Chapter 1 배경과 테스트용 OGG/Opus 음원을 재생성한다.
-
-필요 도구:
-
-- Python 3
-- Pillow
-- ffmpeg: 오디오를 다시 만들 때만 필요
-
-실행:
-
-```bash
-python tools/generate_runtime_assets.py
-npm run validate:assets
-npm run validate:atlas
-npm run validate:manifest
-```
-
-생성 이미지는 런타임 규격 검증용이며 최종 상용 아트가 아니다.
-
-## v0.8.0 메가팩 재생성
-
-```bash
-python tools/generate_asset_megapack_v080.py
-```
-
-이 스크립트는 아이템, 스킬, 상태, UI, 도감, NPC, 환경, VFX, 문장, 튜토리얼, 지역 배경, 로딩 키아트, 브랜드, 오디오를 재생성한다. 생성 후 반드시 아래를 실행한다.
-
-```bash
-npm run validate:assets
-npm run validate:atlas
-npm run validate:manifest
-npm run report:inventory
-```
+기본 통합 ZIP은 실행·빌드·검증에 필요한 파일만 포함합니다.
+대용량 원본에 의존하는 에셋 재생성 도구는 소스 보관 패키지로 분리되어 이 배포본에는 포함하지 않습니다.
+`render_v100_previews.py`는 현재 런타임 자산으로 미리보기를 다시 만드는 용도로 유지합니다.

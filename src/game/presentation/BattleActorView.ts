@@ -157,11 +157,10 @@ export class MonsterActorView {
 
   public update(
     controller: MonsterController,
-    deltaSeconds: number,
+    _deltaSeconds: number,
     flashRemaining: number,
     deathElapsed: number,
   ): void {
-    const { combat } = this.definition;
     const deltaX = this.previousX === undefined ? 0 : controller.position.x - this.previousX;
     this.previousX = controller.position.x;
     this.root.position.set(controller.position.x, controller.position.y);

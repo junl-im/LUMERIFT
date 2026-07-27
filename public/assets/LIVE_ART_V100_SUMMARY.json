@@ -20,6 +20,7 @@
     "playerSourceFrames": 68,
     "uiFrames": 18
   },
-  "sourceMasterFiles": 20,
-  "sourceMasterBytes": 22130945
+  "sourceMasterIncludedInDefaultArchive": false,
+  "sourceMasterBytesHistorical": 22130945,
+  "sourceMasterFilesHistorical": 20
 }

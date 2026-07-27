@@ -1,42 +1,11 @@
-# LUMERIFT Runtime Assets
+# LUMERIFT Active Runtime Assets
 
-게임 런타임 이미지는 PNG/WebP만 허용한다. SVG 및 런타임 SVG 생성은 금지한다.
+이 디렉터리는 현재 게임 실행에 필요한 자산만 포함합니다.
 
-## v0.7.0 번들
+- `live/v1`: 로비·전투 배경, 플레이어, 몬스터, UI, 초상
+- `atlases/effects`: 전투 이펙트
+- `atlases/items`: 장비 아이콘
+- `audio`: 실제 사용 중인 UI·전투·BGM 음원
 
-- `atlases/ui`: 앱 공통 NineSlice UI 스킨
-- `atlases/player`: 8방향 플레이어 전투 애니메이션
-- `atlases/monsters`: 일반·정예·보스 공통 애니메이션
-- `atlases/effects`: Slash·Nova·Hit·Explosion·Dodge VFX
-- `atlases/items`: 장비 9종 아이콘
-- `maps/chapter1`: Chapter 1 WebP 전투 배경
-- `audio/ui`: OGG UI 효과음
-- `audio/combat`: OGG 공격·피격·스킬·회피 효과음
-- `audio/bgm`: Opus 배경 음악
-
-시각 리소스는 최종 상용 아트가 아니라 Atlas 규격, 런타임 애니메이션, Lazy Loading과 메모리 해제를 검증하기 위한 제작 기준 에셋이다.
-
-## v0.8.0 메가팩
-
-- `MEGAPACK_V080_SUMMARY.json`: 분류별 제작 수량과 단계
-- `atlases/items/mega_items_v1.*`: 160개 아이템
-- `atlases/skills/skill_icons_v1.*`: 80개 스킬
-- `atlases/status/status_icons_v1.*`: 48개 상태 효과
-- `atlases/ui/ui_icons_v2.*`: 96개 UI 아이콘
-- `atlases/bestiary/bestiary_portraits_v1.*`: 48개 도감 초상
-- `atlases/npc/npc_portraits_v1.*`: 32개 NPC 초상
-- `atlases/environment/environment_props_v1.*`: 120개 환경 오브젝트
-- `atlases/effects/effects_mega_v1.*`: 24개 VFX 애니메이션
-- `atlases/emblems/emblems_v1.*`: 64개 문장
-- `atlases/tutorial/tutorial_glyphs_v1.*`: 40개 튜토리얼 글리프
-
-현재 메가팩은 최종 상용 원화가 아닌 production-structure 단계다.
-
-## v0.9 품질팩
-
-- `QUALITYPACK_V090_SUMMARY.json`: 품질 단계·수량·용량·경로
-- `atlases/quality/`: 영웅·보스·NPC·아이템·스킬·환경·VFX·UI
-- `loading/quality/`: 720×1280 지역 키아트
-- `maps/quality/`: 720×1280 전투 배경
-- 원본 PNG는 프로젝트 루트 `art_source/v0.9.0`에 있으며 런타임 배포 대상이 아니다.
-
+고해상도 원본, v0.8 메가팩, v0.9 절차형 품질팩과 미사용 챕터 자산은 기본 통합 ZIP에서 제외했습니다.
+라이선스·출처 기록은 `docs/THIRD_PARTY_ASSETS.md`와 `live/v1/licenses`에 유지합니다.

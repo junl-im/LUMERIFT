@@ -42,9 +42,23 @@ async function walk(directory) {
 
 for (const root of roots) await walk(root);
 
+const battleActorView = await readFile('src/game/presentation/BattleActorView.ts', 'utf8');
+const monsterUpdateMatch = battleActorView.match(/public update\(\s*controller: MonsterController,([\s\S]*?)\n  \}\n\n\n  private drawPhaseAura/);
+if (!monsterUpdateMatch) {
+  errors.push('BattleActorView MonsterActorView.update 계약을 찾지 못했습니다.');
+} else {
+  const updateSource = monsterUpdateMatch[1];
+  if (!updateSource.includes('_deltaSeconds: number')) {
+    errors.push('BattleActorView의 의도적 미사용 시간 매개변수는 _deltaSeconds로 표기해야 합니다.');
+  }
+  if (/const\s+\{\s*combat\s*\}\s*=\s*this\.definition/.test(updateSource)) {
+    errors.push('BattleActorView.update에 미사용 combat 지역 변수가 다시 추가되었습니다.');
+  }
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS source imports');
+  console.log('PASS source imports and BattleActorView TS6133 regression guard');
 }

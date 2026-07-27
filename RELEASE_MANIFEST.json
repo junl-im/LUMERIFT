@@ -1,40 +1,47 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.0.0",
-  "baseVersion": "0.9.1",
+  "version": "1.0.3",
+  "baseVersion": "1.0.2",
   "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.0.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v0.9.1_to_v1.0.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.0.3.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.0.2_to_v1.0.3.zip",
   "qualityStage": "production-candidate-open-art-pass",
   "features": [
-    "actual redistributable game-art sources replace procedural placeholders in default lobby and combat",
-    "8 species-specific FLARE monster sprite sheets with idle, move, attack, hit, death and roar contracts",
-    "Isometric Knight player combat atlas connected to existing player state keys",
-    "real fantasy backgrounds, hero portrait and boss portrait connected to runtime scenes",
-    "18-frame metallic glass NineSlice UI skin and rebuilt lobby/boss HUD",
-    "third-party license inventory, NOTICE and source-master archive",
-    "live-art validation and lobby/battle visual previews",
-    "legacy procedural packs retained only as non-default gallery content"
+    "restores all high-resolution art_source masters omitted from v1.0.2",
+    "restores archived v0.8 and v0.9 asset packs without enabling them in the default runtime",
+    "keeps active live art, build hotfixes and TypeScript TS6133 fixes from v1.0.2",
+    "adds full archive completeness validation",
+    "separates initial 15 MB loading budget from total project archive size",
+    "uses decimal MB for user-facing capacity reports"
   ],
   "assetPolicy": {
-    "allowedImages": ["png", "webp"],
-    "allowedAudio": ["ogg", "opus"],
-    "forbidden": ["svg", "svgz", "jpg", "jpeg", "gif", "bmp", "tiff"],
-    "sourceDeployment": "art_source is archive-only and must not be copied into public/dist",
+    "allowedImages": [
+      "png",
+      "webp"
+    ],
+    "allowedAudio": [
+      "ogg",
+      "opus"
+    ],
+    "forbidden": [
+      "svg",
+      "svgz",
+      "jpg",
+      "jpeg",
+      "gif",
+      "bmp",
+      "tiff"
+    ],
+    "sourceDeployment": "the FULL archive includes source masters and archived assets; art_source remains outside public and is not deployed by GitHub Pages",
+    "legacyRuntime": "archived assets are retained for handoff and future production but are not referenced by the default AssetCatalog",
     "thirdPartyRequirement": "explicit redistribution license, attribution record and runtime usage mapping"
   },
   "verification": [
-    "Vite 8 build configuration guard",
-    "asset policy and binary signatures",
-    "45 atlas bounds and 2828 frame inventory",
-    "305 animation references",
-    "8 licensed source groups and mandatory attribution files",
-    "8 species-specific monster animation contracts",
-    "default AssetCatalog live-art paths",
-    "live runtime capacity and source-master inventory",
-    "handoff document and version consistency",
-    "game data, relative imports and initial payload budget",
-    "direct patch equivalence and archive integrity"
+    "art_source exists with at least 79 files and 450 MB",
+    "archived public asset files remain present while default runtime references stay on live/v1",
+    "initial payload remains below 15 MB",
+    "full archive and v1.0.2 restoration patch integrity",
+    "handoff/version consistency and TypeScript regression checks"
   ]
 }

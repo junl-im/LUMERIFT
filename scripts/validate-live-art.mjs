@@ -8,7 +8,7 @@ const actorView = await readFile('src/game/presentation/BattleActorView.ts', 'ut
 
 if (summary.release !== '1.0.0') errors.push(`live art release mismatch: ${summary.release}`);
 if (summary.qualityStage !== 'production-candidate-open-art-pass') errors.push(`live art stage mismatch: ${summary.qualityStage}`);
-if ((summary.runtimeBytes ?? 0) < 4 * 1024 * 1024) errors.push('실사용 런타임 아트가 4MiB 미만입니다.');
+if ((summary.runtimeBytes ?? 0) < 4_000_000) errors.push('실사용 런타임 아트가 4 MB 미만입니다.');
 if (!Array.isArray(licenses.assets) || licenses.assets.length < 8) errors.push('제3자 에셋 라이선스 기록이 부족합니다.');
 
 const expected = [
@@ -64,5 +64,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`PASS live art: ${summary.runtimeFiles} runtime files, ${(summary.runtimeBytes / 1024 / 1024).toFixed(2)}MiB, ${licenses.assets.length} licensed source groups`);
+  console.log(`PASS live art: ${summary.runtimeFiles} runtime files, ${(summary.runtimeBytes / 1_000_000).toFixed(2)} MB, ${licenses.assets.length} licensed source groups`);
 }

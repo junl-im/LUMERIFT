@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "updatedAt": "2026-07-27",
-  "currentPhase": "실제 게임용 공개 라이선스 아트의 기본 런타임 적용과 UI·전투 화면 리빌드",
+  "currentPhase": "v1.0 전체 자산 보존 패키징 복구 및 v1.1 UI 리빌드 준비",
   "qualityStage": "production-candidate-open-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -20,7 +20,19 @@
     "기존 절차형 v0.9 자산을 기본 표시에서 제외하고 레거시 보관소로 분리",
     "제3자 출처·저작자·라이선스·가공 범위를 파일 단위로 기록",
     "실사용 아트 전용 자동 검증과 로비·전투 미리보기 추가",
-    "총 45 Atlas, 2,828프레임, 305애니메이션으로 누적 자산 계약 확장"
+    "총 45 Atlas, 2,828프레임, 305애니메이션으로 누적 자산 계약 확장",
+    "기본 통합 ZIP에서 약 480MB의 고해상도 원본·절차형 레거시 자산 제거",
+    "실제 게임에서 사용하는 live 자산·필수 이펙트·장비 아이콘·음원만 런타임 배포본에 유지",
+    "에셋 보관소를 실사용 배경·플레이어·몬스터·UI 4개 범주로 축소",
+    "용량 보고 단위를 일반 사용자 기준 MB로 통일",
+    "패치 삭제 목록과 자동 정리 스크립트 추가",
+    "BattleActorView의 미사용 deltaSeconds·combat 선언을 제거해 TypeScript TS6133 CI 실패 복구",
+    "v1.0.2 경량본에서 누락된 art_source 고해상도 원본 79개를 전체 통합본에 복원",
+    "v0.8·v0.9 레거시 Atlas·배경·키아트·음원 보관 자산 172개를 전체 통합본에 복원",
+    "전체 통합 ZIP과 경량 런타임 배포본의 역할을 분리하는 릴리스 규칙 확정",
+    "전체본 자산 보존 여부를 검사하는 validate:archive 자동 검증 추가",
+    "초기 다운로드 15MB와 전체 보관 자산 용량을 분리하여 검증하도록 수정",
+    "모든 사용자 용량 보고를 십진 단위 MB로 통일"
   ],
   "inProgress": [],
   "nextPlanned": [
@@ -41,32 +53,30 @@
     "결과 보고 순서는 결과, 전체 ZIP, 패치 ZIP, 다음 업데이트다.",
     "절차형 제작 후보 자산을 최종 상용 원화 또는 AAA 최종급으로 보고하지 않는다.",
     "외부 자산은 명시적 재배포 라이선스와 저작자 표시를 확인한 뒤에만 포함한다.",
-    "실제 런타임 기본 화면에 연결되지 않은 자산을 실사용 완료로 기록하지 않는다."
+    "실제 런타임 기본 화면에 연결되지 않은 자산을 실사용 완료로 기록하지 않는다.",
+    "용량 보고는 기본적으로 십진 단위 MB를 사용하고 MiB는 기술 참고로만 사용한다.",
+    "전체 통합 ZIP에는 현재 코드·문서·런타임 자산·고해상도 원본·라이선스·레거시 보관 자산을 누락 없이 포함한다.",
+    "경량 배포본이 필요하면 전체 통합 ZIP과 구분해 RUNTIME 또는 DEPLOY 패키지로 별도 제공한다.",
+    "초기 다운로드 15MB 제한은 최초 로드 번들 기준이며 전체 프로젝트 보관 용량 제한이 아니다."
   ],
   "assetMetrics": {
-    "legacyAtlasFrames": 2474,
-    "legacyAnimations": 159,
-    "liveArtAtlases": 3,
-    "liveArtFrames": 354,
-    "liveArtAnimations": 146,
-    "liveMonsterSpecies": 8,
-    "liveUiFrames": 18,
-    "totalAtlases": 45,
-    "totalAtlasFrames": 2828,
-    "totalAnimations": 305,
-    "liveRuntimeBytes": 4257025,
-    "openArtSourceBytes": 22130945,
-    "allSourceMasterBytes": 502764271
+    "activeAtlasCount": 5,
+    "activeRuntimeBytes": 4342097,
+    "fullProjectBytes": 523265196,
+    "sourceArchiveIncludedInFull": true,
+    "sourceArchiveFileCount": 79,
+    "legacyArchiveIncludedInFull": true,
+    "legacyRuntimeDefaultEnabled": false
   },
   "knownLimitations": [
     "v1.0 자산은 실제 게임용 공개 라이선스 원본을 사용하지만 LUMERIFT 전용 독점 원화는 아니다.",
     "플레이어 원본 시트는 공개된 단일 연속 동작을 8개 논리 방향 계약에 매핑·미러링하므로 최종 8방향 전용 모션 제작이 필요하다.",
-    "여러 공개 프로젝트의 원본을 통합했으므로 이전 절차형 자산보다 품질은 높지만 완전한 세계관·비율 통일을 위한 2차 아트 디렉션이 필요하다.",
     "CC BY-SA 파생 몬스터 Atlas는 저작자 표시와 동일 라이선스 조건을 유지해야 한다.",
-    "npm Registry 제한 환경에서는 실제 Vite production build와 모바일 브라우저 실기동을 별도 환경에서 확인해야 한다."
+    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 설치 기반 전체 빌드는 GitHub Actions에서 최종 확인한다.",
+    "전체 통합 ZIP은 원본과 보관 자산을 포함하므로 압축 전 약 523MB이며, GitHub Pages 초기 다운로드에는 포함되지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.0.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v0.9.1_to_v1.0.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.0.3.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.0.2_to_v1.0.3.zip"
   }
 }

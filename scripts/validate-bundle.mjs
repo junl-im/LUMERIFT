@@ -2,7 +2,7 @@ import { readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const DIST = 'dist';
-const INITIAL_LIMIT = 15 * 1024 * 1024;
+const INITIAL_LIMIT = 15_000_000;
 let deployTotal = 0;
 let initialTotal = 0;
 const files = [];
@@ -10,7 +10,7 @@ const files = [];
 const initialPrefixes = [
   'index.html',
   'manifest.webmanifest',
-  'assets/atlases/ui/',
+  'assets/live/v1/atlases/ui/',
   'assets/audio/ui/',
 ];
 
@@ -38,10 +38,10 @@ async function walk(directory) {
 await walk(DIST);
 files.sort((a, b) => b.size - a.size);
 
-console.log(`dist deploy total: ${(deployTotal / 1024 / 1024).toFixed(2)} MiB`);
-console.log(`estimated initial download: ${(initialTotal / 1024 / 1024).toFixed(2)} MiB / 15.00 MiB`);
+console.log(`dist deploy total: ${(deployTotal / 1_000_000).toFixed(2)} MB`);
+console.log(`estimated initial download: ${(initialTotal / 1_000_000).toFixed(2)} MB / 15.00 MB`);
 for (const file of files.filter((entry) => entry.initial).slice(0, 10)) {
-  console.log(`${(file.size / 1024).toFixed(1).padStart(8)} KiB  ${file.path}`);
+  console.log(`${(file.size / 1_000_000).toFixed(3).padStart(8)} MB  ${file.path}`);
 }
 
 if (initialTotal > INITIAL_LIMIT) {
