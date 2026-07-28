@@ -1,27 +1,28 @@
-# LUMERIFT: 균열의 계승자 v1.10.1
+# LUMERIFT: 균열의 계승자 v1.11.0
 
 모바일 웹 우선 세로형 2.5D 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이며 GitHub Pages에 배포한다.
 
 공개 주소: https://junl-im.github.io/LUMERIFT/
 
-## v1.10.1 물리 단말 계측 기반·접근성 보강
+## v1.11.0 전투·그래픽 시스템 강화
 
-- 평균 FPS·1% Low·긴 프레임·뷰포트·렌더 상태를 실제 기기에서 JSON으로 저장
-- 지속적인 프레임 저하에 따라 `full / balanced / safe` 자동 품질 제한 적용
-- AUTO 모드에서 resolution·파티클 품질·30/60FPS를 보수적으로 단계 조정
-- 표준·색상 보조·고대비 전투 팔레트와 `♥ / ▲ / ◆` 상태 기호 추가
-- 큰 HUD와 카메라 연출 완화 설정 추가
-- 현재 저장·최대 5개 복구 지점·28일 시즌 요약 JSON 내보내기/가져오기
-- UID 불일치 가져오기 차단과 JSON 복원 전 자동 안전 백업
-- LUMERIFT 전용 플레이어 8방향 실루엣 블록아웃 원본 추가
-- Firebase App Check 비활성화와 v1.8 AttackFootprint 판정 유지
+- 적중·치명타·처치·정밀 회피로 상승하는 Rift Drive 0~100 게이지
+- D·C·B·A·S·SS 전투 등급과 체인 배율, 7초 Overdrive 상태
+- 공격 적중 후 스킬·회피 캔슬과 정밀 회피 쿨다운 가속
+- 스킬별 Drive 비용·획득량·impact tier·콤보 입력 창 데이터화
+- 그래픽 품질과 실시간 프레임 압력에 따른 전투 이펙트·곡선·레이어 자동 예산화
+- 스킬 충전 링, 강화 준비 펄스, Drive·스타일 HUD와 다층 타격광
+- 공통 패널 하이라이트·그림자·코너 악센트와 진행 바 눈금
+- 로비·설정에서 FPS·적응형 품질·전투 렌더 예산 상태 확인
+- 신규 런타임 이미지 없이 기존 Atlas와 프로그램 렌더링으로 초기 다운로드 유지
 
-## v1.10.1 CI 정합성 보강
+## 유지된 핵심 계약
 
-- `package.json`, `HANDOFF_STATE.json`, `RELEASE_MANIFEST.json`, `ASSET_MANIFEST.json`, 런타임 브랜드 버전을 1.10.1로 통일
-- `preverify` 자동 자산 정리와 `validate:mobile:v111` 검사를 동시에 유지
-- `validate:release`를 검증 초반에 실행하여 핫픽스 덮어쓰기로 인한 버전 회귀를 즉시 차단
-- PixiJS 8 Graphics 다각형 API는 `poly()`를 사용
+- Firebase App Check 비활성화
+- Firebase Auth·Firestore Cloud Save·랭킹·Player Save v4 유지
+- AttackFootprint를 텔레그래프와 실제 판정의 단일 기준으로 유지
+- PNG/WebP만 허용하고 SVG 금지
+- 모바일 9:16·Safe Area·48px 터치·접근성 상태 기호 유지
 
 ## 실행
 
@@ -33,15 +34,15 @@ npm run dev
 ## 검증
 
 ```bash
-npm run validate:mobile:v110
-npm run validate:mobile:v111
+npm run validate:release
+npm run validate:upgrade:v111
 npm run validate:handoff
 npm run verify
 ```
 
 ## 패치 적용
 
-v1.10.0 프로젝트 최상위에 패치 ZIP의 내용을 덮어쓴다. 삭제 또는 자산 이동 대상은 없다.
+v1.10.1 프로젝트 최상위에 패치 ZIP의 내용을 덮어쓴다.
 
 ```bash
 npm install
@@ -53,12 +54,9 @@ npm run verify
 - `AGENTS.md`
 - `HANDOFF_STATE.json`
 - `docs/HANDOFF_MASTER.md`
+- `docs/COMBAT_GRAPHICS_UPGRADE_v1.11.0.md`
 - `docs/MOBILE_DEVICE_QA_v1.10.1.md`
 - `docs/ACCESSIBILITY_v1.10.1.md`
 - `docs/RECOVERY_ARCHIVE_v1.10.1.md`
-- `docs/PLAYER_SILHOUETTE_v1.10.1.md`
-- `docs/PATCH_NOTES_v1.10.1.md`
 
-`docs/previews/v1.10.1_player_silhouette_contact.webp`는 제작 블록아웃 접촉 시트이며 실제 런타임 또는 물리 단말 캡처가 아니다. 실제 Android·iOS 기기의 FPS·표면 온도·GPU 메모리 최종 승인은 기기 QA JSON과 수동 계측이 필요하다.
-
-BAT 파일은 Windows 편의용 선택 도구이며 npm 명령과 GitHub Actions가 공식 기준이다.
+실제 Android·iOS의 FPS·표면 온도·배터리·GPU 메모리 최종 승인은 물리 단말 계측이 필요하다. BAT 파일은 Windows 편의용이며 npm 명령과 GitHub Actions가 공식 기준이다.

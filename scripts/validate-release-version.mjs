@@ -35,10 +35,16 @@ if (!pkg.scripts?.verify?.includes('npm run validate:release')) {
 if (!pkg.scripts?.verify?.includes('npm run validate:mobile:v111')) {
   errors.push('verify에서 v1.10.1 전용 검사가 누락되었습니다.');
 }
+if (pkg.scripts?.['validate:upgrade:v111'] !== 'node scripts/validate-v1110-upgrade.mjs') {
+  errors.push('package.json v1.11.0 전투·그래픽 강화 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v111')) {
+  errors.push('verify에서 v1.11.0 전투·그래픽 강화 검사가 누락되었습니다.');
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`PASS release version contract: v${expected}, preverify and v1.10.1 validator connected`);
+  console.log(`PASS release version contract: v${expected}, preverify and cumulative release validators connected`);
 }

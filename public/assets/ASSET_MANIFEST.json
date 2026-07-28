@@ -1,7 +1,7 @@
 {
   "version": 11,
   "game": "LUMERIFT",
-  "release": "1.10.1",
+  "release": "1.11.0",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -80,7 +80,7 @@
   },
   "deployment": {
     "publicAssetFiles": 37,
-    "publicAssetBytes": 4984316,
+    "publicAssetBytes": 4984317,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

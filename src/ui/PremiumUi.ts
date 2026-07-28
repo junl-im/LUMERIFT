@@ -30,7 +30,10 @@ export function createBadge(label: string, tone: UiTone = 'secondary'): Containe
   const background = new Graphics()
     .roundRect(0, 0, width, 26, 13)
     .fill({ color: 0x071117, alpha: 0.94 })
-    .stroke({ color, alpha: 0.88, width: 2 });
+    .stroke({ color, alpha: 0.88, width: 2 })
+    .moveTo(12, 4)
+    .lineTo(width - 12, 4)
+    .stroke({ color: 0xffffff, alpha: 0.16, width: 1 });
   text.anchor.set(0.5);
   text.position.set(width / 2, 13);
   root.addChild(background, text);
@@ -52,11 +55,20 @@ export function createProgressBar(
   const fillWidth = Math.max(2, (width - 4) * safeRatio);
   const fill = new Graphics()
     .roundRect(2, 2, fillWidth, Math.max(2, height - 4), Math.max(1, (height - 4) / 2))
-    .fill({ color: toneColor(tone), alpha: 0.98 });
+    .fill({ color: toneColor(tone), alpha: 0.98 })
+    .roundRect(2, 2, fillWidth, Math.max(2, height - 4), Math.max(1, (height - 4) / 2))
+    .stroke({ color: 0xffffff, alpha: 0.12, width: 1 });
   const highlight = new Graphics()
     .roundRect(4, 3, Math.max(0, fillWidth - 4), 2, 1)
     .fill({ color: 0xffffff, alpha: 0.24 });
-  root.addChild(track, fill, highlight);
+  const markers = new Graphics();
+  if (width >= 120) {
+    for (let index = 1; index < 4; index += 1) {
+      const x = Math.round((width * index) / 4);
+      markers.rect(x, 2, 1, Math.max(2, height - 4)).fill({ color: 0xffffff, alpha: 0.08 });
+    }
+  }
+  root.addChild(track, fill, highlight, markers);
   return root;
 }
 

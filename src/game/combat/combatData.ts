@@ -1,5 +1,6 @@
 export type CombatActionKind = 'basic' | 'skill1' | 'skill2';
 export type HitShape = 'arc' | 'circle';
+export type CombatImpactTier = 'light' | 'heavy' | 'ultimate';
 export type StatusEffectId = 'burn' | 'slow';
 export type MonsterRank = 'normal' | 'elite' | 'boss';
 export type MonsterTargetMode = 'self' | 'playerLocked';
@@ -28,6 +29,10 @@ export interface CombatActionConfig {
   readonly shake: number;
   readonly lungeDistance: number;
   readonly effectColor: number;
+  readonly impactTier: CombatImpactTier;
+  readonly driveGain: number;
+  readonly driveCost: number;
+  readonly comboWindow: number;
   readonly statusEffect?: StatusEffectApplication;
 }
 

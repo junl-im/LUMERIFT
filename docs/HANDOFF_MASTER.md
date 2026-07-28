@@ -1,8 +1,8 @@
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.10.1
+**현재 버전:** v1.11.0
 **갱신일:** 2026-07-28  
-**상태:** 실기기 계측 기반·접근성 HUD·시즌/복구 JSON·전용 실루엣 블록아웃 완료
+**상태:** 전투 시스템·스킬 연계·적응형 렌더 예산·공통 UI 깊이 강화 완료
 
 ## 1. 프로젝트 목적
 
@@ -258,3 +258,15 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 전용 플레이어 8방향 블록아웃은 `art_source/lumerift_original/v1.10.1/player`에 보존하며 아직 런타임 Atlas로 사용하지 않는다.
 - App Check 비활성화와 Firebase Auth·Firestore·Cloud Save·랭킹·AttackFootprint 계약은 유지한다.
 - 실제 Android·iOS 기기 로그와 표면 온도 수집은 v1.10.2 보정 작업으로 남는다.
+
+
+## v1.11.0 전투·그래픽 강화 기준선
+
+- `CombatMomentumController`가 Rift Drive, D~SS 스타일 체인과 Overdrive를 관리한다.
+- 공격 적중 후 스킬·회피 캔슬과 정밀 회피 보상은 PlayerCombatController의 상태 계약을 따른다.
+- 모든 전투 행동은 impactTier·driveGain·driveCost·comboWindow를 데이터로 가진다.
+- `CombatRenderBudget`은 게임 판정과 분리하여 이펙트·곡선·레이어·텍스트 비용만 자동 축소한다.
+- 전투 HUD는 Drive·등급·체인 배율과 스킬 충전 상태를 표시한다.
+- UI 깊이 표현은 기존 Atlas 위에 프로그램 렌더링으로 추가하며 신규 런타임 이미지를 요구하지 않는다.
+- App Check 비활성화, Firebase 저장·랭킹, Player Save v4와 AttackFootprint 단일 판정 계약은 유지한다.
+- 실제 Android·iOS 장시간 성능·발열·배터리 승인은 v1.11.1 물리 단말 계측으로 남는다.

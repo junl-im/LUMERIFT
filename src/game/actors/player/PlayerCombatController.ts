@@ -135,7 +135,7 @@ export class PlayerCombatController {
   }
 
   public requestSkill(slot: 'skill1' | 'skill2'): boolean {
-    if (!this.canStartIndependentAction() || this.getSkillCooldown(slot) > 0) return false;
+    if (!this.canStartSkillAction() || this.getSkillCooldown(slot) > 0) return false;
     const action = this.config.skills[slot];
     this.skillCooldowns.set(slot, action.cooldown);
     this.startAction(action, 'skill');
@@ -145,7 +145,7 @@ export class PlayerCombatController {
   }
 
   public requestDodge(direction: Vec2): boolean {
-    if (!this.canStartIndependentAction() || this.dodgeCooldownRemaining > 0) return false;
+    if (!this.canStartDodgeAction() || this.dodgeCooldownRemaining > 0) return false;
     const fallback = this.facing.x === 0 && this.facing.y === 0 ? { x: 0, y: -1 } : this.facing;
     this.dodgeDirection = normalize(direction, fallback);
     this.facing.x = this.dodgeDirection.x;
@@ -175,6 +175,13 @@ export class PlayerCombatController {
 
   public drainHitEvents(): PlayerHitEvent[] {
     return this.hitEvents.splice(0, this.hitEvents.length);
+  }
+
+  public reduceCooldowns(seconds: number): void {
+    const amount = Math.max(0, seconds);
+    this.skillCooldowns.set('skill1', Math.max(0, this.getSkillCooldown('skill1') - amount));
+    this.skillCooldowns.set('skill2', Math.max(0, this.getSkillCooldown('skill2') - amount));
+    this.dodgeCooldownRemaining = Math.max(0, this.dodgeCooldownRemaining - amount * 0.5);
   }
 
   private updateAction(deltaSeconds: number): void {
@@ -207,7 +214,7 @@ export class PlayerCombatController {
     }
 
     if (this.stateElapsed >= action.duration) {
-      if (this.stateValue === 'attacking') this.comboGraceRemaining = 0.34;
+      if (this.stateValue === 'attacking') this.comboGraceRemaining = action.comboWindow;
       this.finishAction();
     }
   }
@@ -230,5 +237,15 @@ export class PlayerCombatController {
 
   private canStartIndependentAction(): boolean {
     return this.stateValue === 'idle' || this.stateValue === 'moving';
+  }
+
+  private canStartSkillAction(): boolean {
+    return this.canStartIndependentAction()
+      || (this.stateValue === 'attacking' && this.hitEventEmitted);
+  }
+
+  private canStartDodgeAction(): boolean {
+    return this.canStartIndependentAction()
+      || ((this.stateValue === 'attacking' || this.stateValue === 'skill') && this.hitEventEmitted);
   }
 }

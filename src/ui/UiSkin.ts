@@ -1,4 +1,4 @@
-import { Graphics, NineSliceSprite, type Container, type Spritesheet, type Texture } from 'pixi.js';
+import { Container, Graphics, NineSliceSprite, type Spritesheet, type Texture } from 'pixi.js';
 import { COLORS } from '../app/constants';
 import type { AssetManager } from '../core/assets/AssetManager';
 import { ASSET_PATHS, CORE_UI_BUNDLE } from '../core/assets/AssetCatalog';
@@ -39,12 +39,15 @@ export function createRasterPanel(
   height: number,
   textureName = 'panel',
 ): Container {
+  const root = new Container();
   const texture = getUiTexture(textureName);
   if (!texture) {
-    return new Graphics()
+    root.addChild(new Graphics()
       .roundRect(x, y, width, height, 22)
       .fill({ color: COLORS.panel, alpha: 0.95 })
-      .stroke({ color: COLORS.warning, alpha: 0.5, width: 2 });
+      .stroke({ color: COLORS.warning, alpha: 0.5, width: 2 }));
+    addPanelDepth(root, x, y, width, height, textureName);
+    return root;
   }
 
   const panel = new NineSliceSprite({
@@ -57,7 +60,44 @@ export function createRasterPanel(
   panel.position.set(x, y);
   panel.width = width;
   panel.height = height;
-  return panel;
+  root.addChild(panel);
+  addPanelDepth(root, x, y, width, height, textureName);
+  return root;
+}
+
+function addPanelDepth(
+  root: Container,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  textureName: string,
+): void {
+  if (width < 76 || height < 34) return;
+  const compact = textureName === 'resource_chip' || height < 52;
+  const inset = compact ? 8 : 12;
+  const highlightAlpha = compact ? 0.12 : 0.18;
+  const accents = new Graphics()
+    .moveTo(x + inset, y + 3)
+    .lineTo(x + width - inset, y + 3)
+    .stroke({ color: 0xffffff, alpha: highlightAlpha, width: 1 })
+    .moveTo(x + inset, y + height - 3)
+    .lineTo(x + width - inset, y + height - 3)
+    .stroke({ color: 0x020507, alpha: 0.5, width: 2 });
+
+  if (!compact) {
+    const corner = 12;
+    accents
+      .moveTo(x + 6, y + corner)
+      .lineTo(x + 6, y + 6)
+      .lineTo(x + corner, y + 6)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.36, width: 1.5 })
+      .moveTo(x + width - corner, y + height - 6)
+      .lineTo(x + width - 6, y + height - 6)
+      .lineTo(x + width - 6, y + height - corner)
+      .stroke({ color: COLORS.warning, alpha: 0.28, width: 1.5 });
+  }
+  root.addChild(accents);
 }
 
 export function buttonTextureName(tone: 'primary' | 'secondary' | 'danger' | undefined): string {

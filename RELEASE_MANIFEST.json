@@ -1,22 +1,21 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.10.1",
-  "baseVersion": "1.10.0",
+  "version": "1.11.0",
+  "baseVersion": "1.10.1",
   "releaseDate": "2026-07-28",
-  "fullArchive": "LUMERIFT_FULL_v1.10.1.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.10.0_to_v1.10.1.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.11.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.10.1_to_v1.11.0.zip",
   "qualityStage": "production-candidate-unified-art-pass",
   "features": [
-    "exports real-device FPS, one-percent-low, long-frame, viewport and rendering diagnostics as JSON",
-    "applies conservative full, balanced and safe adaptive quality limits to resolution, graphics and AUTO FPS",
-    "adds color-assist, high-contrast, large-HUD and reduced-camera-motion accessibility settings",
-    "adds symbol-redundant player, danger and boss HUD states",
-    "exports and imports Player Save v4, five recovery points and a 28-day season summary with UID guard",
-    "adds an original LUMERIFT eight-direction player silhouette blockout without changing the runtime atlas",
-    "keeps Firebase App Check disabled and preserves Auth, Firestore, ranking and AttackFootprint contracts",
-    "adds an early release-version guard so package, handoff, release, asset manifest and runtime brand cannot drift",
-    "runs safe relocated-asset and placeholder cleanup automatically before verify"
+    "adds a data-driven Rift Drive gauge, D-to-SS style chain and seven-second Overdrive combat state",
+    "adds hit-confirm skill and dodge cancel windows, perfect-dodge rewards and shared cooldown acceleration",
+    "adds impact-tier and Drive fields to all five combat actions with runtime validation",
+    "adds an adaptive combat render budget for effect count, curve segments, effect layers and floating damage text",
+    "adds dynamic VFX quality profiles and layered hit feedback without adding runtime image downloads",
+    "adds skill charge and empowered-ready rings, Drive HUD, style rank and richer battlefield depth",
+    "adds common panel depth, highlights, shadows, progress markers and diagnostics polish across the UI",
+    "preserves Firebase App Check disabled state, Player Save v4, cloud contracts and shared AttackFootprint geometry"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -41,13 +40,12 @@
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
-    "v1.10 and v1.10.1 validators check viewport, touch, adaptive performance, accessibility, recovery JSON and silhouette artifacts",
-    "all TypeScript sources pass syntax transpilation checks with the available compiler",
-    "active public assets remain unchanged and below the deployment budget",
-    "full archive retains code, documents, runtime assets, mobile production masters, licenses and legacy archives",
-    "patch application from v1.10.0 is compared against the full v1.10.1 file hashes",
-    "physical Android and iOS temperature and GPU-memory measurements are explicitly not claimed as completed",
-    "release version validation runs before the main verification chain",
-    "preverify safely removes only hash-matched relocated assets and public placeholder files"
+    "release-version validation runs before the main verification chain",
+    "v1.10, v1.10.1 and v1.11.0 cumulative validators protect mobile, accessibility, recovery, combat and graphics contracts",
+    "all combat actions validate impactTier, driveGain, driveCost and comboWindow fields",
+    "TypeScript sources pass the available compiler-based project check with local declaration stubs for unavailable registry packages",
+    "active public runtime images and initial-download estimates are unchanged by the programmatic graphics pass",
+    "full and patch archives are extracted and compared by SHA-256 against the v1.11.0 working tree",
+    "physical Android and iOS FPS, temperature, battery and GPU-memory measurements are not claimed as completed"
   ]
 }

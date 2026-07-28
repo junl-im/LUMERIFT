@@ -186,6 +186,7 @@ function diagnosticsSummary(context: AppContext): string {
     `${performance.fps} FPS · 1% Low ${performance.onePercentLow} · 긴 프레임 ${(performance.longFrameRatio * 100).toFixed(1)}%`,
     `${performanceLevelLabel(adaptive.level)} · ${pressureLabel(adaptive.estimatedPressure)} · Canvas ${adaptive.resolution.toFixed(2)}x`,
     `선호 ${context.graphicsQuality.mode} / 적용 ${context.graphicsQuality.effectiveMode} · 목표 ${context.frameRate.targetFps} FPS`,
+    'ENGINE · PixiJS 8 · pooled VFX · adaptive combat render budget',
   ].join('\n');
 }
 

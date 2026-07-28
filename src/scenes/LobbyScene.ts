@@ -83,7 +83,8 @@ export class LobbyScene implements Scene {
     if (this.diagnosticsElapsed < 0.5 || !this.fpsText || !this.context) return;
     this.diagnosticsElapsed = 0;
     const assets = this.context.assets.diagnostics();
-    this.fpsText.text = `${this.context.performance.fps} FPS · ${this.context.performance.tier} · ${assets.loadedUrls}`;
+    const adaptive = this.context.adaptivePerformance.snapshot();
+    this.fpsText.text = `${this.context.performance.fps} FPS · ${adaptive.level.toUpperCase()} · ${this.context.graphicsQuality.effectiveMode} · ${assets.loadedUrls}`;
   }
 
   private createBackdrop(texture?: Texture): void {
@@ -106,8 +107,17 @@ export class LobbyScene implements Scene {
     this.atmosphere = new Graphics()
       .circle(437, 210, 176)
       .fill({ color: COLORS.primaryBright, alpha: 0.07 })
+      .circle(437, 210, 150)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.12, width: 2 })
+      .circle(437, 210, 118)
+      .stroke({ color: 0xffffff, alpha: 0.04, width: 1 })
       .circle(90, 510, 215)
-      .fill({ color: COLORS.warning, alpha: 0.025 });
+      .fill({ color: COLORS.warning, alpha: 0.025 })
+      .circle(90, 510, 172)
+      .stroke({ color: COLORS.warning, alpha: 0.07, width: 2 })
+      .moveTo(285, 112)
+      .lineTo(520, 347)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.035, width: 1 });
     this.view.addChild(shade, this.atmosphere);
   }
 

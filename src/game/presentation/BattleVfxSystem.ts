@@ -16,11 +16,17 @@ export class BattleVfxSystem {
   private readonly active = new Set<ActiveVfx>();
   private readonly pools = new Map<BattleVfxKey, ObjectPool<ActiveVfx>>();
   private sequence = 0;
+  private intensity = 1;
 
   public constructor(
     private readonly sheet: Spritesheet | undefined,
-    private readonly quality: GraphicsQualityPreset,
+    private quality: GraphicsQualityPreset,
   ) {}
+
+  public setRuntimeProfile(quality: GraphicsQualityPreset, intensity: number): void {
+    this.quality = quality;
+    this.intensity = Math.max(0.35, Math.min(1.2, intensity));
+  }
 
   public spawn(
     key: BattleVfxKey,
@@ -29,6 +35,8 @@ export class BattleVfxSystem {
     scale = 1,
   ): void {
     if (!this.sheet) return;
+    const activeLimit = Math.max(6, Math.round(18 * this.quality.particleMultiplier * this.intensity));
+    if (this.active.size >= activeLimit && key === 'hit') return;
     this.sequence += 1;
     const particleStride = Math.max(1, Math.ceil(1 / Math.max(0.1, this.quality.particleMultiplier)));
     if (key === 'hit' && this.sequence % particleStride !== 0) return;
@@ -38,7 +46,7 @@ export class BattleVfxSystem {
     item.remaining = key === 'nova' || key === 'explosion' ? 0.48 : 0.3;
     item.sprite.position.set(position.x, position.y);
     item.sprite.rotation = rotation;
-    item.sprite.scale.set(scale * (0.8 + this.quality.effectDensity * 0.28));
+    item.sprite.scale.set(scale * (0.78 + this.quality.effectDensity * 0.3) * this.intensity);
     item.sprite.alpha = 1;
     item.sprite.visible = true;
     item.sprite.gotoAndPlay(0);
@@ -77,7 +85,7 @@ export class BattleVfxSystem {
     const pool = new ObjectPool<ActiveVfx>(() => {
       const sprite = new AnimatedSprite({ textures: safeTextures, loop: false, autoPlay: false });
       sprite.anchor.set(0.5);
-      sprite.animationSpeed = 0.3;
+      sprite.animationSpeed = key === 'nova' || key === 'explosion' ? 0.26 : 0.34;
       return { sprite, key, remaining: 0 };
     }, 8);
     this.pools.set(key, pool);

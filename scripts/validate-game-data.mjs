@@ -16,6 +16,18 @@ for (const [index, action] of actions.actions.entries()) {
   if (!/^#[0-9a-fA-F]{6}$/.test(action.effectColor)) {
     errors.push(`잘못된 액션 색상: actions[${index}].effectColor`);
   }
+  if (!['light', 'heavy', 'ultimate'].includes(action.impactTier)) {
+    errors.push(`액션 충격 등급 오류: actions[${index}].impactTier`);
+  }
+  if (typeof action.driveGain !== 'number' || action.driveGain < 0) {
+    errors.push(`액션 Drive 획득량 오류: actions[${index}].driveGain`);
+  }
+  if (typeof action.driveCost !== 'number' || action.driveCost < 0 || action.driveCost > 100) {
+    errors.push(`액션 Drive 비용 오류: actions[${index}].driveCost`);
+  }
+  if (typeof action.comboWindow !== 'number' || action.comboWindow <= 0 || action.comboWindow > 1.5) {
+    errors.push(`액션 콤보 윈도 오류: actions[${index}].comboWindow`);
+  }
 }
 for (const id of player.player.comboActionIds) {
   if (!actionIds.has(id)) errors.push(`플레이어 콤보 액션 누락: ${id}`);

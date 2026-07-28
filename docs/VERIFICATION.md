@@ -236,3 +236,14 @@ npm run dev
 - 자산 레지스트리에 v1.10.1 실루엣 원본·규격 JSON 포함
 - v1.10.0 + 패치 결과와 전체 v1.10.1 파일 해시 비교
 - 물리 단말 FPS·표면 온도는 자동 검증 통과 항목으로 간주하지 않음
+
+
+## v1.11.0 추가 검증
+
+- `npm run validate:upgrade:v111`: Rift Drive, D~SS 스타일, 정밀 회피, 적응형 렌더 예산과 UI 깊이 계약
+- `npm run validate:data`: 5개 행동의 impactTier·driveGain·driveCost·comboWindow 검증
+- TypeScript 프로젝트 검사: 변경된 앱 소스의 엄격 타입 검사
+- 순수 런타임 하네스: Drive 소비·스타일 등급·렌더 예산 축소·공격 후 캔슬·쿨다운 감소
+- 자산 보고: 신규 런타임 이미지 0개, 초기 입력 추정치 15MB 이하
+- 패치 검증: v1.10.1 + v1.11.0 패치 결과와 전체본 전체 파일 SHA-256 비교
+- 물리 단말 FPS·온도·배터리·GPU 메모리는 자동 통과 항목으로 간주하지 않는다.

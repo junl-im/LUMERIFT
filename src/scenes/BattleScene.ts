@@ -39,6 +39,8 @@ import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { ResultScene, type BattleOutcome } from './ResultScene';
 import type { AccessibilitySettings, CombatAccessibilityPalette } from '../core/accessibility/AccessibilityController';
+import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } from '../game/combat/CombatMomentumController';
+import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
 
 interface EnemyActor {
   readonly controller: MonsterController;
@@ -98,6 +100,9 @@ export class BattleScene implements Scene {
   }), 14);
   private readonly activeDamage = new Set<FloatingText>();
   private readonly activeEffects = new Set<CombatEffect>();
+  private readonly momentum = new CombatMomentumController();
+  private readonly renderBudget = new CombatRenderBudget();
+  private readonly pendingSkillBoosts: Partial<Record<'skill1' | 'skill2', SkillMomentumBoost>> = {};
 
   private context?: AppContext;
   private player?: PlayerCombatController;
@@ -123,6 +128,8 @@ export class BattleScene implements Scene {
   private bossCinematicRemaining = 0;
   private bossCinematicDuration = 0;
   private bossCinematicPhase = 1;
+  private perfectDodgeLock = 0;
+  private ambientPhase = 0;
 
   private readonly playerHpFill = new Graphics();
   private readonly playerHpText = new Text({
@@ -136,6 +143,15 @@ export class BattleScene implements Scene {
   private readonly comboText = new Text({
     text: '',
     style: new TextStyle({ fill: COLORS.warning, fontSize: 19, fontWeight: '700' }),
+  });
+  private readonly driveFill = new Graphics();
+  private readonly driveText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xbffaf1, fontSize: 10, fontWeight: '700', letterSpacing: 0.8 }),
+  });
+  private readonly styleText = new Text({
+    text: 'D',
+    style: new TextStyle({ fill: 0x788793, fontSize: 22, fontWeight: '700', letterSpacing: 1 }),
   });
   private readonly waveText = new Text({
     text: '',
@@ -329,6 +345,12 @@ export class BattleScene implements Scene {
     if (this.paused) return;
 
     this.elapsed += deltaSeconds;
+    this.perfectDodgeLock = Math.max(0, this.perfectDodgeLock - deltaSeconds);
+    this.momentum.update(deltaSeconds);
+    this.quality = context.graphicsQuality.current;
+    const pressure = context.adaptivePerformance.snapshot().estimatedPressure;
+    this.renderBudget.update(this.quality, pressure);
+    this.vfx?.setRuntimeProfile(this.quality, this.renderBudget.snapshot().intensity);
     this.updateWaveFlow(deltaSeconds);
 
     if (this.bossCinematicRemaining > 0) {
@@ -400,8 +422,31 @@ export class BattleScene implements Scene {
     ambient.addChild(ring);
     this.ambientLayer = ambient;
 
+    const tacticalGrid = new Graphics();
+    const gridAlpha = quality.mode === 'high' ? 0.055 : quality.mode === 'balanced' ? 0.035 : 0.02;
+    for (let y = BATTLE_TOP + 36; y <= BATTLE_BOTTOM; y += 74) {
+      tacticalGrid
+        .moveTo(28, y)
+        .lineTo(DESIGN_WIDTH - 28, y)
+        .stroke({ color: visual.secondaryColor, alpha: gridAlpha, width: 1 });
+    }
+    for (let x = 48; x <= DESIGN_WIDTH - 48; x += 88) {
+      tacticalGrid
+        .moveTo(x, BATTLE_TOP + 24)
+        .lineTo(x, BATTLE_BOTTOM - 10)
+        .stroke({ color: visual.accentColor, alpha: gridAlpha * 0.78, width: 1 });
+    }
+
+    const horizonGlow = new Graphics()
+      .ellipse(DESIGN_WIDTH / 2, 468, 332, 450)
+      .stroke({ color: visual.accentColor, alpha: 0.08 + quality.effectDensity * 0.05, width: 7 })
+      .ellipse(DESIGN_WIDTH / 2, 468, 296, 414)
+      .stroke({ color: visual.secondaryColor, alpha: 0.05 + quality.effectDensity * 0.04, width: 2 });
+
     this.world.addChild(
       arenaShade,
+      tacticalGrid,
+      horizonGlow,
       createArenaDecorations(
         Math.max(2, Math.floor(quality.worldDecorationCount * 0.45)),
         visual.decorationSeed,
@@ -478,10 +523,18 @@ export class BattleScene implements Scene {
     });
     controlHint.position.set(30, 797);
 
-    const comboChip = createRasterPanel(184, 186, 172, 40, 'resource_chip');
+    const comboChip = createRasterPanel(134, 181, 272, 58, 'resource_chip');
+    const driveTrack = new Graphics()
+      .roundRect(198, 220, 170, 7, 4)
+      .fill({ color: 0x020609, alpha: 0.9 })
+      .stroke({ color: 0x7fffe0, alpha: 0.24, width: 1 });
     this.comboText.anchor.set(0.5);
-    this.comboText.position.set(DESIGN_WIDTH / 2, 206);
-    this.comboText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 15, fontWeight: '700' });
+    this.comboText.position.set(DESIGN_WIDTH / 2 + 12, 198);
+    this.comboText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 14, fontWeight: '700', letterSpacing: 0.6 });
+    this.styleText.anchor.set(0.5);
+    this.styleText.position.set(164, 209);
+    this.driveText.anchor.set(1, 0.5);
+    this.driveText.position.set(394, 224);
 
     this.joystick = new VirtualJoystick({ radius: 66, deadZone: 0.2 });
     this.joystick.position.set(88, 865);
@@ -534,6 +587,10 @@ export class BattleScene implements Scene {
       this.pauseButton,
       this.bossPanel,
       comboChip,
+      driveTrack,
+      this.driveFill,
+      this.driveText,
+      this.styleText,
       controlDock,
       controlHint,
       this.comboText,
@@ -802,7 +859,15 @@ export class BattleScene implements Scene {
   }
 
   private requestSkill(slot: 'skill1' | 'skill2'): void {
-    if (!this.player?.requestSkill(slot)) return;
+    const player = this.player;
+    const action = this.playerConfig?.skills[slot];
+    if (!player || !action || !player.requestSkill(slot)) return;
+    const boost = this.momentum.prepareSkill(action);
+    this.pendingSkillBoosts[slot] = boost;
+    if (boost.empowered) {
+      this.announce(`${action.label}\nRIFT EMPOWERED`, 0.72);
+      this.camera?.pulseZoom(action.impactTier === 'ultimate' ? 1.045 : 1.025, 0.08);
+    }
     void this.context?.audio.play(ASSET_PATHS.skill, 'sfx').catch(() => undefined);
   }
 
@@ -917,6 +982,20 @@ export class BattleScene implements Scene {
         const hit = footprintContainsCircle(footprint, player.position, playerConfig.radius);
         if (!hit) continue;
 
+        if (player.isInvulnerable) {
+          if (this.perfectDodgeLock <= 0) {
+            this.perfectDodgeLock = 0.42;
+            this.momentum.registerPerfectDodge();
+            player.reduceCooldowns(0.85);
+            this.vfx?.spawn('dodge', player.position, Math.atan2(player.facing.y, player.facing.x), 1.18);
+            this.spawnEffect('circle', 76, 0x7fffe0, player.position, player.facing, Math.PI, 0.3);
+            this.announce('PERFECT DODGE\n쿨다운 가속', 0.65);
+            this.camera?.addHitStop(0.045);
+            this.camera?.pulseZoom(1.03, 0.07);
+          }
+          continue;
+        }
+
         const damage = calculateDamage({
           attack: attack.damage,
           skillMultiplier: 1,
@@ -924,6 +1003,8 @@ export class BattleScene implements Scene {
           critical: false,
         });
         if (!player.receiveDamage(damage)) continue;
+
+        this.momentum.resetChain();
 
         this.playerFlashRemaining = 0.18;
         this.vfx?.spawn('hit', player.position, 0, 0.72);
@@ -944,6 +1025,14 @@ export class BattleScene implements Scene {
       this.spawnActionEffect(event.action, event.origin, event.facing);
       void this.context?.audio.play(ASSET_PATHS.slash, 'sfx').catch(() => undefined);
       let hitCount = 0;
+      let criticalCount = 0;
+      const preparedBoost = event.action.kind === 'skill1' || event.action.kind === 'skill2'
+        ? this.pendingSkillBoosts[event.action.kind]
+        : undefined;
+      const momentumMultiplier = preparedBoost?.multiplier ?? this.momentum.passiveDamageMultiplier;
+      if (event.action.kind === 'skill1' || event.action.kind === 'skill2') {
+        delete this.pendingSkillBoosts[event.action.kind];
+      }
 
       for (const enemy of this.enemies) {
         if (!enemy.controller.isAlive) continue;
@@ -960,7 +1049,7 @@ export class BattleScene implements Scene {
         const critical = Math.random() < (event.action.kind === 'basic' ? 0.18 : 0.26);
         const damage = calculateDamage({
           attack: playerConfig.attack,
-          skillMultiplier: event.action.damageMultiplier,
+          skillMultiplier: event.action.damageMultiplier * momentumMultiplier,
           defense: enemy.controller.config.defense,
           critical,
           criticalMultiplier: 1.65,
@@ -992,25 +1081,35 @@ export class BattleScene implements Scene {
           critical ? 'critical' : 'normal',
         );
         hitCount += 1;
+        if (critical) criticalCount += 1;
       }
 
       if (hitCount > 0) {
+        const before = this.momentum.snapshot().overdrive;
+        this.momentum.registerHit(event.action, hitCount, criticalCount);
+        const after = this.momentum.snapshot();
+        if (!before && after.overdrive) this.announce('RIFT DRIVE\nOVERDRIVE', 1.05);
         this.camera?.addShake(
           this.scaledShake(event.action.shake),
-          event.action.kind === 'skill2' ? 0.28 : 0.18,
+          event.action.impactTier === 'ultimate' ? 0.32 : event.action.impactTier === 'heavy' ? 0.22 : 0.16,
         );
-        this.camera?.addHitStop(event.action.hitStop);
-        this.camera?.pulseZoom(event.action.kind === 'skill2' ? 1.055 : 1.025, 0.08);
+        this.camera?.addHitStop(event.action.hitStop * (preparedBoost?.empowered ? 1.2 : 1));
+        this.camera?.pulseZoom(
+          event.action.impactTier === 'ultimate' ? 1.065 : event.action.impactTier === 'heavy' ? 1.038 : 1.02,
+          0.08,
+        );
       }
     }
   }
 
   private spawnActionEffect(action: CombatActionConfig, origin: Vec2, facing: Vec2): void {
     const angle = Math.atan2(facing.y, facing.x);
+    const momentum = this.momentum.snapshot();
+    const impactScale = action.impactTier === 'ultimate' ? 1.42 : action.impactTier === 'heavy' ? 1.08 : 0.84;
     this.vfx?.spawn(action.kind === 'skill2' ? 'nova' : 'slash', {
       x: origin.x + facing.x * action.range * 0.42,
       y: origin.y + facing.y * action.range * 0.42,
-    }, angle, action.kind === 'skill2' ? 1.35 : action.kind === 'skill1' ? 1.05 : 0.82);
+    }, angle, impactScale * (momentum.overdrive ? 1.12 : 1));
     this.spawnEffect(
       action.hitShape,
       action.range,
@@ -1018,8 +1117,11 @@ export class BattleScene implements Scene {
       origin,
       facing,
       action.halfAngleRadians,
-      action.kind === 'skill2' ? 0.42 : 0.24,
+      action.impactTier === 'ultimate' ? 0.46 : action.impactTier === 'heavy' ? 0.31 : 0.24,
     );
+    if (momentum.overdrive && action.kind !== 'basic') {
+      this.spawnEffect('circle', action.range * 0.52, 0xffd36a, origin, facing, Math.PI, 0.26);
+    }
   }
 
   private spawnMonsterAttackEffect(
@@ -1044,7 +1146,8 @@ export class BattleScene implements Scene {
     life: number,
   ): void {
     const quality = this.quality;
-    if (!quality) return;
+    if (!quality || !this.renderBudget.canSpawnEffect(this.activeEffects.size)) return;
+    const budget = this.renderBudget.snapshot();
     const effect = this.effectPool.acquire();
     effect.life = life;
     effect.maxLife = life;
@@ -1054,20 +1157,40 @@ export class BattleScene implements Scene {
     effect.view.position.set(origin.x, origin.y);
     effect.view.rotation = 0;
     if (shape === 'circle') {
+      if (budget.effectLayers >= 3) {
+        effect.view
+          .circle(0, 0, footprint.range * 1.08)
+          .stroke({ color, alpha: 0.12 * budget.intensity, width: 12 });
+      }
       effect.view
         .circle(0, 0, footprint.range)
-        .fill({ color, alpha: 0.1 * quality.effectDensity })
+        .fill({ color, alpha: 0.08 * quality.effectDensity * budget.intensity })
         .circle(0, 0, footprint.range)
         .stroke({ color, alpha: 0.88, width: 4 + quality.effectDensity * 3 });
+      if (budget.effectLayers >= 2) {
+        effect.view
+          .circle(0, 0, footprint.range * 0.72)
+          .stroke({ color: 0xffffff, alpha: 0.32 * budget.intensity, width: 2 });
+      }
     } else {
-      const polygon = buildArcPolygon(footprint, 24);
-      const first = polygon[0];
-      if (first) {
+      const polygon = buildArcPolygon(footprint, budget.arcSegments);
+      const drawPath = (): boolean => {
+        const first = polygon[0];
+        if (!first) return false;
         effect.view.moveTo(first.x, first.y);
         for (const point of polygon.slice(1)) effect.view.lineTo(point.x, point.y);
+        return true;
+      };
+      if (budget.effectLayers >= 3 && drawPath()) {
+        effect.view.stroke({ color, alpha: 0.14 * budget.intensity, width: 14 });
+      }
+      if (drawPath()) {
         effect.view
-          .fill({ color, alpha: 0.13 * quality.effectDensity })
+          .fill({ color, alpha: 0.11 * quality.effectDensity * budget.intensity })
           .stroke({ color, alpha: 0.9, width: 4 + quality.effectDensity * 3 });
+      }
+      if (budget.effectLayers >= 2 && drawPath()) {
+        effect.view.stroke({ color: 0xffffff, alpha: 0.34 * budget.intensity, width: 1.5 });
       }
     }
 
@@ -1111,7 +1234,10 @@ export class BattleScene implements Scene {
 
     this.playerFlashRemaining = Math.max(0, this.playerFlashRemaining - deltaSeconds);
     if (this.ambientLayer && this.quality) {
+      this.ambientPhase += deltaSeconds * this.quality.backgroundAnimationRate;
       this.ambientLayer.rotation += deltaSeconds * 0.045 * this.quality.backgroundAnimationRate;
+      const pulse = 1 + Math.sin(this.ambientPhase * 1.35) * 0.012 * this.quality.effectDensity;
+      this.ambientLayer.scale.set(pulse);
     }
     this.playerPresentation?.update(player, this.elapsed, this.playerFlashRemaining);
 
@@ -1139,8 +1265,22 @@ export class BattleScene implements Scene {
     const alive = this.enemies.filter((enemy) => enemy.controller.isAlive).length;
     this.waveText.text = `WAVE ${Math.min(this.currentWaveIndex + 1, stage.waves.length)} / ${stage.waves.length}`;
     this.enemyCountText.text = this.waveSpawned ? `남은 적 ${alive}` : '균열 반응 감지';
-    this.maxCombo = Math.max(this.maxCombo, player.comboStep);
-    this.comboText.text = player.comboStep > 0 ? `${player.comboStep} COMBO` : '';
+    const momentum = this.momentum.snapshot();
+    const driveRatio = momentum.drive / momentum.maxDrive;
+    this.maxCombo = Math.max(this.maxCombo, momentum.chain);
+    this.comboText.text = momentum.chain > 0
+      ? `${momentum.chain} CHAIN  ·  x${momentum.styleMultiplier.toFixed(2)}`
+      : momentum.overdrive
+        ? 'OVERDRIVE'
+        : 'RIFT SYNC';
+    this.styleText.text = momentum.styleRank;
+    this.styleText.style.fill = styleRankColor(momentum.styleRank);
+    this.driveFill.clear()
+      .roundRect(200, 221, Math.max(2, 166 * driveRatio), 5, 3)
+      .fill({ color: momentum.overdrive ? 0xffd36a : 0x66e3d5, alpha: 0.98 });
+    this.driveText.text = momentum.overdrive
+      ? `DRIVE ${momentum.overdriveRemaining.toFixed(1)}s`
+      : `${Math.round(momentum.drive)} / ${momentum.maxDrive}`;
 
     this.updateBossHud();
 
@@ -1149,6 +1289,14 @@ export class BattleScene implements Scene {
     this.updateCooldownButton(this.skill1Button, '크래시', player.getSkillCooldown('skill1'), player.getSkillCooldownTotal('skill1'));
     this.updateCooldownButton(this.skill2Button, '노바', player.getSkillCooldown('skill2'), player.getSkillCooldownTotal('skill2'));
     this.updateCooldownButton(this.dodgeButton, '회피', player.dodgeCooldown, player.dodgeCooldownTotal);
+    const skill1Cost = this.playerConfig?.skills.skill1.driveCost ?? 0;
+    const skill2Cost = this.playerConfig?.skills.skill2.driveCost ?? 0;
+    this.skill1Button?.setCharge(momentum.drive, skill1Cost, momentum.drive >= skill1Cost);
+    this.skill2Button?.setCharge(momentum.drive, skill2Cost, momentum.drive >= skill2Cost);
+    this.skill1Button?.update(deltaSeconds);
+    this.skill2Button?.update(deltaSeconds);
+    this.dodgeButton?.update(deltaSeconds);
+    this.attackButton?.update(deltaSeconds);
 
     this.announcementRemaining = Math.max(0, this.announcementRemaining - deltaSeconds);
     this.announcementText.visible = this.announcementRemaining > 0;
@@ -1305,6 +1453,7 @@ export class BattleScene implements Scene {
     if (enemy.controller.isAlive || enemy.countedDead) return;
     enemy.countedDead = true;
     this.defeatedCount += 1;
+    this.momentum.registerDefeat();
   }
 
   private scaledShake(value: number): number {
@@ -1319,6 +1468,7 @@ export class BattleScene implements Scene {
     emphasized: boolean,
     tone: 'normal' | 'critical' | 'burn' | 'player',
   ): void {
+    if (!this.renderBudget.canSpawnFloatingText(this.activeDamage.size, emphasized)) return;
     const floating = this.damagePool.acquire();
     floating.maxLife = emphasized ? 0.88 : 0.7;
     floating.life = floating.maxLife;

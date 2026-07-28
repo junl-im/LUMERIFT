@@ -7,6 +7,7 @@ import stageData from '../../data/stages.json';
 import type {
   CombatActionConfig,
   CombatActionKind,
+  CombatImpactTier,
   HitShape,
   MonsterDefinition,
   MonsterPatternConfig,
@@ -24,6 +25,7 @@ import type { QuestConditionType, QuestDefinition, QuestType } from '../quests/q
 type UnknownRecord = Record<string, unknown>;
 
 const ACTION_KINDS = new Set<CombatActionKind>(['basic', 'skill1', 'skill2']);
+const IMPACT_TIERS = new Set<CombatImpactTier>(['light', 'heavy', 'ultimate']);
 const HIT_SHAPES = new Set<HitShape>(['arc', 'circle']);
 const STATUS_IDS = new Set<StatusEffectId>(['burn', 'slow']);
 const MONSTER_RANKS = new Set<MonsterRank>(['normal', 'elite', 'boss']);
@@ -149,6 +151,10 @@ export class GameDataRegistry {
         shake: asNonNegative(record.shake, `${path}.shake`),
         lungeDistance: asNonNegative(record.lungeDistance, `${path}.lungeDistance`),
         effectColor: asColor(record.effectColor, `${path}.effectColor`),
+        impactTier: asEnum(record.impactTier, IMPACT_TIERS, `${path}.impactTier`),
+        driveGain: asNonNegative(record.driveGain, `${path}.driveGain`),
+        driveCost: asNonNegative(record.driveCost, `${path}.driveCost`),
+        comboWindow: asPositive(record.comboWindow, `${path}.comboWindow`),
         ...(statusEffect ? { statusEffect } : {}),
       }));
     });

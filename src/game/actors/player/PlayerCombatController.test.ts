@@ -39,4 +39,24 @@ describe('PlayerCombatController', () => {
     expect(player.requestSkill('skill1')).toBe(true);
     expect(player.requestSkill('skill1')).toBe(false);
   });
+
+  it('공격 적중 시점 이후 스킬과 회피 캔슬을 허용한다', () => {
+    const player = new PlayerCombatController(config, { x: 0, y: 0 });
+    expect(player.requestAttack()).toBe(true);
+    player.update(0.13, { x: 0, y: 0 });
+    expect(player.requestSkill('skill1')).toBe(true);
+
+    player.update(1, { x: 0, y: 0 });
+    expect(player.requestAttack()).toBe(true);
+    player.update(0.13, { x: 0, y: 0 });
+    expect(player.requestDodge({ x: 1, y: 0 })).toBe(true);
+  });
+
+  it('정밀 회피 보상으로 스킬 쿨다운을 줄인다', () => {
+    const player = new PlayerCombatController(config, { x: 0, y: 0 });
+    expect(player.requestSkill('skill1')).toBe(true);
+    const before = player.getSkillCooldown('skill1');
+    player.reduceCooldowns(0.8);
+    expect(player.getSkillCooldown('skill1')).toBeLessThan(before);
+  });
 });

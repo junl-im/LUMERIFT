@@ -12,14 +12,22 @@ export interface CombatActionButtonOptions {
 
 export class CombatActionButton extends Container {
   private readonly radius: number;
+  private readonly readinessGlow = new Graphics();
+  private readonly chargeRing = new Graphics();
   private readonly cooldownOverlay = new Graphics();
   private readonly labelText: Text;
   private readonly cooldownText: Text;
   private enabled = true;
+  private empowered = false;
+  private pulseElapsed = 0;
 
   public constructor(private readonly options: CombatActionButtonOptions) {
     super();
     this.radius = options.radius ?? 48;
+    this.readinessGlow
+      .circle(0, 0, this.radius + 7)
+      .stroke({ color: 0xf5d36c, alpha: 0, width: 4 });
+    this.addChild(this.readinessGlow);
     const textureName = options.tone === 'secondary' ? 'skill_button' : 'action_button';
     const frameTexture = getUiTexture(textureName) ?? getUiTexture('skill_frame');
 
@@ -68,7 +76,7 @@ export class CombatActionButton extends Container {
     this.cooldownText.anchor.set(0.5);
     this.cooldownText.visible = false;
 
-    this.addChild(this.cooldownOverlay, this.labelText, this.cooldownText);
+    this.addChild(this.chargeRing, this.cooldownOverlay, this.labelText, this.cooldownText);
     this.eventMode = 'static';
     this.cursor = 'pointer';
     this.hitArea = {
@@ -108,6 +116,27 @@ export class CombatActionButton extends Container {
       .arc(0, 0, this.radius - 9, start, end)
       .lineTo(0, 0)
       .fill({ color: COLORS.dark, alpha: 0.76 });
+  }
+
+  public setCharge(current: number, required: number, empowered: boolean): void {
+    const safeRequired = Math.max(0, required);
+    const ratio = safeRequired <= 0 ? 1 : Math.max(0, Math.min(1, current / safeRequired));
+    this.empowered = empowered;
+    this.chargeRing.clear();
+    if (safeRequired <= 0) return;
+    const start = -Math.PI / 2;
+    const end = start + Math.PI * 2 * ratio;
+    this.chargeRing
+      .arc(0, 0, this.radius + 2, start, end)
+      .stroke({ color: empowered ? 0xffdf7d : 0x66d9d1, alpha: empowered ? 0.96 : 0.62, width: empowered ? 4 : 3 });
+  }
+
+  public update(deltaSeconds: number): void {
+    this.pulseElapsed += Math.max(0, deltaSeconds);
+    const pulse = this.empowered ? 0.55 + Math.sin(this.pulseElapsed * 6.5) * 0.25 : 0;
+    this.readinessGlow.clear()
+      .circle(0, 0, this.radius + 7 + (this.empowered ? Math.sin(this.pulseElapsed * 4) * 1.5 : 0))
+      .stroke({ color: 0xf5d36c, alpha: Math.max(0, pulse), width: this.empowered ? 4 : 2 });
   }
 
   public setEnabled(enabled: boolean): void {

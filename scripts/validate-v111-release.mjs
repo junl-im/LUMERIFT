@@ -62,7 +62,10 @@ for (const [path, markers] of Object.entries(requirements)) {
 }
 
 const packageJson = JSON.parse(await readFile('package.json', 'utf8'));
-if (packageJson.version !== '1.10.1') errors.push(`package.json version must be 1.10.1, got ${packageJson.version}`);
+const versionParts = packageJson.version.split('.').map(Number);
+if (versionParts.some((part) => !Number.isInteger(part)) || versionParts[0] < 1 || (versionParts[0] === 1 && versionParts[1] < 10)) {
+  errors.push(`package.json version must preserve v1.10.1+ contracts, got ${packageJson.version}`);
+}
 if (!packageJson.scripts?.['validate:mobile:v111']) errors.push('package.json validate:mobile:v111 script missing');
 
 for (const path of [

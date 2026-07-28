@@ -15,7 +15,11 @@
       "hitStop": 0.035,
       "shake": 3,
       "lungeDistance": 16,
-      "effectColor": "#A6ADFF"
+      "effectColor": "#A6ADFF",
+      "impactTier": "light",
+      "driveGain": 9,
+      "driveCost": 0,
+      "comboWindow": 0.42
     },
     {
       "id": "basic_02",
@@ -37,7 +41,11 @@
         "chance": 0.35,
         "duration": 1.8,
         "potency": 0.25
-      }
+      },
+      "impactTier": "light",
+      "driveGain": 11,
+      "driveCost": 0,
+      "comboWindow": 0.45
     },
     {
       "id": "basic_03",
@@ -53,7 +61,11 @@
       "hitStop": 0.075,
       "shake": 7,
       "lungeDistance": 28,
-      "effectColor": "#FFCE6A"
+      "effectColor": "#FFCE6A",
+      "impactTier": "heavy",
+      "driveGain": 16,
+      "driveCost": 0,
+      "comboWindow": 0.58
     },
     {
       "id": "skill_01",
@@ -76,7 +88,11 @@
         "duration": 4,
         "potency": 14,
         "tickInterval": 0.5
-      }
+      },
+      "impactTier": "heavy",
+      "driveGain": 12,
+      "driveCost": 25,
+      "comboWindow": 0.5
     },
     {
       "id": "skill_02",
@@ -98,7 +114,11 @@
         "chance": 1,
         "duration": 3.2,
         "potency": 0.45
-      }
+      },
+      "impactTier": "ultimate",
+      "driveGain": 18,
+      "driveCost": 50,
+      "comboWindow": 0.6
     }
   ]
 }

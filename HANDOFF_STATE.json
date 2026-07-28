@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "updatedAt": "2026-07-28",
-  "currentPhase": "v1.10.1 실기기 계측 기반·접근성 HUD·시즌/복구 JSON·전용 플레이어 실루엣 블록아웃 완료, 실제 단말 로그 수집 대기",
+  "currentPhase": "v1.11.0 전투 시스템·스킬 연계·적응형 렌더 예산·공통 UI 깊이 강화 완료, 실제 단말 성능 계측과 전용 플레이어 애니메이션 제작 대기",
   "qualityStage": "production-candidate-unified-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -135,14 +135,25 @@
     "복구 JSON UID 불일치 차단과 가져오기 전 pre-json-import 자동 안전 백업",
     "LUMERIFT 전용 기하형 플레이어 8방향 실루엣 블록아웃 PNG·규격 JSON·접촉 시트 추가",
     "v1.10.1 전용 자동 검사와 성능·접근성·복구·실루엣 문서 추가",
-    "v1.10.0용 CI 핫픽스가 package.json을 덮어써 버전과 v1.10.1 검증 연결을 회귀시킨 문제 수정"
+    "v1.10.0용 CI 핫픽스가 package.json을 덮어써 버전과 v1.10.1 검증 연결을 회귀시킨 문제 수정",
+    "v1.11.0 Rift Drive 0~100 게이지와 D~SS 스타일 체인·7초 Overdrive 전투 상태 구현",
+    "공격 적중 후 스킬·회피 캔슬, 정밀 회피 보상, 스킬 공통 쿨다운 가속 구현",
+    "5개 전투 행동 데이터에 impactTier·driveGain·driveCost·comboWindow 계약 추가",
+    "그래픽 품질과 프레임 압력에 따라 이펙트 수·곡선 분할·레이어·데미지 텍스트를 줄이는 CombatRenderBudget 구현",
+    "BattleVfxSystem 런타임 품질 프로필과 경량·중량·궁극 impact tier 연출 연결",
+    "전투 HUD에 Drive·D~SS 등급·체인 배율·스킬 충전 링·강화 준비 피드백 추가",
+    "공통 UI 패널에 상단 하이라이트·하단 그림자·코너 악센트와 진행 바 눈금 적용",
+    "로비·설정 진단에 실제 FPS·적응형 품질·렌더 예산 엔진 상태 표시",
+    "신규 런타임 이미지 없이 프로그램 렌더링과 기존 Atlas 재사용으로 그래픽 체감 품질 강화",
+    "v1.11.0 전투·그래픽 회귀 검사와 릴리스 버전 누적 검사 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "v1.10.2 Android Chrome·Samsung Internet·iOS Safari Device QA JSON 표본 수집과 임계값 보정",
-    "실제 표면 온도·배터리 소모·제조사 GPU 메모리 진단 병행 기록",
-    "플레이어 8방향 걷기·공격·피격·회피 최종 원화와 런타임 Atlas 1차 제작",
-    "설정·복구 JSON 가져오기 Playwright 모바일 E2E와 접근성 보조 설명 검증"
+    "v1.11.1 실제 Android Chrome·Samsung Internet·iOS Safari에서 전투 장면 FPS·1% Low·긴 프레임·배터리 표본 수집",
+    "수집 로그 기반 CombatRenderBudget 임계값과 AUTO 30/60FPS 전환 기준 보정",
+    "전용 플레이어 8방향 걷기·공격·피격·회피 원화와 런타임 Atlas 1차 연결",
+    "스킬별 전용 VFX 실루엣·음향 레이어와 보스 패턴별 위험 장판 시각 언어 강화",
+    "Playwright 모바일 전투 입력·정밀 회피·복구 JSON E2E 보강"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -192,7 +203,7 @@
     "preservedAtlasCount": 54,
     "preservedFrameCount": 3642,
     "preservedAnimationCount": 602,
-    "fullProjectBytes": 109178460,
+    "fullProjectBytes": 109222413,
     "sourceArchiveIncludedInFull": true,
     "sourceArchiveFileCount": 277,
     "legacyArchiveIncludedInFull": true,
@@ -201,7 +212,7 @@
     "bossPhasePortraits": 3,
     "v170RuntimeArtBytes": 4672157,
     "v180PreviewFiles": 4,
-    "fullProjectFileCount": 629,
+    "fullProjectFileCount": 637,
     "v190RuntimeUiBytes": 189271,
     "v190RuntimeUiFiles": 5,
     "v190UiFrames": 60,
@@ -210,7 +221,10 @@
     "v110NewRuntimeImageFiles": 0,
     "v111PreviewFiles": 1,
     "v111OriginalSilhouetteFiles": 2,
-    "v111NewRuntimeImageFiles": 0
+    "v111NewRuntimeImageFiles": 0,
+    "v1110NewRuntimeImageFiles": 0,
+    "v1110ProgrammaticGraphicsUpgrade": true,
+    "v1110CombatActionCount": 5
   },
   "knownLimitations": [
     "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
@@ -220,11 +234,13 @@
     "v1.7 런타임 아트는 공개 라이선스 원본의 통일 보정 단계이며 독점 최종 원화는 아니다.",
     "v1.10.1 estimatedPressure는 프레임 추세 추정값이며 실제 온도 센서값이 아니다.",
     "Android·iOS 물리 기기 Device QA JSON·표면 온도·GPU 메모리 최종 계측은 아직 수행하지 않았다.",
-    "8방향 플레이어 실루엣은 블록아웃이며 최종 런타임 애니메이션 Atlas가 아니다."
+    "Android·iOS 물리 기기에서 v1.11.0 전투 렌더 예산의 FPS·표면 온도·배터리 소모·GPU 메모리 최종 계측은 아직 수행하지 않았다.",
+    "v1.11.0 그래픽 강화는 기존 Atlas와 프로그램 렌더링 기반이며 전용 플레이어 최종 애니메이션 원화 교체는 다음 단계다.",
+    "Rift Drive·스타일 등급은 현재 클라이언트 전투 피드백 시스템이며 서버 경쟁 점수로 사용하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.10.1.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.10.0_to_v1.10.1.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.10.1_to_v1.11.0.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 100933968,
@@ -257,6 +273,16 @@
     "recoveryArchiveSchema": "lumerift-recovery-archive-v1",
     "recoveryJsonUidGuard": true,
     "playerSilhouetteDirections": 8,
-    "playerSilhouetteRuntimeEnabled": false
+    "playerSilhouetteRuntimeEnabled": false,
+    "combatPresentationVersion": 1110,
+    "riftDriveMaximum": 100,
+    "styleRankCount": 6,
+    "overdriveDurationSeconds": 7,
+    "combatImpactTiers": 3,
+    "adaptiveCombatRenderBudget": true,
+    "hitConfirmSkillCancel": true,
+    "hitConfirmDodgeCancel": true,
+    "perfectDodgeReward": true,
+    "programmaticPanelDepth": true
   }
 }
