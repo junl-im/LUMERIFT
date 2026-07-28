@@ -32,6 +32,11 @@ let publicBytes = 0;
 let publicFiles = 0;
 await walk(publicRoot, async (path) => {
   const rel = relative(publicRoot, path).replaceAll('\\', '/');
+
+  // .gitkeep only preserves an empty repository directory. It is not a runtime
+  // asset and must not affect the manifest budget or cleanup policy.
+  if (rel === '.gitkeep' || rel.endsWith('/.gitkeep')) return;
+
   const info = await stat(path);
   publicBytes += info.size;
   publicFiles += 1;

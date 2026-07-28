@@ -32,6 +32,27 @@ async function pruneEmptyDirectories(start) {
   }
 }
 
+async function removeGitkeepFiles(directory) {
+  if (!(await exists(directory))) return;
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      await removeGitkeepFiles(path);
+      continue;
+    }
+    if (entry.name !== '.gitkeep') continue;
+
+    const info = await stat(path);
+    await rm(path, { force: true });
+    await pruneEmptyDirectories(path);
+    deleted.push({
+      path: relative(root, path).replaceAll('\\', '/'),
+      bytes: info.size,
+      kind: 'placeholder',
+    });
+  }
+}
+
 const planFiles = (await readdir(registryDir))
   .filter((name) => /^RELOCATION_PLAN_v\d+\.\d+\.\d+\.json$/.test(name))
   .sort();
@@ -64,9 +85,17 @@ for (const planFile of planFiles) {
     const info = await stat(from);
     await rm(from, { force: true });
     await pruneEmptyDirectories(from);
-    deleted.push({ path: relative(root, from).replaceAll('\\', '/'), bytes: info.size });
+    deleted.push({
+      path: relative(root, from).replaceAll('\\', '/'),
+      bytes: info.size,
+      kind: 'relocated',
+    });
   }
 }
+
+// .gitkeep is a repository placeholder, not a deployable game asset. Remove it
+// before validation/build so Vite cannot copy empty-directory markers to dist.
+await removeGitkeepFiles(publicRoot);
 
 if (errors.length) {
   console.error(errors.join('\n'));
@@ -74,8 +103,10 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   const bytes = deleted.reduce((sum, item) => sum + item.bytes, 0);
-  console.log(`PASS relocated asset cleanup: deleted ${deleted.length} stale file(s), ${(bytes / 1_000_000).toFixed(2)} MB`);
-  if (deleted.length) {
-    for (const item of deleted) console.log(`DELETE ${item.path}`);
-  }
+  const relocated = deleted.filter((item) => item.kind === 'relocated').length;
+  const placeholders = deleted.filter((item) => item.kind === 'placeholder').length;
+  console.log(
+    `PASS relocated asset cleanup: deleted ${relocated} stale file(s), ${placeholders} placeholder file(s), ${(bytes / 1_000_000).toFixed(2)} MB`,
+  );
+  for (const item of deleted) console.log(`DELETE ${item.path}`);
 }
