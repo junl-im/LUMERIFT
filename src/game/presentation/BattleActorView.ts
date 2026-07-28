@@ -7,16 +7,32 @@ import type { PlayerCombatController, PlayerState } from '../actors/player/Playe
 import type { Vec2 } from '../combat/geometry';
 import { buildArcPolygon, createAttackFootprint, telegraphProgress } from '../combat/attackFootprint';
 import { resolveBossPhasePresentation } from './BossPhaseDirector';
+import { resolveBossTelegraphStyle } from './BossTelegraphLanguage';
 import { directionFromVector } from './direction';
+import { resolvePlayerMotion } from './PlayerMotionDirector';
+
+export interface PlayerPresentationFrame {
+  readonly deltaSeconds: number;
+  readonly driveRatio: number;
+  readonly overdrive: boolean;
+  readonly reducedMotion: boolean;
+  readonly renderIntensity: number;
+}
 
 export class PlayerActorView {
   public readonly root = new Container();
   private readonly body = new Graphics();
   private readonly weapon = new Graphics();
+  private readonly riftAura = new Graphics();
+  private readonly motionAccent = new Graphics();
   private readonly sprite?: AnimatedSprite;
   private readonly equipmentLayer?: Sprite;
+  private readonly afterimages: Sprite[] = [];
   private readonly spriteBaseScale = 1.05;
   private animationKey = '';
+  private afterimageElapsed = 0;
+  private afterimageCursor = 0;
+  private previousPosition?: Vec2;
 
   public constructor(
     private readonly sheet?: Spritesheet,
@@ -42,12 +58,20 @@ export class PlayerActorView {
       .fill(COLORS.warning);
 
     const initial = sheet?.animations['player.idle.s'];
-    if (initial && initial.length > 0) {
+    const initialTexture = initial?.[0];
+    if (initial && initialTexture) {
       this.sprite = new AnimatedSprite({ textures: initial, animationSpeed: 0.12, loop: true, autoPlay: true });
       this.sprite.anchor.set(0.5, 0.76);
       this.sprite.scale.set(this.spriteBaseScale);
       this.body.visible = false;
       this.weapon.visible = false;
+      for (let index = 0; index < 4; index += 1) {
+        const afterimage = new Sprite(initialTexture);
+        afterimage.anchor.set(0.5, 0.76);
+        afterimage.visible = false;
+        afterimage.tint = index % 2 === 0 ? 0x67f5df : 0xa79cff;
+        this.afterimages.push(afterimage);
+      }
     }
 
     const equipmentTexture = weaponItemId ? equipmentSheet?.textures[`item.${weaponItemId}`] : undefined;
@@ -58,12 +82,37 @@ export class PlayerActorView {
       this.equipmentLayer.alpha = 0.88;
     }
 
-    this.root.addChild(shadow, this.body, this.weapon);
+    this.root.addChild(this.riftAura, ...this.afterimages, shadow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
+    this.root.addChild(this.motionAccent);
   }
 
-  public update(controller: PlayerCombatController, elapsed: number, flashRemaining: number): void {
+  public update(
+    controller: PlayerCombatController,
+    elapsed: number,
+    flashRemaining: number,
+    frame: PlayerPresentationFrame = {
+      deltaSeconds: 1 / 60,
+      driveRatio: 0,
+      overdrive: false,
+      reducedMotion: false,
+      renderIntensity: 1,
+    },
+  ): void {
+    const previous = this.previousPosition;
+    const worldShift = previous
+      ? { x: previous.x - controller.position.x, y: previous.y - controller.position.y }
+      : { x: 0, y: 0 };
+    this.previousPosition = { ...controller.position };
+    for (const afterimage of this.afterimages) {
+      if (!afterimage.visible) continue;
+      afterimage.position.x += worldShift.x;
+      afterimage.position.y += worldShift.y;
+      afterimage.alpha = Math.max(0, afterimage.alpha - frame.deltaSeconds * 3.7);
+      if (afterimage.alpha <= 0.01) afterimage.visible = false;
+    }
+
     this.root.position.set(controller.position.x, controller.position.y);
     const facingAngle = Math.atan2(controller.facing.y, controller.facing.x);
     this.weapon.rotation = facingAngle;
@@ -71,33 +120,107 @@ export class PlayerActorView {
       this.equipmentLayer.rotation = facingAngle + Math.PI / 4;
       this.equipmentLayer.position.set(controller.facing.x * 20, controller.facing.y * 15 - 4);
     }
+
+    const motion = resolvePlayerMotion({
+      state: controller.state,
+      progress: controller.stateProgress,
+      comboStep: controller.comboStep,
+      driveRatio: frame.driveRatio,
+      overdrive: frame.overdrive,
+      reducedMotion: frame.reducedMotion,
+      renderIntensity: frame.renderIntensity,
+    });
+    this.drawMotionLayers(controller, motion.auraAlpha, motion.auraRadius, motion.trailAlpha, motion.trailLength, frame.overdrive);
     this.body.alpha = flashRemaining > 0 ? 0.45 : 1;
+
     if (this.sprite) {
-      this.updateAnimation(controller);
+      this.updateAnimation(controller, motion.animationSpeed);
       const direction = directionFromVector(controller.facing);
       const mirrored = direction === 'w' || direction === 'sw' || direction === 'nw';
       this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, this.spriteBaseScale);
+      this.sprite.position.y = motion.offsetY;
+      this.sprite.rotation = motion.rotation;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
+      this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
     }
+
     this.root.alpha = controller.isInvulnerable && Math.floor(elapsed * 26) % 2 === 0 ? 0.45 : 1;
-    this.root.scale.set(scaleForPlayerState(controller.state));
+    const stateScale = scaleForPlayerState(controller.state);
+    this.root.scale.set(stateScale * motion.scaleX, stateScale * motion.scaleY);
   }
 
-  private updateAnimation(controller: PlayerCombatController): void {
+  private updateAnimation(controller: PlayerCombatController, animationSpeed: number): void {
     const sprite = this.sprite;
     const sheet = this.sheet;
     if (!sprite || !sheet) return;
     const state = playerAnimationState(controller);
     const direction = directionFromVector(controller.facing);
     const key = `player.${state}.${direction}`;
-    if (key === this.animationKey) return;
-    const textures = sheet.animations[key] as Texture[] | undefined;
-    if (!textures || textures.length === 0) return;
-    this.animationKey = key;
-    sprite.textures = textures;
-    sprite.loop = state === 'idle' || state === 'run';
-    sprite.animationSpeed = state === 'run' ? 0.2 : state.startsWith('attack') ? 0.28 : 0.17;
-    sprite.gotoAndPlay(0);
+    if (key !== this.animationKey) {
+      const textures = sheet.animations[key] as Texture[] | undefined;
+      if (!textures || textures.length === 0) return;
+      this.animationKey = key;
+      sprite.textures = textures;
+      sprite.loop = state === 'idle' || state === 'run';
+      sprite.gotoAndPlay(0);
+    }
+    sprite.animationSpeed = animationSpeed;
+  }
+
+  private updateAfterimages(
+    controller: PlayerCombatController,
+    deltaSeconds: number,
+    interval: number,
+    alpha: number,
+  ): void {
+    const sprite = this.sprite;
+    if (!sprite || alpha <= 0 || (controller.state !== 'dodging' && controller.state !== 'skill')) {
+      this.afterimageElapsed = 0;
+      return;
+    }
+    this.afterimageElapsed += Math.max(0, deltaSeconds);
+    if (this.afterimageElapsed < interval) return;
+    this.afterimageElapsed = 0;
+    const afterimage = this.afterimages[this.afterimageCursor % this.afterimages.length];
+    this.afterimageCursor += 1;
+    if (!afterimage) return;
+    afterimage.texture = sprite.texture;
+    afterimage.position.set(0, sprite.position.y);
+    afterimage.rotation = sprite.rotation;
+    afterimage.scale.set(sprite.scale.x, sprite.scale.y);
+    afterimage.alpha = alpha;
+    afterimage.visible = true;
+  }
+
+  private drawMotionLayers(
+    controller: PlayerCombatController,
+    auraAlpha: number,
+    auraRadius: number,
+    trailAlpha: number,
+    trailLength: number,
+    overdrive: boolean,
+  ): void {
+    const facing = controller.facing;
+    const color = overdrive ? 0xffd36a : controller.state === 'skill' ? 0xa88cff : 0x63e8d7;
+    this.riftAura.clear();
+    if (auraAlpha > 0.01) {
+      this.riftAura
+        .ellipse(0, 13, auraRadius * 1.05, auraRadius * 0.46)
+        .fill({ color, alpha: auraAlpha * 0.38 })
+        .ellipse(0, 13, auraRadius, auraRadius * 0.42)
+        .stroke({ color, alpha: auraAlpha, width: overdrive ? 4 : 2 });
+    }
+
+    this.motionAccent.clear();
+    if (trailAlpha <= 0.01) return;
+    const perpendicular = { x: -facing.y, y: facing.x };
+    for (let index = -1; index <= 1; index += 1) {
+      const offset = index * 8;
+      this.motionAccent
+        .moveTo(perpendicular.x * offset - facing.x * 8, perpendicular.y * offset - facing.y * 8)
+        .lineTo(perpendicular.x * offset - facing.x * trailLength, perpendicular.y * offset - facing.y * trailLength)
+        .stroke({ color: index === 0 ? 0xffffff : color, alpha: trailAlpha * (index === 0 ? 0.72 : 0.42), width: index === 0 ? 3 : 5 });
+    }
   }
 }
 
@@ -107,6 +230,10 @@ export class MonsterActorView {
   private readonly hpBar = new Graphics();
   private readonly telegraph = new Graphics();
   private readonly phaseAura = new Graphics();
+  private readonly telegraphText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xffffff, fontSize: 12, fontWeight: '800', align: 'center', dropShadow: { color: 0x120b20, alpha: 0.9, blur: 3, distance: 1 } }),
+  });
   private readonly sprite?: AnimatedSprite;
   private readonly spriteBaseScale: number;
   private previousX?: number;
@@ -152,9 +279,11 @@ export class MonsterActorView {
 
     this.statusText.anchor.set(0.5, 1);
     this.statusText.position.set(0, -combat.radius - 24);
+    this.telegraphText.anchor.set(0.5, 1);
+    this.telegraphText.visible = false;
     this.root.addChild(this.phaseAura, this.telegraph, shadow, this.body);
     if (this.sprite) this.root.addChild(this.sprite);
-    this.root.addChild(this.hpBar, this.statusText);
+    this.root.addChild(this.hpBar, this.statusText, this.telegraphText);
   }
 
   public update(
@@ -266,12 +395,14 @@ export class MonsterActorView {
     this.telegraph.clear();
     this.telegraph.position.set(0, 0);
     this.telegraph.rotation = 0;
+    this.telegraphText.visible = false;
     if (!value) return;
 
     const progress = telegraphProgress(value.progress);
     const phaseIntensity = this.definition.combat.rank === 'boss'
       ? resolveBossPhasePresentation(controller.phase).telegraphIntensity
       : 1;
+    const style = resolveBossTelegraphStyle(value.pattern, progress, controller.phase, this.definition.combat.rank);
     const alpha = Math.min(1, (0.2 + progress * 0.56) * phaseIntensity);
     const color = value.pattern.effectColor;
     const footprint = createAttackFootprint(
@@ -286,30 +417,64 @@ export class MonsterActorView {
       y: footprint.origin.y - this.root.y,
     };
 
+    this.telegraphText.text = style.label;
+    this.telegraphText.style.fill = style.urgency === 'critical' ? 0xffffff : color;
+    this.telegraphText.position.set(localOrigin.x, localOrigin.y - footprint.range - 12);
+    this.telegraphText.visible = this.definition.combat.rank !== 'normal' || progress >= 0.48;
+    this.telegraphText.alpha = 0.7 + progress * 0.3;
+
     if (footprint.shape === 'circle') {
+      const radius = footprint.range * style.pulseScale;
       this.telegraph
-        .circle(localOrigin.x, localOrigin.y, footprint.range)
-        .fill({ color, alpha: alpha * 0.2 })
-        .circle(localOrigin.x, localOrigin.y, footprint.range)
-        .stroke({ color, alpha, width: 3 + progress * 6 });
-      if (progress > 0.66) {
+        .circle(localOrigin.x, localOrigin.y, radius)
+        .fill({ color, alpha: style.fillAlpha * phaseIntensity })
+        .circle(localOrigin.x, localOrigin.y, radius)
+        .stroke({ color, alpha, width: style.lineWidth });
+      const tickCount = Math.max(8, Math.round(style.tickCount * Math.max(0.6, this.quality.effectDensity)));
+      for (let index = 0; index < tickCount; index += 1) {
+        const angle = (Math.PI * 2 * index) / tickCount;
+        const inner = radius * (0.84 + progress * 0.05);
+        const outer = radius * (0.96 + (index % 2) * 0.04);
         this.telegraph
-          .circle(localOrigin.x, localOrigin.y, footprint.range * (1.08 - progress * 0.08))
-          .stroke({ color: 0xffffff, alpha: (progress - 0.66) * 1.8, width: 2 });
+          .moveTo(localOrigin.x + Math.cos(angle) * inner, localOrigin.y + Math.sin(angle) * inner)
+          .lineTo(localOrigin.x + Math.cos(angle) * outer, localOrigin.y + Math.sin(angle) * outer)
+          .stroke({ color: index % 2 === 0 ? color : 0xffffff, alpha: 0.34 + progress * 0.52, width: index % 2 === 0 ? 3 : 1.5 });
+      }
+      if (style.whiteFlashAlpha > 0) {
+        this.telegraph.circle(localOrigin.x, localOrigin.y, radius * (0.92 + progress * 0.05))
+          .stroke({ color: 0xffffff, alpha: style.whiteFlashAlpha * 0.92, width: 3 });
       }
       return;
     }
 
-    const polygon = buildArcPolygon(footprint, 24);
+    const polygon = buildArcPolygon(footprint, Math.max(18, style.tickCount));
     const first = polygon[0];
     if (!first) return;
     this.telegraph.moveTo(first.x - this.root.x, first.y - this.root.y);
-    for (const point of polygon.slice(1)) {
-      this.telegraph.lineTo(point.x - this.root.x, point.y - this.root.y);
-    }
+    for (const point of polygon.slice(1)) this.telegraph.lineTo(point.x - this.root.x, point.y - this.root.y);
     this.telegraph
-      .fill({ color, alpha: alpha * 0.2 })
-      .stroke({ color, alpha, width: 3 + progress * 5 });
+      .fill({ color, alpha: style.fillAlpha * phaseIntensity })
+      .stroke({ color, alpha, width: style.lineWidth });
+
+    const directionAngle = Math.atan2(value.facing.y, value.facing.x);
+    const startAngle = directionAngle - value.pattern.halfAngleRadians;
+    const tickCount = Math.max(6, Math.floor(style.tickCount * 0.72));
+    for (let index = 0; index <= tickCount; index += 1) {
+      const t = index / tickCount;
+      const angle = startAngle + value.pattern.halfAngleRadians * 2 * t;
+      const inner = footprint.range * (0.7 + progress * 0.12);
+      const outer = footprint.range * (0.91 + (index % 2) * 0.06);
+      this.telegraph
+        .moveTo(localOrigin.x + Math.cos(angle) * inner, localOrigin.y + Math.sin(angle) * inner)
+        .lineTo(localOrigin.x + Math.cos(angle) * outer, localOrigin.y + Math.sin(angle) * outer)
+        .stroke({ color: index % 2 === 0 ? color : 0xffffff, alpha: 0.28 + progress * 0.56, width: index % 2 === 0 ? 3 : 1.5 });
+    }
+    if (style.whiteFlashAlpha > 0) {
+      this.telegraph
+        .moveTo(localOrigin.x, localOrigin.y)
+        .lineTo(localOrigin.x + value.facing.x * footprint.range, localOrigin.y + value.facing.y * footprint.range)
+        .stroke({ color: 0xffffff, alpha: style.whiteFlashAlpha, width: 4 });
+    }
   }
 
   private drawStatuses(statuses: readonly StatusEffectId[]): void {

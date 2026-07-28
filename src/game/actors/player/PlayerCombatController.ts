@@ -61,6 +61,19 @@ export class PlayerCombatController {
     return this.currentAction;
   }
 
+  public get stateProgress(): number {
+    if (this.stateValue === 'attacking' || this.stateValue === 'skill') {
+      return Math.max(0, Math.min(1, this.stateElapsed / Math.max(0.01, this.currentAction?.duration ?? 1)));
+    }
+    if (this.stateValue === 'dodging') {
+      return Math.max(0, Math.min(1, this.stateElapsed / Math.max(0.01, this.config.dodge.duration)));
+    }
+    if (this.stateValue === 'hit') {
+      return Math.max(0, Math.min(1, this.stateElapsed / Math.max(0.01, this.config.hitRecovery)));
+    }
+    return this.stateValue === 'dead' ? 1 : 0;
+  }
+
   public getSkillCooldown(slot: 'skill1' | 'skill2'): number {
     return this.skillCooldowns.get(slot) ?? 0;
   }

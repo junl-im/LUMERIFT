@@ -20,10 +20,11 @@ export class CombatRenderBudget {
     ambientMotes: 12,
   };
 
-  public update(quality: GraphicsQualityPreset, pressure: EstimatedPerformancePressure): void {
+  public update(quality: GraphicsQualityPreset, pressure: EstimatedPerformancePressure, calibrationBias = 1): void {
     const qualityScale = quality.mode === 'high' ? 1 : quality.mode === 'balanced' ? 0.74 : 0.48;
     const pressureScale = pressure === 'stable' ? 1 : pressure === 'elevated' ? 0.74 : 0.52;
-    const scale = qualityScale * pressureScale;
+    const safeBias = Math.max(0.72, Math.min(1.12, calibrationBias));
+    const scale = qualityScale * pressureScale * safeBias;
     this.value = {
       effectLimit: Math.max(7, Math.round(28 * scale)),
       floatingTextLimit: Math.max(8, Math.round(24 * Math.max(0.52, scale))),

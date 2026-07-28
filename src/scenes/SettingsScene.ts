@@ -143,7 +143,7 @@ export class SettingsScene implements Scene {
     const panel = createRasterPanel(24, 656, 492, 194, 'panel_gold');
     const title = createTitle('실기기 QA 로그', 42, 674);
     const helper = new Text({
-      text: 'Android·iOS 실제 기기에서 1분 이상 플레이한 뒤 저장하면 FPS, 1% Low, 긴 프레임 비율, Safe Area와 렌더 설정이 JSON으로 기록됩니다. 온도는 센서값이 아닌 프레임 추세 추정치입니다.',
+      text: 'Android·iOS 실제 기기에서 1분 이상 플레이한 뒤 저장하면 FPS, 1% Low, 긴 프레임 비율, Safe Area, 기기 보정 등급과 렌더 설정이 JSON으로 기록됩니다. 온도는 센서값이 아닌 프레임 추세 추정치입니다.',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 10, lineHeight: 16, wordWrap: true, wordWrapWidth: 442 }),
     });
     helper.position.set(42, 708);
@@ -185,6 +185,7 @@ function diagnosticsSummary(context: AppContext): string {
   return [
     `${performance.fps} FPS · 1% Low ${performance.onePercentLow} · 긴 프레임 ${(performance.longFrameRatio * 100).toFixed(1)}%`,
     `${performanceLevelLabel(adaptive.level)} · ${pressureLabel(adaptive.estimatedPressure)} · Canvas ${adaptive.resolution.toFixed(2)}x`,
+    `CALIBRATION · ${adaptive.calibration.label} · Render x${adaptive.calibration.thresholds.combatRenderBias.toFixed(2)}`,
     `선호 ${context.graphicsQuality.mode} / 적용 ${context.graphicsQuality.effectiveMode} · 목표 ${context.frameRate.targetFps} FPS`,
     'ENGINE · PixiJS 8 · pooled VFX · adaptive combat render budget',
   ].join('\n');

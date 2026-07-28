@@ -11,7 +11,7 @@ const requirements = [
   [footprint, 'footprintContainsCircle'],
   [footprint, 'buildArcPolygon'],
   [actor, 'telegraphProgress'],
-  [actor, 'buildArcPolygon(footprint, 24)'],
+  [actor, 'buildArcPolygon(footprint, Math.max(18, style.tickCount))'],
   [director, 'auraRings: 3'],
   [director, 'telegraphIntensity: 1.24'],
   [battle, 'createBossCinematicOverlay'],

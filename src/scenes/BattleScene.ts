@@ -157,6 +157,10 @@ export class BattleScene implements Scene {
     text: '',
     style: new TextStyle({ fill: COLORS.primaryBright, fontSize: 16, fontWeight: '700' }),
   });
+  private readonly dangerText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xffd3d8, fontSize: 13, fontWeight: '800', align: 'center', letterSpacing: 0.8, dropShadow: { color: 0x12060c, alpha: 0.9, blur: 4, distance: 1 } }),
+  });
   private readonly announcementText = new Text({
     text: '',
     style: new TextStyle({
@@ -348,8 +352,8 @@ export class BattleScene implements Scene {
     this.perfectDodgeLock = Math.max(0, this.perfectDodgeLock - deltaSeconds);
     this.momentum.update(deltaSeconds);
     this.quality = context.graphicsQuality.current;
-    const pressure = context.adaptivePerformance.snapshot().estimatedPressure;
-    this.renderBudget.update(this.quality, pressure);
+    const adaptive = context.adaptivePerformance.snapshot();
+    this.renderBudget.update(this.quality, adaptive.estimatedPressure, adaptive.calibration.thresholds.combatRenderBias);
     this.vfx?.setRuntimeProfile(this.quality, this.renderBudget.snapshot().intensity);
     this.updateWaveFlow(deltaSeconds);
 
@@ -570,6 +574,10 @@ export class BattleScene implements Scene {
     });
     this.attackButton.position.set(478, 838);
 
+    this.dangerText.anchor.set(0.5);
+    this.dangerText.position.set(DESIGN_WIDTH / 2, 258);
+    this.dangerText.visible = false;
+
     this.announcementText.anchor.set(0.5);
     this.announcementText.position.set(DESIGN_WIDTH / 2, 330);
     this.announcementText.visible = false;
@@ -594,6 +602,7 @@ export class BattleScene implements Scene {
       controlDock,
       controlHint,
       this.comboText,
+      this.dangerText,
       this.joystick,
       this.dodgeButton,
       this.skill2Button,
@@ -1072,7 +1081,13 @@ export class BattleScene implements Scene {
 
         this.countDeath(enemy);
         enemy.flashRemaining = 0.16;
-        this.vfx?.spawn('hit', enemy.controller.position, Math.atan2(event.facing.y, event.facing.x), critical ? 0.95 : 0.72);
+        this.vfx?.spawn(
+          'hit',
+          enemy.controller.position,
+          Math.atan2(event.facing.y, event.facing.x),
+          critical ? 0.95 : 0.72,
+          { color: event.action.effectColor, impactTier: event.action.impactTier },
+        );
         this.showDamage(
           enemy.controller.position.x,
           enemy.controller.position.y - enemy.controller.config.radius - 14,
@@ -1109,7 +1124,10 @@ export class BattleScene implements Scene {
     this.vfx?.spawn(action.kind === 'skill2' ? 'nova' : 'slash', {
       x: origin.x + facing.x * action.range * 0.42,
       y: origin.y + facing.y * action.range * 0.42,
-    }, angle, impactScale * (momentum.overdrive ? 1.12 : 1));
+    }, angle, impactScale * (momentum.overdrive ? 1.12 : 1), {
+      color: action.effectColor,
+      impactTier: action.impactTier,
+    });
     this.spawnEffect(
       action.hitShape,
       action.range,
@@ -1132,7 +1150,10 @@ export class BattleScene implements Scene {
     this.vfx?.spawn('explosion', pattern.targetMode === 'playerLocked' ? origin : {
       x: origin.x + facing.x * pattern.range * 0.35,
       y: origin.y + facing.y * pattern.range * 0.35,
-    }, Math.atan2(facing.y, facing.x), pattern.shape === 'circle' ? 1.05 : 0.72);
+    }, Math.atan2(facing.y, facing.x), pattern.shape === 'circle' ? 1.05 : 0.72, {
+      color: pattern.effectColor,
+      impactTier: pattern.shape === 'circle' ? 'ultimate' : 'heavy',
+    });
     this.spawnEffect(pattern.shape, pattern.range, pattern.effectColor, origin, facing, pattern.halfAngleRadians, 0.32);
   }
 
@@ -1239,7 +1260,15 @@ export class BattleScene implements Scene {
       const pulse = 1 + Math.sin(this.ambientPhase * 1.35) * 0.012 * this.quality.effectDensity;
       this.ambientLayer.scale.set(pulse);
     }
-    this.playerPresentation?.update(player, this.elapsed, this.playerFlashRemaining);
+    const momentum = this.momentum.snapshot();
+    const driveRatio = momentum.drive / momentum.maxDrive;
+    this.playerPresentation?.update(player, this.elapsed, this.playerFlashRemaining, {
+      deltaSeconds,
+      driveRatio,
+      overdrive: momentum.overdrive,
+      reducedMotion: this.accessibility?.reduceFlash ?? false,
+      renderIntensity: this.renderBudget.snapshot().intensity,
+    });
 
     for (const enemy of this.enemies) {
       enemy.flashRemaining = Math.max(0, enemy.flashRemaining - deltaSeconds);
@@ -1265,8 +1294,6 @@ export class BattleScene implements Scene {
     const alive = this.enemies.filter((enemy) => enemy.controller.isAlive).length;
     this.waveText.text = `WAVE ${Math.min(this.currentWaveIndex + 1, stage.waves.length)} / ${stage.waves.length}`;
     this.enemyCountText.text = this.waveSpawned ? `남은 적 ${alive}` : '균열 반응 감지';
-    const momentum = this.momentum.snapshot();
-    const driveRatio = momentum.drive / momentum.maxDrive;
     this.maxCombo = Math.max(this.maxCombo, momentum.chain);
     this.comboText.text = momentum.chain > 0
       ? `${momentum.chain} CHAIN  ·  x${momentum.styleMultiplier.toFixed(2)}`
@@ -1309,10 +1336,22 @@ export class BattleScene implements Scene {
     const boss = this.enemies.find((enemy) => enemy.definition.combat.rank === 'boss' && enemy.controller.isAlive);
     if (!boss) {
       this.bossPanel.visible = false;
+      this.dangerText.visible = false;
       return;
     }
 
     this.bossPanel.visible = true;
+    const telegraph = boss.controller.telegraph;
+    if (telegraph) {
+      const remaining = Math.max(0, telegraph.pattern.windup * (1 - telegraph.progress));
+      const critical = telegraph.progress >= 0.78;
+      this.dangerText.text = `${telegraph.pattern.shape === 'circle' ? '◎' : '◢'} ${critical ? '회피' : '위험 예고'} · ${telegraph.pattern.label} · ${remaining.toFixed(1)}s`;
+      this.dangerText.style.fill = critical ? 0xffffff : telegraph.pattern.effectColor;
+      this.dangerText.visible = true;
+      this.dangerText.alpha = critical ? 0.72 + Math.sin(this.elapsed * 18) * 0.28 : 0.82;
+    } else {
+      this.dangerText.visible = false;
+    }
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
     this.bossNameText.text = `◆ ${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
     this.updateBossPortrait(boss.controller.phase);

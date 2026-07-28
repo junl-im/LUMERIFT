@@ -1,0 +1,31 @@
+{
+  "schema": "lumerift-player-motion-blockout-v1",
+  "version": "1.11.1",
+  "cell": [
+    128,
+    128
+  ],
+  "directions": [
+    "s",
+    "se",
+    "e",
+    "ne",
+    "n",
+    "nw",
+    "w",
+    "sw"
+  ],
+  "actions": [
+    "walk",
+    "attack",
+    "hit",
+    "dodge"
+  ],
+  "framesPerAction": 4,
+  "sheet": [
+    2048,
+    1024
+  ],
+  "runtimeDefaultEnabled": false,
+  "note": "LUMERIFT-owned geometric production blockout. Existing licensed high-detail runtime atlas remains default until final paint and frame cleanup."
+}

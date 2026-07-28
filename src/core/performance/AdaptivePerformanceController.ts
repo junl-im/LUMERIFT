@@ -1,6 +1,7 @@
 import type { GraphicsQualityController, GraphicsQualityMode } from '../graphics/GraphicsQualityController';
 import type { FrameRateController } from './FrameRateController';
 import type { PerformanceMonitor, PerformanceSnapshot } from './PerformanceMonitor';
+import { resolveDeviceCalibration, type DeviceCalibrationProfile } from './DeviceCalibration';
 
 export type AdaptivePerformanceLevel = 'full' | 'balanced' | 'safe';
 export type EstimatedPerformancePressure = 'stable' | 'elevated' | 'sustained';
@@ -12,6 +13,7 @@ export interface AdaptivePerformanceSnapshot {
   readonly resolution: number;
   readonly changedAt: number;
   readonly performance: PerformanceSnapshot;
+  readonly calibration: DeviceCalibrationProfile;
 }
 
 interface AdaptivePreset {
@@ -42,11 +44,13 @@ export class AdaptivePerformanceController {
     private readonly graphicsQuality: GraphicsQualityController,
     private readonly baseResolution: number,
     private readonly applyResolution: (resolution: number) => void,
-    initialLevel: AdaptivePerformanceLevel = inferInitialLevel(),
+    initialLevel?: AdaptivePerformanceLevel,
+    private readonly calibration: DeviceCalibrationProfile = resolveDeviceCalibration(),
   ) {
-    this.level = initialLevel;
+    const resolvedInitialLevel = initialLevel ?? initialLevelForCalibration(calibration);
+    this.level = resolvedInitialLevel;
     this.resolution = baseResolution;
-    this.applyLevel(initialLevel, '초기 기기 프로필');
+    this.applyLevel(resolvedInitialLevel, `초기 기기 프로필 · ${calibration.label}`);
   }
 
   public update(deltaSeconds: number): void {
@@ -58,9 +62,16 @@ export class AdaptivePerformanceController {
     const snapshot = this.monitor.snapshot();
     if (snapshot.sampleCount < 90) return;
 
-    const severe = snapshot.fps < 38 || snapshot.onePercentLow < 28 || snapshot.longFrameRatio > 0.18;
-    const constrained = snapshot.fps < 50 || snapshot.onePercentLow < 42 || snapshot.longFrameRatio > 0.08;
-    const healthy = snapshot.fps >= 56 && snapshot.onePercentLow >= 50 && snapshot.longFrameRatio < 0.035;
+    const thresholds = this.calibration.thresholds;
+    const severe = snapshot.fps < thresholds.severeFps
+      || snapshot.onePercentLow < thresholds.severeOnePercentLow
+      || snapshot.longFrameRatio > thresholds.severeLongFrameRatio;
+    const constrained = snapshot.fps < thresholds.constrainedFps
+      || snapshot.onePercentLow < thresholds.constrainedOnePercentLow
+      || snapshot.longFrameRatio > thresholds.constrainedLongFrameRatio;
+    const healthy = snapshot.fps >= thresholds.healthyFps
+      && snapshot.onePercentLow >= thresholds.healthyOnePercentLow
+      && snapshot.longFrameRatio < thresholds.healthyLongFrameRatio;
 
     if (severe) {
       this.lowWindows += 2;
@@ -76,28 +87,28 @@ export class AdaptivePerformanceController {
       this.healthyWindows = Math.max(0, this.healthyWindows - 1);
     }
 
-    this.estimatedPressure = this.lowWindows >= 5
+    this.estimatedPressure = this.lowWindows >= Math.max(3, thresholds.degradeToSafeWindows - 1)
       ? 'sustained'
-      : this.lowWindows >= 2
+      : this.lowWindows >= Math.max(2, thresholds.degradeToBalancedWindows - 1)
         ? 'elevated'
         : 'stable';
 
-    if (this.lowWindows >= 6 && this.level !== 'safe') {
+    if (this.lowWindows >= thresholds.degradeToSafeWindows && this.level !== 'safe') {
       this.applyLevel('safe', '긴 프레임과 1% Low 저하가 연속 감지됨');
       this.lowWindows = 0;
       return;
     }
-    if (this.lowWindows >= 3 && this.level === 'full') {
+    if (this.lowWindows >= thresholds.degradeToBalancedWindows && this.level === 'full') {
       this.applyLevel('balanced', '프레임 안정화를 위해 균형 단계 적용');
       this.lowWindows = 0;
       return;
     }
-    if (this.healthyWindows >= 20 && this.level === 'safe') {
+    if (this.healthyWindows >= thresholds.recoverToBalancedWindows && this.level === 'safe') {
       this.applyLevel('balanced', '60초 이상 안정 상태가 유지됨');
       this.healthyWindows = 0;
       return;
     }
-    if (this.healthyWindows >= 30 && this.level === 'balanced') {
+    if (this.healthyWindows >= thresholds.recoverToFullWindows && this.level === 'balanced') {
       this.applyLevel('full', '90초 이상 안정 상태가 유지됨');
       this.healthyWindows = 0;
     }
@@ -111,6 +122,7 @@ export class AdaptivePerformanceController {
       resolution: this.resolution,
       changedAt: this.changedAt,
       performance: this.monitor.snapshot(),
+      calibration: this.calibration,
     };
   }
 
@@ -144,12 +156,8 @@ export function pressureLabel(pressure: EstimatedPerformancePressure): string {
   return labels[pressure];
 }
 
-function inferInitialLevel(): AdaptivePerformanceLevel {
-  if (typeof navigator === 'undefined') return 'balanced';
-  const extended = navigator as Navigator & { readonly deviceMemory?: number };
-  const memory = extended.deviceMemory ?? 8;
-  const cores = navigator.hardwareConcurrency || 8;
-  if (memory <= 3 || cores <= 3) return 'safe';
-  if (memory <= 4 || cores <= 4) return 'balanced';
-  return 'full';
+function initialLevelForCalibration(calibration: DeviceCalibrationProfile): AdaptivePerformanceLevel {
+  if (calibration.tier === 'entry') return 'safe';
+  if (calibration.tier === 'performance') return 'full';
+  return 'balanced';
 }

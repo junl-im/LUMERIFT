@@ -585,3 +585,20 @@
 ### Unchanged
 - v1.8 보스 판정·복구 지점·시즌 랭킹
 - Firebase App Check 비활성화
+
+
+## v1.11.1 - 2026-07-28
+
+### Added
+- entry·balanced·performance 기기 보정과 전투 렌더 편향
+- 플레이어 모션 디렉터, 회피 잔상, Drive 오라
+- 보스 장판 3단계 위험 언어와 패턴 시간 눈금
+- 단일 포인터 전투 입력 게이트
+- 8방향 4동작 제작용 모션 블록아웃
+
+### Changed
+- 적응형 품질 임계값과 렌더 예산을 기기 등급에 연결
+- Device QA JSON에 보정 등급과 선정 근거 추가
+
+### Unchanged
+- 신규 런타임 이미지, 저장 스키마, Firebase, AttackFootprint

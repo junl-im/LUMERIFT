@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.0",
-  "generatedAt": "2026-07-28T09:01:22.971Z",
+  "release": "1.11.1",
+  "generatedAt": "2026-07-28T09:20:08.765Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 85,
-      "bytes": 77480989,
+      "files": 87,
+      "bytes": 77580198,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -46,6 +46,22 @@
       "type": "json",
       "bytes": 661,
       "sha256": "e7f80edf91b23a888b29bacd47f6165cf3cae2741455d7eba1edb5e30d0c7f46"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.1/player/player_motion_8dir_blockout_master.png",
+      "relativePath": "lumerift_original/v1.11.1/player/player_motion_8dir_blockout_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 98682,
+      "sha256": "3c3290685573ffba0419b52510c3ea200fe01109fdcc6beafcc06397e5bb4448"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.1/player/player_motion_8dir_blockout_spec.json",
+      "relativePath": "lumerift_original/v1.11.1/player/player_motion_8dir_blockout_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 527,
+      "sha256": "0b2a526554ad2d744a59209af412e9c270a6ad80af535debc45797010d8449ae"
     },
     {
       "path": "art_source/open_art/v1.0.0/backgrounds/fantasy_rpg_background.png",
@@ -2504,7 +2520,7 @@
       "classification": "runtime-public",
       "type": "json",
       "bytes": 3300,
-      "sha256": "7719660d7e19c8c9830342a892cbf36fd26818371e8156de8b3dea567689b0b0"
+      "sha256": "3f5baec7fc212b8bfa7b7500817724b367f26c46a2d06ea59d4fd72b907620c8"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",

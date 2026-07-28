@@ -1,6 +1,7 @@
-import { Container, Graphics, Sprite, Text, TextStyle } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, TextStyle, type FederatedPointerEvent } from 'pixi.js';
 import { COLORS } from '../app/constants';
 import { ASSET_PATHS } from '../core/assets/AssetCatalog';
+import { TouchActionGate } from '../core/input/TouchActionGate';
 import { getUiTexture } from './UiSkin';
 
 export interface CombatActionButtonOptions {
@@ -20,6 +21,7 @@ export class CombatActionButton extends Container {
   private enabled = true;
   private empowered = false;
   private pulseElapsed = 0;
+  private readonly actionGate = new TouchActionGate();
 
   public constructor(private readonly options: CombatActionButtonOptions) {
     super();
@@ -89,11 +91,13 @@ export class CombatActionButton extends Container {
     this.on('pointerout', () => {
       if (this.enabled) this.alpha = 1;
     });
-    this.on('pointerdown', () => {
-      if (this.enabled) this.scale.set(0.94);
+    this.on('pointerdown', (event: FederatedPointerEvent) => {
+      if (!this.enabled || !this.actionGate.begin(event.pointerId)) return;
+      this.scale.set(0.94);
     });
-    this.on('pointerup', () => this.release(true));
-    this.on('pointerupoutside', () => this.release(false));
+    this.on('pointerup', (event: FederatedPointerEvent) => this.release(event, true));
+    this.on('pointerupoutside', (event: FederatedPointerEvent) => this.release(event, false));
+    this.on('pointercancel', (event: FederatedPointerEvent) => this.release(event, false));
   }
 
   public setLabel(label: string): void {
@@ -143,12 +147,18 @@ export class CombatActionButton extends Container {
     this.enabled = enabled;
     this.eventMode = enabled ? 'static' : 'none';
     this.alpha = enabled ? 1 : 0.4;
+    if (!enabled) {
+      this.actionGate.reset();
+      this.scale.set(1);
+    }
   }
 
-  private release(activate: boolean): void {
+  private release(event: FederatedPointerEvent, activate: boolean): void {
+    if (!this.actionGate.owns(event.pointerId)) return;
+    const accepted = activate ? this.actionGate.release(event.pointerId) : this.actionGate.cancel(event.pointerId);
     this.scale.set(1);
     this.alpha = this.enabled ? 1 : 0.4;
-    if (!activate || !this.enabled) return;
+    if (!activate || !accepted || !this.enabled) return;
     window.dispatchEvent(new CustomEvent('lumerift:ui-press', { detail: ASSET_PATHS.uiClick }));
     this.options.onPress();
   }

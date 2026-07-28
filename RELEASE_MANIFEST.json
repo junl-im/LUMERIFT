@@ -1,20 +1,20 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.0",
-  "baseVersion": "1.10.1",
+  "version": "1.11.1",
+  "baseVersion": "1.11.0",
   "releaseDate": "2026-07-28",
-  "fullArchive": "LUMERIFT_FULL_v1.11.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.10.1_to_v1.11.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.11.1.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.0_to_v1.11.1.zip",
   "qualityStage": "production-candidate-unified-art-pass",
   "features": [
-    "adds a data-driven Rift Drive gauge, D-to-SS style chain and seven-second Overdrive combat state",
-    "adds hit-confirm skill and dodge cancel windows, perfect-dodge rewards and shared cooldown acceleration",
-    "adds impact-tier and Drive fields to all five combat actions with runtime validation",
-    "adds an adaptive combat render budget for effect count, curve segments, effect layers and floating damage text",
-    "adds dynamic VFX quality profiles and layered hit feedback without adding runtime image downloads",
-    "adds skill charge and empowered-ready rings, Drive HUD, style rank and richer battlefield depth",
-    "adds common panel depth, highlights, shadows, progress markers and diagnostics polish across the UI",
+    "adds entry, balanced and performance device calibration tiers with independent FPS and long-frame thresholds",
+    "adds player motion direction for anticipation, compression, skill trails, dodge afterimages and Rift Drive aura using the existing eight-direction runtime atlas",
+    "adds a structured boss telegraph language with warning, danger and critical phases, pattern labels and timing ticks",
+    "adds layered programmatic skill accents and impact-tier VFX while respecting the adaptive combat render budget",
+    "adds single-pointer ownership and duplicate-tap suppression for mobile combat action buttons",
+    "adds an owned eight-direction walk, attack, hit and dodge blockout master for later final runtime art promotion",
+    "extends device QA JSON with calibration tier and combat render bias without claiming physical temperature measurements",
     "preserves Firebase App Check disabled state, Player Save v4, cloud contracts and shared AttackFootprint geometry"
   ],
   "assetPolicy": {
@@ -41,11 +41,11 @@
   },
   "verification": [
     "release-version validation runs before the main verification chain",
-    "v1.10, v1.10.1 and v1.11.0 cumulative validators protect mobile, accessibility, recovery, combat and graphics contracts",
-    "all combat actions validate impactTier, driveGain, driveCost and comboWindow fields",
-    "TypeScript sources pass the available compiler-based project check with local declaration stubs for unavailable registry packages",
-    "active public runtime images and initial-download estimates are unchanged by the programmatic graphics pass",
-    "full and patch archives are extracted and compared by SHA-256 against the v1.11.0 working tree",
+    "v1.10 through v1.11.1 cumulative validators protect mobile, accessibility, recovery, combat, graphics and input contracts",
+    "pure combat presentation and device-calibration modules pass executable logic harness checks",
+    "all TypeScript source files pass parser diagnostics in the available global compiler",
+    "active public runtime images and initial-download estimates remain unchanged because the new motion master is source-only",
+    "full and patch archives are extracted and compared by SHA-256 against the v1.11.1 working tree",
     "physical Android and iOS FPS, temperature, battery and GPU-memory measurements are not claimed as completed"
   ]
 }

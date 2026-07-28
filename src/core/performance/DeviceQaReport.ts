@@ -38,6 +38,10 @@ export interface DeviceQaReport {
     readonly graphicsEffective: string;
     readonly fpsMode: string;
     readonly targetFps: number;
+    readonly calibrationTier: string;
+    readonly calibrationLabel: string;
+    readonly calibrationReason: string;
+    readonly combatRenderBias: number;
   };
   readonly performance: AdaptivePerformanceSnapshot['performance'];
   readonly accessibility: AccessibilitySettings;
@@ -71,6 +75,10 @@ export function buildDeviceQaReport(input: DeviceQaReportInput): DeviceQaReport 
       graphicsEffective: input.graphicsEffective,
       fpsMode: input.fpsMode,
       targetFps: input.targetFps,
+      calibrationTier: input.adaptive.calibration.tier,
+      calibrationLabel: input.adaptive.calibration.label,
+      calibrationReason: input.adaptive.calibration.reason,
+      combatRenderBias: input.adaptive.calibration.thresholds.combatRenderBias,
     },
     performance: input.adaptive.performance,
     accessibility: input.accessibility,

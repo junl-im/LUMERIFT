@@ -13,8 +13,10 @@ const uiSkin = await readFile('src/ui/UiSkin.ts', 'utf8');
 const actionButton = await readFile('src/ui/CombatActionButton.ts', 'utf8');
 const errors = [];
 
-if (pkg.version !== '1.11.0') errors.push(`package version must be 1.11.0: ${pkg.version}`);
-if (assetManifest.release !== '1.11.0') errors.push(`asset manifest release must be 1.11.0: ${assetManifest.release}`);
+const versionParts = pkg.version.split('.').map(Number);
+if (versionParts.some((part) => !Number.isInteger(part)) || versionParts[0] < 1 || (versionParts[0] === 1 && versionParts[1] < 11)) errors.push(`package version must preserve v1.11.0+ contracts: ${pkg.version}`);
+const assetVersionParts = assetManifest.release.split('.').map(Number);
+if (assetVersionParts.some((part) => !Number.isInteger(part)) || assetVersionParts[0] < 1 || (assetVersionParts[0] === 1 && assetVersionParts[1] < 11)) errors.push(`asset manifest must preserve v1.11.0+ contracts: ${assetManifest.release}`);
 if (pkg.scripts?.['validate:upgrade:v111'] !== 'node scripts/validate-v1110-upgrade.mjs') {
   errors.push('v1.11.0 upgrade validator script is not connected');
 }
