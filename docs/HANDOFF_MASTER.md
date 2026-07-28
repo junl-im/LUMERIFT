@@ -1,8 +1,8 @@
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.10.0
+**현재 버전:** v1.10.1
 **갱신일:** 2026-07-28  
-**상태:** 실기기 대응 UI 방어·세부 화면 2차 개선 완료, 물리 단말 계측 대기
+**상태:** 실기기 계측 기반·접근성 HUD·시즌/복구 JSON·전용 실루엣 블록아웃 완료
 
 ## 1. 프로젝트 목적
 
@@ -244,3 +244,17 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - v1.8 AttackFootprint, Firebase Auth·Firestore·Cloud Save·랭킹 및 App Check 비활성화 계약은 유지한다.
 - `v1.10.0_mobile_qa_contact.webp`는 디자인 QA 시뮬레이션이며 실제 물리 기기 캡처가 아니다.
 - Android Chrome·iOS Safari 실제 FPS·발열·GPU 메모리 계측과 최종 실기기 승인은 v1.10.1 잔여 작업이다.
+
+
+## v1.10.1 계측 기반·접근성·복구 이식성 기준선
+
+- `PerformanceMonitor`는 평균 FPS, 1% Low, 33.34ms·50ms 초과 프레임 비율과 최근 추세를 계산한다.
+- `AdaptivePerformanceController`는 여러 측정 구간의 저하를 확인한 뒤 full·balanced·safe 순서로 그래픽 상한, AUTO FPS, canvas resolution을 조정한다.
+- `SettingsScene`은 색상 보조·고대비·큰 HUD·연출 완화와 실제 단말 QA JSON 저장을 제공한다.
+- 기기 QA의 `estimatedPressure`는 프레임 추세 기반 추정값이며 실제 온도 센서값으로 보고하지 않는다.
+- 전투 HUD는 플레이어 정상 `♥`, 위험 `▲`, 보스 `◆` 기호와 서로 다른 색을 동시에 사용한다.
+- `lumerift-recovery-archive-v1`은 현재 Player Save v4, 최대 5개 복구 지점, 28일 시즌 요약을 포함한다.
+- JSON 가져오기는 현재 로그인 UID와 일치해야 하며 적용 전에 `pre-json-import` 복구 지점을 만든다.
+- 전용 플레이어 8방향 블록아웃은 `art_source/lumerift_original/v1.10.1/player`에 보존하며 아직 런타임 Atlas로 사용하지 않는다.
+- App Check 비활성화와 Firebase Auth·Firestore·Cloud Save·랭킹·AttackFootprint 계약은 유지한다.
+- 실제 Android·iOS 기기 로그와 표면 온도 수집은 v1.10.2 보정 작업으로 남는다.

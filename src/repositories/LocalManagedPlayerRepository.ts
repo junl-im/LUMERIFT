@@ -45,6 +45,7 @@ export class LocalManagedPlayerRepository implements ManagedPlayerRepository {
     return profile;
   }
   public removeRecoveryPoint(uid: string, pointId: string): void { this.recovery.remove(uid, pointId); }
+  public importRecoveryPoints(uid: string, points: readonly SaveRecoveryPoint[]): number { return this.recovery.merge(uid, points); }
 
   private recoveryCount(): number {
     const uid = this.currentUid();

@@ -5,7 +5,8 @@ export type SaveRecoveryReason =
   | 'pre-cloud-download'
   | 'pre-cloud-upload'
   | 'pre-auto-merge'
-  | 'pre-logout';
+  | 'pre-logout'
+  | 'pre-json-import';
 
 export interface SaveRecoveryPoint {
   readonly id: string;
@@ -69,6 +70,26 @@ export class SaveRecoveryStore {
     return clonePoint(point);
   }
 
+
+  public merge(uid: string, incoming: readonly SaveRecoveryPoint[]): number {
+    const current = this.list(uid);
+    const byId = new Map<string, SaveRecoveryPoint>();
+    for (const point of [...incoming, ...current]) {
+      if (!isRecoveryPoint(point, uid)) continue;
+      const existing = byId.get(point.id);
+      if (!existing || point.createdAt > existing.createdAt) byId.set(point.id, clonePoint(point));
+    }
+    const next = [...byId.values()]
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .slice(0, Math.max(1, this.maxPoints));
+    if (next.length === 0) {
+      this.storage.removeItem(key(uid));
+      return 0;
+    }
+    this.storage.setItem(key(uid), JSON.stringify(next));
+    return next.length;
+  }
+
   public find(uid: string, pointId: string): SaveRecoveryPoint | null {
     return this.list(uid).find((point) => point.id === pointId) ?? null;
   }
@@ -90,6 +111,7 @@ export function recoveryReasonLabel(reason: SaveRecoveryReason): string {
     'pre-cloud-upload': '클라우드 업로드 전',
     'pre-auto-merge': '자동 병합 전',
     'pre-logout': '로그아웃 전',
+    'pre-json-import': 'JSON 가져오기 전',
   };
   return labels[reason];
 }
@@ -115,7 +137,8 @@ function isReason(value: unknown): value is SaveRecoveryReason {
     || value === 'pre-cloud-download'
     || value === 'pre-cloud-upload'
     || value === 'pre-auto-merge'
-    || value === 'pre-logout';
+    || value === 'pre-logout'
+    || value === 'pre-json-import';
 }
 
 function cloneProfile(profile: PlayerProfile): PlayerProfile {

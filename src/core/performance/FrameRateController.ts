@@ -8,6 +8,7 @@ export class FrameRateController {
   private mode: FpsMode = this.readInitialMode();
   private slowFrames = 0;
   private framesAtThirty = 0;
+  private adaptiveCap: 30 | 60 = 60;
 
   public constructor(
     private readonly ticker: Ticker,
@@ -23,7 +24,12 @@ export class FrameRateController {
   public get targetFps(): number {
     if (this.mode === '30') return 30;
     if (this.mode === '60') return 60;
-    return this.ticker.maxFPS <= 30 ? 30 : 60;
+    return Math.min(this.adaptiveCap, this.ticker.maxFPS <= 30 ? 30 : 60);
+  }
+
+  public setAdaptiveCap(cap: 30 | 60): void {
+    this.adaptiveCap = cap;
+    if (this.mode === 'auto') this.apply();
   }
 
   public setMode(mode: FpsMode): void {
@@ -41,6 +47,13 @@ export class FrameRateController {
 
   public update(): void {
     if (this.mode !== 'auto') return;
+
+    if (this.adaptiveCap <= 30) {
+      this.ticker.maxFPS = 30;
+      this.framesAtThirty = 0;
+      this.slowFrames = 0;
+      return;
+    }
 
     if (this.ticker.maxFPS <= 30) {
       this.framesAtThirty += 1;
@@ -67,7 +80,7 @@ export class FrameRateController {
 
   private apply(): void {
     this.ticker.minFPS = 20;
-    this.ticker.maxFPS = this.mode === '30' ? 30 : 60;
+    this.ticker.maxFPS = this.mode === '30' ? 30 : this.mode === '60' ? 60 : this.adaptiveCap;
   }
 
   private readInitialMode(): FpsMode {

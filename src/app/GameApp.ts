@@ -20,6 +20,8 @@ import { GraphicsQualityController } from '../core/graphics/GraphicsQualityContr
 import { MobileViewportController } from '../core/layout/MobileViewportController';
 import { OperationsContentService } from '../services/operations/OperationsContentService';
 import { RankingService } from '../services/ranking/RankingService';
+import { AccessibilityController } from '../core/accessibility/AccessibilityController';
+import { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
 
 export class GameApp {
   private readonly pixi = new Application();
@@ -60,6 +62,14 @@ export class GameApp {
     this.audio = audio;
     const frameRate = new FrameRateController(this.pixi.ticker, performance);
     const graphicsQuality = new GraphicsQualityController();
+    const accessibility = new AccessibilityController();
+    const adaptivePerformance = new AdaptivePerformanceController(
+      performance,
+      frameRate,
+      graphicsQuality,
+      resolution,
+      (nextResolution) => this.applyCanvasResolution(nextResolution),
+    );
     const gameData = new GameDataRegistry();
     const firebase = new FirebaseGateway();
     await firebase.initialize();
@@ -85,6 +95,9 @@ export class GameApp {
       performance,
       frameRate,
       graphicsQuality,
+      accessibility,
+      adaptivePerformance,
+      mobileViewport: this.mobileViewport,
       gameData,
       playerRepository,
       scenes,
@@ -107,6 +120,7 @@ export class GameApp {
       const deltaSeconds = Math.min(ticker.deltaMS / 1000, 0.05);
       performance.sample(ticker.deltaMS);
       frameRate.update();
+      adaptivePerformance.update(deltaSeconds);
       scenes.update(deltaSeconds);
     });
 
@@ -119,6 +133,16 @@ export class GameApp {
     window.addEventListener('pagehide', () => this.destroy(), { once: true });
   }
 
+
+
+  private applyCanvasResolution(resolution: number): void {
+    const renderer = this.pixi.renderer as unknown as { resolution: number; resize: (width: number, height: number) => void };
+    if (Math.abs(renderer.resolution - resolution) < 0.01) return;
+    renderer.resolution = resolution;
+    document.documentElement.dataset.canvasResolution = resolution.toFixed(2);
+    renderer.resize(this.host.clientWidth, this.host.clientHeight);
+    this.resize();
+  }
 
   private resolveCanvasResolution(): number {
     const devicePixelRatio = window.devicePixelRatio || 1;

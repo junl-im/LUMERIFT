@@ -342,3 +342,35 @@ html[data-reduced-motion="true"] .email-auth-overlay,
 html[data-reduced-motion="true"] .coupon-prompt-overlay {
   backdrop-filter: none;
 }
+
+/* v1.10.1 accessibility contracts for DOM-based authentication and recovery overlays. */
+:root[data-vision-mode='highContrast'] .email-auth-card,
+:root[data-vision-mode='highContrast'] .email-prompt-card,
+:root[data-vision-mode='highContrast'] .coupon-prompt-card {
+  border-width: 2px;
+  border-color: #ffffff;
+  background: #000000;
+  box-shadow: 0 0 0 3px #00e5ff, 0 24px 70px rgba(0, 0, 0, 0.8);
+}
+
+:root[data-large-hud='true'] .email-auth-card,
+:root[data-large-hud='true'] .email-prompt-card,
+:root[data-large-hud='true'] .coupon-prompt-card {
+  font-size: 1.08rem;
+}
+
+:root[data-large-hud='true'] .email-auth-card input,
+:root[data-large-hud='true'] .email-prompt-card input,
+:root[data-large-hud='true'] .coupon-prompt-card input,
+:root[data-large-hud='true'] .email-auth-card button,
+:root[data-large-hud='true'] .email-prompt-card button,
+:root[data-large-hud='true'] .coupon-prompt-card button {
+  min-height: 52px;
+  font-size: 17px;
+}
+
+:root[data-reduce-flash='true'] .email-auth-overlay,
+:root[data-reduce-flash='true'] .email-prompt-overlay,
+:root[data-reduce-flash='true'] .coupon-prompt-overlay {
+  scroll-behavior: auto;
+}

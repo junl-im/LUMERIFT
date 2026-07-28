@@ -173,6 +173,12 @@ export class ResilientPlayerRepository implements ManagedPlayerRepository {
     this.notify();
   }
 
+  public importRecoveryPoints(uid: string, points: readonly SaveRecoveryPoint[]): number {
+    const count = this.recovery.merge(uid, points);
+    this.notify();
+    return count;
+  }
+
   public async flushPending(uid?: string): Promise<void> {
     if (!navigator.onLine) {
       this.setState('offline');

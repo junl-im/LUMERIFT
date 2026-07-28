@@ -38,6 +38,7 @@ import { createDefaultProfile, type PlayerProfile } from '../repositories/Player
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { ResultScene, type BattleOutcome } from './ResultScene';
+import type { AccessibilitySettings, CombatAccessibilityPalette } from '../core/accessibility/AccessibilityController';
 
 interface EnemyActor {
   readonly controller: MonsterController;
@@ -104,6 +105,8 @@ export class BattleScene implements Scene {
   private profile?: PlayerProfile;
   private stage?: StageConfig;
   private quality?: GraphicsQualityPreset;
+  private accessibility?: AccessibilitySettings;
+  private combatPalette?: CombatAccessibilityPalette;
   private camera?: CombatCamera;
   private pointerTarget?: Vec2;
   private finishDelay = -1;
@@ -242,6 +245,8 @@ export class BattleScene implements Scene {
     this.view.removeChild(loadingLayer);
     loadingLayer.destroy({ children: true });
     this.quality = context.graphicsQuality.current;
+    this.accessibility = context.accessibility.current;
+    this.combatPalette = context.accessibility.palette;
 
     const session = context.auth.currentSession;
     if (!session) throw new Error('로그인 세션이 없습니다.');
@@ -413,14 +418,15 @@ export class BattleScene implements Scene {
 
     const playerPanel = createRasterPanel(14, 14, 268, 82, 'panel_glass');
     const playerName = new Text({
-      text: `Lv.${this.profile?.level ?? 1}  ${this.profile?.nickname ?? '계승자'}`,
-      style: new TextStyle({ fill: COLORS.text, fontSize: 14, fontWeight: '700' }),
+      text: `♥ Lv.${this.profile?.level ?? 1}  ${this.profile?.nickname ?? '계승자'}`,
+      style: new TextStyle({ fill: COLORS.text, fontSize: this.accessibility?.largeHud ? 16 : 14, fontWeight: '700' }),
     });
     playerName.position.set(30, 27);
     const hpTrack = new Graphics()
       .roundRect(30, 58, 214, 18, 9)
       .fill({ color: 0x03080c, alpha: 0.94 })
-      .stroke({ color: 0xffffff, alpha: 0.12, width: 1 });
+      .stroke({ color: this.combatPalette?.outline ?? 0xffffff, alpha: this.accessibility?.visionMode === 'highContrast' ? 0.78 : 0.18, width: this.accessibility?.visionMode === 'highContrast' ? 2 : 1 });
+    this.playerHpText.style = new TextStyle({ fill: COLORS.text, fontSize: this.accessibility?.largeHud ? 15 : 13, fontWeight: '700' });
     this.playerHpText.anchor.set(1, 0.5);
     this.playerHpText.position.set(265, 67);
 
@@ -452,7 +458,7 @@ export class BattleScene implements Scene {
       .roundRect(122, 145, 366, 13, 7)
       .fill({ color: 0x03070b, alpha: 0.95 });
     this.bossNameText.position.set(122, 119);
-    this.bossNameText.style = new TextStyle({ fill: COLORS.text, fontSize: 14, fontWeight: '700' });
+    this.bossNameText.style = new TextStyle({ fill: COLORS.text, fontSize: this.accessibility?.largeHud ? 16 : 14, fontWeight: '700' });
     const initialBossPortrait = this.bossPortraitTextures[1];
     this.bossPortraitSprite = initialBossPortrait ? new Sprite(initialBossPortrait) : undefined;
     if (this.bossPortraitSprite) {
@@ -468,7 +474,7 @@ export class BattleScene implements Scene {
     const controlDock = createRasterPanel(8, 786, 524, 166, 'panel_glass');
     const controlHint = new Text({
       text: 'MOVE        DODGE          SKILLS                ATTACK',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '700', letterSpacing: 0.8 }),
+      style: new TextStyle({ fill: COLORS.muted, fontSize: this.accessibility?.largeHud ? 9 : 8, fontWeight: '700', letterSpacing: 0.8 }),
     });
     controlHint.position.set(30, 797);
 
@@ -1121,10 +1127,14 @@ export class BattleScene implements Scene {
     }
 
     const hpRatio = player.hp / player.maxHp;
+    const playerHpColor = hpRatio > 0.3
+      ? (this.combatPalette?.playerHp ?? COLORS.accent)
+      : (this.combatPalette?.criticalHp ?? COLORS.danger);
     this.playerHpFill.clear()
       .roundRect(32, 60, 210 * hpRatio, 14, 7)
-      .fill(hpRatio > 0.3 ? COLORS.accent : COLORS.danger);
-    this.playerHpText.text = `HP ${player.hp} / ${player.maxHp}`;
+      .fill(playerHpColor)
+      .stroke({ color: this.combatPalette?.outline ?? 0xffffff, alpha: this.accessibility?.visionMode === 'highContrast' ? 0.9 : 0.2, width: this.accessibility?.visionMode === 'highContrast' ? 2 : 1 });
+    this.playerHpText.text = `${hpRatio <= 0.3 ? '▲' : '♥'} HP ${player.hp} / ${player.maxHp}`;
 
     const alive = this.enemies.filter((enemy) => enemy.controller.isAlive).length;
     this.waveText.text = `WAVE ${Math.min(this.currentWaveIndex + 1, stage.waves.length)} / ${stage.waves.length}`;
@@ -1156,11 +1166,12 @@ export class BattleScene implements Scene {
 
     this.bossPanel.visible = true;
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
-    this.bossNameText.text = `${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
+    this.bossNameText.text = `◆ ${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
     this.updateBossPortrait(boss.controller.phase);
     this.bossHpFill.clear()
       .roundRect(124, 147, 362 * hpRatio, 9, 5)
-      .fill(COLORS.danger);
+      .fill(this.combatPalette?.bossHp ?? COLORS.danger)
+      .stroke({ color: this.combatPalette?.outline ?? 0xffffff, alpha: this.accessibility?.visionMode === 'highContrast' ? 0.9 : 0.2, width: this.accessibility?.visionMode === 'highContrast' ? 2 : 1 });
   }
 
   private resolveStageBackgroundPath(): string {
@@ -1297,7 +1308,8 @@ export class BattleScene implements Scene {
   }
 
   private scaledShake(value: number): number {
-    return value * (this.quality?.cameraShakeScale ?? 1);
+    const accessibilityScale = this.accessibility?.reduceFlash ? 0.28 : 1;
+    return value * (this.quality?.cameraShakeScale ?? 1) * accessibilityScale;
   }
 
   private showDamage(
@@ -1313,7 +1325,7 @@ export class BattleScene implements Scene {
     const prefix = tone === 'burn' ? '🔥 ' : tone === 'critical' ? '✦ ' : '';
     floating.text.text = `${prefix}${amount}`;
     floating.text.style.fill = tone === 'player'
-      ? COLORS.danger
+      ? (this.combatPalette?.criticalHp ?? COLORS.danger)
       : tone === 'burn'
         ? COLORS.warning
         : COLORS.text;

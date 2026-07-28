@@ -93,7 +93,7 @@ export function createMenuTile(options: MenuTileOptions): Container {
 export function createSectionTitle(title: string, subtitle?: string): Container {
   const root = new Container();
   const mark = new Graphics()
-    .polygon([0, 7, 7, 0, 14, 7, 7, 14])
+    .poly([0, 7, 7, 0, 14, 7, 7, 14])
     .fill({ color: COLORS.primaryBright, alpha: 0.9 });
   const titleText = new Text({
     text: title,
@@ -112,6 +112,6 @@ export function createSectionTitle(title: string, subtitle?: string): Container 
 export function createGlowDivider(width: number): Container {
   const root = new Container();
   root.addChild(new Graphics().rect(0, 4, width, 1).fill({ color: COLORS.warning, alpha: 0.42 }));
-  root.addChild(new Graphics().polygon([width / 2 - 5, 5, width / 2, 0, width / 2 + 5, 5, width / 2, 10]).fill({ color: COLORS.primaryBright, alpha: 0.8 }));
+  root.addChild(new Graphics().poly([width / 2 - 5, 5, width / 2, 0, width / 2 + 5, 5, width / 2, 10]).fill({ color: COLORS.primaryBright, alpha: 0.8 }));
   return root;
 }

@@ -50,6 +50,7 @@ const ORDER: readonly GraphicsQualityMode[] = ['high', 'balanced', 'low'];
 
 export class GraphicsQualityController {
   private modeValue: GraphicsQualityMode;
+  private adaptiveLimit: GraphicsQualityMode | null = null;
 
   public constructor(storage: Pick<Storage, 'getItem' | 'setItem'> | undefined = getStorage()) {
     const stored = storage?.getItem(STORAGE_KEYS.graphicsQuality);
@@ -60,11 +61,22 @@ export class GraphicsQualityController {
   private readonly storage?: Pick<Storage, 'getItem' | 'setItem'>;
 
   public get current(): GraphicsQualityPreset {
-    return PRESETS[this.modeValue];
+    return PRESETS[this.effectiveMode];
   }
 
   public get mode(): GraphicsQualityMode {
     return this.modeValue;
+  }
+
+  public get effectiveMode(): GraphicsQualityMode {
+    if (!this.adaptiveLimit) return this.modeValue;
+    const preferredIndex = ORDER.indexOf(this.modeValue);
+    const limitIndex = ORDER.indexOf(this.adaptiveLimit);
+    return ORDER[Math.max(preferredIndex, limitIndex)] ?? 'balanced';
+  }
+
+  public setAdaptiveLimit(mode: GraphicsQualityMode | null): void {
+    this.adaptiveLimit = mode;
   }
 
   public cycle(): GraphicsQualityPreset {

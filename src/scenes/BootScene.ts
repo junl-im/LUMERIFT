@@ -114,7 +114,7 @@ export class BootScene implements Scene {
         .lineTo(Math.cos(angle) * 126, Math.sin(angle) * 126)
         .stroke({ color: index % 2 ? 0xcdaa5c : COLORS.primaryBright, alpha: 0.22, width: 1 });
     }
-    this.rune.polygon([0, -24, 18, 0, 0, 24, -18, 0]).fill({ color: COLORS.primaryBright, alpha: 0.5 });
+    this.rune.poly([0, -24, 18, 0, 0, 24, -18, 0]).fill({ color: COLORS.primaryBright, alpha: 0.5 });
   }
 
   private async loadCoreAssets(context: AppContext): Promise<void> {

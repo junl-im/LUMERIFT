@@ -33,5 +33,6 @@ export interface ManagedPlayerRepository extends PlayerRepository {
   createRecoveryPoint(uid: string, reason?: SaveRecoveryReason): Promise<SaveRecoveryPoint | null>;
   restoreRecoveryPoint(uid: string, pointId: string): Promise<PlayerProfile | null>;
   removeRecoveryPoint(uid: string, pointId: string): void;
+  importRecoveryPoints(uid: string, points: readonly SaveRecoveryPoint[]): number;
   subscribe(listener: CloudSyncListener): () => void;
 }

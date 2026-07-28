@@ -10,6 +10,9 @@ import type { GameDataRegistry } from '../game/data/GameDataRegistry';
 import type { GraphicsQualityController } from '../core/graphics/GraphicsQualityController';
 import type { OperationsContentService } from '../services/operations/OperationsContentService';
 import type { RankingService } from '../services/ranking/RankingService';
+import type { AccessibilityController } from '../core/accessibility/AccessibilityController';
+import type { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
+import type { MobileViewportController } from '../core/layout/MobileViewportController';
 
 export interface AppContext {
   readonly auth: AuthService;
@@ -17,6 +20,9 @@ export interface AppContext {
   readonly performance: PerformanceMonitor;
   readonly frameRate: FrameRateController;
   readonly graphicsQuality: GraphicsQualityController;
+  readonly accessibility: AccessibilityController;
+  readonly adaptivePerformance: AdaptivePerformanceController;
+  readonly mobileViewport: MobileViewportController;
   readonly gameData: GameDataRegistry;
   readonly playerRepository: ManagedPlayerRepository;
   readonly scenes: SceneManager;

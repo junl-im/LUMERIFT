@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.10.1 - 2026-07-28
+
+### Added
+
+- 실제 기기에서 FPS·1% Low·긴 프레임·visualViewport·렌더 상태를 저장하는 Device QA JSON
+- 프레임 추세 기반 full·balanced·safe 자동 품질 단계
+- 색상 보조·고대비·큰 HUD·연출 완화 설정 화면
+- 전투 HP·위험·보스 상태의 색상과 기호 중복 표현
+- 시즌 스냅샷·현재 저장·최대 5개 복구 지점 JSON 내보내기/가져오기
+- LUMERIFT 전용 플레이어 8방향 실루엣 블록아웃 원본
+
+### Changed
+
+- AUTO FPS와 그래픽 품질에 자동 상한을 적용하고 캔버스 resolution을 단계 조정
+- JSON 복원 전 자동 복구 지점 생성과 UID 일치 검증 추가
+- 타이틀·로비 설정 버튼을 통합 설정 화면으로 연결
+- App Check 비활성화와 기존 Firebase·AttackFootprint 계약 유지
+
+### Known limitations
+
+- 실제 Android·iOS 기기 QA JSON과 표면 온도는 아직 수집하지 않았다.
+- 8방향 실루엣은 제작 블록아웃이며 최종 런타임 애니메이션 Atlas가 아니다.
+
 ## v1.10.0 - 2026-07-28
 
 ### Added

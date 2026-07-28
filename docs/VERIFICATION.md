@@ -227,3 +227,12 @@ npm run dev
 - `validate:asset-cleanup`: 구형 v2 UI 아카이브 이동과 public 8MB 예산
 - `validate:sourceart`: 모바일 제작용 원본 120MB 상한
 - 패치 검증: v1.8.1 + v1.9.0 패치 + `asset:relocate` 결과를 전체본과 SHA-256 비교
+
+
+## v1.10.1 추가 검증
+
+- `npm run validate:mobile:v111`
+- 변경 TypeScript 전수 구문 변환 검사
+- 자산 레지스트리에 v1.10.1 실루엣 원본·규격 JSON 포함
+- v1.10.0 + 패치 결과와 전체 v1.10.1 파일 해시 비교
+- 물리 단말 FPS·표면 온도는 자동 검증 통과 항목으로 간주하지 않음

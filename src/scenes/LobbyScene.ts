@@ -16,6 +16,7 @@ import {
 import { countClaimableQuests } from '../game/quests/questLogic';
 import { operationNotificationCount } from '../game/operations/operationsLogic';
 import { StageSelectScene } from './StageSelectScene';
+import { SettingsScene } from './SettingsScene';
 import { QuestScene } from './QuestScene';
 import { InventoryScene } from './InventoryScene';
 import { AssetGalleryScene } from './AssetGalleryScene';
@@ -268,9 +269,8 @@ export class LobbyScene implements Scene {
       { icon: 'hero', label: '영웅', active: false, press: async () => context.scenes.change(() => new InventoryScene()) },
       { icon: 'summon', label: '도감', active: false, press: async () => context.scenes.change(() => new AssetGalleryScene()) },
       { icon: 'shop', label: '운영', active: false, press: async () => context.scenes.change(() => new OperationsScene()) },
-      { icon: 'menu', label: '메뉴', active: false, press: async () => {
-        context.frameRate.cycleMode();
-        context.graphicsQuality.cycle();
+      { icon: 'menu', label: '설정', active: false, press: async () => {
+        await context.scenes.change(() => new SettingsScene('lobby'));
       } },
     ];
     items.forEach((item, index) => {

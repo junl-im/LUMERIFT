@@ -8,6 +8,7 @@ import { UiButton } from '../ui/UiButton';
 import { openEmailAuthOverlay, type EmailAuthMode } from '../ui/EmailAuthOverlay';
 import { LobbyScene } from './LobbyScene';
 import { openEmailPromptOverlay } from '../ui/EmailPromptOverlay';
+import { SettingsScene } from './SettingsScene';
 
 export class LoginScene implements Scene {
   public readonly view = new Container();
@@ -48,9 +49,7 @@ export class LoginScene implements Scene {
     this.addHotspot(102, 724, 336, 56, async () => this.signInGuest(), 18);
     this.addHotspot(122, 806, 84, 66, async () => this.showInfo('공지사항은 로그인 후 거점 운영실에서 확인할 수 있습니다.'), 16);
     this.addHotspot(228, 806, 84, 66, async () => {
-      context.frameRate.cycleMode();
-      context.graphicsQuality.cycle();
-      this.showInfo(`설정 변경 · ${context.frameRate.currentMode.toUpperCase()} / ${context.graphicsQuality.current.label}`);
+      await context.scenes.change(() => new SettingsScene('login'));
     }, 16);
     this.addHotspot(334, 806, 84, 66, async () => this.showInfo('서비스 이용약관과 개인정보 처리방침은 정식 출시 전에 연결됩니다.'), 16);
 

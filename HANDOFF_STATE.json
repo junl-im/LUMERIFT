@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "updatedAt": "2026-07-28",
-  "currentPhase": "v1.10.0 실기기 대응 UI 방어·세부 화면 2차 개선 완료, 물리 단말 계측 대기",
+  "currentPhase": "v1.10.1 실기기 계측 기반·접근성 HUD·시즌/복구 JSON·전용 플레이어 실루엣 블록아웃 완료, 실제 단말 로그 수집 대기",
   "qualityStage": "production-candidate-unified-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -125,14 +125,23 @@
     "결과 화면 등급 메달 등장·전투 지표·보상·다음 행동 아이콘 2차 개선",
     "운영 화면 탭별 미확인 수·상태 요약·보상 행동 피드백 2차 개선",
     "브라우저 기본 쿠폰 prompt를 Safe Area·가상 키보드 대응 전용 DOM 오버레이로 교체",
-    "v1.10 모바일 UI 자동 검사와 물리 단말 캡처가 아님을 명시한 디자인 QA 접촉 시트 추가"
+    "v1.10 모바일 UI 자동 검사와 물리 단말 캡처가 아님을 명시한 디자인 QA 접촉 시트 추가",
+    "평균 FPS·1% Low·33ms/50ms 초과 프레임·최근 추세를 기록하는 PerformanceMonitor 진단 확장",
+    "full·balanced·safe 자동 품질 단계와 그래픽 상한·AUTO FPS·canvas resolution 연동",
+    "실제 기기에서 visualViewport·DPR·메모리·코어·렌더 상태를 저장하는 Device QA JSON 추가",
+    "표준·색상 보조·고대비 전투 팔레트와 ♥·▲·◆ 상태 기호 중복 표현",
+    "큰 HUD·카메라 연출 완화 설정과 타이틀·로비 통합 설정 화면 연결",
+    "현재 Player Save v4·최대 5개 복구 지점·28일 시즌 요약 JSON 내보내기/가져오기",
+    "복구 JSON UID 불일치 차단과 가져오기 전 pre-json-import 자동 안전 백업",
+    "LUMERIFT 전용 기하형 플레이어 8방향 실루엣 블록아웃 PNG·규격 JSON·접촉 시트 추가",
+    "v1.10.1 전용 자동 검사와 성능·접근성·복구·실루엣 문서 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "v1.10.1 Android Chrome·Samsung Internet·iOS Safari 물리 기기 FPS·발열·Safe Area 계측 로그 반영",
-    "전투 HUD 색약·저시력 모드와 상태 색상 중복 표현",
-    "LUMERIFT 전용 플레이어 8방향 실루엣 원화 1차 제작",
-    "시즌 종료 기록과 복구 지점 JSON 내보내기·가져오기"
+    "v1.10.2 Android Chrome·Samsung Internet·iOS Safari Device QA JSON 표본 수집과 임계값 보정",
+    "실제 표면 온도·배터리 소모·제조사 GPU 메모리 진단 병행 기록",
+    "플레이어 8방향 걷기·공격·피격·회피 최종 원화와 런타임 Atlas 1차 제작",
+    "설정·복구 JSON 가져오기 Playwright 모바일 E2E와 접근성 보조 설명 검증"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -164,7 +173,12 @@
     "모바일 핵심 행동은 최소 48×48 논리 픽셀 터치 판정 영역을 제공한다.",
     "visualViewport 높이와 키보드 오프셋을 중복 차감하지 않는다.",
     "개념 시안과 디자인 QA 합성 이미지를 실제 런타임 또는 물리 단말 캡처로 보고하지 않는다.",
-    "실제 단말에서 측정하지 않은 FPS·발열·GPU 메모리 결과를 완료로 기록하지 않는다."
+    "실제 단말에서 측정하지 않은 FPS·발열·GPU 메모리 결과를 완료로 기록하지 않는다.",
+    "프레임 추세 기반 estimatedPressure를 실제 온도 센서 또는 발열 측정값으로 보고하지 않는다.",
+    "자동 품질 하향은 여러 측정 구간의 저하를 확인한 뒤 적용하고 상향은 최소 60초 안정 구간을 요구한다.",
+    "전투 핵심 상태는 색상만으로 구분하지 않고 기호 또는 텍스트를 함께 제공한다.",
+    "복구 JSON은 현재 로그인 UID와 일치할 때만 적용하고 가져오기 전 로컬 상태를 보존한다.",
+    "플레이어 8방향 블록아웃을 최종 런타임 원화 또는 애니메이션 완료로 보고하지 않는다."
   ],
   "assetMetrics": {
     "activeAtlasCount": 7,
@@ -176,7 +190,7 @@
     "preservedAtlasCount": 54,
     "preservedFrameCount": 3642,
     "preservedAnimationCount": 602,
-    "fullProjectBytes": 109049655,
+    "fullProjectBytes": 109178460,
     "sourceArchiveIncludedInFull": true,
     "sourceArchiveFileCount": 277,
     "legacyArchiveIncludedInFull": true,
@@ -185,25 +199,30 @@
     "bossPhasePortraits": 3,
     "v170RuntimeArtBytes": 4672157,
     "v180PreviewFiles": 4,
-    "fullProjectFileCount": 611,
+    "fullProjectFileCount": 629,
     "v190RuntimeUiBytes": 189271,
     "v190RuntimeUiFiles": 5,
     "v190UiFrames": 60,
     "v190PreviewFiles": 6,
     "v110PreviewFiles": 1,
-    "v110NewRuntimeImageFiles": 0
+    "v110NewRuntimeImageFiles": 0,
+    "v111PreviewFiles": 1,
+    "v111OriginalSilhouetteFiles": 2,
+    "v111NewRuntimeImageFiles": 0
   },
   "knownLimitations": [
     "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
     "쿠폰·서버 우편·서버 시간 출석은 Spark 단계에서 로컬 데모이며 Firestore coupons 경로는 차단되어 있다.",
     "App Check는 사용자 결정에 따라 비활성화되어 있으며 현재 보호 경계는 Firebase Authentication과 Firestore Security Rules다.",
     "랭킹은 표시용이며 서버 검증 전에는 경쟁 보상 지급 근거로 사용하지 않는다.",
-    "v1.7 아트는 공개 라이선스 원본의 통일 보정 단계이며 LUMERIFT 전용 독점 최종 원화는 아니다.",
-    "Android Chrome·Samsung Internet·iOS Safari 물리 기기의 FPS·발열·GPU 메모리 최종 계측은 아직 수행하지 않았다."
+    "v1.7 런타임 아트는 공개 라이선스 원본의 통일 보정 단계이며 독점 최종 원화는 아니다.",
+    "v1.10.1 estimatedPressure는 프레임 추세 추정값이며 실제 온도 센서값이 아니다.",
+    "Android·iOS 물리 기기 Device QA JSON·표면 온도·GPU 메모리 최종 계측은 아직 수행하지 않았다.",
+    "8방향 플레이어 실루엣은 블록아웃이며 최종 런타임 애니메이션 Atlas가 아니다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.10.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.9.0_to_v1.10.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.10.1.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.10.0_to_v1.10.1.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 100933968,
@@ -223,11 +242,19 @@
     "uiIconFrames": 30,
     "uiPanelFrames": 30,
     "titleScreenRebuilt": true,
-    "mobileUiQaVersion": 110,
+    "mobileUiQaVersion": 111,
     "minimumTouchTarget": 48,
     "customCouponOverlay": true,
     "viewportOffsetSync": true,
     "lowEndCanvasResolutionCap": 1.5,
-    "detailScreenPolishCount": 4
+    "detailScreenPolishCount": 4,
+    "adaptivePerformanceLevels": 3,
+    "deviceQaSchema": "lumerift-device-qa-v1",
+    "accessibilityVisionModes": 3,
+    "accessibilityStateSymbols": 3,
+    "recoveryArchiveSchema": "lumerift-recovery-archive-v1",
+    "recoveryJsonUidGuard": true,
+    "playerSilhouetteDirections": 8,
+    "playerSilhouetteRuntimeEnabled": false
   }
 }

@@ -1,0 +1,31 @@
+{
+  "schema": "lumerift-player-silhouette-v1",
+  "version": "1.10.1",
+  "status": "blockout-not-runtime",
+  "directions": [
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "cell": {
+    "width": 256,
+    "height": 256
+  },
+  "pivot": {
+    "x": 128,
+    "y": 218
+  },
+  "lighting": "upper-left teal rim, warm gold metal edge",
+  "silhouetteRules": [
+    "sword hand remains screen-right relative to actor",
+    "shield hand remains opposite",
+    "cloak hem clears pivot",
+    "head and shoulder mass readable at 96px"
+  ],
+  "source": "Original geometric raster study generated for LUMERIFT; no third-party sprite tracing."
+}

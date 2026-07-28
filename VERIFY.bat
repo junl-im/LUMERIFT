@@ -1,7 +1,7 @@
-@echo off
+﻿@echo off
 setlocal
 cd /d "%~dp0"
-title LUMERIFT v1.10.0 Optional Verification
+title LUMERIFT v1.10.1 Optional Verification
 call npm run verify
 if errorlevel 1 (
   echo.

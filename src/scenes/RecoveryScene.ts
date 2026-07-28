@@ -8,6 +8,8 @@ import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
 import { createBadge } from '../ui/PremiumUi';
 import { UiButton } from '../ui/UiButton';
+import { downloadJson, openJsonFile } from '../core/files/JsonFileTransfer';
+import { createRecoveryArchive, parseRecoveryArchive, recoveryArchiveFilename } from '../services/cloud/RecoveryArchive';
 import { AccountScene } from './AccountScene';
 import { LoginScene } from './LoginScene';
 
@@ -35,15 +37,25 @@ export class RecoveryScene implements Scene {
     });
     helper.position.set(42, 205);
     const create = new UiButton({
-      label: '현재 상태 백업', width: 158, height: 48, fontSize: 12,
+      label: '현재 상태 백업', width: 158, height: 34, fontSize: 10,
       onPress: async () => {
         const point = await context.playerRepository.createRecoveryPoint(session.uid, 'manual');
         const result = point ? '현재 로컬 저장을 복구 지점으로 보관했습니다.' : '백업할 로컬 저장이 없습니다.';
         await context.scenes.change(() => new RecoveryScene(result));
       },
     });
-    create.position.set(340, 172);
-    this.view.addChild(summaryPanel, badge, helper, create);
+    create.position.set(340, 164);
+    const exportJson = new UiButton({
+      label: 'JSON 저장', width: 76, height: 32, tone: 'secondary', fontSize: 9,
+      onPress: async () => this.exportArchive(context, session.uid),
+    });
+    exportJson.position.set(340, 204);
+    const importJson = new UiButton({
+      label: 'JSON 복원', width: 76, height: 32, tone: 'secondary', fontSize: 9,
+      onPress: async () => this.importArchive(context, session.uid),
+    });
+    importJson.position.set(422, 204);
+    this.view.addChild(summaryPanel, badge, helper, create, exportJson, importJson);
 
     if (points.length === 0) {
       const emptyPanel = createRasterPanel(24, 262, 492, 430, 'panel');
@@ -78,6 +90,37 @@ export class RecoveryScene implements Scene {
 
   public exit(): void {}
   public update(): void {}
+
+
+  private async exportArchive(context: AppContext, uid: string): Promise<void> {
+    const inspection = await context.playerRepository.inspect(uid);
+    const profile = inspection.local ?? inspection.cloud;
+    if (!profile) {
+      await context.scenes.change(() => new RecoveryScene('내보낼 저장 데이터가 없습니다.'));
+      return;
+    }
+    const archive = createRecoveryArchive(profile, context.playerRepository.listRecoveryPoints(uid));
+    downloadJson(recoveryArchiveFilename(profile, archive.exportedAt), archive);
+    await context.scenes.change(() => new RecoveryScene(`시즌 ${archive.seasonSnapshot.seasonId} 기록과 복구 지점을 JSON으로 저장했습니다.`));
+  }
+
+  private async importArchive(context: AppContext, uid: string): Promise<void> {
+    try {
+      const raw = await openJsonFile();
+      if (!raw) return;
+      const parsed = parseRecoveryArchive(raw, uid);
+      await context.playerRepository.createRecoveryPoint(uid, 'pre-json-import');
+      const profile = { ...parsed.archive.profile, updatedAt: Date.now() };
+      await context.playerRepository.applyLocal(profile);
+      const count = context.playerRepository.importRecoveryPoints(uid, parsed.importedRecoveryPoints);
+      await context.scenes.change(() => new RecoveryScene(
+        `JSON 저장을 로컬에 복원했습니다. 복구 지점 ${count}개를 유지하며 Cloud Save 업로드는 계정 화면에서 선택하세요.`,
+      ));
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'JSON 복원 중 오류가 발생했습니다.';
+      await context.scenes.change(() => new RecoveryScene(message));
+    }
+  }
 
   private createRecoveryRow(context: AppContext, point: SaveRecoveryPoint, index: number): void {
     const y = 258 + index * 108;
