@@ -5,6 +5,7 @@ import type { Scene } from '../core/scenes/Scene';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createBadge, createDivider, createMetric, createSectionPanel } from '../ui/PremiumUi';
 import { getUiTexture } from '../ui/UiSkin';
+import { createIconSprite } from '../ui/UiTheme';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { BattleScene } from './BattleScene';
@@ -41,6 +42,8 @@ const DEFAULT_OUTCOME: BattleOutcome = {
 
 export class ResultScene implements Scene {
   public readonly view = new Container();
+  private medalGroup?: Container;
+  private elapsed = 0;
 
   public constructor(private readonly outcome: BattleOutcome = DEFAULT_OUTCOME) {}
 
@@ -59,20 +62,34 @@ export class ResultScene implements Scene {
   }
 
   public exit(): void {}
-  public update(): void {}
+
+  public update(deltaSeconds: number): void {
+    this.elapsed += deltaSeconds;
+    if (!this.medalGroup) return;
+    const intro = Math.min(1, this.elapsed / 0.42);
+    const eased = 1 - (1 - intro) ** 3;
+    const pulse = this.outcome.victory && intro >= 1 ? Math.sin(this.elapsed * 3.4) * 0.012 : 0;
+    this.medalGroup.alpha = intro;
+    this.medalGroup.scale.set(0.84 + eased * 0.16 + pulse);
+  }
 
   private createRank(): void {
     const rankPanel = createSectionPanel(48, 174, 444, 214, this.outcome.victory ? 'panel_gold' : 'panel_strong');
+    this.view.addChild(rankPanel);
+
+    const medalGroup = new Container();
+    medalGroup.position.set(DESIGN_WIDTH / 2, 274);
+    medalGroup.alpha = 0;
+    medalGroup.scale.set(0.84);
+    this.medalGroup = medalGroup;
+
     const texture = getUiTexture('medal');
     if (texture) {
       const medal = new Sprite(texture);
       medal.anchor.set(0.5);
       medal.width = 160;
       medal.height = 160;
-      medal.position.set(DESIGN_WIDTH / 2, 274);
-      this.view.addChild(rankPanel, medal);
-    } else {
-      this.view.addChild(rankPanel);
+      medalGroup.addChild(medal);
     }
 
     const grade = new Text({
@@ -85,25 +102,32 @@ export class ResultScene implements Scene {
       }),
     });
     grade.anchor.set(0.5);
-    grade.position.set(DESIGN_WIDTH / 2, 272);
+    medalGroup.addChild(grade);
+
     const badge = createBadge(
       this.outcome.firstClear ? 'FIRST CLEAR' : this.outcome.victory ? 'MISSION CLEAR' : 'RETRY',
       this.outcome.victory ? 'success' : 'danger',
     );
     badge.position.set(224, 350);
-    this.view.addChild(grade, badge);
+    this.view.addChild(medalGroup, badge);
   }
 
   private createMetrics(): void {
     const divider = createDivider(408);
     divider.position.set(66, 410);
+    const defeatIcon = createIconSprite('check', 22);
+    defeatIcon.position.set(74, 445);
+    const comboIcon = createIconSprite('upgrade', 22);
+    comboIcon.position.set(214, 445);
+    const timeIcon = createIconSprite('energy', 22);
+    timeIcon.position.set(372, 445);
     const defeat = createMetric('처치', this.outcome.defeated.toString(), 126);
     defeat.position.set(58, 434);
     const combo = createMetric('최대 콤보', this.outcome.maxCombo.toString(), 144);
     combo.position.set(198, 434);
     const time = createMetric('전투 시간', `${this.outcome.clearSeconds}초`, 144);
     time.position.set(356, 434);
-    this.view.addChild(divider, defeat, combo, time);
+    this.view.addChild(divider, defeat, combo, time, defeatIcon, comboIcon, timeIcon);
   }
 
   private createRewards(context: AppContext): void {
@@ -111,11 +135,17 @@ export class ResultScene implements Scene {
       ? this.outcome.itemDrops.map((itemId) => context.gameData.getItem(itemId).name).join(' · ')
       : '획득 장비 없음';
     const rewardPanel = createSectionPanel(58, 518, 424, 210, 'panel_strong');
+    const chest = createIconSprite('inventory', 28);
+    chest.position.set(80, 532);
     const rewardTitle = new Text({
       text: 'MISSION REWARD',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 14, fontWeight: '700', letterSpacing: 0.7 }),
     });
-    rewardTitle.position.set(82, 540);
+    rewardTitle.position.set(116, 540);
+    const expIcon = createIconSprite('energy', 24);
+    expIcon.position.set(82, 591);
+    const goldIcon = createIconSprite('gold', 24);
+    goldIcon.position.set(282, 591);
     const exp = createMetric('경험치', `+${this.outcome.exp.toLocaleString()}`, 174);
     exp.position.set(82, 574);
     const gold = createMetric('골드', `+${this.outcome.gold.toLocaleString()}`, 174);
@@ -136,12 +166,13 @@ export class ResultScene implements Scene {
       }),
     });
     equipment.position.set(82, 672);
-    this.view.addChild(rewardPanel, rewardTitle, exp, gold, equipmentLabel, equipment);
+    this.view.addChild(rewardPanel, chest, rewardTitle, exp, gold, expIcon, goldIcon, equipmentLabel, equipment);
   }
 
   private createActions(context: AppContext): void {
     const retry = new UiButton({
       label: '재도전',
+      icon: 'recovery',
       width: 148,
       height: 56,
       fontSize: 15,
@@ -151,6 +182,7 @@ export class ResultScene implements Scene {
 
     const next = new UiButton({
       label: this.outcome.nextStageId ? '다음 작전' : '작전도',
+      icon: this.outcome.nextStageId ? 'play' : 'stage',
       width: 176,
       height: 56,
       fontSize: 15,
@@ -165,6 +197,7 @@ export class ResultScene implements Scene {
 
     const stages = new UiButton({
       label: '스테이지 선택',
+      icon: 'stage',
       width: 148,
       height: 56,
       tone: 'secondary',
@@ -175,6 +208,7 @@ export class ResultScene implements Scene {
 
     const inventory = new UiButton({
       label: '장비 확인',
+      icon: 'equipment',
       width: 230,
       height: 58,
       tone: 'secondary',
@@ -185,6 +219,7 @@ export class ResultScene implements Scene {
 
     const lobby = new UiButton({
       label: '거점 복귀',
+      icon: 'home',
       width: 230,
       height: 58,
       tone: 'secondary',

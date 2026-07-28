@@ -219,3 +219,11 @@ npm run dev
 - `VirtualJoystick.ts`에 객체형 `.lineStyle({`가 없는지 검사
 - 십자 가이드 경로 뒤 `.stroke({ color: COLORS.primaryBright, alpha: 0.1, width: 2 })` 존재 검사
 - `npm run typecheck`와 `npm run build`로 GitHub Actions TS2345 재현 여부 확인
+
+## v1.9.0 추가 검증
+
+- `validate:ui`: 타이틀, 로그인, 로비, 공통 스킨, 전투 컨트롤, 기존 주요 화면 계약
+- `validate:atlas`: 활성 7 Atlas·457프레임·151애니메이션
+- `validate:asset-cleanup`: 구형 v2 UI 아카이브 이동과 public 8MB 예산
+- `validate:sourceart`: 모바일 제작용 원본 120MB 상한
+- 패치 검증: v1.8.1 + v1.9.0 패치 + `asset:relocate` 결과를 전체본과 SHA-256 비교

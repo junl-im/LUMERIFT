@@ -35,7 +35,8 @@ export class GameApp {
 
   public async start(): Promise<void> {
     this.mobileViewport.start();
-    const resolution = Math.min(window.devicePixelRatio || 1, 2);
+    const resolution = this.resolveCanvasResolution();
+    document.documentElement.dataset.canvasResolution = resolution.toFixed(2);
 
     await this.pixi.init({
       background: COLORS.background,
@@ -116,6 +117,17 @@ export class GameApp {
     await scenes.change(() => new BootScene());
 
     window.addEventListener('pagehide', () => this.destroy(), { once: true });
+  }
+
+
+  private resolveCanvasResolution(): number {
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const navigatorWithMemory = navigator as Navigator & { readonly deviceMemory?: number };
+    const memory = navigatorWithMemory.deviceMemory ?? 8;
+    const cores = navigator.hardwareConcurrency || 8;
+    const constrainedDevice = memory <= 4 || cores <= 4;
+    const maximum = constrainedDevice ? 1.5 : 2;
+    return Math.max(1, Math.min(devicePixelRatio, maximum));
   }
 
   private resize(): void {

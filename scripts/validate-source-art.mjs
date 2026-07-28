@@ -2,7 +2,7 @@ import { open, readdir, stat } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
 const ROOT = 'art_source';
-const OWNED_ROOT = join(ROOT, 'v0.9.0');
+const OWNED_ROOTS = [join(ROOT, 'v0.9.0'), join(ROOT, 'owned')];
 const errors = [];
 let fileCount = 0;
 let totalBytes = 0;
@@ -44,8 +44,9 @@ await walk(ROOT, async (path) => {
   const info = await stat(path);
   fileCount += 1;
   totalBytes += info.size;
-  if (path.startsWith(OWNED_ROOT)) ownedBytes += info.size;
-  if (path.startsWith(OWNED_ROOT) && extname(path).toLowerCase() === '.png') {
+  const isOwned = OWNED_ROOTS.some((root) => path.startsWith(root));
+  if (isOwned) ownedBytes += info.size;
+  if (isOwned && extname(path).toLowerCase() === '.png') {
     const size = await pngSize(path);
     const cap = capFor(path);
     if (cap && (size.width > cap[0] || size.height > cap[1])) {

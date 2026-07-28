@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.10.0 - 2026-07-28
+
+### Added
+
+- visualViewport offset·scale, 플랫폼·포인터·reduced motion 동기화
+- 공통 48px 터치 판정과 눌림 취소 복구 모듈
+- Safe Area·가상 키보드 대응 쿠폰 입력 오버레이
+- 스테이지·퀘스트·결과·운영 화면의 상태·보상·행동 아이콘 및 마이크로 인터랙션
+- v1.10 모바일 UI 자동 검사와 디자인 QA 접촉 시트
+
+### Changed
+
+- 키보드 열림 시 게임 호스트의 높이 중복 차감 제거
+- 저메모리·저코어 기기의 렌더 해상도 상한을 1.5로 제한
+- 브라우저 자동 글자 확대와 iOS 고정 뷰포트 대응 강화
+- App Check 비활성화와 기존 Firebase·전투 계약 유지
+
+### Known limitations
+
+- 디자인 QA 접촉 시트는 물리 단말 런타임 캡처가 아니다.
+- 실제 Android Chrome·iOS Safari FPS·발열·GPU 메모리 최종 계측은 v1.10.1에서 수행한다.
+
 ## v1.5.0 - 2026-07-27
 
 ### Added
@@ -496,3 +518,24 @@
 
 ### Unchanged
 - v1.8.0 게임 기능·Firebase·에셋
+
+## v1.9.0 - 2026-07-28
+
+### Added
+- LUMERIFT 타이틀·로그인 시작 화면
+- Luminous UI Atlas 30프레임과 공통 아이콘 30프레임
+- `UiTheme` 공통 아이콘·재화 칩·메뉴 타일·구분선
+- 전체 UI 시스템 문서와 v1.9 시각 감사
+
+### Changed
+- Boot, Login, Lobby 전면 리빌드
+- 공통 `UiButton`, `SceneChrome`, NineSlice 패널 체계 강화
+- Battle 하단 조작부를 공통 컨트롤 도크로 정리
+- 문서용 시안을 모바일 검토 WebP로 최적화
+
+### Archived
+- `ui_obsidian_v2` JSON/WebP를 runtime_archive/v1.9.0으로 이동
+
+### Unchanged
+- v1.8 보스 판정·복구 지점·시즌 랭킹
+- Firebase App Check 비활성화

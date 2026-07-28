@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.8.1",
-  "generatedAt": "2026-07-28T00:35:33.291Z",
+  "release": "1.10.0",
+  "generatedAt": "2026-07-28T04:13:23.374Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,24 +9,24 @@
   },
   "summary": {
     "source-master": {
-      "files": 80,
-      "bytes": 76566471,
+      "files": 83,
+      "bytes": 77459171,
       "atlases": 0,
       "frames": 0,
       "animations": 0
     },
     "runtime-archive": {
-      "files": 192,
-      "bytes": 23266586,
-      "atlases": 46,
-      "frames": 3155,
+      "files": 194,
+      "bytes": 23474797,
+      "atlases": 47,
+      "frames": 3185,
       "animations": 451
     },
     "runtime-public": {
-      "files": 33,
-      "bytes": 5002239,
-      "atlases": 6,
-      "frames": 427,
+      "files": 37,
+      "bytes": 4984317,
+      "atlases": 7,
+      "frames": 457,
       "animations": 151
     }
   },
@@ -198,6 +198,30 @@
       "type": "png",
       "bytes": 102760,
       "sha256": "9d67c3ff2aaf728f74db47fbec4605220787e3ddb6eb2c9c8d2fa0eeaa94335d"
+    },
+    {
+      "path": "art_source/owned/v1.9.0/ui/title_screen_v5_master.png",
+      "relativePath": "owned/v1.9.0/ui/title_screen_v5_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 797859,
+      "sha256": "ae403123b3e362791b6944501d161d56572d341e377e88579b138c4af6d14f89"
+    },
+    {
+      "path": "art_source/owned/v1.9.0/ui/ui_icons_v5_master.png",
+      "relativePath": "owned/v1.9.0/ui/ui_icons_v5_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 9583,
+      "sha256": "85fd4b1b13a1824db755676dad086adf243e23181ad994167f3fcde67f8919b6"
+    },
+    {
+      "path": "art_source/owned/v1.9.0/ui/ui_luminous_v5_master.png",
+      "relativePath": "owned/v1.9.0/ui/ui_luminous_v5_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 85258,
+      "sha256": "4195268f9327d877fd0d7fa219ce9ab5a3af731b443930f7c54d28b36958a532"
     },
     {
       "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/bestiary/bestiary_portraits_v1.json",
@@ -1966,6 +1990,27 @@
       "sha256": "be77f07cb25069796bda7b29be852ca7d38f14d8a522da738588117e0f6892e0"
     },
     {
+      "path": "art_source/runtime_archive/v1.9.0/public/assets/live/v2/atlases/ui/ui_obsidian_v2.json",
+      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 12353,
+      "sha256": "a554fbf8777fbc8d145311375ad21079ce6f916e6dbd4c1320e87aec09f9d4df",
+      "atlas": {
+        "frames": 30,
+        "animations": 0,
+        "image": "ui_obsidian_v2.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.9.0/public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 195858,
+      "sha256": "79cda7eedf40d09386046e443846428686e4be1f1be1c455189d79c80de7574c"
+    },
+    {
       "path": "art_source/v0.9.0/contact_sheets/items_quality_page_01_master.png",
       "relativePath": "v0.9.0/contact_sheets/items_quality_page_01_master.png",
       "classification": "source-master",
@@ -2442,8 +2487,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 2813,
-      "sha256": "b846ca009446e5bd4e1f1176dca9059ec679d19d3a949d9636bfbcf24fcaad08"
+      "bytes": 3300,
+      "sha256": "338a4a7c447bb941edecd25bca42f2ff1c01f3ceeae8e54c75805a8c4b0fd40d"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2545,27 +2590,6 @@
       "type": "txt",
       "bytes": 743,
       "sha256": "1d94eb474817ecaeb0c84e6f2369d752740ec78fb8677806605428db5c9d4844"
-    },
-    {
-      "path": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.json",
-      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.json",
-      "classification": "runtime-public",
-      "type": "json",
-      "bytes": 12353,
-      "sha256": "a554fbf8777fbc8d145311375ad21079ce6f916e6dbd4c1320e87aec09f9d4df",
-      "atlas": {
-        "frames": 30,
-        "animations": 0,
-        "image": "ui_obsidian_v2.webp"
-      }
-    },
-    {
-      "path": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp",
-      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.webp",
-      "classification": "runtime-public",
-      "type": "webp",
-      "bytes": 195858,
-      "sha256": "79cda7eedf40d09386046e443846428686e4be1f1be1c455189d79c80de7574c"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",
@@ -2724,12 +2748,70 @@
       "sha256": "8775f0c595858afb71910a1e531df9a6cc27b176a70600203ed121fdff61cf6f"
     },
     {
+      "path": "public/assets/live/v5/atlases/ui/ui_icons_v5.json",
+      "relativePath": "live/v5/atlases/ui/ui_icons_v5.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 4902,
+      "sha256": "4fbf0e5aaa9fd2c0326c3be70263fe392199919029102b2c1d2d0699a594ff0b",
+      "atlas": {
+        "frames": 30,
+        "animations": 0,
+        "image": "ui_icons_v5.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v5/atlases/ui/ui_icons_v5.webp",
+      "relativePath": "live/v5/atlases/ui/ui_icons_v5.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 18262,
+      "sha256": "5e91f7487b9f92c0ed2bc74354dd9c91486a701ba227809ceb1853c8e06fb4c3"
+    },
+    {
+      "path": "public/assets/live/v5/atlases/ui/ui_luminous_v5.json",
+      "relativePath": "live/v5/atlases/ui/ui_luminous_v5.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 5245,
+      "sha256": "7cc5a3782977c2ee94e92d8f3cfa10a1427c85b4388cbe6f974b531f86d109c0",
+      "atlas": {
+        "frames": 30,
+        "animations": 0,
+        "image": "ui_luminous_v5.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v5/atlases/ui/ui_luminous_v5.webp",
+      "relativePath": "live/v5/atlases/ui/ui_luminous_v5.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 83610,
+      "sha256": "609c5a5f6ecef4ae37daab1989061ab508e9c7808bdeb325d9e12c5d16779616"
+    },
+    {
+      "path": "public/assets/live/v5/backgrounds/title_screen_v5.webp",
+      "relativePath": "live/v5/backgrounds/title_screen_v5.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 77252,
+      "sha256": "9d01ff14cff0774595a84fa6e25dbd13fefc2de22e56ead09ad1bb669c966acb"
+    },
+    {
       "path": "public/assets/OPERATIONS_V130_SUMMARY.json",
       "relativePath": "OPERATIONS_V130_SUMMARY.json",
       "classification": "runtime-public",
       "type": "json",
       "bytes": 599,
       "sha256": "d8904b1421a008dd7473f26d8b0918082a8f407d284c5fb1acd938f97bd082b6"
+    },
+    {
+      "path": "public/assets/UI_SYSTEM_V190_SUMMARY.json",
+      "relativePath": "UI_SYSTEM_V190_SUMMARY.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 531,
+      "sha256": "eba149975aa9376477bc5fda1abd2f465ab47027c5ef8e6f0630fea4720ed6fc"
     }
   ]
 }

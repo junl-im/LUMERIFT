@@ -1,7 +1,7 @@
-import { Container, Graphics, NineSliceSprite, Text, TextStyle } from 'pixi.js';
+import { Container, Graphics, NineSliceSprite, Sprite, Text, TextStyle } from 'pixi.js';
 import { COLORS } from '../app/constants';
-import { ASSET_PATHS } from '../core/assets/AssetCatalog';
-import { buttonTextureName, getUiTexture } from './UiSkin';
+import { buttonTextureName, getUiIconTexture, getUiTexture } from './UiSkin';
+import { bindPressFeedback } from './UiMotion';
 
 interface UiButtonOptions {
   readonly label: string;
@@ -10,6 +10,9 @@ interface UiButtonOptions {
   readonly tone?: 'primary' | 'secondary' | 'danger';
   readonly fontSize?: number;
   readonly lineHeight?: number;
+  readonly subtitle?: string;
+  readonly icon?: string;
+  readonly align?: 'center' | 'left';
   readonly onPress: () => void | Promise<void>;
 }
 
@@ -33,10 +36,10 @@ export class UiButton extends Container {
     if (texture) {
       const raster = new NineSliceSprite({
         texture,
-        leftWidth: 34,
-        topHeight: 34,
-        rightWidth: 34,
-        bottomHeight: 34,
+        leftWidth: 44,
+        topHeight: 40,
+        rightWidth: 44,
+        bottomHeight: 40,
       });
       raster.width = width;
       raster.height = height;
@@ -48,36 +51,53 @@ export class UiButton extends Container {
         .stroke({ color: COLORS.warning, alpha: 0.42, width: 2 });
     }
 
+    const hasIcon = Boolean(options.icon);
+    const leftAligned = options.align === 'left' || Boolean(options.subtitle);
+    const labelX = leftAligned ? (hasIcon ? 58 : 22) : width / 2;
     this.labelText = new Text({
       text: options.label,
       style: new TextStyle({
         fill: COLORS.text,
         fontSize: options.fontSize ?? 20,
         fontWeight: '700',
-        align: 'center',
+        align: leftAligned ? 'left' : 'center',
         lineHeight: options.lineHeight ?? (options.fontSize ?? 20) * 1.15,
         dropShadow: { color: COLORS.dark, alpha: 0.68, blur: 3, distance: 1 },
       }),
     });
-    this.labelText.anchor.set(0.5);
-    this.labelText.position.set(width / 2, height / 2 - 1);
+    this.labelText.anchor.set(leftAligned ? 0 : 0.5, 0.5);
+    this.labelText.position.set(labelX, options.subtitle ? height * 0.38 : height / 2 - 1);
 
-    this.addChild(this.background, this.labelText);
-    this.eventMode = 'static';
-    this.cursor = 'pointer';
-    this.hitArea = { contains: (x: number, y: number) => x >= 0 && y >= 0 && x <= width && y <= height };
+    this.addChild(this.background);
+    if (options.icon) {
+      const iconTexture = getUiIconTexture(options.icon);
+      if (iconTexture) {
+        const icon = new Sprite(iconTexture);
+        const iconSize = Math.min(38, height - 18);
+        icon.width = iconSize;
+        icon.height = iconSize;
+        icon.position.set(14, (height - iconSize) / 2);
+        this.addChild(icon);
+      }
+    }
+    this.addChild(this.labelText);
 
-    this.on('pointerover', () => {
-      if (this.enabled) this.alpha = 0.94;
+    if (options.subtitle) {
+      const subtitle = new Text({
+        text: options.subtitle,
+        style: new TextStyle({ fill: COLORS.muted, fontSize: Math.max(9, (options.fontSize ?? 16) - 6), wordWrap: true, wordWrapWidth: width - labelX - 18 }),
+      });
+      subtitle.position.set(labelX, height * 0.58);
+      this.addChild(subtitle);
+    }
+
+    bindPressFeedback(this, {
+      width,
+      height,
+      minTouchSize: 48,
+      isEnabled: () => this.enabled,
+      onPress: () => this.release(),
     });
-    this.on('pointerout', () => {
-      if (this.enabled) this.alpha = 1;
-    });
-    this.on('pointerdown', () => {
-      if (this.enabled) this.scale.set(0.975);
-    });
-    this.on('pointerup', () => this.release(true));
-    this.on('pointerupoutside', () => this.release(false));
   }
 
   public setEnabled(enabled: boolean): void {
@@ -90,12 +110,8 @@ export class UiButton extends Container {
     this.labelText.text = label;
   }
 
-  private release(activate: boolean): void {
-    this.scale.set(1);
-    this.alpha = this.enabled ? 1 : 0.42;
-    if (activate && this.enabled) {
-      window.dispatchEvent(new CustomEvent('lumerift:ui-press', { detail: ASSET_PATHS.uiClick }));
-      void this.options.onPress();
-    }
+  private release(): void {
+    if (!this.enabled) return;
+    void this.options.onPress();
   }
 }

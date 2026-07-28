@@ -11,7 +11,9 @@ export function assetUrl(path: string): string {
 }
 
 export const ASSET_PATHS = {
-  uiAtlas: assetUrl('assets/live/v2/atlases/ui/ui_obsidian_v2.json'),
+  uiAtlas: assetUrl('assets/live/v5/atlases/ui/ui_luminous_v5.json'),
+  uiIcons: assetUrl('assets/live/v5/atlases/ui/ui_icons_v5.json'),
+  titleBackground: assetUrl('assets/live/v5/backgrounds/title_screen_v5.webp'),
   playerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
   monsterAtlas: assetUrl('assets/live/v4/atlases/monsters/monsters_live_v4.json'),
   effectsAtlas: assetUrl('assets/live/v4/atlases/effects/combat_effects_v4.json'),
@@ -38,8 +40,8 @@ export const ASSET_PATHS = {
 
 export const CORE_UI_BUNDLE: AssetBundleDefinition = {
   id: 'core-ui',
-  urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiClick, ASSET_PATHS.lobbyBackground],
-  estimatedBytes: 290_000,
+  urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.titleBackground, ASSET_PATHS.uiClick, ASSET_PATHS.lobbyBackground],
+  estimatedBytes: 520_000,
 };
 
 export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
@@ -50,8 +52,8 @@ export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
 
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
-  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.equipmentAtlas],
-  estimatedBytes: 260_000,
+  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas],
+  estimatedBytes: 430_000,
 };
 
 
@@ -127,9 +129,9 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     id: 'live-ui',
     label: '실사용 UI 스킨',
     kind: 'atlas',
-    atlasPaths: [ASSET_PATHS.uiAtlas],
+    atlasPaths: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons],
     imagePaths: [],
-    bundle: { id: 'live-ui-gallery', urls: [ASSET_PATHS.uiAtlas], estimatedBytes: 30_000 },
+    bundle: { id: 'live-ui-gallery', urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons], estimatedBytes: 130_000 },
   },
   {
     id: 'operations-ui',

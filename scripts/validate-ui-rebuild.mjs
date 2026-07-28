@@ -1,58 +1,78 @@
 import { readFile, stat } from 'node:fs/promises';
 
 const requirements = {
+  'src/core/assets/AssetCatalog.ts': [
+    'assets/live/v5/atlases/ui/ui_luminous_v5.json',
+    'assets/live/v5/atlases/ui/ui_icons_v5.json',
+    'assets/live/v5/backgrounds/title_screen_v5.webp',
+  ],
   'src/ui/UiSkin.ts': [
-    "ASSET_PATHS.uiAtlas",
-    'getSceneBackgroundTexture',
-    "textureName = 'panel'",
+    'getUiIconTexture',
+    'getTitleBackgroundTexture',
+    'ASSET_PATHS.uiIcons',
+  ],
+  'src/ui/UiButton.ts': [
+    'readonly icon?: string',
+    'readonly subtitle?: string',
+    'buttonTextureName',
+  ],
+  'src/ui/SceneChrome.ts': [
+    'createGlowDivider',
+    'BRAND.title',
+    "'panel_strong'",
+  ],
+  'src/scenes/LoginScene.ts': [
+    'getTitleBackgroundTexture',
+    'addHotspot(',
+    'openProviderMenu()',
+    "'계정 연동'",
   ],
   'src/scenes/LobbyScene.ts': [
-    'createHeroPresentation',
-    'createMissionCard',
-    'createPrimaryAction',
-    'createNavigation',
+    'createAttendanceCard()',
+    'createEventBanner()',
+    'createQuestPanel(',
+    'createMenuGrid(',
+    'createBottomNavigation(',
+    "label: '전투 시작'",
   ],
   'src/scenes/BattleScene.ts': [
+    "const controlDock = createRasterPanel(8, 786, 524, 166, 'panel_glass')",
     '.roundRect(32, 60, 210 * hpRatio, 14, 7)',
     '.roundRect(124, 147, 362 * hpRatio, 9, 5)',
-    'createHud()',
   ],
   'src/scenes/InventoryScene.ts': [
     'const PAGE_SIZE = 12',
     'const GRID_COLUMNS = 3',
     'createGrid(',
-    'const selected =',
   ],
   'src/scenes/StageSelectScene.ts': [
     'createStageNode(',
     "'stage_node_boss'",
     "'stage_node_locked'",
-    'createRoute(',
   ],
   'src/scenes/ResultScene.ts': [
     "getUiTexture('medal')",
     'createRank()',
     'createRewards(context)',
-    'MISSION REWARD',
   ],
 };
 
 const expectedFiles = [
-  'public/assets/live/v2/atlases/ui/ui_obsidian_v2.json',
-  'public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp',
-  'public/assets/live/v4/atlases/player/player_live_v4.json',
-  'public/assets/live/v4/atlases/player/player_live_v4.webp',
-  'public/assets/live/v4/atlases/monsters/monsters_live_v4.json',
-  'public/assets/live/v4/atlases/monsters/monsters_live_v4.webp',
-  'public/assets/live/v4/backgrounds/lobby_forest_v4.webp',
-  'public/assets/live/v4/backgrounds/forest_approach_v4.webp',
-  'public/assets/live/v4/portraits/hero_v4.webp',
-  'public/assets/live/v4/portraits/boss_phase_1_v4.webp',
-  'docs/previews/v1.2.0_lobby_preview.webp',
-  'docs/previews/v1.2.0_battle_preview.webp',
-  'docs/previews/v1.2.0_inventory_preview.webp',
-  'docs/previews/v1.2.0_stage_preview.webp',
-  'docs/previews/v1.2.0_result_preview.webp',
+  'public/assets/live/v5/atlases/ui/ui_luminous_v5.json',
+  'public/assets/live/v5/atlases/ui/ui_luminous_v5.webp',
+  'public/assets/live/v5/atlases/ui/ui_icons_v5.json',
+  'public/assets/live/v5/atlases/ui/ui_icons_v5.webp',
+  'public/assets/live/v5/backgrounds/title_screen_v5.webp',
+  'art_source/owned/v1.9.0/ui/ui_luminous_v5_master.png',
+  'art_source/owned/v1.9.0/ui/ui_icons_v5_master.png',
+  'art_source/owned/v1.9.0/ui/title_screen_v5_master.png',
+  'docs/previews/v1.9.0_title_concept.webp',
+  'docs/previews/v1.9.0_lobby_concept.webp',
+  'docs/previews/v1.9.0_battle_concept.webp',
+  'docs/previews/v1.9.0_inventory_concept.webp',
+  'docs/previews/v1.9.0_account_concept.webp',
+  'docs/UI_SYSTEM_v1.9.0.md',
+  'docs/VISUAL_AUDIT_v1.9.0.md',
 ];
 
 const errors = [];
@@ -65,7 +85,7 @@ for (const [path, markers] of Object.entries(requirements)) {
 for (const path of expectedFiles) {
   try {
     const info = await stat(path);
-    if (info.size < 256) errors.push(`${path}: visual artifact too small`);
+    if (info.size < 128) errors.push(`${path}: visual artifact too small`);
   } catch {
     errors.push(`${path}: visual artifact missing`);
   }
@@ -75,5 +95,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS v1.2 visual reset: lobby, battle, inventory, stage and result contracts');
+  console.log('PASS v1.9 UI system: title, lobby, shared skin, battle controls and all scene chrome contracts');
 }

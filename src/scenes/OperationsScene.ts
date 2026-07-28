@@ -17,6 +17,8 @@ import { createDefaultProfile, type PlayerProfile } from '../repositories/Player
 import { createBadge, createProgressBar } from '../ui/PremiumUi';
 import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
+import { promptCouponCode } from '../ui/CouponPromptOverlay';
+import { bindPressFeedback } from '../ui/UiMotion';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 
@@ -36,6 +38,8 @@ export class OperationsScene implements Scene {
   private sheet?: Spritesheet;
   private bundleLoaded = false;
   private notices: readonly NoticeDefinition[] = NOTICES;
+  private activeTab?: Container;
+  private elapsed = 0;
 
   public constructor(
     private readonly section: OperationsSection = 'notice',
@@ -87,24 +91,36 @@ export class OperationsScene implements Scene {
     }
   }
 
-  public update(): void {}
+  public update(deltaSeconds: number): void {
+    this.elapsed += deltaSeconds;
+    if (this.activeTab) this.activeTab.alpha = 0.88 + Math.sin(this.elapsed * 3.8) * 0.1;
+  }
 
   private createStatusHeader(): void {
     const profile = this.profile;
     if (!profile) return;
+    const unread = this.notices.filter((notice) => !profile.operations.noticeReads[notice.id]).length;
+    const pendingMail = MAILS.filter((mail) => !profile.operations.mailClaims[mail.id]).length;
+    const today = attendanceDay();
+    const attendancePending = profile.operations.attendanceClaims.includes(today) ? 0 : 1;
     const header = createRasterPanel(20, 142, 500, 58, 'resource_chip');
     const title = new Text({
-      text: 'RIFT OPERATIONS',
-      style: new TextStyle({ fill: 0xf3d895, fontSize: 13, fontWeight: '700', letterSpacing: 1.1 }),
+      text: `RIFT OPERATIONS  ·  ${SECTION_META[this.section].label}`,
+      style: new TextStyle({ fill: 0xf3d895, fontSize: 13, fontWeight: '700', letterSpacing: 0.8 }),
     });
-    title.position.set(40, 157);
+    title.position.set(40, 153);
+    const status = new Text({
+      text: `새 공지 ${unread}  ·  출석 ${attendancePending}  ·  우편 ${pendingMail}`,
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '600' }),
+    });
+    status.position.set(40, 176);
     const gold = new Text({
       text: `${profile.gold.toLocaleString()} GOLD`,
       style: new TextStyle({ fill: 0xf6e4ad, fontSize: 18, fontWeight: '700' }),
     });
     gold.anchor.set(1, 0);
     gold.position.set(498, 153);
-    this.view.addChild(header, title, gold);
+    this.view.addChild(header, title, status, gold);
   }
 
   private createTabs(context: AppContext): void {
@@ -112,18 +128,38 @@ export class OperationsScene implements Scene {
       const active = section === this.section;
       const x = 24 + index * 126;
       const tab = createRasterPanel(x, 212, 114, 58, active ? 'tab_active' : 'tab_inactive');
-      tab.eventMode = 'static';
-      tab.cursor = 'pointer';
-      tab.on('pointertap', () => { void context.scenes.change(() => new OperationsScene(section)); });
+      bindPressFeedback(tab, {
+        width: 114,
+        height: 58,
+        minTouchSize: 58,
+        onPress: () => context.scenes.change(() => new OperationsScene(section)),
+      });
+      if (active) this.activeTab = tab;
       const icon = this.createIcon(SECTION_META[section].icon, 34);
-      icon.position.set(x + 12, 224);
+      icon.position.set(x + 10, 224);
       const label = new Text({
         text: SECTION_META[section].label,
         style: new TextStyle({ fill: active ? 0xf6dda2 : COLORS.muted, fontSize: 14, fontWeight: '700' }),
       });
-      label.position.set(x + 52, 232);
+      label.position.set(x + 48, 224);
       this.view.addChild(tab, icon, label);
+      const badgeCount = this.sectionBadge(section);
+      if (badgeCount > 0) {
+        const badge = createBadge(badgeCount > 9 ? '9+' : badgeCount.toString(), section === 'mail' ? 'warning' : 'primary');
+        badge.scale.set(0.58);
+        badge.position.set(x + 72, 244);
+        this.view.addChild(badge);
+      }
     });
+  }
+
+  private sectionBadge(section: OperationsSection): number {
+    const profile = this.profile;
+    if (!profile) return 0;
+    if (section === 'notice') return this.notices.filter((notice) => !profile.operations.noticeReads[notice.id]).length;
+    if (section === 'attendance') return profile.operations.attendanceClaims.includes(attendanceDay()) ? 0 : 1;
+    if (section === 'mail') return MAILS.filter((mail) => !profile.operations.mailClaims[mail.id]).length;
+    return COUPONS.filter((coupon) => !profile.operations.redeemedCoupons[coupon.code]).length;
   }
 
   private createNotices(context: AppContext): void {
@@ -151,7 +187,7 @@ export class OperationsScene implements Scene {
       });
       detail.position.set(116, y + 68);
       const action = new UiButton({
-        label: read ? '읽음' : '내용 확인', width: 110, height: 36, tone: read ? 'secondary' : 'primary', fontSize: 12,
+        label: read ? '읽음' : '내용 확인', width: 110, height: 44, tone: read ? 'secondary' : 'primary', fontSize: 12,
         onPress: async () => {
           const current = this.profile;
           if (!current) return;
@@ -237,7 +273,7 @@ export class OperationsScene implements Scene {
     });
     summary.position.set(42, 305);
     const all = new UiButton({
-      label: '모두 수령', width: 120, height: 38, tone: pending > 0 ? 'primary' : 'secondary', fontSize: 12,
+      label: '모두 수령', width: 120, height: 44, tone: pending > 0 ? 'primary' : 'secondary', fontSize: 12,
       onPress: async () => {
         const current = this.profile;
         if (!current) return;
@@ -266,7 +302,7 @@ export class OperationsScene implements Scene {
       });
       body.position.set(118, y + 62);
       const claim = new UiButton({
-        label: claimed ? '수령 완료' : '수령', width: 96, height: 40, tone: claimed ? 'secondary' : 'primary', fontSize: 12,
+        label: claimed ? '수령 완료' : '수령', width: 96, height: 44, tone: claimed ? 'secondary' : 'primary', fontSize: 12,
         onPress: async () => {
           const current = this.profile;
           if (!current) return;
@@ -323,7 +359,12 @@ export class OperationsScene implements Scene {
       onPress: async () => {
         const current = this.profile;
         if (!current) return;
-        const code = window.prompt('쿠폰 코드를 입력하세요', 'LUMERIFT13') ?? '';
+        const code = await promptCouponCode({
+          title: '균열 보급 코드',
+          description: '계정당 한 번 사용할 수 있는 영문·숫자 코드를 입력하세요.',
+          placeholder: 'LUMERIFT13',
+        });
+        if (!code) return;
         const result = redeemCoupon(current, code);
         if (result.changed) await context.playerRepository.save(result.profile);
         await context.scenes.change(() => new OperationsScene('coupon', result.message));

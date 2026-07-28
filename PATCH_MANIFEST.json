@@ -1,130 +1,240 @@
 {
-  "schemaVersion": 1,
-  "game": "LUMERIFT",
-  "baseVersion": "1.8.0",
-  "targetVersion": "1.8.1",
+  "schemaVersion": 2,
+  "game": "LUMERIFT: 균열의 계승자",
+  "baseVersion": "1.9.0",
+  "targetVersion": "1.10.0",
   "releaseDate": "2026-07-28",
-  "changedOrAddedCount": 24,
-  "deletedCount": 0,
-  "deleted": [],
-  "changedOrAdded": [
+  "payloadFiles": 37,
+  "payloadBytes": 469677,
+  "directDeleteFiles": 0,
+  "relocationMoves": 0,
+  "apply": [
+    "덮어쓰기",
+    "npm install",
+    "npm run verify"
+  ],
+  "moves": [],
+  "files": [
     {
       "path": "AGENTS.md",
-      "sha256": "d55beac66f1359b8ebfb8499eb1b29fcd4f28b957148f496588c82702af2d987",
-      "bytes": 10767
+      "status": "changed",
+      "bytes": 12429,
+      "sha256": "f440f7f8a0d63281a6661d3489a18c71c91dc437ae4d4037c85c82279c6fce11"
     },
     {
       "path": "HANDOFF_STATE.json",
-      "sha256": "58fa9c4aa3204b483865f94598a1dbe3f7e3cabbf49e111ca8890eb8093b1f36",
-      "bytes": 15458
+      "status": "changed",
+      "bytes": 18406,
+      "sha256": "45c6ba7c084cab3fdd2c2786967de8e748d3e997f3a87396e37f0d0fec2e194e"
     },
     {
       "path": "INSTALL_AND_START.bat",
-      "sha256": "c438b532a33542fe80d895fe7d8c2e1cf0ed03217d054686a1b5919ca2dd0934",
-      "bytes": 644
+      "status": "changed",
+      "bytes": 645,
+      "sha256": "9e728c730f07a63d57894c0a9dd27981fcb59fafd9fe1356e0c1683e2b8f9d0c"
     },
     {
       "path": "PATCH_DELETE_LIST.txt",
-      "sha256": "d74e5face47f1394f3cb53e75c390222e08a2b8e9e4332732cef4336924aa244",
-      "bytes": 42
+      "status": "changed",
+      "bytes": 75,
+      "sha256": "a24a861cb0b98ac1477348f52dc79bd487fb85c844e7583312a972573294baab"
     },
     {
       "path": "PATCH_INFO.md",
-      "sha256": "d40df2d796ad98b465dd3f6a56858e3f7ffabdbe16b52ab81c2fa3661792f83e",
-      "bytes": 246
-    },
-    {
-      "path": "PATCH_MANIFEST.json"
+      "status": "changed",
+      "bytes": 491,
+      "sha256": "241e6f8b71107c98915ff825d974a858a26af7d260ff5747f7de38307e202413"
     },
     {
       "path": "PATCH_README.txt",
-      "sha256": "6b329b19441ae009ccb9b5982cb30e6eebc15a967e062a6dcfbafae0069fd752",
-      "bytes": 416
+      "status": "changed",
+      "bytes": 435,
+      "sha256": "d22b9b593100cc2883e3297828dd4c920f3e2c9e1fee948f010a81ec0f6b1688"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "sha256": "6959841b439c1b92727ed592ce5c19b8e2380d0352b1cb543ba444dbf6b8a5e5",
-      "bytes": 1656
+      "status": "changed",
+      "bytes": 2614,
+      "sha256": "df2deebe2e4d546ba309bf9c7ec58c69861e8ff7f131648a83fa26fb3e948a2a"
     },
     {
       "path": "README.md",
-      "sha256": "994e9ebe5169722eb8de16142cb7d9088506114c52005e4bee9fa62d837e85a6",
-      "bytes": 1645
+      "status": "changed",
+      "bytes": 2137,
+      "sha256": "d0948c4c144645d59b85f390f2fad6d6db269d124bc0238276e70762544bdab4"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "sha256": "982dbc4783fad0a1d8529b2005a0bd9104fd5cd6835c1fbfe12005241d421eb1",
-      "bytes": 1737
+      "status": "changed",
+      "bytes": 2140,
+      "sha256": "e751ec2fc57f851577ca51af8ca47bdfacae97ff2b589ed53dc3ea4a2ebbfe41"
     },
     {
       "path": "VERIFY.bat",
-      "sha256": "f654a812f4b405b756c1fc162d26459f456972e28ca8b738b394a3e9e2dabe7b",
-      "bytes": 229
+      "status": "changed",
+      "bytes": 230,
+      "sha256": "da2efaa47c9499a81907ea36e06fcc0461e30bf923d0c5a734ae9fdf2140c799"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
-      "sha256": "9fa730f3dff718aab5561030fb82bb8b2b1e11ac3926e45d04e19f113eb6ec23",
-      "bytes": 109824
+      "status": "changed",
+      "bytes": 112925,
+      "sha256": "90062615d0c65f0185062de0fc603516060dc309270741f908ba34c9d9f9c028"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "sha256": "a563d0bfb82412a8cbd9ef8d15a265a98188550dd398c0a6afc0693b28560ff5",
-      "bytes": 18304
+      "status": "changed",
+      "bytes": 19917,
+      "sha256": "6d1781f73e473ec73094e0d1ceb8e3aea967a1e64ceb2cf710a5246ea606c791"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "sha256": "d1c90c19beb2abf9ac62d3e4354bd2792ae2b36c048c51a8fca8c30d73761e59",
-      "bytes": 10050
+      "status": "changed",
+      "bytes": 11549,
+      "sha256": "32232b87e8a4abc6f5a35e24edd84d7882f12a51b92a59a6db1cd1a2dc108288"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "sha256": "df5e5e0e1131fe1159967bccdcf177fbd68cbe5a8ae1ca8c9aaa2a0e6b7a7c5d",
-      "bytes": 13319
+      "status": "changed",
+      "bytes": 15961,
+      "sha256": "3ea1a5eb5cda6ebec03a80f9d0e4715734d182e53cd93074576ed17a1881aeb3"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.8.1.md",
-      "sha256": "1fa47c45ba9ac09386b7321b7d600ae93862d89508cb01834baf4f4884e2ee00",
-      "bytes": 623
+      "path": "docs/MOBILE_QA_v1.10.0.md",
+      "status": "added",
+      "bytes": 2056,
+      "sha256": "081dfe4e053c58462d9bc50737d1b59dfd66954f331e335e78858bf0ae6adc03"
+    },
+    {
+      "path": "docs/PATCH_NOTES_v1.10.0.md",
+      "status": "added",
+      "bytes": 2025,
+      "sha256": "00b9b1a4f5c2da6a57a063650442e72c58058b16208cab3e5486df11f0749ded"
     },
     {
       "path": "docs/ROADMAP.md",
-      "sha256": "001fe54b337a34c498cd2b131933401c310f01aea78699ee140fef83c374856f",
-      "bytes": 11134
+      "status": "changed",
+      "bytes": 13041,
+      "sha256": "21139ddd004c08e666f2c6810d9a89355181040756ac400478af31c7b04b924d"
     },
     {
-      "path": "docs/VERIFICATION.md",
-      "sha256": "4de848eee2e2ec774ee4454a7585c59d4dd1263d74fb2f52cc17ed2bb3e6c1d6",
-      "bytes": 9200
+      "path": "docs/UI_SYSTEM_v1.10.0.md",
+      "status": "added",
+      "bytes": 1595,
+      "sha256": "9ec02115958a442bc2694c3d80036d4cc864d27b922aa81b18946cdf8b25f2b9"
+    },
+    {
+      "path": "docs/VISUAL_AUDIT_v1.10.0.md",
+      "status": "added",
+      "bytes": 1363,
+      "sha256": "5a356f3530b85db58e4274ab4b9971734efd129c170b245fe7b70730714904d3"
+    },
+    {
+      "path": "docs/previews/v1.10.0_mobile_qa_contact.webp",
+      "status": "added",
+      "bytes": 155226,
+      "sha256": "5b7292a47ee02cf442c03bc1585dc83d8251b316cc06b2a26f20948f1df236d9"
     },
     {
       "path": "package.json",
-      "sha256": "0991f4bffebcdb96b712cc670672cf6aa15e369cb2e590e606ba3270ee52f75a",
-      "bytes": 3301
+      "status": "changed",
+      "bytes": 3406,
+      "sha256": "ad0c2998f2144e4e30d320eaf547ad556e978717d7fac3b3030249785d55e327"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
-      "sha256": "13760592169898e007ed693f73ae2fd6bd05b006f162b87bcf2d79edc5b1e83a",
-      "bytes": 2813
-    },
-    {
-      "path": "scripts/check-source-imports.mjs",
-      "sha256": "16f7a3b757f8ed280dab1f43a9a8c43e0c4cf4138892109288375d04c8b57c28",
-      "bytes": 2768
+      "status": "changed",
+      "bytes": 3300,
+      "sha256": "338a4a7c447bb941edecd25bca42f2ff1c01f3ceeae8e54c75805a8c4b0fd40d"
     },
     {
       "path": "scripts/generate-asset-registry.mjs",
-      "sha256": "b5a1d03266f90557cc65e7f6dddd9b567f270191fe3a4034f26e2a7c99a371dd",
-      "bytes": 3338
+      "status": "changed",
+      "bytes": 3487,
+      "sha256": "faaa3bd9a35c9f784c2c9b2db28c72715138257048306c4726f97e17f8586f6e"
     },
     {
       "path": "scripts/validate-asset-cleanup.mjs",
-      "sha256": "17bf8febf1b0ce4382cccc269d27f828009618d52132215ae74b557ea9b17640",
-      "bytes": 3025
+      "status": "changed",
+      "bytes": 3089,
+      "sha256": "f80c1ee4e7a815bbdf2d2d6ac0fafaa922c224066a5cf12742e113e1e9642ba4"
     },
     {
-      "path": "src/ui/VirtualJoystick.ts",
-      "sha256": "f525a52334d90166abf963fd2490c5b5b0ad656c50b9dab86bc804f339cd8fdd",
-      "bytes": 3942
+      "path": "scripts/validate-mobile-ui-v110.mjs",
+      "status": "added",
+      "bytes": 2679,
+      "sha256": "16e89fd1e5265f7b01fa5aebb88523d3b412dc1e2c2a76ec3368076c825576f7"
+    },
+    {
+      "path": "src/app/GameApp.ts",
+      "status": "changed",
+      "bytes": 6218,
+      "sha256": "ac05b636f6cacdc3c64b6e09aaea16fb6ae786e3615f1e6242f64bfe3f4ad3f2"
+    },
+    {
+      "path": "src/core/layout/MobileViewportController.ts",
+      "status": "changed",
+      "bytes": 4327,
+      "sha256": "75011e8ffa65fdce7e474fea1119484c33238bd52efed3a717184c11c91ff0da"
+    },
+    {
+      "path": "src/scenes/OperationsScene.ts",
+      "status": "changed",
+      "bytes": 17874,
+      "sha256": "7b18e6d2b7b8f30cd305d3440d0b8ae3226536cdb3ea484192734469f7c2276c"
+    },
+    {
+      "path": "src/scenes/QuestScene.ts",
+      "status": "changed",
+      "bytes": 8213,
+      "sha256": "57b984304fa8a5345e2c04ddf4cbef88777a3ec941910f97596775a18ee13b8f"
+    },
+    {
+      "path": "src/scenes/ResultScene.ts",
+      "status": "changed",
+      "bytes": 8334,
+      "sha256": "7ff2191c566098c1e9e1df1c00a7fa0c1540f2dcf31da74f401b74659d50ca39"
+    },
+    {
+      "path": "src/scenes/StageSelectScene.ts",
+      "status": "changed",
+      "bytes": 11805,
+      "sha256": "5fd9443c29c02018b7ed2ac76f45c745ebf61bd661287de6631357b428f4ac6d"
+    },
+    {
+      "path": "src/styles.css",
+      "status": "changed",
+      "bytes": 8341,
+      "sha256": "92379ed4ccdfa1a41d91f208ca480b6fab09aac5fc8b797555b8a9cec865e88d"
+    },
+    {
+      "path": "src/ui/CouponPromptOverlay.ts",
+      "status": "added",
+      "bytes": 3474,
+      "sha256": "b16fce72d206bf5547221a8bf578b610eba98d362afc2780f1cc078b56e01b15"
+    },
+    {
+      "path": "src/ui/UiButton.ts",
+      "status": "changed",
+      "bytes": 3693,
+      "sha256": "f9db3eff8cc0db80ad11d49f5c7c010edff019249b486a4c42443a69ddc0ef6f"
+    },
+    {
+      "path": "src/ui/UiMotion.ts",
+      "status": "added",
+      "bytes": 1900,
+      "sha256": "b0e1821e06ba3bccd2e8e8c9348990ad08437723f1e4edd611ccf7dc9cf8355d"
+    },
+    {
+      "path": "src/ui/UiTheme.ts",
+      "status": "changed",
+      "bytes": 4277,
+      "sha256": "557b7ef21b8d4fe808eedeb189b8e4be9825d6f87710866a460902ae70f863f2"
     }
+  ],
+  "notes": [
+    "PATCH_MANIFEST.json 자체는 재귀 해시를 피하기 위해 files 배열에서 제외하지만 패치 ZIP payload에는 포함한다.",
+    "신규 런타임 이미지는 없으며 기존 v5 UI Atlas를 재사용한다.",
+    "물리 Android/iOS FPS·발열·GPU 메모리 계측은 v1.10.1 잔여 작업이다."
   ]
 }

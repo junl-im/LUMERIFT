@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "release": "1.9.0",
+  "reason": "v1.9.0 공통 UI 시스템이 v5 Atlas로 교체되어 구형 v2 Obsidian UI를 전체 통합본의 런타임 아카이브로 무손실 이동",
+  "moves": [
+    {
+      "from": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.json",
+      "to": "art_source/runtime_archive/v1.9.0/public/assets/live/v2/atlases/ui/ui_obsidian_v2.json",
+      "bytes": 12353,
+      "sha256": "a554fbf8777fbc8d145311375ad21079ce6f916e6dbd4c1320e87aec09f9d4df"
+    },
+    {
+      "from": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "to": "art_source/runtime_archive/v1.9.0/public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "bytes": 195858,
+      "sha256": "79cda7eedf40d09386046e443846428686e4be1f1be1c455189d79c80de7574c"
+    }
+  ],
+  "removed": []
+}

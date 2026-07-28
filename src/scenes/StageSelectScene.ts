@@ -8,6 +8,8 @@ import { createDefaultProfile, type PlayerProfile } from '../repositories/Player
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createBadge, createProgressBar, createSectionPanel } from '../ui/PremiumUi';
 import { getUiTexture } from '../ui/UiSkin';
+import { createIconSprite } from '../ui/UiTheme';
+import { bindPressFeedback } from '../ui/UiMotion';
 import { UiButton } from '../ui/UiButton';
 import { BattleScene } from './BattleScene';
 import { LobbyScene } from './LobbyScene';
@@ -15,6 +17,8 @@ import { LobbyScene } from './LobbyScene';
 export class StageSelectScene implements Scene {
   public readonly view = new Container();
   private profile?: PlayerProfile;
+  private selectedGlow?: Graphics;
+  private elapsed = 0;
 
   public constructor(private readonly selectedStageId?: string) {}
 
@@ -41,23 +45,31 @@ export class StageSelectScene implements Scene {
   }
 
   public exit(): void {}
-  public update(): void {}
+
+  public update(deltaSeconds: number): void {
+    this.elapsed += deltaSeconds;
+    if (this.selectedGlow) {
+      this.selectedGlow.alpha = 0.58 + Math.sin(this.elapsed * 4.2) * 0.22;
+    }
+  }
 
   private createSummary(totalStages: number, clearCount: number, power: number): void {
     const panel = createSectionPanel(28, 166, 484, 78, 'panel_strong');
+    const chapterIcon = createIconSprite('stage', 30);
+    chapterIcon.position.set(43, 184);
     const chapter = new Text({
       text: 'CHAPTER 01  ·  안개숲의 균열',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 15, fontWeight: '700', letterSpacing: 0.5 }),
     });
-    chapter.position.set(46, 181);
+    chapter.position.set(80, 181);
     const summary = new Text({
       text: `진행 ${clearCount}/${totalStages}   전투력 ${power.toLocaleString()}   개방 1-${Math.min(this.profile?.highestStage ?? 1, totalStages)}`,
       style: new TextStyle({ fill: COLORS.muted, fontSize: 12, fontWeight: '600' }),
     });
-    summary.position.set(46, 207);
+    summary.position.set(46, 211);
     const progress = createProgressBar(190, clearCount / totalStages, 'primary', 8);
-    progress.position.set(304, 208);
-    this.view.addChild(panel, chapter, summary, progress);
+    progress.position.set(304, 212);
+    this.view.addChild(panel, chapterIcon, chapter, summary, progress);
   }
 
   private createRoute(
@@ -125,34 +137,47 @@ export class StageSelectScene implements Scene {
         .stroke({ color: nodeColor(stage), alpha: options.selected ? 1 : 0.5, width: options.selected ? 3 : 1 }));
     }
     if (options.selected) {
-      root.addChild(new Graphics()
+      this.selectedGlow = new Graphics()
         .roundRect(-2, -2, 212, 52, 17)
-        .stroke({ color: COLORS.warning, alpha: 0.92, width: 3 }));
+        .stroke({ color: COLORS.warning, alpha: 0.92, width: 3 });
+      root.addChild(this.selectedGlow);
     }
 
+    const iconName = !options.unlocked
+      ? 'lock'
+      : options.clearCount > 0
+        ? 'check'
+        : stage.nodeType === 'boss'
+          ? 'notice'
+          : stage.nodeType === 'elite'
+            ? 'upgrade'
+            : 'stage';
+    const icon = createIconSprite(iconName, 28, options.unlocked ? nodeColor(stage) : COLORS.muted);
+    icon.position.set(11, 10);
     const code = new Text({
       text: stage.label.split(' ')[0] ?? stage.label,
       style: new TextStyle({ fill: options.unlocked ? nodeColor(stage) : COLORS.muted, fontSize: 14, fontWeight: '700' }),
     });
-    code.position.set(14, 8);
+    code.position.set(48, 7);
     const status = new Text({
       text: !options.unlocked ? '잠김' : options.clearCount > 0 ? `완료 ${options.clearCount}회` : '도전 가능',
-      style: new TextStyle({ fill: options.unlocked ? COLORS.text : COLORS.muted, fontSize: 10, fontWeight: '600' }),
+      style: new TextStyle({ fill: options.unlocked ? COLORS.text : COLORS.muted, fontSize: 11, fontWeight: '600' }),
     });
-    status.position.set(14, 27);
+    status.position.set(48, 26);
     const type = new Text({
       text: nodeMark(stage),
       style: new TextStyle({ fill: nodeColor(stage), fontSize: 10, fontWeight: '700', letterSpacing: 0.5 }),
     });
     type.anchor.set(1, 0.5);
-    type.position.set(192, 24);
-    root.addChild(code, status, type);
+    type.position.set(194, 24);
+    root.addChild(icon, code, status, type);
 
-    root.eventMode = 'static';
-    root.cursor = 'pointer';
-    root.hitArea = { contains: (x: number, y: number) => x >= 0 && y >= 0 && x <= 208 && y <= 48 };
-    root.on('pointerup', () => {
-      void context.scenes.change(() => new StageSelectScene(stage.id));
+    bindPressFeedback(root, {
+      width: 208,
+      height: 48,
+      minTouchSize: 52,
+      playSound: true,
+      onPress: () => context.scenes.change(() => new StageSelectScene(stage.id)),
     });
     return root;
   }
@@ -202,19 +227,27 @@ export class StageSelectScene implements Scene {
       style: new TextStyle({ fill: COLORS.muted, fontSize: 12, lineHeight: 20 }),
     });
     info.position.set(46, 727);
+    const readinessIcon = createIconSprite(power >= stage.recommendedPower ? 'check' : 'energy', 20);
+    readinessIcon.position.set(46, 790);
+    const readinessText = new Text({
+      text: power >= stage.recommendedPower ? '권장 전투력 충족' : `전투력 ${Math.max(0, stage.recommendedPower - power).toLocaleString()} 부족`,
+      style: new TextStyle({ fill: power >= stage.recommendedPower ? COLORS.primaryBright : COLORS.warning, fontSize: 11, fontWeight: '700' }),
+    });
+    readinessText.position.set(72, 792);
     const readiness = createProgressBar(
       438,
       Math.min(1, power / stage.recommendedPower),
       power >= stage.recommendedPower ? 'success' : 'warning',
       9,
     );
-    readiness.position.set(46, 812);
-    this.view.addChild(detailPanel, badge, title, recommended, description, info, readiness);
+    readiness.position.set(46, 816);
+    this.view.addChild(detailPanel, badge, title, recommended, description, info, readinessIcon, readinessText, readiness);
   }
 
   private createFooter(context: AppContext, selected: StageConfig, power: number): void {
     const back = new UiButton({
       label: '거점 복귀',
+      icon: 'back',
       width: 154,
       height: 58,
       tone: 'secondary',
@@ -225,6 +258,7 @@ export class StageSelectScene implements Scene {
 
     const start = new UiButton({
       label: power < selected.recommendedPower ? '전투력 부족 · 도전' : '균열 진입',
+      icon: 'play',
       width: 330,
       height: 58,
       fontSize: 17,

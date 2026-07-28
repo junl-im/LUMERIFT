@@ -465,6 +465,13 @@ export class BattleScene implements Scene {
     this.bossPanel.addChild(bossTrack, this.bossHpFill, this.bossNameText);
     this.bossPanel.visible = false;
 
+    const controlDock = createRasterPanel(8, 786, 524, 166, 'panel_glass');
+    const controlHint = new Text({
+      text: 'MOVE        DODGE          SKILLS                ATTACK',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '700', letterSpacing: 0.8 }),
+    });
+    controlHint.position.set(30, 797);
+
     const comboChip = createRasterPanel(184, 186, 172, 40, 'resource_chip');
     this.comboText.anchor.set(0.5);
     this.comboText.position.set(DESIGN_WIDTH / 2, 206);
@@ -521,6 +528,8 @@ export class BattleScene implements Scene {
       this.pauseButton,
       this.bossPanel,
       comboChip,
+      controlDock,
+      controlHint,
       this.comboText,
       this.joystick,
       this.dodgeButton,

@@ -1,8 +1,8 @@
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.8.0
+**현재 버전:** v1.10.0
 **갱신일:** 2026-07-28  
-**상태:** 보스 3페이즈 전투·Cloud Save 복구·28일 시즌 랭킹 완료
+**상태:** 실기기 대응 UI 방어·세부 화면 2차 개선 완료, 물리 단말 계측 대기
 
 ## 1. 프로젝트 목적
 
@@ -216,3 +216,31 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 선 경로는 `moveTo/lineTo`로 작성하고 `stroke({ color, alpha, width })`로 마감한다.
 - `VirtualJoystick`의 십자 가이드 호출 형식은 `validate:source`가 고정한다.
 - v1.8.0 전투·복구·시즌·Firebase·에셋 계약은 그대로 유지한다.
+
+## v1.9.0 첫 시작 화면·전체 UI 기준선
+
+- `public/assets/live/v5/atlases/ui/ui_luminous_v5.json`: 공통 패널·버튼·탭·슬롯·HUD 30프레임
+- `public/assets/live/v5/atlases/ui/ui_icons_v5.json`: 로그인·재화·메뉴·운영·계정 아이콘 30프레임
+- `public/assets/live/v5/backgrounds/title_screen_v5.webp`: 실제 타이틀 화면 배경
+- `UiSkin`은 v5 Atlas와 타이틀 배경을 로드하고 NineSlice를 생성한다.
+- `UiTheme`은 아이콘·재화 칩·메뉴 타일·구분선을 생성한다.
+- `UiButton`은 아이콘·부제·정렬을 지원하며 기존 호출과 호환한다.
+- `SceneChrome`은 스테이지·결과·인벤토리·퀘스트·운영·계정 장면의 공통 상단 구조다.
+- Login은 세션 자동 건너뛰기를 하지 않고 타이틀에서 사용자가 게임 시작을 선택한다.
+- Lobby는 재화, 캐릭터, 출석, 이벤트, 일일 퀘스트, 전투 시작, 8개 메뉴, 하단 내비게이션 구조다.
+- 구형 v2 UI는 `art_source/runtime_archive/v1.9.0`에 보존한다.
+- 디자인 시안은 문서용이며 실제 런타임 완료 판정은 코드 연결과 자동 검사를 기준으로 한다.
+
+
+## v1.10.0 실기기 대응 UI·세부 화면 2차 기준선
+
+- `MobileViewportController`는 `visualViewport`의 width·height·offsetTop·offsetLeft·scale과 가상 키보드 상태를 CSS 변수 및 루트 데이터 속성으로 동기화한다.
+- 주소창 변화, 화면 회전, `pageshow`, 포커스 복귀, visibility 변경은 requestAnimationFrame 단위로 레이아웃을 재계산한다.
+- `UiMotion.bindPressFeedback`는 공통 눌림 상태, pointer cancel·outside 복구, reduced motion, 최소 48×48 논리 픽셀 터치 영역을 담당한다.
+- 4GB 이하 메모리 또는 4코어 이하 기기는 PixiJS 캔버스 resolution 상한을 1.5로 제한한다.
+- 스테이지·퀘스트·결과·운영 화면은 상태·보상·행동 아이콘과 저강도 마이크로 인터랙션을 사용한다.
+- 쿠폰 입력은 `window.prompt`를 사용하지 않고 Safe Area·가상 키보드·16px 입력 폰트를 지원하는 DOM 오버레이를 사용한다.
+- 신규 런타임 이미지를 추가하지 않고 기존 v5 아이콘 Atlas를 재사용한다.
+- v1.8 AttackFootprint, Firebase Auth·Firestore·Cloud Save·랭킹 및 App Check 비활성화 계약은 유지한다.
+- `v1.10.0_mobile_qa_contact.webp`는 디자인 QA 시뮬레이션이며 실제 물리 기기 캡처가 아니다.
+- Android Chrome·iOS Safari 실제 FPS·발열·GPU 메모리 계측과 최종 실기기 승인은 v1.10.1 잔여 작업이다.

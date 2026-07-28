@@ -201,3 +201,27 @@
 - PixiJS 8 가이드 선 렌더링을 `moveTo/lineTo` 후 `stroke({...})` 방식으로 통일했다.
 - `validate:source`에 객체형 `lineStyle()` 회귀 차단 검사를 추가했다.
 - 게임 기능·에셋·Firebase 규칙은 변경하지 않았다.
+
+## 2026-07-28 · v1.9.0
+
+- 첫 실행 Boot·타이틀·로그인 화면을 LUMERIFT 전용 시작 흐름으로 교체
+- v5 Luminous UI Atlas 30프레임과 아이콘 Atlas 30프레임 추가
+- 공통 UiSkin·UiTheme·UiButton·SceneChrome 적용
+- 로비를 캐릭터·출석·이벤트·퀘스트·전투 시작·8개 메뉴 구조로 재구성
+- 전투 하단 컨트롤 도크 추가 및 v1.8 판정 계약 유지
+- 구형 v2 UI 2개 파일을 v1.9 런타임 아카이브로 무손실 이동
+- UI 시스템 문서·시각 감사·개념 시안 5종·자동 검증 추가
+- App Check 비활성화와 Firebase Auth·Cloud Save 계약 유지
+
+
+## 2026-07-28 · v1.10.0
+
+- visualViewport 높이·너비·오프셋·배율과 플랫폼·포인터·reduced motion 상태 동기화
+- 주소창·회전·pageshow·가상 키보드 변화의 requestAnimationFrame 기반 레이아웃 복구
+- 저메모리·저코어 기기 캔버스 해상도 1.5배 상한
+- 공통 최소 48×48 논리 픽셀 터치 판정과 pointer cancel 복구
+- 스테이지·퀘스트·결과·운영 화면 전용 상태·보상·행동 아이콘 및 마이크로 인터랙션
+- 브라우저 기본 쿠폰 prompt를 Safe Area·모바일 키보드 대응 전용 오버레이로 교체
+- 신규 런타임 이미지 없이 기존 v5 Atlas 재사용
+- App Check 비활성화, Firebase 및 v1.8 전투 판정 계약 유지
+- 정적 모바일 QA와 디자인 접촉 시트 완료, 물리 단말 FPS·발열 계측은 v1.10.1로 이관

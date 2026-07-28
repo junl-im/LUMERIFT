@@ -1,0 +1,22 @@
+{
+  "release": "1.9.0",
+  "qualityStage": "production-candidate-ui-system-pass",
+  "runtimeUiAtlasCount": 2,
+  "runtimeUiFrames": 60,
+  "titleBackgrounds": 1,
+  "runtimeFiles": 5,
+  "runtimeBytes": 189271,
+  "screens": [
+    "boot",
+    "title-login",
+    "lobby",
+    "battle",
+    "inventory",
+    "stage-select",
+    "result",
+    "quest",
+    "operations",
+    "account-cloud-ranking"
+  ],
+  "notes": "Design concept previews are documentation references. The runtime uses separated WebP atlases and dynamic PixiJS layouts."
+}

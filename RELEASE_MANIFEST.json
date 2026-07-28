@@ -1,17 +1,19 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.8.1",
-  "baseVersion": "1.8.0",
+  "version": "1.10.0",
+  "baseVersion": "1.9.0",
   "releaseDate": "2026-07-28",
-  "fullArchive": "LUMERIFT_FULL_v1.8.1.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.8.0_to_v1.8.1.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.10.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.9.0_to_v1.10.0.zip",
   "qualityStage": "production-candidate-unified-art-pass",
   "features": [
-    "fixes PixiJS 8 TypeScript build failure in VirtualJoystick by replacing object-form lineStyle with path stroke",
-    "adds a source regression guard that rejects object-form Graphics.lineStyle calls in the joystick",
-    "keeps v1.8.0 boss combat, recovery points, season ranking, assets and Firebase behavior unchanged",
-    "keeps Firebase App Check fully disabled while Authentication, Firestore Cloud Save and Analytics remain active"
+    "synchronizes visual viewport dimensions, offsets, scale, keyboard state and platform hints for mobile browsers",
+    "adds a shared 48 logical pixel touch target and resilient press feedback contract",
+    "caps canvas resolution on low-memory or low-core devices to reduce GPU pressure",
+    "adds status, reward and action icon feedback to stage, quest, result and operations screens",
+    "replaces native coupon prompt with a safe-area and virtual-keyboard aware overlay",
+    "keeps Firebase App Check disabled and preserves existing Auth, Firestore, Cloud Save, ranking and AttackFootprint contracts"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -36,9 +38,11 @@
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
-    "source validation rejects PixiJS 8 incompatible object-form lineStyle calls",
-    "strict TypeScript and production build are executed when dependencies are available",
-    "full archive retains mobile production masters, licenses and all legacy candidates",
-    "patch application result matches the full release file hashes"
+    "v1.10 mobile UI validator checks viewport, touch, font scaling, coupon keyboard flow and four-screen polish markers",
+    "changed TypeScript sources pass syntax transpilation checks",
+    "active public assets remain unchanged and below the deployment budget",
+    "full archive retains code, documents, runtime assets, mobile production masters, licenses and legacy archives",
+    "patch application from v1.9.0 is compared against the full v1.10.0 file hashes",
+    "physical Android and iOS FPS, thermal and GPU-memory measurements remain a v1.10.1 task"
   ]
 }

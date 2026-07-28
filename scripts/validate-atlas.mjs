@@ -55,8 +55,9 @@ async function validateAtlas(atlasPath, atlas) {
 async function validateRequiredAnimations() {
   const player = JSON.parse(await readFile('public/assets/live/v4/atlases/player/player_live_v4.json', 'utf8'));
   const monsters = JSON.parse(await readFile('public/assets/live/v4/atlases/monsters/monsters_live_v4.json', 'utf8'));
-  const ui = JSON.parse(await readFile('public/assets/live/v2/atlases/ui/ui_obsidian_v2.json', 'utf8'));
+  const ui = JSON.parse(await readFile('public/assets/live/v5/atlases/ui/ui_luminous_v5.json', 'utf8'));
   const effects = JSON.parse(await readFile('public/assets/live/v4/atlases/effects/combat_effects_v4.json', 'utf8'));
+  const uiIcons = JSON.parse(await readFile('public/assets/live/v5/atlases/ui/ui_icons_v5.json', 'utf8'));
   const equipment = JSON.parse(await readFile('public/assets/atlases/items/equipment_icons_v1.json', 'utf8'));
   const playerStates = ['idle','run','attack1','attack2','attack3','skill1','skill2','hit','death','dodge'];
   for (const state of playerStates) {
@@ -70,8 +71,11 @@ async function validateRequiredAnimations() {
     const frames = monsters.animations?.[key];
     if (!Array.isArray(frames) || frames.length < 2) errors.push(`monster live atlas: 필수 애니메이션 누락 ${key}`);
   }
-  for (const frame of ['panel','button_primary','button_secondary','button_danger','slot','slot_rare','slot_heroic','skill_frame']) {
-    if (!ui.frames?.[frame]) errors.push(`ui live atlas: 필수 프레임 누락 ${frame}`);
+  for (const frame of ['panel','panel_strong','panel_gold','panel_glass','button_primary','button_secondary','button_danger','slot','slot_rare','slot_heroic','skill_frame','nav_active','nav_idle']) {
+    if (!ui.frames?.[frame]) errors.push(`ui v1.9 atlas: 필수 프레임 누락 ${frame}`);
+  }
+  for (const frame of ['play','account','guest','notice','settings','terms','stage','equipment','inventory','quest','mail','attendance','ranking','home','cloud','recovery']) {
+    if (!uiIcons.frames?.[frame]) errors.push(`ui icon v1.9 atlas: 필수 프레임 누락 ${frame}`);
   }
   for (const effect of ['slash','nova','hit','explosion','dodge']) {
     const key = `effect.${effect}`;
