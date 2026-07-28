@@ -68,6 +68,9 @@ for (const item of moves) {
 
 if (errors.length) {
   console.error(errors.join('\n'));
+  if (errors.some((message) => message.startsWith('이동 전 public 경로가 남아 있음:'))) {
+    console.error('\nFIX: run APPLY_ASSET_CLEANUP_FIX.bat or node scripts/cleanup-relocated-assets.mjs, then commit the deleted files.');
+  }
   process.exitCode = 1;
 } else {
   console.log(`PASS asset cleanup: public ${publicFiles} files ${(publicBytes / 1_000_000).toFixed(2)} MB, archived ${moves.length} files across ${plans.length} plans`);

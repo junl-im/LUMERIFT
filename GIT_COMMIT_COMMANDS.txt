@@ -1,0 +1,4 @@
+git status
+git add -A
+git commit -m "fix: clean relocated assets and update PixiJS graphics API"
+git push
