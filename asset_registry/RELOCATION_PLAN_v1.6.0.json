@@ -1,0 +1,1485 @@
+{
+  "schemaVersion": 1,
+  "release": "1.6.0",
+  "baseVersion": "1.5.0",
+  "moves": [
+    {
+      "from": "public/assets/LIVE_ART_V100_SUMMARY.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/LIVE_ART_V100_SUMMARY.json",
+      "bytes": 882,
+      "sha256": "079b28c2c6df151be7e9a535d4048d41ab15472da31f1f7a5d0301c164c983c6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/MEGAPACK_V080_SUMMARY.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/MEGAPACK_V080_SUMMARY.json",
+      "bytes": 971,
+      "sha256": "b1f35b3fc9cdd36516f16a5cf7237176046cab9a1baf1d28c9c43f098c4806fe",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/QUALITYPACK_V090_SUMMARY.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/QUALITYPACK_V090_SUMMARY.json",
+      "bytes": 14376,
+      "sha256": "17d790154a68aff8adbf46cc20c80b3c34561b8c41ebcff1662f18dfd000420f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/README.md",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/README.md",
+      "bytes": 652,
+      "sha256": "66d2f4afd250978b753a2cff6fd2fc7e2bb085821d3ca28d3cb69e0d5b7130d8",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/bestiary/bestiary_portraits_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/bestiary/bestiary_portraits_v1.json",
+      "bytes": 19639,
+      "sha256": "8e80147ecc1f5c90c315904ac70d529a3078ddfcca412c5d65763ec280822a87",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/bestiary/bestiary_portraits_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/bestiary/bestiary_portraits_v1.webp",
+      "bytes": 125152,
+      "sha256": "827e697db28bcf997e7763844f6a6a47d693789d2f94188334774e4211021a87",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/effects/effects_mega_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/effects/effects_mega_v1.json",
+      "bytes": 62713,
+      "sha256": "8763d6b65035c10190b3aef96bcf003dbaf46a39676e702a8c5a54c3c69ca746",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/effects/effects_mega_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/effects/effects_mega_v1.webp",
+      "bytes": 171626,
+      "sha256": "e2babe5490dee2d92c249b16d889665c8264848c91de216115daeefea444ae45",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/emblems/emblems_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/emblems/emblems_v1.json",
+      "bytes": 25549,
+      "sha256": "95bed613360302e28383e3f773503b08179b4a5f1cbdf914db7272710f549e1c",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/emblems/emblems_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/emblems/emblems_v1.webp",
+      "bytes": 131136,
+      "sha256": "14a68270c1a8dae593d101e689a7610b5bb89fc435e46ee9658be5e489679d5a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/environment/environment_props_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/environment/environment_props_v1.json",
+      "bytes": 48260,
+      "sha256": "c4e95865c6ef7e7fe373decf25bc961c7de13896bcc51f49b1503db1347b0c06",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/environment/environment_props_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/environment/environment_props_v1.webp",
+      "bytes": 69394,
+      "sha256": "cf8ac15715bb85e82809041174fc19a45107aa484bc0988740459209816b2847",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/items/mega_items_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/items/mega_items_v1.json",
+      "bytes": 65374,
+      "sha256": "b025dd8e3736f996bc2d0902cc7d454ccc720ad8d241f75452bd14e9543f0464",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/items/mega_items_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/items/mega_items_v1.webp",
+      "bytes": 173570,
+      "sha256": "f1c19d50d71a3816509a3e6669cee44d5b16eb6bcecc8a219b99cdba77e1f741",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/monsters/monster_common_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/monsters/monster_common_v1.json",
+      "bytes": 24476,
+      "sha256": "690a6ab80494c5a630a619ccdd0278d39372de12fdbd59a4b2f89ac6073c5939",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/monsters/monster_common_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/monsters/monster_common_v1.webp",
+      "bytes": 25326,
+      "sha256": "bfc2e52ce2f53dcd051e2778457034e6c7467b9714efefcde1024fce85d2c575",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/npc/npc_portraits_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/npc/npc_portraits_v1.json",
+      "bytes": 13090,
+      "sha256": "ccbbded8012bbb78fd97cd1f24082f3efc8a51ee5186fb190b48c6cbb113b719",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/npc/npc_portraits_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/npc/npc_portraits_v1.webp",
+      "bytes": 51914,
+      "sha256": "ff4b08202cd1e9742e635bdb99d754d5ee18d806f239e47c0534d41a412cac24",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/player/player_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/player/player_v1.json",
+      "bytes": 106179,
+      "sha256": "0350918b4e64b56599030370672d1da1abaa73e594d4dcdac5476a96e417cb6f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/player/player_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/player/player_v1.webp",
+      "bytes": 54018,
+      "sha256": "59a0d25520e157738ca4bd5cd6e6aa076e271ea712ecb78e086a75a0c54778e9",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/bosses/bosses_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_01.json",
+      "bytes": 3644,
+      "sha256": "93ea220858abfb3f9bb564aab9f05444f20bd1a435b3e23d71577c0d810580dd",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/bosses/bosses_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_01.webp",
+      "bytes": 229416,
+      "sha256": "668239defbbd83d64356e7d43176142780e60b27e49b10fab49bfe0f8ff9ac0d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/bosses/bosses_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_02.json",
+      "bytes": 2011,
+      "sha256": "c25abe34d4089ac7b1235093472c69f780f6c1f598561c07182ac4171764291e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/bosses/bosses_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_02.webp",
+      "bytes": 111268,
+      "sha256": "4e41a167703cd23397ed76565a4110f57a6c9ae22b15b5f2d055f21f014266b5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_01.json",
+      "bytes": 42571,
+      "sha256": "2302a169b4348f149d49b57e017ef32e72ee8bef336f542eda080f770b790444",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_01.webp",
+      "bytes": 726156,
+      "sha256": "1ca5c6ea284807870f8f4a13f6c65aaf55331882125ea2e0b3d0df073d91f28f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_02.json",
+      "bytes": 42571,
+      "sha256": "54f21b4777339b60049058d6057653c642f451d5b624231af4a68dbd05b50546",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_02.webp",
+      "bytes": 732970,
+      "sha256": "b0a8bd7196f2f392cf38983e2c636fa5cd2ad483cc530d39d1db63049f58c1f4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_03.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_03.json",
+      "bytes": 42571,
+      "sha256": "93ef152c6044e6108fc5577b3a90f11b9e472014b6fc7af53cfd1c0ea82bb7ef",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_03.webp",
+      "bytes": 715412,
+      "sha256": "4b173f51132a7d512b44b31b453804ab6f936aa938eb638356bec95b31d31ced",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_04.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_04.json",
+      "bytes": 42571,
+      "sha256": "d452fe4e0585d832a5079ff069d827409d5e2091774d5c9c15595997f1ad1b6d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/effects/vfx_quality_04.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_04.webp",
+      "bytes": 729544,
+      "sha256": "ef3354e48754a28e9860c3923f85df91e1ee56714700473339dd16e564e86bef",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_01.json",
+      "bytes": 20963,
+      "sha256": "d00e8e5622fbda830943999dfc525dfe4f49b7f56765324128720043ce05e3f1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_01.webp",
+      "bytes": 283490,
+      "sha256": "274b44dc2f0593a2cf048d0fcc8294c5de93522bc1a9e068408a8ae45bac6e24",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_02.json",
+      "bytes": 20964,
+      "sha256": "25595de360a1e9d6578022a04945b132e6d67c57dd6caabe320c3d47fa2d71b1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_02.webp",
+      "bytes": 284060,
+      "sha256": "b3bb4de795f38886580ff62a3e099b8b3ff3dfd3e487cc6740a5602cc802884a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_03.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_03.json",
+      "bytes": 20962,
+      "sha256": "906a71398b48798c7a329e011bf992ee23386bdbff096ac9412265eceb096192",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_03.webp",
+      "bytes": 283098,
+      "sha256": "4efbc7b25765db4094181acc3e701e8f42927fcddd3426d571175381a05be185",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_04.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_04.json",
+      "bytes": 20959,
+      "sha256": "414bbe984334e9d91e1c2f32f767160027f2b45356b7b5f44f83fcf1d47d86e9",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_04.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_04.webp",
+      "bytes": 281258,
+      "sha256": "f442e2d1427bbeefb7443ad0eca56ed229ae1a0f9e61f4f56f541bad7ee7f005",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_05.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_05.json",
+      "bytes": 20961,
+      "sha256": "594e2819fe110117a6c7d7e919fd96871d8e54acfa8e743a28517842f7af5129",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/environment/props_quality_05.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_05.webp",
+      "bytes": 277572,
+      "sha256": "c222160249e887422679d32f9c5fd687ed158ea37d5f2eac26d17978baa30b3a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/heroes/heroes_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/heroes/heroes_quality_01.json",
+      "bytes": 3644,
+      "sha256": "6fdd003b557e842bd694a1fe948fedab45537387dfb5799e665d3603487a1174",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/heroes/heroes_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/heroes/heroes_quality_01.webp",
+      "bytes": 288746,
+      "sha256": "6955d4021496964209c66afe80d348476f27393d74f2b1a859932b4cf9c265a7",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_01.json",
+      "bytes": 26940,
+      "sha256": "ee04fc0c962a6ee03e4b43b397da43b8d261be8443d8f3e413e81a3381b97e3f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_01.webp",
+      "bytes": 457696,
+      "sha256": "746418157bbbf0dc99abfbc76f7d4e6e4ce7609108dc2c217148815b83937dba",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_02.json",
+      "bytes": 26936,
+      "sha256": "68459c18fb738904a76f62975fd090bb65104beb5776ebc8c699903a41806987",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_02.webp",
+      "bytes": 458084,
+      "sha256": "fd2e3435255bc834d2de48c96aafd2dc25c57966dcf44fe41a5b0810606db418",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_03.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_03.json",
+      "bytes": 26937,
+      "sha256": "04e2a6715e3804b666f7d34d0ce26f9bc3a4ac913ca9eaad4905f95e7f5252c5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_03.webp",
+      "bytes": 459874,
+      "sha256": "bc8f57314b48267a3b77d67c6229efe3d9efa45043b2f17b1d00a34ac397bfe6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_04.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_04.json",
+      "bytes": 26940,
+      "sha256": "46e18140badd1d5db6fb228f1a8d64b82b16edfb99debd82df6414122d778973",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_04.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_04.webp",
+      "bytes": 464290,
+      "sha256": "6bf9c093276f7460c77b51290f4aca05c71d9df01d5643c449be32d2a0e9b178",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_05.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_05.json",
+      "bytes": 26936,
+      "sha256": "d3d9be5858d8d43f951602503b7b3a45b39cb0e9dcc8591e5f192a383d7e9ff2",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_05.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_05.webp",
+      "bytes": 461948,
+      "sha256": "2d76c3e7bdd86272929f7bf94c1d4d778552cca87eb2757925f67e3b199fa86f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_06.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_06.json",
+      "bytes": 26937,
+      "sha256": "08e37387560fdd2e3beeae589007f6e424db8b73c607e7daba8cda120ad6016d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/items/items_quality_06.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_06.webp",
+      "bytes": 462406,
+      "sha256": "705ba2d55495d9f4011523c7ed8ab656e112d9caf7c608f2e36a28fa21977e31",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/npc/npc_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_01.json",
+      "bytes": 3630,
+      "sha256": "b8566df04d19c16b54230c8f106557a6b5d92a8643b77ebf811803f2f00a2aa7",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/npc/npc_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_01.webp",
+      "bytes": 171882,
+      "sha256": "2798d6b64c8f6c6572bbf5e01377068303766a8e586f7f0ca809e8eae58d7fd2",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/npc/npc_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_02.json",
+      "bytes": 3630,
+      "sha256": "d34ca600c68e0b253598a695b4ed9a3524478cc0d77cb282fe3b7ee5d2f07cfa",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/npc/npc_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_02.webp",
+      "bytes": 182354,
+      "sha256": "c0cf0001923ca58d95c136b15045d6446a5f0bfac5187c8cff7f50dd9900ffdd",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_01.json",
+      "bytes": 17023,
+      "sha256": "ece8a3552e3bade8aaadde089e13511f2936c385cd07edf3bf7464901b358b78",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_01.webp",
+      "bytes": 263580,
+      "sha256": "f345e7ba564522554a6e39a551adc001a7aa5cc53948e9293556fe312cce4f28",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_02.json",
+      "bytes": 17023,
+      "sha256": "9c8677b3a5d56580a48b0161001a9066c0ed58c738cd4ccaa719341da3ea6253",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_02.webp",
+      "bytes": 263824,
+      "sha256": "f6e4c4a91eac667fbf48ddb61f8c0ce80123498dc0e2c534ad0f23dffead1333",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_03.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_03.json",
+      "bytes": 17023,
+      "sha256": "fbc5a2a160a00891ea91cbd73bf3f52d62a4ba47adb4ff46bc4de3f0ad56f081",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_03.webp",
+      "bytes": 262758,
+      "sha256": "99770175f6c42909cfa7bbffa13cd922a7b6152d7f1984a3901744e7530148e1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_04.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_04.json",
+      "bytes": 17023,
+      "sha256": "298b5645173736cdccfb781ebc3de4fe08d6a8a0741ebec34e7098b61d8f6664",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/skills/skills_quality_04.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_04.webp",
+      "bytes": 265464,
+      "sha256": "fa19c49e4000bde096b95e5954e31f07f1dc55e54a0480b088f08299a3c9882f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/ui/ui_quality_01.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_01.json",
+      "bytes": 20210,
+      "sha256": "54d66a770bf0156809975dc025edf02843f2634dfb2e3e0bfb5a98de3f131cb7",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/ui/ui_quality_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_01.webp",
+      "bytes": 225254,
+      "sha256": "28e5e2eaca2e4592ef003499deb39b2879e1ba107f3dc887f78f180c44aa85b6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/ui/ui_quality_02.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_02.json",
+      "bytes": 20210,
+      "sha256": "9b511eb33e2df24af65d569d9d96945331f1b3959e8a91883bf32df3bb5eaf6d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/quality/ui/ui_quality_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_02.webp",
+      "bytes": 224488,
+      "sha256": "65e89fda8e888fc761ae624cbf96dd02031c620759321c7157ce50b956414422",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/skills/skill_icons_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/skills/skill_icons_v1.json",
+      "bytes": 32310,
+      "sha256": "fa5a3a49145e66b66fe37043c223297ec8777d76cb1a748f43902f7c6744f2ce",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/skills/skill_icons_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/skills/skill_icons_v1.webp",
+      "bytes": 120272,
+      "sha256": "4920f6f54f163d3cf123d1923b0478d488adc36615497708771f6255f23f3953",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/status/status_icons_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/status/status_icons_v1.json",
+      "bytes": 19221,
+      "sha256": "c1b9573698005b0a0a53181f750df836a99b605a9838a2c538bfe37776424ba6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/status/status_icons_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/status/status_icons_v1.webp",
+      "bytes": 44316,
+      "sha256": "42efb0a2927374776661fd1fa16296771a83c0061ccd1782efd27d94455c38e8",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/tutorial/tutorial_glyphs_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/tutorial/tutorial_glyphs_v1.json",
+      "bytes": 16382,
+      "sha256": "5e150ce16b981402b103df5464be39e24cca2a5c27fe8f9ee67f7373de483c4e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/tutorial/tutorial_glyphs_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/tutorial/tutorial_glyphs_v1.webp",
+      "bytes": 42536,
+      "sha256": "8fa4195c7366d84dc389305fc42ef180f251693491ed1ee37bd47cfcb92bcae0",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/ui/ui_icons_v2.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_icons_v2.json",
+      "bytes": 38281,
+      "sha256": "269208911fb3ccaff786e1f21dd52a756a3c49dfa2a3247f9a1f3521a6f7981c",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/ui/ui_icons_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_icons_v2.webp",
+      "bytes": 76732,
+      "sha256": "57085a6f23716edd247bfb0c4777ebb39f9a482279a4260e23e8e20be043e8e4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/ui/ui_skin_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_skin_v1.json",
+      "bytes": 5000,
+      "sha256": "b45a82ed48a9a5d7e65af10c0bd6fcf9a370cf26afe88b463f2b99bf70507d38",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/atlases/ui/ui_skin_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_skin_v1.webp",
+      "bytes": 3176,
+      "sha256": "08562aa9bbeead3a6b35290cb1b6be4d4d44acf3b54386d35e589afa6f7c102d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_00.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_00.opus",
+      "bytes": 6781,
+      "sha256": "419f0c8077d044ee6d36a03398bbb527c53eff9e818d5b6ad0b0f02f46cd1da4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_01.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_01.opus",
+      "bytes": 8088,
+      "sha256": "4c51f7c340947b9e4276428c8ecaa585c9cb566b313269581b6c49483c15d84a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_02.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_02.opus",
+      "bytes": 9063,
+      "sha256": "37a530df62458942fa43bbb6279bf220677f5e6532404ed6057c07d87e676432",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_03.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_03.opus",
+      "bytes": 9207,
+      "sha256": "2b90f4d3e7d015f8f19ce8a0fdcf974c6a095ecd620be8d741c710d866863cf0",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_04.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_04.opus",
+      "bytes": 8218,
+      "sha256": "8b6d8314f2c4fb451b8323fef2f2ad0c3df7dd7de892766da34025d351051de4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_05.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_05.opus",
+      "bytes": 10689,
+      "sha256": "0ef50200fd59b13eba35f57af33301ac5a84619ccfb82993832e5bdc7dcf0e90",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_06.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_06.opus",
+      "bytes": 7518,
+      "sha256": "c77aa83c71cc4f06d1c3180e37d5da1731290fc133000e9e70b3e2f2dd7a6e85",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ambient/ambient_07.opus",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_07.opus",
+      "bytes": 7625,
+      "sha256": "e0739f9dcd744dad440acc9de719ea6664d73dde4659549d4da2d44217de22b5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_00.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_00.ogg",
+      "bytes": 3780,
+      "sha256": "6a5580d4b5761ffb12be9b4d42ff8c40c1375d6cc9f47f1a6ea8cfbf2d166555",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_01.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_01.ogg",
+      "bytes": 3898,
+      "sha256": "8a956829a08d4960a5cda098d655971ccf27cc443df0c51edf35064ff440ae02",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_02.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_02.ogg",
+      "bytes": 5352,
+      "sha256": "180381cedabd2c195e59237195f43bd4956dac06de36a5e24fda951812197907",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_03.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_03.ogg",
+      "bytes": 4136,
+      "sha256": "33c2005320e5e1265d1effdacfd7cde7bb522d0a9578daac08f21aca81f84a1d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_04.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_04.ogg",
+      "bytes": 3781,
+      "sha256": "8028ff707aaf3ad6cdd8417d681fa6d8071ac1e8ef928c3c7ee6a189a23940f7",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_05.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_05.ogg",
+      "bytes": 3891,
+      "sha256": "55a7f50739241b202b6c94f0dd2d27afbbad0804d1e8f796607d9960b32eaaca",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_06.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_06.ogg",
+      "bytes": 4090,
+      "sha256": "12650d45c7303dcc09b65995d82b05726efd30eb6eb70a5540e89cd86461dd10",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_07.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_07.ogg",
+      "bytes": 5684,
+      "sha256": "a7320f11481ce9f9cff926102426740c858bf92bd9568a8382d4532065eb3184",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_08.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_08.ogg",
+      "bytes": 3824,
+      "sha256": "ba79f3e03b3852e56f4b154d245eee0525a8cbc979ebb85f6889c400eedf5dc2",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_09.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_09.ogg",
+      "bytes": 3882,
+      "sha256": "0c710ea908deec83983b75c35de1cb12bd6154762927b66e31c12e0600a4ee03",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_10.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_10.ogg",
+      "bytes": 3971,
+      "sha256": "068598a31611a091b3d7d616db3c3adc35267ff4300ffdc331a1ce3c38193981",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_11.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_11.ogg",
+      "bytes": 4178,
+      "sha256": "bad4e711e03875c69202d26ff0c56dbc87e054d6e70ad2fb852367c37ad3a36f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_12.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_12.ogg",
+      "bytes": 4584,
+      "sha256": "6515aa059be2c1d102694e10c2d92227e1109a0f133ad383494a6fb1d2cb5b59",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_13.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_13.ogg",
+      "bytes": 3917,
+      "sha256": "08167b643660ebe6d58bc9036b3638d6f6f4ed1e2de96a143f9d67463134c34e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_14.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_14.ogg",
+      "bytes": 4002,
+      "sha256": "e77eaacd45622086a28bcec6564f973857c55d4202a6f47173ee9570602bead6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/combat/combat_15.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_15.ogg",
+      "bytes": 4052,
+      "sha256": "b4a718c9a2e57ddb133eace0f7b00e70af360ae102b5c6fb73029ddec78ea2fc",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_00.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_00.ogg",
+      "bytes": 3780,
+      "sha256": "d556f5386cabea7acb27cd9d5528283854f6cea47be2658a1636306c683e4bf5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_01.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_01.ogg",
+      "bytes": 3898,
+      "sha256": "846db3871360f04dff2933224b00f63613d1c252217d945f51961081eb5fd403",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_02.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_02.ogg",
+      "bytes": 5352,
+      "sha256": "607e7a557698d2987534e432bd9f4760e6bfc33531616b452cca6ee7e1209b87",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_03.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_03.ogg",
+      "bytes": 4136,
+      "sha256": "8fa19eec5cae7c9c0f1f8534fe17566328a70839ed9d07242e4cf247e90b3b6f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_04.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_04.ogg",
+      "bytes": 3781,
+      "sha256": "2d3b32e62e276c71edb98db54a2f1932186e21a2414baa23c15214b045921b6d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_05.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_05.ogg",
+      "bytes": 3891,
+      "sha256": "52619600c9151a2c2172686c31e3416825932b4fc3698d201d94f5ebc40e2e89",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_06.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_06.ogg",
+      "bytes": 4090,
+      "sha256": "0366b5b0fb0237abd43692e4a290321b7c5f2fc294dd369a8b6ed52a0ce31c0d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_07.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_07.ogg",
+      "bytes": 5684,
+      "sha256": "89b32c740859d8e0515cd30b85efab4b817c9b40faa7b3ac6061c15c868dabf7",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_08.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_08.ogg",
+      "bytes": 3824,
+      "sha256": "01a41c0381741f61d96b1bd665aa8c28f79a47c74b35bb8708835bdb23b579e6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_09.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_09.ogg",
+      "bytes": 3882,
+      "sha256": "33329052b86bb0f03eb67c22c89f76c61343ef7c999a4ab21750fc9196cb6fc6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_10.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_10.ogg",
+      "bytes": 3971,
+      "sha256": "6f3fcd296dcb4a9d5b8c149dd5e39915da006187518aea253748203adcb28b0f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/audio/ui/ui_11.ogg",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_11.ogg",
+      "bytes": 4178,
+      "sha256": "816cbdc9bfd461f50e5b62d8e403b9c02bde9245a9b9d6ed5ee65d6acb811218",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/brand/lumerift_mark_1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_1.webp",
+      "bytes": 7594,
+      "sha256": "b5c3bd37f6a0b82fa479312548f49dd590ac859702d70213ea344402a9ad6d2d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/brand/lumerift_mark_2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_2.webp",
+      "bytes": 12306,
+      "sha256": "a5a909391788ccfa918f46da2689b7ba62445ac36da59c330a9fb384a3439821",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/brand/lumerift_mark_3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_3.webp",
+      "bytes": 13380,
+      "sha256": "4c3281efb40ada10d998aa417a46b5ae44778081015bc14da4a4671326208edc",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/monsters/monsters_live_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/monsters/monsters_live_v1.json",
+      "bytes": 126562,
+      "sha256": "1f2849a1e9b7d2cc7fa3410891cacb06bce830ab838d11fa72fc57035cf032df",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/monsters/monsters_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/monsters/monsters_live_v1.webp",
+      "bytes": 2888682,
+      "sha256": "4e865b0ac52a70c194c0de9adfafc751990b1574394cb2d058885c2bc34323db",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/player/player_live_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/player/player_live_v1.json",
+      "bytes": 42442,
+      "sha256": "5eea535c587dfed5e910ab88d849ae6e92ae706655f362382325ff19d275eb1d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/player/player_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/player/player_live_v1.webp",
+      "bytes": 812506,
+      "sha256": "e6f01779ed57b398f116d3c9564cc8a68405ea97645a22f8f249a64a8b86dcb1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/ui/ui_live_v1.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/ui/ui_live_v1.json",
+      "bytes": 7513,
+      "sha256": "f4ef9d357efbf8af20019d9aebbe77f8a3c13d10473f45b3ddd9a95d21ef12cc",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/atlases/ui/ui_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/ui/ui_live_v1.webp",
+      "bytes": 14080,
+      "sha256": "0a0267de8cbb9d4af872ace9c97ab938b7d861e42d4a8fd0e1bb0b708864a8f1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/backgrounds/battle_forest_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/backgrounds/battle_forest_live_v1.webp",
+      "bytes": 75164,
+      "sha256": "36178f437cbee7388088b568243015f7d8e176ed3ffa4b2d95f04ca716b671d5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/backgrounds/lobby_forest_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/backgrounds/lobby_forest_live_v1.webp",
+      "bytes": 54452,
+      "sha256": "ada505517aed7e480b702aa3cac93538f389d2b1872904643b382fc062a99648",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/portraits/boss_harbinger_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/portraits/boss_harbinger_live_v1.webp",
+      "bytes": 60724,
+      "sha256": "5df426e99d2e9f0d479db96176e429c173adf99351443c2a28650a37abe890c4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/live/v1/portraits/hero_live_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/portraits/hero_live_v1.webp",
+      "bytes": 171378,
+      "sha256": "ff35cac66914c39df95802734fade870127889718c402d3ae0abec0e15b5d1b1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_01.webp",
+      "bytes": 22460,
+      "sha256": "0353d1eef267ac572b318ddd02e6f9455a53da9a82b7abd25e0a184f7145b572",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_02.webp",
+      "bytes": 22290,
+      "sha256": "5481497f3554371581f9c4f6e8114284eba6b43dd68300dec1b24fce713544d8",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_03.webp",
+      "bytes": 21780,
+      "sha256": "1ca9cc999041b52b593af5be378214a31e45191eff2dad09c4bb0968c48665b6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_04.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_04.webp",
+      "bytes": 23176,
+      "sha256": "bae424166fda775b6d07728362bed42100b2cedcc31d83c4769eda98250561e8",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_05.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_05.webp",
+      "bytes": 22704,
+      "sha256": "1ef04bceb817704de7d6e0fae5b1cd7c2f4c22996833fb80f65641e3a8537b2e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_06.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_06.webp",
+      "bytes": 23666,
+      "sha256": "6c79cfab55af76702828df6bbc7c7311344feeeacdb86400933285cf81273a26",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_07.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_07.webp",
+      "bytes": 22980,
+      "sha256": "dc0013fba3d68921e67d85069d85b0394f95a9d278a315e05f99857c599c8b0c",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/loading_keyart_08.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_08.webp",
+      "bytes": 22322,
+      "sha256": "b14f19b8749d934e997033922c79445ef6aa342999737d70aff571ef81174a27",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/ember_foundry_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/ember_foundry_keyart_01.webp",
+      "bytes": 121760,
+      "sha256": "fb301f4e3a952bb000644f56c9fd56c355a660f3ed21021822686adfa4c61635",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/ember_foundry_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/ember_foundry_keyart_02.webp",
+      "bytes": 118108,
+      "sha256": "b3eeb0689882e248024fded4a444aae378cd52e821bfc0beda20e9114264db65",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/frost_citadel_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/frost_citadel_keyart_01.webp",
+      "bytes": 132314,
+      "sha256": "b62f006a7f72d1bad8222423c8b255379e255968a87a2aaa59ee5d8909a01daa",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/frost_citadel_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/frost_citadel_keyart_02.webp",
+      "bytes": 123764,
+      "sha256": "52458e2c3dff9d97bac485d5b2d55e5908e6595e85ff755e397ffdbd6bdaaa31",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/neon_arcology_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/neon_arcology_keyart_01.webp",
+      "bytes": 103190,
+      "sha256": "e0c43e9682c5e3e2560aae89e6727e5b7b3932499a393cbe0a4fa523f56e12ee",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/neon_arcology_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/neon_arcology_keyart_02.webp",
+      "bytes": 98848,
+      "sha256": "82c2e2de603a5fab525778f7c3eab68e4a02a35ae2492bf76f7ae632714baad5",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/sunken_dunes_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/sunken_dunes_keyart_01.webp",
+      "bytes": 116358,
+      "sha256": "433a6e80942da5b9232bbb03464458209aa98a18ed9b794f4016df7ebfb5570d",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/sunken_dunes_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/sunken_dunes_keyart_02.webp",
+      "bytes": 109790,
+      "sha256": "5af71a2757edcd756c233b0297587e0c0f8714091de7e803eb19d80bfe6aff3f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/verdant_rift_keyart_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/verdant_rift_keyart_01.webp",
+      "bytes": 115138,
+      "sha256": "b5f5885ca2df7cc73de4984e29159375e63a1ef1cd2e7b28f164476cdadabcc6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/loading/quality/verdant_rift_keyart_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/verdant_rift_keyart_02.webp",
+      "bytes": 107894,
+      "sha256": "78726fff3f5b82c00b599de71da7d255445aaa38bbf3275480ab4b5d7a050200",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter1/forest_rift_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_rift_v1.webp",
+      "bytes": 32496,
+      "sha256": "f7bab9ee639bd68853087d9fb4648a091a5939dd66e51f9df7560c6fe929cd04",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter1/forest_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v1.webp",
+      "bytes": 36560,
+      "sha256": "2cbc35ef4c3f105a63838cf4dcd4eda1f17db53685d9fef20c8d19ce8a107874",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter1/forest_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v2.webp",
+      "bytes": 33130,
+      "sha256": "9633779afab179fabc452b0a143bae61c804a9eb71032be41cfddb76349e9e66",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter1/forest_v3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v3.webp",
+      "bytes": 33986,
+      "sha256": "a084a7665f8f6301c79b8cbc1e1c58d353f4d4b64aa4b0f2fc3a6a2cdf99b8e4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter2/desert_ruins_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v1.webp",
+      "bytes": 29840,
+      "sha256": "b5fead5c9bf3a93b097ba2c897c4b9449cd60a49c9bfcc9cd543efdca8095368",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter2/desert_ruins_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v2.webp",
+      "bytes": 27408,
+      "sha256": "36ac94a493eab6983949c28927433bd85df726056ca0c83c666a8d9ef7caf2b1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter2/desert_ruins_v3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v3.webp",
+      "bytes": 27224,
+      "sha256": "bb9d16886929684aa39a3ef3bc2319540d8fdc341b9f7fb7586b99042f87f355",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter3/snow_citadel_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v1.webp",
+      "bytes": 40280,
+      "sha256": "e6672b11d5282e91ad12fcb8f70f6faa79b275e53065c82ac3528d21ac20692a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter3/snow_citadel_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v2.webp",
+      "bytes": 38676,
+      "sha256": "e0b74cddf5580c25fecfb272cf47712671fd05f0e566d1e0863b422d145ace9f",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter3/snow_citadel_v3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v3.webp",
+      "bytes": 39402,
+      "sha256": "026f0f9108699e415650f3970bb288502e01a264969146edc84bebc1d227b10a",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter4/volcanic_forge_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v1.webp",
+      "bytes": 41586,
+      "sha256": "c78e24e4b3d26afc0436b2d354a75a39a02a547562af83be82bc27fb5b71bc85",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter4/volcanic_forge_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v2.webp",
+      "bytes": 33988,
+      "sha256": "8274ee2d544d7cc8fd620dd5ee2fb7b5f1a051722e67c3dcacf3694c2614f159",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter4/volcanic_forge_v3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v3.webp",
+      "bytes": 42058,
+      "sha256": "bccf9d733a9062ca330bfea4fc39db29db3e016294b6453ef94365da19edb2a2",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter5/neon_arcology_v1.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v1.webp",
+      "bytes": 33562,
+      "sha256": "15aa12da24d274d095657cfa4a633c49be64c7a68307e006bd0ea41b5a153bc1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter5/neon_arcology_v2.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v2.webp",
+      "bytes": 29260,
+      "sha256": "83f415e4b99df48829fe9efa1db1a7349ccda2237e4274742b06db337918063e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/chapter5/neon_arcology_v3.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v3.webp",
+      "bytes": 34260,
+      "sha256": "638a7020d60544578ee4e55a4e577be839ea01fbdee835a4ae31257f3e395947",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter1/verdant_rift_battle_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_01.webp",
+      "bytes": 112896,
+      "sha256": "3084cdf14a0d5a760718679880262be1754b5057cc9e0878f4c8e617cf2c59da",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter1/verdant_rift_battle_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_02.webp",
+      "bytes": 107644,
+      "sha256": "b91e539768cb07a389960dc2c0dca638d144b92079e47a5abe472ef6f619fce4",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter1/verdant_rift_battle_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_03.webp",
+      "bytes": 97164,
+      "sha256": "8b1583e0403f44854ab70fc8c19f52167126ee90afc0badcbd519a7247d679ba",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter2/sunken_dunes_battle_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_01.webp",
+      "bytes": 113650,
+      "sha256": "4ad80b658fd816e425c3ab1f797f840a17e467cb85338e0a31f6803991da8d7e",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter2/sunken_dunes_battle_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_02.webp",
+      "bytes": 106680,
+      "sha256": "f7ebfcd94418ac9cc3152672facc71f227e0d98a36ba61769f0b8734e08a61b3",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter2/sunken_dunes_battle_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_03.webp",
+      "bytes": 101096,
+      "sha256": "e86face4feb6fbfe2b577f9e9bb21bacb437c96c1a5311b69f13c241bed88151",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter3/frost_citadel_battle_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_01.webp",
+      "bytes": 128876,
+      "sha256": "53c068a81f1aa22e78d769e8d28352edab589b65824f5636f6f52ba5766f5bac",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter3/frost_citadel_battle_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_02.webp",
+      "bytes": 120172,
+      "sha256": "47df9eb52e59894a16d66c3f10250ced89e84d32ba94274177d9bdc1dda35b73",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter3/frost_citadel_battle_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_03.webp",
+      "bytes": 111500,
+      "sha256": "5f133947ca8e9780330bd81cdf080fb82bc70d18149c9d39e00b0ac4d2a49ae6",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter4/ember_foundry_battle_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_01.webp",
+      "bytes": 119546,
+      "sha256": "27bbd93708c98edb68a42c0f8f89d76569d014288b0bac98b8665b48e7bd86da",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter4/ember_foundry_battle_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_02.webp",
+      "bytes": 115732,
+      "sha256": "4805d7e89464488fb7c6fc094591e63965eeec07a9b86a9e66b1a463ab7fa84b",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter4/ember_foundry_battle_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_03.webp",
+      "bytes": 112138,
+      "sha256": "a89e681f775eb15aae225dd1d7b8ef9f260c0b394daf8746563f253dc370c581",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter5/neon_arcology_battle_01.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_01.webp",
+      "bytes": 100224,
+      "sha256": "a6a0514578fe012b90500e0572b02a418b3ce4759cc839728fab79ffb0c6e2a1",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter5/neon_arcology_battle_02.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_02.webp",
+      "bytes": 94922,
+      "sha256": "8c7f59c4f4d98ba1a44f0d152fc270d1bd8d01a2ae4614df5a20afff8d5a116b",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/maps/quality/chapter5/neon_arcology_battle_03.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_03.webp",
+      "bytes": 89636,
+      "sha256": "61b53e9815f600dfab4030c0a03e0af7b0fa03e94e9dc4d942dc9b1ed1bc1c90",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/sample-atlas/sample_actor.json",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/sample-atlas/sample_actor.json",
+      "bytes": 896,
+      "sha256": "5a85c39a1166e97cc16b9d480442ed7d40fc574c2b4999fa0b31ffacdeff56b2",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    },
+    {
+      "from": "public/assets/sample-atlas/sample_actor.webp",
+      "to": "art_source/runtime_archive/v1.6.0/public/assets/sample-atlas/sample_actor.webp",
+      "bytes": 394,
+      "sha256": "c8b7b75c097df225c34709bb57c9e4c9e5b84e1447e2d5640c8cb967f7d5af58",
+      "classification": "archive-runtime",
+      "reason": "not-reachable-from-active-runtime-manifest"
+    }
+  ],
+  "removed": [
+    {
+      "path": "public/assets/atlases/.gitkeep",
+      "bytes": 0,
+      "reason": "empty-placeholder"
+    },
+    {
+      "path": "public/assets/audio/.gitkeep",
+      "bytes": 0,
+      "reason": "empty-placeholder"
+    },
+    {
+      "path": "public/assets/loading/.gitkeep",
+      "bytes": 0,
+      "reason": "empty-placeholder"
+    },
+    {
+      "path": "public/assets/maps/.gitkeep",
+      "bytes": 0,
+      "reason": "empty-placeholder"
+    }
+  ]
+}

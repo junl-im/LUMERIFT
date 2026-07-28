@@ -1,17 +1,17 @@
 {
-  "version": 7,
+  "version": 9,
   "game": "LUMERIFT",
-  "release": "1.4.2",
-  "distribution": "full-source-optimized",
+  "release": "1.8.0",
+  "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
       "files": [
         "live/v2/atlases/ui/ui_obsidian_v2.json",
         "live/v2/atlases/ui/ui_obsidian_v2.webp",
-        "live/v2/backgrounds/lobby_forest_v2.webp",
+        "live/v4/backgrounds/lobby_forest_v4.webp",
         "audio/ui/click_v1.ogg"
       ],
-      "bytes": 245014
+      "bytes": 222384
     },
     "equipment-ui": {
       "files": [
@@ -22,36 +22,41 @@
     },
     "lobby-character": {
       "files": [
-        "live/v2/backgrounds/lobby_forest_v2.webp",
-        "live/v2/portraits/hero_v2.webp",
+        "live/v4/backgrounds/lobby_forest_v4.webp",
+        "live/v4/portraits/hero_v4.webp",
         "live/v2/atlases/ui/ui_obsidian_v2.json",
         "live/v2/atlases/ui/ui_obsidian_v2.webp",
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp"
       ],
-      "bytes": 370141
+      "bytes": 327865
     },
     "battle-chapter-1": {
       "files": [
-        "live/v2/atlases/player/player_live_v2.json",
-        "live/v2/atlases/player/player_live_v2.webp",
-        "live/v2/atlases/monsters/monsters_live_v2.json",
-        "live/v2/atlases/monsters/monsters_live_v2.webp",
-        "live/v2/atlases/ui/ui_obsidian_v2.json",
-        "live/v2/atlases/ui/ui_obsidian_v2.webp",
-        "live/v2/backgrounds/battle_forest_v2.webp",
-        "live/v2/portraits/boss_v2.webp",
-        "atlases/effects/combat_effects_v1.json",
-        "atlases/effects/combat_effects_v1.webp",
+        "live/v4/atlases/player/player_live_v4.json",
+        "live/v4/atlases/player/player_live_v4.webp",
+        "live/v4/atlases/monsters/monsters_live_v4.json",
+        "live/v4/atlases/monsters/monsters_live_v4.webp",
+        "live/v4/atlases/effects/combat_effects_v4.json",
+        "live/v4/atlases/effects/combat_effects_v4.webp",
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp",
+        "live/v2/atlases/ui/ui_obsidian_v2.json",
+        "live/v2/atlases/ui/ui_obsidian_v2.webp",
+        "live/v4/backgrounds/forest_approach_v4.webp",
+        "live/v4/backgrounds/forest_ruins_v4.webp",
+        "live/v4/backgrounds/forest_depths_v4.webp",
+        "live/v4/backgrounds/rift_core_v4.webp",
+        "live/v4/portraits/boss_phase_1_v4.webp",
+        "live/v4/portraits/boss_phase_2_v4.webp",
+        "live/v4/portraits/boss_phase_3_v4.webp",
         "audio/combat/slash_v1.ogg",
         "audio/combat/hit_v1.ogg",
         "audio/combat/skill_v1.ogg",
         "audio/combat/dodge_v1.ogg",
         "audio/bgm/forest_rift_loop_v1.opus"
       ],
-      "bytes": 3677487
+      "bytes": 4823424
     },
     "operations-ui-v3": {
       "files": [
@@ -59,9 +64,20 @@
         "live/v3/atlases/operations/operations_ui_v3.webp",
         "live/v2/atlases/ui/ui_obsidian_v2.json",
         "live/v2/atlases/ui/ui_obsidian_v2.webp",
-        "live/v2/backgrounds/lobby_forest_v2.webp"
+        "live/v4/backgrounds/lobby_forest_v4.webp"
       ],
-      "bytes": 295773
+      "bytes": 273143
     }
+  },
+  "deployment": {
+    "publicAssetFiles": 33,
+    "publicAssetBytes": 5001887,
+    "runtimeArchivePaths": [
+      "art_source/runtime_archive/v1.6.0/public/assets",
+      "art_source/runtime_archive/v1.7.0/public/assets"
+    ],
+    "runtimeArchiveFiles": 192,
+    "runtimeArchiveBytes": 23266586,
+    "registry": "asset_registry/ASSET_REGISTRY.json"
   }
 }

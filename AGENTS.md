@@ -75,6 +75,7 @@
 - `production-structure`: 경로·Atlas·성능 계약 검증
 - `production-candidate-procedural`: 고해상도 절차형 제작 후보. 외부 아트 디렉션과 수작업 리터칭 전에는 final 또는 AAA라고 부르지 않는다.
 - `production-candidate-open-art-pass`: 명시적 재배포 라이선스가 있는 실제 게임용 공개 원본을 기본 런타임에 적용한 단계. 독점 원화·최종 세계관 통일 전에는 final 또는 AAA라고 부르지 않는다.
+- `production-candidate-unified-art-pass`: 공개 원본 기반 실사용 자산에 공통 명암·림라이트·팔레트·배경 단계 규칙을 적용한 단계. 독점 실루엣 원화가 아니므로 final 또는 AAA라고 부르지 않는다.
 - `final-candidate`: 수작업 원화·리터칭·모바일 실기기 검수를 통과한 상용 후보
 - `final-approved`: 아트 디렉터 승인, 저작권 확인, 성능 QA까지 완료한 최종 자산
 
@@ -149,3 +150,21 @@
 ## Firebase App Check 고정 결정
 
 - Firebase App Check는 사용자의 명시적 재승인 전까지 SDK·reCAPTCHA 키·CI Secret·Console enforcement를 모두 비활성화한다.
+
+## Cloud Save·랭킹 운영 규칙
+
+- 자동 Cloud Save는 로컬 저장을 먼저 완료한 뒤 Firestore에 기록한다.
+- 로컬과 클라우드의 `updatedAt` 차이가 의미 있게 발생하면 계정 화면에서 양쪽 요약을 보여주고 수동 방향 선택을 제공한다.
+- 수동 다운로드는 클라우드 원본을 로컬에 적용하며, 수동 업로드는 로컬 원본을 클라우드에 적용한다. 버튼 문구에서 방향을 명확히 표시한다.
+- 랭킹은 Spark 할당량 보호를 위해 무제한 실시간 리스너를 사용하지 않는다.
+- 전체·주간 랭킹 쓰기는 본인 UID 문서만 허용하고 주간 문서 ID는 `{weekKey}_{uid}` 형식을 강제한다.
+- 클라이언트 계산 점수는 경쟁 보상 지급 근거로 사용하지 않는다. 서버 권위 검증 전에는 표시용 MVP로만 취급한다.
+- Rules 또는 Indexes 변경 시 `npm run firebase:test:rules` 실행 절차와 결과를 인수인계에 기록한다.
+
+## public 에셋 수명주기 규칙
+
+- `public/assets`에는 현재 `ASSET_MANIFEST.json` 또는 `AssetCatalog.ts`에서 도달 가능한 실사용·Lazy Loading 자산과 필수 라이선스만 둔다.
+- 구버전, 미사용 지역, 품질 후보, 샘플, 대체 음원은 `art_source/runtime_archive/<release>/public/assets`에 원래 상대 경로를 보존하여 이동한다.
+- 이동은 삭제로 처리하지 않으며 경로·바이트·SHA-256을 `asset_registry/RELOCATION_PLAN_<release>.json`에 기록한다.
+- 보관 자산을 다시 사용할 때는 현재 아트 방향·해상도·라이선스를 재검수한 뒤 새 버전 런타임 경로와 매니페스트에 등록한다.
+- 모든 에셋 릴리스는 `npm run validate:asset-cleanup`과 `npm run report:asset-cleanup`을 통과해야 한다.

@@ -14,7 +14,7 @@ export class FirestorePlayerRepository implements PlayerRepository {
     await setDoc(doc(this.db, 'users', profile.uid), {
       ...profile,
       uid: profile.uid,
-      updatedAt: Date.now(),
+      updatedAt: profile.updatedAt,
       serverUpdatedAt: serverTimestamp(),
     }, { merge: true });
   }

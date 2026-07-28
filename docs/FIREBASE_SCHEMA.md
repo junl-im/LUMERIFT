@@ -103,3 +103,20 @@ operations
 ```
 
 현재 v1.3.0은 로컬 정적 운영 데이터로 동작한다. Firebase 운영 전환 시 공지·우편·쿠폰 원본과 보상 지급은 읽기 전용 컬렉션 및 Cloud Functions에서 검증한다.
+
+## v1.5.0 랭킹 컬렉션
+
+```text
+rankings/{uid}
+  uid, nickname, score, stage, level, updatedAt
+
+weeklyRankings/{weekKey}_{uid}
+  uid, nickname, score, stage, level, weekKey, updatedAt
+```
+
+`weekKey`는 UTC 월요일 `YYYY-MM-DD`다. 두 컬렉션은 공개 읽기, 본인 문서 제한 쓰기이며 경쟁 보상의 권위 데이터로 사용하지 않는다.
+
+## v1.8.0 시즌 랭킹
+
+`seasonRankings/{seasonId}_{uid}`는 `uid`, `nickname`, `score`, `stage`, `level`, `seasonId`, `updatedAt`을 저장한다. 읽기는 공개, 쓰기는 본인 UID와 문서 ID 일치 시에만 허용한다.
+

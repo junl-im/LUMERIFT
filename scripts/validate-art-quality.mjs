@@ -3,11 +3,11 @@ import { access, readFile } from 'node:fs/promises';
 const errors = [];
 const requiredArchivePaths = [
   'art_source',
-  'public/assets/atlases/quality',
-  'public/assets/maps/quality',
-  'public/assets/loading/quality',
-  'public/assets/QUALITYPACK_V090_SUMMARY.json',
-  'public/assets/MEGAPACK_V080_SUMMARY.json',
+  'art_source/runtime_archive/v1.6.0/public/assets/atlases/quality',
+  'art_source/runtime_archive/v1.6.0/public/assets/maps/quality',
+  'art_source/runtime_archive/v1.6.0/public/assets/loading/quality',
+  'art_source/runtime_archive/v1.6.0/public/assets/QUALITYPACK_V090_SUMMARY.json',
+  'art_source/runtime_archive/v1.6.0/public/assets/MEGAPACK_V080_SUMMARY.json',
 ];
 for (const path of requiredArchivePaths) {
   try { await access(path); } catch { errors.push(`전체 통합본 보관 자산 누락: ${path}`); }

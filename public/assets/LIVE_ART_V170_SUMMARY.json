@@ -1,0 +1,14 @@
+{
+  "release": "1.7.0",
+  "qualityStage": "production-candidate-unified-art-pass",
+  "playerFrames": 68,
+  "playerAnimations": 80,
+  "monsterFrames": 268,
+  "monsterAnimations": 66,
+  "effectsFrames": 40,
+  "effectsAnimations": 5,
+  "battleBackgrounds": 4,
+  "bossPhasePortraits": 3,
+  "runtimeFiles": 15,
+  "runtimeBytes": 4672157
+}

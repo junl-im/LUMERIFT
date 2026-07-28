@@ -1,23 +1,19 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.4.2",
-  "baseVersion": "1.4.1",
-  "releaseDate": "2026-07-27",
-  "fullArchive": "LUMERIFT_FULL_v1.4.2.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.4.1_to_v1.4.2.zip",
-  "qualityStage": "production-candidate-open-art-pass",
+  "version": "1.8.0",
+  "baseVersion": "1.7.0",
+  "releaseDate": "2026-07-28",
+  "fullArchive": "LUMERIFT_FULL_v1.8.0.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.7.0_to_v1.8.0.zip",
+  "qualityStage": "production-candidate-unified-art-pass",
   "features": [
-    "fully disables Firebase App Check while preserving Authentication, Firestore Cloud Save and Analytics",
-    "restores Firebase deployment npm scripts and uses official --only firestore partial deployment",
-    "connects the bundled Firebase modular SDK to project lumerift-8db07",
-    "adds anonymous, Google and email authentication with anonymous account linking",
-    "adds persistent browser auth sessions and automatic session restoration",
-    "adds IndexedDB Firestore offline cache with multi-tab support",
-    "adds local-first resilient Cloud Save and retry queue",
-    "loads remote Firestore notices with a 15-minute cache and built-in fallback",
-    "adds owner-scoped Firestore rules, indexes and emulator configuration",
-    "removes reCAPTCHA site-key environment variables and GitHub Actions secret injection"
+    "uses one shared AttackFootprint geometry for monster telegraphs, player and monster hit collision, and impact rendering",
+    "adds three boss phase cinematic profiles with phase-specific title, aura, zoom, shake and telegraph pressure",
+    "keeps hit-stop, camera shake and pulse zoom tied to successful hits",
+    "adds up to five local Cloud Save recovery points before download, upload, automatic merge and logout",
+    "adds 28-day UTC Monday ranking seasons with Firestore rules and composite indexes",
+    "keeps Firebase App Check fully disabled while Authentication, Firestore Cloud Save and Analytics remain active"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,17 +33,15 @@
       "bmp",
       "tiff"
     ],
-    "sourceDeployment": "FULL includes mobile production masters and archives; art_source stays outside public and is not deployed",
-    "legacyRuntime": "archived candidates remain preserved but are not referenced by the default AssetCatalog",
-    "visualGate": "operations screens require runtime connection, previews, save behavior and validation markers"
+    "publicPolicy": "public/assets contains only manifest-reachable active runtime art, validation summaries and required license notices",
+    "archivePolicy": "replaced runtime art remains preserved by version under art_source/runtime_archive and excluded from GitHub Pages deployment",
+    "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
-    "package.json exposes firebase:deploy:rules, firebase:deploy:firestore and firebase:check",
-    "Firebase config and firebase@12.16.0 modular imports are present",
-    "three authentication provider flows and anonymous linking are present",
-    "Firestore rules deny unspecified paths and isolate users by request.auth.uid",
-    "coupon collections are blocked from client access",
-    "handoff, archive and asset policies remain intact",
-    "runtime source, env template and GitHub workflows contain no App Check initialization or site-key injection"
+    "strict TypeScript alternative check passes with external module stubs",
+    "pure runtime logic verifies exact attack footprint, boss phases, five-point recovery and 28-day season rollover",
+    "Firestore rules isolate user saves and season ranking ownership",
+    "full archive retains mobile production masters, licenses and all legacy candidates",
+    "patch application result matches the full release file hashes"
   ]
 }

@@ -19,6 +19,7 @@ import { QuestScene } from './QuestScene';
 import { InventoryScene } from './InventoryScene';
 import { AssetGalleryScene } from './AssetGalleryScene';
 import { OperationsScene } from './OperationsScene';
+import { AccountScene } from './AccountScene';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -257,7 +258,7 @@ export class LobbyScene implements Scene {
 
     const settings = new UiButton({
       label: `${this.context?.frameRate.currentMode === 'auto' ? 'AUTO' : this.context?.frameRate.currentMode ?? 'AUTO'} · ${this.context?.graphicsQuality.current.label ?? '균형'}`,
-      width: 480,
+      width: 234,
       height: 30,
       tone: 'secondary',
       fontSize: 10,
@@ -267,7 +268,16 @@ export class LobbyScene implements Scene {
       },
     });
     settings.position.set(30, 894);
-    this.view.addChild(settings);
+    const account = new UiButton({
+      label: `계정 · ${cloudStateLabel(context.playerRepository.syncSnapshot.state)}`,
+      width: 234,
+      height: 30,
+      tone: context.playerRepository.syncSnapshot.state === 'error' ? 'danger' : 'secondary',
+      fontSize: 10,
+      onPress: async () => context.scenes.change(() => new AccountScene()),
+    });
+    account.position.set(276, 894);
+    this.view.addChild(settings, account);
   }
 
   private createDiagnostics(): void {
@@ -279,4 +289,9 @@ export class LobbyScene implements Scene {
     this.fpsText.position.set(DESIGN_WIDTH - 10, DESIGN_HEIGHT - 4);
     this.view.addChild(this.fpsText);
   }
+}
+
+function cloudStateLabel(state: string): string {
+  const labels: Record<string, string> = { idle: 'CLOUD', syncing: 'SYNC', synced: 'OK', offline: 'OFFLINE', error: 'ERROR' };
+  return labels[state] ?? 'CLOUD';
 }

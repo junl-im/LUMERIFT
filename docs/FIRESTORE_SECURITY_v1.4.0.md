@@ -27,3 +27,15 @@ Spark 무료 요금제에서 Cloud Functions 기반 보상 검증을 바로 운�
 - `allow read, write: if true`가 없는지 확인
 - 규칙 배포 후 익명·Google·이메일 계정 각각으로 자기 문서만 접근 가능한지 확인
 - 다른 UID 문서 접근이 `permission-denied`인지 확인
+
+## v1.5.0 랭킹 추가
+
+- `rankings/{uid}`는 공개 읽기, 본인 UID만 제한 필드 쓰기를 허용한다.
+- `weeklyRankings/{weekKey}_{uid}`는 공개 읽기이며 문서 ID와 데이터의 `weekKey`, 인증 UID 일치를 강제한다.
+- 클라이언트 랭킹은 표시용 MVP이며 서버 검증 보상에는 사용하지 않는다.
+- 실제 권한은 `npm run firebase:test:rules`로 Local Emulator Suite에서 검사한다.
+
+## v1.8.0 추가 규칙
+
+`seasonRankings/{entryId}`는 공개 읽기와 본인 쓰기만 허용한다. `entryId == seasonId + '_' + request.auth.uid`를 강제하며 시즌 ID·점수·스테이지·레벨 범위를 검사한다.
+

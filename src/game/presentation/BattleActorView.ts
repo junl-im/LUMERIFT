@@ -5,6 +5,8 @@ import type { MonsterDefinition, StatusEffectId } from '../combat/combatData';
 import type { MonsterController, MonsterState, MonsterTelegraph } from '../actors/monsters/MonsterController';
 import type { PlayerCombatController, PlayerState } from '../actors/player/PlayerCombatController';
 import type { Vec2 } from '../combat/geometry';
+import { buildArcPolygon, createAttackFootprint, telegraphProgress } from '../combat/attackFootprint';
+import { resolveBossPhasePresentation } from './BossPhaseDirector';
 import { directionFromVector } from './direction';
 
 export class PlayerActorView {
@@ -171,9 +173,13 @@ export class MonsterActorView {
       this.sprite.scale.set(facingScale, this.spriteBaseScale);
       this.sprite.alpha = flashRemaining > 0 ? 0.4 : 1;
     }
-    this.root.scale.set(scaleForMonsterState(controller.state));
+    const stateScale = scaleForMonsterState(controller.state);
+    const phaseScale = this.definition.combat.rank === 'boss'
+      ? resolveBossPhasePresentation(controller.phase).bodyScale
+      : 1;
+    this.root.scale.set(stateScale * phaseScale);
     this.drawHp(controller);
-    this.drawTelegraph(controller.telegraph);
+    this.drawTelegraph(controller);
     this.drawStatuses(controller.statuses.activeIds);
     this.drawPhaseAura(controller);
 
@@ -196,14 +202,34 @@ export class MonsterActorView {
 
   private drawPhaseAura(controller: MonsterController): void {
     this.phaseAura.clear();
-    if (this.definition.combat.rank !== 'boss' || controller.phase <= 1 || !controller.isAlive) return;
-    const radius = this.definition.combat.radius + 10 + controller.phase * 3;
-    const color = controller.phase >= 3 ? 0xff6f86 : this.definition.visual.accentColor;
-    this.phaseAura
-      .circle(0, 0, radius)
-      .stroke({ color, alpha: 0.42 + controller.phase * 0.08, width: 3 + controller.phase })
-      .circle(0, 0, radius + 9)
-      .stroke({ color, alpha: 0.16, width: 2 });
+    if (this.definition.combat.rank !== 'boss' || !controller.isAlive) return;
+    const profile = resolveBossPhasePresentation(controller.phase);
+    const baseRadius = this.definition.combat.radius + 10;
+    const pulse = 0.5 + Math.sin(performance.now() * (0.006 + controller.phase * 0.0015)) * 0.5;
+
+    for (let ring = 0; ring < profile.auraRings; ring += 1) {
+      const radius = baseRadius + ring * 10 + pulse * (2 + ring);
+      this.phaseAura
+        .circle(0, 0, radius)
+        .stroke({
+          color: ring % 2 === 0 ? profile.accentColor : profile.secondaryColor,
+          alpha: 0.22 + controller.phase * 0.08 - ring * 0.035,
+          width: 2 + controller.phase * 0.8,
+        });
+    }
+
+    if (controller.phase >= 2) {
+      const shardCount = controller.phase === 3 ? 8 : 5;
+      for (let index = 0; index < shardCount; index += 1) {
+        const angle = performance.now() * 0.00055 * controller.phase + (Math.PI * 2 * index) / shardCount;
+        const inner = baseRadius + 14;
+        const outer = inner + 8 + controller.phase * 3;
+        this.phaseAura
+          .moveTo(Math.cos(angle) * inner, Math.sin(angle) * inner)
+          .lineTo(Math.cos(angle) * outer, Math.sin(angle) * outer)
+          .stroke({ color: profile.secondaryColor, alpha: 0.42, width: 3 });
+      }
+    }
   }
 
   private updateAnimation(state: MonsterState): void {
@@ -235,34 +261,55 @@ export class MonsterActorView {
       .fill(visual.accentColor);
   }
 
-  private drawTelegraph(value: MonsterTelegraph | undefined): void {
+  private drawTelegraph(controller: MonsterController): void {
+    const value: MonsterTelegraph | undefined = controller.telegraph;
     this.telegraph.clear();
     this.telegraph.position.set(0, 0);
     this.telegraph.rotation = 0;
     if (!value) return;
-    const alpha = 0.18 + value.progress * 0.42;
+
+    const progress = telegraphProgress(value.progress);
+    const phaseIntensity = this.definition.combat.rank === 'boss'
+      ? resolveBossPhasePresentation(controller.phase).telegraphIntensity
+      : 1;
+    const alpha = Math.min(1, (0.2 + progress * 0.56) * phaseIntensity);
     const color = value.pattern.effectColor;
+    const footprint = createAttackFootprint(
+      value.pattern.shape,
+      value.origin,
+      value.facing,
+      value.pattern.range,
+      value.pattern.halfAngleRadians,
+    );
     const localOrigin = {
-      x: value.origin.x - this.root.x,
-      y: value.origin.y - this.root.y,
+      x: footprint.origin.x - this.root.x,
+      y: footprint.origin.y - this.root.y,
     };
 
-    if (value.pattern.shape === 'circle') {
+    if (footprint.shape === 'circle') {
       this.telegraph
-        .circle(localOrigin.x, localOrigin.y, value.pattern.range)
-        .fill({ color, alpha: alpha * 0.23 })
-        .circle(localOrigin.x, localOrigin.y, value.pattern.range)
-        .stroke({ color, alpha, width: 4 + value.progress * 5 });
+        .circle(localOrigin.x, localOrigin.y, footprint.range)
+        .fill({ color, alpha: alpha * 0.2 })
+        .circle(localOrigin.x, localOrigin.y, footprint.range)
+        .stroke({ color, alpha, width: 3 + progress * 6 });
+      if (progress > 0.66) {
+        this.telegraph
+          .circle(localOrigin.x, localOrigin.y, footprint.range * (1.08 - progress * 0.08))
+          .stroke({ color: 0xffffff, alpha: (progress - 0.66) * 1.8, width: 2 });
+      }
       return;
     }
 
-    this.telegraph.position.set(localOrigin.x, localOrigin.y);
-    this.telegraph.rotation = Math.atan2(value.facing.y, value.facing.x);
+    const polygon = buildArcPolygon(footprint, 24);
+    const first = polygon[0];
+    if (!first) return;
+    this.telegraph.moveTo(first.x - this.root.x, first.y - this.root.y);
+    for (const point of polygon.slice(1)) {
+      this.telegraph.lineTo(point.x - this.root.x, point.y - this.root.y);
+    }
     this.telegraph
-      .ellipse(value.pattern.range * 0.5, 0, value.pattern.range * 0.58, value.pattern.range * 0.25)
       .fill({ color, alpha: alpha * 0.2 })
-      .ellipse(value.pattern.range * 0.5, 0, value.pattern.range * 0.62, value.pattern.range * 0.29)
-      .stroke({ color, alpha, width: 4 + value.progress * 4 });
+      .stroke({ color, alpha, width: 3 + progress * 5 });
   }
 
   private drawStatuses(statuses: readonly StatusEffectId[]): void {
@@ -274,7 +321,12 @@ export class MonsterActorView {
   }
 }
 
-export function createArenaDecorations(count: number, seed = 19): Graphics {
+export function createArenaDecorations(
+  count: number,
+  seed = 19,
+  primaryColor: number = COLORS.primary,
+  secondaryColor: number = COLORS.accent,
+): Graphics {
   const graphics = new Graphics();
   let value = seed;
   for (let index = 0; index < count; index += 1) {
@@ -285,7 +337,7 @@ export function createArenaDecorations(count: number, seed = 19): Graphics {
     value = (value * 48271) % 2147483647;
     const radius = 18 + (value % 44);
     graphics.circle(x, y, radius).fill({
-      color: index % 2 === 0 ? COLORS.primary : COLORS.accent,
+      color: index % 2 === 0 ? primaryColor : secondaryColor,
       alpha: 0.025 + (index % 3) * 0.012,
     });
   }

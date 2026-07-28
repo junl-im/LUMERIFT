@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "release": "1.7.0",
+  "moves": [
+    {
+      "from": "public/assets/live/v2/atlases/player/player_live_v2.json",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/player/player_live_v2.json",
+      "bytes": 42481,
+      "sha256": "ec42f63d1e56e95c82ccd0491841a036047b7a4c544db9c8db8a560c20ba63fb",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/atlases/player/player_live_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/player/player_live_v2.webp",
+      "bytes": 536062,
+      "sha256": "10020a92cfabe9bdb7e6bf4a5d833cf607474f85bdce20dbfea8bdd61febb9fa",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/atlases/monsters/monsters_live_v2.json",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/monsters/monsters_live_v2.json",
+      "bytes": 126601,
+      "sha256": "7016d0ac9aa7c2c7f0a4b562fdca6595e95b361fcbb5307895d3a21340a7f162",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/atlases/monsters/monsters_live_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/monsters/monsters_live_v2.webp",
+      "bytes": 2590220,
+      "sha256": "e4343e477292e06aa6aa6df277834c530aeeb668b385af86eb98d05972f7a6b4",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/backgrounds/lobby_forest_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/backgrounds/lobby_forest_v2.webp",
+      "bytes": 33316,
+      "sha256": "6bb7f9bec3f93ba7eb4c0f516a4b4577395f1b2a56019ad320f562d8e905d62c",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/backgrounds/battle_forest_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/backgrounds/battle_forest_v2.webp",
+      "bytes": 44506,
+      "sha256": "5e4d20dcf4b317d675e4fe1b9980388b9ce5f9a21e63431b0d684d2b64af8e6f",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/portraits/hero_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/portraits/hero_v2.webp",
+      "bytes": 122306,
+      "sha256": "be77f07cb25069796bda7b29be852ca7d38f14d8a522da738588117e0f6892e0",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/live/v2/portraits/boss_v2.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/portraits/boss_v2.webp",
+      "bytes": 50960,
+      "sha256": "76cc0fd5bc0127e62a3eef6aad3baffd9f4e7e908cd307548948816d09081bba",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/atlases/effects/combat_effects_v1.json",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/atlases/effects/combat_effects_v1.json",
+      "bytes": 11034,
+      "sha256": "8273c19c8323d145414009fbe55a5079b9910dc31a7199f47e44ae274b12752b",
+      "reason": "v1.7 live art replacement archive"
+    },
+    {
+      "from": "public/assets/atlases/effects/combat_effects_v1.webp",
+      "to": "art_source/runtime_archive/v1.7.0/public/assets/atlases/effects/combat_effects_v1.webp",
+      "bytes": 11010,
+      "sha256": "de71940adabb8f14054cad0f4138ddce82be422e4f9870f989b13a6c3cffb320",
+      "reason": "v1.7 live art replacement archive"
+    }
+  ],
+  "removed": []
+}

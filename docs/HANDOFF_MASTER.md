@@ -1,8 +1,8 @@
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.2.0
-**갱신일:** 2026-07-27  
-**상태:** 5개 주요 화면 UI·그래픽 Visual Reset 완료
+**현재 버전:** v1.8.0
+**갱신일:** 2026-07-28  
+**상태:** 보스 3페이즈 전투·Cloud Save 복구·28일 시즌 랭킹 완료
 
 ## 1. 프로젝트 목적
 
@@ -11,9 +11,9 @@ LUMERIFT는 모바일 브라우저에서 빠르고 아름답게 실행되는 세
 ## 2. 현재 구현 범위
 
 - Vite·TypeScript·PixiJS 8·Firebase 계층
-- Boot·Login·Lobby·Stage Select·Battle·Result·Inventory·Quest·Asset Gallery
+- Boot·Login·Lobby·Stage Select·Battle·Result·Inventory·Quest·Operations·Account·Ranking·Asset Gallery
 - 3연속 공격, 스킬 2종, 회피, 상태 이상, 보스 3페이즈
-- 10개 스테이지, 메인·일일 퀘스트, 장비·강화·인벤토리, 저장 v3
+- 10개 스테이지, 메인·일일 퀘스트, 장비·강화·인벤토리, 저장 v4
 - 모바일 조이스틱, 쿨다운 HUD, 씬 페이드, 60·30FPS 및 품질 자동 축소
 - Texture Atlas, Lazy Loading, Object Pool, 리소스 해제
 - Vite 8 함수형 manualChunks와 Node.js 24 CI 기준
@@ -166,4 +166,46 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - Firebase Console의 Firestore·Authentication enforcement를 켜지 않는다.
 - 익명·Google·이메일 Authentication, Firestore Cloud Save, 오프라인 캐시와 Analytics는 그대로 유지한다.
 - App Check 재도입은 사용자의 명시적 승인 후 별도 버전에서만 허용한다.
+
+
+## v1.5.0 계정·Cloud Save·랭킹 기준선
+
+- 로비 하단 계정 버튼은 현재 Cloud Save 상태를 `CLOUD/SYNC/OK/OFFLINE/ERROR`로 표시한다.
+- `AccountScene`은 로그인 제공자, UID, 이메일 인증, 계정 연결, 비밀번호 재설정, 로그아웃을 제공한다.
+- `ResilientPlayerRepository.inspect()`는 로컬과 Firestore 원본을 분리 조회하며 저장 시각 차이가 2초를 넘으면 충돌로 표시한다.
+- 자동 로드는 최신 `updatedAt`을 선택하지만 사용자는 로컬→클라우드 또는 클라우드→로컬 방향을 수동 실행할 수 있다.
+- 전체 랭킹은 `rankings/{uid}`, 주간 랭킹은 `weeklyRankings/{weekKey}_{uid}`를 사용한다.
+- 주간 키는 UTC 월요일 날짜이며 화면은 상위 12명과 count 집계 기반 내 순위를 표시한다.
+- 랭킹 화면은 실시간 리스너를 사용하지 않는다.
+- Firestore Emulator 테스트는 본인 저장, 타 UID 차단, 본인 랭킹 쓰기, 공개 랭킹 읽기, 쿠폰 차단을 검사한다.
+- App Check는 계속 비활성화한다.
+
+## v1.6.0 추가 에셋 정리 기준선
+
+- 현재 버전은 v1.6.0이며 public 배포와 전체 통합본 보관을 분리했다.
+- `public/assets`에는 27개·3.90MB의 활성 런타임·필수 요약·라이선스만 남는다.
+- 레거시·품질 후보·미사용 지역 자산 182개·19.70MB는 `art_source/runtime_archive/v1.6.0/public/assets`에 원경로 구조로 보존한다.
+- 활성 자산은 6 Atlas·412프레임·151애니메이션, 보관 자산은 43 Atlas·2,794프레임·300애니메이션이다.
+- 전체 통합본은 총 49 Atlas·3,206프레임·451애니메이션과 모바일 제작용 원본을 계속 포함한다.
+- `asset_registry/ASSET_REGISTRY.json`과 `RELOCATION_PLAN_v1.6.0.json`이 자산 위치·크기·해시의 기준이다.
+- 후속 작업은 보관 자산을 public 원위치로 복사하지 말고 검수 후 새 런타임 버전 경로에 등록한다.
+
+
+## v1.7.0 실사용 아트 통일 기준선
+
+- 현재 플레이어·몬스터·VFX 기본 경로는 `public/assets/live/v4`다.
+- 플레이어 68프레임, 몬스터 8종 268프레임, VFX 40프레임을 모바일 판독 기준으로 재보정했다.
+- Stage 1~10은 `approach`, `ruins`, `depths`, `core` 4개 전투 배경 티어를 사용한다.
+- 보스 HUD 초상은 페이즈 1·2·3에 맞춰 자동 교체한다.
+- v2 실사용 아트와 기존 VFX는 `art_source/runtime_archive/v1.7.0`에 SHA-256과 함께 보존한다.
+- 품질 단계는 `production-candidate-unified-art-pass`이며 독점 최종 원화가 아니다.
+- 후속 작업은 실제 모바일 명암 QA와 전용 실루엣 원화 교체다.
+
+## v1.8.0 보스 전투·복구·시즌 기준선
+
+- 공격 경고·충돌·타격 표시에는 `AttackFootprint` 단일 기하 계산을 사용한다.
+- 보스 진입과 페이즈 전환은 3개 프레젠테이션 프로필을 사용하며 연출 중 전투를 잠시 정지한다.
+- Cloud Save 위험 작업 전 UID별 로컬 복구 지점을 최대 5개 유지한다.
+- 랭킹은 전체·주간·28일 시즌을 제공하며 `seasonRankings/{seasonId}_{uid}` 소유권을 규칙으로 강제한다.
+- App Check는 비활성화 상태를 유지한다.
 

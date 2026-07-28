@@ -179,3 +179,37 @@ npm run dev
 - 익명·Google·이메일 Auth와 Firestore 오프라인 캐시 계약 유지
 - `validate:firebase`가 App Check 재도입을 실패 처리
 - 대체 Strict TypeScript 검사 통과
+
+## v1.5.0 검증
+
+- `npm run validate:account`: 계정 연결·Cloud Save 충돌·수동 동기화·랭킹 계약 검사
+- `npm run firebase:test:rules`: Auth·Firestore Emulator 권한 검사
+- 대체 Strict TypeScript 검사에서 신규 소스 오류 0건
+- 전체·주간 랭킹 색인 및 App Check 비활성화 계약 확인
+
+## v1.6.0 검증
+
+- `validate:asset-cleanup`: public 허용 목록, 6MB 예산, 이동 자산 해시, 소스 참조를 검사한다.
+- `report:asset-cleanup`: 활성·보관·원본 용량을 분리해 보고한다.
+- `report:inventory`: 활성 6 Atlas와 보관 43 Atlas, 총 49 Atlas를 확인한다.
+- `validate:archive`: 이동 후에도 전체 통합본 보관 자산이 존재하는지 확인한다.
+- v1.5.0 패치 적용 검증에서는 오버레이 후 `asset:relocate`를 실행하고 v1.6.0 전체본과 전체 파일 해시를 비교한다.
+
+
+## v1.7.0 추가 검증
+
+- active Atlas 6개·427프레임·151애니메이션 검사
+- 전체 보존 52 Atlas·3,582프레임·602애니메이션 검사
+- v1.7 실사용 아트 15개·약 4.67MB 검사
+- Chapter 1 배경 4티어와 보스 초상 3페이즈 계약 검사
+- StageVisualProfile 순수 로직 테스트 추가
+- v1.6·v1.7 relocation plan 전체 SHA-256 검사
+- v1.6.0 패치 적용 후 전체본 파일 일치 검사
+
+## v1.8.0 추가 검증
+
+- `npm run validate:combat`
+- `npm run validate:account`
+- 순수 로직 JavaScript 실행: 정확한 공격 범위, 보스 3페이즈, 복구 5개, 28일 시즌
+- Firestore Emulator: 다른 UID의 시즌 랭킹 쓰기 차단
+

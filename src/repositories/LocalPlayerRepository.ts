@@ -20,7 +20,7 @@ export class LocalPlayerRepository implements PlayerRepository {
   }
 
   public async save(profile: PlayerProfile): Promise<void> {
-    localStorage.setItem(this.key(profile.uid), JSON.stringify({ ...profile, updatedAt: Date.now() }));
+    localStorage.setItem(this.key(profile.uid), JSON.stringify(profile));
   }
 
   private key(uid: string): string {

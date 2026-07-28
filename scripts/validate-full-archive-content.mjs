@@ -28,11 +28,11 @@ if (sourceBytes < 60_000_000) errors.push(`art_source 용량이 예상보다 작
 if (sourceBytes > 120_000_000) errors.push(`art_source 모바일 제작 예산 초과: ${(sourceBytes / 1_000_000).toFixed(2)} MB / 120 MB`);
 
 const archivedPaths = [
-  'public/assets/MEGAPACK_V080_SUMMARY.json',
-  'public/assets/QUALITYPACK_V090_SUMMARY.json',
-  'public/assets/atlases/items/mega_items_v1.webp',
-  'public/assets/atlases/quality/effects/vfx_quality_01.webp',
-  'public/assets/maps/quality/chapter1/verdant_rift_battle_01.webp',
+  'art_source/runtime_archive/v1.6.0/public/assets/MEGAPACK_V080_SUMMARY.json',
+  'art_source/runtime_archive/v1.6.0/public/assets/QUALITYPACK_V090_SUMMARY.json',
+  'art_source/runtime_archive/v1.6.0/public/assets/atlases/items/mega_items_v1.webp',
+  'art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_01.webp',
+  'art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_01.webp',
 ];
 for (const path of archivedPaths) {
   try { await access(path); } catch { errors.push(`보관 자산 누락: ${path}`); }

@@ -1,36 +1,50 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { extname, join } from 'node:path';
 
-const root = 'public/assets';
-let files = 0;
-let bytes = 0;
-let atlases = 0;
-let frames = 0;
-let animations = 0;
-const byExtension = new Map();
-async function walk(directory) {
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    const path = join(directory, entry.name);
-    if (entry.isDirectory()) { await walk(path); continue; }
-    files += 1;
-    const info = await stat(path);
-    bytes += info.size;
-    const extension = extname(entry.name).toLowerCase() || '(none)';
-    byExtension.set(extension, (byExtension.get(extension) ?? 0) + 1);
-    if (extension === '.json') {
-      try {
-        const data = JSON.parse(await readFile(path, 'utf8'));
-        if (data.frames && data.meta?.image) {
-          atlases += 1;
-          frames += Object.keys(data.frames).length;
-          animations += Object.keys(data.animations ?? {}).length;
-        }
-      } catch { /* invalid JSON is handled elsewhere */ }
+async function summarize(root) {
+  let files = 0;
+  let bytes = 0;
+  let atlases = 0;
+  let frames = 0;
+  let animations = 0;
+  const byExtension = new Map();
+  async function walk(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const path = join(directory, entry.name);
+      if (entry.isDirectory()) { await walk(path); continue; }
+      files += 1;
+      const info = await stat(path);
+      bytes += info.size;
+      const extension = extname(entry.name).toLowerCase() || '(none)';
+      byExtension.set(extension, (byExtension.get(extension) ?? 0) + 1);
+      if (extension === '.json') {
+        try {
+          const data = JSON.parse(await readFile(path, 'utf8'));
+          if (data.frames && data.meta?.image) {
+            atlases += 1;
+            frames += Object.keys(data.frames).length;
+            animations += Object.keys(data.animations ?? {}).length;
+          }
+        } catch { /* malformed JSON is validated elsewhere */ }
+      }
     }
   }
+  await walk(root);
+  return { files, bytes, atlases, frames, animations, byExtension };
 }
-await walk(root);
-console.log(`Stored public asset inventory: ${files} files, ${(bytes / 1_000_000).toFixed(2)} MB`);
-console.log(`Atlas inventory: ${atlases} atlases, ${frames} frames, ${animations} animations`);
-console.log([...byExtension.entries()].sort((a,b) => b[1]-a[1]).map(([ext,count]) => `${ext}:${count}`).join(' '));
-console.log('PASS stored asset inventory (15 MB applies only to initial payload, not total archive assets)');
+
+const active = await summarize('public/assets');
+const archived16 = await summarize('art_source/runtime_archive/v1.6.0/public/assets');
+const archived17 = await summarize('art_source/runtime_archive/v1.7.0/public/assets');
+const archived = { files: archived16.files + archived17.files, bytes: archived16.bytes + archived17.bytes, atlases: archived16.atlases + archived17.atlases, frames: archived16.frames + archived17.frames, animations: archived16.animations + archived17.animations }; 
+const total = {
+  files: active.files + archived.files,
+  bytes: active.bytes + archived.bytes,
+  atlases: active.atlases + archived.atlases,
+  frames: active.frames + archived.frames,
+  animations: active.animations + archived.animations,
+};
+console.log(`Active public asset inventory: ${active.files} files, ${(active.bytes / 1_000_000).toFixed(2)} MB`);
+console.log(`Archived runtime inventory: ${archived.files} files, ${(archived.bytes / 1_000_000).toFixed(2)} MB`);
+console.log(`Preserved total: ${total.files} files, ${(total.bytes / 1_000_000).toFixed(2)} MB, ${total.atlases} atlases, ${total.frames} frames, ${total.animations} animations`);
+console.log('PASS asset inventory: active deployment and full archive are separated');

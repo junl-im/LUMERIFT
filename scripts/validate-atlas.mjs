@@ -53,10 +53,10 @@ async function validateAtlas(atlasPath, atlas) {
 }
 
 async function validateRequiredAnimations() {
-  const player = JSON.parse(await readFile('public/assets/live/v2/atlases/player/player_live_v2.json', 'utf8'));
-  const monsters = JSON.parse(await readFile('public/assets/live/v2/atlases/monsters/monsters_live_v2.json', 'utf8'));
+  const player = JSON.parse(await readFile('public/assets/live/v4/atlases/player/player_live_v4.json', 'utf8'));
+  const monsters = JSON.parse(await readFile('public/assets/live/v4/atlases/monsters/monsters_live_v4.json', 'utf8'));
   const ui = JSON.parse(await readFile('public/assets/live/v2/atlases/ui/ui_obsidian_v2.json', 'utf8'));
-  const effects = JSON.parse(await readFile('public/assets/atlases/effects/combat_effects_v1.json', 'utf8'));
+  const effects = JSON.parse(await readFile('public/assets/live/v4/atlases/effects/combat_effects_v4.json', 'utf8'));
   const equipment = JSON.parse(await readFile('public/assets/atlases/items/equipment_icons_v1.json', 'utf8'));
   const playerStates = ['idle','run','attack1','attack2','attack3','skill1','skill2','hit','death','dodge'];
   for (const state of playerStates) {
@@ -76,7 +76,7 @@ async function validateRequiredAnimations() {
   for (const effect of ['slash','nova','hit','explosion','dodge']) {
     const key = `effect.${effect}`;
     const frames = effects.animations?.[key];
-    if (!Array.isArray(frames) || frames.length < 5) errors.push(`effects atlas: 필수 애니메이션 누락 ${key}`);
+    if (!Array.isArray(frames) || frames.length < 8) errors.push(`effects atlas: 필수 애니메이션 누락 ${key}`);
   }
   for (const itemId of [
     'weapon_rift_blade_common','armor_scout_common','accessory_lumen_common',

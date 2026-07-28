@@ -1,8 +1,290 @@
 {
-  "game": "LUMERIFT: 균열의 계승자",
-  "fromVersion": "0.9.1",
-  "toVersion": "1.0.0",
-  "changedOrAddedFiles": 64,
-  "deletedFiles": [],
-  "qualityStage": "production-candidate-open-art-pass"
+  "schemaVersion": 1,
+  "game": "LUMERIFT",
+  "baseVersion": "1.7.0",
+  "targetVersion": "1.8.0",
+  "releaseDate": "2026-07-28",
+  "changedOrAddedCount": 55,
+  "deletedCount": 0,
+  "deleted": [],
+  "changedOrAdded": [
+    {
+      "path": "HANDOFF_STATE.json",
+      "sha256": "3d3ee50f731e8df6d96b1ca4797261e49ce6ca7d2804fd169516d4322d88fcaa",
+      "bytes": 15259
+    },
+    {
+      "path": "INSTALL_AND_START.bat",
+      "sha256": "b31cd040614d2ab792bf8c2daf0daacccd8cb4e89ab48e3ab96571666eb2481e",
+      "bytes": 644
+    },
+    {
+      "path": "PATCH_DELETE_LIST.txt",
+      "sha256": "89ca2d0fc652efff95e861dded625aeb07dd1c7b47785e7cea5d38f06c266721",
+      "bytes": 42
+    },
+    {
+      "path": "PATCH_INFO.md",
+      "sha256": "e36af9856555fa0bda3f16968e16a8db37b766960a08c5c4e12609c0079abeb1",
+      "bytes": 160
+    },
+    {
+      "path": "PATCH_MANIFEST.json"
+    },
+    {
+      "path": "PATCH_README.txt",
+      "sha256": "58e7e575a1d988b28b1295206506c19c23514c223ff20022077e36646bbb927a",
+      "bytes": 417
+    },
+    {
+      "path": "PROJECT_HANDOFF.md",
+      "sha256": "cb1829bbbf5424c87ed9df45f965b066648fc1bfaa5fbd62971de879c03df423",
+      "bytes": 1272
+    },
+    {
+      "path": "README.md",
+      "sha256": "950482bc6e30756045eab2e9c51c3ec22a86dd2af55c4036f981f7cfec6729c8",
+      "bytes": 1230
+    },
+    {
+      "path": "RELEASE_MANIFEST.json",
+      "sha256": "2f7bb0c02354e18433b59a58696cf37c2a8e022285452c22a0601de51629eea4",
+      "bytes": 2018
+    },
+    {
+      "path": "VERIFY.bat",
+      "sha256": "d9f75b512ebe1de69e76801847515e01ed7560127c6fe15bd5d237daeef994d1",
+      "bytes": 229
+    },
+    {
+      "path": "asset_registry/ASSET_REGISTRY.json",
+      "sha256": "9741afb849d22b6c1d5d01e7e506fcd1512cef72feab6df71a422ffe15c19140",
+      "bytes": 109824
+    },
+    {
+      "path": "docs/BOSS_COMBAT_v1.8.0.md",
+      "sha256": "9f31154b6826c3c6955f5384b5e979b0601fa154f5ca26cc5af89cda11a7f7d6",
+      "bytes": 932
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "sha256": "abb55bfd3b86cb81d1e5d42de14de839b9fafbd977924550b72e20e4a82af1d6",
+      "bytes": 17976
+    },
+    {
+      "path": "docs/FIREBASE_SCHEMA.md",
+      "sha256": "4bd01afb7e39cf522fc43e8697a262df71796881555e8d2de3542b8367face81",
+      "bytes": 3792
+    },
+    {
+      "path": "docs/FIRESTORE_SECURITY_v1.4.0.md",
+      "sha256": "86f791b20a96c396e75ec49d38dd2b53413b2bc51c6e61e4d4d3953c32edccaa",
+      "bytes": 2435
+    },
+    {
+      "path": "docs/HANDOFF_LOG.md",
+      "sha256": "97fbebc6792bef2e8485914f7d07dd89ed1278eb41647e40b1a48ac5aa1aa6dd",
+      "bytes": 9671
+    },
+    {
+      "path": "docs/HANDOFF_MASTER.md",
+      "sha256": "43a8f0b8a855f6c82a0df7571dd6a0f93c05ca9cbad8d658d4e11e41054f93cc",
+      "bytes": 12933
+    },
+    {
+      "path": "docs/MASTER_BIBLE.md",
+      "sha256": "9caf004b49206229759b728e6dcf0198fddb364b819d37ac8c47f118879508a4",
+      "bytes": 18484
+    },
+    {
+      "path": "docs/PATCH_NOTES_v1.8.0.md",
+      "sha256": "8d0c2a8a7b53f42baf903d55cf211591ee1cbd8616634db3e89cd4d961ff9442",
+      "bytes": 404
+    },
+    {
+      "path": "docs/RANKING_SEASON_v1.8.0.md",
+      "sha256": "57fdf6496b950a2651835534de4be0e21ae15312d0b081cedd8afbe98c711ded",
+      "bytes": 742
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "634479da50dc8b8acaaa61c3302466becc1814f97623db159a0e735f33629d8d",
+      "bytes": 10601
+    },
+    {
+      "path": "docs/SAVE_RECOVERY_v1.8.0.md",
+      "sha256": "c7f89ec426acccd7f4de92ca874a5489745e8ea646221eb09f7c1d4c261606b5",
+      "bytes": 808
+    },
+    {
+      "path": "docs/TEST_CHECKLIST.md",
+      "sha256": "f82dc4884b4ca67b6a175f8318066404b52fdfaeacac227c28257b42be264fae",
+      "bytes": 6825
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "sha256": "da355426c3c4ca38b8c76886f403fc2db835ec152e6c84a43062850eb9f3712a",
+      "bytes": 8907
+    },
+    {
+      "path": "docs/previews/v1.8.0_boss_combat_preview.webp",
+      "sha256": "d1fc0df3d7641c9e96adac22ee56e60a29f5bca88bb5702382609df5ee438b17",
+      "bytes": 44888
+    },
+    {
+      "path": "docs/previews/v1.8.0_feature_contact.webp",
+      "sha256": "9ab98cf4866b1f1103080b0f064edcec3a1d48ed1e4d0d9a3e102fc24e2aa0c2",
+      "bytes": 96178
+    },
+    {
+      "path": "docs/previews/v1.8.0_recovery_preview.webp",
+      "sha256": "9d391ad2050b9521657e7ae1c2560e922fe8730de5306212f0bc82eacfeff0c6",
+      "bytes": 29414
+    },
+    {
+      "path": "docs/previews/v1.8.0_season_ranking_preview.webp",
+      "sha256": "df149de9a1ca58599cb19b981cc009e0e4b69e84b37bde13003e4fa58fc63761",
+      "bytes": 24246
+    },
+    {
+      "path": "firestore.indexes.json",
+      "sha256": "afd3dc37072d05e2efe382ec563ea7189766638195723e8c5953d12ebc1ca7a8",
+      "bytes": 2094
+    },
+    {
+      "path": "firestore.rules",
+      "sha256": "8e26dedfc2d9f5234a5d566540aa821bb6525830ec0c9be8dec4ec9c093ba0b8",
+      "bytes": 7019
+    },
+    {
+      "path": "package.json",
+      "sha256": "43c20f70b6d48c3d7061c1eb015f6655f70007c51d6140e3dd5f3b25f6eeccc2",
+      "bytes": 3301
+    },
+    {
+      "path": "public/assets/ASSET_MANIFEST.json",
+      "sha256": "b846ca009446e5bd4e1f1176dca9059ec679d19d3a949d9636bfbcf24fcaad08",
+      "bytes": 2813
+    },
+    {
+      "path": "scripts/generate-asset-registry.mjs",
+      "sha256": "10061328ed24b76f27066d833feba1711309f892978eb405e17a011f59fe2109",
+      "bytes": 3338
+    },
+    {
+      "path": "scripts/test-firestore-rules.mjs",
+      "sha256": "8830868f82610b224b8ecbb742d0b119691b006b4c191fbfe62cc24dd3d8e822",
+      "bytes": 4173
+    },
+    {
+      "path": "scripts/validate-account-cloud-ranking.mjs",
+      "sha256": "55fa6f39e43454581b1e860d280ec36c084eefb6a03b126e5b6ff59f2eb7fe1a",
+      "bytes": 3141
+    },
+    {
+      "path": "scripts/validate-asset-cleanup.mjs",
+      "sha256": "eb80bab0fc5d3592dff19c1747ada98c73b5d506a22f28d08f661190f983490d",
+      "bytes": 3025
+    },
+    {
+      "path": "scripts/validate-combat-presentation.mjs",
+      "sha256": "b07b0928bd2fe86b23338cea82d5c974e9b2d71e9b8957d057aa31ce0a5ff8a3",
+      "bytes": 1516
+    },
+    {
+      "path": "src/game/combat/attackFootprint.test.ts",
+      "sha256": "9b568b1ecf005dbd4381c5f88d34004a0481663f0704c6bac72cc03849d31965",
+      "bytes": 1527
+    },
+    {
+      "path": "src/game/combat/attackFootprint.ts",
+      "sha256": "fc1910351a63ac746c995c4b9f5027b44ecea656b5acd4c8c83da93dc9bab65a",
+      "bytes": 2363
+    },
+    {
+      "path": "src/game/presentation/BattleActorView.ts",
+      "sha256": "66d00eeaa880f888e6991ce56f0f5a3ec1133f2aa3f3d464b87ee815cf4da547",
+      "bytes": 15910
+    },
+    {
+      "path": "src/game/presentation/BossPhaseDirector.test.ts",
+      "sha256": "31b5fc7ced88283aa1b5d0fd645ff2af6e85989da45c2e8b6a70a21dc4c9fa00",
+      "bytes": 958
+    },
+    {
+      "path": "src/game/presentation/BossPhaseDirector.ts",
+      "sha256": "3aa2d930f5cca2e381bc2e5e89dc85e5bbbc6c90585eebe51e950d5e93f1e5bb",
+      "bytes": 2132
+    },
+    {
+      "path": "src/repositories/LocalManagedPlayerRepository.ts",
+      "sha256": "d5bb2b5566386828d0fe9f8732366fc8c3ecb344f4ac4507db4b67c461424252",
+      "bytes": 2865
+    },
+    {
+      "path": "src/repositories/ResilientPlayerRepository.ts",
+      "sha256": "44735b756ae378c928c4542d5fc718e28bf7f14b51043785be470d2b1700d32e",
+      "bytes": 8497
+    },
+    {
+      "path": "src/scenes/AccountScene.ts",
+      "sha256": "d0aa913d8489f525b31a279e497070168aa42bc67eb81d5dcd25018db0e5e933",
+      "bytes": 11183
+    },
+    {
+      "path": "src/scenes/BattleScene.ts",
+      "sha256": "b5fdd551b18bcfd17a1eee9e11c0f492a422a4a2bafc53c083d57f5b77e23bda",
+      "bytes": 49979
+    },
+    {
+      "path": "src/scenes/RankingScene.ts",
+      "sha256": "f7ae27b6ae5f60af9c43017760be1a69572d344ab2d3bcbdad5c73d114719fa5",
+      "bytes": 7029
+    },
+    {
+      "path": "src/scenes/RecoveryScene.ts",
+      "sha256": "d27606329f28dcf88f189ac6b1389b761a7781ca8b162146e4b3ea6c8c4f9cb1",
+      "bytes": 5557
+    },
+    {
+      "path": "src/services/cloud/CloudSaveTypes.ts",
+      "sha256": "b2bcb0bd019f00a9eb3a737ad2ee8858663e4afc2e37e17311958165da989568",
+      "bytes": 1577
+    },
+    {
+      "path": "src/services/cloud/SaveRecoveryStore.test.ts",
+      "sha256": "b2f58f1b85496369590ad7e8b71e64598b1e3923c33ae5a69235911aba8f66e0",
+      "bytes": 1963
+    },
+    {
+      "path": "src/services/cloud/SaveRecoveryStore.ts",
+      "sha256": "a6817d3aec1e0650075dd51798714e7159e4ea166b673e9d007e712e39ac9013",
+      "bytes": 3972
+    },
+    {
+      "path": "src/services/ranking/RankingService.ts",
+      "sha256": "ffe0ef5c4a62e0d0d9f64fefb1e2af63c9dd02fa76737cf6bc234a79dfb37dd3",
+      "bytes": 5916
+    },
+    {
+      "path": "src/services/ranking/seasonLogic.test.ts",
+      "sha256": "88b3469df63d24246d87a366f421c66fe0d49eb07eb06593a7c5bf9c0b8b9cae",
+      "bytes": 832
+    },
+    {
+      "path": "src/services/ranking/seasonLogic.ts",
+      "sha256": "cb447cc63f2ad9aefada661837ea8ab3d9941c4aa2d22d171020c3308199b973",
+      "bytes": 1214
+    },
+    {
+      "path": "tools/build_preview_v180.py",
+      "sha256": "bbb683e471e2c89ffeb6f42737063cb8fa9463651771ad0e0b21d86dd75ca6e3",
+      "bytes": 6846
+    }
+  ],
+  "notes": [
+    "No runtime asset deletion or relocation",
+    "Firestore season ranking rules and indexes changed",
+    "Firebase App Check remains disabled"
+  ]
 }

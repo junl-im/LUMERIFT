@@ -8,6 +8,8 @@ import { CombatActionButton } from '../ui/CombatActionButton';
 import { VirtualJoystick } from '../ui/VirtualJoystick';
 import { createRasterPanel } from '../ui/UiSkin';
 import { BattleVfxSystem } from '../game/presentation/BattleVfxSystem';
+import { normalizeBossPhase, resolveStageVisualProfile, type StageVisualProfile } from '../game/presentation/StageVisualProfile';
+import { bossCinematicAlpha, resolveBossPhasePresentation } from '../game/presentation/BossPhaseDirector';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
 import { PlayerCombatController } from '../game/actors/player/PlayerCombatController';
 import { MonsterController } from '../game/actors/monsters/MonsterController';
@@ -21,11 +23,10 @@ import type {
 import { calculateDamage } from '../game/combat/damage';
 import {
   clampPosition,
-  circlesOverlap,
-  isPointInDirectionalArc,
   normalize,
   type Vec2,
 } from '../game/combat/geometry';
+import { buildArcPolygon, createAttackFootprint, footprintContainsCircle } from '../game/combat/attackFootprint';
 import {
   createArenaDecorations,
   MonsterActorView,
@@ -73,7 +74,9 @@ export class BattleScene implements Scene {
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
   private mapTexture?: Texture;
-  private bossPortraitTexture?: Texture;
+  private readonly bossPortraitTextures: Partial<Record<1 | 2 | 3, Texture>> = {};
+  private bossPortraitSprite?: Sprite;
+  private stageVisual?: StageVisualProfile;
   private vfx?: BattleVfxSystem;
   private ambientLayer?: Container;
   private readonly textureWarmupLayer = new Container();
@@ -115,6 +118,8 @@ export class BattleScene implements Scene {
   private paused = false;
   private battleBundleLoaded = false;
   private bossCinematicRemaining = 0;
+  private bossCinematicDuration = 0;
+  private bossCinematicPhase = 1;
 
   private readonly playerHpFill = new Graphics();
   private readonly playerHpText = new Text({
@@ -145,6 +150,22 @@ export class BattleScene implements Scene {
   });
   private announcementRemaining = 0;
 
+  private readonly bossCinematicLayer = new Container();
+  private readonly bossCinematicBackdrop = new Graphics();
+  private readonly bossCinematicAccent = new Graphics();
+  private readonly bossCinematicTitle = new Text({
+    text: '',
+    style: new TextStyle({ fill: COLORS.text, fontSize: 31, fontWeight: '700', align: 'center', letterSpacing: 1 }),
+  });
+  private readonly bossCinematicSubtitle = new Text({
+    text: '',
+    style: new TextStyle({ fill: COLORS.muted, fontSize: 14, fontWeight: '600', align: 'center' }),
+  });
+  private readonly bossCinematicPhaseText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xf4dca0, fontSize: 12, fontWeight: '700', align: 'center', letterSpacing: 3 }),
+  });
+
   private readonly bossPanel = new Container();
   private readonly bossHpFill = new Graphics();
   private readonly bossNameText = new Text({
@@ -172,6 +193,8 @@ export class BattleScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
+    this.stage = context.gameData.getStage(this.stageId);
+    this.stageVisual = resolveStageVisualProfile(this.stage.order);
     const loadingLayer = new Container();
     const loadingBackdrop = new Graphics().rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT).fill(COLORS.background);
     const loadingText = new Text({
@@ -206,8 +229,10 @@ export class BattleScene implements Scene {
     this.monsterSheet = context.assets.get<Spritesheet>(ASSET_PATHS.monsterAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
-    this.mapTexture = context.assets.get<Texture>(ASSET_PATHS.forestMap);
-    this.bossPortraitTexture = context.assets.get<Texture>(ASSET_PATHS.bossPortrait);
+    this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
+    this.bossPortraitTextures[1] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase1);
+    this.bossPortraitTextures[2] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase2);
+    this.bossPortraitTextures[3] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase3);
     context.audio.preload(ASSET_PATHS.slash, 'sfx');
     context.audio.preload(ASSET_PATHS.hit, 'sfx');
     context.audio.preload(ASSET_PATHS.skill, 'sfx');
@@ -216,7 +241,6 @@ export class BattleScene implements Scene {
     void context.audio.playBgm(ASSET_PATHS.forestBgm).catch(() => undefined);
     this.view.removeChild(loadingLayer);
     loadingLayer.destroy({ children: true });
-    this.stage = context.gameData.getStage(this.stageId);
     this.quality = context.graphicsQuality.current;
 
     const session = context.auth.currentSession;
@@ -248,11 +272,12 @@ export class BattleScene implements Scene {
     this.world.addChild(this.playerPresentation.root);
     this.prepareTextureWarmup();
     this.createHud();
+    this.createBossCinematicOverlay();
     this.createPauseOverlay();
     this.createTutorialOverlay();
     this.bindPointerMovement();
 
-    this.view.addChild(this.world, this.hud, this.pauseOverlay, this.tutorialOverlay, this.textureWarmupLayer);
+    this.view.addChild(this.world, this.hud, this.bossCinematicLayer, this.pauseOverlay, this.tutorialOverlay, this.textureWarmupLayer);
     this.updateVisuals(0);
   }
 
@@ -302,7 +327,7 @@ export class BattleScene implements Scene {
     this.updateWaveFlow(deltaSeconds);
 
     if (this.bossCinematicRemaining > 0) {
-      this.bossCinematicRemaining = Math.max(0, this.bossCinematicRemaining - deltaSeconds);
+      this.updateBossCinematic(deltaSeconds);
       this.updateWorldEffects(deltaSeconds);
       this.updateFloatingText(deltaSeconds);
       this.updateVisuals(deltaSeconds);
@@ -351,27 +376,33 @@ export class BattleScene implements Scene {
       this.world.addChild(backdrop);
     }
 
+    const visual = this.stageVisual ?? resolveStageVisualProfile(this.stage?.order ?? 1);
     const arenaShade = new Graphics()
       .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
-      .fill({ color: COLORS.dark, alpha: 0.08 })
+      .fill({ color: COLORS.dark, alpha: 0.06 + visual.corruption * 0.035 })
       .ellipse(DESIGN_WIDTH / 2, 500, 390, 560)
-      .fill({ color: 0x061116, alpha: 0.24 })
+      .fill({ color: 0x061116, alpha: 0.18 + visual.corruption * 0.08 })
       .ellipse(DESIGN_WIDTH / 2, 510, 378, 546)
-      .stroke({ color: COLORS.primaryBright, alpha: 0.12, width: 2 });
+      .stroke({ color: visual.accentColor, alpha: 0.15 + visual.corruption * 0.08, width: 2 });
 
     const ambient = new Container();
     ambient.position.set(DESIGN_WIDTH / 2, 470);
     const ring = new Graphics()
       .ellipse(0, 0, 355, 500)
-      .stroke({ color: COLORS.primaryBright, alpha: 0.055, width: 3 })
+      .stroke({ color: visual.accentColor, alpha: 0.05 + visual.corruption * 0.035, width: 3 })
       .ellipse(0, 0, 260, 380)
-      .stroke({ color: COLORS.warning, alpha: 0.035, width: 2 });
+      .stroke({ color: visual.secondaryColor, alpha: 0.03 + visual.corruption * 0.025, width: 2 });
     ambient.addChild(ring);
     this.ambientLayer = ambient;
 
     this.world.addChild(
       arenaShade,
-      createArenaDecorations(Math.max(2, Math.floor(quality.worldDecorationCount * 0.45))),
+      createArenaDecorations(
+        Math.max(2, Math.floor(quality.worldDecorationCount * 0.45)),
+        visual.decorationSeed,
+        visual.accentColor,
+        visual.secondaryColor,
+      ),
       ambient,
     );
   }
@@ -422,14 +453,15 @@ export class BattleScene implements Scene {
       .fill({ color: 0x03070b, alpha: 0.95 });
     this.bossNameText.position.set(122, 119);
     this.bossNameText.style = new TextStyle({ fill: COLORS.text, fontSize: 14, fontWeight: '700' });
-    const bossPortrait = this.bossPortraitTexture ? new Sprite(this.bossPortraitTexture) : undefined;
-    if (bossPortrait) {
-      bossPortrait.position.set(56, 112);
-      bossPortrait.width = 54;
-      bossPortrait.height = 54;
+    const initialBossPortrait = this.bossPortraitTextures[1];
+    this.bossPortraitSprite = initialBossPortrait ? new Sprite(initialBossPortrait) : undefined;
+    if (this.bossPortraitSprite) {
+      this.bossPortraitSprite.position.set(56, 112);
+      this.bossPortraitSprite.width = 54;
+      this.bossPortraitSprite.height = 54;
     }
     this.bossPanel.addChild(bossBackground);
-    if (bossPortrait) this.bossPanel.addChild(bossPortrait);
+    if (this.bossPortraitSprite) this.bossPanel.addChild(this.bossPortraitSprite);
     this.bossPanel.addChild(bossTrack, this.bossHpFill, this.bossNameText);
     this.bossPanel.visible = false;
 
@@ -497,6 +529,75 @@ export class BattleScene implements Scene {
       this.attackButton,
       this.announcementText,
     );
+  }
+
+  private createBossCinematicOverlay(): void {
+    this.bossCinematicBackdrop
+      .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
+      .fill({ color: 0x020407, alpha: 0.72 })
+      .rect(0, 250, DESIGN_WIDTH, 250)
+      .fill({ color: 0x071018, alpha: 0.94 });
+    this.bossCinematicAccent.position.set(DESIGN_WIDTH / 2, 375);
+    this.bossCinematicTitle.anchor.set(0.5);
+    this.bossCinematicTitle.position.set(DESIGN_WIDTH / 2, 350);
+    this.bossCinematicSubtitle.anchor.set(0.5);
+    this.bossCinematicSubtitle.position.set(DESIGN_WIDTH / 2, 399);
+    this.bossCinematicPhaseText.anchor.set(0.5);
+    this.bossCinematicPhaseText.position.set(DESIGN_WIDTH / 2, 307);
+    this.bossCinematicLayer.addChild(
+      this.bossCinematicBackdrop,
+      this.bossCinematicAccent,
+      this.bossCinematicPhaseText,
+      this.bossCinematicTitle,
+      this.bossCinematicSubtitle,
+    );
+    this.bossCinematicLayer.visible = false;
+  }
+
+  private startBossCinematic(enemy: EnemyActor, phase: number): void {
+    const presentation = resolveBossPhasePresentation(phase);
+    this.bossCinematicPhase = presentation.phase;
+    this.bossCinematicDuration = presentation.cinematicSeconds;
+    this.bossCinematicRemaining = presentation.cinematicSeconds;
+    this.bossCinematicLayer.visible = true;
+    this.bossCinematicLayer.alpha = 0;
+    this.bossCinematicPhaseText.text = `BOSS PHASE ${presentation.phase}`;
+    this.bossCinematicTitle.text = presentation.phase === 1 ? enemy.controller.config.name : presentation.title;
+    this.bossCinematicSubtitle.text = presentation.subtitle;
+    this.bossCinematicTitle.style = new TextStyle({
+      fill: presentation.accentColor,
+      fontSize: 31,
+      fontWeight: '700',
+      align: 'center',
+      letterSpacing: 1,
+    });
+    this.bossCinematicAccent.clear();
+    for (let ring = 0; ring < presentation.auraRings + 1; ring += 1) {
+      this.bossCinematicAccent
+        .circle(0, 0, 58 + ring * 18)
+        .stroke({
+          color: ring % 2 === 0 ? presentation.accentColor : presentation.secondaryColor,
+          alpha: 0.28 - ring * 0.04,
+          width: 3,
+        });
+    }
+    this.camera?.pulseZoom(presentation.zoom, presentation.cinematicSeconds * 0.62);
+    this.camera?.addShake(this.scaledShake(presentation.shake), Math.min(0.55, presentation.cinematicSeconds));
+    this.vfx?.spawn('explosion', enemy.controller.position, 0, 1.05 + presentation.phase * 0.14);
+    this.updateBossPortrait(presentation.phase);
+  }
+
+  private updateBossCinematic(deltaSeconds: number): void {
+    this.bossCinematicRemaining = Math.max(0, this.bossCinematicRemaining - deltaSeconds);
+    this.bossCinematicLayer.alpha = bossCinematicAlpha(this.bossCinematicRemaining, this.bossCinematicDuration);
+    const presentation = resolveBossPhasePresentation(this.bossCinematicPhase);
+    this.bossCinematicAccent.rotation += deltaSeconds * (0.35 + presentation.phase * 0.18);
+    const pulse = 0.96 + Math.sin(this.elapsed * 10) * 0.035;
+    this.bossCinematicAccent.scale.set(pulse);
+    if (this.bossCinematicRemaining <= 0) {
+      this.bossCinematicLayer.visible = false;
+      this.bossCinematicLayer.alpha = 0;
+    }
   }
 
   private createPauseOverlay(): void {
@@ -740,12 +841,7 @@ export class BattleScene implements Scene {
 
     this.waveSpawned = true;
     const boss = this.enemies.find((enemy) => enemy.definition.combat.rank === 'boss');
-    if (boss) {
-      this.bossCinematicRemaining = 1.15;
-      this.camera?.pulseZoom(1.12, 0.7);
-      this.camera?.addShake(this.scaledShake(8), 0.5);
-      this.vfx?.spawn('explosion', boss.controller.position, 0, 1.25);
-    }
+    if (boss) this.startBossCinematic(boss, 1);
     this.announce(
       definitionLabel(this.enemies),
       this.currentWaveIndex === stage.waves.length - 1 ? 1.45 : 0.95,
@@ -779,11 +875,7 @@ export class BattleScene implements Scene {
       enemy.controller.position.y = clamped.y;
 
       for (const phaseEvent of enemy.controller.drainPhaseEvents()) {
-        this.announce(`BOSS PHASE ${phaseEvent.phase}`, 1.1);
-        this.bossCinematicRemaining = 0.52;
-        this.camera?.pulseZoom(1.1 + phaseEvent.phase * 0.015, 0.35);
-        this.camera?.addShake(this.scaledShake(8 + phaseEvent.phase * 2), 0.32);
-        this.vfx?.spawn('explosion', enemy.controller.position, 0, 1 + phaseEvent.phase * 0.12);
+        this.startBossCinematic(enemy, phaseEvent.phase);
       }
 
       for (const statusDamage of enemy.controller.drainStatusDamageEvents()) {
@@ -800,16 +892,14 @@ export class BattleScene implements Scene {
 
       for (const attack of enemy.controller.drainAttackEvents()) {
         this.spawnMonsterAttackEffect(attack.pattern, attack.origin, attack.facing);
-        const hit = attack.pattern.shape === 'circle'
-          ? circlesOverlap(attack.origin, attack.pattern.range, player.position, playerConfig.radius)
-          : isPointInDirectionalArc(
-            attack.origin,
-            attack.facing,
-            player.position,
-            attack.pattern.range,
-            attack.pattern.halfAngleRadians,
-            playerConfig.radius,
-          );
+        const footprint = createAttackFootprint(
+          attack.pattern.shape,
+          attack.origin,
+          attack.facing,
+          attack.pattern.range,
+          attack.pattern.halfAngleRadians,
+        );
+        const hit = footprintContainsCircle(footprint, player.position, playerConfig.radius);
         if (!hit) continue;
 
         const damage = calculateDamage({
@@ -842,16 +932,14 @@ export class BattleScene implements Scene {
 
       for (const enemy of this.enemies) {
         if (!enemy.controller.isAlive) continue;
-        const hit = event.action.hitShape === 'circle'
-          ? circlesOverlap(event.origin, event.action.range, enemy.controller.position, enemy.controller.config.radius)
-          : isPointInDirectionalArc(
-            event.origin,
-            event.facing,
-            enemy.controller.position,
-            event.action.range,
-            event.action.halfAngleRadians,
-            enemy.controller.config.radius,
-          );
+        const footprint = createAttackFootprint(
+          event.action.hitShape,
+          event.origin,
+          event.facing,
+          event.action.range,
+          event.action.halfAngleRadians,
+        );
+        const hit = footprintContainsCircle(footprint, enemy.controller.position, enemy.controller.config.radius);
         if (!hit) continue;
 
         const critical = Math.random() < (event.action.kind === 'basic' ? 0.18 : 0.26);
@@ -914,6 +1002,7 @@ export class BattleScene implements Scene {
       action.effectColor,
       origin,
       facing,
+      action.halfAngleRadians,
       action.kind === 'skill2' ? 0.42 : 0.24,
     );
   }
@@ -927,7 +1016,7 @@ export class BattleScene implements Scene {
       x: origin.x + facing.x * pattern.range * 0.35,
       y: origin.y + facing.y * pattern.range * 0.35,
     }, Math.atan2(facing.y, facing.x), pattern.shape === 'circle' ? 1.05 : 0.72);
-    this.spawnEffect(pattern.shape, pattern.range, pattern.effectColor, origin, facing, 0.32);
+    this.spawnEffect(pattern.shape, pattern.range, pattern.effectColor, origin, facing, pattern.halfAngleRadians, 0.32);
   }
 
   private spawnEffect(
@@ -936,6 +1025,7 @@ export class BattleScene implements Scene {
     color: number,
     origin: Vec2,
     facing: Vec2,
+    halfAngleRadians: number,
     life: number,
   ): void {
     const quality = this.quality;
@@ -945,24 +1035,25 @@ export class BattleScene implements Scene {
     effect.maxLife = life;
     effect.view.clear();
 
+    const footprint = createAttackFootprint(shape, { x: 0, y: 0 }, facing, range, halfAngleRadians);
+    effect.view.position.set(origin.x, origin.y);
+    effect.view.rotation = 0;
     if (shape === 'circle') {
       effect.view
-        .circle(0, 0, range * 0.62)
-        .fill({ color, alpha: 0.12 * quality.effectDensity })
-        .circle(0, 0, range * 0.78)
-        .stroke({ color, alpha: 0.86, width: 5 + quality.effectDensity * 3 });
-      effect.view.position.set(origin.x, origin.y);
-      effect.view.rotation = 0;
+        .circle(0, 0, footprint.range)
+        .fill({ color, alpha: 0.1 * quality.effectDensity })
+        .circle(0, 0, footprint.range)
+        .stroke({ color, alpha: 0.88, width: 4 + quality.effectDensity * 3 });
     } else {
-      const centerX = origin.x + facing.x * range * 0.48;
-      const centerY = origin.y + facing.y * range * 0.48;
-      effect.view
-        .ellipse(0, 0, range * 0.56, range * 0.22)
-        .fill({ color, alpha: 0.18 * quality.effectDensity })
-        .ellipse(0, 0, range * 0.62, range * 0.28)
-        .stroke({ color, alpha: 0.9, width: 4 + quality.effectDensity * 3 });
-      effect.view.position.set(centerX, centerY);
-      effect.view.rotation = Math.atan2(facing.y, facing.x);
+      const polygon = buildArcPolygon(footprint, 24);
+      const first = polygon[0];
+      if (first) {
+        effect.view.moveTo(first.x, first.y);
+        for (const point of polygon.slice(1)) effect.view.lineTo(point.x, point.y);
+        effect.view
+          .fill({ color, alpha: 0.13 * quality.effectDensity })
+          .stroke({ color, alpha: 0.9, width: 4 + quality.effectDensity * 3 });
+      }
     }
 
     effect.view.alpha = 1;
@@ -1057,9 +1148,26 @@ export class BattleScene implements Scene {
     this.bossPanel.visible = true;
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
     this.bossNameText.text = `${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
+    this.updateBossPortrait(boss.controller.phase);
     this.bossHpFill.clear()
       .roundRect(124, 147, 362 * hpRatio, 9, 5)
       .fill(COLORS.danger);
+  }
+
+  private resolveStageBackgroundPath(): string {
+    const tier = this.stageVisual?.tier ?? 'approach';
+    if (tier === 'core') return ASSET_PATHS.riftCoreMap;
+    if (tier === 'depths') return ASSET_PATHS.forestDepthsMap;
+    if (tier === 'ruins') return ASSET_PATHS.forestRuinsMap;
+    return ASSET_PATHS.forestApproachMap;
+  }
+
+  private updateBossPortrait(phase: number): void {
+    const sprite = this.bossPortraitSprite;
+    if (!sprite) return;
+    const normalized = normalizeBossPhase(phase);
+    const texture = this.bossPortraitTextures[normalized];
+    if (texture && sprite.texture !== texture) sprite.texture = texture;
   }
 
   private updateCooldownButton(

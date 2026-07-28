@@ -24,6 +24,7 @@ for (const marker of ['signInAnonymously', 'signInWithPopup', 'signInWithEmailAn
 }
 for (const marker of [
   'request.auth.uid == uid',
+  'match /weeklyRankings/{entryId}',
   "match /users/{uid}",
   "match /notices/{noticeId}",
   "match /coupons/{document=**}",
@@ -45,7 +46,7 @@ for (const [name, text] of [
 }
 
 if (firebaseJson.firestore?.indexes !== 'firestore.indexes.json') errors.push('firebase.json does not reference firestore.indexes.json');
-if (!Array.isArray(indexes.indexes) || indexes.indexes.length < 2) errors.push('Firestore composite indexes are incomplete');
+if (!Array.isArray(indexes.indexes) || indexes.indexes.length < 4) errors.push('Firestore composite indexes are incomplete');
 
 if (errors.length) {
   console.error(errors.join('\n'));

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.4.2",
+  "version": "1.8.0",
   "updatedAt": "2026-07-27",
-  "currentPhase": "v1.4.2 Firebase App Check 완전 비활성화 완료",
-  "qualityStage": "production-candidate-open-art-pass",
+  "currentPhase": "v1.8.0 보스 3페이즈 전투 연출·판정 동기화·저장 복구·시즌 랭킹 완료",
+  "qualityStage": "production-candidate-unified-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -75,15 +75,44 @@
     "로컬 package.json 누락 시 발생하는 Missing script 오류 진단 및 Firebase 배포 스크립트 복구",
     "Firebase CLI 최신 공식 부분 배포 방식인 --only firestore로 Rules와 Indexes 동시 배포 명령 통일",
     "firebase:check 및 firebase:deploy:firestore 별칭 추가",
-    "Firebase App Check SDK 초기화·reCAPTCHA 환경변수·GitHub Actions Secret 주입을 제거하고 Auth·Firestore만 유지"
+    "Firebase App Check SDK 초기화·reCAPTCHA 환경변수·GitHub Actions Secret 주입을 제거하고 Auth·Firestore만 유지",
+    "계정·Cloud Save 관리 화면에서 제공자·UID·이메일 인증·동기화 상태 표시",
+    "익명 계정 Google·이메일 연결과 이메일 인증 메일·비밀번호 재설정·로그아웃 구현",
+    "로컬·클라우드 저장 원본 비교와 2초 이상 차이 충돌 표시 구현",
+    "수동 로컬→클라우드 업로드와 클라우드→로컬 다운로드 구현",
+    "Cloud Save 상태 구독·마지막 동기화 시각·오류·대기열 개수 표시",
+    "전체 rankings와 UTC 월요일 weeklyRankings Firestore 저장 구조 구현",
+    "상위 12명 스냅샷과 count 집계 기반 내 순위 표시",
+    "랭킹 실시간 리스너 미사용으로 Spark 읽기 할당량 보호",
+    "weeklyRankings 소유권 규칙과 복합 색인 추가",
+    "Firebase Auth·Firestore Emulator 권한 테스트 스크립트 추가",
+    "public/assets 전수 참조 분석으로 활성·보관 자산 분리",
+    "미사용 런타임 자산 182개·19.70MB를 art_source/runtime_archive로 무손실 이동",
+    "GitHub Pages public/assets를 27개·3.90MB로 축소하면서 전체 통합본 자산 보존",
+    "활성 6 Atlas·412프레임과 보관 43 Atlas·2,794프레임을 자산 레지스트리에 분리 기록",
+    "SHA-256 이동 계획·자산 레지스트리·public 잔존 검사·6MB 배포 예산 자동화 추가",
+    "플레이어 68프레임에 모바일 판독용 외곽선·청록 림라이트·금속 하이라이트 통일 패스 적용",
+    "몬스터 8종 268프레임에 종별 팔레트와 공통 암부·윤곽 규칙 적용",
+    "Slash·Nova·Hit·Explosion·Dodge VFX를 8프레임·총 40프레임 실사용 Atlas로 교체",
+    "Chapter 1 전투 배경을 접근·폐허·심층·균열핵 4단계로 분리하고 스테이지 순서에 연결",
+    "보스 1·2·3페이즈 초상을 전투 중 자동 교체",
+    "StageVisualProfile 순수 로직과 4단계 배경·색상·오염도 계약 추가",
+    "기존 v2 실사용 플레이어·몬스터·배경·초상과 VFX 10개 파일을 v1.7 런타임 아카이브로 무손실 이동",
+    "v1.7 아트 통일 미리보기 5종과 자동 검증 추가",
+    "몬스터 경고 범위·실제 피격 판정·타격 이펙트가 AttackFootprint 단일 기하 계산을 공유하도록 통합",
+    "보스 1·2·3페이즈에 전용 타이틀·오라·줌·흔들림·전투 정지 연출 적용",
+    "Cloud Save 다운로드·업로드·자동 병합·로그아웃 전 로컬 복구 지점을 최대 5개 보존",
+    "계정 화면에 복구 지점 생성·복원·삭제 UI 연결",
+    "UTC 월요일 기준 28일 시즌 랭킹과 seasonRankings 규칙·복합 색인 추가",
+    "App Check 비활성화 상태를 유지하면서 Auth·Firestore·Analytics 기능 보존"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "Firebase Console에 Firestore Rules와 Indexes 배포 후 실제 계정별 권한 검증",
-    "서버 검증 우편·출석·쿠폰을 위한 Cloud Run 또는 Cloud Functions 설계",
-    "Cloud Save 충돌 선택 UI와 계정 병합 복구 화면",
-    "주간·전체 랭킹과 내 순위 표시",
-    "LUMERIFT 전용 플레이어·Chapter 1 몬스터 동일 화풍 제작"
+    "GitHub Pages에서 보스 페이즈 전환 중 모바일 프레임 드롭·터치 입력 정지 여부 확인",
+    "LUMERIFT 전용 플레이어 8방향 독립 실루엣 원화 제작",
+    "Chapter 1 일반 5종·정예 2종·보스 1종의 전용 형태 리디자인",
+    "복구 지점 내보내기·가져오기와 Cloud Save 동기화 이력 추가",
+    "시즌 종료 스냅샷과 이전 시즌 기록 열람 기능"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -109,32 +138,54 @@
     "쿠폰·고가치 우편·출석 보상은 클라이언트만으로 최종 승인하지 않는다.",
     "Firebase 무료 할당량 보호를 위해 공지 캐시와 Cloud Save 쓰기 최소화를 유지한다.",
     "Firebase App Check SDK·reCAPTCHA 키·GitHub Actions Secret·Console enforcement는 사용자의 명시적 재승인 전까지 비활성화한다.",
-    "서비스 계정 JSON과 Admin SDK 비공개 키는 저장소에 커밋하지 않는다."
+    "서비스 계정 JSON과 Admin SDK 비공개 키는 저장소에 커밋하지 않는다.",
+    "public/assets에는 현재 AssetManifest에서 도달 가능한 실사용·Lazy Loading 자산과 필수 라이선스만 두고 레거시·제작 후보는 art_source/runtime_archive에 보존한다.",
+    "실사용 아트 교체 시 이전 런타임 자산은 삭제하지 않고 버전별 runtime_archive로 이동하며, 새 기본 경로와 자동 검증을 함께 갱신한다."
   ],
   "assetMetrics": {
     "activeAtlasCount": 6,
-    "activeRuntimeBytes": 3808909,
-    "fullProjectBytes": 101437471,
+    "activeRuntimeBytes": 5002239,
+    "activeRuntimeFileCount": 33,
+    "archivedAtlasCount": 46,
+    "archivedRuntimeBytes": 23266586,
+    "archivedRuntimeFileCount": 192,
+    "preservedAtlasCount": 52,
+    "preservedFrameCount": 3582,
+    "preservedAnimationCount": 602,
+    "fullProjectBytes": 106949004,
     "sourceArchiveIncludedInFull": true,
-    "sourceArchiveFileCount": 80,
+    "sourceArchiveFileCount": 272,
     "legacyArchiveIncludedInFull": true,
-    "legacyRuntimeDefaultEnabled": false
+    "legacyRuntimeDefaultEnabled": false,
+    "chapterOneBackgroundTiers": 4,
+    "bossPhasePortraits": 3,
+    "v170RuntimeArtBytes": 4672157,
+    "v180PreviewFiles": 4,
+    "fullProjectFileCount": 580
   },
   "knownLimitations": [
-    "현재 플레이어 프로필은 클라이언트 권한형 MVP라 골드·전투 결과의 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
+    "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
     "쿠폰·서버 우편·서버 시간 출석은 Spark 단계에서 로컬 데모이며 Firestore coupons 경로는 차단되어 있다.",
     "App Check는 사용자 결정에 따라 비활성화되어 있으며 현재 보호 경계는 Firebase Authentication과 Firestore Security Rules다.",
-    "플레이어·몬스터가 LUMERIFT 전용 독점 최종 원화는 아니다.",
-    "현재 작업 환경에서는 npm Registry 응답 제한으로 실제 의존성 기반 전체 빌드는 GitHub Actions에서 최종 확인한다."
+    "랭킹은 표시용이며 서버 검증 전에는 경쟁 보상 지급 근거로 사용하지 않는다.",
+    "v1.7 아트는 공개 라이선스 원본의 통일 보정 단계이며 LUMERIFT 전용 독점 최종 원화는 아니다.",
+    "실제 Android Chrome·iOS Safari에서 캐릭터 크기·색 대비·GPU 메모리와 FPS 검수가 필요하다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.4.2.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.4.1_to_v1.4.2.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.8.0.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.7.0_to_v1.8.0.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 76566471,
     "ownedProductionBytes": 54435526,
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
+  },
+  "lastUpdated": "2026-07-28",
+  "featureMetrics": {
+    "bossPhaseCinematics": 3,
+    "cloudRecoveryMaxPoints": 5,
+    "rankingSeasonDays": 28,
+    "sharedAttackFootprint": true
   }
 }

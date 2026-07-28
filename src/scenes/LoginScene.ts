@@ -7,6 +7,7 @@ import { createBackground, createPanel } from '../ui/SceneChrome';
 import { UiButton } from '../ui/UiButton';
 import { openEmailAuthOverlay, type EmailAuthMode } from '../ui/EmailAuthOverlay';
 import { LobbyScene } from './LobbyScene';
+import { openEmailPromptOverlay } from '../ui/EmailPromptOverlay';
 
 export class LoginScene implements Scene {
   public readonly view = new Container();
@@ -59,16 +60,32 @@ export class LoginScene implements Scene {
     });
     emailRegister.position.set(276, 586);
 
+    const resetPassword = new UiButton({
+      label: '비밀번호 재설정 메일', width: 360, height: 44, tone: 'secondary', fontSize: 12,
+      onPress: async () => {
+        const email = await openEmailPromptOverlay();
+        if (!email || !this.context) return;
+        this.message.text = '재설정 메일을 보내고 있습니다.';
+        try {
+          await this.context.auth.sendPasswordReset(email);
+          this.message.text = '비밀번호 재설정 메일을 보냈습니다.';
+        } catch (error: unknown) {
+          this.message.text = error instanceof Error ? error.message : '메일 발송에 실패했습니다.';
+        }
+      },
+    });
+    resetPassword.position.set(90, 650);
+
     const guide = new Text({
       text: '익명으로 플레이한 뒤 Google 또는 이메일을 연결하면\n같은 UID와 저장 데이터를 유지합니다.',
       style: new TextStyle({ fill: 0xaeb9ca, fontSize: 12, lineHeight: 19, align: 'center' }),
     });
     guide.anchor.set(0.5, 0);
-    guide.position.set(DESIGN_WIDTH / 2, 668);
+    guide.position.set(DESIGN_WIDTH / 2, 711);
 
     this.message.anchor.set(0.5, 0);
-    this.message.position.set(DESIGN_WIDTH / 2, 731);
-    this.view.addChild(emblem, title, guest, google, emailLogin, emailRegister, guide, this.message);
+    this.message.position.set(DESIGN_WIDTH / 2, 776);
+    this.view.addChild(emblem, title, guest, google, emailLogin, emailRegister, resetPassword, guide, this.message);
   }
 
   public exit(): void {}

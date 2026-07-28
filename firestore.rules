@@ -88,15 +88,69 @@ service cloud.firestore {
     match /rankings/{uid} {
       allow read: if true;
       allow create, update: if owns(uid)
-        && request.resource.data.keys().hasOnly(['uid', 'nickname', 'score', 'stage', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['uid', 'nickname', 'score', 'stage', 'level', 'updatedAt'])
         && request.resource.data.uid == uid
         && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() >= 1
         && request.resource.data.nickname.size() <= 24
         && request.resource.data.score is int
         && request.resource.data.score >= 0
         && request.resource.data.score <= 999999999
         && request.resource.data.stage is int
         && request.resource.data.stage >= 1
+        && request.resource.data.stage <= 999
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1
+        && request.resource.data.level <= 999
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+
+    match /weeklyRankings/{entryId} {
+      allow read: if true;
+      allow create, update: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'nickname', 'score', 'stage', 'level', 'weekKey', 'updatedAt'])
+        && request.resource.data.uid == request.auth.uid
+        && entryId == request.resource.data.weekKey + '_' + request.auth.uid
+        && request.resource.data.weekKey is string
+        && request.resource.data.weekKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() >= 1
+        && request.resource.data.nickname.size() <= 24
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 999999999
+        && request.resource.data.stage is int
+        && request.resource.data.stage >= 1
+        && request.resource.data.stage <= 999
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1
+        && request.resource.data.level <= 999
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+    match /seasonRankings/{entryId} {
+      allow read: if true;
+      allow create, update: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'nickname', 'score', 'stage', 'level', 'seasonId', 'updatedAt'])
+        && request.resource.data.uid == request.auth.uid
+        && entryId == request.resource.data.seasonId + '_' + request.auth.uid
+        && request.resource.data.seasonId is string
+        && request.resource.data.seasonId.matches('^S[0-9]{2,}_[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() >= 1
+        && request.resource.data.nickname.size() <= 24
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 999999999
+        && request.resource.data.stage is int
+        && request.resource.data.stage >= 1
+        && request.resource.data.stage <= 999
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1
+        && request.resource.data.level <= 999
         && request.resource.data.updatedAt == request.time;
       allow delete: if false;
     }

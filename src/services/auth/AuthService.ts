@@ -8,6 +8,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  reload,
   type User,
 } from 'firebase/auth';
 import { STORAGE_KEYS } from '../../app/brand';
@@ -21,6 +24,7 @@ export interface AuthSession {
   readonly provider: AuthProvider;
   readonly email?: string;
   readonly anonymous: boolean;
+  readonly emailVerified: boolean;
 }
 
 export class AuthService {
@@ -50,6 +54,7 @@ export class AuthService {
         displayName: '루멘 게스트',
         provider: 'local-dev',
         anonymous: true,
+        emailVerified: false,
       };
       return this.session;
     }
@@ -100,6 +105,38 @@ export class AuthService {
     }
   }
 
+
+  public async sendVerification(): Promise<void> {
+    const user = this.requireAuth().currentUser;
+    if (!user || user.isAnonymous || !user.email) throw new Error('이메일 계정에서만 인증 메일을 보낼 수 있습니다.');
+    if (user.emailVerified) return;
+    try {
+      await sendEmailVerification(user);
+    } catch (error: unknown) {
+      throw new Error(this.authErrorMessage(error));
+    }
+  }
+
+  public async sendPasswordReset(email?: string): Promise<void> {
+    const target = email?.trim() || this.requireAuth().currentUser?.email || '';
+    if (!target) throw new Error('비밀번호를 재설정할 이메일 주소가 필요합니다.');
+    try {
+      await sendPasswordResetEmail(this.requireAuth(), target);
+    } catch (error: unknown) {
+      throw new Error(this.authErrorMessage(error));
+    }
+  }
+
+  public async refreshSession(): Promise<AuthSession | undefined> {
+    const user = this.requireAuth().currentUser;
+    if (!user) {
+      this.session = undefined;
+      return undefined;
+    }
+    await reload(user);
+    return this.fromFirebaseUser(user);
+  }
+
   public async signOutCurrent(): Promise<void> {
     if (this.firebase.auth) await signOut(this.firebase.auth);
     this.session = undefined;
@@ -123,6 +160,7 @@ export class AuthService {
       provider,
       email: user.email ?? undefined,
       anonymous: user.isAnonymous,
+      emailVerified: user.emailVerified,
     };
     return this.session;
   }
@@ -142,6 +180,8 @@ export class AuthService {
       'auth/account-exists-with-different-credential': '같은 이메일이 다른 로그인 방식으로 가입되어 있습니다.',
       'auth/network-request-failed': '네트워크 연결을 확인해 주세요.',
       'auth/too-many-requests': '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.',
+      'auth/user-not-found': '해당 이메일 계정을 찾을 수 없습니다.',
+      'auth/requires-recent-login': '보안을 위해 다시 로그인한 뒤 시도해 주세요.',
       'auth/unauthorized-domain': '현재 도메인이 Firebase 승인 도메인에 등록되지 않았습니다.',
     };
     return messages[code] ?? (error instanceof Error ? error.message : '로그인 중 오류가 발생했습니다.');

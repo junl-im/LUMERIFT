@@ -1,41 +1,48 @@
-# LUMERIFT: 균열의 계승자 v1.4.2
+# LUMERIFT: 균열의 계승자 v1.8.0
 
-세로형 9:16 모바일 웹 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase modular SDK 기반입니다.
+모바일 웹 우선 세로형 2.5D 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이며 GitHub Pages에 배포한다.
 
-## v1.4.2 변경
+## v1.8.0 변경
 
-- Firebase App Check 런타임 초기화 제거
-- reCAPTCHA 사이트 키 환경변수 제거
-- GitHub Actions App Check Secret 주입 제거
-- Firebase Console enforcement 비활성화 기준 고정
-- Authentication·Firestore Cloud Save·오프라인 캐시·Analytics 유지
-- App Check 재도입 방지 자동 검사 추가
-
-## Firebase 유지 기능
-
-- 익명·Google·이메일 인증
-- 익명 계정의 Google/이메일 계정 연결
-- 브라우저 로그인 세션 자동 복원
-- IndexedDB 기반 Firestore 오프라인 캐시
-- 로컬 우선 Cloud Save와 실패 재시도 대기열
-- Firestore 원격 공지와 15분 캐시
-- Analytics 선택 초기화
-- Firestore 보안 규칙·복합 색인·Emulator 설정
+- 공격 경고·피격 판정·타격 표시를 동일한 `AttackFootprint` 계산으로 통합
+- 보스 3페이즈 전용 진입 연출·오라·카메라 줌·흔들림
+- 성공 타격 기반 Hit Stop·카메라 Shake·Pulse Zoom 유지 및 검증
+- Cloud Save 위험 작업 전 로컬 복구 지점 최대 5개
+- 복구 지점 생성·복원·삭제 화면
+- 전체·주간·28일 시즌 랭킹
+- `seasonRankings` Firestore 규칙과 복합 색인
+- Firebase App Check 비활성화 유지
 
 ## 실행
 
 ```bash
 npm install
-npm run validate:firebase
-npm run verify
 npm run dev
 ```
 
-Firebase Console 설정과 규칙 배포는 `docs/FIREBASE_SETUP_v1.4.2.md`를 확인합니다.
+## 검증
 
-## Firestore 배포
+```bash
+npm run validate:combat
+npm run validate:account
+npm run verify
+```
+
+## Firebase 규칙 배포
 
 ```bash
 npm run firebase:check
 npm run firebase:deploy:rules
 ```
+
+## 핵심 문서
+
+- `AGENTS.md`
+- `HANDOFF_STATE.json`
+- `docs/HANDOFF_MASTER.md`
+- `docs/BOSS_COMBAT_v1.8.0.md`
+- `docs/SAVE_RECOVERY_v1.8.0.md`
+- `docs/RANKING_SEASON_v1.8.0.md`
+- `docs/PATCH_NOTES_v1.8.0.md`
+
+BAT 파일은 Windows 편의용 선택 도구이며 npm 명령과 GitHub Actions가 공식 기준이다.

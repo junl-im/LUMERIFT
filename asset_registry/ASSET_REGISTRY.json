@@ -1,0 +1,2735 @@
+{
+  "schemaVersion": 2,
+  "release": "1.8.0",
+  "generatedAt": "2026-07-28T00:35:33.291Z",
+  "classifications": {
+    "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
+    "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
+    "source-master": "모바일 제작용 원본·라이선스·재가공 근거"
+  },
+  "summary": {
+    "source-master": {
+      "files": 80,
+      "bytes": 76566471,
+      "atlases": 0,
+      "frames": 0,
+      "animations": 0
+    },
+    "runtime-archive": {
+      "files": 192,
+      "bytes": 23266586,
+      "atlases": 46,
+      "frames": 3155,
+      "animations": 451
+    },
+    "runtime-public": {
+      "files": 33,
+      "bytes": 5002239,
+      "atlases": 6,
+      "frames": 427,
+      "animations": 151
+    }
+  },
+  "entries": [
+    {
+      "path": "art_source/open_art/v1.0.0/backgrounds/fantasy_rpg_background.png",
+      "relativePath": "open_art/v1.0.0/backgrounds/fantasy_rpg_background.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 3395889,
+      "sha256": "a15930a04c7aeaf1cf600cfb20783fa4414ebc333f6009554ab4c027addc94c2"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/characters/isometric_knight_sheet.png",
+      "relativePath": "open_art/v1.0.0/characters/isometric_knight_sheet.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 117218,
+      "sha256": "19e9514c0a420ef050185e52432659aa3eebfdc70d720112e159d69777b6f6d0"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/orc_archer.png",
+      "relativePath": "open_art/v1.0.0/monsters/orc_archer.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1526115,
+      "sha256": "51ba26d2bcee7889268e141a77309514af5270c6ba962680997bf5c3eeeabb86"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/orc_elite.png",
+      "relativePath": "open_art/v1.0.0/monsters/orc_elite.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1702904,
+      "sha256": "4fb47bf0fa625cb2d7dc570d0efd2ea32f0d4be730bec4201eedd8b95366eb49"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/orc_heavy.png",
+      "relativePath": "open_art/v1.0.0/monsters/orc_heavy.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1489221,
+      "sha256": "e5c006b9ba7712649f14e39db0063b1ea9d6f0dbec8aa6e3f581508d4e5c4ef8"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/orc_regular.png",
+      "relativePath": "open_art/v1.0.0/monsters/orc_regular.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1328793,
+      "sha256": "99de1cafb95d9f3894f3652a1f4b074bf957deef85d0e64b8e98bfaa0e2dbb76"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/spider_giant.png",
+      "relativePath": "open_art/v1.0.0/monsters/spider_giant.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1220060,
+      "sha256": "e9cb00685da7a5741fb867d2c5bc124c5682c22553dee11035e084d0aec1cc7d"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/spider.png",
+      "relativePath": "open_art/v1.0.0/monsters/spider.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 948921,
+      "sha256": "4d5d5621a8b47a2c7691a640d038e30e8e9c90b4a43b6b2e5bde960f164e5c72"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/troll.png",
+      "relativePath": "open_art/v1.0.0/monsters/troll.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2608369,
+      "sha256": "035e442aba0e3389fd71c571f9f0f6c9693c3c50a6f8b566278e305e9f8b9995"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/monsters/werebear_brown_armor.png",
+      "relativePath": "open_art/v1.0.0/monsters/werebear_brown_armor.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1281480,
+      "sha256": "1d344bfb538af96e6484a12dbcedd3eae737717d4b94ea1fbe4602d7c25954da"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/boss_defiledspriggan.png",
+      "relativePath": "open_art/v1.0.0/portraits/boss_defiledspriggan.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 350824,
+      "sha256": "a0a90bcfe1db702f13932e3188554f5005d8dea613382a63c30366d470b0789a"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/hero_portrait.png",
+      "relativePath": "open_art/v1.0.0/portraits/hero_portrait.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 4013833,
+      "sha256": "a20340ed563c45e7dee7c35a952a30a8a0bd4540255008779af30f6d4dd0836b"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/hero_warlord.png",
+      "relativePath": "open_art/v1.0.0/portraits/hero_warlord.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 283337,
+      "sha256": "07540f5e12bbf7e11849a4f6236ac31ac2a1c6b39ddcb68406116e25c9d73529"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_bonegolem.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_bonegolem.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 250800,
+      "sha256": "2f5804a28d25f6d43cb1f6c0b7b59620924512e08142058da9cac7ae59699967"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_crystalgolem.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_crystalgolem.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 394411,
+      "sha256": "85295bd9e7f40a6e762366e5d8e76808eb53643f2494e98afca2ffda811327ab"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_dragonwhelp.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_dragonwhelp.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 231652,
+      "sha256": "f1c0296d4fe71b863bcc5a76ba2f2a6e57d51f3d2cc53ac696d60d7a3c66a1ab"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_fireelemental.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_fireelemental.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 277869,
+      "sha256": "edb23a2cfe7f00b3a4da5ac3f5a3c0db9f65c7b12a25c932058ff216dbf01fb6"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_frogling.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_frogling.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 239946,
+      "sha256": "a9444e1fe6c22896abac119de36348a7ba54835a9d02a946a3603c5b4f0cf56f"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_giantspider.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_giantspider.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 243840,
+      "sha256": "d77735d0a808cff016005a701423f8ad95b1705eadc5571412b09f65d2b404ee"
+    },
+    {
+      "path": "art_source/open_art/v1.0.0/portraits/monster_goblinboomer.png",
+      "relativePath": "open_art/v1.0.0/portraits/monster_goblinboomer.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 225463,
+      "sha256": "80b8e7f4d4eeac2a6c6b66db0b3c634dbf75a2dd05ff46a6da632d741305312a"
+    },
+    {
+      "path": "art_source/owned/v1.3.0/operations_ui_master_v1.3.0.png",
+      "relativePath": "owned/v1.3.0/operations_ui_master_v1.3.0.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 102760,
+      "sha256": "9d67c3ff2aaf728f74db47fbec4605220787e3ddb6eb2c9c8d2fa0eeaa94335d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/bestiary/bestiary_portraits_v1.json",
+      "relativePath": "atlases/bestiary/bestiary_portraits_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 19639,
+      "sha256": "8e80147ecc1f5c90c315904ac70d529a3078ddfcca412c5d65763ec280822a87",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "bestiary_portraits_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/bestiary/bestiary_portraits_v1.webp",
+      "relativePath": "atlases/bestiary/bestiary_portraits_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 125152,
+      "sha256": "827e697db28bcf997e7763844f6a6a47d693789d2f94188334774e4211021a87"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/effects/effects_mega_v1.json",
+      "relativePath": "atlases/effects/effects_mega_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 62713,
+      "sha256": "8763d6b65035c10190b3aef96bcf003dbaf46a39676e702a8c5a54c3c69ca746",
+      "atlas": {
+        "frames": 144,
+        "animations": 24,
+        "image": "effects_mega_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/effects/effects_mega_v1.webp",
+      "relativePath": "atlases/effects/effects_mega_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 171626,
+      "sha256": "e2babe5490dee2d92c249b16d889665c8264848c91de216115daeefea444ae45"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/emblems/emblems_v1.json",
+      "relativePath": "atlases/emblems/emblems_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 25549,
+      "sha256": "95bed613360302e28383e3f773503b08179b4a5f1cbdf914db7272710f549e1c",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "emblems_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/emblems/emblems_v1.webp",
+      "relativePath": "atlases/emblems/emblems_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 131136,
+      "sha256": "14a68270c1a8dae593d101e689a7610b5bb89fc435e46ee9658be5e489679d5a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/environment/environment_props_v1.json",
+      "relativePath": "atlases/environment/environment_props_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 48260,
+      "sha256": "c4e95865c6ef7e7fe373decf25bc961c7de13896bcc51f49b1503db1347b0c06",
+      "atlas": {
+        "frames": 120,
+        "animations": 0,
+        "image": "environment_props_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/environment/environment_props_v1.webp",
+      "relativePath": "atlases/environment/environment_props_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 69394,
+      "sha256": "cf8ac15715bb85e82809041174fc19a45107aa484bc0988740459209816b2847"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/items/mega_items_v1.json",
+      "relativePath": "atlases/items/mega_items_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 65374,
+      "sha256": "b025dd8e3736f996bc2d0902cc7d454ccc720ad8d241f75452bd14e9543f0464",
+      "atlas": {
+        "frames": 160,
+        "animations": 0,
+        "image": "mega_items_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/items/mega_items_v1.webp",
+      "relativePath": "atlases/items/mega_items_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 173570,
+      "sha256": "f1c19d50d71a3816509a3e6669cee44d5b16eb6bcecc8a219b99cdba77e1f741"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/monsters/monster_common_v1.json",
+      "relativePath": "atlases/monsters/monster_common_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 24476,
+      "sha256": "690a6ab80494c5a630a619ccdd0278d39372de12fdbd59a4b2f89ac6073c5939",
+      "atlas": {
+        "frames": 54,
+        "animations": 18,
+        "image": "monster_common_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/monsters/monster_common_v1.webp",
+      "relativePath": "atlases/monsters/monster_common_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 25326,
+      "sha256": "bfc2e52ce2f53dcd051e2778457034e6c7467b9714efefcde1024fce85d2c575"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/npc/npc_portraits_v1.json",
+      "relativePath": "atlases/npc/npc_portraits_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 13090,
+      "sha256": "ccbbded8012bbb78fd97cd1f24082f3efc8a51ee5186fb190b48c6cbb113b719",
+      "atlas": {
+        "frames": 32,
+        "animations": 0,
+        "image": "npc_portraits_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/npc/npc_portraits_v1.webp",
+      "relativePath": "atlases/npc/npc_portraits_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 51914,
+      "sha256": "ff4b08202cd1e9742e635bdb99d754d5ee18d806f239e47c0534d41a412cac24"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/player/player_v1.json",
+      "relativePath": "atlases/player/player_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 106179,
+      "sha256": "0350918b4e64b56599030370672d1da1abaa73e594d4dcdac5476a96e417cb6f",
+      "atlas": {
+        "frames": 240,
+        "animations": 80,
+        "image": "player_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/player/player_v1.webp",
+      "relativePath": "atlases/player/player_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 54018,
+      "sha256": "59a0d25520e157738ca4bd5cd6e6aa076e271ea712ecb78e086a75a0c54778e9"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_01.json",
+      "relativePath": "atlases/quality/bosses/bosses_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 3644,
+      "sha256": "93ea220858abfb3f9bb564aab9f05444f20bd1a435b3e23d71577c0d810580dd",
+      "atlas": {
+        "frames": 8,
+        "animations": 0,
+        "image": "bosses_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_01.webp",
+      "relativePath": "atlases/quality/bosses/bosses_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 229416,
+      "sha256": "668239defbbd83d64356e7d43176142780e60b27e49b10fab49bfe0f8ff9ac0d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_02.json",
+      "relativePath": "atlases/quality/bosses/bosses_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 2011,
+      "sha256": "c25abe34d4089ac7b1235093472c69f780f6c1f598561c07182ac4171764291e",
+      "atlas": {
+        "frames": 4,
+        "animations": 0,
+        "image": "bosses_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/bosses/bosses_quality_02.webp",
+      "relativePath": "atlases/quality/bosses/bosses_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 111268,
+      "sha256": "4e41a167703cd23397ed76565a4110f57a6c9ae22b15b5f2d055f21f014266b5"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_01.json",
+      "relativePath": "atlases/quality/effects/vfx_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42571,
+      "sha256": "2302a169b4348f149d49b57e017ef32e72ee8bef336f542eda080f770b790444",
+      "atlas": {
+        "frames": 96,
+        "animations": 8,
+        "image": "vfx_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_01.webp",
+      "relativePath": "atlases/quality/effects/vfx_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 726156,
+      "sha256": "1ca5c6ea284807870f8f4a13f6c65aaf55331882125ea2e0b3d0df073d91f28f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_02.json",
+      "relativePath": "atlases/quality/effects/vfx_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42571,
+      "sha256": "54f21b4777339b60049058d6057653c642f451d5b624231af4a68dbd05b50546",
+      "atlas": {
+        "frames": 96,
+        "animations": 8,
+        "image": "vfx_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_02.webp",
+      "relativePath": "atlases/quality/effects/vfx_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 732970,
+      "sha256": "b0a8bd7196f2f392cf38983e2c636fa5cd2ad483cc530d39d1db63049f58c1f4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_03.json",
+      "relativePath": "atlases/quality/effects/vfx_quality_03.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42571,
+      "sha256": "93ef152c6044e6108fc5577b3a90f11b9e472014b6fc7af53cfd1c0ea82bb7ef",
+      "atlas": {
+        "frames": 96,
+        "animations": 8,
+        "image": "vfx_quality_03.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_03.webp",
+      "relativePath": "atlases/quality/effects/vfx_quality_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 715412,
+      "sha256": "4b173f51132a7d512b44b31b453804ab6f936aa938eb638356bec95b31d31ced"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_04.json",
+      "relativePath": "atlases/quality/effects/vfx_quality_04.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42571,
+      "sha256": "d452fe4e0585d832a5079ff069d827409d5e2091774d5c9c15595997f1ad1b6d",
+      "atlas": {
+        "frames": 96,
+        "animations": 8,
+        "image": "vfx_quality_04.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/effects/vfx_quality_04.webp",
+      "relativePath": "atlases/quality/effects/vfx_quality_04.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 729544,
+      "sha256": "ef3354e48754a28e9860c3923f85df91e1ee56714700473339dd16e564e86bef"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_01.json",
+      "relativePath": "atlases/quality/environment/props_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20963,
+      "sha256": "d00e8e5622fbda830943999dfc525dfe4f49b7f56765324128720043ce05e3f1",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "props_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_01.webp",
+      "relativePath": "atlases/quality/environment/props_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 283490,
+      "sha256": "274b44dc2f0593a2cf048d0fcc8294c5de93522bc1a9e068408a8ae45bac6e24"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_02.json",
+      "relativePath": "atlases/quality/environment/props_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20964,
+      "sha256": "25595de360a1e9d6578022a04945b132e6d67c57dd6caabe320c3d47fa2d71b1",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "props_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_02.webp",
+      "relativePath": "atlases/quality/environment/props_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 284060,
+      "sha256": "b3bb4de795f38886580ff62a3e099b8b3ff3dfd3e487cc6740a5602cc802884a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_03.json",
+      "relativePath": "atlases/quality/environment/props_quality_03.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20962,
+      "sha256": "906a71398b48798c7a329e011bf992ee23386bdbff096ac9412265eceb096192",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "props_quality_03.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_03.webp",
+      "relativePath": "atlases/quality/environment/props_quality_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 283098,
+      "sha256": "4efbc7b25765db4094181acc3e701e8f42927fcddd3426d571175381a05be185"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_04.json",
+      "relativePath": "atlases/quality/environment/props_quality_04.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20959,
+      "sha256": "414bbe984334e9d91e1c2f32f767160027f2b45356b7b5f44f83fcf1d47d86e9",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "props_quality_04.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_04.webp",
+      "relativePath": "atlases/quality/environment/props_quality_04.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 281258,
+      "sha256": "f442e2d1427bbeefb7443ad0eca56ed229ae1a0f9e61f4f56f541bad7ee7f005"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_05.json",
+      "relativePath": "atlases/quality/environment/props_quality_05.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20961,
+      "sha256": "594e2819fe110117a6c7d7e919fd96871d8e54acfa8e743a28517842f7af5129",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "props_quality_05.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/environment/props_quality_05.webp",
+      "relativePath": "atlases/quality/environment/props_quality_05.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 277572,
+      "sha256": "c222160249e887422679d32f9c5fd687ed158ea37d5f2eac26d17978baa30b3a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/heroes/heroes_quality_01.json",
+      "relativePath": "atlases/quality/heroes/heroes_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 3644,
+      "sha256": "6fdd003b557e842bd694a1fe948fedab45537387dfb5799e665d3603487a1174",
+      "atlas": {
+        "frames": 8,
+        "animations": 0,
+        "image": "heroes_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/heroes/heroes_quality_01.webp",
+      "relativePath": "atlases/quality/heroes/heroes_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 288746,
+      "sha256": "6955d4021496964209c66afe80d348476f27393d74f2b1a859932b4cf9c265a7"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_01.json",
+      "relativePath": "atlases/quality/items/items_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26940,
+      "sha256": "ee04fc0c962a6ee03e4b43b397da43b8d261be8443d8f3e413e81a3381b97e3f",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_01.webp",
+      "relativePath": "atlases/quality/items/items_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 457696,
+      "sha256": "746418157bbbf0dc99abfbc76f7d4e6e4ce7609108dc2c217148815b83937dba"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_02.json",
+      "relativePath": "atlases/quality/items/items_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26936,
+      "sha256": "68459c18fb738904a76f62975fd090bb65104beb5776ebc8c699903a41806987",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_02.webp",
+      "relativePath": "atlases/quality/items/items_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 458084,
+      "sha256": "fd2e3435255bc834d2de48c96aafd2dc25c57966dcf44fe41a5b0810606db418"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_03.json",
+      "relativePath": "atlases/quality/items/items_quality_03.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26937,
+      "sha256": "04e2a6715e3804b666f7d34d0ce26f9bc3a4ac913ca9eaad4905f95e7f5252c5",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_03.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_03.webp",
+      "relativePath": "atlases/quality/items/items_quality_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 459874,
+      "sha256": "bc8f57314b48267a3b77d67c6229efe3d9efa45043b2f17b1d00a34ac397bfe6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_04.json",
+      "relativePath": "atlases/quality/items/items_quality_04.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26940,
+      "sha256": "46e18140badd1d5db6fb228f1a8d64b82b16edfb99debd82df6414122d778973",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_04.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_04.webp",
+      "relativePath": "atlases/quality/items/items_quality_04.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 464290,
+      "sha256": "6bf9c093276f7460c77b51290f4aca05c71d9df01d5643c449be32d2a0e9b178"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_05.json",
+      "relativePath": "atlases/quality/items/items_quality_05.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26936,
+      "sha256": "d3d9be5858d8d43f951602503b7b3a45b39cb0e9dcc8591e5f192a383d7e9ff2",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_05.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_05.webp",
+      "relativePath": "atlases/quality/items/items_quality_05.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 461948,
+      "sha256": "2d76c3e7bdd86272929f7bf94c1d4d778552cca87eb2757925f67e3b199fa86f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_06.json",
+      "relativePath": "atlases/quality/items/items_quality_06.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 26937,
+      "sha256": "08e37387560fdd2e3beeae589007f6e424db8b73c607e7daba8cda120ad6016d",
+      "atlas": {
+        "frames": 64,
+        "animations": 0,
+        "image": "items_quality_06.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/items/items_quality_06.webp",
+      "relativePath": "atlases/quality/items/items_quality_06.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 462406,
+      "sha256": "705ba2d55495d9f4011523c7ed8ab656e112d9caf7c608f2e36a28fa21977e31"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_01.json",
+      "relativePath": "atlases/quality/npc/npc_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 3630,
+      "sha256": "b8566df04d19c16b54230c8f106557a6b5d92a8643b77ebf811803f2f00a2aa7",
+      "atlas": {
+        "frames": 8,
+        "animations": 0,
+        "image": "npc_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_01.webp",
+      "relativePath": "atlases/quality/npc/npc_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 171882,
+      "sha256": "2798d6b64c8f6c6572bbf5e01377068303766a8e586f7f0ca809e8eae58d7fd2"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_02.json",
+      "relativePath": "atlases/quality/npc/npc_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 3630,
+      "sha256": "d34ca600c68e0b253598a695b4ed9a3524478cc0d77cb282fe3b7ee5d2f07cfa",
+      "atlas": {
+        "frames": 8,
+        "animations": 0,
+        "image": "npc_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/npc/npc_quality_02.webp",
+      "relativePath": "atlases/quality/npc/npc_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 182354,
+      "sha256": "c0cf0001923ca58d95c136b15045d6446a5f0bfac5187c8cff7f50dd9900ffdd"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_01.json",
+      "relativePath": "atlases/quality/skills/skills_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 17023,
+      "sha256": "ece8a3552e3bade8aaadde089e13511f2936c385cd07edf3bf7464901b358b78",
+      "atlas": {
+        "frames": 40,
+        "animations": 0,
+        "image": "skills_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_01.webp",
+      "relativePath": "atlases/quality/skills/skills_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 263580,
+      "sha256": "f345e7ba564522554a6e39a551adc001a7aa5cc53948e9293556fe312cce4f28"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_02.json",
+      "relativePath": "atlases/quality/skills/skills_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 17023,
+      "sha256": "9c8677b3a5d56580a48b0161001a9066c0ed58c738cd4ccaa719341da3ea6253",
+      "atlas": {
+        "frames": 40,
+        "animations": 0,
+        "image": "skills_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_02.webp",
+      "relativePath": "atlases/quality/skills/skills_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 263824,
+      "sha256": "f6e4c4a91eac667fbf48ddb61f8c0ce80123498dc0e2c534ad0f23dffead1333"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_03.json",
+      "relativePath": "atlases/quality/skills/skills_quality_03.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 17023,
+      "sha256": "fbc5a2a160a00891ea91cbd73bf3f52d62a4ba47adb4ff46bc4de3f0ad56f081",
+      "atlas": {
+        "frames": 40,
+        "animations": 0,
+        "image": "skills_quality_03.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_03.webp",
+      "relativePath": "atlases/quality/skills/skills_quality_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 262758,
+      "sha256": "99770175f6c42909cfa7bbffa13cd922a7b6152d7f1984a3901744e7530148e1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_04.json",
+      "relativePath": "atlases/quality/skills/skills_quality_04.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 17023,
+      "sha256": "298b5645173736cdccfb781ebc3de4fe08d6a8a0741ebec34e7098b61d8f6664",
+      "atlas": {
+        "frames": 40,
+        "animations": 0,
+        "image": "skills_quality_04.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/skills/skills_quality_04.webp",
+      "relativePath": "atlases/quality/skills/skills_quality_04.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 265464,
+      "sha256": "fa19c49e4000bde096b95e5954e31f07f1dc55e54a0480b088f08299a3c9882f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_01.json",
+      "relativePath": "atlases/quality/ui/ui_quality_01.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20210,
+      "sha256": "54d66a770bf0156809975dc025edf02843f2634dfb2e3e0bfb5a98de3f131cb7",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "ui_quality_01.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_01.webp",
+      "relativePath": "atlases/quality/ui/ui_quality_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 225254,
+      "sha256": "28e5e2eaca2e4592ef003499deb39b2879e1ba107f3dc887f78f180c44aa85b6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_02.json",
+      "relativePath": "atlases/quality/ui/ui_quality_02.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 20210,
+      "sha256": "9b511eb33e2df24af65d569d9d96945331f1b3959e8a91883bf32df3bb5eaf6d",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "ui_quality_02.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/quality/ui/ui_quality_02.webp",
+      "relativePath": "atlases/quality/ui/ui_quality_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 224488,
+      "sha256": "65e89fda8e888fc761ae624cbf96dd02031c620759321c7157ce50b956414422"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/skills/skill_icons_v1.json",
+      "relativePath": "atlases/skills/skill_icons_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 32310,
+      "sha256": "fa5a3a49145e66b66fe37043c223297ec8777d76cb1a748f43902f7c6744f2ce",
+      "atlas": {
+        "frames": 80,
+        "animations": 0,
+        "image": "skill_icons_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/skills/skill_icons_v1.webp",
+      "relativePath": "atlases/skills/skill_icons_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 120272,
+      "sha256": "4920f6f54f163d3cf123d1923b0478d488adc36615497708771f6255f23f3953"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/status/status_icons_v1.json",
+      "relativePath": "atlases/status/status_icons_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 19221,
+      "sha256": "c1b9573698005b0a0a53181f750df836a99b605a9838a2c538bfe37776424ba6",
+      "atlas": {
+        "frames": 48,
+        "animations": 0,
+        "image": "status_icons_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/status/status_icons_v1.webp",
+      "relativePath": "atlases/status/status_icons_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 44316,
+      "sha256": "42efb0a2927374776661fd1fa16296771a83c0061ccd1782efd27d94455c38e8"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/tutorial/tutorial_glyphs_v1.json",
+      "relativePath": "atlases/tutorial/tutorial_glyphs_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 16382,
+      "sha256": "5e150ce16b981402b103df5464be39e24cca2a5c27fe8f9ee67f7373de483c4e",
+      "atlas": {
+        "frames": 40,
+        "animations": 0,
+        "image": "tutorial_glyphs_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/tutorial/tutorial_glyphs_v1.webp",
+      "relativePath": "atlases/tutorial/tutorial_glyphs_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 42536,
+      "sha256": "8fa4195c7366d84dc389305fc42ef180f251693491ed1ee37bd47cfcb92bcae0"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_icons_v2.json",
+      "relativePath": "atlases/ui/ui_icons_v2.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 38281,
+      "sha256": "269208911fb3ccaff786e1f21dd52a756a3c49dfa2a3247f9a1f3521a6f7981c",
+      "atlas": {
+        "frames": 96,
+        "animations": 0,
+        "image": "ui_icons_v2.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_icons_v2.webp",
+      "relativePath": "atlases/ui/ui_icons_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 76732,
+      "sha256": "57085a6f23716edd247bfb0c4777ebb39f9a482279a4260e23e8e20be043e8e4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_skin_v1.json",
+      "relativePath": "atlases/ui/ui_skin_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 5000,
+      "sha256": "b45a82ed48a9a5d7e65af10c0bd6fcf9a370cf26afe88b463f2b99bf70507d38",
+      "atlas": {
+        "frames": 12,
+        "animations": 0,
+        "image": "ui_skin_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/atlases/ui/ui_skin_v1.webp",
+      "relativePath": "atlases/ui/ui_skin_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 3176,
+      "sha256": "08562aa9bbeead3a6b35290cb1b6be4d4d44acf3b54386d35e589afa6f7c102d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_00.opus",
+      "relativePath": "audio/ambient/ambient_00.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 6781,
+      "sha256": "419f0c8077d044ee6d36a03398bbb527c53eff9e818d5b6ad0b0f02f46cd1da4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_01.opus",
+      "relativePath": "audio/ambient/ambient_01.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 8088,
+      "sha256": "4c51f7c340947b9e4276428c8ecaa585c9cb566b313269581b6c49483c15d84a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_02.opus",
+      "relativePath": "audio/ambient/ambient_02.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 9063,
+      "sha256": "37a530df62458942fa43bbb6279bf220677f5e6532404ed6057c07d87e676432"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_03.opus",
+      "relativePath": "audio/ambient/ambient_03.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 9207,
+      "sha256": "2b90f4d3e7d015f8f19ce8a0fdcf974c6a095ecd620be8d741c710d866863cf0"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_04.opus",
+      "relativePath": "audio/ambient/ambient_04.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 8218,
+      "sha256": "8b6d8314f2c4fb451b8323fef2f2ad0c3df7dd7de892766da34025d351051de4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_05.opus",
+      "relativePath": "audio/ambient/ambient_05.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 10689,
+      "sha256": "0ef50200fd59b13eba35f57af33301ac5a84619ccfb82993832e5bdc7dcf0e90"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_06.opus",
+      "relativePath": "audio/ambient/ambient_06.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 7518,
+      "sha256": "c77aa83c71cc4f06d1c3180e37d5da1731290fc133000e9e70b3e2f2dd7a6e85"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ambient/ambient_07.opus",
+      "relativePath": "audio/ambient/ambient_07.opus",
+      "classification": "runtime-archive",
+      "type": "opus",
+      "bytes": 7625,
+      "sha256": "e0739f9dcd744dad440acc9de719ea6664d73dde4659549d4da2d44217de22b5"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_00.ogg",
+      "relativePath": "audio/combat/combat_00.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3780,
+      "sha256": "6a5580d4b5761ffb12be9b4d42ff8c40c1375d6cc9f47f1a6ea8cfbf2d166555"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_01.ogg",
+      "relativePath": "audio/combat/combat_01.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3898,
+      "sha256": "8a956829a08d4960a5cda098d655971ccf27cc443df0c51edf35064ff440ae02"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_02.ogg",
+      "relativePath": "audio/combat/combat_02.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 5352,
+      "sha256": "180381cedabd2c195e59237195f43bd4956dac06de36a5e24fda951812197907"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_03.ogg",
+      "relativePath": "audio/combat/combat_03.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4136,
+      "sha256": "33c2005320e5e1265d1effdacfd7cde7bb522d0a9578daac08f21aca81f84a1d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_04.ogg",
+      "relativePath": "audio/combat/combat_04.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3781,
+      "sha256": "8028ff707aaf3ad6cdd8417d681fa6d8071ac1e8ef928c3c7ee6a189a23940f7"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_05.ogg",
+      "relativePath": "audio/combat/combat_05.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3891,
+      "sha256": "55a7f50739241b202b6c94f0dd2d27afbbad0804d1e8f796607d9960b32eaaca"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_06.ogg",
+      "relativePath": "audio/combat/combat_06.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4090,
+      "sha256": "12650d45c7303dcc09b65995d82b05726efd30eb6eb70a5540e89cd86461dd10"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_07.ogg",
+      "relativePath": "audio/combat/combat_07.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 5684,
+      "sha256": "a7320f11481ce9f9cff926102426740c858bf92bd9568a8382d4532065eb3184"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_08.ogg",
+      "relativePath": "audio/combat/combat_08.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3824,
+      "sha256": "ba79f3e03b3852e56f4b154d245eee0525a8cbc979ebb85f6889c400eedf5dc2"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_09.ogg",
+      "relativePath": "audio/combat/combat_09.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3882,
+      "sha256": "0c710ea908deec83983b75c35de1cb12bd6154762927b66e31c12e0600a4ee03"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_10.ogg",
+      "relativePath": "audio/combat/combat_10.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3971,
+      "sha256": "068598a31611a091b3d7d616db3c3adc35267ff4300ffdc331a1ce3c38193981"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_11.ogg",
+      "relativePath": "audio/combat/combat_11.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4178,
+      "sha256": "bad4e711e03875c69202d26ff0c56dbc87e054d6e70ad2fb852367c37ad3a36f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_12.ogg",
+      "relativePath": "audio/combat/combat_12.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4584,
+      "sha256": "6515aa059be2c1d102694e10c2d92227e1109a0f133ad383494a6fb1d2cb5b59"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_13.ogg",
+      "relativePath": "audio/combat/combat_13.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3917,
+      "sha256": "08167b643660ebe6d58bc9036b3638d6f6f4ed1e2de96a143f9d67463134c34e"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_14.ogg",
+      "relativePath": "audio/combat/combat_14.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4002,
+      "sha256": "e77eaacd45622086a28bcec6564f973857c55d4202a6f47173ee9570602bead6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/combat/combat_15.ogg",
+      "relativePath": "audio/combat/combat_15.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4052,
+      "sha256": "b4a718c9a2e57ddb133eace0f7b00e70af360ae102b5c6fb73029ddec78ea2fc"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_00.ogg",
+      "relativePath": "audio/ui/ui_00.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3780,
+      "sha256": "d556f5386cabea7acb27cd9d5528283854f6cea47be2658a1636306c683e4bf5"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_01.ogg",
+      "relativePath": "audio/ui/ui_01.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3898,
+      "sha256": "846db3871360f04dff2933224b00f63613d1c252217d945f51961081eb5fd403"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_02.ogg",
+      "relativePath": "audio/ui/ui_02.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 5352,
+      "sha256": "607e7a557698d2987534e432bd9f4760e6bfc33531616b452cca6ee7e1209b87"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_03.ogg",
+      "relativePath": "audio/ui/ui_03.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4136,
+      "sha256": "8fa19eec5cae7c9c0f1f8534fe17566328a70839ed9d07242e4cf247e90b3b6f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_04.ogg",
+      "relativePath": "audio/ui/ui_04.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3781,
+      "sha256": "2d3b32e62e276c71edb98db54a2f1932186e21a2414baa23c15214b045921b6d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_05.ogg",
+      "relativePath": "audio/ui/ui_05.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3891,
+      "sha256": "52619600c9151a2c2172686c31e3416825932b4fc3698d201d94f5ebc40e2e89"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_06.ogg",
+      "relativePath": "audio/ui/ui_06.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4090,
+      "sha256": "0366b5b0fb0237abd43692e4a290321b7c5f2fc294dd369a8b6ed52a0ce31c0d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_07.ogg",
+      "relativePath": "audio/ui/ui_07.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 5684,
+      "sha256": "89b32c740859d8e0515cd30b85efab4b817c9b40faa7b3ac6061c15c868dabf7"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_08.ogg",
+      "relativePath": "audio/ui/ui_08.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3824,
+      "sha256": "01a41c0381741f61d96b1bd665aa8c28f79a47c74b35bb8708835bdb23b579e6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_09.ogg",
+      "relativePath": "audio/ui/ui_09.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3882,
+      "sha256": "33329052b86bb0f03eb67c22c89f76c61343ef7c999a4ab21750fc9196cb6fc6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_10.ogg",
+      "relativePath": "audio/ui/ui_10.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 3971,
+      "sha256": "6f3fcd296dcb4a9d5b8c149dd5e39915da006187518aea253748203adcb28b0f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/audio/ui/ui_11.ogg",
+      "relativePath": "audio/ui/ui_11.ogg",
+      "classification": "runtime-archive",
+      "type": "ogg",
+      "bytes": 4178,
+      "sha256": "816cbdc9bfd461f50e5b62d8e403b9c02bde9245a9b9d6ed5ee65d6acb811218"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_1.webp",
+      "relativePath": "brand/lumerift_mark_1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 7594,
+      "sha256": "b5c3bd37f6a0b82fa479312548f49dd590ac859702d70213ea344402a9ad6d2d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_2.webp",
+      "relativePath": "brand/lumerift_mark_2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 12306,
+      "sha256": "a5a909391788ccfa918f46da2689b7ba62445ac36da59c330a9fb384a3439821"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/brand/lumerift_mark_3.webp",
+      "relativePath": "brand/lumerift_mark_3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 13380,
+      "sha256": "4c3281efb40ada10d998aa417a46b5ae44778081015bc14da4a4671326208edc"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/LIVE_ART_V100_SUMMARY.json",
+      "relativePath": "LIVE_ART_V100_SUMMARY.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 882,
+      "sha256": "079b28c2c6df151be7e9a535d4048d41ab15472da31f1f7a5d0301c164c983c6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/monsters/monsters_live_v1.json",
+      "relativePath": "live/v1/atlases/monsters/monsters_live_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 126562,
+      "sha256": "1f2849a1e9b7d2cc7fa3410891cacb06bce830ab838d11fa72fc57035cf032df",
+      "atlas": {
+        "frames": 268,
+        "animations": 66,
+        "image": "monsters_live_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/monsters/monsters_live_v1.webp",
+      "relativePath": "live/v1/atlases/monsters/monsters_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 2888682,
+      "sha256": "4e865b0ac52a70c194c0de9adfafc751990b1574394cb2d058885c2bc34323db"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/player/player_live_v1.json",
+      "relativePath": "live/v1/atlases/player/player_live_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42442,
+      "sha256": "5eea535c587dfed5e910ab88d849ae6e92ae706655f362382325ff19d275eb1d",
+      "atlas": {
+        "frames": 68,
+        "animations": 80,
+        "image": "player_live_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/player/player_live_v1.webp",
+      "relativePath": "live/v1/atlases/player/player_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 812506,
+      "sha256": "e6f01779ed57b398f116d3c9564cc8a68405ea97645a22f8f249a64a8b86dcb1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/ui/ui_live_v1.json",
+      "relativePath": "live/v1/atlases/ui/ui_live_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 7513,
+      "sha256": "f4ef9d357efbf8af20019d9aebbe77f8a3c13d10473f45b3ddd9a95d21ef12cc",
+      "atlas": {
+        "frames": 18,
+        "animations": 0,
+        "image": "ui_live_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/atlases/ui/ui_live_v1.webp",
+      "relativePath": "live/v1/atlases/ui/ui_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 14080,
+      "sha256": "0a0267de8cbb9d4af872ace9c97ab938b7d861e42d4a8fd0e1bb0b708864a8f1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/backgrounds/battle_forest_live_v1.webp",
+      "relativePath": "live/v1/backgrounds/battle_forest_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 75164,
+      "sha256": "36178f437cbee7388088b568243015f7d8e176ed3ffa4b2d95f04ca716b671d5"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/backgrounds/lobby_forest_live_v1.webp",
+      "relativePath": "live/v1/backgrounds/lobby_forest_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 54452,
+      "sha256": "ada505517aed7e480b702aa3cac93538f389d2b1872904643b382fc062a99648"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/portraits/boss_harbinger_live_v1.webp",
+      "relativePath": "live/v1/portraits/boss_harbinger_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 60724,
+      "sha256": "5df426e99d2e9f0d479db96176e429c173adf99351443c2a28650a37abe890c4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/live/v1/portraits/hero_live_v1.webp",
+      "relativePath": "live/v1/portraits/hero_live_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 171378,
+      "sha256": "ff35cac66914c39df95802734fade870127889718c402d3ae0abec0e15b5d1b1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_01.webp",
+      "relativePath": "loading/loading_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 22460,
+      "sha256": "0353d1eef267ac572b318ddd02e6f9455a53da9a82b7abd25e0a184f7145b572"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_02.webp",
+      "relativePath": "loading/loading_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 22290,
+      "sha256": "5481497f3554371581f9c4f6e8114284eba6b43dd68300dec1b24fce713544d8"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_03.webp",
+      "relativePath": "loading/loading_keyart_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 21780,
+      "sha256": "1ca9cc999041b52b593af5be378214a31e45191eff2dad09c4bb0968c48665b6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_04.webp",
+      "relativePath": "loading/loading_keyart_04.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 23176,
+      "sha256": "bae424166fda775b6d07728362bed42100b2cedcc31d83c4769eda98250561e8"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_05.webp",
+      "relativePath": "loading/loading_keyart_05.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 22704,
+      "sha256": "1ef04bceb817704de7d6e0fae5b1cd7c2f4c22996833fb80f65641e3a8537b2e"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_06.webp",
+      "relativePath": "loading/loading_keyart_06.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 23666,
+      "sha256": "6c79cfab55af76702828df6bbc7c7311344feeeacdb86400933285cf81273a26"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_07.webp",
+      "relativePath": "loading/loading_keyart_07.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 22980,
+      "sha256": "dc0013fba3d68921e67d85069d85b0394f95a9d278a315e05f99857c599c8b0c"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/loading_keyart_08.webp",
+      "relativePath": "loading/loading_keyart_08.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 22322,
+      "sha256": "b14f19b8749d934e997033922c79445ef6aa342999737d70aff571ef81174a27"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/ember_foundry_keyart_01.webp",
+      "relativePath": "loading/quality/ember_foundry_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 121760,
+      "sha256": "fb301f4e3a952bb000644f56c9fd56c355a660f3ed21021822686adfa4c61635"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/ember_foundry_keyart_02.webp",
+      "relativePath": "loading/quality/ember_foundry_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 118108,
+      "sha256": "b3eeb0689882e248024fded4a444aae378cd52e821bfc0beda20e9114264db65"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/frost_citadel_keyart_01.webp",
+      "relativePath": "loading/quality/frost_citadel_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 132314,
+      "sha256": "b62f006a7f72d1bad8222423c8b255379e255968a87a2aaa59ee5d8909a01daa"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/frost_citadel_keyart_02.webp",
+      "relativePath": "loading/quality/frost_citadel_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 123764,
+      "sha256": "52458e2c3dff9d97bac485d5b2d55e5908e6595e85ff755e397ffdbd6bdaaa31"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/neon_arcology_keyart_01.webp",
+      "relativePath": "loading/quality/neon_arcology_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 103190,
+      "sha256": "e0c43e9682c5e3e2560aae89e6727e5b7b3932499a393cbe0a4fa523f56e12ee"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/neon_arcology_keyart_02.webp",
+      "relativePath": "loading/quality/neon_arcology_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 98848,
+      "sha256": "82c2e2de603a5fab525778f7c3eab68e4a02a35ae2492bf76f7ae632714baad5"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/sunken_dunes_keyart_01.webp",
+      "relativePath": "loading/quality/sunken_dunes_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 116358,
+      "sha256": "433a6e80942da5b9232bbb03464458209aa98a18ed9b794f4016df7ebfb5570d"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/sunken_dunes_keyart_02.webp",
+      "relativePath": "loading/quality/sunken_dunes_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 109790,
+      "sha256": "5af71a2757edcd756c233b0297587e0c0f8714091de7e803eb19d80bfe6aff3f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/verdant_rift_keyart_01.webp",
+      "relativePath": "loading/quality/verdant_rift_keyart_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 115138,
+      "sha256": "b5f5885ca2df7cc73de4984e29159375e63a1ef1cd2e7b28f164476cdadabcc6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/loading/quality/verdant_rift_keyart_02.webp",
+      "relativePath": "loading/quality/verdant_rift_keyart_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 107894,
+      "sha256": "78726fff3f5b82c00b599de71da7d255445aaa38bbf3275480ab4b5d7a050200"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_rift_v1.webp",
+      "relativePath": "maps/chapter1/forest_rift_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 32496,
+      "sha256": "f7bab9ee639bd68853087d9fb4648a091a5939dd66e51f9df7560c6fe929cd04"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v1.webp",
+      "relativePath": "maps/chapter1/forest_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 36560,
+      "sha256": "2cbc35ef4c3f105a63838cf4dcd4eda1f17db53685d9fef20c8d19ce8a107874"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v2.webp",
+      "relativePath": "maps/chapter1/forest_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 33130,
+      "sha256": "9633779afab179fabc452b0a143bae61c804a9eb71032be41cfddb76349e9e66"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter1/forest_v3.webp",
+      "relativePath": "maps/chapter1/forest_v3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 33986,
+      "sha256": "a084a7665f8f6301c79b8cbc1e1c58d353f4d4b64aa4b0f2fc3a6a2cdf99b8e4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v1.webp",
+      "relativePath": "maps/chapter2/desert_ruins_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 29840,
+      "sha256": "b5fead5c9bf3a93b097ba2c897c4b9449cd60a49c9bfcc9cd543efdca8095368"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v2.webp",
+      "relativePath": "maps/chapter2/desert_ruins_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 27408,
+      "sha256": "36ac94a493eab6983949c28927433bd85df726056ca0c83c666a8d9ef7caf2b1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter2/desert_ruins_v3.webp",
+      "relativePath": "maps/chapter2/desert_ruins_v3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 27224,
+      "sha256": "bb9d16886929684aa39a3ef3bc2319540d8fdc341b9f7fb7586b99042f87f355"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v1.webp",
+      "relativePath": "maps/chapter3/snow_citadel_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 40280,
+      "sha256": "e6672b11d5282e91ad12fcb8f70f6faa79b275e53065c82ac3528d21ac20692a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v2.webp",
+      "relativePath": "maps/chapter3/snow_citadel_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 38676,
+      "sha256": "e0b74cddf5580c25fecfb272cf47712671fd05f0e566d1e0863b422d145ace9f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter3/snow_citadel_v3.webp",
+      "relativePath": "maps/chapter3/snow_citadel_v3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 39402,
+      "sha256": "026f0f9108699e415650f3970bb288502e01a264969146edc84bebc1d227b10a"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v1.webp",
+      "relativePath": "maps/chapter4/volcanic_forge_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 41586,
+      "sha256": "c78e24e4b3d26afc0436b2d354a75a39a02a547562af83be82bc27fb5b71bc85"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v2.webp",
+      "relativePath": "maps/chapter4/volcanic_forge_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 33988,
+      "sha256": "8274ee2d544d7cc8fd620dd5ee2fb7b5f1a051722e67c3dcacf3694c2614f159"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter4/volcanic_forge_v3.webp",
+      "relativePath": "maps/chapter4/volcanic_forge_v3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 42058,
+      "sha256": "bccf9d733a9062ca330bfea4fc39db29db3e016294b6453ef94365da19edb2a2"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v1.webp",
+      "relativePath": "maps/chapter5/neon_arcology_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 33562,
+      "sha256": "15aa12da24d274d095657cfa4a633c49be64c7a68307e006bd0ea41b5a153bc1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v2.webp",
+      "relativePath": "maps/chapter5/neon_arcology_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 29260,
+      "sha256": "83f415e4b99df48829fe9efa1db1a7349ccda2237e4274742b06db337918063e"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/chapter5/neon_arcology_v3.webp",
+      "relativePath": "maps/chapter5/neon_arcology_v3.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 34260,
+      "sha256": "638a7020d60544578ee4e55a4e577be839ea01fbdee835a4ae31257f3e395947"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_01.webp",
+      "relativePath": "maps/quality/chapter1/verdant_rift_battle_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 112896,
+      "sha256": "3084cdf14a0d5a760718679880262be1754b5057cc9e0878f4c8e617cf2c59da"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_02.webp",
+      "relativePath": "maps/quality/chapter1/verdant_rift_battle_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 107644,
+      "sha256": "b91e539768cb07a389960dc2c0dca638d144b92079e47a5abe472ef6f619fce4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter1/verdant_rift_battle_03.webp",
+      "relativePath": "maps/quality/chapter1/verdant_rift_battle_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 97164,
+      "sha256": "8b1583e0403f44854ab70fc8c19f52167126ee90afc0badcbd519a7247d679ba"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_01.webp",
+      "relativePath": "maps/quality/chapter2/sunken_dunes_battle_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 113650,
+      "sha256": "4ad80b658fd816e425c3ab1f797f840a17e467cb85338e0a31f6803991da8d7e"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_02.webp",
+      "relativePath": "maps/quality/chapter2/sunken_dunes_battle_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 106680,
+      "sha256": "f7ebfcd94418ac9cc3152672facc71f227e0d98a36ba61769f0b8734e08a61b3"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter2/sunken_dunes_battle_03.webp",
+      "relativePath": "maps/quality/chapter2/sunken_dunes_battle_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 101096,
+      "sha256": "e86face4feb6fbfe2b577f9e9bb21bacb437c96c1a5311b69f13c241bed88151"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_01.webp",
+      "relativePath": "maps/quality/chapter3/frost_citadel_battle_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 128876,
+      "sha256": "53c068a81f1aa22e78d769e8d28352edab589b65824f5636f6f52ba5766f5bac"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_02.webp",
+      "relativePath": "maps/quality/chapter3/frost_citadel_battle_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 120172,
+      "sha256": "47df9eb52e59894a16d66c3f10250ced89e84d32ba94274177d9bdc1dda35b73"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter3/frost_citadel_battle_03.webp",
+      "relativePath": "maps/quality/chapter3/frost_citadel_battle_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 111500,
+      "sha256": "5f133947ca8e9780330bd81cdf080fb82bc70d18149c9d39e00b0ac4d2a49ae6"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_01.webp",
+      "relativePath": "maps/quality/chapter4/ember_foundry_battle_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 119546,
+      "sha256": "27bbd93708c98edb68a42c0f8f89d76569d014288b0bac98b8665b48e7bd86da"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_02.webp",
+      "relativePath": "maps/quality/chapter4/ember_foundry_battle_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 115732,
+      "sha256": "4805d7e89464488fb7c6fc094591e63965eeec07a9b86a9e66b1a463ab7fa84b"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter4/ember_foundry_battle_03.webp",
+      "relativePath": "maps/quality/chapter4/ember_foundry_battle_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 112138,
+      "sha256": "a89e681f775eb15aae225dd1d7b8ef9f260c0b394daf8746563f253dc370c581"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_01.webp",
+      "relativePath": "maps/quality/chapter5/neon_arcology_battle_01.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 100224,
+      "sha256": "a6a0514578fe012b90500e0572b02a418b3ce4759cc839728fab79ffb0c6e2a1"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_02.webp",
+      "relativePath": "maps/quality/chapter5/neon_arcology_battle_02.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 94922,
+      "sha256": "8c7f59c4f4d98ba1a44f0d152fc270d1bd8d01a2ae4614df5a20afff8d5a116b"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/maps/quality/chapter5/neon_arcology_battle_03.webp",
+      "relativePath": "maps/quality/chapter5/neon_arcology_battle_03.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 89636,
+      "sha256": "61b53e9815f600dfab4030c0a03e0af7b0fa03e94e9dc4d942dc9b1ed1bc1c90"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/MEGAPACK_V080_SUMMARY.json",
+      "relativePath": "MEGAPACK_V080_SUMMARY.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 971,
+      "sha256": "b1f35b3fc9cdd36516f16a5cf7237176046cab9a1baf1d28c9c43f098c4806fe"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/QUALITYPACK_V090_SUMMARY.json",
+      "relativePath": "QUALITYPACK_V090_SUMMARY.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 14376,
+      "sha256": "17d790154a68aff8adbf46cc20c80b3c34561b8c41ebcff1662f18dfd000420f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/README.md",
+      "relativePath": "README.md",
+      "classification": "runtime-archive",
+      "type": "md",
+      "bytes": 652,
+      "sha256": "66d2f4afd250978b753a2cff6fd2fc7e2bb085821d3ca28d3cb69e0d5b7130d8"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/sample-atlas/sample_actor.json",
+      "relativePath": "sample-atlas/sample_actor.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 896,
+      "sha256": "5a85c39a1166e97cc16b9d480442ed7d40fc574c2b4999fa0b31ffacdeff56b2",
+      "atlas": {
+        "frames": 2,
+        "animations": 0,
+        "image": "sample_actor.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.6.0/public/assets/sample-atlas/sample_actor.webp",
+      "relativePath": "sample-atlas/sample_actor.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 394,
+      "sha256": "c8b7b75c097df225c34709bb57c9e4c9e5b84e1447e2d5640c8cb967f7d5af58"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/atlases/effects/combat_effects_v1.json",
+      "relativePath": "atlases/effects/combat_effects_v1.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 11034,
+      "sha256": "8273c19c8323d145414009fbe55a5079b9910dc31a7199f47e44ae274b12752b",
+      "atlas": {
+        "frames": 25,
+        "animations": 5,
+        "image": "combat_effects_v1.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/atlases/effects/combat_effects_v1.webp",
+      "relativePath": "atlases/effects/combat_effects_v1.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 11010,
+      "sha256": "de71940adabb8f14054cad0f4138ddce82be422e4f9870f989b13a6c3cffb320"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/monsters/monsters_live_v2.json",
+      "relativePath": "live/v2/atlases/monsters/monsters_live_v2.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 126601,
+      "sha256": "7016d0ac9aa7c2c7f0a4b562fdca6595e95b361fcbb5307895d3a21340a7f162",
+      "atlas": {
+        "frames": 268,
+        "animations": 66,
+        "image": "monsters_live_v2.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/monsters/monsters_live_v2.webp",
+      "relativePath": "live/v2/atlases/monsters/monsters_live_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 2590220,
+      "sha256": "e4343e477292e06aa6aa6df277834c530aeeb668b385af86eb98d05972f7a6b4"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/player/player_live_v2.json",
+      "relativePath": "live/v2/atlases/player/player_live_v2.json",
+      "classification": "runtime-archive",
+      "type": "json",
+      "bytes": 42481,
+      "sha256": "ec42f63d1e56e95c82ccd0491841a036047b7a4c544db9c8db8a560c20ba63fb",
+      "atlas": {
+        "frames": 68,
+        "animations": 80,
+        "image": "player_live_v2.webp"
+      }
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/atlases/player/player_live_v2.webp",
+      "relativePath": "live/v2/atlases/player/player_live_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 536062,
+      "sha256": "10020a92cfabe9bdb7e6bf4a5d833cf607474f85bdce20dbfea8bdd61febb9fa"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/backgrounds/battle_forest_v2.webp",
+      "relativePath": "live/v2/backgrounds/battle_forest_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 44506,
+      "sha256": "5e4d20dcf4b317d675e4fe1b9980388b9ce5f9a21e63431b0d684d2b64af8e6f"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/backgrounds/lobby_forest_v2.webp",
+      "relativePath": "live/v2/backgrounds/lobby_forest_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 33316,
+      "sha256": "6bb7f9bec3f93ba7eb4c0f516a4b4577395f1b2a56019ad320f562d8e905d62c"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/portraits/boss_v2.webp",
+      "relativePath": "live/v2/portraits/boss_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 50960,
+      "sha256": "76cc0fd5bc0127e62a3eef6aad3baffd9f4e7e908cd307548948816d09081bba"
+    },
+    {
+      "path": "art_source/runtime_archive/v1.7.0/public/assets/live/v2/portraits/hero_v2.webp",
+      "relativePath": "live/v2/portraits/hero_v2.webp",
+      "classification": "runtime-archive",
+      "type": "webp",
+      "bytes": 122306,
+      "sha256": "be77f07cb25069796bda7b29be852ca7d38f14d8a522da738588117e0f6892e0"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_01_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2748531,
+      "sha256": "d56b54c308cef4258421730ab77256ab5e17064cb35890c411c279a69611dadc"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_02_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2745500,
+      "sha256": "f897aa94714a918adfb4d54a244f5047d90dde0e202909443fdf0b40a7771251"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_03_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_03_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2758393,
+      "sha256": "7200d0d63f774fd0dce7a2a5a3d82f24ada5d085bbc94c2345d07c8cc6c48b8c"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_04_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_04_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2770514,
+      "sha256": "e61cf3cbadc2a82607d45e141f961cc50f464d23022cc8b2ccfcdfb912d6488c"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_05_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_05_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2748151,
+      "sha256": "8901edb746db5a1abe9835cbe12f6cb1a3cf9a90f31c85365c76672e855f6963"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/items_quality_page_06_master.png",
+      "relativePath": "v0.9.0/contact_sheets/items_quality_page_06_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 2752104,
+      "sha256": "a11d9c4f8c44716a5f280461d6f3ca521c90a29a85b97094a7a24f9fdff81b21"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/skills_quality_page_01_master.png",
+      "relativePath": "v0.9.0/contact_sheets/skills_quality_page_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1549698,
+      "sha256": "65b3a03d7b0fc402f7139f4c4640e9099d3d94f2e97d511f49ac5c8488255c89"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/skills_quality_page_02_master.png",
+      "relativePath": "v0.9.0/contact_sheets/skills_quality_page_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1550430,
+      "sha256": "5223c28ff8096ba350b36774e896647753b6aa368605eb2c676002af75104119"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/skills_quality_page_03_master.png",
+      "relativePath": "v0.9.0/contact_sheets/skills_quality_page_03_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1555427,
+      "sha256": "b233a622c7f03386cc03ec3c2c1c025df731fcfa80e996d2d03a21399bc94664"
+    },
+    {
+      "path": "art_source/v0.9.0/contact_sheets/skills_quality_page_04_master.png",
+      "relativePath": "v0.9.0/contact_sheets/skills_quality_page_04_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1552727,
+      "sha256": "e161fbfd17b26855875a814dd6c6fb396ce1ebc1b673b329a55b1d5f56de6b46"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/ember_foundry_keyart_01_master.png",
+      "relativePath": "v0.9.0/keyart/ember_foundry_keyart_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1180355,
+      "sha256": "b7280f05fd23580a4dbc2ee28c47e6a424b5de2e9247a78af8acd74f611daf37"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/ember_foundry_keyart_02_master.png",
+      "relativePath": "v0.9.0/keyart/ember_foundry_keyart_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1163977,
+      "sha256": "51c318371347f05ce34f5350fec5930d240be675cd75ee814481b651c6c7f8a8"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/frost_citadel_keyart_01_master.png",
+      "relativePath": "v0.9.0/keyart/frost_citadel_keyart_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1409073,
+      "sha256": "eb7ba99cee5f80f03ddc3c77837e82b75b15905ef8bb9aced86c166339603839"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/frost_citadel_keyart_02_master.png",
+      "relativePath": "v0.9.0/keyart/frost_citadel_keyart_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1365604,
+      "sha256": "f76c0f87239cb69fd493d7632c770e69d599cf0524b868ee8343bf3aeab011e4"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/neon_arcology_keyart_01_master.png",
+      "relativePath": "v0.9.0/keyart/neon_arcology_keyart_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1137018,
+      "sha256": "a6eb1995f7c81c5c89909945a2a863be8133e8c1ad3bb3ecfead13614a2c3229"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/neon_arcology_keyart_02_master.png",
+      "relativePath": "v0.9.0/keyart/neon_arcology_keyart_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1146443,
+      "sha256": "d3ce5c62953864f3ce8589c3bdf017398a1e07b6bc098dfdc189c25d27f15f06"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/sunken_dunes_keyart_01_master.png",
+      "relativePath": "v0.9.0/keyart/sunken_dunes_keyart_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1252736,
+      "sha256": "a4d6c2e8af4c364b0db81fdc38cafa1f37092087af27ed7d16d394b0cef26e61"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/sunken_dunes_keyart_02_master.png",
+      "relativePath": "v0.9.0/keyart/sunken_dunes_keyart_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1192295,
+      "sha256": "6de379f8d588c4243a43c8bf8bebc2992ea09dacf1cce74b17940a7bbb657cfb"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/verdant_rift_keyart_01_master.png",
+      "relativePath": "v0.9.0/keyart/verdant_rift_keyart_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1216658,
+      "sha256": "cdbc8f8deb2a16e07ebdaee70740464ae99d782d74d6c67c13e485a9293aa647"
+    },
+    {
+      "path": "art_source/v0.9.0/keyart/verdant_rift_keyart_02_master.png",
+      "relativePath": "v0.9.0/keyart/verdant_rift_keyart_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1168601,
+      "sha256": "1fb5bdb202c9d1716214fd19172277aaece2fdf51451665f592bc0fe0b234c8e"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_00_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_00_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 414742,
+      "sha256": "aa600e2397cf6ba204c6f31db8b4b66554d01704d9014bc68394edadd67c4834"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_01_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 418062,
+      "sha256": "15275667cd4958a5077744a689b5271645c02a22937919c90b71afe73f3a0a6e"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_02_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 428010,
+      "sha256": "3a54746d94529920c9dccb7c76527bc34ba95efe424d6d241034594426bdbc9f"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_03_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_03_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 438383,
+      "sha256": "326233c0ac803fd19915632a498bdd6bcdbf38346ee6af861778a90deaed02c4"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_04_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_04_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 432332,
+      "sha256": "38ed94849a67b36858397bfac23454852121f840a07d4ae3c5f98b420d8563b0"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_05_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_05_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 428681,
+      "sha256": "3d4a6dbacb55fad0fdf2674850569f3fefb4cf261dcfb2c8af1cbd4c55e8c339"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_06_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_06_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 436165,
+      "sha256": "82477103a32b5f16b138b14c758fa20d682ab40e00559f8d9c1718027be77f2b"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_07_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_07_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 447096,
+      "sha256": "815e9947c042e41c3f071fdae51febee29b7ebfdcda7a8d348b5f8d6929a0ab2"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_08_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_08_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 447935,
+      "sha256": "514f703d58c077f3dfe8a1c1adc9287c5691184af2512ab65c74003a79f68f8b"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_09_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_09_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 447545,
+      "sha256": "fbe229fd4ca2c11d73cdd7e85266e2ab211388894652cb7a8639fb5222c69c4b"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_10_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_10_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 440685,
+      "sha256": "b9ff5dbbb825ca829d0e70bcf14deb5617a42327290b71c668423adaa438c3c2"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/bosses/boss_11_master.png",
+      "relativePath": "v0.9.0/portraits/bosses/boss_11_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 454907,
+      "sha256": "55f095a79e4f7a8b3456ff9c0fcd60fcad732dc29eacfaafd504daf619fcb7ed"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_00_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_00_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 625393,
+      "sha256": "8f27215fe75f09a664a29995242579cbaf761d65bb7d1f14937ed9c606ff224d"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_01_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 606291,
+      "sha256": "400f1e08727f391665fe88f704bcb8dd81e795daa8c3b5956364708aeb987ddc"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_02_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 608556,
+      "sha256": "eab1cce49e1d575b9830f6ff98f864e1fe857af3adc0a6682ffb46f95c55a1a8"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_03_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_03_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 621736,
+      "sha256": "8bc99b3ddf8ed76e67e95a4b40cfe576a4bf373c2bc54156dc1db43a15b3f8f7"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_04_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_04_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 635388,
+      "sha256": "9907fb72c1eefde5612eb11c3480c5eee61f69339d34d9cecc9a8f14fe62d694"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_05_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_05_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 627672,
+      "sha256": "05575b8376054507a9b5ddf0c0c8825cea0c04ef523da44d8404460e961a57f8"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_06_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_06_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 643747,
+      "sha256": "0e55521857fae3ac7fb4f3c4a7f687b1832cab2ef367b9127832b5d6bd5b5107"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/heroes/hero_07_master.png",
+      "relativePath": "v0.9.0/portraits/heroes/hero_07_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 624884,
+      "sha256": "7f5125c08c23c3608b2b46ac6278a0dfc5fddb858c07cb6b515bb34d5f8bdb6b"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_00_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_00_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 338864,
+      "sha256": "4d8942082d8b36ef7886533e319860b7c5eff8bb360054fdfaf9d5cd6251249d"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_01_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 345760,
+      "sha256": "a2a157bf8909c766b64f7891d58c734f388221e1e98e379b24408395dcb6ba81"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_02_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 354500,
+      "sha256": "941eb8c6d54b3aee8d44d3fcad84263fcc764694ce7c616458d116acfb43e959"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_03_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_03_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 344357,
+      "sha256": "bc2778b0fae953f3fc1e1e56f7295c6019b3a9899d720f7196fd47c4cacb9e3a"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_04_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_04_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 350248,
+      "sha256": "c13d1181985baf62d2bdd9fad0139aa93e776b71bcf3f3bd526e16b4051ea7ff"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_05_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_05_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 352495,
+      "sha256": "7371b4275cb3daee4f790a476d1f3891641a5fecf6419d8ea112204bf1a79542"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_06_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_06_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 365390,
+      "sha256": "e1c3056b3d7f8e0ce054aefc9f4ecf38e9e4d9448c1c712592c46478c8e3b6fc"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_07_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_07_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 358103,
+      "sha256": "4a07ce5f58b94f1229b51fc16e74b5eec7025b390829dbadf31f2f6209008490"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_08_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_08_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 362588,
+      "sha256": "a0670b2719d2578582321f173a0c387cc13e7976f2da1fad527ad8d1bca68242"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_09_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_09_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 360705,
+      "sha256": "01fea43accda0c6b0c1cdbee23c423a579e3ab0aeb56336366c60ca501dc0cdd"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_10_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_10_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 370049,
+      "sha256": "f4904f917b93adfba772dc98ac60f997b8d22b5022c6d2ade83b8d77c8fde3f0"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_11_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_11_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 365989,
+      "sha256": "0dafef45aaccfbc1519762d0aa554751013a2ded540ceb8379ceab01326251c1"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_12_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_12_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 370682,
+      "sha256": "2e0a6b4937ff501d01ec9b57ee2f1cc9b90b3466b9a6b162a17c7068f1d7314a"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_13_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_13_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 369010,
+      "sha256": "5576d7b013048f814a079c60c6ef1e8fe94ec649086f8e58a1dd0f46c0d49883"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_14_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_14_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 377415,
+      "sha256": "d698f8501f065825b9a1b0bd7a185af9e7cecd6628f9cbbbf873172a174fa8fa"
+    },
+    {
+      "path": "art_source/v0.9.0/portraits/npc/npc_15_master.png",
+      "relativePath": "v0.9.0/portraits/npc/npc_15_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 373102,
+      "sha256": "cf7d1ad6dd8475ce0a411032f8dbda902813580533d673f50246e510058d23a9"
+    },
+    {
+      "path": "art_source/v0.9.0/SOURCE_MANIFEST.json",
+      "relativePath": "v0.9.0/SOURCE_MANIFEST.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 3924,
+      "sha256": "6c8701ad3de67f561502b3565d3a57168f064d9d110a5d62aada6e709e3b9245"
+    },
+    {
+      "path": "art_source/v0.9.0/ui/ui_quality_page_01_master.png",
+      "relativePath": "v0.9.0/ui/ui_quality_page_01_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1694654,
+      "sha256": "1a67c9fa1cc00ddf604b87de6e070b5ea0fb1eccd6e650f5f19e5fcd6008a537"
+    },
+    {
+      "path": "art_source/v0.9.0/ui/ui_quality_page_02_master.png",
+      "relativePath": "v0.9.0/ui/ui_quality_page_02_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1682486,
+      "sha256": "bad043bab60e704b46f46b5aabb35a8c70f2318de7cd2a2af011025bb824c7a6"
+    },
+    {
+      "path": "public/assets/ASSET_MANIFEST.json",
+      "relativePath": "ASSET_MANIFEST.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 2813,
+      "sha256": "b846ca009446e5bd4e1f1176dca9059ec679d19d3a949d9636bfbcf24fcaad08"
+    },
+    {
+      "path": "public/assets/atlases/items/equipment_icons_v1.json",
+      "relativePath": "atlases/items/equipment_icons_v1.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 3964,
+      "sha256": "50ccd7ebfc7f6fe378a7cc2861500289b7a74498df595eca2685b2918f7f3883",
+      "atlas": {
+        "frames": 9,
+        "animations": 0,
+        "image": "equipment_icons_v1.webp"
+      }
+    },
+    {
+      "path": "public/assets/atlases/items/equipment_icons_v1.webp",
+      "relativePath": "atlases/items/equipment_icons_v1.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 2344,
+      "sha256": "028a378fcd3050f401557e7cf319ef0a65742bf697d7b3fc6bef69e1e782e1d3"
+    },
+    {
+      "path": "public/assets/audio/bgm/forest_rift_loop_v1.opus",
+      "relativePath": "audio/bgm/forest_rift_loop_v1.opus",
+      "classification": "runtime-public",
+      "type": "opus",
+      "bytes": 33643,
+      "sha256": "3376456656b84879388b65ddd9ee97bf8f935b06bec1de3a6320002402df96e4"
+    },
+    {
+      "path": "public/assets/audio/combat/dodge_v1.ogg",
+      "relativePath": "audio/combat/dodge_v1.ogg",
+      "classification": "runtime-public",
+      "type": "ogg",
+      "bytes": 4459,
+      "sha256": "0f8c40d47526b4f6b2a23e388019311b3b04e80851f5c4e7952b233343586990"
+    },
+    {
+      "path": "public/assets/audio/combat/hit_v1.ogg",
+      "relativePath": "audio/combat/hit_v1.ogg",
+      "classification": "runtime-public",
+      "type": "ogg",
+      "bytes": 4575,
+      "sha256": "f8e746e7b934e6695b2f85384e9396ef375aaa5ba27dff9890ea66980aaee880"
+    },
+    {
+      "path": "public/assets/audio/combat/skill_v1.ogg",
+      "relativePath": "audio/combat/skill_v1.ogg",
+      "classification": "runtime-public",
+      "type": "ogg",
+      "bytes": 3822,
+      "sha256": "508bab1953929090c153d2b49360f97b48663b083d257a3803fa36b1ef1e24ba"
+    },
+    {
+      "path": "public/assets/audio/combat/slash_v1.ogg",
+      "relativePath": "audio/combat/slash_v1.ogg",
+      "classification": "runtime-public",
+      "type": "ogg",
+      "bytes": 3595,
+      "sha256": "701260ebe5d7823dad37eacede963861fa09c66a648a1a5fa566ff7478cb7369"
+    },
+    {
+      "path": "public/assets/audio/ui/click_v1.ogg",
+      "relativePath": "audio/ui/click_v1.ogg",
+      "classification": "runtime-public",
+      "type": "ogg",
+      "bytes": 3487,
+      "sha256": "5b3d618188c419463d11a5d2724644abfcd1d3f33af6186e5282298f87b24662"
+    },
+    {
+      "path": "public/assets/LIVE_ART_V120_SUMMARY.json",
+      "relativePath": "LIVE_ART_V120_SUMMARY.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 468,
+      "sha256": "1b3122cf1a1b90224869c0deb21d5f09dad292750f5c9831fff5a5644758962a"
+    },
+    {
+      "path": "public/assets/LIVE_ART_V170_SUMMARY.json",
+      "relativePath": "LIVE_ART_V170_SUMMARY.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 334,
+      "sha256": "7637dbb805f4a0f882a6f56955b929d56675c9d88b0cada4f1841cc05e8f4dbe"
+    },
+    {
+      "path": "public/assets/live/v1/licenses/ASSET_LICENSES.json",
+      "relativePath": "live/v1/licenses/ASSET_LICENSES.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 2779,
+      "sha256": "37d68506e9cae64da1c7702160ed10666008418aa542a6150edc76514709d4d6"
+    },
+    {
+      "path": "public/assets/live/v1/licenses/NOTICE.txt",
+      "relativePath": "live/v1/licenses/NOTICE.txt",
+      "classification": "runtime-public",
+      "type": "txt",
+      "bytes": 743,
+      "sha256": "1d94eb474817ecaeb0c84e6f2369d752740ec78fb8677806605428db5c9d4844"
+    },
+    {
+      "path": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.json",
+      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 12353,
+      "sha256": "a554fbf8777fbc8d145311375ad21079ce6f916e6dbd4c1320e87aec09f9d4df",
+      "atlas": {
+        "frames": 30,
+        "animations": 0,
+        "image": "ui_obsidian_v2.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "relativePath": "live/v2/atlases/ui/ui_obsidian_v2.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 195858,
+      "sha256": "79cda7eedf40d09386046e443846428686e4be1f1be1c455189d79c80de7574c"
+    },
+    {
+      "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",
+      "relativePath": "live/v3/atlases/operations/operations_ui_v3.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 5112,
+      "sha256": "f2f213a51974e527839bfa504eb501a4b2e844d7d1912339b5e9c6e31e63ca42",
+      "atlas": {
+        "frames": 12,
+        "animations": 0,
+        "image": "operations_ui_v3.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.webp",
+      "relativePath": "live/v3/atlases/operations/operations_ui_v3.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 49134,
+      "sha256": "2416f1f2521ce9326f29abed10678edb82c6a379219f6b5773052b06dfc94d34"
+    },
+    {
+      "path": "public/assets/live/v4/atlases/effects/combat_effects_v4.json",
+      "relativePath": "live/v4/atlases/effects/combat_effects_v4.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 17417,
+      "sha256": "08bfda48d4f9d25b3e01f0d650731550f5a67a47594a1a4de4da59dea938919f",
+      "atlas": {
+        "frames": 40,
+        "animations": 5,
+        "image": "combat_effects_v4.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v4/atlases/effects/combat_effects_v4.webp",
+      "relativePath": "live/v4/atlases/effects/combat_effects_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 120744,
+      "sha256": "4cecdbd66841f9f7044f0fcb337a2b08d2257d8d9990784fac2bff15b722abff"
+    },
+    {
+      "path": "public/assets/live/v4/atlases/monsters/monsters_live_v4.json",
+      "relativePath": "live/v4/atlases/monsters/monsters_live_v4.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 126611,
+      "sha256": "d9d7822e084db213ad15d7a5a891a89e7e8c7be45663db678aaf3c7481c5f350",
+      "atlas": {
+        "frames": 268,
+        "animations": 66,
+        "image": "monsters_live_v4.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v4/atlases/monsters/monsters_live_v4.webp",
+      "relativePath": "live/v4/atlases/monsters/monsters_live_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 3265938,
+      "sha256": "f8274c989a7c7bb8f2671638819e8f8fbdbca6237e37feb71ba298483fad06e0"
+    },
+    {
+      "path": "public/assets/live/v4/atlases/player/player_live_v4.json",
+      "relativePath": "live/v4/atlases/player/player_live_v4.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 42491,
+      "sha256": "5e3c6f45c738657c0b203f3baa162fa2e1549ae5b2f557e12329cd81e36e2b76",
+      "atlas": {
+        "frames": 68,
+        "animations": 80,
+        "image": "player_live_v4.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v4/atlases/player/player_live_v4.webp",
+      "relativePath": "live/v4/atlases/player/player_live_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 752832,
+      "sha256": "bd62f83766237216339371ad3d18795d651a69f93f5583eea1010eba9729b188"
+    },
+    {
+      "path": "public/assets/live/v4/backgrounds/forest_approach_v4.webp",
+      "relativePath": "live/v4/backgrounds/forest_approach_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 16932,
+      "sha256": "84f491506ba16032de7ae2d932749dce881a404d54d064dd7684f59c9d6c11f4"
+    },
+    {
+      "path": "public/assets/live/v4/backgrounds/forest_depths_v4.webp",
+      "relativePath": "live/v4/backgrounds/forest_depths_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 17000,
+      "sha256": "8cb853416da918e417919ec7206077eaadcf7e2a843aada675913575279c55fa"
+    },
+    {
+      "path": "public/assets/live/v4/backgrounds/forest_ruins_v4.webp",
+      "relativePath": "live/v4/backgrounds/forest_ruins_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 18652,
+      "sha256": "677d0df3614e58e1e632fb2c647cc34ef45cc99212d92a4d3f0d36d3283227c2"
+    },
+    {
+      "path": "public/assets/live/v4/backgrounds/lobby_forest_v4.webp",
+      "relativePath": "live/v4/backgrounds/lobby_forest_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 10686,
+      "sha256": "49590672f9e04fc26e86d4b68bb498dc5a29535c40302f0c3668bd3e526fdf75"
+    },
+    {
+      "path": "public/assets/live/v4/backgrounds/rift_core_v4.webp",
+      "relativePath": "live/v4/backgrounds/rift_core_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 18016,
+      "sha256": "62354990d02679468740f82223447200ce1e32aac43ca9857ce891e96b02200f"
+    },
+    {
+      "path": "public/assets/live/v4/portraits/boss_phase_1_v4.webp",
+      "relativePath": "live/v4/portraits/boss_phase_1_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 52804,
+      "sha256": "accb9a7dbc4161b50d1a6a02185d9d0e8bf339c44464f496dd6b6fa0c19e4c0c"
+    },
+    {
+      "path": "public/assets/live/v4/portraits/boss_phase_2_v4.webp",
+      "relativePath": "live/v4/portraits/boss_phase_2_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 54504,
+      "sha256": "42383b908133f9f6dcea615b262be5eb3e639cacbdf5188f6248945285f07206"
+    },
+    {
+      "path": "public/assets/live/v4/portraits/boss_phase_3_v4.webp",
+      "relativePath": "live/v4/portraits/boss_phase_3_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 54870,
+      "sha256": "1d4ab1588933daaa03bf675a3a9d06727192f11beb03aa8f8a1d0d1959c887c8"
+    },
+    {
+      "path": "public/assets/live/v4/portraits/hero_v4.webp",
+      "relativePath": "live/v4/portraits/hero_v4.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 102660,
+      "sha256": "8775f0c595858afb71910a1e531df9a6cc27b176a70600203ed121fdff61cf6f"
+    },
+    {
+      "path": "public/assets/OPERATIONS_V130_SUMMARY.json",
+      "relativePath": "OPERATIONS_V130_SUMMARY.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 599,
+      "sha256": "d8904b1421a008dd7473f26d8b0918082a8f407d284c5fb1acd938f97bd082b6"
+    }
+  ]
+}

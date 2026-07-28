@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.5.0 - 2026-07-27
+
+### Added
+
+- 계정·Cloud Save 관리 화면과 동기화 상태 표시
+- 익명 계정 Google/이메일 연결, 이메일 인증, 비밀번호 재설정, 로그아웃
+- 로컬·클라우드 저장 비교, 충돌 표시, 수동 업로드·다운로드
+- 전체·주간 랭킹, 상위 목록, 내 순위 집계
+- weeklyRankings Rules·Indexes와 Firebase Emulator 권한 테스트
+- 계정·랭킹 화면 미리보기
+
+### Changed
+
+- 로비 하단에서 계정과 Cloud Save 상태를 바로 확인하도록 변경
+- 랭킹 스키마에 level과 UTC 월요일 weekKey 추가
+- App Check 비활성화 정책 유지
+
+### Known limitations
+
+- 클라이언트 계산 랭킹은 서버 권위 점수가 아니므로 경쟁 보상에 사용하지 않는다.
+- npm Registry 제한 환경에서는 실제 Firebase Emulator와 Vite 빌드를 사용자 환경에서 최종 확인한다.
+
 ## v0.9.1 - 2026-07-27
 
 ### Fixed
@@ -403,4 +425,62 @@
 - 익명·Google·이메일 Authentication
 - Firestore Cloud Save·오프라인 캐시
 - 원격 공지와 Analytics
+
+
+## v1.6.0 - 2026-07-27
+
+### Added
+
+- 전체 public 에셋 해시·분류 레지스트리
+- v1.5.0 → v1.6.0 무손실 자산 이동 계획과 적용 스크립트
+- public 잔존 파일·보관 해시·런타임 참조·6MB 예산 검사
+- 활성/보관/원본 자산 분리 보고서
+
+### Changed
+
+- GitHub Pages 배포 대상 `public/assets`를 23.60MB에서 3.90MB로 정리
+- 구버전·품질 후보·미사용 지역 자산 182개·19.70MB를 `art_source/runtime_archive/v1.6.0`으로 이동
+- Atlas 보고를 활성 6개와 보관 43개로 분리
+- 전체 49 Atlas·3,206프레임·451애니메이션 보존
+
+### Removed
+
+- 내용이 없는 `.gitkeep` 4개
+
+### Unchanged
+
+- 게임 UI·전투·계정·Cloud Save·랭킹 동작
+- Firebase App Check 비활성화 결정
+- 모바일 제작용 원본과 제3자 라이선스 보존
+
+
+## v1.7.0 - 2026-07-27
+
+### Added
+- Chapter 1 4단계 전투 배경과 StageVisualProfile
+- 보스 3페이즈 초상
+- v1.7 VFX 40프레임 Atlas
+- 아트 통일 미리보기 5종과 `ART_UNIFICATION_v1.7.0.md`
+
+### Changed
+- 플레이어·몬스터 기본 Atlas를 live/v4로 교체
+- 로비 배경·영웅 초상 기본 경로를 live/v4로 교체
+- 활성 public 자산 예산을 8MB 이내로 재설정
+
+### Archived
+- v2 플레이어·몬스터·배경·초상과 기존 combat VFX를 runtime_archive/v1.7.0으로 이동
+
+## v1.8.0 - 2026-07-28
+
+### Added
+- 보스 3페이즈 시네마틱 프레젠테이션
+- Cloud Save 복구 지점 최대 5개
+- 전체·주간·28일 시즌 랭킹
+
+### Changed
+- 공격 경고·실제 판정·타격 표시를 공통 AttackFootprint로 통합
+- seasonRankings 보안 규칙과 복합 색인 추가
+
+### Security
+- App Check 비활성화 유지, UID 소유권 규칙 유지
 

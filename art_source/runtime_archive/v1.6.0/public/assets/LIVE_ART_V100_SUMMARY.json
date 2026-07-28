@@ -1,0 +1,26 @@
+{
+  "release": "1.0.0",
+  "qualityStage": "production-candidate-open-art-pass",
+  "runtimeFiles": 12,
+  "runtimeBytes": 4257025,
+  "defaultArt": {
+    "player": "live/v1/atlases/player/player_live_v1.json",
+    "monsters": "live/v1/atlases/monsters/monsters_live_v1.json",
+    "ui": "live/v1/atlases/ui/ui_live_v1.json",
+    "lobbyBackground": "live/v1/backgrounds/lobby_forest_live_v1.webp",
+    "battleBackground": "live/v1/backgrounds/battle_forest_live_v1.webp",
+    "heroPortrait": "live/v1/portraits/hero_live_v1.webp",
+    "bossPortrait": "live/v1/portraits/boss_harbinger_live_v1.webp"
+  },
+  "counts": {
+    "atlases": 3,
+    "frames": 354,
+    "animations": 146,
+    "monsterSpecies": 8,
+    "playerSourceFrames": 68,
+    "uiFrames": 18
+  },
+  "sourceMasterIncludedInDefaultArchive": false,
+  "sourceMasterBytesHistorical": 22130945,
+  "sourceMasterFilesHistorical": 20
+}

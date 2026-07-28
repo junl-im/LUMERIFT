@@ -1,0 +1,30 @@
+{
+  "version": "0.8.0",
+  "purpose": "재생성 가능한 대규모 제작 기준 에셋 팩",
+  "qualityStage": "production-structure / replace-before-commercial-release",
+  "counts": {
+    "megaItems": 160,
+    "skillIcons": 80,
+    "statusIcons": 48,
+    "uiIcons": 96,
+    "bestiaryPortraits": 48,
+    "npcPortraits": 32,
+    "environmentProps": 120,
+    "effectAnimations": 24,
+    "effectFrames": 144,
+    "emblems": 64,
+    "tutorialGlyphs": 40,
+    "mapBackgrounds": 15,
+    "loadingKeyArt": 8,
+    "brandAssets": 3,
+    "newUiSounds": 12,
+    "newCombatSounds": 16,
+    "newAmbientLoops": 8
+  },
+  "rules": [
+    "PNG/WebP만 사용하며 SVG는 금지한다.",
+    "런타임 키와 Atlas 경로는 최종 상용 아트 교체 시에도 유지한다.",
+    "대규모 에셋은 초기 번들에 포함하지 않고 필요 시 Lazy Loading한다.",
+    "현재 생성 자산은 최종 상용 원화가 아닌 제작 규격·런타임 검증 자산이다."
+  ]
+}

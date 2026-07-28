@@ -1,7 +1,7 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title LUMERIFT v1.3.0 Optional Windows Setup
+title LUMERIFT v1.8.0 Optional Windows Setup
 
 echo [LUMERIFT] Node.js environment check...
 where node >nul 2>nul

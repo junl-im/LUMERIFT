@@ -1,6 +1,5 @@
-# LUMERIFT v1.4.2 PATCH
+# LUMERIFT v1.8.0 PATCH
 
-- Base: v1.4.1
-- Change: Firebase App Check 완전 비활성화
-- 유지: 익명·Google·이메일 Authentication, Firestore Cloud Save, 오프라인 캐시, Analytics
-- Console: App Check enforcement를 켜지 않는다.
+- 기준 버전: v1.7.0
+- 대상 버전: v1.8.0
+- 코드·규칙·문서 패치이며 대용량 에셋 이동 또는 삭제는 없다.

@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth/AuthService';
 import { LocalPlayerRepository } from '../repositories/LocalPlayerRepository';
 import { FirestorePlayerRepository } from '../repositories/FirestorePlayerRepository';
 import { ResilientPlayerRepository } from '../repositories/ResilientPlayerRepository';
+import { LocalManagedPlayerRepository } from '../repositories/LocalManagedPlayerRepository';
 import { BootScene } from '../scenes/BootScene';
 import { AssetManager } from '../core/assets/AssetManager';
 import { AudioManager } from '../core/audio/AudioManager';
@@ -18,6 +19,7 @@ import { GameDataRegistry } from '../game/data/GameDataRegistry';
 import { GraphicsQualityController } from '../core/graphics/GraphicsQualityController';
 import { MobileViewportController } from '../core/layout/MobileViewportController';
 import { OperationsContentService } from '../services/operations/OperationsContentService';
+import { RankingService } from '../services/ranking/RankingService';
 
 export class GameApp {
   private readonly pixi = new Application();
@@ -66,9 +68,10 @@ export class GameApp {
     const localPlayerRepository = new LocalPlayerRepository();
     const playerRepository = firebase.isConfigured && firebase.db
       ? new ResilientPlayerRepository(localPlayerRepository, new FirestorePlayerRepository(firebase.db))
-      : localPlayerRepository;
+      : new LocalManagedPlayerRepository(localPlayerRepository);
 
     const operationsContent = new OperationsContentService(firebase.db);
+    const ranking = new RankingService(firebase.db);
 
     const scenes = new SceneManager(this.gameRoot, {
       width: DESIGN_WIDTH,
@@ -87,6 +90,7 @@ export class GameApp {
       assets,
       audio,
       operationsContent,
+      ranking,
     };
 
     scenes.setContext(context);
