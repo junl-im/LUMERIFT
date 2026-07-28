@@ -39,7 +39,7 @@ await walk(publicRoot, async (path) => {
   }
 });
 if (publicBytes > 8_000_000) errors.push(`public/assets 배포 예산 초과: ${(publicBytes / 1_000_000).toFixed(2)} MB / 8 MB`);
-if (registry.release !== '1.8.0') errors.push(`asset registry release mismatch: ${registry.release}`);
+if (registry.release !== '1.8.1') errors.push(`asset registry release mismatch: ${registry.release}`);
 if ((registry.summary?.['runtime-public']?.bytes ?? 0) !== publicBytes) errors.push('asset registry public bytes mismatch');
 
 const sourceText = [];

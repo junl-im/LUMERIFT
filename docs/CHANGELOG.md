@@ -484,3 +484,15 @@
 ### Security
 - App Check 비활성화 유지, UID 소유권 규칙 유지
 
+
+## v1.8.1 - 2026-07-28
+
+### Fixed
+- VirtualJoystick의 PixiJS 8 비호환 객체형 lineStyle 호출을 stroke 경로 호출로 교체
+- GitHub Actions TypeScript TS2345 빌드 실패 복구
+
+### Added
+- VirtualJoystick 객체형 lineStyle 재도입 방지 소스 검사
+
+### Unchanged
+- v1.8.0 게임 기능·Firebase·에셋

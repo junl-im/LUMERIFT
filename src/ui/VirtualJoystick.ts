@@ -38,11 +38,11 @@ export class VirtualJoystick extends Container {
     const guide = new Graphics()
       .circle(0, 0, this.radius - 14)
       .stroke({ color: 0xffffff, alpha: 0.08, width: 2 })
-      .lineStyle({ color: COLORS.primaryBright, alpha: 0.1, width: 2 })
       .moveTo(-this.radius + 28, 0)
       .lineTo(this.radius - 28, 0)
       .moveTo(0, -this.radius + 28)
-      .lineTo(0, this.radius - 28);
+      .lineTo(0, this.radius - 28)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.1, width: 2 });
 
     this.knob
       .circle(0, 0, this.radius * 0.34)

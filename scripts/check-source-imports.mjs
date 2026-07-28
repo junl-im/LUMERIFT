@@ -56,6 +56,14 @@ if (!monsterUpdateMatch) {
   }
 }
 
+const virtualJoystick = await readFile('src/ui/VirtualJoystick.ts', 'utf8');
+if (/\.lineStyle\s*\(\s*\{/.test(virtualJoystick)) {
+  errors.push('VirtualJoystick에 PixiJS 8과 호환되지 않는 객체형 lineStyle 호출이 있습니다. moveTo/lineTo 뒤 stroke({...})를 사용해야 합니다.');
+}
+if (!virtualJoystick.includes(".stroke({ color: COLORS.primaryBright, alpha: 0.1, width: 2 })")) {
+  errors.push('VirtualJoystick 십자 가이드의 PixiJS 8 stroke 계약이 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

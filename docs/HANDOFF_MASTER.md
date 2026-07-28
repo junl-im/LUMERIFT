@@ -209,3 +209,10 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 랭킹은 전체·주간·28일 시즌을 제공하며 `seasonRankings/{seasonId}_{uid}` 소유권을 규칙으로 강제한다.
 - App Check는 비활성화 상태를 유지한다.
 
+
+## v1.8.1 PixiJS 8 빌드 기준선
+
+- `Graphics.lineStyle({ ... })` 객체 호출을 사용하지 않는다.
+- 선 경로는 `moveTo/lineTo`로 작성하고 `stroke({ color, alpha, width })`로 마감한다.
+- `VirtualJoystick`의 십자 가이드 호출 형식은 `validate:source`가 고정한다.
+- v1.8.0 전투·복구·시즌·Firebase·에셋 계약은 그대로 유지한다.

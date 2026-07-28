@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.8.0",
-  "updatedAt": "2026-07-27",
-  "currentPhase": "v1.8.0 보스 3페이즈 전투 연출·판정 동기화·저장 복구·시즌 랭킹 완료",
+  "version": "1.8.1",
+  "updatedAt": "2026-07-28",
+  "currentPhase": "v1.8.1 PixiJS 8 VirtualJoystick TypeScript 빌드 핫픽스 완료",
   "qualityStage": "production-candidate-unified-art-pass",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -104,14 +104,15 @@
     "Cloud Save 다운로드·업로드·자동 병합·로그아웃 전 로컬 복구 지점을 최대 5개 보존",
     "계정 화면에 복구 지점 생성·복원·삭제 UI 연결",
     "UTC 월요일 기준 28일 시즌 랭킹과 seasonRankings 규칙·복합 색인 추가",
-    "App Check 비활성화 상태를 유지하면서 Auth·Firestore·Analytics 기능 보존"
+    "App Check 비활성화 상태를 유지하면서 Auth·Firestore·Analytics 기능 보존",
+    "VirtualJoystick의 PixiJS 8 비호환 객체형 lineStyle 호출을 경로 stroke 호출로 교체해 GitHub Actions TS2345 실패 복구",
+    "객체형 Graphics.lineStyle 재도입을 차단하는 소스 회귀 검사 추가"
   ],
   "inProgress": [],
   "nextPlanned": [
+    "v1.9.0 첫 시작 화면부터 로비·전투·인벤토리·계정까지 UI 디자인 시스템 전면 적용",
     "GitHub Pages에서 보스 페이즈 전환 중 모바일 프레임 드롭·터치 입력 정지 여부 확인",
     "LUMERIFT 전용 플레이어 8방향 독립 실루엣 원화 제작",
-    "Chapter 1 일반 5종·정예 2종·보스 1종의 전용 형태 리디자인",
-    "복구 지점 내보내기·가져오기와 Cloud Save 동기화 이력 추가",
     "시즌 종료 스냅샷과 이전 시즌 기록 열람 기능"
   ],
   "immutableRules": [
@@ -152,7 +153,7 @@
     "preservedAtlasCount": 52,
     "preservedFrameCount": 3582,
     "preservedAnimationCount": 602,
-    "fullProjectBytes": 106949004,
+    "fullProjectBytes": 106947784,
     "sourceArchiveIncludedInFull": true,
     "sourceArchiveFileCount": 272,
     "legacyArchiveIncludedInFull": true,
@@ -161,7 +162,7 @@
     "bossPhasePortraits": 3,
     "v170RuntimeArtBytes": 4672157,
     "v180PreviewFiles": 4,
-    "fullProjectFileCount": 580
+    "fullProjectFileCount": 581
   },
   "knownLimitations": [
     "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
@@ -172,8 +173,8 @@
     "실제 Android Chrome·iOS Safari에서 캐릭터 크기·색 대비·GPU 메모리와 FPS 검수가 필요하다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.8.0.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.7.0_to_v1.8.0.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.8.1.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.8.0_to_v1.8.1.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 76566471,
@@ -186,6 +187,7 @@
     "bossPhaseCinematics": 3,
     "cloudRecoveryMaxPoints": 5,
     "rankingSeasonDays": 28,
-    "sharedAttackFootprint": true
+    "sharedAttackFootprint": true,
+    "pixiVirtualJoystickBuildHotfix": true
   }
 }

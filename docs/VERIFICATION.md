@@ -213,3 +213,9 @@ npm run dev
 - 순수 로직 JavaScript 실행: 정확한 공격 범위, 보스 3페이즈, 복구 5개, 28일 시즌
 - Firestore Emulator: 다른 UID의 시즌 랭킹 쓰기 차단
 
+
+## v1.8.1 추가 검증
+
+- `VirtualJoystick.ts`에 객체형 `.lineStyle({`가 없는지 검사
+- 십자 가이드 경로 뒤 `.stroke({ color: COLORS.primaryBright, alpha: 0.1, width: 2 })` 존재 검사
+- `npm run typecheck`와 `npm run build`로 GitHub Actions TS2345 재현 여부 확인

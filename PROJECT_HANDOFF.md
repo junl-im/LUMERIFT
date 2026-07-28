@@ -1,6 +1,6 @@
 # LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.8.0  
+**현재 버전:** v1.8.1  
 **공개 주소:** https://junl-im.github.io/LUMERIFT/  
 **Firebase 프로젝트:** `lumerift-8db07`
 
@@ -16,7 +16,14 @@
 8. `docs/ASSET_CLEANUP_v1.6.0.md`
 9. `docs/ROADMAP.md`
 
-## v1.8.0 현재 상태
+## v1.8.1 현재 상태
+
+- GitHub Actions `typecheck`를 막던 `VirtualJoystick.ts` TS2345 오류를 수정했다.
+- PixiJS 8 `Graphics` 경로는 객체형 `lineStyle()` 대신 경로 작성 후 `stroke({...})`를 사용한다.
+- `validate:source`가 같은 호출 형식의 재도입을 차단한다.
+- v1.8.0 기능·데이터·에셋·Firebase 규칙은 그대로 유지한다.
+
+## v1.8.0 기준 기능
 
 - 공격 경고·실제 판정·타격 표시가 `AttackFootprint` 단일 계산을 공유한다.
 - 보스는 1·2·3페이즈 진입 시 전용 타이틀·오라·줌·흔들림 연출을 사용한다.

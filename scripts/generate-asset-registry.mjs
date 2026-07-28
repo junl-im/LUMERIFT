@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
-const RELEASE = '1.8.0';
+const RELEASE = '1.8.1';
 const roots = [
   { path: 'public/assets', classification: 'runtime-public' },
   { path: 'art_source/runtime_archive/v1.6.0/public/assets', classification: 'runtime-archive' },

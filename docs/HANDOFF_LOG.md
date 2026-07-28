@@ -194,3 +194,10 @@
 - 28일 시즌 랭킹·Firestore 규칙·색인
 - App Check 비활성화 유지
 
+
+## 2026-07-28 · v1.8.1
+
+- GitHub Actions에서 확인된 `src/ui/VirtualJoystick.ts(41,18)` TS2345 오류를 수정했다.
+- PixiJS 8 가이드 선 렌더링을 `moveTo/lineTo` 후 `stroke({...})` 방식으로 통일했다.
+- `validate:source`에 객체형 `lineStyle()` 회귀 차단 검사를 추가했다.
+- 게임 기능·에셋·Firebase 규칙은 변경하지 않았다.

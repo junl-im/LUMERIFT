@@ -1,8 +1,15 @@
-# LUMERIFT: 균열의 계승자 v1.8.0
+# LUMERIFT: 균열의 계승자 v1.8.1
 
 모바일 웹 우선 세로형 2.5D 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이며 GitHub Pages에 배포한다.
 
-## v1.8.0 변경
+## v1.8.1 긴급 빌드 수정
+
+- `VirtualJoystick.ts`의 PixiJS 8 비호환 객체형 `lineStyle({...})` 호출 제거
+- 십자 가이드 경로를 `moveTo/lineTo` 후 `stroke({...})`로 렌더링
+- 같은 오류가 다시 들어오면 `validate:source`가 실패하도록 회귀 검사 추가
+- v1.8.0 보스 전투·복구·시즌 랭킹·에셋·Firebase 기능은 변경 없음
+
+## v1.8.0 기능
 
 - 공격 경고·피격 판정·타격 표시를 동일한 `AttackFootprint` 계산으로 통합
 - 보스 3페이즈 전용 진입 연출·오라·카메라 줌·흔들림
@@ -44,5 +51,6 @@ npm run firebase:deploy:rules
 - `docs/SAVE_RECOVERY_v1.8.0.md`
 - `docs/RANKING_SEASON_v1.8.0.md`
 - `docs/PATCH_NOTES_v1.8.0.md`
+- `docs/PATCH_NOTES_v1.8.1.md`
 
 BAT 파일은 Windows 편의용 선택 도구이며 npm 명령과 GitHub Actions가 공식 기준이다.

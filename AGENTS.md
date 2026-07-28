@@ -168,3 +168,9 @@
 - 이동은 삭제로 처리하지 않으며 경로·바이트·SHA-256을 `asset_registry/RELOCATION_PLAN_<release>.json`에 기록한다.
 - 보관 자산을 다시 사용할 때는 현재 아트 방향·해상도·라이선스를 재검수한 뒤 새 버전 런타임 경로와 매니페스트에 등록한다.
 - 모든 에셋 릴리스는 `npm run validate:asset-cleanup`과 `npm run report:asset-cleanup`을 통과해야 한다.
+
+## v1.8.1 PixiJS Graphics 고정 규칙
+
+- PixiJS 8 `Graphics`에서 객체형 `lineStyle({ ... })` 호출을 사용하지 않는다.
+- 가이드·윤곽 경로는 경로 작성 후 `stroke({ color, alpha, width })`로 마감한다.
+- GitHub Actions 빌드 오류가 보고되면 전체 UI 작업보다 먼저 최소 핫픽스를 릴리스한다.

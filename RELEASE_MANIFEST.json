@@ -1,18 +1,16 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.8.0",
-  "baseVersion": "1.7.0",
+  "version": "1.8.1",
+  "baseVersion": "1.8.0",
   "releaseDate": "2026-07-28",
-  "fullArchive": "LUMERIFT_FULL_v1.8.0.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.7.0_to_v1.8.0.zip",
+  "fullArchive": "LUMERIFT_FULL_v1.8.1.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.8.0_to_v1.8.1.zip",
   "qualityStage": "production-candidate-unified-art-pass",
   "features": [
-    "uses one shared AttackFootprint geometry for monster telegraphs, player and monster hit collision, and impact rendering",
-    "adds three boss phase cinematic profiles with phase-specific title, aura, zoom, shake and telegraph pressure",
-    "keeps hit-stop, camera shake and pulse zoom tied to successful hits",
-    "adds up to five local Cloud Save recovery points before download, upload, automatic merge and logout",
-    "adds 28-day UTC Monday ranking seasons with Firestore rules and composite indexes",
+    "fixes PixiJS 8 TypeScript build failure in VirtualJoystick by replacing object-form lineStyle with path stroke",
+    "adds a source regression guard that rejects object-form Graphics.lineStyle calls in the joystick",
+    "keeps v1.8.0 boss combat, recovery points, season ranking, assets and Firebase behavior unchanged",
     "keeps Firebase App Check fully disabled while Authentication, Firestore Cloud Save and Analytics remain active"
   ],
   "assetPolicy": {
@@ -38,9 +36,8 @@
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
-    "strict TypeScript alternative check passes with external module stubs",
-    "pure runtime logic verifies exact attack footprint, boss phases, five-point recovery and 28-day season rollover",
-    "Firestore rules isolate user saves and season ranking ownership",
+    "source validation rejects PixiJS 8 incompatible object-form lineStyle calls",
+    "strict TypeScript and production build are executed when dependencies are available",
     "full archive retains mobile production masters, licenses and all legacy candidates",
     "patch application result matches the full release file hashes"
   ]
