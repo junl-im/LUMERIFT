@@ -4,12 +4,12 @@
   "baseVersion": "1.10.0",
   "targetVersion": "1.10.1",
   "releaseDate": "2026-07-28",
-  "payloadFiles": 53,
-  "payloadBytes": 481393,
+  "payloadFiles": 59,
+  "payloadBytes": 518044,
   "directDeleteFiles": 0,
   "relocationMoves": 0,
   "apply": [
-    "덮어쓰기",
+    "프로젝트 최상위에 덮어쓰기",
     "npm install",
     "npm run verify"
   ],
@@ -18,14 +18,14 @@
     {
       "path": "AGENTS.md",
       "status": "changed",
-      "bytes": 13461,
-      "sha256": "3c8a960a32608349ea0e8dfd9ba0b1cfbb92f9dcbc3d06f6e6e0fe95551a185d"
+      "bytes": 14218,
+      "sha256": "289824b30ab534c16709db26320f4fea50e45b1ffa1f827e06b08db1611d55b4"
     },
     {
       "path": "HANDOFF_STATE.json",
       "status": "changed",
-      "bytes": 20741,
-      "sha256": "cd5175fbeb3c9aaf64acfc71b31a53c1cc1b3e6830d8273da12f9c4d847ffaef"
+      "bytes": 21044,
+      "sha256": "0eb371e010d00e4c127c25bce1d489de00c6bfe724adba109ceee1c76db1fba8"
     },
     {
       "path": "INSTALL_AND_START.bat",
@@ -36,20 +36,20 @@
     {
       "path": "PATCH_DELETE_LIST.txt",
       "status": "changed",
-      "bytes": 79,
-      "sha256": "26d5838c9b6721cacef0fbcd97e113f69cf4403e9a9ab952d5c2cab191e5646b"
+      "bytes": 156,
+      "sha256": "736614f8fc592448c482d35a2dfeb0d42fcaa79c8157cdcd8bdac604f9e04cbd"
     },
     {
       "path": "PATCH_INFO.md",
       "status": "changed",
-      "bytes": 374,
-      "sha256": "c886cfc56654e5e70da04bd823399d5e05e6204d51ca2bdfd6c4257d5dd559ec"
+      "bytes": 520,
+      "sha256": "70eb52abe1168aa217f1a60c86a57c6eb520d47763f9667aeffbcd0b63e76f4b"
     },
     {
       "path": "PATCH_README.txt",
       "status": "changed",
-      "bytes": 400,
-      "sha256": "15aa2980c06c9c5bf7f843250fac113119969bf3756678145ae5efb414147415"
+      "bytes": 540,
+      "sha256": "e7761c472a313d0ee0f0dfa113fccbed35d9ceedf354f519bf5269684bbbb6ce"
     },
     {
       "path": "PROJECT_HANDOFF.md",
@@ -60,14 +60,14 @@
     {
       "path": "README.md",
       "status": "changed",
-      "bytes": 2039,
-      "sha256": "8feaf2d78900db6c933ec2fe9ca73e108f67064ea2a1c776aab119ff39103180"
+      "bytes": 2469,
+      "sha256": "6c353f263fea95d7583464096fec460a38ce0f75e46456769375a13b38f71eea"
     },
     {
       "path": "RELEASE_MANIFEST.json",
       "status": "changed",
-      "bytes": 2291,
-      "sha256": "9c7d2725cc3db9f33006907ee9305c48cf27fbd6b6d416095f93ffbfd31ca152"
+      "bytes": 2665,
+      "sha256": "3738bcd7b47d954d0eddc166b82a9b167b3f6e6bfaae92477f24e217538cd26a"
     },
     {
       "path": "VERIFY.bat",
@@ -108,8 +108,8 @@
     {
       "path": "docs/HANDOFF_LOG.md",
       "status": "changed",
-      "bytes": 12243,
-      "sha256": "28267338b861d4f9a4b342582962369332bede8cd08324018a26edb756249740"
+      "bytes": 12787,
+      "sha256": "301d597dabc79473695f86d46dc644c96f0235f70868bcdf1f8e9f6b522c08af"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
@@ -168,14 +168,38 @@
     {
       "path": "package.json",
       "status": "changed",
-      "bytes": 3508,
-      "sha256": "9342e5cb9b2788cb24ef098557bd0dca070aca521bfa24cbb734b7b7856f1177"
+      "bytes": 3744,
+      "sha256": "08dff77e1e103ceeef0231332b807b78e373df48171dcf711c1d9074ae38ab1b"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
       "status": "changed",
       "bytes": 3300,
       "sha256": "46d312896acb2ef7a09971b38ea6f030c98197c18dccafa1058cc191915fb2ca"
+    },
+    {
+      "path": "scripts/cleanup-relocated-assets.mjs",
+      "status": "added",
+      "bytes": 3582,
+      "sha256": "9d75767604a2b08157659f1733ca5d4bc7b7ebaee4aeb6f0b8989268630ce662"
+    },
+    {
+      "path": "scripts/validate-asset-cleanup.mjs",
+      "status": "changed",
+      "bytes": 3546,
+      "sha256": "8a209d34d711634094ed4c531f8b641b25ba649f20bfb920b4bafe571940184c"
+    },
+    {
+      "path": "scripts/validate-handoff.mjs",
+      "status": "changed",
+      "bytes": 3586,
+      "sha256": "01e2f549f91651bb542eb03a85bfc906a957de06fd6a4210e9719f7a0cded3ce"
+    },
+    {
+      "path": "scripts/validate-release-version.mjs",
+      "status": "added",
+      "bytes": 1820,
+      "sha256": "1f21d71e5dfaa9c6f47e092558b0e2643ab3f3b80ac89019f689505165ed617a"
     },
     {
       "path": "scripts/validate-v111-release.mjs",
@@ -274,6 +298,12 @@
       "sha256": "8bb11e74a1195298d6ef539c9f1be888d67279b1a95365d8e2f052d0a1539846"
     },
     {
+      "path": "src/scenes/BootScene.ts",
+      "status": "changed",
+      "bytes": 4867,
+      "sha256": "23825f05990391cc07e54655589df0464e695a9716ba4ccdf95f01f8947608f5"
+    },
+    {
       "path": "src/scenes/LobbyScene.ts",
       "status": "changed",
       "bytes": 14930,
@@ -326,13 +356,21 @@
       "status": "changed",
       "bytes": 9484,
       "sha256": "113269528d6f3c1e8b2b509d447b97468b162fb01584171bfd16e9ad54fd5de5"
+    },
+    {
+      "path": "src/ui/UiTheme.ts",
+      "status": "changed",
+      "bytes": 4271,
+      "sha256": "ba6ecad853f0154adde95f6b2794d48e6d6c03aa605eae8874713663bedc67d6"
     }
   ],
   "deletes": [],
   "notes": [
-    "public/assets 런타임 이미지 추가 없음",
-    "Firebase App Check 비활성화 유지",
-    "물리 단말 Device QA JSON은 실제 기기에서 별도 수집",
-    "패치 적용 전 v1.10.0 기준 확인"
+    "package.json 버전 1.10.1 복구 및 v1.10.1 전용 검증 연결 유지",
+    "verify 초반 릴리스 버전 정합성 검사 추가",
+    "preverify 이동 전 public 자산 및 .gitkeep 안전 자동 정리",
+    "PixiJS 8 Graphics.polygon 호출을 poly로 교체",
+    "최종 결과 보고 형식을 작업 내역, 전체/패치 ZIP, 다음 예정 내역으로 고정",
+    "Firebase App Check 비활성화 유지"
   ]
 }

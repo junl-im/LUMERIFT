@@ -41,6 +41,12 @@ if (!Array.isArray(state.immutableRules) || state.immutableRules.length < 5) err
 for (const phrase of ['결과', '전체 통합 ZIP', '덮어쓰기용 패치 ZIP', '다음 업데이트']) {
   if (!agents.includes(phrase)) errors.push(`AGENTS 릴리스 보고 규칙 누락: ${phrase}`);
 }
+for (const phrase of ['## 사용자 결과 보고 필수 형식', '1. `작업한 내역`', '2. `다운로드 파일`', '3. `다음 예정 내역`']) {
+  if (!agents.includes(phrase)) errors.push(`AGENTS 사용자 결과 형식 누락: ${phrase}`);
+}
+if (!state.immutableRules.some((rule) => rule.includes('1. 작업한 내역') && rule.includes('전체 통합 ZIP') && rule.includes('패치 ZIP') && rule.includes('3. 다음 예정 내역'))) {
+  errors.push('HANDOFF_STATE 사용자 결과 보고 3단계 규칙 누락');
+}
 if (state.releaseArtifacts?.fullArchive !== release.fullArchive) errors.push('전체 ZIP 이름이 HANDOFF_STATE와 RELEASE_MANIFEST에서 다릅니다.');
 if (state.releaseArtifacts?.patchArchive !== release.patchArchive) errors.push('패치 ZIP 이름이 HANDOFF_STATE와 RELEASE_MANIFEST에서 다릅니다.');
 

@@ -14,7 +14,9 @@
     "adds symbol-redundant player, danger and boss HUD states",
     "exports and imports Player Save v4, five recovery points and a 28-day season summary with UID guard",
     "adds an original LUMERIFT eight-direction player silhouette blockout without changing the runtime atlas",
-    "keeps Firebase App Check disabled and preserves Auth, Firestore, ranking and AttackFootprint contracts"
+    "keeps Firebase App Check disabled and preserves Auth, Firestore, ranking and AttackFootprint contracts",
+    "adds an early release-version guard so package, handoff, release, asset manifest and runtime brand cannot drift",
+    "runs safe relocated-asset and placeholder cleanup automatically before verify"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -44,6 +46,8 @@
     "active public assets remain unchanged and below the deployment budget",
     "full archive retains code, documents, runtime assets, mobile production masters, licenses and legacy archives",
     "patch application from v1.10.0 is compared against the full v1.10.1 file hashes",
-    "physical Android and iOS temperature and GPU-memory measurements are explicitly not claimed as completed"
+    "physical Android and iOS temperature and GPU-memory measurements are explicitly not claimed as completed",
+    "release version validation runs before the main verification chain",
+    "preverify safely removes only hash-matched relocated assets and public placeholder files"
   ]
 }

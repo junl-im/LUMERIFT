@@ -16,6 +16,13 @@
 - LUMERIFT 전용 플레이어 8방향 실루엣 블록아웃 원본 추가
 - Firebase App Check 비활성화와 v1.8 AttackFootprint 판정 유지
 
+## v1.10.1 CI 정합성 보강
+
+- `package.json`, `HANDOFF_STATE.json`, `RELEASE_MANIFEST.json`, `ASSET_MANIFEST.json`, 런타임 브랜드 버전을 1.10.1로 통일
+- `preverify` 자동 자산 정리와 `validate:mobile:v111` 검사를 동시에 유지
+- `validate:release`를 검증 초반에 실행하여 핫픽스 덮어쓰기로 인한 버전 회귀를 즉시 차단
+- PixiJS 8 Graphics 다각형 API는 `poly()`를 사용
+
 ## 실행
 
 ```bash
