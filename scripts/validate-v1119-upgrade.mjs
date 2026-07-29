@@ -72,7 +72,7 @@ const requirements = {
     'ASSIST MATRIX 3',
   ],
   'README.md': [
-    '# LUMERIFT: 균열의 계승자 v1.11.9',
+    '## v1.11.9 핵심',
     'docs/AUTO_COMBAT_DIAGNOSTICS_v1.11.9.md',
     'docs/MOBILE_SAFE_AREA_v1.11.9.md',
     'docs/DIRECTIONAL_ATTACK_POSE_v1.11.9.md',
