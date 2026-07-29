@@ -1,0 +1,24 @@
+LUMERIFT v1.11.10 Comic Tag Typecheck Hotfix
+Date: 2026-07-29
+
+Root cause:
+- createComicTag(text, color = COLORS.primaryBright) inferred color as the literal type 0xa1fff2.
+- Passing COLORS.primary, COLORS.sunrise, or 0xf0ca78 therefore failed with TS2345.
+
+Fix:
+- Explicitly typed the parameter as number:
+  createComicTag(text: string, color: number = COLORS.primaryBright)
+
+Affected CI errors resolved:
+- src/scenes/AssetGalleryScene.ts(42,61) TS2345
+- src/scenes/LobbyScene.ts(126,51) TS2345
+- src/ui/SceneChrome.ts(79,52) TS2345
+
+Validation completed:
+- isolated strict TypeScript literal-color call test: PASS
+- node scripts/validate-v11110-upgrade.mjs: PASS
+- node scripts/validate-release-version.mjs: PASS
+- node scripts/validate-handoff.mjs: PASS
+- node scripts/validate-asset-cleanup.mjs: PASS
+
+No gameplay, asset, save, combat, or Firebase behavior changed.

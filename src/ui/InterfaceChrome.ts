@@ -219,7 +219,7 @@ export function createFeatureMarquee(title: string, subtitle: string, width = 24
   return root;
 }
 
-export function createComicTag(text: string, color = COLORS.primaryBright): Container {
+export function createComicTag(text: string, color: number = COLORS.primaryBright): Container {
   const root = new Container();
   const bubble = new Graphics()
     .roundRect(0, 0, 118, 24, 12)
