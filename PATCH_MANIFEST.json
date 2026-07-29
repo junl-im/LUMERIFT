@@ -34,6 +34,10 @@
     "src/ui/UiSkin.ts",
     "src/ui/VirtualJoystick.ts",
     "PATCH_DELETE_LIST.txt",
-    "LUMERIFT_v1.11.5_UI_HUD_VERIFICATION.txt"
+    "LUMERIFT_v1.11.5_UI_HUD_VERIFICATION.txt",
+    "src/core/performance/DeviceQaSessionAnalyzer.ts",
+    "src/core/performance/DeviceQaSessionAnalyzer.test.ts",
+    "docs/DEVICE_QA_CONFIDENCE_HOTFIX_v1.11.5.md",
+    "LUMERIFT_v1.11.5_CI_HOTFIX_VERIFICATION.txt"
   ]
 }

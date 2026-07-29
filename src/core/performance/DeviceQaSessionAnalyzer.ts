@@ -128,14 +128,22 @@ function resolveBatteryDrain(session: DeviceQaSessionArchive): number | undefine
   return round((consumed / session.durationSeconds) * 1_200, 2);
 }
 
+const MEDIUM_CONFIDENCE_MIN_SAMPLES = 40;
+const MEDIUM_CONFIDENCE_MIN_SECONDS = 120;
+const HIGH_CONFIDENCE_MIN_SAMPLES = 120;
+const HIGH_CONFIDENCE_MIN_SECONDS = 360;
+
 function estimateVisibleDuration(samples: readonly DeviceQaSessionSample[], interval: number): number {
-  if (samples.length <= 1) return samples.length * interval;
-  return round(Math.min(samples.at(-1)?.elapsedSeconds ?? 0, samples.length * interval));
+  if (samples.length === 0) return 0;
+  const firstElapsed = samples[0]?.elapsedSeconds ?? 0;
+  const lastElapsed = samples.at(-1)?.elapsedSeconds ?? firstElapsed;
+  const coveredSeconds = Math.max(0, lastElapsed - firstElapsed) + Math.max(0, interval);
+  return round(Math.min(coveredSeconds, samples.length * Math.max(0, interval)));
 }
 
 function resolveConfidence(samples: number, duration: number): DeviceQaConfidence {
-  if (samples >= 120 && duration >= 600) return 'high';
-  if (samples >= 20 && duration >= 120) return 'medium';
+  if (samples >= HIGH_CONFIDENCE_MIN_SAMPLES && duration >= HIGH_CONFIDENCE_MIN_SECONDS) return 'high';
+  if (samples >= MEDIUM_CONFIDENCE_MIN_SAMPLES && duration >= MEDIUM_CONFIDENCE_MIN_SECONDS) return 'medium';
   return 'low';
 }
 

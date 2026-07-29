@@ -634,3 +634,5 @@
 - HERO CUT / HYPE METER / ATTACK VECTOR 중심의 전투 HUD 재정리
 - 공격 방향 VFX 화살표, CHAIN·CRITICAL 배너, CRIT/BURN/HIT 플로팅 텍스트 추가
 - v1.11.5 누적 검증과 릴리스 버전 체계 갱신
+
+- v1.11.5 CI hotfix: 3초 QA 표본의 신뢰도 시간/개수 기준 정렬 및 경계 테스트 추가

@@ -57,6 +57,12 @@ describe('analyzeDeviceQaSession', () => {
     expect(analysis?.score).toBeGreaterThanOrEqual(85);
   });
 
+  it('uses aligned low, medium, and high confidence windows for three-second samples', () => {
+    expect(analyzeDeviceQaSession(archive(Array.from({ length: 20 }, (_, index) => sample(index))))?.confidence).toBe('low');
+    expect(analyzeDeviceQaSession(archive(Array.from({ length: 40 }, (_, index) => sample(index))))?.confidence).toBe('medium');
+    expect(analyzeDeviceQaSession(archive(Array.from({ length: 120 }, (_, index) => sample(index))))?.confidence).toBe('high');
+  });
+
   it('recommends a conservative profile for long-frame pressure', () => {
     const analysis = analyzeDeviceQaSession(archive(Array.from({ length: 40 }, (_, index) => sample(index, 38, 24, 0.2))));
     expect(analysis?.recommendedFps).toBe(30);

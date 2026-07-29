@@ -11,3 +11,7 @@
 - ATTACK VECTOR 방향 텔레메트리 추가
 - 공격 방향 VFX 및 CRIT/BURN/HIT 타격 피드백 강화
 - v1.11.5 릴리스 문서/검증 갱신
+
+## CI Hotfix
+- Device QA confidence 표본 수·시간 기준 정렬
+- 20/40/120개 표본 경계 테스트 추가
