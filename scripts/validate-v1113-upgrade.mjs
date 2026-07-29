@@ -5,9 +5,18 @@ const pkg = await readJson('package.json');
 const assetManifest = await readJson('public/assets/ASSET_MANIFEST.json');
 const atlas = await readJson('public/assets/live/v7/atlases/player/player_owned_painted_v7.json');
 const errors = [];
+const atLeast = (version, minimum) => {
+  const left = version.split('.').map(Number);
+  const right = minimum.split('.').map(Number);
+  for (let index = 0; index < 3; index += 1) {
+    if ((left[index] ?? 0) > (right[index] ?? 0)) return true;
+    if ((left[index] ?? 0) < (right[index] ?? 0)) return false;
+  }
+  return true;
+};
 
-if (pkg.version !== '1.11.3') errors.push(`package version must be 1.11.3: ${pkg.version}`);
-if (assetManifest.release !== '1.11.3') errors.push(`asset manifest release must be 1.11.3: ${assetManifest.release}`);
+if (!atLeast(pkg.version, '1.11.3')) errors.push(`package version must preserve 1.11.3+ contracts: ${pkg.version}`);
+if (!atLeast(assetManifest.release, '1.11.3')) errors.push(`asset manifest release must preserve 1.11.3+ contracts: ${assetManifest.release}`);
 if (pkg.scripts?.['validate:upgrade:v1113'] !== 'node scripts/validate-v1113-upgrade.mjs') errors.push('v1.11.3 validator script is not connected');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1113')) errors.push('verify does not include v1.11.3 validator');
 

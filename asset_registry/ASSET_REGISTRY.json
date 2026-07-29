@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.3",
-  "generatedAt": "2026-07-28T22:57:54.789Z",
+  "release": "1.11.4",
+  "generatedAt": "2026-07-29T02:09:55.792Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -2544,7 +2544,7 @@
       "classification": "runtime-public",
       "type": "json",
       "bytes": 3718,
-      "sha256": "636ed8852fb6a1c5b3c96f1888510cc2a513e4f0f2f4e6de44a906b7af479b3c"
+      "sha256": "9ace1840e5412bdc69f4737fc42da65041b9e50fc289e48aa8853ffb55a16023"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
