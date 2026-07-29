@@ -1,0 +1,39 @@
+LUMERIFT v1.11.11 VERIFICATION
+Date: 2026-07-29
+Base: v1.11.10 latest hotfix build
+Target: v1.11.11
+
+IMPLEMENTED
+- AutoCombatSessionLog: auto-enabled time, target changes, attacks, skills, dodges, manual interventions, boss pattern dodge counts
+- ResultScene AUTO ASSIST REPORT
+- Boss dodge rules for boss_cleave / boss_nova / boss_rupture
+- Composite auto-skill decisions using player HP, Rift Drive, target HP, boss rank, range, and cooldowns
+- iOS / Android platform-aware battle HUD Safe Area tuning
+- v1.11.10 README validator converted to cumulative-version compatible contract
+
+VALIDATION PASS
+- 33 cumulative static validation stages through validate-v11111-upgrade
+- Release version / handoff / asset cleanup / source import validation
+- TypeScript syntax parse: 149 files, 0 diagnostics
+- Strict TypeScript compile: CombatAssist, MobileViewport, BattleHudSafeArea, BossDodgeRules, AutoBattleController, AutoCombatSessionLog
+- Runtime harness: boss nova dodge, composite skill use, Drive conservation, session summary, iOS/Android Safe Area
+- Active assets: 41 files, 5.46 MB
+- Estimated initial payload inputs: 0.95 MB / 15 MB
+- No delete or move operations required
+
+NOT RUN IN THIS ENVIRONMENT
+- Full project tsc -b using project-installed dependencies
+- Full Vitest suite
+- Vite production build and validate:bundle
+Reason: project node_modules are not bundled and the available package registry does not provide the pinned dependency set in this environment.
+Run npm install and npm run verify in GitHub Actions or the normal project environment.
+
+PHYSICAL DEVICE STATUS
+- No Android/iOS physical-device capture, temperature, battery, or long-session performance measurement was performed.
+
+PACKAGE INTEGRITY
+- Work tree files: 757
+- Patch payload files: 52 (including PATCH_MANIFEST.json)
+- Clean v1.11.10 + patch comparison: missing 0, extra 0, SHA-256 mismatch 0
+- Full ZIP extraction comparison: missing 0, extra 0, SHA-256 mismatch 0
+- Full ZIP and patch ZIP CRC test: PASS

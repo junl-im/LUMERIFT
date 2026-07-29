@@ -327,3 +327,5 @@
 - AutoTargetController가 점수 분해와 선정 이유를 반환하도록 확장했다.
 - AutoBattleController에 HP 조건·보스 회피 정책·행동 이유 라벨을 추가했다.
 - BattleHudSafeArea와 DirectionalAttackPose를 추가했다.
+
+- 2026-07-29: v1.11.11 자동 전투 세션 로그·보스 패턴별 회피·복합 스킬·플랫폼 Safe Area 적용

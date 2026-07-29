@@ -46,6 +46,7 @@ import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } fro
 import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
 import { AutoTargetController, autoTargetReasonLabel } from '../game/combat/AutoTargetController';
 import { autoBattleReasonLabel, resolveAutoBattle } from '../game/combat/AutoBattleController';
+import { AutoCombatSessionLog } from '../game/combat/AutoCombatSessionLog';
 import { combatDevicePresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
 import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
@@ -157,6 +158,8 @@ export class BattleScene implements Scene {
   private lastAssistReason = '자동 전투 대기';
   private hudSafeAreaKey = '';
   private lastTargetAnnouncement = '';
+  private readonly autoCombatLog = new AutoCombatSessionLog();
+  private manualInterventionLatched = false;
 
   private readonly playerHpFill = new Graphics();
   private readonly playerHpText = new Text({
@@ -457,6 +460,7 @@ export class BattleScene implements Scene {
     if (this.paused) return;
 
     this.elapsed += deltaSeconds;
+    this.autoCombatLog.update(deltaSeconds, context.combatAssist.current.autoBattle && !this.tutorialEnabled);
     this.applyHudSafeArea();
     this.perfectDodgeLock = Math.max(0, this.perfectDodgeLock - deltaSeconds);
     this.momentum.update(deltaSeconds);
@@ -1128,6 +1132,7 @@ export class BattleScene implements Scene {
       this.targetNameText.text = 'TARGET · OFF';
       this.targetDetailText.text = '타겟 보조가 꺼져 있습니다.';
       this.assistReasonText.text = 'AUTO · 타겟 보조 OFF';
+      this.autoCombatLog.recordTarget(undefined, 'target-off');
       return;
     }
 
@@ -1158,6 +1163,7 @@ export class BattleScene implements Scene {
       this.targetNameText.text = 'TARGET · SEARCH';
       this.targetDetailText.text = '가장 적합한 적을 탐색 중';
       this.assistReasonText.text = 'AUTO · 타겟 탐색 중';
+      this.autoCombatLog.recordTarget(undefined, 'target-search');
       return;
     }
 
@@ -1169,6 +1175,7 @@ export class BattleScene implements Scene {
     const hpRatio = target.controller.hp / Math.max(1, target.controller.config.maxHp);
     this.targetNameText.text = `${rankLabel} · ${target.definition.combat.name}`;
     this.targetDetailText.text = `SCORE ${Math.round(snapshot.score)} · ${autoTargetReasonLabel(snapshot.reason)}\n거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험' : ''}`;
+    this.autoCombatLog.recordTarget(target.runtimeId, snapshot.reason);
 
     const accent = target.definition.visual.accentColor;
     const pulse = 0.5 + Math.sin(this.elapsed * 8) * 0.5;
@@ -1221,6 +1228,12 @@ export class BattleScene implements Scene {
     if (manualActive) {
       this.manualOverrideRemaining = manualResumeDelaySeconds(settings.manualResumeDelay);
       this.lastAssistReason = manualAction ? '직접 액션 우선' : '수동 이동 우선';
+      if (!this.manualInterventionLatched) {
+        this.autoCombatLog.recordManualIntervention(manualAction ? 'action' : 'move');
+        this.manualInterventionLatched = true;
+      }
+    } else {
+      this.manualInterventionLatched = false;
     }
 
     const targetDirection = normalize({
@@ -1265,7 +1278,10 @@ export class BattleScene implements Scene {
       targetDistance,
       targetRadius: target.controller.config.radius,
       targetRank: target.controller.config.rank,
+      targetHpRatio: target.controller.hp / Math.max(1, target.controller.config.maxHp),
+      driveRatio: this.momentum.snapshot().drive / Math.max(1, this.momentum.snapshot().maxDrive),
       ...(telegraph ? {
+        targetPatternId: telegraph.pattern.id,
         targetTelegraphProgress: telegraph.progress,
         targetTelegraphRange: telegraph.pattern.range,
       } : {}),
@@ -1287,19 +1303,21 @@ export class BattleScene implements Scene {
     player.facing.y = decision.facing.y;
     this.lastAssistReason = autoBattleReasonLabel(decision.reason);
     this.assistReasonText.text = `AUTO · ${this.lastAssistReason}`;
+    this.autoCombatLog.recordReason(decision.reason);
     this.autoActionCooldown = Math.max(0, this.autoActionCooldown - Math.max(0, deltaSeconds));
     if (this.autoActionCooldown <= 0) {
+      let executed = false;
       if (decision.action === 'dodge') {
-        this.requestDodge(decision.facing);
-        this.autoActionCooldown = decision.cooldownSeconds;
+        executed = this.requestDodge(decision.facing);
       } else if (decision.action === 'skill2') {
-        this.requestSkill('skill2');
-        this.autoActionCooldown = decision.cooldownSeconds;
+        executed = this.requestSkill('skill2');
       } else if (decision.action === 'skill1') {
-        this.requestSkill('skill1');
-        this.autoActionCooldown = decision.cooldownSeconds;
+        executed = this.requestSkill('skill1');
       } else if (decision.action === 'attack') {
-        this.requestBasicAttack();
+        executed = this.requestBasicAttack();
+      }
+      if (executed) {
+        this.autoCombatLog.recordAction(decision.action, decision.reason, telegraph?.pattern.id);
         this.autoActionCooldown = decision.cooldownSeconds;
       }
     }
@@ -1368,22 +1386,23 @@ export class BattleScene implements Scene {
     return player.requestAttack();
   }
 
-  private requestDodge(moveAxis: Vec2): void {
+  private requestDodge(moveAxis: Vec2): boolean {
     const player = this.player;
-    if (!player) return;
+    if (!player) return false;
     const direction = moveAxis.x !== 0 || moveAxis.y !== 0 ? moveAxis : player.facing;
-    if (!player.requestDodge(direction)) return;
+    if (!player.requestDodge(direction)) return false;
     this.vfx?.spawn('dodge', player.position, Math.atan2(direction.y, direction.x), 0.9);
     this.combatAudio?.play({ kind: 'dodge', perfect: false });
     this.context?.haptics.pulse('dodge', this.accessibility?.haptics);
+    return true;
   }
 
-  private requestSkill(slot: 'skill1' | 'skill2'): void {
+  private requestSkill(slot: 'skill1' | 'skill2'): boolean {
     const player = this.player;
     const action = this.playerConfig?.skills[slot];
-    if (!player || !action) return;
+    if (!player || !action) return false;
     this.faceCurrentTarget();
-    if (!player.requestSkill(slot)) return;
+    if (!player.requestSkill(slot)) return false;
     const boost = this.momentum.prepareSkill(action);
     this.pendingSkillBoosts[slot] = boost;
     if (boost.empowered) {
@@ -1392,6 +1411,7 @@ export class BattleScene implements Scene {
     }
     this.combatAudio?.play({ kind: 'skill', slot, empowered: boost.empowered });
     this.context?.haptics.pulse('skill', this.accessibility?.haptics);
+    return true;
   }
 
   private updateWaveFlow(deltaSeconds: number): void {
@@ -2133,6 +2153,7 @@ export class BattleScene implements Scene {
       defeated: this.defeatedCount,
       maxCombo: this.maxCombo,
       clearSeconds,
+      autoAssist: this.autoCombatLog.snapshot(),
     };
 
     await this.context.scenes.change(() => new ResultScene(outcome));

@@ -11,6 +11,8 @@ import { LobbyScene } from './LobbyScene';
 import { BattleScene } from './BattleScene';
 import { InventoryScene } from './InventoryScene';
 import { StageSelectScene } from './StageSelectScene';
+import { autoBattleReasonLabel } from '../game/combat/AutoBattleController';
+import type { AutoCombatSessionSummary } from '../game/combat/AutoCombatSessionLog';
 
 export interface BattleOutcome {
   readonly victory: boolean;
@@ -24,6 +26,7 @@ export interface BattleOutcome {
   readonly defeated: number;
   readonly maxCombo: number;
   readonly clearSeconds: number;
+  readonly autoAssist?: AutoCombatSessionSummary;
 }
 
 const DEFAULT_OUTCOME: BattleOutcome = {
@@ -57,6 +60,7 @@ export class ResultScene implements Scene {
 
     this.createRank();
     this.createMetrics();
+    this.createAutoAssistReport();
     this.createRewards(context);
     this.createActions(context);
   }
@@ -130,31 +134,55 @@ export class ResultScene implements Scene {
     this.view.addChild(divider, defeat, combo, time, defeatIcon, comboIcon, timeIcon);
   }
 
+  private createAutoAssistReport(): void {
+    const summary = this.outcome.autoAssist;
+    const panel = createSectionPanel(58, 492, 424, 78, 'panel_gold');
+    const title = new Text({
+      text: 'AUTO ASSIST REPORT',
+      style: new TextStyle({ fill: 0xf4dca0, fontSize: 11, fontWeight: '800', letterSpacing: 0.8 }),
+    });
+    title.position.set(76, 503);
+    const totals = summary
+      ? `AUTO ${summary.enabledSeconds.toFixed(1)}s · TARGET ${summary.targetChanges} · ATK ${summary.attacks} · SKILL ${summary.skill1Uses + summary.skill2Uses} · DODGE ${summary.dodges} · MANUAL ${summary.manualInterventions}`
+      : '자동 전투 기록 없음';
+    const totalText = new Text({
+      text: totals,
+      style: new TextStyle({ fill: COLORS.text, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
+    });
+    totalText.position.set(76, 524);
+    const reasonText = new Text({
+      text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)}` : '수동 전투 또는 기록되지 않은 이전 결과입니다.',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700' }),
+    });
+    reasonText.position.set(76, 545);
+    this.view.addChild(panel, title, totalText, reasonText);
+  }
+
   private createRewards(context: AppContext): void {
     const dropNames = this.outcome.itemDrops.length > 0
       ? this.outcome.itemDrops.map((itemId) => context.gameData.getItem(itemId).name).join(' · ')
       : '획득 장비 없음';
-    const rewardPanel = createSectionPanel(58, 518, 424, 210, 'panel_strong');
+    const rewardPanel = createSectionPanel(58, 580, 424, 148, 'panel_strong');
     const chest = createIconSprite('inventory', 28);
-    chest.position.set(80, 532);
+    chest.position.set(80, 592);
     const rewardTitle = new Text({
       text: 'MISSION REWARD',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 14, fontWeight: '700', letterSpacing: 0.7 }),
     });
-    rewardTitle.position.set(116, 540);
+    rewardTitle.position.set(116, 596);
     const expIcon = createIconSprite('energy', 24);
-    expIcon.position.set(82, 591);
+    expIcon.position.set(82, 629);
     const goldIcon = createIconSprite('gold', 24);
-    goldIcon.position.set(282, 591);
+    goldIcon.position.set(282, 629);
     const exp = createMetric('경험치', `+${this.outcome.exp.toLocaleString()}`, 174);
-    exp.position.set(82, 574);
+    exp.position.set(82, 612);
     const gold = createMetric('골드', `+${this.outcome.gold.toLocaleString()}`, 174);
-    gold.position.set(282, 574);
+    gold.position.set(282, 612);
     const equipmentLabel = new Text({
       text: '획득 장비',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '700' }),
     });
-    equipmentLabel.position.set(82, 650);
+    equipmentLabel.position.set(82, 672);
     const equipment = new Text({
       text: dropNames,
       style: new TextStyle({
@@ -165,7 +193,7 @@ export class ResultScene implements Scene {
         wordWrapWidth: 360,
       }),
     });
-    equipment.position.set(82, 672);
+    equipment.position.set(82, 692);
     this.view.addChild(rewardPanel, chest, rewardTitle, exp, gold, expIcon, goldIcon, equipmentLabel, equipment);
   }
 

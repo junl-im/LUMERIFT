@@ -2,6 +2,7 @@ import type { MobileViewportMetrics } from './MobileViewportController';
 
 export interface BattleHudSafeAreaLayout {
   readonly compact: boolean;
+  readonly profile: 'ios' | 'android' | 'desktop';
   readonly controlScale: number;
   readonly topOffset: number;
   readonly joystick: { readonly x: number; readonly y: number };
@@ -15,6 +16,7 @@ export function resolveBattleHudSafeArea(
   metrics: MobileViewportMetrics,
   largeHud = false,
 ): BattleHudSafeAreaLayout {
+  const profile = metrics.platform ?? 'desktop';
   const compactWidth = metrics.width <= 375;
   const shortViewport = metrics.height <= 720;
   const keyboardOpen = metrics.keyboardOffset > 80;
@@ -26,12 +28,15 @@ export function resolveBattleHudSafeArea(
   );
   const viewportHeight = Math.max(1, metrics.height);
   const topOffset = clamp((metrics.offsetTop / viewportHeight) * 960, 0, 18);
-  const bottomLift = keyboardOpen ? 84 : shortViewport ? 34 : compactWidth ? 14 : 0;
+  const platformLift = profile === 'ios' ? 14 : profile === 'android' ? 7 : 0;
+  const bottomLift = (keyboardOpen ? 84 : shortViewport ? 34 : compactWidth ? 14 : 0) + platformLift;
   const baseY = 865 - bottomLift;
-  const horizontalInset = compactWidth ? 8 : 0;
+  const viewportInset = clamp((metrics.offsetLeft / Math.max(1, metrics.width)) * 540, 0, 14);
+  const horizontalInset = (compactWidth ? 8 : 0) + viewportInset;
 
   return {
     compact,
+    profile,
     controlScale,
     topOffset,
     joystick: { x: 88 - horizontalInset, y: baseY },
@@ -45,6 +50,7 @@ export function resolveBattleHudSafeArea(
 export function battleHudLayoutKey(layout: BattleHudSafeAreaLayout): string {
   return [
     layout.compact ? 'compact' : 'standard',
+    layout.profile,
     layout.controlScale.toFixed(2),
     layout.topOffset.toFixed(1),
     layout.joystick.x.toFixed(1),

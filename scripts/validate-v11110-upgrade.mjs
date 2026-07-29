@@ -43,7 +43,7 @@ const requirements = {
     "createComicTag('production-line'",
   ],
   'README.md': [
-    '# LUMERIFT: 균열의 계승자 v1.11.10',
+    '## v1.11.10 핵심 업데이트',
     'docs/INTERFACE_RENEWAL_v1.11.10.md',
     'docs/ASSET_RENEWAL_v1.11.10.md',
     'docs/PATCH_NOTES_v1.11.10.md',

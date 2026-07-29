@@ -30,4 +30,12 @@ describe('resolveBattleHudSafeArea', () => {
     expect(layout.compact).toBe(true);
     expect(layout.joystick.y).toBeLessThanOrEqual(781);
   });
+
+  it('applies a larger bottom lift on iOS than Android', () => {
+    const ios = resolveBattleHudSafeArea({ ...metrics(390, 720), platform: 'ios' as const });
+    const android = resolveBattleHudSafeArea({ ...metrics(390, 720), platform: 'android' as const });
+    expect(ios.profile).toBe('ios');
+    expect(ios.joystick.y).toBeLessThan(android.joystick.y);
+  });
+
 });

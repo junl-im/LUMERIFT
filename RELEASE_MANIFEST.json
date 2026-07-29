@@ -1,17 +1,17 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.10",
-  "baseVersion": "1.11.9",
+  "version": "1.11.11",
+  "baseVersion": "1.11.10",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.10.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.9_to_v1.11.10.zip",
-  "qualityStage": "production-candidate-interface-asset-renewal",
+  "fullArchive": "LUMERIFT_FULL_v1.11.11.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.10_to_v1.11.11.zip",
+  "qualityStage": "production-candidate-auto-session-boss-rules-mobile-safe-area",
   "features": [
-    "웹툰형 강조 카드·코믹 태그·잉크 라인 기반 인터페이스 크롬 리뉴얼",
-    "로비 리뉴얼 브리핑 카드와 에셋 보관소 접근성 강화",
-    "에셋 갤러리의 production-line/legacy 구분과 시각 안내 강화",
-    "v1.11.10 누적 검증기 및 인수인계 문서 갱신"
+    "자동 전투 세션 로그와 결과 화면 AUTO ASSIST REPORT",
+    "심연 절단·심연 폭발·추적 균열 패턴별 회피 시점과 방향 규칙",
+    "HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단",
+    "iOS·Android visualViewport 기반 전투 HUD Safe Area 보정"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,9 +37,9 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1118-upgrade",
     "validate-v1119-upgrade",
     "validate-v11110-upgrade",
+    "validate-v11111-upgrade",
     "asset registry release sync"
   ]
 }

@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.10
+# LUMERIFT: 균열의 계승자 v1.11.11
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -40,3 +40,12 @@ npm run dev
 - 웹툰형 코믹 태그·피처 마키·잉크 라인 기반 UI 크롬 리뉴얼
 - 로비 리뉴얼 브리핑 카드와 에셋 보관소 production-line 안내 추가
 - 관련 문서: `docs/INTERFACE_RENEWAL_v1.11.10.md`, `docs/ASSET_RENEWAL_v1.11.10.md`, `docs/PATCH_NOTES_v1.11.10.md`
+
+
+## v1.11.11 핵심 업데이트
+- 자동 전투 세션 로그와 결과 화면 `AUTO ASSIST REPORT`
+- 타겟 전환·공격·스킬·회피·수동 개입 통계
+- 심연 절단·심연 폭발·추적 균열 패턴별 회피 시점과 방향 규칙
+- HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단
+- iOS·Android visualViewport 기반 전투 HUD Safe Area 보정
+- 관련 문서: `docs/AUTO_COMBAT_SESSION_REPORT_v1.11.11.md`, `docs/BOSS_DODGE_RULES_v1.11.11.md`, `docs/COMPOSITE_AUTO_SKILL_v1.11.11.md`, `docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md`

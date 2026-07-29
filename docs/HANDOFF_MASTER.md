@@ -335,3 +335,9 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 공통 배경·패널·텍스트 대비를 밝게 조정해 칙칙함과 정보 혼잡을 줄였다.
 - ASSET_REGISTRY는 릴리스마다 `npm run asset:registry`로 재생성해 manifest와 버전·용량·해시를 일치시킨다.
 - v1.11.3 누적 검증은 이후 버전에서도 보존 계약을 검사하도록 1.11.3 이상을 허용한다.
+
+## v1.11.11
+- 자동 전투 세션 로그와 결과 화면 AUTO ASSIST REPORT
+- 보스 패턴별 회피 방향·시점 데이터
+- HP·Drive·타겟 HP 복합 스킬 판단
+- iOS·Android 전투 HUD Safe Area 보정

@@ -5,9 +5,10 @@ export interface MobileViewportMetrics {
   readonly offsetTop: number;
   readonly offsetLeft: number;
   readonly scale: number;
+  readonly platform?: MobilePlatform;
 }
 
-type MobilePlatform = 'ios' | 'android' | 'desktop';
+export type MobilePlatform = 'ios' | 'android' | 'desktop';
 
 export class MobileViewportController {
   private active = false;
@@ -43,7 +44,7 @@ export class MobileViewportController {
 
   public metrics(): MobileViewportMetrics {
     if (typeof window === 'undefined') {
-      return { width: 540, height: 960, keyboardOffset: 0, offsetTop: 0, offsetLeft: 0, scale: 1 };
+      return { width: 540, height: 960, keyboardOffset: 0, offsetTop: 0, offsetLeft: 0, scale: 1, platform: 'desktop' };
     }
 
     const viewport = window.visualViewport;
@@ -53,7 +54,7 @@ export class MobileViewportController {
     const offsetLeft = Math.max(0, Math.round(viewport?.offsetLeft ?? 0));
     const scale = Number((viewport?.scale ?? 1).toFixed(3));
     const keyboardOffset = Math.max(0, Math.round(window.innerHeight - height - offsetTop));
-    return { width, height, keyboardOffset, offsetTop, offsetLeft, scale };
+    return { width, height, keyboardOffset, offsetTop, offsetLeft, scale, platform: this.detectPlatform() };
   }
 
   private scheduleApply(): void {

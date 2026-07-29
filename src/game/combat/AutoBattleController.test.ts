@@ -95,4 +95,41 @@ describe('resolveAutoBattle', () => {
     expect(critical.action).toBe('dodge');
     expect(critical.reason).toBe('boss-critical-evade');
   });
+  it('uses pattern-specific boss dodge timing and reason', () => {
+    const result = resolveAutoBattle({
+      ...base,
+      targetRank: 'boss',
+      targetPatternId: 'boss_nova',
+      targetDistance: 80,
+      targetTelegraphProgress: 0.5,
+      targetTelegraphRange: 205,
+    });
+    expect(result.action).toBe('dodge');
+    expect(result.reason).toBe('boss-nova-evade');
+  });
+
+  it('conserves Drive against a nearly defeated normal target', () => {
+    const result = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.08,
+      driveRatio: 1,
+    });
+    expect(result.action).toBe('attack');
+    expect(result.reason).toBe('target-finisher-save');
+  });
+
+  it('requires enough Drive for automated skill use', () => {
+    const result = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.8,
+      driveRatio: 0.02,
+    });
+    expect(result.action).toBe('attack');
+    expect(result.reason).toBe('skill-hp-gated');
+  });
+
 });
