@@ -44,8 +44,8 @@ export function createRasterPanel(
   if (!texture) {
     root.addChild(new Graphics()
       .roundRect(x, y, width, height, 22)
-      .fill({ color: COLORS.panel, alpha: 0.95 })
-      .stroke({ color: COLORS.warning, alpha: 0.5, width: 2 }));
+      .fill({ color: COLORS.panel, alpha: 0.96 })
+      .stroke({ color: COLORS.warning, alpha: 0.42, width: 2 }));
     addPanelDepth(root, x, y, width, height, textureName);
     return root;
   }
@@ -76,11 +76,14 @@ function addPanelDepth(
   if (width < 76 || height < 34) return;
   const compact = textureName === 'resource_chip' || height < 52;
   const inset = compact ? 8 : 12;
-  const highlightAlpha = compact ? 0.12 : 0.18;
+  const highlightAlpha = compact ? 0.14 : 0.22;
   const accents = new Graphics()
     .moveTo(x + inset, y + 3)
     .lineTo(x + width - inset, y + 3)
     .stroke({ color: 0xffffff, alpha: highlightAlpha, width: 1 })
+    .moveTo(x + inset + 6, y + 7)
+    .lineTo(x + width * 0.62, y + 7)
+    .stroke({ color: COLORS.primaryBright, alpha: compact ? 0.12 : 0.18, width: 1.5 })
     .moveTo(x + inset, y + height - 3)
     .lineTo(x + width - inset, y + height - 3)
     .stroke({ color: 0x020507, alpha: 0.5, width: 2 });
@@ -91,11 +94,11 @@ function addPanelDepth(
       .moveTo(x + 6, y + corner)
       .lineTo(x + 6, y + 6)
       .lineTo(x + corner, y + 6)
-      .stroke({ color: COLORS.primaryBright, alpha: 0.36, width: 1.5 })
+      .stroke({ color: COLORS.primaryBright, alpha: 0.42, width: 1.5 })
       .moveTo(x + width - corner, y + height - 6)
       .lineTo(x + width - 6, y + height - 6)
       .lineTo(x + width - 6, y + height - corner)
-      .stroke({ color: COLORS.warning, alpha: 0.28, width: 1.5 });
+      .stroke({ color: COLORS.warning, alpha: 0.34, width: 1.5 });
   }
   root.addChild(accents);
 }

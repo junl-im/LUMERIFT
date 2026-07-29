@@ -1,5 +1,6 @@
 import type { AuthService } from '../services/auth/AuthService';
 import type { InputManager } from '../core/input/InputManager';
+import type { JoystickCalibrationController } from '../core/input/JoystickCalibrationController';
 import type { PerformanceMonitor } from '../core/performance/PerformanceMonitor';
 import type { FrameRateController } from '../core/performance/FrameRateController';
 import type { ManagedPlayerRepository } from '../services/cloud/CloudSaveTypes';
@@ -21,6 +22,7 @@ import type { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnoun
 export interface AppContext {
   readonly auth: AuthService;
   readonly input: InputManager;
+  readonly joystickCalibration: JoystickCalibrationController;
   readonly performance: PerformanceMonitor;
   readonly frameRate: FrameRateController;
   readonly graphicsQuality: GraphicsQualityController;

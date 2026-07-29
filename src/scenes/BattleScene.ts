@@ -338,7 +338,7 @@ export class BattleScene implements Scene {
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
     this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
       mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate),
-      spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.34 : 1.05,
+      spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 1.12,
     });
     this.world.addChild(this.playerPresentation.root);
     this.prepareTextureWarmup();
@@ -881,7 +881,8 @@ export class BattleScene implements Scene {
       this.pointerTarget = undefined;
       return keyboard;
     }
-    const joystick = this.joystick?.axis ?? { x: 0, y: 0 };
+    const rawJoystick = this.joystick?.axis ?? { x: 0, y: 0 };
+    const joystick = this.context?.joystickCalibration.apply(rawJoystick) ?? rawJoystick;
     if (joystick.x !== 0 || joystick.y !== 0) {
       this.pointerTarget = undefined;
       return joystick;

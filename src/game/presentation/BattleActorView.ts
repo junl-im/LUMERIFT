@@ -28,6 +28,9 @@ export class PlayerActorView {
   public readonly root = new Container();
   private readonly body = new Graphics();
   private readonly weapon = new Graphics();
+  private readonly shadow = new Graphics();
+  private readonly silhouetteGlow = new Graphics();
+  private readonly focusHalo = new Graphics();
   private readonly riftAura = new Graphics();
   private readonly motionAccent = new Graphics();
   private readonly sprite?: AnimatedSprite;
@@ -48,9 +51,9 @@ export class PlayerActorView {
   ) {
     this.spriteBaseScale = options.spriteBaseScale ?? 1.05;
     this.mirrorWest = options.mirrorWest ?? true;
-    const shadow = new Graphics()
+    this.shadow
       .ellipse(0, 22, 31, 12)
-      .fill({ color: COLORS.dark, alpha: 0.4 });
+      .fill({ color: COLORS.dark, alpha: 0.42 });
 
     this.body
       .circle(0, 0, 27)
@@ -91,7 +94,7 @@ export class PlayerActorView {
       this.equipmentLayer.alpha = 0.88;
     }
 
-    this.root.addChild(this.riftAura, ...this.afterimages, shadow, this.body, this.weapon);
+    this.root.addChild(this.focusHalo, this.riftAura, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
     this.root.addChild(this.motionAccent);
@@ -139,6 +142,7 @@ export class PlayerActorView {
       reducedMotion: frame.reducedMotion,
       renderIntensity: frame.renderIntensity,
     });
+    this.drawCharacterPolish(controller, motion.scaleX, motion.scaleY, frame.overdrive, flashRemaining);
     this.drawMotionLayers(controller, motion.auraAlpha, motion.auraRadius, motion.trailAlpha, motion.trailLength, frame.overdrive);
     this.body.alpha = flashRemaining > 0 ? 0.45 : 1;
 
@@ -149,6 +153,7 @@ export class PlayerActorView {
       this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, this.spriteBaseScale);
       this.sprite.position.y = motion.offsetY;
       this.sprite.rotation = motion.rotation;
+      this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
     }
@@ -199,6 +204,37 @@ export class PlayerActorView {
     afterimage.scale.set(sprite.scale.x, sprite.scale.y);
     afterimage.alpha = alpha;
     afterimage.visible = true;
+  }
+
+  private drawCharacterPolish(
+    controller: PlayerCombatController,
+    scaleX: number,
+    scaleY: number,
+    overdrive: boolean,
+    flashRemaining: number,
+  ): void {
+    const feetY = 16 + (controller.state === 'moving' ? 1.5 : 0);
+    const shadowWidth = 30 + Math.abs(controller.facing.x) * 5 + (controller.state === 'dodging' ? 6 : 0);
+    const shadowHeight = 11 + Math.abs(controller.facing.y) * 2;
+    this.shadow.clear();
+    this.shadow
+      .ellipse(0, feetY + 6, shadowWidth * scaleX, shadowHeight * scaleY)
+      .fill({ color: COLORS.dark, alpha: overdrive ? 0.5 : 0.4 });
+
+    const glowColor = overdrive ? 0xffd78d : controller.state === 'skill' ? COLORS.accent : COLORS.primaryBright;
+    this.silhouetteGlow.clear();
+    this.silhouetteGlow
+      .ellipse(0, -4, 26 * scaleX, 38 * scaleY)
+      .fill({ color: glowColor, alpha: flashRemaining > 0 ? 0.08 : overdrive ? 0.1 : 0.06 })
+      .ellipse(controller.facing.x * 8, -18 + controller.facing.y * 3, 12 * scaleX, 17 * scaleY)
+      .fill({ color: 0xffffff, alpha: flashRemaining > 0 ? 0.03 : 0.022 });
+
+    this.focusHalo.clear();
+    this.focusHalo
+      .ellipse(0, 17, 40 * scaleX, 14 * scaleY)
+      .stroke({ color: glowColor, alpha: overdrive ? 0.36 : 0.22, width: overdrive ? 3 : 2 })
+      .ellipse(0, 17, 28 * scaleX, 9 * scaleY)
+      .stroke({ color: 0xffffff, alpha: overdrive ? 0.18 : 0.1, width: 1 });
   }
 
   private drawMotionLayers(

@@ -3,6 +3,7 @@ import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from './constants';
 import type { AppContext } from './AppContext';
 import { SceneManager } from '../core/scenes/SceneManager';
 import { InputManager } from '../core/input/InputManager';
+import { JoystickCalibrationController } from '../core/input/JoystickCalibrationController';
 import { PerformanceMonitor } from '../core/performance/PerformanceMonitor';
 import { FrameRateController } from '../core/performance/FrameRateController';
 import { FirebaseGateway } from '../services/firebase/FirebaseGateway';
@@ -67,6 +68,7 @@ export class GameApp {
     this.assets = assets;
     this.audio = audio;
     const frameRate = new FrameRateController(this.pixi.ticker, performance);
+    const joystickCalibration = new JoystickCalibrationController();
     const graphicsQuality = new GraphicsQualityController();
     const accessibility = new AccessibilityController();
     const playerArtVariant = new PlayerArtVariantController();
@@ -104,6 +106,7 @@ export class GameApp {
     const context: AppContext = {
       auth,
       input: this.input,
+      joystickCalibration,
       performance,
       frameRate,
       graphicsQuality,

@@ -1,22 +1,20 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.3",
-  "baseVersion": "1.11.2",
+  "version": "1.11.4",
+  "baseVersion": "1.11.3",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.3.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.2_to_v1.11.3.zip",
-  "qualityStage": "production-candidate-painted-player-qa-analysis-accessibility-audio",
+  "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
+  "qualityStage": "production-candidate-input-ui-visual-polish",
   "features": [
-    "adds automatic device QA session analysis with stability score, confidence, recommended FPS, graphics tier, issues and strengths",
-    "upgrades device QA JSON to schema v3 without inventing surface temperature or GPU-memory readings",
-    "adds opt-in LUMERIFT-owned painted player candidate as a separate lazy-loaded atlas while preserving the detailed default atlas",
-    "adds persistent three-way player art selection with fallback to the detailed atlas",
-    "adds layered combat audio orchestration using existing OGG sources with cue-specific pitch, delay and volume variation",
-    "adds optional haptic combat cues and polite/assertive ARIA live-region announcements with throttling and deduplication",
-    "connects boss warning, perfect dodge, critical hit, damage and Overdrive feedback to accessibility-aware presentation controllers",
-    "adds v1.11.3 cumulative release validation for QA analysis, painted atlas, haptics, announcements and layered audio",
-    "preserves Firebase App Check disabled state, Player Save v4, cloud contracts and shared AttackFootprint geometry"
+    "adds virtual joystick calibration with reverse correction default and user-cycling modes for screen, horizontal and vertical inversion",
+    "routes only touch joystick movement through calibration while preserving keyboard and pointer movement rules",
+    "upgrades player combat readability with stronger floor shadow, focus halo, silhouette glow and slightly larger default base scale",
+    "brightens the glass UI palette, panel highlights and scene chrome to reduce dullness and visual clutter",
+    "adds a settings shortcut for joystick correction alongside existing FPS, graphics, accessibility and QA controls",
+    "preserves Firebase App Check disabled state, player art variants, QA analysis, haptics, announcements and layered combat audio",
+    "adds v1.11.4 cumulative release validation for direction calibration, UI refinement and player visual polish"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -42,11 +40,11 @@
   },
   "verification": [
     "release-version validation runs before the main verification chain",
-    "v1.10 through v1.11.3 cumulative validators protect mobile, accessibility, recovery, combat, graphics, input, player art variants and QA analysis contracts",
-    "the painted candidate atlas contains 128 frames, 80 animation keys and remains absent from eager core and battle bundles",
-    "pure-logic harnesses verify QA analysis, haptic throttling and layered combat-audio cue resolution",
+    "v1.10 through v1.11.4 cumulative validators protect mobile, accessibility, recovery, combat, graphics, input, player art variants and QA analysis contracts",
+    "touch joystick calibration defaults to reverse correction and can cycle through screen, invert-x and invert-y modes",
+    "player presentation now includes floor shadow, focus halo, silhouette glow and overdrive tint without changing cloud-save contracts",
+    "scene chrome and panel helpers render with the brighter v1.11.4 palette and updated contrast rules",
     "all TypeScript sources are syntax-parsed with the available compiler and all static release validators pass",
-    "full and patch archives are extracted and compared by SHA-256 against the v1.11.3 working tree",
-    "physical Android and iOS surface temperature, battery and GPU-memory measurements are not claimed as completed"
+    "full and patch archives are extracted and compared by SHA-256 against the v1.11.4 working tree"
   ]
 }

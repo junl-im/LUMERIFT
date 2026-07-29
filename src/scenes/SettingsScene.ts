@@ -9,6 +9,7 @@ import type { DeviceQaSessionSampleInput } from '../core/performance/DeviceQaSes
 import { analyzeDeviceQaSession } from '../core/performance/DeviceQaSessionAnalyzer';
 import { performanceLevelLabel, pressureLabel } from '../core/performance/AdaptivePerformanceController';
 import { playerArtVariantLabel } from '../core/presentation/PlayerArtVariantController';
+import { joystickCalibrationLabel } from '../core/input/JoystickCalibrationController';
 import { visionModeLabel } from '../core/accessibility/AccessibilityController';
 import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
@@ -85,13 +86,28 @@ export class SettingsScene implements Scene {
     });
     graphics.position.set(282, 214);
 
+    const joystick = new UiButton({
+      label: `조이스틱 보정 · ${joystickCalibrationLabel(context.joystickCalibration.current)}`,
+      subtitle: '문제가 있으면 반전·좌우·상하 보정 순서로 순환합니다.',
+      width: 442,
+      height: 48,
+      tone: context.joystickCalibration.current === 'reverse' ? 'primary' : 'secondary',
+      fontSize: 12,
+      align: 'left',
+      onPress: async () => {
+        context.joystickCalibration.cycle();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '조이스틱 방향 보정을 변경했습니다.'));
+      },
+    });
+    joystick.position.set(42, 280);
+
     const diagnosticsText = new Text({
       text: diagnosticsSummary(context),
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 11, lineHeight: 18, wordWrap: true, wordWrapWidth: 442 }),
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 10, lineHeight: 16, wordWrap: true, wordWrapWidth: 442 }),
     });
-    diagnosticsText.position.set(42, 288);
+    diagnosticsText.position.set(42, 334);
     this.diagnosticsText = diagnosticsText;
-    this.view.addChild(panel, title, badge, fps, graphics, diagnosticsText);
+    this.view.addChild(panel, title, badge, fps, graphics, joystick, diagnosticsText);
   }
 
   private createAccessibilityPanel(context: AppContext): void {
@@ -193,7 +209,7 @@ export class SettingsScene implements Scene {
         : analysis
           ? `${analysis.verdict} · 점수 ${analysis.score} · 신뢰 ${analysis.confidence.toUpperCase()} · 표본 ${analysis.visibleSamples}`
           : '기록 시작 후 실제 기기에서 전투하세요. 배터리는 지원 브라우저에서만 기록하며 온도는 외부 측정값입니다.',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, lineHeight: 14, wordWrap: true, wordWrapWidth: 442 }),
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, lineHeight: 13, wordWrap: true, wordWrapWidth: 442 }),
     });
     helper.position.set(42, 778);
 
@@ -255,7 +271,7 @@ function diagnosticsSummary(context: AppContext): string {
     `${performanceLevelLabel(adaptive.level)} · ${pressureLabel(adaptive.estimatedPressure)} · Canvas ${adaptive.resolution.toFixed(2)}x`,
     `CALIBRATION · ${adaptive.calibration.label} · Render x${adaptive.calibration.thresholds.combatRenderBias.toFixed(2)}`,
     `선호 ${context.graphicsQuality.mode} / 적용 ${context.graphicsQuality.effectiveMode} · 목표 ${context.frameRate.targetFps} FPS`,
-    `PLAYER · ${playerArtVariantLabel(context.playerArtVariant.current)} · QA ${context.deviceQaSession.isRunning ? 'RECORDING' : context.deviceQaSession.hasSession ? 'READY' : 'IDLE'}`,
+    `PLAYER · ${playerArtVariantLabel(context.playerArtVariant.current)} · STICK ${joystickCalibrationLabel(context.joystickCalibration.current)} · QA ${context.deviceQaSession.isRunning ? 'RECORDING' : context.deviceQaSession.hasSession ? 'READY' : 'IDLE'}`,
   ].join('\n');
 }
 

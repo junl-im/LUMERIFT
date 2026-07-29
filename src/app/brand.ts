@@ -4,7 +4,7 @@ export const BRAND = {
   koreanTitle: '루메리프트',
   subtitle: '균열의 계승자',
   fullTitle: 'LUMERIFT: 균열의 계승자',
-  version: '1.11.3',
+  version: '1.11.4',
 } as const;
 
 export const STORAGE_KEYS = {
@@ -13,5 +13,6 @@ export const STORAGE_KEYS = {
   graphicsQuality: `${BRAND.id}.graphicsQuality`,
   accessibility: `${BRAND.id}.accessibility.v1`,
   playerArtVariant: `${BRAND.id}.playerArtVariant.v1`,
+  joystickCalibration: `${BRAND.id}.joystickCalibration.v1`,
   profilePrefix: `${BRAND.id}.profile`,
 } as const;

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.3",
-  "updatedAt": "2026-07-28",
-  "currentPhase": "v1.11.3 QA 세션 자동 분석·전용 플레이어 도색 후보·전투 진동/화면 낭독·다층 음향 완료, 물리 단말 표본과 최종 수작업 원화 승인 대기",
-  "qualityStage": "production-candidate-owned-motion-preview",
+  "version": "1.11.4",
+  "updatedAt": "2026-07-29",
+  "currentPhase": "v1.11.4 입력 방향 보정·UI 정리·캐릭터 polish 완료, 실기기 체감 방향성과 시인성 추가 피드백 대기",
+  "qualityStage": "production-candidate-input-ui-visual-polish",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -168,7 +168,8 @@
     "전투 진동 피드백과 polite/assertive 화면 낭독을 접근성 설정에 연결",
     "기존 OGG를 재사용하는 기본 공격·치명타·스킬·정밀 회피·Overdrive 다층 음향 디렉터 추가",
     "보스 예고·위험 단계와 피격·저체력·Overdrive 접근성 알림 및 중복 억제 연결",
-    "v1.11.3 전용 누적 검증과 플레이어 도색·QA 분석·전투 접근성·음향 문서 추가"
+    "v1.11.4 전용 누적 검증과 플레이어 도색·QA 분석·전투 접근성·음향 문서 추가",
+    "v1.11.4 가상 조이스틱 반전 보정, 설정 순환 교정, 밝은 UI 리파인, 플레이어 시각 polish 적용"
   ],
   "inProgress": [],
   "nextPlanned": [
@@ -284,14 +285,14 @@
     "v1.11.1 8방향 모션 마스터는 제작용 블록아웃이며 최종 수작업 런타임 Atlas로 보고하지 않는다.",
     "v1.11.2 전용 플레이어 Atlas는 선택형 기하형 모션 미리보기이며 최종 수작업 기본 원화로 보고하지 않는다.",
     "Battery Status API는 브라우저 지원 여부에 따라 누락될 수 있으며 표면 온도와 GPU 메모리는 자동 수집하지 않는다.",
-    "v1.11.3 전용 플레이어 도색 Atlas는 선택형 제작 후보이며 최종 기본 원화로 승인되지 않았다.",
+    "v1.11.4 전용 플레이어 도색 Atlas는 선택형 제작 후보이며 최종 기본 원화로 승인되지 않았다.",
     "Vibration API와 ARIA live region 동작은 브라우저·OS 접근성 설정에 따라 제한될 수 있다.",
     "다층 전투 음향은 기존 OGG의 재생 변형이며 독립 수작업 효과음 세트는 다음 단계다.",
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.3.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.2_to_v1.11.3.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -357,5 +358,9 @@
     "combatHapticCueCount": 10,
     "combatAnnouncements": true,
     "layeredCombatAudio": true
+  },
+  "releaseArchives": {
+    "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip"
   }
 }
