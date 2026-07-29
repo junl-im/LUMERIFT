@@ -58,14 +58,19 @@ export function createMenuTile(options: MenuTileOptions): Container {
   const height = options.height ?? 74;
   const root = new Container();
   const panel = createRasterPanel(0, 0, width, height, options.active ? 'nav_active' : 'nav_idle');
+  const accent = new Graphics()
+    .roundRect(8, height - 9, Math.max(24, width * 0.32), 4, 2)
+    .fill({ color: options.active ? COLORS.warning : COLORS.primaryBright, alpha: options.active ? 0.75 : 0.36 })
+    .circle(width - 15, height - 11, 2.5)
+    .fill({ color: options.active ? COLORS.primaryBright : COLORS.warning, alpha: 0.58 });
   const icon = createIconSprite(options.icon, options.subtitle ? 38 : 32);
   icon.position.set(10, options.subtitle ? 17 : 11);
   const label = new Text({
     text: options.label,
-    style: new TextStyle({ fill: options.active ? 0xfbf1c7 : COLORS.text, fontSize: options.subtitle ? 15 : 12, fontWeight: '700', letterSpacing: 0.2 }),
+    style: new TextStyle({ fill: options.active ? 0xfbf1c7 : COLORS.text, fontSize: options.subtitle ? 15 : 12, fontWeight: '800', letterSpacing: 0.35 }),
   });
   label.position.set(options.subtitle ? 52 : 12, options.subtitle ? 14 : 45);
-  const children: Container[] = [panel, icon, label];
+  const children: Container[] = [panel, accent, icon, label];
   if (options.subtitle) {
     const subtitle = new Text({
       text: options.subtitle,

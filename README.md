@@ -1,13 +1,14 @@
-# LUMERIFT: 균열의 계승자 v1.11.7
+# LUMERIFT: 균열의 계승자 v1.11.8
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
-## v1.11.7 핵심
-- 자동 타겟팅 기본 ON: 거리·전방·보스·엘리트·텔레그래프·잔여 HP를 종합해 적을 안정적으로 고른다.
-- 자동 전투 선택형 OFF: 사용자가 켰을 때만 위험 회피→거리 조절→스킬→콤보 공격을 수행한다.
-- 수동 우선: 조이스틱·키보드·직접 버튼 입력이 들어오면 자동 이동과 자동 행동을 즉시 양보한다.
-- 첫 시작 인터페이스 리뉴얼: Boot·Login·Lobby·SceneChrome 공통 씬을 새로운 UI 언어로 통일한다.
-- 전투 HUD에 TARGET / AUTO 토글, LOCK SIGNAL 패널, 타겟 링과 연결선을 추가한다.
+## v1.11.8 핵심
+- 초대규모 인터페이스 리뉴얼: Boot·Login·Lobby·Stage·Inventory·Quest·Settings·Battle·Result까지 공통 RIFT INTERFACE 디자인 적용
+- 웹툰형 패널 컷, 이중 프레임, 하프톤, 챕터 레일, 코너 스탬프, 전투 사이드 피드 추가
+- 자동 타겟 세부 우선순위 5종: 균형·가까운 적·보스/엘리트·낮은 HP·공격 예고
+- 자동 전투 세부 옵션: 자동 스킬·자동 회피·보스전 전체/타겟만/금지
+- 실기기 전투 보정 3종: 즉응형·균형형·안정형
+- 기존 저장·랭킹·판정·AttackFootprint·App Check 비활성 정책 유지
 
 ## 실행·검증
 
@@ -22,15 +23,10 @@ npm run dev
 - `AGENTS.md`
 - `HANDOFF_STATE.json`
 - `docs/HANDOFF_MASTER.md`
+- `docs/MEGA_INTERFACE_RENEWAL_v1.11.8.md`
+- `docs/COMBAT_ASSIST_TUNING_v1.11.8.md`
+- `docs/PATCH_NOTES_v1.11.8.md`
 - `docs/AUTO_TARGET_AUTO_BATTLE_v1.11.7.md`
-- `docs/FULL_INTERFACE_RENEWAL_v1.11.7.md`
-- `docs/PATCH_NOTES_v1.11.7.md`
 - `docs/EIGHT_DIRECTION_POLISH_v1.11.6.md`
-- `docs/PATCH_NOTES_v1.11.6.md`
-- `docs/WEBTOON_UI_DIRECTION_v1.11.5.md`
-- `docs/COMBAT_HUD_REWORK_v1.11.5.md`
-- `docs/HIT_FEEDBACK_DIRECTION_REVIEW_v1.11.5.md`
-- `docs/PATCH_NOTES_v1.11.5.md`
-- `docs/COMBAT_ACCESSIBILITY_FEEDBACK_v1.11.4.md`
 
-자동 전투는 접근성·편의 기능이며 서버 권위 전투나 랭킹 점수 자동 생성으로 사용하지 않는다. 물리 단말 장시간 성능·배터리·온도는 별도 실기기 검수가 필요하다.
+실기기 장시간 FPS·온도·배터리·GPU 메모리는 실제 측정 전까지 완료로 기록하지 않는다.

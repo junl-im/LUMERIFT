@@ -97,6 +97,20 @@ function addPanelComicAccent(
       .circle(x + width - 11, y + 11, 2.5)
       .fill({ color: COLORS.primaryBright, alpha: 0.58 });
   }
+
+  if (!compact && width >= 180 && height >= 76) {
+    const railWidth = Math.min(118, width * 0.34);
+    sticker
+      .moveTo(x + 14, y + height - 16)
+      .lineTo(x + 14 + railWidth, y + height - 16)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.2, width: 2 })
+      .roundRect(x + width - 54, y + height - 20, 38, 7, 4)
+      .fill({ color: COLORS.warning, alpha: 0.24 })
+      .moveTo(x + width - 26, y + 18)
+      .lineTo(x + width - 10, y + 18)
+      .lineTo(x + width - 10, y + 34)
+      .stroke({ color: 0xffffff, alpha: 0.16, width: 1.2 });
+  }
   root.addChild(sticker);
 }
 
@@ -134,6 +148,15 @@ function addPanelDepth(
       .lineTo(x + width - 6, y + height - 6)
       .lineTo(x + width - 6, y + height - corner)
       .stroke({ color: COLORS.warning, alpha: 0.34, width: 1.5 });
+  }
+  if (!compact && width >= 160) {
+    accents
+      .moveTo(x + width * 0.68, y + 8)
+      .lineTo(x + width * 0.9, y + 8)
+      .lineTo(x + width * 0.86, y + 12)
+      .lineTo(x + width * 0.66, y + 12)
+      .closePath()
+      .fill({ color: COLORS.warning, alpha: 0.1 });
   }
   root.addChild(accents);
 }

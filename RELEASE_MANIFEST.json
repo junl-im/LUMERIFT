@@ -1,17 +1,17 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.7",
-  "baseVersion": "1.11.6",
+  "version": "1.11.8",
+  "baseVersion": "1.11.7",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.7.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.6_to_v1.11.7.zip",
-  "qualityStage": "production-candidate-auto-combat-interface-renewal",
+  "fullArchive": "LUMERIFT_FULL_v1.11.8.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip",
+  "qualityStage": "production-candidate-mega-interface-combat-assist-tuning",
   "features": [
-    "automatic target selection with hysteresis and boss/elite/telegraph priority",
-    "opt-in auto battle with manual override, telegraph evade, range control, skills and combo queue",
-    "first-start interface renewal across Boot, Login, Lobby, SceneChrome and Battle",
-    "no new large runtime image assets and existing save/combat contracts preserved"
+    "초대규모 RIFT INTERFACE 리뉴얼",
+    "자동 타겟 우선순위 5종",
+    "자동 스킬·회피·보스전 제한",
+    "실기기 반응 프리셋 3종"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,9 +37,8 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1116-upgrade",
     "validate-v1117-upgrade",
-    "asset registry release sync",
-    "pure combat assist runtime harness"
+    "validate-v1118-upgrade",
+    "asset registry release sync"
   ]
 }

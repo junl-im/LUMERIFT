@@ -45,11 +45,6 @@ const requirements = {
   'src/ui/UiSkin.ts': [
     'function addPanelComicAccent(',
   ],
-  'README.md': [
-    '# LUMERIFT: 균열의 계승자 v1.11.5',
-    'docs/WEBTOON_UI_DIRECTION_v1.11.5.md',
-    'docs/COMBAT_HUD_REWORK_v1.11.5.md',
-  ],
 };
 
 for (const [path, markers] of Object.entries(requirements)) {

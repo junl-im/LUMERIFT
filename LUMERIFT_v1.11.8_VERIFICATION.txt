@@ -1,0 +1,39 @@
+LUMERIFT v1.11.8 Verification
+Date: 2026-07-29
+Base: v1.11.7
+Target: v1.11.8
+
+Scope
+- Mega RIFT INTERFACE redesign across Boot/Login/Lobby/common scenes/Battle/Result
+- Auto target priority: balanced, nearest, boss, weak, threat
+- Auto battle controls: skills, dodge, boss restriction
+- Device presets: responsive, balanced, stable
+- Device QA JSON includes combat assist settings
+
+Validation passed
+- Full cumulative static validator chain from build config through handoff
+- Release/version synchronization
+- Firebase/App Check disabled contract
+- Combat/AttackFootprint contract
+- Asset, manifest, atlas, archive, source-art and cleanup validation
+- Mobile UI and v1.10 through v1.11.8 cumulative validators
+- Source import validation
+- Handoff policy validation
+- TypeScript syntax parser: 141 source files, 0 failed
+- Strict TypeScript compile for CombatAssistController, AutoTargetController and AutoBattleController
+- Pure logic harness: settings cycles, boss priority and boss target-only safety
+
+Assets
+- Active public assets: 41 files / 5.46 MB
+- Asset registry: 325 entries
+- No new runtime image files
+- No delete or move operations
+
+Not executed in this isolated environment
+- npm dependency installation
+- full tsc -b
+- full Vitest suite
+- Vite production build
+- validate:bundle
+
+Run npm install and npm run verify in GitHub Actions for final dependency-based validation.

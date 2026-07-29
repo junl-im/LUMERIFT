@@ -46,6 +46,8 @@ import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } fro
 import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
 import { AutoTargetController } from '../game/combat/AutoTargetController';
 import { resolveAutoBattle } from '../game/combat/AutoBattleController';
+import { autoTargetPriorityLabel, combatDevicePresetLabel } from '../core/input/CombatAssistController';
+import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 
 interface EnemyActor {
   readonly runtimeId: string;
@@ -390,7 +392,7 @@ export class BattleScene implements Scene {
     this.createTutorialOverlay();
     this.bindPointerMovement();
 
-    this.view.addChild(this.world, this.hud, this.bossCinematicLayer, this.pauseOverlay, this.tutorialOverlay, this.textureWarmupLayer);
+    this.view.addChild(this.world, createCombatOverlayChrome(), this.hud, this.bossCinematicLayer, this.pauseOverlay, this.tutorialOverlay, this.textureWarmupLayer);
     this.updateVisuals(0);
   }
 
@@ -625,7 +627,7 @@ export class BattleScene implements Scene {
     this.pauseButton.position.set(476, 19);
 
     this.autoTargetButton = new UiButton({
-      label: this.context?.combatAssist.current.autoTarget ? 'TARGET · ON' : 'TARGET · OFF',
+      label: this.context?.combatAssist.current.autoTarget ? 'TARGET · BAL' : 'TARGET · OFF',
       width: 108,
       height: 28,
       tone: 'secondary',
@@ -643,7 +645,7 @@ export class BattleScene implements Scene {
     this.autoTargetButton.position.set(296, 76);
 
     this.autoBattleButton = new UiButton({
-      label: this.context?.combatAssist.current.autoBattle ? 'AUTO · ON' : 'AUTO · OFF',
+      label: this.context?.combatAssist.current.autoBattle ? 'AUTO · 균형형' : 'AUTO · OFF',
       width: 108,
       height: 28,
       tone: 'secondary',
@@ -1091,6 +1093,7 @@ export class BattleScene implements Scene {
       return;
     }
 
+    const assist = context.combatAssist.current;
     const snapshot = this.autoTargetController.update(
       player.position,
       player.facing,
@@ -1103,6 +1106,7 @@ export class BattleScene implements Scene {
         alive: enemy.controller.isAlive,
         telegraphing: enemy.controller.state === 'telegraph',
       })),
+      { priority: assist.targetPriority, devicePreset: assist.devicePreset },
     );
     const target = snapshot?.targetId
       ? this.enemies.find((enemy) => enemy.runtimeId === snapshot.targetId && enemy.controller.isAlive)
@@ -1125,7 +1129,7 @@ export class BattleScene implements Scene {
         : 'MOB';
     const hpRatio = target.controller.hp / Math.max(1, target.controller.config.maxHp);
     this.targetNameText.text = `${rankLabel} · ${target.definition.combat.name}`;
-    this.targetDetailText.text = `거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험 예고' : ''}`;
+    this.targetDetailText.text = `${autoTargetPriorityLabel(assist.targetPriority)} · 거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험' : ''}`;
 
     const accent = target.definition.visual.accentColor;
     const pulse = 0.5 + Math.sin(this.elapsed * 8) * 0.5;
@@ -1207,6 +1211,10 @@ export class BattleScene implements Scene {
       basicAction,
       skill1Action: config.skills.skill1,
       skill2Action: config.skills.skill2,
+      useSkills: context.combatAssist.current.autoSkills,
+      useDodge: context.combatAssist.current.autoDodge,
+      bossAutoMode: context.combatAssist.current.bossAutoMode,
+      devicePreset: context.combatAssist.current.devicePreset,
     });
 
     player.facing.x = decision.facing.x;
@@ -1215,16 +1223,16 @@ export class BattleScene implements Scene {
     if (this.autoActionCooldown <= 0) {
       if (decision.action === 'dodge') {
         this.requestDodge(decision.facing);
-        this.autoActionCooldown = 0.34;
+        this.autoActionCooldown = decision.cooldownSeconds;
       } else if (decision.action === 'skill2') {
         this.requestSkill('skill2');
-        this.autoActionCooldown = 0.28;
+        this.autoActionCooldown = decision.cooldownSeconds;
       } else if (decision.action === 'skill1') {
         this.requestSkill('skill1');
-        this.autoActionCooldown = 0.24;
+        this.autoActionCooldown = decision.cooldownSeconds;
       } else if (decision.action === 'attack') {
         this.requestBasicAttack();
-        this.autoActionCooldown = 0.16;
+        this.autoActionCooldown = decision.cooldownSeconds;
       }
     }
     return decision.moveAxis;
@@ -1256,8 +1264,9 @@ export class BattleScene implements Scene {
   private updateAssistButtons(): void {
     const settings = this.context?.combatAssist.current;
     if (!settings) return;
-    this.autoTargetButton?.setLabel(settings.autoTarget ? 'TARGET · ON' : 'TARGET · OFF');
-    this.autoBattleButton?.setLabel(settings.autoBattle ? 'AUTO · ON' : 'AUTO · OFF');
+    const targetMode = settings.targetPriority === 'balanced' ? 'BAL' : settings.targetPriority.toUpperCase();
+    this.autoTargetButton?.setLabel(settings.autoTarget ? `TARGET · ${targetMode}` : 'TARGET · OFF');
+    this.autoBattleButton?.setLabel(settings.autoBattle ? `AUTO · ${combatDevicePresetLabel(settings.devicePreset)}` : 'AUTO · OFF');
   }
 
   private handleKeyboardActions(moveAxis: Vec2): boolean {

@@ -25,31 +25,32 @@ const requirements = {
     'autoBattle: false',
     'toggleAutoTarget()',
     'toggleAutoBattle()',
+    'export type AutoTargetPriority',
   ],
   'src/game/combat/AutoTargetController.ts': [
     'export class AutoTargetController',
-    'const SWITCH_HYSTERESIS = 34',
+    'switchHysteresis',
     'rankBonus',
     'telegraphBonus',
   ],
   'src/game/combat/AutoBattleController.ts': [
     "export type AutoBattleAction = 'none' | 'attack' | 'skill1' | 'skill2' | 'dodge'",
     "reason: 'telegraph-evade'",
-    "reason: 'manual-override'",
+    "'manual-override'",
     "reason: 'queue-combo'",
   ],
   'src/scenes/BattleScene.ts': [
     'private readonly autoTargetController = new AutoTargetController()',
     'private updateAutoTargeting(): void {',
     'private resolveCombatAssist(manualMove: Vec2, deltaSeconds: number, manualAction: boolean): Vec2 {',
-    'TARGET · ON',
-    'AUTO · ON',
+    'TARGET ·',
+    'AUTO ·',
     'LOCK SIGNAL',
   ],
   'src/ui/InterfaceChrome.ts': [
     'export function createInterfaceBackdrop',
     'export function createInterfaceStamp',
-    'UI RENEWAL',
+    'RIFT INTERFACE',
   ],
   'src/scenes/BootScene.ts': [
     'FIRST AWAKENING',
@@ -68,9 +69,6 @@ const requirements = {
     '자동 전투',
   ],
   'README.md': [
-    '# LUMERIFT: 균열의 계승자 v1.11.7',
-    'docs/AUTO_TARGET_AUTO_BATTLE_v1.11.7.md',
-    'docs/FULL_INTERFACE_RENEWAL_v1.11.7.md',
   ],
 };
 

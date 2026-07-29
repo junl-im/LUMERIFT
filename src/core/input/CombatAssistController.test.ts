@@ -8,15 +8,31 @@ class MemoryStorage {
 }
 
 describe('CombatAssistController', () => {
-  it('starts with auto target on and auto battle off', () => {
+  it('starts with safe detailed assist defaults', () => {
     const controller = new CombatAssistController(new MemoryStorage());
-    expect(controller.current).toEqual({ autoTarget: true, autoBattle: false });
+    expect(controller.current).toEqual({
+      autoTarget: true,
+      autoBattle: false,
+      targetPriority: 'balanced',
+      autoSkills: true,
+      autoDodge: true,
+      bossAutoMode: 'target-only',
+      devicePreset: 'balanced',
+    });
   });
 
   it('enables auto target when auto battle is turned on', () => {
     const controller = new CombatAssistController(new MemoryStorage());
     controller.set({ autoTarget: false });
     controller.toggleAutoBattle();
-    expect(controller.current).toEqual({ autoTarget: true, autoBattle: true });
+    expect(controller.current.autoTarget).toBe(true);
+    expect(controller.current.autoBattle).toBe(true);
+  });
+
+  it('cycles target, boss, and device presets independently', () => {
+    const controller = new CombatAssistController(new MemoryStorage());
+    expect(controller.cycleTargetPriority()).toBe('nearest');
+    expect(controller.cycleBossAutoMode()).toBe('full');
+    expect(controller.cycleDevicePreset()).toBe('responsive');
   });
 });

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.7",
-  "updatedAt": "2026-07-29T04:35:00Z",
-  "currentPhase": "v1.11.7 자동 타겟팅·선택형 자동 전투·첫 시작 전체 인터페이스 리뉴얼 완료, 세부 자동 옵션·실기기 E2E 대기",
-  "qualityStage": "production-candidate-auto-combat-interface-renewal",
+  "version": "1.11.8",
+  "updatedAt": "2026-07-29",
+  "currentPhase": "v1.11.8 초대규모 인터페이스 리뉴얼·자동 기능 세부 설정·실기기 전투 보정 완료, 실기기 스크린샷 검수 대기",
+  "qualityStage": "production-candidate-mega-interface-combat-assist-tuning",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -172,18 +172,18 @@
     "v1.11.4 가상 조이스틱 반전 보정, 설정 순환 교정, 밝은 UI 리파인, 플레이어 시각 polish 적용",
     "v1.11.5: 웹툰형 UI 리디자인, 전투 HUD 대정리, ATTACK VECTOR 방향 검수, CHAIN/CRITICAL 히트 배너 적용",
     "v1.11.6: 8방향 이동 스무딩, 방향 리본/발자국 하이라이트, 자연스러운 이동 리듬과 캐릭터 그래픽 polish 적용",
-    "v1.11.7: 자동 타겟 기본 ON, 자동 전투 기본 OFF, 수동 우선, Boot→Battle 인터페이스 리뉴얼 적용"
+    "v1.11.7: 자동 타겟 기본 ON, 자동 전투 기본 OFF, 수동 우선, Boot→Battle 인터페이스 리뉴얼 적용",
+    "v1.11.8: RIFT INTERFACE 전 화면 리뉴얼, 자동 타겟 우선순위/자동 스킬/자동 회피/보스전 제한/기기 프리셋 적용"
   ],
   "inProgress": [
     "자동 타겟 우선순위와 자동 전투 세부 옵션 설계",
     "실브라우저 safe area·자동 전투 장시간 E2E 검수"
   ],
   "nextPlanned": [
-    "v1.11.8 자동 타겟 우선순위 선택",
-    "자동 스킬·회피·HP 조건 설정",
-    "전투 HUD safe area·소형 화면 정렬",
-    "캐릭터 8방향 공격 성공 프레임·타격 포즈 검수",
-    "모바일 장시간 자동 전투 E2E 검수"
+    "v1.11.9 Android/iOS 실기기 UI safe area 조정",
+    "자동 전투 행동 이유 로그와 디버그 표시",
+    "보스별 자동 회피 예외 규칙",
+    "캐릭터 공격 프레임·스킬 원화 고도화"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -297,8 +297,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.7.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.6_to_v1.11.7.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.8.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -306,7 +306,7 @@
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
   },
-  "lastUpdated": "2026-07-29T04:35:00Z",
+  "lastUpdated": "2026-07-29",
   "featureMetrics": {
     "bossPhaseCinematics": 3,
     "cloudRecoveryMaxPoints": 5,
@@ -368,7 +368,7 @@
   "releaseArchives": {
     "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
     "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
-    "full": "LUMERIFT_FULL_v1.11.7.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.6_to_v1.11.7.zip"
+    "full": "LUMERIFT_FULL_v1.11.8.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip"
   }
 }

@@ -20,47 +20,57 @@ export function createBackground(title: string, subtitle: string): Container {
   const interfaceBackdrop = createInterfaceBackdrop({ dense: false, label: `${BRAND.title} · ${title.toUpperCase()}` });
   const shade = new Graphics()
     .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
-    .fill({ color: COLORS.dark, alpha: 0.62 })
-    .rect(0, 0, DESIGN_WIDTH, 170)
-    .fill({ color: 0x071824, alpha: 0.52 })
-    .rect(0, 760, DESIGN_WIDTH, 200)
-    .fill({ color: COLORS.dark, alpha: 0.44 });
+    .fill({ color: COLORS.dark, alpha: 0.56 })
+    .rect(0, 0, DESIGN_WIDTH, 166)
+    .fill({ color: 0x071824, alpha: 0.48 })
+    .rect(0, 746, DESIGN_WIDTH, 214)
+    .fill({ color: COLORS.dark, alpha: 0.38 });
   const aura = new Graphics()
-    .circle(470, 90, 170)
-    .fill({ color: COLORS.primaryBright, alpha: 0.06 })
-    .circle(70, 760, 190)
-    .fill({ color: COLORS.warning, alpha: 0.04 })
-    .circle(94, 142, 110)
-    .fill({ color: COLORS.accent, alpha: 0.028 });
-  const top = createRasterPanel(18, 16, DESIGN_WIDTH - 36, 122, 'panel_strong');
+    .circle(474, 86, 188)
+    .fill({ color: COLORS.primaryBright, alpha: 0.075 })
+    .circle(74, 752, 210)
+    .fill({ color: COLORS.warning, alpha: 0.05 })
+    .circle(90, 150, 118)
+    .fill({ color: COLORS.accent, alpha: 0.038 });
+  const top = createRasterPanel(18, 48, DESIGN_WIDTH - 36, 102, 'panel_strong');
+  const headerSlash = new Graphics()
+    .moveTo(28, 54)
+    .lineTo(106, 54)
+    .lineTo(90, 66)
+    .lineTo(28, 66)
+    .closePath()
+    .fill({ color: COLORS.primaryBright, alpha: 0.28 })
+    .moveTo(DESIGN_WIDTH - 112, 132)
+    .lineTo(DESIGN_WIDTH - 28, 132)
+    .stroke({ color: COLORS.warning, alpha: 0.38, width: 2 });
 
   const brand = new Text({
-    text: BRAND.title,
-    style: new TextStyle({ fill: 0xeff7f4, fontSize: 12, fontWeight: '700', letterSpacing: 2.2 }),
+    text: `${BRAND.title} // RIFT PANEL`,
+    style: new TextStyle({ fill: 0xeff7f4, fontSize: 9, fontWeight: '800', letterSpacing: 1.85 }),
   });
-  brand.position.set(36, 30);
+  brand.position.set(38, 58);
   const heading = new Text({
     text: title,
     style: new TextStyle({
-      fill: 0xf8e7b5,
-      fontSize: 29,
-      fontWeight: '700',
-      letterSpacing: 0.5,
-      dropShadow: { color: COLORS.dark, alpha: 0.72, blur: 3, distance: 1 },
+      fill: 0xffedb9,
+      fontSize: 30,
+      fontWeight: '900',
+      letterSpacing: 0.65,
+      dropShadow: { color: COLORS.dark, alpha: 0.78, blur: 4, distance: 1 },
     }),
   });
-  heading.position.set(36, 49);
+  heading.position.set(36, 76);
   const description = new Text({
     text: subtitle,
-    style: new TextStyle({ fill: 0xbfd0cf, fontSize: 12, lineHeight: 16, wordWrap: true, wordWrapWidth: 455 }),
+    style: new TextStyle({ fill: 0xc7d8d6, fontSize: 11, lineHeight: 15, fontWeight: '700', wordWrap: true, wordWrapWidth: 420 }),
   });
-  description.position.set(37, 91);
-  const stamp = createInterfaceStamp('CHAPTER UI', 112);
-  stamp.position.set(394, 28);
+  description.position.set(38, 115);
+  const stamp = createInterfaceStamp('CHAPTER CORE', 124);
+  stamp.position.set(382, 58);
   const divider = createGlowDivider(462);
-  divider.position.set(39, 126);
+  divider.position.set(39, 143);
 
-  root.addChild(interfaceBackdrop, shade, aura, top, brand, heading, description, stamp, divider);
+  root.addChild(interfaceBackdrop, shade, aura, top, headerSlash, brand, heading, description, stamp, divider);
   return root;
 }
 

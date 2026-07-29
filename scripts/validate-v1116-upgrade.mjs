@@ -38,10 +38,6 @@ const requirements = {
   'src/game/presentation/PlayerMotionDirector.test.ts': [
     "it('gives moving state a readable natural locomotion profile'",
   ],
-  'README.md': [
-    'docs/EIGHT_DIRECTION_POLISH_v1.11.6.md',
-    'docs/PATCH_NOTES_v1.11.6.md',
-  ],
 };
 
 for (const [path, markers] of Object.entries(requirements)) {

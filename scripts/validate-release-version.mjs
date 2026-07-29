@@ -84,6 +84,12 @@ if (pkg.scripts?.['validate:upgrade:v1117'] !== 'node scripts/validate-v1117-upg
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1117')) {
   errors.push('verify에서 v1.11.7 자동 타겟·자동 전투·인터페이스 리뉴얼 검사가 누락되었습니다.');
 }
+if (pkg.scripts?.['validate:upgrade:v1118'] !== 'node scripts/validate-v1118-upgrade.mjs') {
+  errors.push('package.json v1.11.8 대규모 인터페이스·자동 세부 설정 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1118')) {
+  errors.push('verify에서 v1.11.8 대규모 인터페이스·자동 세부 설정 검사가 누락되었습니다.');
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));

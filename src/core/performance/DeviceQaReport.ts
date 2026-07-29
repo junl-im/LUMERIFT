@@ -1,6 +1,7 @@
 import { BRAND } from '../../app/brand';
 import type { AccessibilitySettings } from '../accessibility/AccessibilityController';
 import type { MobileViewportMetrics } from '../layout/MobileViewportController';
+import type { CombatAssistSettings } from '../input/CombatAssistController';
 import type { AdaptivePerformanceSnapshot } from './AdaptivePerformanceController';
 import type { DeviceQaSessionArchive } from './DeviceQaSessionRecorder';
 import { analyzeDeviceQaSession, type DeviceQaSessionAnalysis } from './DeviceQaSessionAnalyzer';
@@ -14,6 +15,7 @@ export interface DeviceQaReportInput {
   readonly fpsMode: string;
   readonly targetFps: number;
   readonly session?: DeviceQaSessionArchive;
+  readonly combatAssist?: CombatAssistSettings;
 }
 
 export interface DeviceQaReport {
@@ -48,6 +50,7 @@ export interface DeviceQaReport {
   };
   readonly performance: AdaptivePerformanceSnapshot['performance'];
   readonly accessibility: AccessibilitySettings;
+  readonly combatAssist?: CombatAssistSettings;
   readonly session?: DeviceQaSessionArchive;
   readonly analysis?: DeviceQaSessionAnalysis;
 }
@@ -87,6 +90,7 @@ export function buildDeviceQaReport(input: DeviceQaReportInput): DeviceQaReport 
     },
     performance: input.adaptive.performance,
     accessibility: input.accessibility,
+    ...(input.combatAssist ? { combatAssist: input.combatAssist } : {}),
     ...(input.session ? { session: input.session, analysis: analyzeDeviceQaSession(input.session) } : {}),
   };
 }

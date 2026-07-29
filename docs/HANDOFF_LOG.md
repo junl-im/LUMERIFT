@@ -312,3 +312,9 @@
 - AutoTargetController·AutoBattleController·CombatAssistController를 추가했다.
 - 전투 HUD에 TARGET/AUTO 토글, LOCK SIGNAL, 타겟 링과 연결선을 추가했다.
 - 첫 시작부터 Boot/Login/Lobby/공통 씬 UI를 통일된 인터페이스로 리뉴얼했다.
+
+
+## 2026-07-29 · v1.11.8
+- 모든 주요 화면 공통 디자인 체계 재구성
+- CombatAssist v2 저장 설정과 v1 마이그레이션 추가
+- 기기 프리셋을 자동 타겟·자동 전투 판단에 연결

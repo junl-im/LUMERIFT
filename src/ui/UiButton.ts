@@ -59,7 +59,8 @@ export class UiButton extends Container {
       style: new TextStyle({
         fill: COLORS.text,
         fontSize: options.fontSize ?? 20,
-        fontWeight: '700',
+        fontWeight: '800',
+        letterSpacing: 0.25,
         align: leftAligned ? 'left' : 'center',
         lineHeight: options.lineHeight ?? (options.fontSize ?? 20) * 1.15,
         dropShadow: { color: COLORS.dark, alpha: 0.68, blur: 3, distance: 1 },
@@ -82,7 +83,15 @@ export class UiButton extends Container {
       .lineTo(width - 16, 14)
       .lineTo(width - 16, 26)
       .stroke({ color: COLORS.warning, alpha: 0.22, width: 1.5 });
-    this.addChild(stickerShadow, topSheen);
+    const commandRail = new Graphics()
+      .roundRect(12, height - 10, Math.max(32, width * 0.22), 4, 2)
+      .fill({ color: options.tone === 'danger' ? COLORS.danger : COLORS.primaryBright, alpha: 0.5 })
+      .roundRect(width - 34, height - 10, 20, 4, 2)
+      .fill({ color: COLORS.warning, alpha: 0.44 });
+    const commandDot = new Graphics()
+      .circle(width - 18, 18, 3)
+      .fill({ color: options.tone === 'danger' ? COLORS.danger : COLORS.primaryBright, alpha: 0.72 });
+    this.addChild(stickerShadow, topSheen, commandRail, commandDot);
     if (options.icon) {
       const iconTexture = getUiIconTexture(options.icon);
       if (iconTexture) {

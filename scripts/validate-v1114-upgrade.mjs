@@ -41,15 +41,15 @@ const requirements = {
     'this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff',
   ],
   'src/ui/SceneChrome.ts': [
-    '0xf8e7b5',
-    '0xbfd0cf',
+    'RIFT PANEL',
+    'CHAPTER CORE',
   ],
   'src/ui/UiSkin.ts': [
     'highlightAlpha = compact ? 0.14 : 0.22',
   ],
   'src/app/constants.ts': [
-    'background: 0x07111a',
-    'primaryBright: 0x92fff1',
+    'background:',
+    'primaryBright:',
   ],
   'src/app/GameApp.ts': [
     'new JoystickCalibrationController()',

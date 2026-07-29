@@ -2,15 +2,15 @@ export const DESIGN_WIDTH = 540;
 export const DESIGN_HEIGHT = 960;
 
 export const COLORS = {
-  background: 0x07111a,
-  panel: 0x0f1a25,
-  panelStrong: 0x152638,
-  primary: 0x3ed4c0,
-  primaryBright: 0x92fff1,
-  accent: 0x8e71f3,
-  danger: 0xe05c67,
-  warning: 0xe6c57b,
-  text: 0xf7fbfa,
-  muted: 0xa8bfbd,
-  dark: 0x01050a,
+  background: 0x050b14,
+  panel: 0x0d1824,
+  panelStrong: 0x14273a,
+  primary: 0x36dbc4,
+  primaryBright: 0xa1fff2,
+  accent: 0x9c7dff,
+  danger: 0xf06472,
+  warning: 0xf0ca78,
+  text: 0xfbfffe,
+  muted: 0xb3c8c6,
+  dark: 0x010409,
 } as const;
