@@ -47,7 +47,7 @@ const requirements = {
     'cooldownSeconds',
   ],
   'src/scenes/BattleScene.ts': [
-    'autoTargetPriorityLabel',
+    'priority: assist.targetPriority',
     'combatDevicePresetLabel',
     'useSkills: settings.autoSkills',
     'useDodge: settings.autoDodge',
