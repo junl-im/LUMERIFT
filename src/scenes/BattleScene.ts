@@ -46,7 +46,7 @@ import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } fro
 import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
 import { AutoTargetController, autoTargetReasonLabel } from '../game/combat/AutoTargetController';
 import { autoBattleReasonLabel, resolveAutoBattle } from '../game/combat/AutoBattleController';
-import { autoTargetPriorityLabel, combatDevicePresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
+import { combatDevicePresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
 import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 

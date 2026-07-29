@@ -181,7 +181,7 @@ export class SettingsScene implements Scene {
       label: `스킬 HP 조건 · ${autoSkillHpRuleLabel(settings.autoSkillHpRule)}`,
       width: 210,
       height: 34,
-      tone: settings.autoSkillHpRule === 'always' ? 'warning' : 'secondary',
+      tone: settings.autoSkillHpRule === 'always' ? 'primary' : 'secondary',
       fontSize: 9,
       onPress: async () => {
         context.combatAssist.cycleAutoSkillHpRule();
