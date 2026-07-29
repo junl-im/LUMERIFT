@@ -395,3 +395,18 @@
 - [ ] 최종 수작업 8방향 프레임과 전용 Atlas 승격
 - [ ] 스킬 독립 음향과 보스 패턴 접근성 강화
 - [ ] Playwright 멀티터치·정밀 회피·복구 JSON E2E
+
+## v1.11.3 예정
+
+- Android Chrome·Samsung Internet·iOS Safari 20분 QA JSON 실표본 수집
+- 외부 표면 온도와 배터리 감소율을 병행한 DeviceCalibration 재보정
+- 전용 플레이어 최종 도색·프레임 정리·기본 Atlas 교체 후보 제작
+- 스킬별 독립 OGG 음향과 Playwright 실브라우저 모바일 전투 E2E
+
+
+## 다음: v1.11.4 실기기 표본·최종 원화 후보
+
+- Android/iOS 20분 QA JSON 실표본 수집과 임계값 보정
+- 전용 플레이어 도색 후보 수작업 정리·프레임 보간
+- 독립 OGG 효과음과 접근성 진동/낭독 실기기 검수
+- Playwright 모바일 전투 회귀 자동화

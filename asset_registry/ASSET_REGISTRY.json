@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.1",
-  "generatedAt": "2026-07-28T09:20:08.765Z",
+  "release": "1.11.3",
+  "generatedAt": "2026-07-28T22:57:54.789Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 87,
-      "bytes": 77580198,
+      "files": 90,
+      "bytes": 78141264,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 37,
-      "bytes": 4984317,
-      "atlases": 7,
-      "frames": 457,
-      "animations": 151
+      "files": 41,
+      "bytes": 5461854,
+      "atlases": 9,
+      "frames": 713,
+      "animations": 311
     }
   },
   "entries": [
@@ -62,6 +62,30 @@
       "type": "json",
       "bytes": 527,
       "sha256": "0b2a526554ad2d744a59209af412e9c270a6ad80af535debc45797010d8449ae"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.2/player/player_owned_runtime_v1_spec.json",
+      "relativePath": "lumerift_original/v1.11.2/player/player_owned_runtime_v1_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 824,
+      "sha256": "e5501191f89b21de4ae0f9bef494f9c77f6348a052897364a9625bb67704fc4d"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
+      "relativePath": "lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 559301,
+      "sha256": "61100a80ae838a02195a01f17332ade8eec96fdad6fc0a3a528253d04093daf8"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_spec.json",
+      "relativePath": "lumerift_original/v1.11.3/player/player_owned_painted_v1_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 941,
+      "sha256": "16bc0109db699d6fbfa72743ce8529ec64435c8d7e07523574f56bbce05cf9a2"
     },
     {
       "path": "art_source/open_art/v1.0.0/backgrounds/fantasy_rpg_background.png",
@@ -2519,8 +2543,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 3300,
-      "sha256": "3f5baec7fc212b8bfa7b7500817724b367f26c46a2d06ea59d4fd72b907620c8"
+      "bytes": 3718,
+      "sha256": "636ed8852fb6a1c5b3c96f1888510cc2a513e4f0f2f4e6de44a906b7af479b3c"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2828,6 +2852,48 @@
       "type": "webp",
       "bytes": 77252,
       "sha256": "9d01ff14cff0774595a84fa6e25dbd13fefc2de22e56ead09ad1bb669c966acb"
+    },
+    {
+      "path": "public/assets/live/v6/atlases/player/player_owned_motion_v6.json",
+      "relativePath": "live/v6/atlases/player/player_owned_motion_v6.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 63367,
+      "sha256": "07f6eb60c09bf512403a580a8737e792bd227b678efdb8d00e74dbec8ad807bd",
+      "atlas": {
+        "frames": 128,
+        "animations": 80,
+        "image": "player_owned_motion_v6.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v6/atlases/player/player_owned_motion_v6.webp",
+      "relativePath": "live/v6/atlases/player/player_owned_motion_v6.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 42956,
+      "sha256": "b29d39dad8dddc933443db4f2f3e9b8faf7fb0aeaf61e3f78a49c547ae4e11b9"
+    },
+    {
+      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.json",
+      "relativePath": "live/v7/atlases/player/player_owned_painted_v7.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 63364,
+      "sha256": "721a8f2e7aefbba171e95752bae8aa642687aa9fde120df4f59a18ae81179ac0",
+      "atlas": {
+        "frames": 128,
+        "animations": 80,
+        "image": "player_owned_painted_v7.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.webp",
+      "relativePath": "live/v7/atlases/player/player_owned_painted_v7.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 307432,
+      "sha256": "bf9cdbed691146110a8df062556b10b8a5f0985c737b063be315912d78896b50"
     },
     {
       "path": "public/assets/OPERATIONS_V130_SUMMARY.json",

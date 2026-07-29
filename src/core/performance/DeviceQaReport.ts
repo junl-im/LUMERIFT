@@ -2,6 +2,8 @@ import { BRAND } from '../../app/brand';
 import type { AccessibilitySettings } from '../accessibility/AccessibilityController';
 import type { MobileViewportMetrics } from '../layout/MobileViewportController';
 import type { AdaptivePerformanceSnapshot } from './AdaptivePerformanceController';
+import type { DeviceQaSessionArchive } from './DeviceQaSessionRecorder';
+import { analyzeDeviceQaSession, type DeviceQaSessionAnalysis } from './DeviceQaSessionAnalyzer';
 
 export interface DeviceQaReportInput {
   readonly adaptive: AdaptivePerformanceSnapshot;
@@ -11,10 +13,11 @@ export interface DeviceQaReportInput {
   readonly graphicsEffective: string;
   readonly fpsMode: string;
   readonly targetFps: number;
+  readonly session?: DeviceQaSessionArchive;
 }
 
 export interface DeviceQaReport {
-  readonly schema: 'lumerift-device-qa-v1';
+  readonly schema: 'lumerift-device-qa-v3';
   readonly appVersion: string;
   readonly generatedAt: string;
   readonly disclaimer: string;
@@ -45,16 +48,18 @@ export interface DeviceQaReport {
   };
   readonly performance: AdaptivePerformanceSnapshot['performance'];
   readonly accessibility: AccessibilitySettings;
+  readonly session?: DeviceQaSessionArchive;
+  readonly analysis?: DeviceQaSessionAnalysis;
 }
 
 export function buildDeviceQaReport(input: DeviceQaReportInput): DeviceQaReport {
   const nav = typeof navigator === 'undefined' ? undefined : navigator;
   const extended = nav as (Navigator & { readonly deviceMemory?: number }) | undefined;
   return {
-    schema: 'lumerift-device-qa-v1',
+    schema: 'lumerift-device-qa-v3',
     appVersion: BRAND.version,
     generatedAt: new Date().toISOString(),
-    disclaimer: 'estimatedPressure는 브라우저 프레임 추세 기반 추정값이며 실제 기기 온도 센서 측정값이 아닙니다.',
+    disclaimer: 'estimatedPressure는 브라우저 프레임 추세 기반 추정값입니다. 배터리는 지원 브라우저에서만 기록되며 표면 온도와 GPU 메모리는 물리 측정이 필요합니다.',
     device: {
       userAgent: nav?.userAgent ?? 'unknown',
       platform: document.documentElement.dataset.platform ?? 'unknown',
@@ -82,5 +87,6 @@ export function buildDeviceQaReport(input: DeviceQaReportInput): DeviceQaReport 
     },
     performance: input.adaptive.performance,
     accessibility: input.accessibility,
+    ...(input.session ? { session: input.session, analysis: analyzeDeviceQaSession(input.session) } : {}),
   };
 }

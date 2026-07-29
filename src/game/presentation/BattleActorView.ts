@@ -11,6 +11,11 @@ import { resolveBossTelegraphStyle } from './BossTelegraphLanguage';
 import { directionFromVector } from './direction';
 import { resolvePlayerMotion } from './PlayerMotionDirector';
 
+export interface PlayerActorViewOptions {
+  readonly mirrorWest?: boolean;
+  readonly spriteBaseScale?: number;
+}
+
 export interface PlayerPresentationFrame {
   readonly deltaSeconds: number;
   readonly driveRatio: number;
@@ -28,7 +33,8 @@ export class PlayerActorView {
   private readonly sprite?: AnimatedSprite;
   private readonly equipmentLayer?: Sprite;
   private readonly afterimages: Sprite[] = [];
-  private readonly spriteBaseScale = 1.05;
+  private readonly spriteBaseScale: number;
+  private readonly mirrorWest: boolean;
   private animationKey = '';
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
@@ -38,7 +44,10 @@ export class PlayerActorView {
     private readonly sheet?: Spritesheet,
     equipmentSheet?: Spritesheet,
     weaponItemId?: string,
+    options: PlayerActorViewOptions = {},
   ) {
+    this.spriteBaseScale = options.spriteBaseScale ?? 1.05;
+    this.mirrorWest = options.mirrorWest ?? true;
     const shadow = new Graphics()
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.4 });
@@ -136,7 +145,7 @@ export class PlayerActorView {
     if (this.sprite) {
       this.updateAnimation(controller, motion.animationSpeed);
       const direction = directionFromVector(controller.facing);
-      const mirrored = direction === 'w' || direction === 'sw' || direction === 'nw';
+      const mirrored = this.mirrorWest && (direction === 'w' || direction === 'sw' || direction === 'nw');
       this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, this.spriteBaseScale);
       this.sprite.position.y = motion.offsetY;
       this.sprite.rotation = motion.rotation;

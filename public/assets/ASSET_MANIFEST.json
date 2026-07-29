@@ -1,7 +1,7 @@
 {
-  "version": 11,
+  "version": 13,
   "game": "LUMERIFT",
-  "release": "1.11.1",
+  "release": "1.11.3",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -76,11 +76,25 @@
         "live/v4/backgrounds/lobby_forest_v4.webp"
       ],
       "bytes": 176951
+    },
+    "player-owned-preview": {
+      "files": [
+        "live/v6/atlases/player/player_owned_motion_v6.json",
+        "live/v6/atlases/player/player_owned_motion_v6.webp"
+      ],
+      "bytes": 106323
+    },
+    "player-owned-painted": {
+      "files": [
+        "live/v7/atlases/player/player_owned_painted_v7.json",
+        "live/v7/atlases/player/player_owned_painted_v7.webp"
+      ],
+      "bytes": 370796
     }
   },
   "deployment": {
-    "publicAssetFiles": 37,
-    "publicAssetBytes": 4984317,
+    "publicAssetFiles": 41,
+    "publicAssetBytes": 5461854,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

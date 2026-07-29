@@ -1,5 +1,17 @@
 export type AudioCategory = 'bgm' | 'sfx' | 'ui' | 'voice' | 'ambient';
 
+export interface AudioPlayOptions {
+  readonly volumeScale?: number;
+  readonly playbackRate?: number;
+  readonly delayMs?: number;
+  readonly offsetSeconds?: number;
+}
+
+export interface AudioLayer extends AudioPlayOptions {
+  readonly url: string;
+  readonly category?: AudioCategory;
+}
+
 interface CachedAudio {
   readonly url: string;
   readonly element: HTMLAudioElement;
@@ -48,16 +60,37 @@ export class AudioManager {
     return element;
   }
 
-  public async play(url: string, category: AudioCategory = 'sfx'): Promise<HTMLAudioElement> {
+  public async play(
+    url: string,
+    category: AudioCategory = 'sfx',
+    options: AudioPlayOptions = {},
+  ): Promise<HTMLAudioElement> {
     this.validate(url);
     await this.unlock();
+    if ((options.delayMs ?? 0) > 0) await delay(options.delayMs ?? 0);
     const template = this.preload(url, category);
     const audio = template.cloneNode(true) as HTMLAudioElement;
-    audio.volume = this.volumes[category];
+    audio.volume = Math.max(0, Math.min(1, this.volumes[category] * (options.volumeScale ?? 1)));
+    audio.playbackRate = Math.max(0.5, Math.min(2, options.playbackRate ?? 1));
+    audio.currentTime = Math.max(0, options.offsetSeconds ?? 0);
     this.active.add(audio);
-    audio.addEventListener('ended', () => this.active.delete(audio), { once: true });
-    await audio.play();
-    return audio;
+    const release = () => this.active.delete(audio);
+    audio.addEventListener('ended', release, { once: true });
+    try {
+      await audio.play();
+      return audio;
+    } catch (error) {
+      release();
+      throw error;
+    }
+  }
+
+  public async playLayered(layers: readonly AudioLayer[]): Promise<void> {
+    const results = await Promise.allSettled(
+      layers.map((layer) => this.play(layer.url, layer.category ?? 'sfx', layer)),
+    );
+    const rejected = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
+    if (rejected) throw rejected.reason;
   }
 
   public async playBgm(url: string, loop = true): Promise<void> {
@@ -114,4 +147,8 @@ export class AudioManager {
       throw new Error(`오디오는 OGG/Opus만 사용할 수 있습니다: ${url}`);
     }
   }
+}
+
+function delay(milliseconds: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, Math.max(0, milliseconds)));
 }

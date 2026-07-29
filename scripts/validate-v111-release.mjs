@@ -23,14 +23,14 @@ const requirements = {
     'estimatedPressure',
   ],
   'src/core/performance/DeviceQaReport.ts': [
-    "schema: 'lumerift-device-qa-v1'",
-    'estimatedPressure는 브라우저 프레임 추세 기반 추정값',
+    "schema: 'lumerift-device-qa-v3'",
+    '표면 온도와 GPU 메모리는 물리 측정이 필요합니다',
     'deviceMemory',
     'viewport',
   ],
   'src/scenes/SettingsScene.ts': [
-    '기기 QA JSON 저장',
-    '전투 HUD 접근성',
+    'QA JSON 저장',
+    '전투 표현·접근성',
     'context.accessibility.cycleVisionMode()',
     'buildDeviceQaReport',
   ],

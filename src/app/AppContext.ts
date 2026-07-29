@@ -13,6 +13,10 @@ import type { RankingService } from '../services/ranking/RankingService';
 import type { AccessibilityController } from '../core/accessibility/AccessibilityController';
 import type { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
 import type { MobileViewportController } from '../core/layout/MobileViewportController';
+import type { PlayerArtVariantController } from '../core/presentation/PlayerArtVariantController';
+import type { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
+import type { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
+import type { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
 
 export interface AppContext {
   readonly auth: AuthService;
@@ -23,6 +27,10 @@ export interface AppContext {
   readonly accessibility: AccessibilityController;
   readonly adaptivePerformance: AdaptivePerformanceController;
   readonly mobileViewport: MobileViewportController;
+  readonly playerArtVariant: PlayerArtVariantController;
+  readonly deviceQaSession: DeviceQaSessionRecorder;
+  readonly haptics: HapticFeedbackController;
+  readonly liveAnnouncer: LiveRegionAnnouncer;
   readonly gameData: GameDataRegistry;
   readonly playerRepository: ManagedPlayerRepository;
   readonly scenes: SceneManager;

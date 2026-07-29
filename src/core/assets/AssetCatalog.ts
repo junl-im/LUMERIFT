@@ -15,6 +15,8 @@ export const ASSET_PATHS = {
   uiIcons: assetUrl('assets/live/v5/atlases/ui/ui_icons_v5.json'),
   titleBackground: assetUrl('assets/live/v5/backgrounds/title_screen_v5.webp'),
   playerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
+  ownedPlayerAtlas: assetUrl('assets/live/v6/atlases/player/player_owned_motion_v6.json'),
+  ownedPaintedPlayerAtlas: assetUrl('assets/live/v7/atlases/player/player_owned_painted_v7.json'),
   monsterAtlas: assetUrl('assets/live/v4/atlases/monsters/monsters_live_v4.json'),
   effectsAtlas: assetUrl('assets/live/v4/atlases/effects/combat_effects_v4.json'),
   equipmentAtlas: assetUrl('assets/atlases/items/equipment_icons_v1.json'),
@@ -61,6 +63,19 @@ export const OPERATIONS_UI_BUNDLE: AssetBundleDefinition = {
   id: 'operations-ui-v3',
   urls: [ASSET_PATHS.operationsAtlas, ASSET_PATHS.uiAtlas, ASSET_PATHS.lobbyBackground],
   estimatedBytes: 330_000,
+};
+
+
+export const OWNED_PLAYER_PREVIEW_BUNDLE: AssetBundleDefinition = {
+  id: 'player-owned-preview',
+  urls: [ASSET_PATHS.ownedPlayerAtlas],
+  estimatedBytes: 107_000,
+};
+
+export const OWNED_PLAYER_PAINTED_BUNDLE: AssetBundleDefinition = {
+  id: 'player-owned-painted',
+  urls: [ASSET_PATHS.ownedPaintedPlayerAtlas],
+  estimatedBytes: 325_000,
 };
 
 export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
@@ -115,6 +130,25 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     atlasPaths: [ASSET_PATHS.playerAtlas],
     imagePaths: [],
     bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 950_000 },
+  },
+
+  {
+    id: 'owned-player-preview',
+    label: 'LUMERIFT 전용 모션 미리보기',
+    kind: 'atlas',
+    prefix: 'owned_',
+    atlasPaths: [ASSET_PATHS.ownedPlayerAtlas],
+    imagePaths: [],
+    bundle: { id: 'owned-player-gallery', urls: [ASSET_PATHS.ownedPlayerAtlas], estimatedBytes: 107_000 },
+  },
+  {
+    id: 'owned-player-painted',
+    label: 'LUMERIFT 전용 도색 후보',
+    kind: 'atlas',
+    prefix: 'owned_',
+    atlasPaths: [ASSET_PATHS.ownedPaintedPlayerAtlas],
+    imagePaths: [],
+    bundle: { id: 'owned-player-painted-gallery', urls: [ASSET_PATHS.ownedPaintedPlayerAtlas], estimatedBytes: 325_000 },
   },
   {
     id: 'live-monsters',

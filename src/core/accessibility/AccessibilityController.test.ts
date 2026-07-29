@@ -14,9 +14,13 @@ describe('AccessibilityController', () => {
     expect(controller.current.visionMode).toBe('standard');
     controller.cycleVisionMode();
     controller.toggleLargeHud();
+    controller.toggleHaptics();
+    controller.toggleCombatAnnouncements();
     const restored = new AccessibilityController(storage);
     expect(restored.current.visionMode).toBe('colorAssist');
     expect(restored.current.largeHud).toBe(true);
+    expect(restored.current.haptics).toBe(false);
+    expect(restored.current.combatAnnouncements).toBe(false);
     expect(restored.palette.playerHp).not.toBe(restored.palette.bossHp);
   });
 });

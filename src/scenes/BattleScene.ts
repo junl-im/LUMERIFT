@@ -3,11 +3,13 @@ import type { AppContext } from '../app/AppContext';
 import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
 import { ObjectPool } from '../core/pooling/ObjectPool';
-import { ASSET_PATHS, BATTLE_CHAPTER_1_BUNDLE } from '../core/assets/AssetCatalog';
+import { ASSET_PATHS, BATTLE_CHAPTER_1_BUNDLE, OWNED_PLAYER_PAINTED_BUNDLE, OWNED_PLAYER_PREVIEW_BUNDLE } from '../core/assets/AssetCatalog';
 import { CombatActionButton } from '../ui/CombatActionButton';
 import { VirtualJoystick } from '../ui/VirtualJoystick';
 import { createRasterPanel } from '../ui/UiSkin';
 import { BattleVfxSystem } from '../game/presentation/BattleVfxSystem';
+import { CombatAudioDirector } from '../game/presentation/CombatAudioDirector';
+import { resolveBossTelegraphStyle, type TelegraphUrgency } from '../game/presentation/BossTelegraphLanguage';
 import { normalizeBossPhase, resolveStageVisualProfile, type StageVisualProfile } from '../game/presentation/StageVisualProfile';
 import { bossCinematicAlpha, resolveBossPhasePresentation } from '../game/presentation/BossPhaseDirector';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
@@ -81,6 +83,7 @@ export class BattleScene implements Scene {
   private bossPortraitSprite?: Sprite;
   private stageVisual?: StageVisualProfile;
   private vfx?: BattleVfxSystem;
+  private combatAudio?: CombatAudioDirector;
   private ambientLayer?: Container;
   private readonly textureWarmupLayer = new Container();
   private textureWarmupFrames = 0;
@@ -125,11 +128,17 @@ export class BattleScene implements Scene {
   private waveTransitionRemaining = 0;
   private paused = false;
   private battleBundleLoaded = false;
+  private loadedPlayerVariantBundleId?: string;
+  private usingOwnedPlayerPreview = false;
+  private usingOwnedPaintedCandidate = false;
   private bossCinematicRemaining = 0;
   private bossCinematicDuration = 0;
   private bossCinematicPhase = 1;
   private perfectDodgeLock = 0;
   private ambientPhase = 0;
+  private lastBossTelegraphKey = '';
+  private lastBossTelegraphUrgency?: TelegraphUrgency;
+  private criticalHpAnnounced = false;
 
   private readonly playerHpFill = new Graphics();
   private readonly playerHpText = new Text({
@@ -248,7 +257,35 @@ export class BattleScene implements Scene {
       return;
     }
 
-    this.playerSheet = context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
+    const playerArtVariant = context.playerArtVariant.current;
+    this.usingOwnedPlayerPreview = playerArtVariant === 'owned-preview';
+    this.usingOwnedPaintedCandidate = playerArtVariant === 'owned-painted';
+    const playerVariantBundle = this.usingOwnedPaintedCandidate
+      ? OWNED_PLAYER_PAINTED_BUNDLE
+      : this.usingOwnedPlayerPreview
+        ? OWNED_PLAYER_PREVIEW_BUNDLE
+        : undefined;
+    if (playerVariantBundle) {
+      try {
+        loadingText.text = this.usingOwnedPaintedCandidate
+          ? 'LUMERIFT 전용 도색 후보 로딩 중'
+          : 'LUMERIFT 전용 모션 미리보기 로딩 중';
+        await context.assets.loadBundle(playerVariantBundle);
+        this.loadedPlayerVariantBundleId = playerVariantBundle.id;
+      } catch (error: unknown) {
+        this.usingOwnedPlayerPreview = false;
+        this.usingOwnedPaintedCandidate = false;
+        console.warn('전용 플레이어 원화를 불러오지 못해 고급 기본 원화로 복구합니다.', error);
+      }
+    }
+
+    const selectedPlayerAtlas = this.usingOwnedPaintedCandidate
+      ? ASSET_PATHS.ownedPaintedPlayerAtlas
+      : this.usingOwnedPlayerPreview
+        ? ASSET_PATHS.ownedPlayerAtlas
+        : ASSET_PATHS.playerAtlas;
+    this.playerSheet = context.assets.get<Spritesheet>(selectedPlayerAtlas)
+      ?? context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
     this.monsterSheet = context.assets.get<Spritesheet>(ASSET_PATHS.monsterAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
@@ -261,6 +298,12 @@ export class BattleScene implements Scene {
     context.audio.preload(ASSET_PATHS.skill, 'sfx');
     context.audio.preload(ASSET_PATHS.dodge, 'sfx');
     context.audio.preload(ASSET_PATHS.forestBgm, 'bgm');
+    this.combatAudio = new CombatAudioDirector(context.audio, {
+      slash: ASSET_PATHS.slash,
+      hit: ASSET_PATHS.hit,
+      skill: ASSET_PATHS.skill,
+      dodge: ASSET_PATHS.dodge,
+    });
     void context.audio.playBgm(ASSET_PATHS.forestBgm).catch(() => undefined);
     this.view.removeChild(loadingLayer);
     loadingLayer.destroy({ children: true });
@@ -293,7 +336,10 @@ export class BattleScene implements Scene {
     this.world.addChild(this.vfx.view);
     const equippedWeaponUid = this.profile.equipped.weapon;
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
-    this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId);
+    this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
+      mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate),
+      spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.34 : 1.05,
+    });
     this.world.addChild(this.playerPresentation.root);
     this.prepareTextureWarmup();
     this.createHud();
@@ -328,6 +374,12 @@ export class BattleScene implements Scene {
     this.context?.audio.release(ASSET_PATHS.skill);
     this.context?.audio.release(ASSET_PATHS.dodge);
     this.context?.audio.release(ASSET_PATHS.forestBgm);
+    if (this.loadedPlayerVariantBundleId) {
+      await this.context?.assets.releaseBundle(this.loadedPlayerVariantBundleId);
+      this.loadedPlayerVariantBundleId = undefined;
+    }
+    this.context?.haptics.cancel();
+    this.context?.liveAnnouncer.clear();
     if (this.battleBundleLoaded) {
       await this.context?.assets.releaseBundle(BATTLE_CHAPTER_1_BUNDLE.id);
       this.battleBundleLoaded = false;
@@ -864,7 +916,8 @@ export class BattleScene implements Scene {
     const direction = moveAxis.x !== 0 || moveAxis.y !== 0 ? moveAxis : player.facing;
     if (!player.requestDodge(direction)) return;
     this.vfx?.spawn('dodge', player.position, Math.atan2(direction.y, direction.x), 0.9);
-    void this.context?.audio.play(ASSET_PATHS.dodge, 'sfx').catch(() => undefined);
+    this.combatAudio?.play({ kind: 'dodge', perfect: false });
+    this.context?.haptics.pulse('dodge', this.accessibility?.haptics);
   }
 
   private requestSkill(slot: 'skill1' | 'skill2'): void {
@@ -877,7 +930,8 @@ export class BattleScene implements Scene {
       this.announce(`${action.label}\nRIFT EMPOWERED`, 0.72);
       this.camera?.pulseZoom(action.impactTier === 'ultimate' ? 1.045 : 1.025, 0.08);
     }
-    void this.context?.audio.play(ASSET_PATHS.skill, 'sfx').catch(() => undefined);
+    this.combatAudio?.play({ kind: 'skill', slot, empowered: boost.empowered });
+    this.context?.haptics.pulse('skill', this.accessibility?.haptics);
   }
 
   private updateWaveFlow(deltaSeconds: number): void {
@@ -999,6 +1053,9 @@ export class BattleScene implements Scene {
             this.vfx?.spawn('dodge', player.position, Math.atan2(player.facing.y, player.facing.x), 1.18);
             this.spawnEffect('circle', 76, 0x7fffe0, player.position, player.facing, Math.PI, 0.3);
             this.announce('PERFECT DODGE\n쿨다운 가속', 0.65);
+            this.combatAudio?.play({ kind: 'dodge', perfect: true });
+            this.context?.haptics.pulse('perfectDodge', this.accessibility?.haptics);
+            this.announceAssistive('정밀 회피 성공. 스킬 쿨다운이 감소했습니다.', 'assertive', 1200);
             this.camera?.addHitStop(0.045);
             this.camera?.pulseZoom(1.03, 0.07);
           }
@@ -1017,7 +1074,12 @@ export class BattleScene implements Scene {
 
         this.playerFlashRemaining = 0.18;
         this.vfx?.spawn('hit', player.position, 0, 0.72);
-        void this.context?.audio.play(ASSET_PATHS.hit, 'sfx').catch(() => undefined);
+        this.combatAudio?.play({ kind: 'damage', boss: enemy.controller.config.rank === 'boss' });
+        this.context?.haptics.pulse('damage', this.accessibility?.haptics);
+        if (!this.criticalHpAnnounced && player.hp / playerConfig.maxHp <= 0.25) {
+          this.criticalHpAnnounced = true;
+          this.announceAssistive('플레이어 체력이 25퍼센트 이하입니다.', 'assertive', 4000);
+        }
         this.showDamage(player.position.x, player.position.y - 38, damage, true, 'player');
         this.camera?.addShake(this.scaledShake(enemy.controller.config.rank === 'boss' ? 10 : 6), 0.18);
         this.camera?.addHitStop(enemy.controller.config.rank === 'boss' ? 0.07 : 0.045);
@@ -1032,7 +1094,9 @@ export class BattleScene implements Scene {
 
     for (const event of player.drainHitEvents()) {
       this.spawnActionEffect(event.action, event.origin, event.facing);
-      void this.context?.audio.play(ASSET_PATHS.slash, 'sfx').catch(() => undefined);
+      if (event.action.kind === 'basic') {
+        this.combatAudio?.play({ kind: 'swing', comboStep: player.comboStep });
+      }
       let hitCount = 0;
       let criticalCount = 0;
       const preparedBoost = event.action.kind === 'skill1' || event.action.kind === 'skill2'
@@ -1100,10 +1164,22 @@ export class BattleScene implements Scene {
       }
 
       if (hitCount > 0) {
+        this.combatAudio?.play({
+          kind: 'impact',
+          tier: event.action.impactTier,
+          critical: criticalCount > 0,
+          hitCount,
+        });
+        this.context?.haptics.pulse(criticalCount > 0 ? 'critical' : 'attack', this.accessibility?.haptics);
         const before = this.momentum.snapshot().overdrive;
         this.momentum.registerHit(event.action, hitCount, criticalCount);
         const after = this.momentum.snapshot();
-        if (!before && after.overdrive) this.announce('RIFT DRIVE\nOVERDRIVE', 1.05);
+        if (!before && after.overdrive) {
+          this.announce('RIFT DRIVE\nOVERDRIVE', 1.05);
+          this.combatAudio?.play({ kind: 'overdrive' });
+          this.context?.haptics.pulse('overdrive', this.accessibility?.haptics);
+          this.announceAssistive('리프트 드라이브 오버드라이브가 발동했습니다.', 'assertive', 2500);
+        }
         this.camera?.addShake(
           this.scaledShake(event.action.shake),
           event.action.impactTier === 'ultimate' ? 0.32 : event.action.impactTier === 'heavy' ? 0.22 : 0.16,
@@ -1344,13 +1420,35 @@ export class BattleScene implements Scene {
     const telegraph = boss.controller.telegraph;
     if (telegraph) {
       const remaining = Math.max(0, telegraph.pattern.windup * (1 - telegraph.progress));
-      const critical = telegraph.progress >= 0.78;
-      this.dangerText.text = `${telegraph.pattern.shape === 'circle' ? '◎' : '◢'} ${critical ? '회피' : '위험 예고'} · ${telegraph.pattern.label} · ${remaining.toFixed(1)}s`;
-      this.dangerText.style.fill = critical ? 0xffffff : telegraph.pattern.effectColor;
+      const style = resolveBossTelegraphStyle(
+        telegraph.pattern,
+        telegraph.progress,
+        boss.controller.phase,
+        boss.controller.config.rank,
+      );
+      const telegraphKey = `${boss.controller.phase}:${telegraph.pattern.shape}:${telegraph.pattern.label}`;
+      if (telegraphKey !== this.lastBossTelegraphKey) {
+        this.lastBossTelegraphKey = telegraphKey;
+        this.lastBossTelegraphUrgency = undefined;
+      }
+      if (style.urgency !== this.lastBossTelegraphUrgency) {
+        this.lastBossTelegraphUrgency = style.urgency;
+        if (style.urgency === 'warning') {
+          this.context?.haptics.pulse('bossWarning', this.accessibility?.haptics);
+          this.announceAssistive(`보스 공격 예고. ${telegraph.pattern.label}.`, 'polite', 1200);
+        } else if (style.urgency === 'critical') {
+          this.context?.haptics.pulse('bossCritical', this.accessibility?.haptics);
+          this.announceAssistive(`즉시 회피. ${telegraph.pattern.label}.`, 'assertive', 850);
+        }
+      }
+      this.dangerText.text = `${style.label} · ${remaining.toFixed(1)}s`;
+      this.dangerText.style.fill = style.urgency === 'critical' ? 0xffffff : telegraph.pattern.effectColor;
       this.dangerText.visible = true;
-      this.dangerText.alpha = critical ? 0.72 + Math.sin(this.elapsed * 18) * 0.28 : 0.82;
+      this.dangerText.alpha = style.urgency === 'critical' ? 0.72 + Math.sin(this.elapsed * 18) * 0.28 : 0.82;
     } else {
       this.dangerText.visible = false;
+      this.lastBossTelegraphKey = '';
+      this.lastBossTelegraphUrgency = undefined;
     }
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
     this.bossNameText.text = `◆ ${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
@@ -1486,6 +1584,17 @@ export class BattleScene implements Scene {
     this.announcementText.visible = true;
     this.announcementText.alpha = 1;
     this.announcementRemaining = duration;
+  }
+
+  private announceAssistive(
+    message: string,
+    priority: 'polite' | 'assertive' = 'polite',
+    dedupeMs = 900,
+  ): void {
+    this.context?.liveAnnouncer.announce(
+      { message, priority, dedupeMs },
+      this.accessibility?.combatAnnouncements,
+    );
   }
 
   private countDeath(enemy: EnemyActor): void {

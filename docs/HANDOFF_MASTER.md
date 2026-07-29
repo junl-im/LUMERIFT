@@ -1,8 +1,8 @@
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.11.1
+**현재 버전:** v1.11.3
 **갱신일:** 2026-07-28  
-**상태:** 기기 등급 보정·8방향 모션 프레젠테이션·보스 위험 장판·모바일 입력 안정화 완료
+**상태:** 선택형 전용 플레이어 Atlas·Lazy Loading 자동 복구·실기기 QA 세션 JSON v2 완료
 
 ## 1. 프로젝트 목적
 
@@ -280,3 +280,22 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - TouchActionGate는 전투 버튼의 단일 포인터 소유권과 중복 탭 차단을 담당한다.
 - v1.11.1 모션 마스터는 LUMERIFT 소유 제작용 블록아웃이며 최종 런타임 원화로 보고하지 않는다.
 - 실제 기기 온도·배터리·GPU 메모리는 물리 단말에서 별도 기록해야 한다.
+
+## v1.11.2 선택형 전용 플레이어 Atlas·QA 세션
+
+- `public/assets/live/v6/atlases/player/player_owned_motion_v6.*`는 LUMERIFT 소유 8방향 모션 블록아웃의 선택형 런타임 승격본이다.
+- 기본 플레이어는 기존 고급 v4 Atlas이며 설정에서 `owned-preview`를 선택할 때만 별도 번들을 Lazy Loading한다.
+- `PlayerArtVariantController`가 선택을 보존하고 `BattleScene`은 로딩 실패 시 기본 Atlas로 복구한다.
+- `DeviceQaSessionRecorder`는 3초 간격으로 FPS·1% Low·긴 프레임·P99·품질 단계·뷰포트·화면 상태를 기록한다.
+- QA JSON v2는 지원 브라우저 배터리 값을 포함할 수 있지만 표면 온도와 GPU 메모리는 null로 유지한다.
+- v1.11.2 전용 Atlas는 최종 수작업 캐릭터 원화가 아니다.
+
+
+## v1.11.3 QA 자동 분석·전투 접근성·도색 후보
+
+- 현재 버전: v1.11.3
+- QA JSON 스키마: `lumerift-device-qa-v3`
+- 플레이어 원화 선택: `detail`, `owned-preview`, `owned-painted`
+- 도색 후보는 기본값이 아니며 별도 Lazy Loading과 실패 복구를 유지한다.
+- 진동·전투 낭독·다층 음향은 프레젠테이션 계층이며 전투 판정을 변경하지 않는다.
+- 실제 단말 표면 온도·GPU 메모리와 최종 원화 승인 결과를 완료로 주장하지 않는다.

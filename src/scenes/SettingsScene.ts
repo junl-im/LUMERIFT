@@ -5,7 +5,10 @@ import { COLORS } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
 import { downloadJson } from '../core/files/JsonFileTransfer';
 import { buildDeviceQaReport } from '../core/performance/DeviceQaReport';
+import type { DeviceQaSessionSampleInput } from '../core/performance/DeviceQaSessionRecorder';
+import { analyzeDeviceQaSession } from '../core/performance/DeviceQaSessionAnalyzer';
 import { performanceLevelLabel, pressureLabel } from '../core/performance/AdaptivePerformanceController';
+import { playerArtVariantLabel } from '../core/presentation/PlayerArtVariantController';
 import { visionModeLabel } from '../core/accessibility/AccessibilityController';
 import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
@@ -92,8 +95,8 @@ export class SettingsScene implements Scene {
   }
 
   private createAccessibilityPanel(context: AppContext): void {
-    const panel = createRasterPanel(24, 406, 492, 232, 'panel');
-    const title = createTitle('전투 HUD 접근성', 42, 424);
+    const panel = createRasterPanel(24, 406, 492, 320, 'panel');
+    const title = createTitle('전투 표현·접근성', 42, 424);
     const settings = context.accessibility.current;
 
     const vision = new UiButton({
@@ -122,7 +125,7 @@ export class SettingsScene implements Scene {
         await context.scenes.change(() => new SettingsScene(this.returnTo, '전투 HUD 크기를 변경했습니다.'));
       },
     });
-    largeHud.position.set(42, 550);
+    largeHud.position.set(42, 536);
 
     const reduceFlash = new UiButton({
       label: `연출 완화 · ${settings.reduceFlash ? '켜짐' : '꺼짐'}`,
@@ -135,25 +138,89 @@ export class SettingsScene implements Scene {
         await context.scenes.change(() => new SettingsScene(this.returnTo, '카메라 흔들림과 섬광 강도를 변경했습니다.'));
       },
     });
-    reduceFlash.position.set(282, 550);
-    this.view.addChild(panel, title, vision, largeHud, reduceFlash);
+    reduceFlash.position.set(282, 536);
+
+    const haptics = new UiButton({
+      label: `진동 피드백 · ${settings.haptics ? '켜짐' : '꺼짐'}`,
+      width: 210,
+      height: 48,
+      tone: settings.haptics ? 'primary' : 'secondary',
+      fontSize: 12,
+      onPress: async () => {
+        context.accessibility.toggleHaptics();
+        context.haptics.pulse('ui', true);
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '전투 진동 피드백을 변경했습니다.'));
+      },
+    });
+    haptics.position.set(42, 604);
+
+    const announcements = new UiButton({
+      label: `전투 낭독 · ${settings.combatAnnouncements ? '켜짐' : '꺼짐'}`,
+      width: 210,
+      height: 48,
+      tone: settings.combatAnnouncements ? 'primary' : 'secondary',
+      fontSize: 12,
+      onPress: async () => {
+        const next = context.accessibility.toggleCombatAnnouncements();
+        context.liveAnnouncer.announce({ message: '전투 화면 낭독 설정이 변경되었습니다.', priority: 'polite' }, next.combatAnnouncements);
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '보스 경고와 핵심 전투 상태 낭독을 변경했습니다.'));
+      },
+    });
+    announcements.position.set(282, 604);
+
+    const artVariant = new UiButton({
+      label: `캐릭터 원화 · ${playerArtVariantLabel(context.playerArtVariant.current)}`,
+      width: 442,
+      height: 44,
+      tone: context.playerArtVariant.current === 'detail' ? 'secondary' : 'primary',
+      fontSize: 12,
+      onPress: async () => {
+        context.playerArtVariant.cycle();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '다음 전투부터 플레이어 원화 선택을 적용합니다.'));
+      },
+    });
+    artVariant.position.set(42, 666);
+    this.view.addChild(panel, title, vision, largeHud, reduceFlash, haptics, announcements, artVariant);
   }
 
   private createQaPanel(context: AppContext): void {
-    const panel = createRasterPanel(24, 656, 492, 194, 'panel_gold');
-    const title = createTitle('실기기 QA 로그', 42, 674);
+    const panel = createRasterPanel(24, 740, 492, 134, 'panel_gold');
+    const title = createTitle('실기기 QA 세션', 42, 752);
+    const analysis = analyzeDeviceQaSession(context.deviceQaSession.snapshot());
     const helper = new Text({
-      text: 'Android·iOS 실제 기기에서 1분 이상 플레이한 뒤 저장하면 FPS, 1% Low, 긴 프레임 비율, Safe Area, 기기 보정 등급과 렌더 설정이 JSON으로 기록됩니다. 온도는 센서값이 아닌 프레임 추세 추정치입니다.',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 10, lineHeight: 16, wordWrap: true, wordWrapWidth: 442 }),
+      text: context.deviceQaSession.isRunning
+        ? '기록 중 · 전투 후 종료하세요. FPS·1% Low·긴 프레임·품질·뷰포트를 3초 간격으로 누적합니다.'
+        : analysis
+          ? `${analysis.verdict} · 점수 ${analysis.score} · 신뢰 ${analysis.confidence.toUpperCase()} · 표본 ${analysis.visibleSamples}`
+          : '기록 시작 후 실제 기기에서 전투하세요. 배터리는 지원 브라우저에서만 기록하며 온도는 외부 측정값입니다.',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, lineHeight: 14, wordWrap: true, wordWrapWidth: 442 }),
     });
-    helper.position.set(42, 708);
+    helper.position.set(42, 778);
+
+    const sessionButton = new UiButton({
+      label: context.deviceQaSession.isRunning ? 'QA 기록 종료' : 'QA 기록 시작',
+      width: 210,
+      height: 46,
+      tone: context.deviceQaSession.isRunning ? 'danger' : 'secondary',
+      fontSize: 13,
+      onPress: async () => {
+        if (context.deviceQaSession.isRunning) {
+          await context.deviceQaSession.stop(deviceQaSample(context));
+          await context.scenes.change(() => new SettingsScene(this.returnTo, '실기기 QA 세션을 종료했습니다.'));
+        } else {
+          await context.deviceQaSession.start(deviceQaSample(context));
+          await context.scenes.change(() => new SettingsScene(this.returnTo, '실기기 QA 세션 기록을 시작했습니다.'));
+        }
+      },
+    });
+    sessionButton.position.set(42, 816);
 
     const exportButton = new UiButton({
-      label: '기기 QA JSON 저장',
+      label: 'QA JSON 저장',
       icon: 'download',
-      width: 442,
-      height: 54,
-      fontSize: 15,
+      width: 210,
+      height: 46,
+      fontSize: 13,
       onPress: () => {
         const report = buildDeviceQaReport({
           adaptive: context.adaptivePerformance.snapshot(),
@@ -163,19 +230,20 @@ export class SettingsScene implements Scene {
           graphicsEffective: context.graphicsQuality.effectiveMode,
           fpsMode: context.frameRate.currentMode,
           targetFps: context.frameRate.targetFps,
+          session: context.deviceQaSession.snapshot(),
         });
         downloadJson(`LUMERIFT_DEVICE_QA_${deviceDateKey()}.json`, report);
       },
     });
-    exportButton.position.set(42, 780);
+    exportButton.position.set(282, 816);
 
     const message = new Text({
       text: this.message || `LIVE ${BRAND.version} · App Check 비활성화 유지`,
       style: new TextStyle({ fill: this.message ? 0xf2d58a : 0x7f9693, fontSize: 10, align: 'center' }),
     });
     message.anchor.set(0.5, 0);
-    message.position.set(270, 842);
-    this.view.addChild(panel, title, helper, exportButton, message);
+    message.position.set(270, 866);
+    this.view.addChild(panel, title, helper, sessionButton, exportButton, message);
   }
 }
 
@@ -187,8 +255,17 @@ function diagnosticsSummary(context: AppContext): string {
     `${performanceLevelLabel(adaptive.level)} · ${pressureLabel(adaptive.estimatedPressure)} · Canvas ${adaptive.resolution.toFixed(2)}x`,
     `CALIBRATION · ${adaptive.calibration.label} · Render x${adaptive.calibration.thresholds.combatRenderBias.toFixed(2)}`,
     `선호 ${context.graphicsQuality.mode} / 적용 ${context.graphicsQuality.effectiveMode} · 목표 ${context.frameRate.targetFps} FPS`,
-    'ENGINE · PixiJS 8 · pooled VFX · adaptive combat render budget',
+    `PLAYER · ${playerArtVariantLabel(context.playerArtVariant.current)} · QA ${context.deviceQaSession.isRunning ? 'RECORDING' : context.deviceQaSession.hasSession ? 'READY' : 'IDLE'}`,
   ].join('\n');
+}
+
+function deviceQaSample(context: AppContext): DeviceQaSessionSampleInput {
+  return {
+    adaptive: context.adaptivePerformance.snapshot(),
+    viewport: context.mobileViewport.metrics(),
+    graphicsEffective: context.graphicsQuality.effectiveMode,
+    targetFps: context.frameRate.targetFps,
+  };
 }
 
 function createTitle(value: string, x: number, y: number): Text {

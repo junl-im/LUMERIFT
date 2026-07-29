@@ -1,20 +1,21 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.1",
-  "baseVersion": "1.11.0",
-  "releaseDate": "2026-07-28",
-  "fullArchive": "LUMERIFT_FULL_v1.11.1.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.0_to_v1.11.1.zip",
-  "qualityStage": "production-candidate-unified-art-pass",
+  "version": "1.11.3",
+  "baseVersion": "1.11.2",
+  "releaseDate": "2026-07-29",
+  "fullArchive": "LUMERIFT_FULL_v1.11.3.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.2_to_v1.11.3.zip",
+  "qualityStage": "production-candidate-painted-player-qa-analysis-accessibility-audio",
   "features": [
-    "adds entry, balanced and performance device calibration tiers with independent FPS and long-frame thresholds",
-    "adds player motion direction for anticipation, compression, skill trails, dodge afterimages and Rift Drive aura using the existing eight-direction runtime atlas",
-    "adds a structured boss telegraph language with warning, danger and critical phases, pattern labels and timing ticks",
-    "adds layered programmatic skill accents and impact-tier VFX while respecting the adaptive combat render budget",
-    "adds single-pointer ownership and duplicate-tap suppression for mobile combat action buttons",
-    "adds an owned eight-direction walk, attack, hit and dodge blockout master for later final runtime art promotion",
-    "extends device QA JSON with calibration tier and combat render bias without claiming physical temperature measurements",
+    "adds automatic device QA session analysis with stability score, confidence, recommended FPS, graphics tier, issues and strengths",
+    "upgrades device QA JSON to schema v3 without inventing surface temperature or GPU-memory readings",
+    "adds opt-in LUMERIFT-owned painted player candidate as a separate lazy-loaded atlas while preserving the detailed default atlas",
+    "adds persistent three-way player art selection with fallback to the detailed atlas",
+    "adds layered combat audio orchestration using existing OGG sources with cue-specific pitch, delay and volume variation",
+    "adds optional haptic combat cues and polite/assertive ARIA live-region announcements with throttling and deduplication",
+    "connects boss warning, perfect dodge, critical hit, damage and Overdrive feedback to accessibility-aware presentation controllers",
+    "adds v1.11.3 cumulative release validation for QA analysis, painted atlas, haptics, announcements and layered audio",
     "preserves Firebase App Check disabled state, Player Save v4, cloud contracts and shared AttackFootprint geometry"
   ],
   "assetPolicy": {
@@ -35,17 +36,17 @@
       "bmp",
       "tiff"
     ],
-    "publicPolicy": "public/assets contains only manifest-reachable active runtime art, validation summaries and required license notices",
-    "archivePolicy": "source blockouts and replaced runtime art remain in art_source and are excluded from GitHub Pages deployment until promoted",
+    "publicPolicy": "public/assets contains manifest-reachable active runtime art, opt-in lazy bundles, validation summaries and required license notices",
+    "archivePolicy": "source masters and replaced runtime art remain in art_source; painted player art is a candidate and not the default final art",
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
     "release-version validation runs before the main verification chain",
-    "v1.10 through v1.11.1 cumulative validators protect mobile, accessibility, recovery, combat, graphics and input contracts",
-    "pure combat presentation and device-calibration modules pass executable logic harness checks",
-    "all TypeScript source files pass parser diagnostics in the available global compiler",
-    "active public runtime images and initial-download estimates remain unchanged because the new motion master is source-only",
-    "full and patch archives are extracted and compared by SHA-256 against the v1.11.1 working tree",
-    "physical Android and iOS FPS, temperature, battery and GPU-memory measurements are not claimed as completed"
+    "v1.10 through v1.11.3 cumulative validators protect mobile, accessibility, recovery, combat, graphics, input, player art variants and QA analysis contracts",
+    "the painted candidate atlas contains 128 frames, 80 animation keys and remains absent from eager core and battle bundles",
+    "pure-logic harnesses verify QA analysis, haptic throttling and layered combat-audio cue resolution",
+    "all TypeScript sources are syntax-parsed with the available compiler and all static release validators pass",
+    "full and patch archives are extracted and compared by SHA-256 against the v1.11.3 working tree",
+    "physical Android and iOS surface temperature, battery and GPU-memory measurements are not claimed as completed"
   ]
 }

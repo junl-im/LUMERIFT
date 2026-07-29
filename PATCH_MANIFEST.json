@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "baseVersion": "1.10.1",
-  "targetVersion": "1.11.0",
-  "releaseDate": "2026-07-28",
-  "payloadFiles": 42,
-  "payloadBytes": 431880,
+  "baseVersion": "1.11.2",
+  "targetVersion": "1.11.3",
+  "releaseDate": "2026-07-29",
+  "payloadFiles": 55,
+  "payloadBytes": 1618334,
   "directDeleteFiles": 0,
   "relocationMoves": 0,
   "apply": [
@@ -18,256 +18,326 @@
     {
       "path": "AGENTS.md",
       "status": "changed",
-      "bytes": 14990,
-      "sha256": "ac606ed2b983dec261316790193e5f117b3f353845c57b1e9508a26d8e5b3005"
+      "bytes": 17512,
+      "sha256": "1aaaffa9e575c1af47c3c31fd6b76d51f6fc3a1c4fa45fec63e2844a686dbd5a"
     },
     {
       "path": "HANDOFF_STATE.json",
       "status": "changed",
-      "bytes": 23110,
-      "sha256": "aa5d8c1e9717c2160808574d6aba449ae9b3ef5c1e7349a5b50c264b85835400"
+      "bytes": 29117,
+      "sha256": "2e359402c93bc40fdaf2facf4532f3c9766b5e4b1fb78b9c0eceebf5f0627e4b"
     },
     {
       "path": "INSTALL_AND_START.bat",
       "status": "changed",
       "bytes": 648,
-      "sha256": "ff9d848a02f488cdcd448bf1baa363a55331a01895685a6121ed44246f70571a"
+      "sha256": "87526b06ceadacb7db448898d84bf2b1a2923cd644e8d997062837b037ee78fa"
     },
     {
       "path": "PATCH_DELETE_LIST.txt",
       "status": "changed",
-      "bytes": 81,
-      "sha256": "0159e924a99040402df719256aa95537a9cd3e207d310b4182bb7405cc6922d2"
+      "bytes": 56,
+      "sha256": "a7e2d1c7feee373700aa6dfa1a00241ea4a041f9f621aa189ef9432fe0b585eb"
     },
     {
       "path": "PATCH_INFO.md",
       "status": "changed",
-      "bytes": 480,
-      "sha256": "afc20f998ed1ebe4cd3d11a27e6857206e26b54d5aa1c69b8c41390a9d039acd"
+      "bytes": 284,
+      "sha256": "a3e6c4fe959573fd3ba6b1a166e7d5d1ab03e2789f8094dbbc7ea41f851abe5f"
     },
     {
       "path": "PATCH_README.txt",
       "status": "changed",
-      "bytes": 511,
-      "sha256": "9f79fa7b406d242c8706caaf1bf8de4bb229974832ede7fcab039ad14d503e50"
+      "bytes": 231,
+      "sha256": "1ab9fa12022c4f60bc1fed3fecdb05336d87f918595a5c60f83b4f61a2f51d7b"
     },
     {
       "path": "PROJECT_HANDOFF.md",
       "status": "changed",
-      "bytes": 1470,
-      "sha256": "e1e50fb16fd8d4fc4e41e6c71b5968f220a80eacb527516fc9a449c303849032"
+      "bytes": 1296,
+      "sha256": "2578f56af79f836eff370a87e32b924452fc31a44b88ed7e66c0fa75dfcfe813"
     },
     {
       "path": "README.md",
       "status": "changed",
-      "bytes": 2131,
-      "sha256": "43d4ed6c93c439684d416b30eb350736a7547455d3b6a9f2cbfa6d4cab5ee1ae"
+      "bytes": 1160,
+      "sha256": "62622a38807bcb5e86c7b559b2a704135ede9eba5ce69570b494c1afd095b41e"
     },
     {
       "path": "RELEASE_MANIFEST.json",
       "status": "changed",
-      "bytes": 2584,
-      "sha256": "12f74600d1af830678d1b6632ea2890be3fb49085f00546e82a2541ce78ef8ad"
+      "bytes": 2915,
+      "sha256": "f7bd6c40bbe23c46f6474b8cd47ce809a909f0a678b3c38d9b8dc68d221fe254"
     },
     {
       "path": "VERIFY.bat",
       "status": "changed",
       "bytes": 233,
-      "sha256": "728877852979ecaf15b91c2753a9fd52af2c1e267f292aca4be79afe410a73e4"
+      "sha256": "e31ec0f9ef7a388a0050b95981b8456f3fed9268ffa60a40e89c4109da2b3692"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
+      "status": "added",
+      "bytes": 559301,
+      "sha256": "61100a80ae838a02195a01f17332ade8eec96fdad6fc0a3a528253d04093daf8"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_spec.json",
+      "status": "added",
+      "bytes": 941,
+      "sha256": "16bc0109db699d6fbfa72743ce8529ec64435c8d7e07523574f56bbce05cf9a2"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
       "status": "changed",
-      "bytes": 113656,
-      "sha256": "51d5040eb00bf502ad93d74539c8556470ddd8a22de0699255707f0155778fec"
+      "bytes": 117119,
+      "sha256": "1d8156dd5e538d966ccaff81e245ce1ba00356ccb2e89551c8ccfed1edcdd334"
     },
     {
       "path": "docs/CHANGELOG.md",
       "status": "changed",
-      "bytes": 21968,
-      "sha256": "70b069112fa949aef335fb4ff3cb8648ca4b25578be301c801fad5bc5a6fa191"
+      "bytes": 23408,
+      "sha256": "2afcf748069dcb2c97e67d32616963195cc53065738ef5540bdb37969d71ba19"
     },
     {
-      "path": "docs/COMBAT_GRAPHICS_UPGRADE_v1.11.0.md",
+      "path": "docs/COMBAT_ACCESSIBILITY_FEEDBACK_v1.11.3.md",
       "status": "added",
-      "bytes": 2136,
-      "sha256": "cc5896a4862e5a8b057af6df860459a23e5fa38a92fbe92d312a4964982df255"
+      "bytes": 658,
+      "sha256": "f02fa02e89779f3ea97cf2e1e167934f7e2e52bd0a7a5efce9e94e9d85031eab"
+    },
+    {
+      "path": "docs/COMBAT_AUDIO_LAYERS_v1.11.3.md",
+      "status": "added",
+      "bytes": 591,
+      "sha256": "d44d514721575a1f9c2d22d964f64c932cb12374069005c2420bf74d2463e07a"
+    },
+    {
+      "path": "docs/DEVICE_QA_ANALYSIS_v1.11.3.md",
+      "status": "added",
+      "bytes": 863,
+      "sha256": "bc3935366e527486ad581841e409654cfa87b4374f44113d763e16504a61da61"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
       "status": "changed",
-      "bytes": 13467,
-      "sha256": "5af469d07acd2f43b3aa837ddac7bcb6668530171770fdc893cd6e644504be46"
+      "bytes": 15021,
+      "sha256": "5430de5abdd854b181091bc4c407d9addc26bb0ea6f5ed41966cb58ec0b9c3ff"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
       "status": "changed",
-      "bytes": 18279,
-      "sha256": "cde66b28b1811caf1d1cbfddfe92b194b1c5ceb2d5c3dd11350e7da97bb9d6aa"
+      "bytes": 20487,
+      "sha256": "8fbfc24b944747b2596a8a1e5917c3a20ab62f9d4760abfd79bf5d9ec2072225"
+    },
+    {
+      "path": "docs/MOBILE_COMBAT_E2E_v1.11.3.md",
+      "status": "added",
+      "bytes": 799,
+      "sha256": "8c739feb591080a7640614110951fc8cc74f47ab0cac1922c70020f9a0947a25"
+    },
+    {
+      "path": "docs/NEXT_UPDATE_v1.11.4.md",
+      "status": "added",
+      "bytes": 496,
+      "sha256": "8d4e8930098169e3cb85816c600051c3439007df0ca5094b402e65b67e458779"
+    },
+    {
+      "path": "docs/PATCH_NOTES_v1.11.3.md",
+      "status": "added",
+      "bytes": 590,
+      "sha256": "2ead308f77368ad603fabd4a87e7e64fbc09f2b52ac076be119c10c3e6ba4ee0"
+    },
+    {
+      "path": "docs/PLAYER_PAINTED_CANDIDATE_v1.11.3.md",
+      "status": "added",
+      "bytes": 814,
+      "sha256": "c057812c508f524e2dc60bbcf536a05c69b679cbfd1017d234b95ddd4d46450b"
     },
     {
       "path": "docs/ROADMAP.md",
       "status": "changed",
-      "bytes": 14511,
-      "sha256": "ba8a0407f7a9aef41e7935a8b7052ee405e73a700ce1fbd3d9381cfc7cc0938e"
+      "bytes": 15975,
+      "sha256": "b777b8335562d9898c8d81aa60367b43b8618e5114df0b3eac6e7e0d2642c3ad"
     },
     {
       "path": "docs/TEST_CHECKLIST.md",
       "status": "changed",
-      "bytes": 8855,
-      "sha256": "c31b1971944129b66be8a5614c59e8e4695e3220714bd69b7290fea559c73b78"
+      "bytes": 9895,
+      "sha256": "ce1a15fe1852195f7812c67545e738b666b227e4079642b2d441edd555624329"
     },
     {
       "path": "docs/VERIFICATION.md",
       "status": "changed",
-      "bytes": 10714,
-      "sha256": "bac1a04372db9ac3bbf1303a5d787674419c23f6d46667418d4b966dae374a57"
+      "bytes": 11507,
+      "sha256": "67bac09178bcb8b44726acee57ca034a12492158804e3fceed16781fa8b9d7d2"
+    },
+    {
+      "path": "docs/previews/v1.11.3_owned_player_painted_contact.webp",
+      "status": "added",
+      "bytes": 244244,
+      "sha256": "bc609e0d332383ee790528ff6df17e345dbf2638bd2ce3b467361d89e1c6776e"
     },
     {
       "path": "package.json",
       "status": "changed",
-      "bytes": 3849,
-      "sha256": "f4655662ec9ff65412c89d792391ef93b49432625bf09748ccfc9ed759c05f8e"
+      "bytes": 4170,
+      "sha256": "b11a4824c07c2d21c85f6358c893b3740268015cb384dd735cf2e2f038fee98a"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
       "status": "changed",
-      "bytes": 3300,
-      "sha256": "7719660d7e19c8c9830342a892cbf36fd26818371e8156de8b3dea567689b0b0"
+      "bytes": 3718,
+      "sha256": "636ed8852fb6a1c5b3c96f1888510cc2a513e4f0f2f4e6de44a906b7af479b3c"
     },
     {
-      "path": "scripts/validate-game-data.mjs",
-      "status": "changed",
-      "bytes": 6083,
-      "sha256": "8473518bba3d037a99d81cdac7936b3a9e02b6756c34b646166e23342d81e9e1"
+      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.json",
+      "status": "added",
+      "bytes": 63364,
+      "sha256": "721a8f2e7aefbba171e95752bae8aa642687aa9fde120df4f59a18ae81179ac0"
+    },
+    {
+      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.webp",
+      "status": "added",
+      "bytes": 307432,
+      "sha256": "bf9cdbed691146110a8df062556b10b8a5f0985c737b063be315912d78896b50"
     },
     {
       "path": "scripts/validate-release-version.mjs",
       "status": "changed",
-      "bytes": 2200,
-      "sha256": "766b92c33e7144c650581d42c3103cc2bb7cd8802cc74e5ae20c5b7000caaddb"
+      "bytes": 3382,
+      "sha256": "ac13060bb472ed158fa840ba65d6a63122e931abce46e5bb5044014210da347c"
     },
     {
       "path": "scripts/validate-v111-release.mjs",
       "status": "changed",
-      "bytes": 3276,
-      "sha256": "537ebc6fede94c604b4c62ed81e56e59b8c2f5992de11c899f12ce6c3454884d"
+      "bytes": 3272,
+      "sha256": "08046b089e56f0b8846e44a3113a92f41c7f551ac2c727d313fe2a5b0ea84079"
     },
     {
-      "path": "scripts/validate-v1110-upgrade.mjs",
+      "path": "scripts/validate-v1112-upgrade.mjs",
+      "status": "changed",
+      "bytes": 5862,
+      "sha256": "92e367bf5ab8f8d5d4931624151f1f986073bb004ed3364a432703869e655882"
+    },
+    {
+      "path": "scripts/validate-v1113-upgrade.mjs",
       "status": "added",
-      "bytes": 2804,
-      "sha256": "d6bfba5fb690b6977f738314b8331b19e902c0aa36b29c112a440abec7738f3e"
+      "bytes": 5723,
+      "sha256": "573fa37b9a2e1c0c1f9b7b424ca80494588866eeade79dc6443d63c95230ca11"
+    },
+    {
+      "path": "src/app/AppContext.ts",
+      "status": "changed",
+      "bytes": 2455,
+      "sha256": "f83133de552398816d5f0aa20362a35ea26b31994c59c67e96c47a4737a2ecaa"
+    },
+    {
+      "path": "src/app/GameApp.ts",
+      "status": "changed",
+      "bytes": 8504,
+      "sha256": "22fdca3a574fea34ed67615283ad234b5cacb2a9a8b0fb84886a44d51123dbf2"
     },
     {
       "path": "src/app/brand.ts",
       "status": "changed",
-      "bytes": 462,
-      "sha256": "9c1b77534038f14e100f3b96b24172b334b9328686f7de1f22a238715c6102d3"
+      "bytes": 517,
+      "sha256": "6d9838835a44218192ed94bcf8dbf0305a888fb555cd408852f1abeafee5038f"
     },
     {
-      "path": "src/core/performance/CombatRenderBudget.test.ts",
+      "path": "src/core/accessibility/AccessibilityController.test.ts",
+      "status": "changed",
+      "bytes": 1149,
+      "sha256": "f83c6391be52132649fd22de6d41650eb692f21edea8820383f4fc0aea64bb9f"
+    },
+    {
+      "path": "src/core/accessibility/AccessibilityController.ts",
+      "status": "changed",
+      "bytes": 5578,
+      "sha256": "4bfd39f7c3739af22f3ab51d8b21131ad87a4d90a4b2ffa9b589882b033413cf"
+    },
+    {
+      "path": "src/core/accessibility/HapticFeedbackController.test.ts",
       "status": "added",
-      "bytes": 976,
-      "sha256": "9f5146845657aae0c846e57db9abe7ea077f99099c69d3be89207207c02fa598"
+      "bytes": 744,
+      "sha256": "a6b61e9c4479d03a0d650d73656566d18c2c4df1fa6d6b0a0384f0bd0c4649e3"
     },
     {
-      "path": "src/core/performance/CombatRenderBudget.ts",
+      "path": "src/core/accessibility/HapticFeedbackController.ts",
       "status": "added",
-      "bytes": 1744,
-      "sha256": "012d407fcfc664ad363256bbb9b5c1f9f7810139b8b50752e9ec8180cbf10110"
+      "bytes": 1920,
+      "sha256": "1374a431ae8d99bc0036bec8d23d4a528e906c3c1c39b3055ec73544a3015eca"
     },
     {
-      "path": "src/data/actions.json",
-      "status": "changed",
-      "bytes": 2801,
-      "sha256": "d1b7135e362aeb4800692f6d1451ad3665326dfe1134c11123ac4a48157c4d7e"
-    },
-    {
-      "path": "src/game/actors/player/PlayerCombatController.test.ts",
-      "status": "changed",
-      "bytes": 2447,
-      "sha256": "56b064bdcc99481780b67d105a54a6d817e272961c0dc8ce319421086b43bc85"
-    },
-    {
-      "path": "src/game/actors/player/PlayerCombatController.ts",
-      "status": "changed",
-      "bytes": 8906,
-      "sha256": "fa1c92e5fbb3276bd766cd1b9e91721cd822606b72809d4d54bcde1331f35d34"
-    },
-    {
-      "path": "src/game/combat/CombatMomentumController.test.ts",
+      "path": "src/core/accessibility/LiveRegionAnnouncer.ts",
       "status": "added",
-      "bytes": 1430,
-      "sha256": "54ca2a77bc7f44c203ac9a37908131585e0125ff209d0a214e022cce3fc831e8"
+      "bytes": 2460,
+      "sha256": "716daaeb1a5801386940458179b1ce7cff6d63b41a203f76cd5ae3520b220576"
     },
     {
-      "path": "src/game/combat/CombatMomentumController.ts",
+      "path": "src/core/assets/AssetCatalog.ts",
+      "status": "changed",
+      "bytes": 7049,
+      "sha256": "a1568540f53b95ad187abd2fa6287b4a7028dd620347dc4714752156db94ae12"
+    },
+    {
+      "path": "src/core/audio/AudioManager.ts",
+      "status": "changed",
+      "bytes": 4621,
+      "sha256": "23da05a37031d37f12b85c80438945643eb25be7a2fb21d42c577c3523b59411"
+    },
+    {
+      "path": "src/core/performance/DeviceQaReport.ts",
+      "status": "changed",
+      "bytes": 3950,
+      "sha256": "31a3a382099c31b282116c8c59455711483105a5c61a09e6754a83284693147a"
+    },
+    {
+      "path": "src/core/performance/DeviceQaSessionAnalyzer.test.ts",
       "status": "added",
-      "bytes": 4488,
-      "sha256": "29d4cd44e7713f20c354a4b97ef6f8024722c6c213a38c09adac2d9b881a9aee"
+      "bytes": 2409,
+      "sha256": "64ac277fd92769e0bab6af3d48767e1093378b0e92c2f7b580d15e1a4625de57"
     },
     {
-      "path": "src/game/combat/combatData.ts",
-      "status": "changed",
-      "bytes": 3891,
-      "sha256": "145377ee5a0717be950f2493f2c1d48a2f6befeea5a6cd0dd90f7251563fa6aa"
+      "path": "src/core/performance/DeviceQaSessionAnalyzer.ts",
+      "status": "added",
+      "bytes": 7641,
+      "sha256": "6ef331ddf057583fd9d6e3a7495211b11652e1f71b2e46f0459cc075bd1079d0"
     },
     {
-      "path": "src/game/data/GameDataRegistry.ts",
+      "path": "src/core/presentation/PlayerArtVariantController.test.ts",
       "status": "changed",
-      "bytes": 24364,
-      "sha256": "222e55da564632f6a97124a142f182b43ccc924bcb36b8670a79f6621d4f02b7"
+      "bytes": 970,
+      "sha256": "9c3a81b10bae7c8859d6d143dba7559259f2eb874536098e9ca3189b13b25a9c"
     },
     {
-      "path": "src/game/presentation/BattleVfxSystem.ts",
+      "path": "src/core/presentation/PlayerArtVariantController.ts",
       "status": "changed",
-      "bytes": 3714,
-      "sha256": "79127a74f935fba36468b4fe431c02e777719dba9e37a96fdc9ce0ed19d16478"
+      "bytes": 1759,
+      "sha256": "0f88ce7326df4a21d220ff44aacd99a8ede21b4be3184932d961d72a6b57a79a"
+    },
+    {
+      "path": "src/game/presentation/CombatAudioDirector.test.ts",
+      "status": "added",
+      "bytes": 875,
+      "sha256": "67db3dce9bb9624d3d357628fddb3148e1068d2ac27962247960fcdae841d1eb"
+    },
+    {
+      "path": "src/game/presentation/CombatAudioDirector.ts",
+      "status": "added",
+      "bytes": 3276,
+      "sha256": "057bbc56b0b750f878ba65efe44070c568fed457fc94177c77baf29b2588d073"
     },
     {
       "path": "src/scenes/BattleScene.ts",
       "status": "changed",
-      "bytes": 59294,
-      "sha256": "6bfc3566f8a9013810bae933aa5c2fe3fb68974b2ec1b1dbb591d467e4f4239f"
-    },
-    {
-      "path": "src/scenes/LobbyScene.ts",
-      "status": "changed",
-      "bytes": 15441,
-      "sha256": "713506c9e1b74b7801606ac3d9ac97b87af0acc1c3e774aca3463fadc43452c5"
+      "bytes": 66129,
+      "sha256": "945a20d14e5fe82a0a16b43a7cdeb3bc494e269480c3e6c32e40a18440121a0c"
     },
     {
       "path": "src/scenes/SettingsScene.ts",
       "status": "changed",
-      "bytes": 8449,
-      "sha256": "0e66f8ad54d897556a1ef6f74ff784283b3dafe00df291b9570676aa01798f61"
-    },
-    {
-      "path": "src/ui/CombatActionButton.ts",
-      "status": "changed",
-      "bytes": 5550,
-      "sha256": "eb3d70652391a7e1be369793d77e419b9b0069eef11035e3070ca56e2f4b3980"
-    },
-    {
-      "path": "src/ui/PremiumUi.ts",
-      "status": "changed",
-      "bytes": 4611,
-      "sha256": "5b8cfa3a19f129ce63a3b32e03d48deb31d5a14b33f18ce87f319242c5067b40"
-    },
-    {
-      "path": "src/ui/UiSkin.ts",
-      "status": "changed",
-      "bytes": 3368,
-      "sha256": "6d95a2865b25524e11ba90b11637979668aa5e39bc83275413d57323ea4ab398"
+      "bytes": 12320,
+      "sha256": "2e00848f87ef0cfda75f74841677a7255f31a6346d7ad31e23ae3d011036b64c"
     }
-  ],
-  "notes": [
-    "Rift Drive 0~100, D~SS 스타일 체인과 7초 Overdrive 추가",
-    "공격 적중 후 스킬·회피 캔슬과 정밀 회피 쿨다운 가속 추가",
-    "impactTier·driveGain·driveCost·comboWindow 행동 데이터 계약 추가",
-    "CombatRenderBudget과 BattleVfxSystem 런타임 품질 프로필 추가",
-    "Drive·스타일 HUD, 스킬 충전 링, 공통 패널 깊이 표현 추가",
-    "신규 런타임 이미지 없음, Firebase App Check 비활성화 유지"
   ]
 }

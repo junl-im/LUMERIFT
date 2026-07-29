@@ -49,6 +49,21 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1111')) {
   errors.push('verify에서 v1.11.1 전투 모션·기기 보정 검사가 누락되었습니다.');
 }
 
+if (pkg.scripts?.['validate:upgrade:v1112'] !== 'node scripts/validate-v1112-upgrade.mjs') {
+  errors.push('package.json v1.11.2 전용 플레이어 Atlas·QA 세션 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1112')) {
+  errors.push('verify에서 v1.11.2 전용 플레이어 Atlas·QA 세션 검사가 누락되었습니다.');
+}
+
+
+if (pkg.scripts?.['validate:upgrade:v1113'] !== 'node scripts/validate-v1113-upgrade.mjs') {
+  errors.push('package.json v1.11.3 QA 분석·도색 후보·전투 접근성 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1113')) {
+  errors.push('verify에서 v1.11.3 QA 분석·도색 후보·전투 접근성 검사가 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

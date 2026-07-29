@@ -6,8 +6,18 @@ const assetManifest = await readJson('public/assets/ASSET_MANIFEST.json');
 const playerAtlas = await readJson('public/assets/live/v4/atlases/player/player_live_v4.json');
 const errors = [];
 
-if (pkg.version !== '1.11.1') errors.push(`package version must be 1.11.1: ${pkg.version}`);
-if (assetManifest.release !== '1.11.1') errors.push(`asset manifest release must be 1.11.1: ${assetManifest.release}`);
+const isAtLeast = (value, target) => {
+  const current = String(value).split('.').map(Number);
+  const minimum = target.split('.').map(Number);
+  for (let index = 0; index < 3; index += 1) {
+    const left = current[index] ?? 0;
+    const right = minimum[index] ?? 0;
+    if (left !== right) return left > right;
+  }
+  return true;
+};
+if (!isAtLeast(pkg.version, '1.11.1')) errors.push(`package version must preserve v1.11.1+ contracts: ${pkg.version}`);
+if (!isAtLeast(assetManifest.release, '1.11.1')) errors.push(`asset manifest release must preserve v1.11.1+ contracts: ${assetManifest.release}`);
 if (pkg.scripts?.['validate:upgrade:v1111'] !== 'node scripts/validate-v1111-upgrade.mjs') {
   errors.push('v1.11.1 upgrade validator script is not connected');
 }

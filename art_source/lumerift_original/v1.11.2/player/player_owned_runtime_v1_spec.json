@@ -1,0 +1,15 @@
+{
+  "schema": "lumerift-owned-player-runtime-preview-v1",
+  "version": "1.11.2",
+  "sourceMaster": "art_source/lumerift_original/v1.11.1/player/player_motion_8dir_blockout_master.png",
+  "runtimeAtlas": "public/assets/live/v6/atlases/player/player_owned_motion_v6.json",
+  "cell": [128, 128],
+  "directions": ["s", "se", "e", "ne", "n", "nw", "w", "sw"],
+  "sourceActions": ["walk", "attack", "hit", "dodge"],
+  "runtimeActions": ["idle", "run", "attack1", "attack2", "attack3", "skill1", "skill2", "hit", "death", "dodge"],
+  "framesPerSourceAction": 4,
+  "runtimeDefaultEnabled": false,
+  "lazyBundle": "player-owned-preview",
+  "qualityStatus": "owned-geometric-motion-preview",
+  "note": "선택형 런타임 검수용 Atlas다. 고급 기본 원화를 대체하는 최종 상용 캐릭터로 보고하지 않는다."
+}

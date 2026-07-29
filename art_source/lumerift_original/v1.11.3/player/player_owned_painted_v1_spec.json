@@ -1,0 +1,21 @@
+{
+  "schema": "lumerift-owned-player-painted-spec-v1",
+  "release": "1.11.3",
+  "ownership": "LUMERIFT-owned",
+  "source": "v1.11.2 geometric motion atlas",
+  "master": "player_owned_painted_v1_master.png",
+  "runtimeAtlas": "public/assets/live/v7/atlases/player/player_owned_painted_v7.webp",
+  "canvas": { "width": 2048, "height": 1024, "cellWidth": 128, "cellHeight": 128 },
+  "directions": ["s", "se", "e", "ne", "n", "nw", "w", "sw"],
+  "actions": ["walk", "attack", "hit", "dodge"],
+  "treatment": [
+    "cell-confined cyan readability halo",
+    "dark navy one-pixel silhouette edge",
+    "top-left specular rim",
+    "vertical armor lighting gradient",
+    "separate cyan, gold and coral response curves"
+  ],
+  "runtimeDefaultEnabled": false,
+  "qualityStatus": "painted-candidate-not-final-character-art",
+  "notes": "기존 고급 기본 원화를 대체하지 않으며 설정에서 선택한 경우에만 Lazy Loading한다."
+}

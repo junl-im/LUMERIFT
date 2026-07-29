@@ -6,6 +6,8 @@ export interface AccessibilitySettings {
   readonly visionMode: VisionMode;
   readonly largeHud: boolean;
   readonly reduceFlash: boolean;
+  readonly haptics: boolean;
+  readonly combatAnnouncements: boolean;
 }
 
 export interface CombatAccessibilityPalette {
@@ -20,6 +22,8 @@ const DEFAULT_SETTINGS: AccessibilitySettings = {
   visionMode: 'standard',
   largeHud: false,
   reduceFlash: prefersReducedMotion(),
+  haptics: true,
+  combatAnnouncements: true,
 };
 
 const PALETTES: Readonly<Record<VisionMode, CombatAccessibilityPalette>> = {
@@ -79,11 +83,21 @@ export class AccessibilityController {
     return this.update({ reduceFlash: !this.settings.reduceFlash });
   }
 
+  public toggleHaptics(): AccessibilitySettings {
+    return this.update({ haptics: !this.settings.haptics });
+  }
+
+  public toggleCombatAnnouncements(): AccessibilitySettings {
+    return this.update({ combatAnnouncements: !this.settings.combatAnnouncements });
+  }
+
   public update(patch: Partial<AccessibilitySettings>): AccessibilitySettings {
     this.settings = {
       visionMode: isVisionMode(patch.visionMode) ? patch.visionMode : this.settings.visionMode,
       largeHud: typeof patch.largeHud === 'boolean' ? patch.largeHud : this.settings.largeHud,
       reduceFlash: typeof patch.reduceFlash === 'boolean' ? patch.reduceFlash : this.settings.reduceFlash,
+      haptics: typeof patch.haptics === 'boolean' ? patch.haptics : this.settings.haptics,
+      combatAnnouncements: typeof patch.combatAnnouncements === 'boolean' ? patch.combatAnnouncements : this.settings.combatAnnouncements,
     };
     this.storage?.setItem(STORAGE_KEYS.accessibility, JSON.stringify(this.settings));
     this.applyToDocument();
@@ -96,6 +110,8 @@ export class AccessibilityController {
     root.dataset.visionMode = this.settings.visionMode;
     root.dataset.largeHud = this.settings.largeHud ? 'true' : 'false';
     root.dataset.reduceFlash = this.settings.reduceFlash ? 'true' : 'false';
+    root.dataset.haptics = this.settings.haptics ? 'true' : 'false';
+    root.dataset.combatAnnouncements = this.settings.combatAnnouncements ? 'true' : 'false';
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('lumerift:accessibility-change', { detail: this.current }));
     }
@@ -119,6 +135,8 @@ function readSettings(raw: string | null | undefined): AccessibilitySettings {
       visionMode: isVisionMode(value.visionMode) ? value.visionMode : DEFAULT_SETTINGS.visionMode,
       largeHud: typeof value.largeHud === 'boolean' ? value.largeHud : DEFAULT_SETTINGS.largeHud,
       reduceFlash: typeof value.reduceFlash === 'boolean' ? value.reduceFlash : DEFAULT_SETTINGS.reduceFlash,
+      haptics: typeof value.haptics === 'boolean' ? value.haptics : DEFAULT_SETTINGS.haptics,
+      combatAnnouncements: typeof value.combatAnnouncements === 'boolean' ? value.combatAnnouncements : DEFAULT_SETTINGS.combatAnnouncements,
     };
   } catch {
     return { ...DEFAULT_SETTINGS };

@@ -22,6 +22,10 @@ import { OperationsContentService } from '../services/operations/OperationsConte
 import { RankingService } from '../services/ranking/RankingService';
 import { AccessibilityController } from '../core/accessibility/AccessibilityController';
 import { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
+import { PlayerArtVariantController } from '../core/presentation/PlayerArtVariantController';
+import { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
+import { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
+import { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
 
 export class GameApp {
   private readonly pixi = new Application();
@@ -32,6 +36,8 @@ export class GameApp {
   private assets?: AssetManager;
   private audio?: AudioManager;
   private uiPressHandler?: EventListener;
+  private liveAnnouncer?: LiveRegionAnnouncer;
+  private haptics?: HapticFeedbackController;
 
   public constructor(private readonly host: HTMLDivElement) {}
 
@@ -63,6 +69,12 @@ export class GameApp {
     const frameRate = new FrameRateController(this.pixi.ticker, performance);
     const graphicsQuality = new GraphicsQualityController();
     const accessibility = new AccessibilityController();
+    const playerArtVariant = new PlayerArtVariantController();
+    const deviceQaSession = new DeviceQaSessionRecorder();
+    const haptics = new HapticFeedbackController();
+    const liveAnnouncer = new LiveRegionAnnouncer();
+    this.haptics = haptics;
+    this.liveAnnouncer = liveAnnouncer;
     const adaptivePerformance = new AdaptivePerformanceController(
       performance,
       frameRate,
@@ -98,6 +110,10 @@ export class GameApp {
       accessibility,
       adaptivePerformance,
       mobileViewport: this.mobileViewport,
+      playerArtVariant,
+      deviceQaSession,
+      haptics,
+      liveAnnouncer,
       gameData,
       playerRepository,
       scenes,
@@ -112,7 +128,10 @@ export class GameApp {
     canvas.addEventListener('pointerdown', () => { void audio.unlock(); }, { once: true });
     this.uiPressHandler = ((event: CustomEvent<string>) => {
       const url = event.detail;
-      if (typeof url === 'string') void audio.play(url, 'ui').catch(() => undefined);
+      if (typeof url === 'string') {
+        void audio.play(url, 'ui').catch(() => undefined);
+        haptics.pulse('ui', accessibility.current.haptics);
+      }
     }) as EventListener;
     window.addEventListener('lumerift:ui-press', this.uiPressHandler);
 
@@ -121,6 +140,12 @@ export class GameApp {
       performance.sample(ticker.deltaMS);
       frameRate.update();
       adaptivePerformance.update(deltaSeconds);
+      deviceQaSession.update(deltaSeconds, {
+        adaptive: adaptivePerformance.snapshot(),
+        viewport: this.mobileViewport.metrics(),
+        graphicsEffective: graphicsQuality.effectiveMode,
+        targetFps: frameRate.targetFps,
+      });
       scenes.update(deltaSeconds);
     });
 
@@ -175,6 +200,8 @@ export class GameApp {
     this.input.detach();
     if (this.uiPressHandler) window.removeEventListener('lumerift:ui-press', this.uiPressHandler);
     this.audio?.release();
+    this.haptics?.cancel();
+    this.liveAnnouncer?.destroy();
     void this.assets?.unloadAll();
     this.pixi.destroy({ removeView: true }, { children: true });
   }
