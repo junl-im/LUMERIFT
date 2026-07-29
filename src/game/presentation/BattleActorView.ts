@@ -32,7 +32,9 @@ export class PlayerActorView {
   private readonly silhouetteGlow = new Graphics();
   private readonly focusHalo = new Graphics();
   private readonly riftAura = new Graphics();
+  private readonly directionRibbon = new Graphics();
   private readonly motionAccent = new Graphics();
+  private readonly stepHighlights = new Graphics();
   private readonly sprite?: AnimatedSprite;
   private readonly equipmentLayer?: Sprite;
   private readonly afterimages: Sprite[] = [];
@@ -42,6 +44,7 @@ export class PlayerActorView {
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
   private previousPosition?: Vec2;
+  private smoothedFacing: Vec2 = { x: 0, y: -1 };
 
   public constructor(
     private readonly sheet?: Spritesheet,
@@ -94,10 +97,10 @@ export class PlayerActorView {
       this.equipmentLayer.alpha = 0.88;
     }
 
-    this.root.addChild(this.focusHalo, this.riftAura, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
+    this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
-    this.root.addChild(this.motionAccent);
+    this.root.addChild(this.stepHighlights, this.motionAccent);
   }
 
   public update(
@@ -126,11 +129,13 @@ export class PlayerActorView {
     }
 
     this.root.position.set(controller.position.x, controller.position.y);
-    const facingAngle = Math.atan2(controller.facing.y, controller.facing.x);
+    const facing = blendFacing(this.smoothedFacing, controller.facing, Math.min(1, Math.max(0.18, frame.deltaSeconds * 13)));
+    this.smoothedFacing = facing;
+    const facingAngle = Math.atan2(facing.y, facing.x);
     this.weapon.rotation = facingAngle;
     if (this.equipmentLayer) {
       this.equipmentLayer.rotation = facingAngle + Math.PI / 4;
-      this.equipmentLayer.position.set(controller.facing.x * 20, controller.facing.y * 15 - 4);
+      this.equipmentLayer.position.set(facing.x * 20, facing.y * 15 - 4);
     }
 
     const motion = resolvePlayerMotion({
@@ -142,17 +147,19 @@ export class PlayerActorView {
       reducedMotion: frame.reducedMotion,
       renderIntensity: frame.renderIntensity,
     });
-    this.drawCharacterPolish(controller, motion.scaleX, motion.scaleY, frame.overdrive, flashRemaining);
-    this.drawMotionLayers(controller, motion.auraAlpha, motion.auraRadius, motion.trailAlpha, motion.trailLength, frame.overdrive);
+    this.drawCharacterPolish(controller, facing, motion.scaleX, motion.scaleY, frame.overdrive, flashRemaining);
+    this.drawMotionLayers(controller, facing, motion.auraAlpha, motion.auraRadius, motion.trailAlpha, motion.trailLength, frame.overdrive);
     this.body.alpha = flashRemaining > 0 ? 0.45 : 1;
 
     if (this.sprite) {
       this.updateAnimation(controller, motion.animationSpeed);
-      const direction = directionFromVector(controller.facing);
+      const direction = directionFromVector(facing);
       const mirrored = this.mirrorWest && (direction === 'w' || direction === 'sw' || direction === 'nw');
-      this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, this.spriteBaseScale);
-      this.sprite.position.y = motion.offsetY;
-      this.sprite.rotation = motion.rotation;
+      const strideLift = controller.state === 'moving' ? (Math.abs(facing.x) + Math.abs(facing.y)) * 0.35 : 0;
+      const yScale = this.spriteBaseScale * (1 + Math.abs(facing.y) * 0.018);
+      this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, yScale);
+      this.sprite.position.y = motion.offsetY - strideLift;
+      this.sprite.rotation = motion.rotation + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
       this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
@@ -208,14 +215,15 @@ export class PlayerActorView {
 
   private drawCharacterPolish(
     controller: PlayerCombatController,
+    facing: Vec2,
     scaleX: number,
     scaleY: number,
     overdrive: boolean,
     flashRemaining: number,
   ): void {
     const feetY = 16 + (controller.state === 'moving' ? 1.5 : 0);
-    const shadowWidth = 30 + Math.abs(controller.facing.x) * 5 + (controller.state === 'dodging' ? 6 : 0);
-    const shadowHeight = 11 + Math.abs(controller.facing.y) * 2;
+    const shadowWidth = 30 + Math.abs(facing.x) * 5 + (controller.state === 'dodging' ? 6 : 0);
+    const shadowHeight = 11 + Math.abs(facing.y) * 2;
     this.shadow.clear();
     this.shadow
       .ellipse(0, feetY + 6, shadowWidth * scaleX, shadowHeight * scaleY)
@@ -226,8 +234,10 @@ export class PlayerActorView {
     this.silhouetteGlow
       .ellipse(0, -4, 26 * scaleX, 38 * scaleY)
       .fill({ color: glowColor, alpha: flashRemaining > 0 ? 0.08 : overdrive ? 0.1 : 0.06 })
-      .ellipse(controller.facing.x * 8, -18 + controller.facing.y * 3, 12 * scaleX, 17 * scaleY)
-      .fill({ color: 0xffffff, alpha: flashRemaining > 0 ? 0.03 : 0.022 });
+      .ellipse(facing.x * 8, -18 + facing.y * 3, 12 * scaleX, 17 * scaleY)
+      .fill({ color: 0xffffff, alpha: flashRemaining > 0 ? 0.03 : 0.022 })
+      .ellipse(-facing.x * 7, 2 + Math.abs(facing.x) * 1.6, 13 * scaleX, 8 * scaleY)
+      .stroke({ color: glowColor, alpha: overdrive ? 0.22 : 0.14, width: 2 });
 
     this.focusHalo.clear();
     this.focusHalo
@@ -239,14 +249,15 @@ export class PlayerActorView {
 
   private drawMotionLayers(
     controller: PlayerCombatController,
+    facing: Vec2,
     auraAlpha: number,
     auraRadius: number,
     trailAlpha: number,
     trailLength: number,
     overdrive: boolean,
   ): void {
-    const facing = controller.facing;
     const color = overdrive ? 0xffd36a : controller.state === 'skill' ? 0xa88cff : 0x63e8d7;
+    const direction = directionFromVector(facing);
     this.riftAura.clear();
     if (auraAlpha > 0.01) {
       this.riftAura
@@ -254,6 +265,29 @@ export class PlayerActorView {
         .fill({ color, alpha: auraAlpha * 0.38 })
         .ellipse(0, 13, auraRadius, auraRadius * 0.42)
         .stroke({ color, alpha: auraAlpha, width: overdrive ? 4 : 2 });
+    }
+
+    this.directionRibbon.clear();
+    const forward = 26 + Math.max(0, trailLength * 0.22);
+    const cross = 10 + (direction === 'n' || direction === 's' ? 2 : 0);
+    this.directionRibbon
+      .moveTo(-facing.x * 6, -facing.y * 6)
+      .lineTo(facing.x * forward + -facing.y * cross, facing.y * forward + facing.x * cross)
+      .lineTo(facing.x * (forward + 8), facing.y * (forward + 8))
+      .lineTo(facing.x * forward + facing.y * cross, facing.y * forward - facing.x * cross)
+      .closePath()
+      .fill({ color, alpha: controller.state === 'moving' ? 0.12 : controller.state === 'attacking' || controller.state === 'skill' ? 0.2 : 0.08 });
+
+    this.stepHighlights.clear();
+    if (controller.state === 'moving' || controller.state === 'dodging') {
+      const perpendicular = { x: -facing.y, y: facing.x };
+      const diagonalWeight = direction.length === 2 ? 1 : 0.78;
+      for (let side = -1; side <= 1; side += 2) {
+        const offset = side * 11;
+        this.stepHighlights
+          .ellipse(perpendicular.x * offset - facing.x * 10, 18 + perpendicular.y * offset - facing.y * 5, 7 * diagonalWeight, 3.5)
+          .fill({ color: side < 0 ? 0xffffff : color, alpha: controller.state === 'dodging' ? 0.12 : 0.08 });
+      }
     }
 
     this.motionAccent.clear();
@@ -582,6 +616,22 @@ export function createAttackIndicator(
   effect.position.set(centerX, centerY);
   effect.rotation = Math.atan2(facing.y, facing.x);
   return effect;
+}
+
+
+function blendFacing(current: Vec2, target: Vec2, alpha: number): Vec2 {
+  const normalizedTarget = normalizeFacing(target);
+  const mixed = {
+    x: current.x + (normalizedTarget.x - current.x) * alpha,
+    y: current.y + (normalizedTarget.y - current.y) * alpha,
+  };
+  return normalizeFacing(mixed);
+}
+
+function normalizeFacing(value: Vec2): Vec2 {
+  const length = Math.hypot(value.x, value.y);
+  if (length <= 0.0001) return { x: 0, y: -1 };
+  return { x: value.x / length, y: value.y / length };
 }
 
 function playerAnimationState(controller: PlayerCombatController): string {

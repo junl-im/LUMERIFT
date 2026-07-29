@@ -3,10 +3,10 @@
   "fromVersion": "1.11.7",
   "toVersion": "1.11.8",
   "patchArchive": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip",
-  "strategy": "overwrite-project-root",
+  "strategy": "overwrite-project-root-cumulative-repair",
   "deleteRequired": [],
-  "changedFileCount": 42,
-  "changedBytes": 442798,
+  "changedFileCount": 46,
+  "changedBytes": 478447,
   "files": [
     {
       "path": "AGENTS.md",
@@ -22,8 +22,8 @@
     },
     {
       "path": "LUMERIFT_v1.11.8_VERIFICATION.txt",
-      "bytes": 1387,
-      "sha256": "908b897ca7811332b7b238ab974160cc413de2473974593cdd19b50b03518a58",
+      "bytes": 1832,
+      "sha256": "bdaa98d65db5140852d6bd3951081d3499374fc8ea396a4f0a9a8c0507593750",
       "status": "added"
     },
     {
@@ -34,14 +34,14 @@
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 602,
-      "sha256": "2c36972a83ae81cfdd9f139816c330f42feeefbe709cf449d20204cb9ba37a5d",
+      "bytes": 804,
+      "sha256": "0a490b6af4bdd7959204c313457f76c87fa9071d3a2b83d0098cbac533c3b195",
       "status": "modified"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 388,
-      "sha256": "64321b22a1193934973bb56c5204f8e008b346f51cfc1f9da43478a2d602e216",
+      "bytes": 521,
+      "sha256": "92f9299c2fabde35351f2b6a5fef3da59d82f19c79e279643ff35fe360aa28e2",
       "status": "modified"
     },
     {
@@ -81,6 +81,12 @@
       "status": "added"
     },
     {
+      "path": "docs/EIGHT_DIRECTION_POLISH_v1.11.6.md",
+      "bytes": 1305,
+      "sha256": "9be3cc02d9695944031e943538e7a77bbeae945a1e44d68e0e1126f2d0b6d8b0",
+      "status": "restored"
+    },
+    {
       "path": "docs/HANDOFF_LOG.md",
       "bytes": 16685,
       "sha256": "0df7fc12c3f08fc613f3506e3b7a15314fb2a66c12ffd78a160faf28b5a029da",
@@ -97,6 +103,12 @@
       "bytes": 785,
       "sha256": "a6a5a932eb41f0547f37319b7edd4080224442548d47515762588140c239fe55",
       "status": "added"
+    },
+    {
+      "path": "docs/PATCH_NOTES_v1.11.6.md",
+      "bytes": 588,
+      "sha256": "27af199defaa4700371f48c039320cb50cc357176aa62446f448d82bce76403c",
+      "status": "restored"
     },
     {
       "path": "docs/PATCH_NOTES_v1.11.8.md",
@@ -211,6 +223,24 @@
       "bytes": 3912,
       "sha256": "e419dd1f2d5ca58387d362b295b1adead9b0a800fd45641da3b53ca85b4f0790",
       "status": "modified"
+    },
+    {
+      "path": "src/game/presentation/BattleActorView.ts",
+      "bytes": 27941,
+      "sha256": "896c21a216bd526ada99384c824ea5db4254abc9871a08ab8ece64ce00408545",
+      "status": "restored"
+    },
+    {
+      "path": "src/game/presentation/PlayerMotionDirector.test.ts",
+      "bytes": 1393,
+      "sha256": "1d01058b1ece9d7b5d8959ebf51a7f121d81e3d191250bc62fe1c1d3255a290f",
+      "status": "restored"
+    },
+    {
+      "path": "src/game/presentation/PlayerMotionDirector.ts",
+      "bytes": 3642,
+      "sha256": "4eeea2fa0108f89a5d25cef0986ce86fc67cc5a072a5dc12f34cc2bfb590d45d",
+      "status": "restored"
     },
     {
       "path": "src/scenes/BattleScene.ts",

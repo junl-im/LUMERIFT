@@ -1,33 +1,45 @@
-LUMERIFT v1.11.8 Verification
+LUMERIFT v1.11.8 Cumulative Repair Verification
 Date: 2026-07-29
-Base: v1.11.7
-Target: v1.11.8
+Base: v1.11.7 or incomplete v1.11.8 workspace
+Target: v1.11.8 cumulative repair
 
-Scope
+CI failure root cause
+- The prior v1.11.7 -> v1.11.8 patch archive did not include files originally introduced in v1.11.6.
+- A repository missing those older files reached validate-v1116-upgrade and failed even though the v1.11.8 full archive contained them.
+
+Restored cumulatively
+- src/game/presentation/BattleActorView.ts
+  - directionRibbon
+  - stepHighlights
+  - smoothedFacing
+  - blended 8-direction facing presentation
+- src/game/presentation/PlayerMotionDirector.ts
+  - locomotion and shoulder rhythm
+  - movement trail tuning
+- src/game/presentation/PlayerMotionDirector.test.ts
+  - natural locomotion regression test
+- docs/EIGHT_DIRECTION_POLISH_v1.11.6.md
+- docs/PATCH_NOTES_v1.11.6.md
+
+v1.11.8 scope retained
 - Mega RIFT INTERFACE redesign across Boot/Login/Lobby/common scenes/Battle/Result
 - Auto target priority: balanced, nearest, boss, weak, threat
 - Auto battle controls: skills, dodge, boss restriction
 - Device presets: responsive, balanced, stable
 - Device QA JSON includes combat assist settings
 
-Validation passed
-- Full cumulative static validator chain from build config through handoff
-- Release/version synchronization
-- Firebase/App Check disabled contract
-- Combat/AttackFootprint contract
-- Asset, manifest, atlas, archive, source-art and cleanup validation
-- Mobile UI and v1.10 through v1.11.8 cumulative validators
-- Source import validation
-- Handoff policy validation
-- TypeScript syntax parser: 141 source files, 0 failed
-- Strict TypeScript compile for CombatAssistController, AutoTargetController and AutoBattleController
-- Pure logic harness: settings cycles, boss priority and boss target-only safety
-
-Assets
-- Active public assets: 41 files / 5.46 MB
-- Asset registry: 325 entries
-- No new runtime image files
-- No delete or move operations
+Validation passed in this environment
+- validate-release-version
+- validate-v1115-upgrade
+- validate-v1116-upgrade
+- validate-v1117-upgrade
+- validate-v1118-upgrade
+- validate-asset-cleanup
+- validate-handoff
+- cumulative non-dependency static validator chain: 32 stages passed
+- TypeScript parser: 142 files, 0 parse failures
+- patch application tree comparison against the v1.11.8 full project
+- ZIP CRC integrity checks
 
 Not executed in this isolated environment
 - npm dependency installation

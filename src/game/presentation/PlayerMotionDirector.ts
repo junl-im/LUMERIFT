@@ -42,10 +42,15 @@ export function resolvePlayerMotion(input: PlayerMotionInput): PlayerMotionProfi
   let afterimageAlpha = 0;
 
   if (input.state === 'moving') {
-    scaleX = 1 + Math.sin(progress * Math.PI * 2) * 0.018 * reduced;
-    scaleY = 1 - Math.sin(progress * Math.PI * 2) * 0.014 * reduced;
-    offsetY = -Math.abs(Math.sin(progress * Math.PI * 2)) * 2.2 * reduced;
-    animationSpeed = 0.2;
+    const locomotion = Math.sin(progress * Math.PI * 2);
+    const shoulderRhythm = Math.sin(progress * Math.PI * 4 + Math.PI / 5);
+    scaleX = 1 + locomotion * 0.024 * reduced + shoulderRhythm * 0.008 * reduced;
+    scaleY = 1 - locomotion * 0.017 * reduced + Math.abs(locomotion) * 0.006 * reduced;
+    offsetY = -Math.abs(locomotion) * 2.8 * reduced;
+    rotation = shoulderRhythm * 0.012 * reduced;
+    animationSpeed = 0.22;
+    trailAlpha = 0.09 * intensity;
+    trailLength = 20;
   } else if (input.state === 'attacking') {
     const comboPower = 1 + Math.max(0, input.comboStep - 1) * 0.08;
     scaleX = 1 + anticipation * 0.09 * comboPower * reduced;
