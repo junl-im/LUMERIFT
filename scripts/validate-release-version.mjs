@@ -66,6 +66,24 @@ if (pkg.scripts?.['validate:upgrade:v1114'] !== 'node scripts/validate-v1114-upg
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1113')) {
   errors.push('verify에서 v1.11.3 QA 분석·도색 후보·전투 접근성 검사가 누락되었습니다.');
 }
+if (pkg.scripts?.['validate:upgrade:v1115'] !== 'node scripts/validate-v1115-upgrade.mjs') {
+  errors.push('package.json v1.11.5 HUD·타격감 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1115')) {
+  errors.push('verify에서 v1.11.5 HUD·타격감 검사가 누락되었습니다.');
+}
+if (pkg.scripts?.['validate:upgrade:v1116'] !== 'node scripts/validate-v1116-upgrade.mjs') {
+  errors.push('package.json v1.11.6 8방향 이동 그래픽 강화 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1116')) {
+  errors.push('verify에서 v1.11.6 8방향 이동 그래픽 강화 검사가 누락되었습니다.');
+}
+if (pkg.scripts?.['validate:upgrade:v1117'] !== 'node scripts/validate-v1117-upgrade.mjs') {
+  errors.push('package.json v1.11.7 자동 타겟·자동 전투·인터페이스 리뉴얼 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1117')) {
+  errors.push('verify에서 v1.11.7 자동 타겟·자동 전투·인터페이스 리뉴얼 검사가 누락되었습니다.');
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));

@@ -23,6 +23,7 @@ import { AssetGalleryScene } from './AssetGalleryScene';
 import { OperationsScene } from './OperationsScene';
 import { AccountScene } from './AccountScene';
 import { RankingScene } from './RankingScene';
+import { createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -97,6 +98,7 @@ export class LobbyScene implements Scene {
       this.view.addChild(new Graphics().rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT).fill(COLORS.background));
     }
 
+    const interfaceBackdrop = createInterfaceBackdrop({ dense: false, label: 'LUMERIFT · COMMAND HUB' });
     const shade = new Graphics()
       .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
       .fill({ color: COLORS.dark, alpha: 0.1 })
@@ -118,11 +120,13 @@ export class LobbyScene implements Scene {
       .moveTo(285, 112)
       .lineTo(520, 347)
       .stroke({ color: COLORS.primaryBright, alpha: 0.035, width: 1 });
-    this.view.addChild(shade, this.atmosphere);
+    this.view.addChild(interfaceBackdrop, shade, this.atmosphere);
   }
 
   private createHeader(power: number, operationAlerts: number): void {
     const topBar = createRasterPanel(12, 12, DESIGN_WIDTH - 24, 94, 'panel_strong');
+    const commandStamp = createInterfaceStamp('COMMAND HUB', 126);
+    commandStamp.position.set(392, 70);
     const portraitFrame = createRasterPanel(22, 22, 72, 72, 'portrait_small');
     const brand = new Text({
       text: 'LUMERIFT',
@@ -156,7 +160,7 @@ export class LobbyScene implements Scene {
       count.anchor.set(0.5); count.position.set(508, 18);
       this.view.addChild(dot, count);
     }
-    this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText);
+    this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText, commandStamp);
   }
 
   private createHeroPresentation(texture?: Texture, power = 0): void {

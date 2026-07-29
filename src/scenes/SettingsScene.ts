@@ -50,7 +50,7 @@ export class SettingsScene implements Scene {
     this.elapsed += deltaSeconds;
     if (this.elapsed < 0.5 || !this.context || !this.diagnosticsText) return;
     this.elapsed = 0;
-    this.diagnosticsText.text = diagnosticsSummary(this.context);
+    this.diagnosticsText.text = diagnosticsSummaryCompact(this.context);
   }
 
   private createPerformancePanel(context: AppContext): void {
@@ -101,13 +101,39 @@ export class SettingsScene implements Scene {
     });
     joystick.position.set(42, 280);
 
-    const diagnosticsText = new Text({
-      text: diagnosticsSummary(context),
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 10, lineHeight: 16, wordWrap: true, wordWrapWidth: 442 }),
+    const autoTarget = new UiButton({
+      label: `자동 타겟 · ${context.combatAssist.current.autoTarget ? '켜짐' : '꺼짐'}`,
+      width: 210,
+      height: 36,
+      tone: context.combatAssist.current.autoTarget ? 'primary' : 'secondary',
+      fontSize: 11,
+      onPress: async () => {
+        context.combatAssist.toggleAutoTarget();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 타겟 설정을 변경했습니다.'));
+      },
     });
-    diagnosticsText.position.set(42, 334);
+    autoTarget.position.set(42, 334);
+
+    const autoBattle = new UiButton({
+      label: `자동 전투 · ${context.combatAssist.current.autoBattle ? '켜짐' : '꺼짐'}`,
+      width: 210,
+      height: 36,
+      tone: context.combatAssist.current.autoBattle ? 'primary' : 'secondary',
+      fontSize: 11,
+      onPress: async () => {
+        context.combatAssist.toggleAutoBattle();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 전투 설정을 변경했습니다.'));
+      },
+    });
+    autoBattle.position.set(282, 334);
+
+    const diagnosticsText = new Text({
+      text: diagnosticsSummaryCompact(context),
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 7, lineHeight: 9, wordWrap: true, wordWrapWidth: 442 }),
+    });
+    diagnosticsText.position.set(42, 374);
     this.diagnosticsText = diagnosticsText;
-    this.view.addChild(panel, title, badge, fps, graphics, joystick, diagnosticsText);
+    this.view.addChild(panel, title, badge, fps, graphics, joystick, autoTarget, autoBattle, diagnosticsText);
   }
 
   private createAccessibilityPanel(context: AppContext): void {
@@ -263,16 +289,9 @@ export class SettingsScene implements Scene {
   }
 }
 
-function diagnosticsSummary(context: AppContext): string {
+function diagnosticsSummaryCompact(context: AppContext): string {
   const adaptive = context.adaptivePerformance.snapshot();
-  const performance = adaptive.performance;
-  return [
-    `${performance.fps} FPS · 1% Low ${performance.onePercentLow} · 긴 프레임 ${(performance.longFrameRatio * 100).toFixed(1)}%`,
-    `${performanceLevelLabel(adaptive.level)} · ${pressureLabel(adaptive.estimatedPressure)} · Canvas ${adaptive.resolution.toFixed(2)}x`,
-    `CALIBRATION · ${adaptive.calibration.label} · Render x${adaptive.calibration.thresholds.combatRenderBias.toFixed(2)}`,
-    `선호 ${context.graphicsQuality.mode} / 적용 ${context.graphicsQuality.effectiveMode} · 목표 ${context.frameRate.targetFps} FPS`,
-    `PLAYER · ${playerArtVariantLabel(context.playerArtVariant.current)} · STICK ${joystickCalibrationLabel(context.joystickCalibration.current)} · QA ${context.deviceQaSession.isRunning ? 'RECORDING' : context.deviceQaSession.hasSession ? 'READY' : 'IDLE'}`,
-  ].join('\n');
+  return `${context.performance.fps} FPS · ${performanceLevelLabel(adaptive.level)} · ${context.graphicsQuality.effectiveMode} · CALIBRATION ${adaptive.calibration.label} · STICK ${joystickCalibrationLabel(context.joystickCalibration.current)} · TARGET ${context.combatAssist.current.autoTarget ? 'ON' : 'OFF'} · AUTO ${context.combatAssist.current.autoBattle ? 'ON' : 'OFF'}`;
 }
 
 function deviceQaSample(context: AppContext): DeviceQaSessionSampleInput {

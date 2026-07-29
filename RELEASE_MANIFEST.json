@@ -1,17 +1,17 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.5",
-  "baseVersion": "1.11.4",
+  "version": "1.11.7",
+  "baseVersion": "1.11.6",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.5.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.4_to_v1.11.5.zip",
-  "qualityStage": "production-candidate-webtoon-ui-combat-hud-polish",
+  "fullArchive": "LUMERIFT_FULL_v1.11.7.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.6_to_v1.11.7.zip",
+  "qualityStage": "production-candidate-auto-combat-interface-renewal",
   "features": [
-    "웹툰형 클린 UI 리디자인",
-    "전투 HUD 대정리",
-    "방향 텔레메트리와 공격 방향 VFX 강화",
-    "CRIT/BURN/HIT 및 CHAIN/CRITICAL 타격 피드백 강화"
+    "automatic target selection with hysteresis and boss/elite/telegraph priority",
+    "opt-in auto battle with manual override, telegraph evade, range control, skills and combo queue",
+    "first-start interface renewal across Boot, Login, Lobby, SceneChrome and Battle",
+    "no new large runtime image assets and existing save/combat contracts preserved"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,8 +37,9 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1114-upgrade",
-    "validate-v1115-upgrade",
-    "asset registry release sync"
+    "validate-v1116-upgrade",
+    "validate-v1117-upgrade",
+    "asset registry release sync",
+    "pure combat assist runtime harness"
   ]
 }

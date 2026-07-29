@@ -23,7 +23,8 @@ const requirements = {
   ],
   'src/scenes/LoginScene.ts': [
     'getTitleBackgroundTexture',
-    'addHotspot(',
+    'createInterfaceBackdrop',
+    'ACCOUNT GATE',
     'openProviderMenu()',
     "'계정 연동'",
   ],

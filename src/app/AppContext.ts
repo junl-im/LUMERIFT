@@ -1,6 +1,7 @@
 import type { AuthService } from '../services/auth/AuthService';
 import type { InputManager } from '../core/input/InputManager';
 import type { JoystickCalibrationController } from '../core/input/JoystickCalibrationController';
+import type { CombatAssistController } from '../core/input/CombatAssistController';
 import type { PerformanceMonitor } from '../core/performance/PerformanceMonitor';
 import type { FrameRateController } from '../core/performance/FrameRateController';
 import type { ManagedPlayerRepository } from '../services/cloud/CloudSaveTypes';
@@ -23,6 +24,7 @@ export interface AppContext {
   readonly auth: AuthService;
   readonly input: InputManager;
   readonly joystickCalibration: JoystickCalibrationController;
+  readonly combatAssist: CombatAssistController;
   readonly performance: PerformanceMonitor;
   readonly frameRate: FrameRateController;
   readonly graphicsQuality: GraphicsQualityController;

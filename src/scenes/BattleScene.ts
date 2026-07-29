@@ -44,8 +44,11 @@ import { ResultScene, type BattleOutcome } from './ResultScene';
 import type { AccessibilitySettings, CombatAccessibilityPalette } from '../core/accessibility/AccessibilityController';
 import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } from '../game/combat/CombatMomentumController';
 import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
+import { AutoTargetController } from '../game/combat/AutoTargetController';
+import { resolveAutoBattle } from '../game/combat/AutoBattleController';
 
 interface EnemyActor {
+  readonly runtimeId: string;
   readonly controller: MonsterController;
   readonly presentation: MonsterActorView;
   readonly definition: MonsterDefinition;
@@ -108,6 +111,9 @@ export class BattleScene implements Scene {
   private readonly activeEffects = new Set<CombatEffect>();
   private readonly momentum = new CombatMomentumController();
   private readonly renderBudget = new CombatRenderBudget();
+  private readonly autoTargetController = new AutoTargetController();
+  private readonly targetRing = new Graphics();
+  private readonly targetLink = new Graphics();
   private readonly pendingSkillBoosts: Partial<Record<'skill1' | 'skill2', SkillMomentumBoost>> = {};
 
   private context?: AppContext;
@@ -142,6 +148,9 @@ export class BattleScene implements Scene {
   private lastBossTelegraphKey = '';
   private lastBossTelegraphUrgency?: TelegraphUrgency;
   private criticalHpAnnounced = false;
+  private currentTarget?: EnemyActor;
+  private autoActionCooldown = 0;
+  private lastTargetAnnouncement = '';
 
   private readonly playerHpFill = new Graphics();
   private readonly playerHpText = new Text({
@@ -173,6 +182,14 @@ export class BattleScene implements Scene {
   private readonly attackTelemetryText = new Text({
     text: '',
     style: new TextStyle({ fill: 0xc8d8dd, fontSize: 10, fontWeight: '700', lineHeight: 14 }),
+  });
+  private readonly targetNameText = new Text({
+    text: 'TARGET · NONE',
+    style: new TextStyle({ fill: 0xffefbe, fontSize: 10, fontWeight: '800', letterSpacing: 0.8 }),
+  });
+  private readonly targetDetailText = new Text({
+    text: '자동 타겟 탐색 중',
+    style: new TextStyle({ fill: 0xbfd0cf, fontSize: 9, fontWeight: '700' }),
   });
   private readonly hitFeedbackPanel = new Container();
   private readonly hitFeedbackAccent = new Graphics();
@@ -234,6 +251,8 @@ export class BattleScene implements Scene {
   private dodgeButton?: CombatActionButton;
   private joystick?: VirtualJoystick;
   private pauseButton?: UiButton;
+  private autoTargetButton?: UiButton;
+  private autoBattleButton?: UiButton;
   private readonly tutorialOverlay = new Container();
   private readonly tutorialText = new Text({
     text: '',
@@ -387,6 +406,10 @@ export class BattleScene implements Scene {
     this.activeDamage.clear();
     this.activeEffects.clear();
     this.clearEnemies();
+    this.autoTargetController.clear();
+    this.currentTarget = undefined;
+    this.targetRing.clear();
+    this.targetLink.clear();
     this.vfx?.clear();
     this.joystick?.reset();
     this.textureWarmupLayer.destroy({ children: true });
@@ -442,8 +465,10 @@ export class BattleScene implements Scene {
       return;
     }
 
-    const moveAxis = this.resolveMoveAxis();
-    this.handleKeyboardActions(moveAxis);
+    this.updateAutoTargeting();
+    const manualMoveAxis = this.resolveMoveAxis();
+    const manualAction = this.handleKeyboardActions(manualMoveAxis);
+    const moveAxis = this.resolveCombatAssist(manualMoveAxis, deltaSeconds, manualAction);
 
     const scaledDelta = deltaSeconds * camera.timeScale;
     if (scaledDelta > 0) {
@@ -533,7 +558,11 @@ export class BattleScene implements Scene {
         visual.secondaryColor,
       ),
       ambient,
+      this.targetLink,
+      this.targetRing,
     );
+    this.targetLink.visible = false;
+    this.targetRing.visible = false;
   }
 
   private createHud(): void {
@@ -595,6 +624,40 @@ export class BattleScene implements Scene {
     });
     this.pauseButton.position.set(476, 19);
 
+    this.autoTargetButton = new UiButton({
+      label: this.context?.combatAssist.current.autoTarget ? 'TARGET · ON' : 'TARGET · OFF',
+      width: 108,
+      height: 28,
+      tone: 'secondary',
+      fontSize: 9,
+      onPress: () => {
+        const enabled = this.context?.combatAssist.toggleAutoTarget() ?? false;
+        if (!enabled) {
+          this.autoTargetController.clear();
+          this.currentTarget = undefined;
+        }
+        this.updateAssistButtons();
+        this.announce(enabled ? 'AUTO TARGET ON' : 'AUTO TARGET OFF', 0.55);
+      },
+    });
+    this.autoTargetButton.position.set(296, 76);
+
+    this.autoBattleButton = new UiButton({
+      label: this.context?.combatAssist.current.autoBattle ? 'AUTO · ON' : 'AUTO · OFF',
+      width: 108,
+      height: 28,
+      tone: 'secondary',
+      fontSize: 9,
+      onPress: () => {
+        const enabled = this.context?.combatAssist.toggleAutoBattle() ?? false;
+        this.autoActionCooldown = 0;
+        this.updateAssistButtons();
+        this.announce(enabled ? 'AUTO BATTLE ON' : 'AUTO BATTLE OFF', 0.62);
+        this.announceAssistive(enabled ? '자동 전투가 켜졌습니다.' : '자동 전투가 꺼졌습니다.', 'polite', 1000);
+      },
+    });
+    this.autoBattleButton.position.set(410, 76);
+
     const bossBackground = createRasterPanel(48, 106, 474, 68, 'boss_panel');
     const bossTrack = new Graphics()
       .roundRect(122, 145, 366, 13, 7)
@@ -649,6 +712,16 @@ export class BattleScene implements Scene {
     this.directionText.position.set(76, 748);
     this.attackTelemetryText.position.set(76, 762);
 
+    const targetPanel = createRasterPanel(276, 722, 250, 54, 'panel_strong');
+    const targetTag = createRasterPanel(286, 728, 84, 18, 'resource_chip');
+    const targetTagText = new Text({
+      text: 'LOCK SIGNAL',
+      style: new TextStyle({ fill: 0xffefbe, fontSize: 8, fontWeight: '800', letterSpacing: 1.1 }),
+    });
+    targetTagText.position.set(296, 732);
+    this.targetNameText.position.set(296, 749);
+    this.targetDetailText.position.set(296, 763);
+
     this.hitFeedbackPanel.visible = false;
     this.hitFeedbackPanel.position.set(DESIGN_WIDTH / 2, 286);
     const feedbackPlate = createRasterPanel(-132, -10, 264, 52, 'panel_strong');
@@ -693,7 +766,7 @@ export class BattleScene implements Scene {
     this.attackButton = new CombatActionButton({
       label: '공격',
       radius: 57,
-      onPress: () => { this.player?.requestAttack(); },
+      onPress: () => { this.requestBasicAttack(); },
     });
     this.attackButton.position.set(478, 838);
 
@@ -722,6 +795,8 @@ export class BattleScene implements Scene {
       this.waveText,
       this.enemyCountText,
       this.pauseButton,
+      this.autoTargetButton,
+      this.autoBattleButton,
       this.bossPanel,
       comboChip,
       comboHeader,
@@ -736,6 +811,11 @@ export class BattleScene implements Scene {
       this.directionArrow,
       this.directionText,
       this.attackTelemetryText,
+      targetPanel,
+      targetTag,
+      targetTagText,
+      this.targetNameText,
+      this.targetDetailText,
       controlDock,
       controlHint,
       this.comboText,
@@ -951,6 +1031,16 @@ export class BattleScene implements Scene {
     this.world.on('pointerdown', (event: FederatedPointerEvent) => {
       if (this.paused) return;
       const local = event.getLocalPosition(this.world);
+      const selected = this.findEnemyAt(local);
+      if (selected) {
+        this.context?.combatAssist.set({ autoTarget: true });
+        this.autoTargetController.lock(selected.runtimeId);
+        this.currentTarget = selected;
+        this.pointerTarget = undefined;
+        this.updateAssistButtons();
+        this.announce(`TARGET LOCK\n${selected.definition.combat.name}`, 0.52);
+        return;
+      }
       this.pointerTarget = { x: local.x, y: local.y };
     });
     this.world.on('pointermove', (event: FederatedPointerEvent) => {
@@ -986,15 +1076,219 @@ export class BattleScene implements Scene {
     return normalize(offset);
   }
 
-  private handleKeyboardActions(moveAxis: Vec2): void {
+  private updateAutoTargeting(): void {
+    const context = this.context;
+    const player = this.player;
+    if (!context || !player || !context.combatAssist.current.autoTarget) {
+      this.autoTargetController.clear();
+      this.currentTarget = undefined;
+      this.targetRing.clear();
+      this.targetLink.clear();
+      this.targetRing.visible = false;
+      this.targetLink.visible = false;
+      this.targetNameText.text = 'TARGET · OFF';
+      this.targetDetailText.text = '타겟 보조가 꺼져 있습니다.';
+      return;
+    }
+
+    const snapshot = this.autoTargetController.update(
+      player.position,
+      player.facing,
+      this.enemies.map((enemy) => ({
+        id: enemy.runtimeId,
+        position: enemy.controller.position,
+        rank: enemy.controller.config.rank,
+        hp: enemy.controller.hp,
+        maxHp: enemy.controller.config.maxHp,
+        alive: enemy.controller.isAlive,
+        telegraphing: enemy.controller.state === 'telegraph',
+      })),
+    );
+    const target = snapshot?.targetId
+      ? this.enemies.find((enemy) => enemy.runtimeId === snapshot.targetId && enemy.controller.isAlive)
+      : undefined;
+    this.currentTarget = target;
+    if (!target || !snapshot) {
+      this.targetRing.clear();
+      this.targetLink.clear();
+      this.targetRing.visible = false;
+      this.targetLink.visible = false;
+      this.targetNameText.text = 'TARGET · SEARCH';
+      this.targetDetailText.text = '가장 적합한 적을 탐색 중';
+      return;
+    }
+
+    const rankLabel = target.controller.config.rank === 'boss'
+      ? 'BOSS'
+      : target.controller.config.rank === 'elite'
+        ? 'ELITE'
+        : 'MOB';
+    const hpRatio = target.controller.hp / Math.max(1, target.controller.config.maxHp);
+    this.targetNameText.text = `${rankLabel} · ${target.definition.combat.name}`;
+    this.targetDetailText.text = `거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험 예고' : ''}`;
+
+    const accent = target.definition.visual.accentColor;
+    const pulse = 0.5 + Math.sin(this.elapsed * 8) * 0.5;
+    const radius = target.controller.config.radius + 12 + pulse * 3;
+    this.targetRing.clear();
+    this.targetRing.position.set(target.controller.position.x, target.controller.position.y);
+    this.targetRing
+      .ellipse(0, target.controller.config.radius * 0.65, radius * 1.18, radius * 0.46)
+      .stroke({ color: accent, alpha: 0.74, width: target.controller.config.rank === 'boss' ? 4 : 3 })
+      .circle(0, -target.controller.config.radius - 12, 5 + pulse * 2)
+      .fill({ color: 0xffefbe, alpha: 0.82 })
+      .moveTo(-radius * 0.72, -radius * 0.68)
+      .lineTo(-radius, -radius * 0.68)
+      .lineTo(-radius, -radius * 0.38)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 })
+      .moveTo(radius * 0.72, -radius * 0.68)
+      .lineTo(radius, -radius * 0.68)
+      .lineTo(radius, -radius * 0.38)
+      .stroke({ color: 0xffffff, alpha: 0.72, width: 2 });
+    this.targetRing.visible = true;
+
+    this.targetLink.clear();
+    this.targetLink
+      .moveTo(player.position.x, player.position.y)
+      .lineTo(target.controller.position.x, target.controller.position.y)
+      .stroke({ color: accent, alpha: context.combatAssist.current.autoBattle ? 0.22 : 0.11, width: context.combatAssist.current.autoBattle ? 2 : 1 });
+    this.targetLink.visible = true;
+
+    if (this.lastTargetAnnouncement !== target.runtimeId) {
+      this.lastTargetAnnouncement = target.runtimeId;
+      this.context?.haptics.pulse('ui', this.accessibility?.haptics);
+    }
+
+  }
+
+  private resolveCombatAssist(manualMove: Vec2, deltaSeconds: number, manualAction: boolean): Vec2 {
+    const context = this.context;
+    const player = this.player;
+    const config = this.playerConfig;
+    const target = this.currentTarget;
+    if (!context || !player || !config || !target) return manualMove;
+
+    const targetDirection = normalize({
+      x: target.controller.position.x - player.position.x,
+      y: target.controller.position.y - player.position.y,
+    }, player.facing);
+    const targetDistance = Math.hypot(
+      target.controller.position.x - player.position.x,
+      target.controller.position.y - player.position.y,
+    );
+
+    if (context.combatAssist.current.autoTarget
+      && Math.hypot(manualMove.x, manualMove.y) <= 0.05
+      && (player.state === 'idle' || player.state === 'moving')) {
+      player.facing.x = targetDirection.x;
+      player.facing.y = targetDirection.y;
+    }
+
+    if (!context.combatAssist.current.autoBattle || this.tutorialEnabled || manualAction) return manualMove;
+    const basicAction = config.combo[0];
+    if (!basicAction) return manualMove;
+    const telegraph = target.controller.telegraph;
+    const decision = resolveAutoBattle({
+      enabled: true,
+      manualMove,
+      playerState: player.state,
+      playerHpRatio: player.hp / Math.max(1, config.maxHp),
+      targetDirection,
+      targetDistance,
+      targetRadius: target.controller.config.radius,
+      targetRank: target.controller.config.rank,
+      ...(telegraph ? {
+        targetTelegraphProgress: telegraph.progress,
+        targetTelegraphRange: telegraph.pattern.range,
+      } : {}),
+      dodgeCooldown: player.dodgeCooldown,
+      skill1Cooldown: player.getSkillCooldown('skill1'),
+      skill2Cooldown: player.getSkillCooldown('skill2'),
+      basicAction,
+      skill1Action: config.skills.skill1,
+      skill2Action: config.skills.skill2,
+    });
+
+    player.facing.x = decision.facing.x;
+    player.facing.y = decision.facing.y;
+    this.autoActionCooldown = Math.max(0, this.autoActionCooldown - Math.max(0, deltaSeconds));
+    if (this.autoActionCooldown <= 0) {
+      if (decision.action === 'dodge') {
+        this.requestDodge(decision.facing);
+        this.autoActionCooldown = 0.34;
+      } else if (decision.action === 'skill2') {
+        this.requestSkill('skill2');
+        this.autoActionCooldown = 0.28;
+      } else if (decision.action === 'skill1') {
+        this.requestSkill('skill1');
+        this.autoActionCooldown = 0.24;
+      } else if (decision.action === 'attack') {
+        this.requestBasicAttack();
+        this.autoActionCooldown = 0.16;
+      }
+    }
+    return decision.moveAxis;
+  }
+
+  private faceCurrentTarget(): void {
+    const player = this.player;
+    const target = this.currentTarget;
+    if (!player || !target || !this.context?.combatAssist.current.autoTarget) return;
+    const direction = normalize({
+      x: target.controller.position.x - player.position.x,
+      y: target.controller.position.y - player.position.y,
+    }, player.facing);
+    player.facing.x = direction.x;
+    player.facing.y = direction.y;
+  }
+
+  private findEnemyAt(point: Vec2): EnemyActor | undefined {
+    return this.enemies
+      .filter((enemy) => enemy.controller.isAlive)
+      .map((enemy) => ({
+        enemy,
+        distance: Math.hypot(enemy.controller.position.x - point.x, enemy.controller.position.y - point.y),
+      }))
+      .filter((entry) => entry.distance <= entry.enemy.controller.config.radius + 28)
+      .sort((left, right) => left.distance - right.distance)[0]?.enemy;
+  }
+
+  private updateAssistButtons(): void {
+    const settings = this.context?.combatAssist.current;
+    if (!settings) return;
+    this.autoTargetButton?.setLabel(settings.autoTarget ? 'TARGET · ON' : 'TARGET · OFF');
+    this.autoBattleButton?.setLabel(settings.autoBattle ? 'AUTO · ON' : 'AUTO · OFF');
+  }
+
+  private handleKeyboardActions(moveAxis: Vec2): boolean {
     const input = this.context?.input;
     const player = this.player;
-    if (!input || !player) return;
+    if (!input || !player) return false;
 
-    if (input.consumePressed('KeyJ', 'KeyZ', 'Enter')) player.requestAttack();
-    if (input.consumePressed('KeyK', 'KeyX')) this.requestSkill('skill1');
-    if (input.consumePressed('KeyL', 'KeyC')) this.requestSkill('skill2');
-    if (input.consumePressed('Space', 'ShiftLeft', 'ShiftRight')) this.requestDodge(moveAxis);
+    let handled = false;
+    if (input.consumePressed('KeyJ', 'KeyZ', 'Enter')) {
+      handled = this.requestBasicAttack() || handled;
+    }
+    if (input.consumePressed('KeyK', 'KeyX')) {
+      this.requestSkill('skill1');
+      handled = true;
+    }
+    if (input.consumePressed('KeyL', 'KeyC')) {
+      this.requestSkill('skill2');
+      handled = true;
+    }
+    if (input.consumePressed('Space', 'ShiftLeft', 'ShiftRight')) {
+      this.requestDodge(moveAxis);
+      handled = true;
+    }
+    return handled;
+  }
+
+  private requestBasicAttack(): boolean {
+    const player = this.player;
+    if (!player) return false;
+    this.faceCurrentTarget();
+    return player.requestAttack();
   }
 
   private requestDodge(moveAxis: Vec2): void {
@@ -1010,7 +1304,9 @@ export class BattleScene implements Scene {
   private requestSkill(slot: 'skill1' | 'skill2'): void {
     const player = this.player;
     const action = this.playerConfig?.skills[slot];
-    if (!player || !action || !player.requestSkill(slot)) return;
+    if (!player || !action) return;
+    this.faceCurrentTarget();
+    if (!player.requestSkill(slot)) return;
     const boost = this.momentum.prepareSkill(action);
     this.pendingSkillBoosts[slot] = boost;
     if (boost.empowered) {
@@ -1054,12 +1350,13 @@ export class BattleScene implements Scene {
 
     this.clearEnemies();
 
-    for (const spawn of wave.enemies) {
+    for (const [spawnIndex, spawn] of wave.enemies.entries()) {
       const definition = context.gameData.getMonster(spawn.monsterId);
       const controller = new MonsterController(definition.combat, { x: spawn.x, y: spawn.y });
       const presentation = new MonsterActorView(definition, quality, this.monsterSheet);
       this.world.addChild(presentation.root);
       this.enemies.push({
+        runtimeId: `${wave.id}:${spawnIndex}:${spawn.monsterId}`,
         controller,
         presentation,
         definition,
@@ -1084,6 +1381,13 @@ export class BattleScene implements Scene {
       enemy.presentation.root.destroy({ children: true });
     }
     this.enemies.length = 0;
+    this.autoTargetController.clear();
+    this.currentTarget = undefined;
+    this.lastTargetAnnouncement = '';
+    this.targetRing.clear();
+    this.targetLink.clear();
+    this.targetRing.visible = false;
+    this.targetLink.visible = false;
     this.bossPanel.visible = false;
   }
 

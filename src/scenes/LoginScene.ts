@@ -9,6 +9,7 @@ import { openEmailAuthOverlay, type EmailAuthMode } from '../ui/EmailAuthOverlay
 import { LobbyScene } from './LobbyScene';
 import { openEmailPromptOverlay } from '../ui/EmailPromptOverlay';
 import { SettingsScene } from './SettingsScene';
+import { createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
 
 export class LoginScene implements Scene {
   public readonly view = new Container();
@@ -31,6 +32,8 @@ export class LoginScene implements Scene {
     } else {
       this.view.addChild(new Graphics().rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT).fill(COLORS.background));
     }
+    const interfaceBackdrop = createInterfaceBackdrop({ dense: true, label: `${BRAND.title} · ACCOUNT GATE` });
+    this.view.addChild(interfaceBackdrop);
 
     const session = context.auth.currentSession;
     if (session) {
@@ -44,17 +47,66 @@ export class LoginScene implements Scene {
       this.view.addChild(connected, state);
     }
 
-    this.addHotspot(92, 566, 356, 74, async () => this.continueGame(), 22);
-    this.addHotspot(102, 658, 336, 56, async () => this.openProviderMenu(), 18);
-    this.addHotspot(102, 724, 336, 56, async () => this.signInGuest(), 18);
-    this.addHotspot(122, 806, 84, 66, async () => this.showInfo('공지사항은 로그인 후 거점 운영실에서 확인할 수 있습니다.'), 16);
-    this.addHotspot(228, 806, 84, 66, async () => {
-      await context.scenes.change(() => new SettingsScene('login'));
-    }, 16);
-    this.addHotspot(334, 806, 84, 66, async () => this.showInfo('서비스 이용약관과 개인정보 처리방침은 정식 출시 전에 연결됩니다.'), 16);
+    const gatePanel = createRasterPanel(52, 516, 436, 350, 'panel_strong');
+    const gateStamp = createInterfaceStamp('ACCOUNT GATE', 140);
+    gateStamp.position.set(200, 530);
+    const gateTitle = new Text({
+      text: session ? '계승 기록이 준비되었습니다' : '균열 계정 선택',
+      style: new TextStyle({ fill: 0xffedbd, fontSize: 22, fontWeight: '800', letterSpacing: 0.5 }),
+    });
+    gateTitle.anchor.set(0.5);
+    gateTitle.position.set(DESIGN_WIDTH / 2, 578);
+    const gateSub = new Text({
+      text: '첫 시작부터 동일한 인터페이스 언어로 계정·설정·전투를 연결합니다.',
+      style: new TextStyle({ fill: 0xbfd0cf, fontSize: 10, fontWeight: '700', align: 'center', wordWrap: true, wordWrapWidth: 360 }),
+    });
+    gateSub.anchor.set(0.5);
+    gateSub.position.set(DESIGN_WIDTH / 2, 607);
+
+    const continueButton = new UiButton({
+      label: session ? '계승 기록으로 계속' : '빠른 시작',
+      subtitle: session ? `${session.displayName} · Cloud Save 확인` : '게스트 계정을 생성하고 바로 시작합니다.',
+      width: 372,
+      height: 68,
+      icon: 'play',
+      align: 'left',
+      fontSize: 18,
+      onPress: async () => this.continueGame(),
+    });
+    continueButton.position.set(84, 632);
+
+    const providerButton = new UiButton({
+      label: 'Google · 이메일 계정 연동',
+      width: 372,
+      height: 50,
+      tone: 'secondary',
+      fontSize: 13,
+      onPress: async () => this.openProviderMenu(),
+    });
+    providerButton.position.set(84, 710);
+
+    const guestButton = new UiButton({
+      label: '새 게스트로 시작',
+      width: 178,
+      height: 48,
+      tone: 'secondary',
+      fontSize: 12,
+      onPress: async () => this.signInGuest(),
+    });
+    guestButton.position.set(84, 772);
+    const settingsButton = new UiButton({
+      label: '시작 설정',
+      width: 178,
+      height: 48,
+      tone: 'secondary',
+      fontSize: 12,
+      onPress: async () => context.scenes.change(() => new SettingsScene('login')),
+    });
+    settingsButton.position.set(278, 772);
+    this.view.addChild(gatePanel, gateStamp, gateTitle, gateSub, continueButton, providerButton, guestButton, settingsButton);
 
     this.message.anchor.set(0.5, 0);
-    this.message.position.set(DESIGN_WIDTH / 2, 888);
+    this.message.position.set(DESIGN_WIDTH / 2, 874);
     this.message.text = session
       ? `${session.displayName} 계정으로 계속할 수 있습니다.`
       : '익명·Google·이메일 계정을 사용할 수 있습니다.';
@@ -65,27 +117,12 @@ export class LoginScene implements Scene {
       style: new TextStyle({ fill: 0xa7b8b5, fontSize: 9, letterSpacing: 1.4 }),
     });
     version.anchor.set(0.5);
-    version.position.set(DESIGN_WIDTH / 2, 933);
+    version.position.set(DESIGN_WIDTH / 2, 922);
     this.view.addChild(version);
   }
 
   public exit(): void {}
   public update(): void {}
-
-  private addHotspot(x: number, y: number, width: number, height: number, onPress: () => void | Promise<void>, radius: number): void {
-    const hotspot = new Graphics()
-      .roundRect(x, y, width, height, radius)
-      .fill({ color: COLORS.primaryBright, alpha: 0.001 })
-      .stroke({ color: COLORS.primaryBright, alpha: 0, width: 3 });
-    hotspot.eventMode = 'static';
-    hotspot.cursor = 'pointer';
-    hotspot.hitArea = { contains: (px: number, py: number) => px >= x && py >= y && px <= x + width && py <= y + height };
-    hotspot.on('pointerover', () => { hotspot.alpha = 0.78; hotspot.clear().roundRect(x, y, width, height, radius).fill({ color: COLORS.primaryBright, alpha: 0.04 }).stroke({ color: COLORS.primaryBright, alpha: 0.65, width: 2 }); });
-    hotspot.on('pointerout', () => { hotspot.clear().roundRect(x, y, width, height, radius).fill({ color: COLORS.primaryBright, alpha: 0.001 }).stroke({ color: COLORS.primaryBright, alpha: 0, width: 2 }); });
-    hotspot.on('pointerdown', () => { hotspot.alpha = 0.55; });
-    hotspot.on('pointerup', () => { hotspot.alpha = 1; void onPress(); });
-    this.view.addChild(hotspot);
-  }
 
   private async continueGame(): Promise<void> {
     if (!this.context || this.transitioning) return;

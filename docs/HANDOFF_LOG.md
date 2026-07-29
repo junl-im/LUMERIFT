@@ -300,3 +300,15 @@
 - v1.11.5 릴리스 버전·문서·검증 체계 갱신
 
 - v1.11.5 CI hotfix: 3초 QA 표본의 신뢰도 시간/개수 기준 정렬 및 경계 테스트 추가
+
+
+## 2026-07-29 · v1.11.6
+- PlayerActorView에 smoothedFacing, directionRibbon, stepHighlights를 추가해 8방향 이동 전환을 부드럽게 만들었다.
+- PlayerMotionDirector의 moving 모션을 강화해 보행 리듬과 미세 회전이 더 자연스럽게 보이도록 조정했다.
+- 패치/전체본 아카이브명과 릴리스 버전 계약을 v1.11.6으로 갱신했다.
+
+
+## 2026-07-29 · v1.11.7
+- AutoTargetController·AutoBattleController·CombatAssistController를 추가했다.
+- 전투 HUD에 TARGET/AUTO 토글, LOCK SIGNAL, 타겟 링과 연결선을 추가했다.
+- 첫 시작부터 Boot/Login/Lobby/공통 씬 UI를 통일된 인터페이스로 리뉴얼했다.

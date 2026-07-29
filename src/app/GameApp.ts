@@ -4,6 +4,7 @@ import type { AppContext } from './AppContext';
 import { SceneManager } from '../core/scenes/SceneManager';
 import { InputManager } from '../core/input/InputManager';
 import { JoystickCalibrationController } from '../core/input/JoystickCalibrationController';
+import { CombatAssistController } from '../core/input/CombatAssistController';
 import { PerformanceMonitor } from '../core/performance/PerformanceMonitor';
 import { FrameRateController } from '../core/performance/FrameRateController';
 import { FirebaseGateway } from '../services/firebase/FirebaseGateway';
@@ -69,6 +70,7 @@ export class GameApp {
     this.audio = audio;
     const frameRate = new FrameRateController(this.pixi.ticker, performance);
     const joystickCalibration = new JoystickCalibrationController();
+    const combatAssist = new CombatAssistController();
     const graphicsQuality = new GraphicsQualityController();
     const accessibility = new AccessibilityController();
     const playerArtVariant = new PlayerArtVariantController();
@@ -107,6 +109,7 @@ export class GameApp {
       auth,
       input: this.input,
       joystickCalibration,
+      combatAssist,
       performance,
       frameRate,
       graphicsQuality,

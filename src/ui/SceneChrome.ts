@@ -3,6 +3,7 @@ import { BRAND } from '../app/brand';
 import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from '../app/constants';
 import { createRasterPanel, getSceneBackgroundTexture } from './UiSkin';
 import { createGlowDivider } from './UiTheme';
+import { createInterfaceBackdrop, createInterfaceStamp } from './InterfaceChrome';
 
 export function createBackground(title: string, subtitle: string): Container {
   const root = new Container();
@@ -16,6 +17,7 @@ export function createBackground(title: string, subtitle: string): Container {
     root.addChild(new Graphics().rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT).fill(COLORS.background));
   }
 
+  const interfaceBackdrop = createInterfaceBackdrop({ dense: false, label: `${BRAND.title} · ${title.toUpperCase()}` });
   const shade = new Graphics()
     .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
     .fill({ color: COLORS.dark, alpha: 0.62 })
@@ -53,10 +55,12 @@ export function createBackground(title: string, subtitle: string): Container {
     style: new TextStyle({ fill: 0xbfd0cf, fontSize: 12, lineHeight: 16, wordWrap: true, wordWrapWidth: 455 }),
   });
   description.position.set(37, 91);
+  const stamp = createInterfaceStamp('CHAPTER UI', 112);
+  stamp.position.set(394, 28);
   const divider = createGlowDivider(462);
   divider.position.set(39, 126);
 
-  root.addChild(shade, aura, top, brand, heading, description, divider);
+  root.addChild(interfaceBackdrop, shade, aura, top, brand, heading, description, stamp, divider);
   return root;
 }
 

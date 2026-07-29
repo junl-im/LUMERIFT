@@ -5,6 +5,8 @@ import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
 import { ASSET_PATHS } from '../core/assets/AssetCatalog';
 import { initializeUiSkin } from '../ui/UiSkin';
+import { createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
+import { createRasterPanel } from '../ui/UiSkin';
 import { LoginScene } from './LoginScene';
 
 export class BootScene implements Scene {
@@ -30,6 +32,10 @@ export class BootScene implements Scene {
       .fill({ color: 0x0d5353, alpha: 0.13 })
       .circle(DESIGN_WIDTH / 2, 320, 170)
       .fill({ color: 0x2fc2ae, alpha: 0.08 });
+    const interfaceBackdrop = createInterfaceBackdrop({ dense: true, label: `${BRAND.title} · AWAKENING SEQUENCE` });
+    const heroCard = createRasterPanel(54, 420, 432, 184, 'panel_strong');
+    const stamp = createInterfaceStamp('FIRST AWAKENING', 154);
+    stamp.position.set(193, 430);
     const vignette = new Graphics()
       .rect(0, 0, DESIGN_WIDTH, DESIGN_HEIGHT)
       .stroke({ color: 0xcdaa5c, alpha: 0.18, width: 2 });
@@ -48,20 +54,20 @@ export class BootScene implements Scene {
       }),
     });
     title.anchor.set(0.5);
-    title.position.set(DESIGN_WIDTH / 2, 455);
+    title.position.set(DESIGN_WIDTH / 2, 486);
 
     const subtitle = new Text({
       text: `${BRAND.subtitle}  ·  빛의 균열을 건너는 모험`,
       style: new TextStyle({ fill: 0xd9b968, fontSize: 14, letterSpacing: 1.3 }),
     });
     subtitle.anchor.set(0.5);
-    subtitle.position.set(DESIGN_WIDTH / 2, 515);
+    subtitle.position.set(DESIGN_WIDTH / 2, 540);
 
     this.status.anchor.set(0.5);
-    this.status.position.set(DESIGN_WIDTH / 2, 603);
+    this.status.position.set(DESIGN_WIDTH / 2, 622);
 
     const track = new Graphics()
-      .roundRect(88, 650, 364, 9, 5)
+      .roundRect(88, 662, 364, 9, 5)
       .fill({ color: 0x02070b, alpha: 0.9 })
       .stroke({ color: 0xd5b45f, alpha: 0.35, width: 1 });
 
@@ -70,9 +76,9 @@ export class BootScene implements Scene {
       style: new TextStyle({ fill: COLORS.muted, fontSize: 10, letterSpacing: 1.5 }),
     });
     version.anchor.set(0.5);
-    version.position.set(DESIGN_WIDTH / 2, 698);
+    version.position.set(DESIGN_WIDTH / 2, 710);
 
-    this.view.addChild(background, vignette, this.rune, title, subtitle, this.status, track, this.progress, version);
+    this.view.addChild(background, interfaceBackdrop, vignette, heroCard, stamp, this.rune, title, subtitle, this.status, track, this.progress, version);
     void this.loadCoreAssets(context);
   }
 
@@ -87,7 +93,7 @@ export class BootScene implements Scene {
     const timeRatio = Math.min(this.elapsed / 1.05, 1);
     const ratio = this.assetsReady ? timeRatio : Math.min(timeRatio, 0.88);
     this.progress.clear()
-      .roundRect(90, 652, 360 * ratio, 5, 3)
+      .roundRect(90, 664, 360 * ratio, 5, 3)
       .fill({ color: COLORS.primaryBright, alpha: 0.95 });
 
     if (!this.assetsReady) {
