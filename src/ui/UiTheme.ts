@@ -17,12 +17,7 @@ export function createIconSprite(name: string, size = 34, tint?: number): Sprite
   return icon;
 }
 
-export function createResourceChip(
-  iconName: string,
-  label: string,
-  value: string,
-  width = 142,
-): Container {
+export function createResourceChip(iconName: string, label: string, value: string, width = 142): Container {
   const root = new Container();
   root.addChild(createRasterPanel(0, 0, width, 54, 'resource_chip'));
   root.addChild(new Graphics().roundRect(4, 4, width - 8, 18, 10).fill({ color: 0xffffff, alpha: 0.04 }));
@@ -63,6 +58,20 @@ export function createMenuTile(options: MenuTileOptions): Container {
     .fill({ color: options.active ? COLORS.warning : COLORS.primaryBright, alpha: options.active ? 0.75 : 0.36 })
     .circle(width - 15, height - 11, 2.5)
     .fill({ color: options.active ? COLORS.primaryBright : COLORS.warning, alpha: 0.58 });
+  const storyRibbon = new Graphics()
+    .moveTo(0, 0)
+    .lineTo(Math.min(52, width * 0.42), 0)
+    .lineTo(Math.min(42, width * 0.34), 18)
+    .lineTo(0, 18)
+    .closePath()
+    .fill({ color: options.active ? COLORS.warning : COLORS.primaryBright, alpha: options.active ? 0.26 : 0.18 });
+  const bevelLine = new Graphics()
+    .moveTo(10, 10)
+    .lineTo(width - 18, 10)
+    .stroke({ color: 0xffffff, alpha: 0.08, width: 1 })
+    .moveTo(width - 26, 18)
+    .lineTo(width - 10, 34)
+    .stroke({ color: COLORS.warning, alpha: 0.18, width: 1.5 });
   const icon = createIconSprite(options.icon, options.subtitle ? 38 : 32);
   icon.position.set(10, options.subtitle ? 17 : 11);
   const label = new Text({
@@ -70,7 +79,7 @@ export function createMenuTile(options: MenuTileOptions): Container {
     style: new TextStyle({ fill: options.active ? 0xfbf1c7 : COLORS.text, fontSize: options.subtitle ? 15 : 12, fontWeight: '800', letterSpacing: 0.35 }),
   });
   label.position.set(options.subtitle ? 52 : 12, options.subtitle ? 14 : 45);
-  const children: Container[] = [panel, accent, icon, label];
+  const children: (Container | Graphics | Sprite | Text)[] = [panel, accent, storyRibbon, bevelLine, icon, label];
   if (options.subtitle) {
     const subtitle = new Text({
       text: options.subtitle,
@@ -102,7 +111,10 @@ export function createSectionTitle(title: string, subtitle?: string): Container 
     .roundRect(0, 3, 16, 8, 4)
     .fill({ color: COLORS.primaryBright, alpha: 0.92 })
     .roundRect(18, 5, 6, 4, 2)
-    .fill({ color: COLORS.warning, alpha: 0.9 });
+    .fill({ color: COLORS.warning, alpha: 0.9 })
+    .moveTo(0, 16)
+    .lineTo(22, 16)
+    .stroke({ color: COLORS.paper, alpha: 0.22, width: 1 });
   const titleText = new Text({
     text: title,
     style: new TextStyle({ fill: 0xf4dca0, fontSize: 16, fontWeight: '700', letterSpacing: 0.5 }),

@@ -2,12 +2,12 @@
   "game": "LUMERIFT: 균열의 계승자",
   "fromVersion": "1.11.8",
   "toVersion": "1.11.9",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.9_to_v1.11.10.zip",
   "strategy": "overwrite-project-root-cumulative",
   "deleteRequired": [],
   "payloadFileCount": 58,
   "listedFileCount": 57,
-  "payloadBytes": 531183,
+  "payloadBytes": 531158,
   "files": [
     {
       "path": "AGENTS.md",
@@ -299,8 +299,8 @@
     },
     {
       "path": "src/scenes/BattleScene.ts",
-      "bytes": 91701,
-      "sha256": "f12db36325f1585ce0c15fa92ac79b449e440222b9f51555a35e11238820963e",
+      "bytes": 91676,
+      "sha256": "74f5cc1b75b29147a240c5b018174f5971cbc93d0fa63bf283d3f5746159bc5e",
       "status": "modified"
     },
     {
@@ -324,7 +324,7 @@
     {
       "path": "src/scenes/SettingsScene.ts",
       "bytes": 17589,
-      "sha256": "39edec588054737ba5bd3eb761389c48230254fef136a4992019d8a396a615cf",
+      "sha256": "8a233c6002d976542af5591b08af671bca265b361316b896461647bac6544350",
       "status": "modified"
     },
     {
@@ -351,5 +351,7 @@
       "sha256": "db776feb2886be4934f025a893c64d8ea5306e6c81478e9a675890ba7817453f",
       "status": "cumulative"
     }
-  ]
+  ],
+  "version": "1.11.10",
+  "baseVersion": "1.11.9"
 }

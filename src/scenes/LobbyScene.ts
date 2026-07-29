@@ -8,11 +8,7 @@ import { UiButton } from '../ui/UiButton';
 import { createBadge, createProgressBar } from '../ui/PremiumUi';
 import { createMenuTile, createResourceChip, createSectionTitle } from '../ui/UiTheme';
 import { createDefaultProfile, type PlayerProfile } from '../repositories/PlayerRepository';
-import {
-  calculateEquipmentSummary,
-  calculateTotalPower,
-  ensureStarterInventory,
-} from '../game/items/inventoryLogic';
+import { calculateEquipmentSummary, calculateTotalPower, ensureStarterInventory } from '../game/items/inventoryLogic';
 import { countClaimableQuests } from '../game/quests/questLogic';
 import { operationNotificationCount } from '../game/operations/operationsLogic';
 import { StageSelectScene } from './StageSelectScene';
@@ -23,7 +19,7 @@ import { AssetGalleryScene } from './AssetGalleryScene';
 import { OperationsScene } from './OperationsScene';
 import { AccountScene } from './AccountScene';
 import { RankingScene } from './RankingScene';
-import { createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
+import { createComicTag, createFeatureMarquee, createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -39,8 +35,7 @@ export class LobbyScene implements Scene {
     const session = context.auth.currentSession;
     if (!session) throw new Error('로그인 세션이 없습니다.');
 
-    const loaded = await context.playerRepository.load(session.uid)
-      ?? createDefaultProfile(session.uid, session.displayName);
+    const loaded = await context.playerRepository.load(session.uid) ?? createDefaultProfile(session.uid, session.displayName);
     this.profile = ensureStarterInventory(loaded, context.gameData);
     await context.playerRepository.save(this.profile);
 
@@ -61,6 +56,7 @@ export class LobbyScene implements Scene {
     this.createAttendanceCard();
     this.createEventBanner();
     this.createQuestPanel(clearedStages, claimableQuests, equipment);
+    this.createRenewalBriefing(context);
     this.createPrimaryAction(context);
     this.createMenuGrid(context, claimableQuests, operationAlerts);
     this.createBottomNavigation(context);
@@ -127,6 +123,8 @@ export class LobbyScene implements Scene {
     const topBar = createRasterPanel(12, 12, DESIGN_WIDTH - 24, 94, 'panel_strong');
     const commandStamp = createInterfaceStamp('COMMAND HUB', 126);
     commandStamp.position.set(392, 70);
+    const updateTag = createComicTag('STYLE UP!', COLORS.sunrise);
+    updateTag.position.set(388, 38);
     const portraitFrame = createRasterPanel(22, 22, 72, 72, 'portrait_small');
     const brand = new Text({
       text: 'LUMERIFT',
@@ -157,10 +155,11 @@ export class LobbyScene implements Scene {
     if (operationAlerts > 0) {
       const dot = new Graphics().circle(508, 18, 9).fill({ color: COLORS.danger, alpha: 0.98 }).stroke({ color: 0xf4dca0, width: 1 });
       const count = new Text({ text: String(operationAlerts), style: new TextStyle({ fill: 0xffffff, fontSize: 9, fontWeight: '700' }) });
-      count.anchor.set(0.5); count.position.set(508, 18);
+      count.anchor.set(0.5);
+      count.position.set(508, 18);
       this.view.addChild(dot, count);
     }
-    this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText, commandStamp);
+    this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText, commandStamp, updateTag);
   }
 
   private createHeroPresentation(texture?: Texture, power = 0): void {
@@ -173,6 +172,8 @@ export class LobbyScene implements Scene {
     }
 
     const namePlate = createRasterPanel(26, 536, 292, 78, 'panel_gold');
+    const marquee = createFeatureMarquee('전술·아트·자동화 업그레이드', '캐릭터 방향감, 웹툰형 UI, 자동 보조 전투 설정을 한 화면에서 정리합니다.', 268);
+    marquee.position.set(36, 446);
     const name = new Text({
       text: this.profile?.nickname ?? '계승자',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 23, fontWeight: '700' }),
@@ -183,18 +184,20 @@ export class LobbyScene implements Scene {
       style: new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '600' }),
     });
     role.position.set(49, 582);
-    this.view.addChild(namePlate, name, role);
+    this.view.addChild(marquee, namePlate, name, role);
   }
 
   private createAttendanceCard(): void {
     const panel = createRasterPanel(18, 126, 122, 150, 'panel_gold');
     const title = new Text({ text: '오늘의 출석', style: new TextStyle({ fill: 0xf4dca0, fontSize: 12, fontWeight: '700' }) });
-    title.anchor.set(0.5); title.position.set(79, 144);
+    title.anchor.set(0.5);
+    title.position.set(79, 144);
     const chest = createMenuTile({ icon: 'attendance', label: 'DAY 1', width: 88, height: 74, active: true, onPress: async () => this.context?.scenes.change(() => new OperationsScene('attendance')) });
     chest.position.set(35, 164);
     chest.scale.set(0.82);
     const reward = new Text({ text: '500 GOLD', style: new TextStyle({ fill: COLORS.text, fontSize: 11, fontWeight: '700' }) });
-    reward.anchor.set(0.5); reward.position.set(79, 248);
+    reward.anchor.set(0.5);
+    reward.position.set(79, 248);
     this.view.addChild(panel, title, chest, reward);
   }
 
@@ -206,15 +209,13 @@ export class LobbyScene implements Scene {
     title.position.set(348, 163);
     const detail = new Text({ text: 'Chapter 1 균열 신호 상승', style: new TextStyle({ fill: 0xf4dca0, fontSize: 10 }) });
     detail.position.set(348, 193);
-    const badge = createBadge('확률 UP', 'warning'); badge.position.set(444, 141); badge.scale.set(0.64);
+    const badge = createBadge('확률 UP', 'warning');
+    badge.position.set(444, 141);
+    badge.scale.set(0.64);
     this.view.addChild(panel, eyebrow, title, detail, badge);
   }
 
-  private createQuestPanel(
-    clearedStages: number,
-    claimableQuests: number,
-    equipment: { readonly attack: number; readonly defense: number; readonly maxHp: number },
-  ): void {
+  private createQuestPanel(clearedStages: number, claimableQuests: number, equipment: { readonly attack: number; readonly defense: number; readonly maxHp: number }): void {
     const panel = createRasterPanel(330, 245, 196, 350, 'panel_strong');
     const section = createSectionTitle('오늘의 퀘스트', '진행 중인 핵심 목표');
     section.position.set(346, 265);
@@ -228,12 +229,15 @@ export class LobbyScene implements Scene {
       const labelText = new Text({ text: label, style: new TextStyle({ fill: COLORS.text, fontSize: 12, fontWeight: '700' }) });
       labelText.position.set(346, y);
       const valueText = new Text({ text: value, style: new TextStyle({ fill: 0xf4dca0, fontSize: 10, fontWeight: '700' }) });
-      valueText.anchor.set(1, 0); valueText.position.set(505, y + 1);
-      const bar = createProgressBar(158, ratio, ratio >= 1 ? 'success' : 'primary', 7); bar.position.set(346, y + 28);
+      valueText.anchor.set(1, 0);
+      valueText.position.set(505, y + 1);
+      const bar = createProgressBar(158, ratio, ratio >= 1 ? 'success' : 'primary', 7);
+      bar.position.set(346, y + 28);
       this.view.addChild(labelText, valueText, bar);
     });
     const stats = new Text({
-      text: `장비 보정  ATK +${equipment.attack}  DEF +${equipment.defense}\n수령 가능 보상  ${claimableQuests}`,
+      text: `장비 보정  ATK +${equipment.attack}  DEF +${equipment.defense}
+수령 가능 보상  ${claimableQuests}`,
       style: new TextStyle({ fill: COLORS.muted, fontSize: 9, lineHeight: 16 }),
     });
     stats.position.set(346, 533);
@@ -242,18 +246,39 @@ export class LobbyScene implements Scene {
     this.view.addChild(panel, section, stats, button);
   }
 
+  private createRenewalBriefing(context: AppContext): void {
+    const panel = createRasterPanel(26, 620, 236, 90, 'panel_glass');
+    const title = new Text({ text: '리뉴얼 브리핑', style: new TextStyle({ fill: COLORS.paper, fontSize: 13, fontWeight: '900', letterSpacing: 0.8 }) });
+    title.position.set(40, 634);
+    const detail = new Text({
+      text: '웹툰형 강조 카드·아트 보관소·자동 전투 세부 프리셋을 묶은 대형 업데이트 라인입니다.',
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 204, lineHeight: 12 }),
+    });
+    detail.position.set(40, 654);
+    const gallery = new UiButton({
+      label: '에셋 보관소',
+      width: 96,
+      height: 28,
+      tone: 'secondary',
+      fontSize: 9,
+      onPress: async () => context.scenes.change(() => new AssetGalleryScene()),
+    });
+    gallery.position.set(154, 674);
+    this.view.addChild(panel, title, detail, gallery);
+  }
+
   private createPrimaryAction(context: AppContext): void {
     const battle = new UiButton({
       label: '전투 시작',
       subtitle: '해금된 스테이지를 선택해 균열 작전을 시작합니다.',
       icon: 'play',
       align: 'left',
-      width: 488,
+      width: 248,
       height: 76,
       fontSize: 24,
       onPress: async () => context.scenes.change(() => new StageSelectScene()),
     });
-    battle.position.set(26, 620);
+    battle.position.set(266, 620);
     this.view.addChild(battle);
   }
 
@@ -270,7 +295,7 @@ export class LobbyScene implements Scene {
     ];
     entries.forEach((entry, index) => {
       const tile = createMenuTile({ icon: entry.icon, label: entry.label, width: 116, height: 72, badge: entry.badge, onPress: entry.press });
-      tile.position.set(26 + (index % 4) * 124, 710 + Math.floor(index / 4) * 78);
+      tile.position.set(26 + (index % 4) * 124, 720 + Math.floor(index / 4) * 78);
       this.view.addChild(tile);
     });
   }
@@ -283,9 +308,7 @@ export class LobbyScene implements Scene {
       { icon: 'hero', label: '영웅', active: false, press: async () => context.scenes.change(() => new InventoryScene()) },
       { icon: 'summon', label: '도감', active: false, press: async () => context.scenes.change(() => new AssetGalleryScene()) },
       { icon: 'shop', label: '운영', active: false, press: async () => context.scenes.change(() => new OperationsScene()) },
-      { icon: 'menu', label: '설정', active: false, press: async () => {
-        await context.scenes.change(() => new SettingsScene('lobby'));
-      } },
+      { icon: 'menu', label: '설정', active: false, press: async () => { await context.scenes.change(() => new SettingsScene('lobby')); } },
     ];
     items.forEach((item, index) => {
       const tile = createMenuTile({ icon: item.icon, label: item.label, width: 94, height: 62, active: item.active, onPress: item.press });

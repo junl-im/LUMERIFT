@@ -13,4 +13,8 @@ export const COLORS = {
   text: 0xfbfffe,
   muted: 0xb3c8c6,
   dark: 0x010409,
+  ink: 0x09131c,
+  paper: 0xf7f4ea,
+  sunrise: 0xffb36b,
+  mintFog: 0xd8fff8,
 } as const;

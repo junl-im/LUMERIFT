@@ -58,10 +58,19 @@ export function createInterfaceBackdrop(options: InterfaceBackdropOptions = {}):
 
   const scan = new Graphics();
   for (let y = 146; y < DESIGN_HEIGHT - 116; y += dense ? 62 : 78) {
-    scan
-      .moveTo(26, y)
-      .lineTo(DESIGN_WIDTH - 26, y)
-      .stroke({ color: 0xffffff, alpha: 0.023, width: 1 });
+    scan.moveTo(26, y).lineTo(DESIGN_WIDTH - 26, y).stroke({ color: 0xffffff, alpha: 0.023, width: 1 });
+  }
+
+  const speedLines = new Graphics();
+  for (let index = 0; index < 6; index += 1) {
+    const offset = index * 66;
+    speedLines
+      .moveTo(26 + index * 12, 118 + offset)
+      .lineTo(98 + index * 14, 92 + offset)
+      .stroke({ color: accent, alpha: dense ? 0.12 : 0.08, width: 2 })
+      .moveTo(DESIGN_WIDTH - 114 - index * 10, 164 + offset)
+      .lineTo(DESIGN_WIDTH - 24 - index * 4, 134 + offset)
+      .stroke({ color: secondary, alpha: dense ? 0.1 : 0.07, width: 2 });
   }
 
   const frame = new Graphics()
@@ -107,7 +116,7 @@ export function createInterfaceBackdrop(options: InterfaceBackdropOptions = {}):
   bottomLabel.anchor.set(0.5);
   bottomLabel.position.set(DESIGN_WIDTH / 2, DESIGN_HEIGHT - 35);
 
-  root.addChild(base, chapterCuts, halftone, scan, frame, topRail, bottomRail, topLabel, bottomLabel);
+  root.addChild(base, chapterCuts, halftone, scan, speedLines, frame, topRail, bottomRail, topLabel, bottomLabel);
   return root;
 }
 
@@ -175,5 +184,59 @@ export function createInterfaceStamp(text: string, width = 126): Container {
   label.anchor.set(0.5);
   label.position.set(width / 2 + 3, 14);
   root.addChild(plate, notch, label);
+  return root;
+}
+
+export function createFeatureMarquee(title: string, subtitle: string, width = 240): Container {
+  const root = new Container();
+  const plate = new Graphics()
+    .roundRect(0, 0, width, 64, 22)
+    .fill({ color: COLORS.ink, alpha: 0.88 })
+    .stroke({ color: COLORS.warning, alpha: 0.54, width: 2 })
+    .roundRect(8, 8, width - 16, 18, 9)
+    .fill({ color: COLORS.primaryBright, alpha: 0.08 })
+    .moveTo(16, 50)
+    .lineTo(width - 16, 50)
+    .stroke({ color: COLORS.primaryBright, alpha: 0.28, width: 1.5 });
+  const burst = new Graphics()
+    .moveTo(width - 40, -2)
+    .lineTo(width - 20, 10)
+    .lineTo(width - 6, 8)
+    .lineTo(width - 22, 24)
+    .closePath()
+    .fill({ color: COLORS.sunrise, alpha: 0.74 });
+  const titleText = new Text({
+    text: title,
+    style: new TextStyle({ fill: COLORS.paper, fontSize: 11, fontWeight: '900', letterSpacing: 1.1 }),
+  });
+  titleText.position.set(16, 12);
+  const subtitleText = new Text({
+    text: subtitle,
+    style: new TextStyle({ fill: COLORS.mintFog, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: width - 30, lineHeight: 12 }),
+  });
+  subtitleText.position.set(16, 30);
+  root.addChild(plate, burst, titleText, subtitleText);
+  return root;
+}
+
+export function createComicTag(text: string, color = COLORS.primaryBright): Container {
+  const root = new Container();
+  const bubble = new Graphics()
+    .roundRect(0, 0, 118, 24, 12)
+    .fill({ color: COLORS.paper, alpha: 0.96 })
+    .stroke({ color: COLORS.ink, alpha: 0.9, width: 2 })
+    .moveTo(12, 23)
+    .lineTo(20, 30)
+    .lineTo(22, 23)
+    .closePath()
+    .fill({ color: COLORS.paper, alpha: 0.96 })
+    .stroke({ color: COLORS.ink, alpha: 0.9, width: 2 });
+  const label = new Text({
+    text,
+    style: new TextStyle({ fill: color, fontSize: 9, fontWeight: '900', letterSpacing: 0.85 }),
+  });
+  label.anchor.set(0.5);
+  label.position.set(59, 12);
+  root.addChild(bubble, label);
   return root;
 }

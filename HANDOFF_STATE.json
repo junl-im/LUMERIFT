@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.9",
+  "version": "1.11.10",
   "updatedAt": "2026-07-29",
-  "currentPhase": "v1.11.9 자동 전투 고급 로그·HP/보스 정책·Safe Area·8방향 공격 포즈 강화 완료, GitHub Actions 최종 확인 대기",
-  "qualityStage": "production-candidate-auto-diagnostics-safe-area-directional-attack",
+  "currentPhase": "v1.11.10 초초 대규모 디자인·에셋 리뉴얼 완료, 누적 검증과 패키징 점검 단계",
+  "qualityStage": "production-candidate-interface-asset-renewal",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -174,14 +174,16 @@
     "v1.11.6: 8방향 이동 스무딩, 방향 리본/발자국 하이라이트, 자연스러운 이동 리듬과 캐릭터 그래픽 polish 적용",
     "v1.11.7: 자동 타겟 기본 ON, 자동 전투 기본 OFF, 수동 우선, Boot→Battle 인터페이스 리뉴얼 적용",
     "v1.11.8: RIFT INTERFACE 전 화면 리뉴얼, 자동 타겟 우선순위/자동 스킬/자동 회피/보스전 제한/기기 프리셋 적용",
-    "v1.11.9: 자동 타겟 점수·행동 이유 HUD, HP 조건형 스킬, 보스 회피 정책, 수동 복귀 지연, 전투 Safe Area, 방향별 공격 포즈 적용"
+    "v1.11.9: 자동 타겟 점수·행동 이유 HUD, HP 조건형 스킬, 보스 회피 정책, 수동 복귀 지연, 전투 Safe Area, 방향별 공격 포즈 적용",
+    "v1.11.10: 웹툰형 인터페이스 크롬·코믹 태그·로비 브리핑·에셋 보관소 production-line 안내를 포함한 초대규모 디자인·에셋 리뉴얼 적용"
   ],
   "inProgress": [
     "GitHub Actions 전체 test/build/bundle 확인",
-    "실기기 화면 크기별 Safe Area 체감 검수"
+    "실기기 화면 크기별 Safe Area 체감 검수",
+    "웹툰형 크롬·코믹 태그 가독성 실기기 점검"
   ],
   "nextPlanned": [
-    "v1.11.10 자동 전투 전투 로그 저장·리플레이 요약",
+    "v1.11.11 자동 전투 전투 로그 저장·리플레이 요약",
     "보스 패턴별 자동 회피 예외 데이터 테이블",
     "HP·Drive·보스 상태 조합형 자동 스킬 규칙",
     "실기기 Android/iOS HUD 스크린샷 기반 미세 정렬",
@@ -299,8 +301,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.9.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.10.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.9_to_v1.11.10.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -365,12 +367,16 @@
     "ownedPaintedRuntimeDefaultEnabled": false,
     "combatHapticCueCount": 10,
     "combatAnnouncements": true,
-    "layeredCombatAudio": true
+    "layeredCombatAudio": true,
+    "interfaceChromeVersion": 6,
+    "comicTagSystem": true,
+    "assetGalleryProductionLineLabel": true,
+    "lobbyRenewalBriefing": true
   },
   "releaseArchives": {
     "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
     "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
-    "full": "LUMERIFT_FULL_v1.11.9.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip"
+    "full": "LUMERIFT_FULL_v1.11.10.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.9_to_v1.11.10.zip"
   }
 }

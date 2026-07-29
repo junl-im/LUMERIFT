@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.9
+# LUMERIFT: 균열의 계승자 v1.11.10
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -34,3 +34,9 @@ npm run dev
 - `docs/EIGHT_DIRECTION_POLISH_v1.11.6.md`
 
 실기기 장시간 FPS·온도·배터리·GPU 메모리는 실제 측정 전까지 완료로 기록하지 않는다.
+
+
+## v1.11.10 핵심 업데이트
+- 웹툰형 코믹 태그·피처 마키·잉크 라인 기반 UI 크롬 리뉴얼
+- 로비 리뉴얼 브리핑 카드와 에셋 보관소 production-line 안내 추가
+- 관련 문서: `docs/INTERFACE_RENEWAL_v1.11.10.md`, `docs/ASSET_RENEWAL_v1.11.10.md`, `docs/PATCH_NOTES_v1.11.10.md`

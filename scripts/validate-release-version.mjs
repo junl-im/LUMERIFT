@@ -97,6 +97,13 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1119')) {
   errors.push('verify에서 v1.11.9 자동 진단·Safe Area·방향 공격 포즈 검사가 누락되었습니다.');
 }
 
+if (pkg.scripts?.['validate:upgrade:v11110'] !== 'node scripts/validate-v11110-upgrade.mjs') {
+  errors.push('package.json v1.11.10 인터페이스·에셋 리뉴얼 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11110')) {
+  errors.push('verify에서 v1.11.10 인터페이스·에셋 리뉴얼 검사가 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

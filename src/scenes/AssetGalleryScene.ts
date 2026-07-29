@@ -4,6 +4,7 @@ import { COLORS, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
 import { QUALITY_GALLERY_CATEGORIES, type QualityGalleryCategoryDefinition } from '../core/assets/AssetCatalog';
 import { createBackground, createPanel } from '../ui/SceneChrome';
+import { createComicTag, createFeatureMarquee } from '../ui/InterfaceChrome';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 
@@ -21,7 +22,7 @@ export class AssetGalleryScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('아트 제작 보관소', 'v1.0 실사용 오픈아트와 기존 구조 검증 자산을 분리해 검수합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.10 기준 실사용 아트 라인과 보관 원본의 품질 결을 한 곳에서 점검합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 636));
 
     this.categoryText = new Text({
@@ -32,11 +33,18 @@ export class AssetGalleryScene implements Scene {
     this.categoryText.position.set(DESIGN_WIDTH / 2, 214);
 
     const qualityNote = new Text({
-      text: '앞 4개 분류: production-candidate-open-art-pass · 이후: v0.9 legacy procedural',
+      text: '앞 4개 분류: production-line live art · 이후: legacy/runtime archive',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 12, align: 'center' }),
     });
     qualityNote.anchor.set(0.5);
     qualityNote.position.set(DESIGN_WIDTH / 2, 243);
+
+    const productionTag = createComicTag('production-line', COLORS.primary);
+    productionTag.position.set(38, 190);
+    productionTag.scale.set(0.82);
+    const marquee = createFeatureMarquee('아트 룩·에셋 라인업', '실사용 번들과 아카이브를 분리 표시해 모바일 제작용 마스터 흐름을 쉽게 검수합니다.', 228);
+    marquee.position.set(278, 186);
+    marquee.scale.set(0.9);
 
     this.statusText = new Text({
       text: '',
@@ -52,37 +60,22 @@ export class AssetGalleryScene implements Scene {
     this.pageText.anchor.set(0.5);
     this.pageText.position.set(DESIGN_WIDTH / 2, 772);
 
-    this.content.position.set(46, 270);
-    this.view.addChild(this.categoryText, qualityNote, this.content, this.statusText, this.pageText);
+    this.content.position.set(46, 282);
+    this.view.addChild(this.categoryText, qualityNote, productionTag, marquee, this.content, this.statusText, this.pageText);
 
-    const previousCategory = new UiButton({
-      label: '이전 분류', width: 150, height: 46, fontSize: 17, tone: 'secondary',
-      onPress: async () => this.changeCategory(-1),
-    });
+    const previousCategory = new UiButton({ label: '이전 분류', width: 150, height: 46, fontSize: 17, tone: 'secondary', onPress: async () => this.changeCategory(-1) });
     previousCategory.position.set(30, 824);
 
-    const nextCategory = new UiButton({
-      label: '다음 분류', width: 150, height: 46, fontSize: 17, tone: 'secondary',
-      onPress: async () => this.changeCategory(1),
-    });
+    const nextCategory = new UiButton({ label: '다음 분류', width: 150, height: 46, fontSize: 17, tone: 'secondary', onPress: async () => this.changeCategory(1) });
     nextCategory.position.set(360, 824);
 
-    const previousPage = new UiButton({
-      label: '◀ 페이지', width: 150, height: 46, fontSize: 17, tone: 'secondary',
-      onPress: () => this.changePage(-1),
-    });
+    const previousPage = new UiButton({ label: '◀ 페이지', width: 150, height: 46, fontSize: 17, tone: 'secondary', onPress: () => this.changePage(-1) });
     previousPage.position.set(195, 824);
 
-    const nextPage = new UiButton({
-      label: '페이지 ▶', width: 150, height: 46, fontSize: 17, tone: 'secondary',
-      onPress: () => this.changePage(1),
-    });
+    const nextPage = new UiButton({ label: '페이지 ▶', width: 150, height: 46, fontSize: 17, tone: 'secondary', onPress: () => this.changePage(1) });
     nextPage.position.set(195, 878);
 
-    const back = new UiButton({
-      label: '로비로 돌아가기', width: 315, height: 48, fontSize: 18,
-      onPress: async () => context.scenes.change(() => new LobbyScene()),
-    });
+    const back = new UiButton({ label: '로비로 돌아가기', width: 315, height: 48, fontSize: 18, onPress: async () => context.scenes.change(() => new LobbyScene()) });
     back.position.set(30, 878);
 
     this.view.addChild(previousCategory, nextCategory, previousPage, nextPage, back);
@@ -182,11 +175,8 @@ export class AssetGalleryScene implements Scene {
 
     const start = this.page * pageSize;
     const visible = textures.slice(start, start + pageSize);
-    if (category?.kind === 'image') {
-      this.renderImagePage(visible);
-    } else {
-      this.renderAtlasPage(visible);
-    }
+    if (category?.kind === 'image') this.renderImagePage(visible);
+    else this.renderAtlasPage(visible);
   }
 
   private renderAtlasPage(textures: readonly (readonly [string, Texture])[]): void {
@@ -195,19 +185,13 @@ export class AssetGalleryScene implements Scene {
       const row = Math.floor(slot / 4);
       const cell = new Container();
       cell.position.set(col * 112, row * 116);
-      const plate = new Graphics()
-        .roundRect(0, 0, 98, 104, 14)
-        .fill({ color: COLORS.panelStrong, alpha: 0.92 })
-        .stroke({ color: COLORS.primary, alpha: 0.28, width: 2 });
+      const plate = new Graphics().roundRect(0, 0, 98, 104, 14).fill({ color: COLORS.panelStrong, alpha: 0.92 }).stroke({ color: COLORS.primary, alpha: 0.28, width: 2 });
       const sprite = new Sprite(texture);
       sprite.anchor.set(0.5);
       const scale = Math.min(1, 76 / Math.max(texture.width, texture.height));
       sprite.scale.set(scale);
       sprite.position.set(49, 44);
-      const label = new Text({
-        text: name.split('.').slice(-2).join('.'),
-        style: new TextStyle({ fill: COLORS.muted, fontSize: 10, align: 'center' }),
-      });
+      const label = new Text({ text: name.split('.').slice(-2).join('.'), style: new TextStyle({ fill: COLORS.muted, fontSize: 10, align: 'center' }) });
       label.anchor.set(0.5);
       label.position.set(49, 91);
       cell.addChild(plate, sprite, label);
@@ -221,19 +205,13 @@ export class AssetGalleryScene implements Scene {
       const row = Math.floor(slot / 2);
       const cell = new Container();
       cell.position.set(col * 224, row * 236);
-      const plate = new Graphics()
-        .roundRect(0, 0, 208, 220, 16)
-        .fill({ color: COLORS.panelStrong, alpha: 0.94 })
-        .stroke({ color: COLORS.primary, alpha: 0.32, width: 2 });
+      const plate = new Graphics().roundRect(0, 0, 208, 220, 16).fill({ color: COLORS.panelStrong, alpha: 0.94 }).stroke({ color: COLORS.primary, alpha: 0.32, width: 2 });
       const sprite = new Sprite(texture);
       sprite.anchor.set(0.5);
       const scale = Math.min(188 / texture.width, 184 / texture.height);
       sprite.scale.set(scale);
       sprite.position.set(104, 100);
-      const label = new Text({
-        text: name,
-        style: new TextStyle({ fill: COLORS.muted, fontSize: 10, align: 'center' }),
-      });
+      const label = new Text({ text: name, style: new TextStyle({ fill: COLORS.muted, fontSize: 10, align: 'center' }) });
       label.anchor.set(0.5);
       label.position.set(104, 207);
       cell.addChild(plate, sprite, label);
