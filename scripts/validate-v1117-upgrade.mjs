@@ -30,12 +30,12 @@ const requirements = {
   'src/game/combat/AutoTargetController.ts': [
     'export class AutoTargetController',
     'switchHysteresis',
-    'rankBonus',
-    'telegraphBonus',
+    'rankScore',
+    'telegraphScore',
   ],
   'src/game/combat/AutoBattleController.ts': [
     "export type AutoBattleAction = 'none' | 'attack' | 'skill1' | 'skill2' | 'dodge'",
-    "reason: 'telegraph-evade'",
+    "'telegraph-evade'",
     "'manual-override'",
     "reason: 'queue-combo'",
   ],

@@ -11,9 +11,12 @@ import { performanceLevelLabel } from '../core/performance/AdaptivePerformanceCo
 import { playerArtVariantLabel } from '../core/presentation/PlayerArtVariantController';
 import { joystickCalibrationLabel } from '../core/input/JoystickCalibrationController';
 import {
+  autoSkillHpRuleLabel,
   autoTargetPriorityLabel,
   bossAutoModeLabel,
+  bossDodgePolicyLabel,
   combatDevicePresetLabel,
+  manualResumeDelayLabel,
 } from '../core/input/CombatAssistController';
 import { visionModeLabel } from '../core/accessibility/AccessibilityController';
 import { createBackground } from '../ui/SceneChrome';
@@ -114,12 +117,12 @@ export class SettingsScene implements Scene {
 
   private createCombatAssistPanel(context: AppContext): void {
     const settings = context.combatAssist.current;
-    const panel = createRasterPanel(24, 316, 492, 268, 'panel_gold');
+    const panel = createRasterPanel(24, 316, 492, 310, 'panel_gold');
     const title = createTitle('자동 전투 커맨드', 42, 330);
-    const stamp = createInterfaceStamp('ASSIST MATRIX', 136);
-    stamp.position.set(356, 326);
+    const stamp = createInterfaceStamp('ASSIST MATRIX 3', 142);
+    stamp.position.set(350, 326);
     const helper = new Text({
-      text: '수동 입력이 항상 우선합니다. 보스전·스킬·회피·기기 반응을 각각 분리해 조정합니다.',
+      text: '수동 입력 우선 · 타겟 점수·행동 이유·HP 조건·보스 회피 정책을 실시간으로 분리 제어합니다.',
       style: new TextStyle({ fill: 0xb9ccca, fontSize: 8, fontWeight: '700', wordWrap: true, wordWrapWidth: 438 }),
     });
     helper.position.set(42, 356);
@@ -127,9 +130,9 @@ export class SettingsScene implements Scene {
     const autoTarget = new UiButton({
       label: `자동 타겟 · ${settings.autoTarget ? 'ON' : 'OFF'}`,
       width: 210,
-      height: 42,
+      height: 36,
       tone: settings.autoTarget ? 'primary' : 'secondary',
-      fontSize: 12,
+      fontSize: 11,
       onPress: async () => {
         context.combatAssist.toggleAutoTarget();
         await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 타겟 설정을 변경했습니다.'));
@@ -140,9 +143,9 @@ export class SettingsScene implements Scene {
     const autoBattle = new UiButton({
       label: `자동 전투 · ${settings.autoBattle ? 'ON' : 'OFF'}`,
       width: 210,
-      height: 42,
+      height: 36,
       tone: settings.autoBattle ? 'primary' : 'secondary',
-      fontSize: 12,
+      fontSize: 11,
       onPress: async () => {
         context.combatAssist.toggleAutoBattle();
         await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 전투 설정을 변경했습니다.'));
@@ -153,82 +156,106 @@ export class SettingsScene implements Scene {
     const priority = new UiButton({
       label: `타겟 우선 · ${autoTargetPriorityLabel(settings.targetPriority)}`,
       width: 442,
-      height: 38,
+      height: 32,
       tone: 'secondary',
-      fontSize: 11,
+      fontSize: 10,
       onPress: async () => {
         context.combatAssist.cycleTargetPriority();
         await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 타겟 우선순위를 변경했습니다.'));
       },
     });
-    priority.position.set(42, 426);
+    priority.position.set(42, 420);
 
-    const skills = new UiButton({
-      label: `자동 스킬 · ${settings.autoSkills ? 'ON' : 'OFF'}`,
+    const skills = smallToggle(`자동 스킬 · ${settings.autoSkills ? 'ON' : 'OFF'}`, settings.autoSkills, async () => {
+      context.combatAssist.toggleAutoSkills();
+      await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 스킬 사용을 변경했습니다.'));
+    });
+    skills.position.set(42, 458);
+    const dodge = smallToggle(`자동 회피 · ${settings.autoDodge ? 'ON' : 'OFF'}`, settings.autoDodge, async () => {
+      context.combatAssist.toggleAutoDodge();
+      await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 회피 사용을 변경했습니다.'));
+    });
+    dodge.position.set(282, 458);
+
+    const skillHp = new UiButton({
+      label: `스킬 HP 조건 · ${autoSkillHpRuleLabel(settings.autoSkillHpRule)}`,
       width: 210,
-      height: 38,
-      tone: settings.autoSkills ? 'primary' : 'secondary',
-      fontSize: 11,
+      height: 34,
+      tone: settings.autoSkillHpRule === 'always' ? 'warning' : 'secondary',
+      fontSize: 9,
       onPress: async () => {
-        context.combatAssist.toggleAutoSkills();
-        await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 스킬 사용을 변경했습니다.'));
+        context.combatAssist.cycleAutoSkillHpRule();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 스킬 HP 조건을 변경했습니다.'));
       },
     });
-    skills.position.set(42, 470);
+    skillHp.position.set(42, 498);
 
-    const dodge = new UiButton({
-      label: `자동 회피 · ${settings.autoDodge ? 'ON' : 'OFF'}`,
+    const bossDodge = new UiButton({
+      label: bossDodgePolicyLabel(settings.bossDodgePolicy),
       width: 210,
-      height: 38,
-      tone: settings.autoDodge ? 'primary' : 'secondary',
-      fontSize: 11,
+      height: 34,
+      tone: settings.bossDodgePolicy === 'all' ? 'primary' : 'secondary',
+      fontSize: 9,
       onPress: async () => {
-        context.combatAssist.toggleAutoDodge();
-        await context.scenes.change(() => new SettingsScene(this.returnTo, '자동 회피 사용을 변경했습니다.'));
+        context.combatAssist.cycleBossDodgePolicy();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '보스 자동 회피 정책을 변경했습니다.'));
       },
     });
-    dodge.position.set(282, 470);
+    bossDodge.position.set(282, 498);
 
     const boss = new UiButton({
       label: bossAutoModeLabel(settings.bossAutoMode),
       width: 210,
-      height: 42,
+      height: 34,
       tone: settings.bossAutoMode === 'full' ? 'primary' : 'secondary',
-      fontSize: 10,
+      fontSize: 9,
       onPress: async () => {
         context.combatAssist.cycleBossAutoMode();
         await context.scenes.change(() => new SettingsScene(this.returnTo, '보스전 자동화 제한을 변경했습니다.'));
       },
     });
-    boss.position.set(42, 514);
+    boss.position.set(42, 538);
 
     const device = new UiButton({
       label: `실기기 보정 · ${combatDevicePresetLabel(settings.devicePreset)}`,
       width: 210,
-      height: 42,
+      height: 34,
       tone: settings.devicePreset === 'balanced' ? 'secondary' : 'primary',
-      fontSize: 10,
+      fontSize: 9,
       onPress: async () => {
         context.combatAssist.cycleDevicePreset();
         await context.scenes.change(() => new SettingsScene(this.returnTo, '실기기 전투 반응 프리셋을 변경했습니다.'));
       },
     });
-    device.position.set(282, 514);
+    device.position.set(282, 538);
+
+    const resume = new UiButton({
+      label: `수동 입력 후 자동 복귀 · ${manualResumeDelayLabel(settings.manualResumeDelay)}`,
+      width: 442,
+      height: 30,
+      tone: 'secondary',
+      fontSize: 9,
+      onPress: async () => {
+        context.combatAssist.cycleManualResumeDelay();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '수동 조작 후 자동 복귀 시간을 변경했습니다.'));
+      },
+    });
+    resume.position.set(42, 578);
 
     const diagnosticsText = new Text({
       text: diagnosticsSummaryCompact(context),
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 7, lineHeight: 9, wordWrap: true, wordWrapWidth: 442 }),
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 7, lineHeight: 8, wordWrap: true, wordWrapWidth: 442 }),
     });
-    diagnosticsText.position.set(42, 562);
+    diagnosticsText.position.set(42, 612);
     this.diagnosticsText = diagnosticsText;
 
-    this.view.addChild(panel, title, stamp, helper, autoTarget, autoBattle, priority, skills, dodge, boss, device, diagnosticsText);
+    this.view.addChild(panel, title, stamp, helper, autoTarget, autoBattle, priority, skills, dodge, skillHp, bossDodge, boss, device, resume, diagnosticsText);
   }
 
   private createAccessibilityPanel(context: AppContext): void {
     const settings = context.accessibility.current;
-    const panel = createRasterPanel(24, 594, 492, 188, 'panel');
-    const title = createTitle('전투 표현·접근성', 42, 608);
+    const panel = createRasterPanel(24, 634, 492, 180, 'panel');
+    const title = createTitle('전투 표현·접근성', 42, 648);
 
     const vision = new UiButton({
       label: visionModeLabel(settings.visionMode),
@@ -241,16 +268,16 @@ export class SettingsScene implements Scene {
         await context.scenes.change(() => new SettingsScene(this.returnTo, '색상 접근성 모드를 변경했습니다.'));
       },
     });
-    vision.position.set(42, 636);
+    vision.position.set(42, 674);
 
     const largeHud = smallToggle(`큰 HUD · ${settings.largeHud ? 'ON' : 'OFF'}`, settings.largeHud, async () => { context.accessibility.toggleLargeHud(); await context.scenes.change(() => new SettingsScene(this.returnTo, '큰 HUD 설정을 변경했습니다.')); });
-    largeHud.position.set(42, 680);
+    largeHud.position.set(42, 718);
     const reduceFlash = smallToggle(`연출 완화 · ${settings.reduceFlash ? 'ON' : 'OFF'}`, settings.reduceFlash, async () => { context.accessibility.toggleReduceFlash(); await context.scenes.change(() => new SettingsScene(this.returnTo, '연출 완화 설정을 변경했습니다.')); });
-    reduceFlash.position.set(282, 680);
+    reduceFlash.position.set(282, 718);
     const haptics = smallToggle(`진동 피드백 · ${settings.haptics ? 'ON' : 'OFF'}`, settings.haptics, async () => { context.accessibility.toggleHaptics(); await context.scenes.change(() => new SettingsScene(this.returnTo, '진동 설정을 변경했습니다.')); });
-    haptics.position.set(42, 718);
+    haptics.position.set(42, 754);
     const announcements = smallToggle(`전투 낭독 · ${settings.combatAnnouncements ? 'ON' : 'OFF'}`, settings.combatAnnouncements, async () => { context.accessibility.toggleCombatAnnouncements(); await context.scenes.change(() => new SettingsScene(this.returnTo, '전투 낭독 설정을 변경했습니다.')); });
-    announcements.position.set(282, 718);
+    announcements.position.set(282, 754);
 
     const artVariant = new UiButton({
       label: `캐릭터 원화 · ${playerArtVariantLabel(context.playerArtVariant.current)}`,
@@ -263,15 +290,15 @@ export class SettingsScene implements Scene {
         await context.scenes.change(() => new SettingsScene(this.returnTo, '다음 전투부터 플레이어 원화를 변경합니다.'));
       },
     });
-    artVariant.position.set(42, 756);
+    artVariant.position.set(42, 790);
 
     this.view.addChild(panel, title, vision, largeHud, reduceFlash, haptics, announcements, artVariant);
   }
 
   private createQaPanel(context: AppContext): void {
-    const panel = createRasterPanel(24, 792, 492, 94, 'panel_strong');
+    const panel = createRasterPanel(24, 822, 492, 64, 'panel_strong');
     const analysis = analyzeDeviceQaSession(context.deviceQaSession.snapshot());
-    const title = createTitle('실기기 QA', 42, 804);
+    const title = createTitle('실기기 QA', 42, 830);
     const helper = new Text({
       text: context.deviceQaSession.isRunning
         ? '기록 중 · 3초 간격으로 FPS·1% Low·긴 프레임·뷰포트를 수집합니다.'
@@ -280,7 +307,7 @@ export class SettingsScene implements Scene {
           : '실제 기기에서 전투를 기록하고 JSON으로 내보냅니다.',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 8, wordWrap: true, wordWrapWidth: 278 }),
     });
-    helper.position.set(42, 830);
+    helper.position.set(42, 852);
 
     const sessionButton = new UiButton({
       label: context.deviceQaSession.isRunning ? 'QA 기록 종료' : 'QA 기록 시작',
@@ -294,7 +321,7 @@ export class SettingsScene implements Scene {
         await context.scenes.change(() => new SettingsScene(this.returnTo, context.deviceQaSession.isRunning ? 'QA 기록을 시작했습니다.' : 'QA 기록을 종료했습니다.'));
       },
     });
-    sessionButton.position.set(314, 832);
+    sessionButton.position.set(314, 840);
 
     const exportButton = new UiButton({
       label: 'QA JSON 저장',
@@ -316,13 +343,13 @@ export class SettingsScene implements Scene {
         downloadJson(`LUMERIFT_DEVICE_QA_${deviceDateKey()}.json`, report);
       },
     });
-    exportButton.position.set(416, 832);
+    exportButton.position.set(416, 840);
 
     const message = new Text({
       text: this.message || `LIVE ${BRAND.version} · App Check 비활성화 유지`,
       style: new TextStyle({ fill: this.message ? 0xf2d58a : 0x7f9693, fontSize: 8 }),
     });
-    message.position.set(42, 868);
+    message.position.set(42, 876);
     this.view.addChild(panel, title, helper, sessionButton, exportButton, message);
   }
 }
@@ -330,7 +357,7 @@ export class SettingsScene implements Scene {
 function diagnosticsSummaryCompact(context: AppContext): string {
   const adaptive = context.adaptivePerformance.snapshot();
   const assist = context.combatAssist.current;
-  return `${context.performance.fps} FPS · ${performanceLevelLabel(adaptive.level)} · ${context.graphicsQuality.effectiveMode} · CALIBRATION ${adaptive.calibration.label} · STICK ${joystickCalibrationLabel(context.joystickCalibration.current)} · ${autoTargetPriorityLabel(assist.targetPriority)} · ${combatDevicePresetLabel(assist.devicePreset)} · SKILL ${assist.autoSkills ? 'ON' : 'OFF'} · DODGE ${assist.autoDodge ? 'ON' : 'OFF'}`;
+  return `${context.performance.fps} FPS · ${performanceLevelLabel(adaptive.level)} · ${context.graphicsQuality.effectiveMode} · CALIBRATION ${adaptive.calibration.label} · STICK ${joystickCalibrationLabel(context.joystickCalibration.current)} · ${autoTargetPriorityLabel(assist.targetPriority)} · ${combatDevicePresetLabel(assist.devicePreset)} · ${autoSkillHpRuleLabel(assist.autoSkillHpRule)} · ${bossDodgePolicyLabel(assist.bossDodgePolicy)} · ${manualResumeDelayLabel(assist.manualResumeDelay)}`;
 }
 
 function deviceQaSample(context: AppContext): DeviceQaSessionSampleInput {

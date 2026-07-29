@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.8",
+  "version": "1.11.9",
   "updatedAt": "2026-07-29",
-  "currentPhase": "v1.11.8 초대규모 인터페이스 리뉴얼·자동 기능 세부 설정·실기기 전투 보정 완료, 실기기 스크린샷 검수 대기",
-  "qualityStage": "production-candidate-mega-interface-combat-assist-tuning",
+  "currentPhase": "v1.11.9 자동 전투 고급 로그·HP/보스 정책·Safe Area·8방향 공격 포즈 강화 완료, GitHub Actions 최종 확인 대기",
+  "qualityStage": "production-candidate-auto-diagnostics-safe-area-directional-attack",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -173,17 +173,19 @@
     "v1.11.5: 웹툰형 UI 리디자인, 전투 HUD 대정리, ATTACK VECTOR 방향 검수, CHAIN/CRITICAL 히트 배너 적용",
     "v1.11.6: 8방향 이동 스무딩, 방향 리본/발자국 하이라이트, 자연스러운 이동 리듬과 캐릭터 그래픽 polish 적용",
     "v1.11.7: 자동 타겟 기본 ON, 자동 전투 기본 OFF, 수동 우선, Boot→Battle 인터페이스 리뉴얼 적용",
-    "v1.11.8: RIFT INTERFACE 전 화면 리뉴얼, 자동 타겟 우선순위/자동 스킬/자동 회피/보스전 제한/기기 프리셋 적용"
+    "v1.11.8: RIFT INTERFACE 전 화면 리뉴얼, 자동 타겟 우선순위/자동 스킬/자동 회피/보스전 제한/기기 프리셋 적용",
+    "v1.11.9: 자동 타겟 점수·행동 이유 HUD, HP 조건형 스킬, 보스 회피 정책, 수동 복귀 지연, 전투 Safe Area, 방향별 공격 포즈 적용"
   ],
   "inProgress": [
-    "자동 타겟 우선순위와 자동 전투 세부 옵션 설계",
-    "실브라우저 safe area·자동 전투 장시간 E2E 검수"
+    "GitHub Actions 전체 test/build/bundle 확인",
+    "실기기 화면 크기별 Safe Area 체감 검수"
   ],
   "nextPlanned": [
-    "v1.11.9 Android/iOS 실기기 UI safe area 조정",
-    "자동 전투 행동 이유 로그와 디버그 표시",
-    "보스별 자동 회피 예외 규칙",
-    "캐릭터 공격 프레임·스킬 원화 고도화"
+    "v1.11.10 자동 전투 전투 로그 저장·리플레이 요약",
+    "보스 패턴별 자동 회피 예외 데이터 테이블",
+    "HP·Drive·보스 상태 조합형 자동 스킬 규칙",
+    "실기기 Android/iOS HUD 스크린샷 기반 미세 정렬",
+    "8방향 공격 전용 프레임·무기 궤적 아트 고도화"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -297,8 +299,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.8.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.9.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -368,7 +370,7 @@
   "releaseArchives": {
     "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
     "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
-    "full": "LUMERIFT_FULL_v1.11.8.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip"
+    "full": "LUMERIFT_FULL_v1.11.9.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip"
   }
 }

@@ -318,3 +318,10 @@
 - 모든 주요 화면 공통 디자인 체계 재구성
 - CombatAssist v2 저장 설정과 v1 마이그레이션 추가
 - 기기 프리셋을 자동 타겟·자동 전투 판단에 연결
+
+
+## 2026-07-29 · v1.11.9
+- CombatAssistController 저장 스키마를 v3로 올리고 고급 자동 설정을 추가했다.
+- AutoTargetController가 점수 분해와 선정 이유를 반환하도록 확장했다.
+- AutoBattleController에 HP 조건·보스 회피 정책·행동 이유 라벨을 추가했다.
+- BattleHudSafeArea와 DirectionalAttackPose를 추가했다.

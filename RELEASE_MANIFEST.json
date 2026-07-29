@@ -1,17 +1,17 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.8",
-  "baseVersion": "1.11.7",
+  "version": "1.11.9",
+  "baseVersion": "1.11.8",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.8.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip",
-  "qualityStage": "production-candidate-mega-interface-combat-assist-tuning",
+  "fullArchive": "LUMERIFT_FULL_v1.11.9.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip",
+  "qualityStage": "production-candidate-auto-diagnostics-safe-area-directional-attack",
   "features": [
-    "초대규모 RIFT INTERFACE 리뉴얼",
-    "자동 타겟 우선순위 5종",
-    "자동 스킬·회피·보스전 제한",
-    "실기기 반응 프리셋 3종"
+    "자동 타겟 점수·선정 이유 실시간 표시",
+    "자동 전투 행동 이유·HP 조건·보스 회피 정책·수동 복귀 지연 설정",
+    "소형 화면·키보드 상황 전투 HUD Safe Area 자동 보정",
+    "8방향 공격 포즈·방향별 스트라이크 실루엣 강화"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,8 +37,8 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1117-upgrade",
     "validate-v1118-upgrade",
+    "validate-v1119-upgrade",
     "asset registry release sync"
   ]
 }

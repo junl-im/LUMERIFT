@@ -90,6 +90,12 @@ if (pkg.scripts?.['validate:upgrade:v1118'] !== 'node scripts/validate-v1118-upg
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1118')) {
   errors.push('verify에서 v1.11.8 대규모 인터페이스·자동 세부 설정 검사가 누락되었습니다.');
 }
+if (pkg.scripts?.['validate:upgrade:v1119'] !== 'node scripts/validate-v1119-upgrade.mjs') {
+  errors.push('package.json v1.11.9 자동 진단·Safe Area·방향 공격 포즈 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1119')) {
+  errors.push('verify에서 v1.11.9 자동 진단·Safe Area·방향 공격 포즈 검사가 누락되었습니다.');
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));

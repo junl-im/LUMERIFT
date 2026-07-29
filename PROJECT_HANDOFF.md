@@ -1,6 +1,6 @@
 # LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.11.8
+**현재 버전:** v1.11.9
 **상태:** 초대규모 인터페이스 리뉴얼·자동 기능 세부 설정·실기기 전투 보정 완료
 
 ## 우선 확인
@@ -8,6 +8,9 @@
 1. `AGENTS.md`
 2. `HANDOFF_STATE.json`
 3. `docs/HANDOFF_MASTER.md`
+4. `docs/AUTO_COMBAT_DIAGNOSTICS_v1.11.9.md`
+5. `docs/MOBILE_SAFE_AREA_v1.11.9.md`
+6. `docs/DIRECTIONAL_ATTACK_POSE_v1.11.9.md`
 4. `docs/MEGA_INTERFACE_RENEWAL_v1.11.8.md`
 5. `docs/COMBAT_ASSIST_TUNING_v1.11.8.md`
 6. `docs/PATCH_NOTES_v1.11.8.md`
@@ -23,7 +26,7 @@
 
 ## 릴리스
 
-- 전체본: `LUMERIFT_FULL_v1.11.8.zip`
-- 패치: `LUMERIFT_PATCH_v1.11.7_to_v1.11.8.zip`
-- 기준 패치: v1.11.7 프로젝트 최상위에 덮어쓰기
+- 전체본: `LUMERIFT_FULL_v1.11.9.zip`
+- 패치: `LUMERIFT_PATCH_v1.11.8_to_v1.11.9.zip`
+- 기준 패치: v1.11.8 프로젝트 최상위에 덮어쓰기
 - 삭제/이동: 없음

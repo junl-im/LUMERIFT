@@ -9,6 +9,7 @@ import { buildArcPolygon, createAttackFootprint, telegraphProgress } from '../co
 import { resolveBossPhasePresentation } from './BossPhaseDirector';
 import { resolveBossTelegraphStyle } from './BossTelegraphLanguage';
 import { directionFromVector } from './direction';
+import { resolveDirectionalAttackPose } from './DirectionalAttackPose';
 import { resolvePlayerMotion } from './PlayerMotionDirector';
 
 export interface PlayerActorViewOptions {
@@ -35,6 +36,7 @@ export class PlayerActorView {
   private readonly directionRibbon = new Graphics();
   private readonly motionAccent = new Graphics();
   private readonly stepHighlights = new Graphics();
+  private readonly attackPoseAccent = new Graphics();
   private readonly sprite?: AnimatedSprite;
   private readonly equipmentLayer?: Sprite;
   private readonly afterimages: Sprite[] = [];
@@ -100,7 +102,7 @@ export class PlayerActorView {
     this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
-    this.root.addChild(this.stepHighlights, this.motionAccent);
+    this.root.addChild(this.stepHighlights, this.attackPoseAccent, this.motionAccent);
   }
 
   public update(
@@ -154,15 +156,26 @@ export class PlayerActorView {
     if (this.sprite) {
       this.updateAnimation(controller, motion.animationSpeed);
       const direction = directionFromVector(facing);
+      const pose = resolveDirectionalAttackPose({
+        direction,
+        state: controller.state,
+        progress: controller.stateProgress,
+        comboStep: controller.comboStep,
+        reducedMotion: frame.reducedMotion,
+      });
       const mirrored = this.mirrorWest && (direction === 'w' || direction === 'sw' || direction === 'nw');
       const strideLift = controller.state === 'moving' ? (Math.abs(facing.x) + Math.abs(facing.y)) * 0.35 : 0;
-      const yScale = this.spriteBaseScale * (1 + Math.abs(facing.y) * 0.018);
-      this.sprite.scale.set(mirrored ? -this.spriteBaseScale : this.spriteBaseScale, yScale);
-      this.sprite.position.y = motion.offsetY - strideLift;
-      this.sprite.rotation = motion.rotation + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
+      const xScale = this.spriteBaseScale * pose.scaleX;
+      const yScale = this.spriteBaseScale * (1 + Math.abs(facing.y) * 0.018) * pose.scaleY;
+      this.sprite.scale.set(mirrored ? -xScale : xScale, yScale);
+      this.sprite.position.set(pose.offsetX, motion.offsetY - strideLift + pose.offsetY);
+      this.sprite.rotation = motion.rotation + pose.rotation + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
       this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
+      this.drawAttackPoseAccent(facing, pose.accentAlpha, pose.accentLength, frame.overdrive);
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
+    } else {
+      this.attackPoseAccent.clear();
     }
 
     this.root.alpha = controller.isInvulnerable && Math.floor(elapsed * 26) % 2 === 0 ? 0.45 : 1;
@@ -186,6 +199,21 @@ export class PlayerActorView {
       sprite.gotoAndPlay(0);
     }
     sprite.animationSpeed = animationSpeed;
+  }
+
+  private drawAttackPoseAccent(facing: Vec2, alpha: number, length: number, overdrive: boolean): void {
+    this.attackPoseAccent.clear();
+    if (alpha <= 0.01 || length <= 0) return;
+    const perpendicular = { x: -facing.y, y: facing.x };
+    const color = overdrive ? 0xffd36a : 0x92fff1;
+    const start = 10;
+    for (let index = -1; index <= 1; index += 1) {
+      const lateral = index * 7;
+      this.attackPoseAccent
+        .moveTo(facing.x * start + perpendicular.x * lateral, facing.y * start + perpendicular.y * lateral - 7)
+        .lineTo(facing.x * length + perpendicular.x * lateral * 0.4, facing.y * length + perpendicular.y * lateral * 0.4 - 7)
+        .stroke({ color: index === 0 ? 0xffffff : color, alpha: alpha * (index === 0 ? 0.72 : 0.42), width: index === 0 ? 2.4 : 4.2 });
+    }
   }
 
   private updateAfterimages(

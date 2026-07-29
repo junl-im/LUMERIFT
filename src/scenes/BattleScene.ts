@@ -44,9 +44,10 @@ import { ResultScene, type BattleOutcome } from './ResultScene';
 import type { AccessibilitySettings, CombatAccessibilityPalette } from '../core/accessibility/AccessibilityController';
 import { CombatMomentumController, styleRankColor, type SkillMomentumBoost } from '../game/combat/CombatMomentumController';
 import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
-import { AutoTargetController } from '../game/combat/AutoTargetController';
-import { resolveAutoBattle } from '../game/combat/AutoBattleController';
-import { autoTargetPriorityLabel, combatDevicePresetLabel } from '../core/input/CombatAssistController';
+import { AutoTargetController, autoTargetReasonLabel } from '../game/combat/AutoTargetController';
+import { autoBattleReasonLabel, resolveAutoBattle } from '../game/combat/AutoBattleController';
+import { autoTargetPriorityLabel, combatDevicePresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
+import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 
 interface EnemyActor {
@@ -152,6 +153,9 @@ export class BattleScene implements Scene {
   private criticalHpAnnounced = false;
   private currentTarget?: EnemyActor;
   private autoActionCooldown = 0;
+  private manualOverrideRemaining = 0;
+  private lastAssistReason = '자동 전투 대기';
+  private hudSafeAreaKey = '';
   private lastTargetAnnouncement = '';
 
   private readonly playerHpFill = new Graphics();
@@ -191,7 +195,11 @@ export class BattleScene implements Scene {
   });
   private readonly targetDetailText = new Text({
     text: '자동 타겟 탐색 중',
-    style: new TextStyle({ fill: 0xbfd0cf, fontSize: 9, fontWeight: '700' }),
+    style: new TextStyle({ fill: 0xbfd0cf, fontSize: 8, fontWeight: '700', lineHeight: 11 }),
+  });
+  private readonly assistReasonText = new Text({
+    text: 'AUTO · 대기',
+    style: new TextStyle({ fill: 0x92fff1, fontSize: 8, fontWeight: '800', letterSpacing: 0.35 }),
   });
   private readonly hitFeedbackPanel = new Container();
   private readonly hitFeedbackAccent = new Graphics();
@@ -449,6 +457,7 @@ export class BattleScene implements Scene {
     if (this.paused) return;
 
     this.elapsed += deltaSeconds;
+    this.applyHudSafeArea();
     this.perfectDodgeLock = Math.max(0, this.perfectDodgeLock - deltaSeconds);
     this.momentum.update(deltaSeconds);
     this.quality = context.graphicsQuality.current;
@@ -704,25 +713,26 @@ export class BattleScene implements Scene {
     this.driveText.anchor.set(1, 0.5);
     this.driveText.position.set(394, 224);
 
-    const telemetryPanel = createRasterPanel(14, 722, 250, 54, 'panel_strong');
-    const telemetryTag = createRasterPanel(24, 728, 102, 18, 'resource_chip');
+    const telemetryPanel = createRasterPanel(14, 704, 250, 72, 'panel_strong');
+    const telemetryTag = createRasterPanel(24, 710, 102, 18, 'resource_chip');
     const telemetryTagText = new Text({
       text: 'ATTACK VECTOR',
       style: new TextStyle({ fill: 0xffefbe, fontSize: 8, fontWeight: '800', letterSpacing: 1.2 }),
     });
-    telemetryTagText.position.set(34, 732);
-    this.directionText.position.set(76, 748);
-    this.attackTelemetryText.position.set(76, 762);
+    telemetryTagText.position.set(34, 714);
+    this.directionText.position.set(76, 732);
+    this.attackTelemetryText.position.set(76, 748);
 
-    const targetPanel = createRasterPanel(276, 722, 250, 54, 'panel_strong');
-    const targetTag = createRasterPanel(286, 728, 84, 18, 'resource_chip');
+    const targetPanel = createRasterPanel(276, 704, 250, 72, 'panel_strong');
+    const targetTag = createRasterPanel(286, 710, 84, 18, 'resource_chip');
     const targetTagText = new Text({
       text: 'LOCK SIGNAL',
       style: new TextStyle({ fill: 0xffefbe, fontSize: 8, fontWeight: '800', letterSpacing: 1.1 }),
     });
-    targetTagText.position.set(296, 732);
-    this.targetNameText.position.set(296, 749);
-    this.targetDetailText.position.set(296, 763);
+    targetTagText.position.set(296, 714);
+    this.targetNameText.position.set(296, 732);
+    this.targetDetailText.position.set(296, 746);
+    this.assistReasonText.position.set(296, 766);
 
     this.hitFeedbackPanel.visible = false;
     this.hitFeedbackPanel.position.set(DESIGN_WIDTH / 2, 286);
@@ -818,6 +828,7 @@ export class BattleScene implements Scene {
       targetTagText,
       this.targetNameText,
       this.targetDetailText,
+      this.assistReasonText,
       controlDock,
       controlHint,
       this.comboText,
@@ -830,6 +841,32 @@ export class BattleScene implements Scene {
       this.attackButton,
       this.announcementText,
     );
+    this.applyHudSafeArea(true);
+  }
+
+  private applyHudSafeArea(force = false): void {
+    const context = this.context;
+    if (!context) return;
+    const layout = resolveBattleHudSafeArea(context.mobileViewport.metrics(), this.accessibility?.largeHud ?? false);
+    const key = battleHudLayoutKey(layout);
+    if (!force && key === this.hudSafeAreaKey) return;
+    this.hudSafeAreaKey = key;
+
+    this.joystick?.position.set(layout.joystick.x, layout.joystick.y);
+    this.joystick?.scale.set(layout.controlScale);
+    this.dodgeButton?.position.set(layout.dodge.x, layout.dodge.y);
+    this.dodgeButton?.scale.set(layout.controlScale);
+    this.skill2Button?.position.set(layout.skill2.x, layout.skill2.y);
+    this.skill2Button?.scale.set(layout.controlScale);
+    this.skill1Button?.position.set(layout.skill1.x, layout.skill1.y);
+    this.skill1Button?.scale.set(layout.controlScale);
+    this.attackButton?.position.set(layout.attack.x, layout.attack.y);
+    this.attackButton?.scale.set(layout.controlScale);
+    this.pauseButton?.position.set(476, 19 + layout.topOffset);
+    this.autoTargetButton?.position.set(296, 76 + layout.topOffset);
+    this.autoBattleButton?.position.set(410, 76 + layout.topOffset);
+    this.targetDetailText.style.fontSize = layout.compact ? 7 : 8;
+    this.assistReasonText.style.fontSize = layout.compact ? 7 : 8;
   }
 
   private createBossCinematicOverlay(): void {
@@ -1090,6 +1127,7 @@ export class BattleScene implements Scene {
       this.targetLink.visible = false;
       this.targetNameText.text = 'TARGET · OFF';
       this.targetDetailText.text = '타겟 보조가 꺼져 있습니다.';
+      this.assistReasonText.text = 'AUTO · 타겟 보조 OFF';
       return;
     }
 
@@ -1119,6 +1157,7 @@ export class BattleScene implements Scene {
       this.targetLink.visible = false;
       this.targetNameText.text = 'TARGET · SEARCH';
       this.targetDetailText.text = '가장 적합한 적을 탐색 중';
+      this.assistReasonText.text = 'AUTO · 타겟 탐색 중';
       return;
     }
 
@@ -1129,7 +1168,7 @@ export class BattleScene implements Scene {
         : 'MOB';
     const hpRatio = target.controller.hp / Math.max(1, target.controller.config.maxHp);
     this.targetNameText.text = `${rankLabel} · ${target.definition.combat.name}`;
-    this.targetDetailText.text = `${autoTargetPriorityLabel(assist.targetPriority)} · 거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험' : ''}`;
+    this.targetDetailText.text = `SCORE ${Math.round(snapshot.score)} · ${autoTargetReasonLabel(snapshot.reason)}\n거리 ${Math.round(snapshot.distance)} · HP ${Math.round(hpRatio * 100)}%${target.controller.state === 'telegraph' ? ' · 위험' : ''}`;
 
     const accent = target.definition.visual.accentColor;
     const pulse = 0.5 + Math.sin(this.elapsed * 8) * 0.5;
@@ -1170,7 +1209,19 @@ export class BattleScene implements Scene {
     const player = this.player;
     const config = this.playerConfig;
     const target = this.currentTarget;
-    if (!context || !player || !config || !target) return manualMove;
+    this.manualOverrideRemaining = Math.max(0, this.manualOverrideRemaining - Math.max(0, deltaSeconds));
+    if (!context || !player || !config || !target) {
+      this.lastAssistReason = target ? '자동 전투 준비 중' : '타겟 탐색 중';
+      this.assistReasonText.text = `AUTO · ${this.lastAssistReason}`;
+      return manualMove;
+    }
+
+    const settings = context.combatAssist.current;
+    const manualActive = Math.hypot(manualMove.x, manualMove.y) > 0.05 || manualAction;
+    if (manualActive) {
+      this.manualOverrideRemaining = manualResumeDelaySeconds(settings.manualResumeDelay);
+      this.lastAssistReason = manualAction ? '직접 액션 우선' : '수동 이동 우선';
+    }
 
     const targetDirection = normalize({
       x: target.controller.position.x - player.position.x,
@@ -1181,14 +1232,27 @@ export class BattleScene implements Scene {
       target.controller.position.y - player.position.y,
     );
 
-    if (context.combatAssist.current.autoTarget
+    if (settings.autoTarget
+      && !manualActive
       && Math.hypot(manualMove.x, manualMove.y) <= 0.05
       && (player.state === 'idle' || player.state === 'moving')) {
       player.facing.x = targetDirection.x;
       player.facing.y = targetDirection.y;
     }
 
-    if (!context.combatAssist.current.autoBattle || this.tutorialEnabled || manualAction) return manualMove;
+    if (!settings.autoBattle || this.tutorialEnabled) {
+      this.lastAssistReason = this.tutorialEnabled ? '튜토리얼 수동 조작' : '자동 전투 OFF';
+      this.assistReasonText.text = `AUTO · ${this.lastAssistReason}`;
+      return manualMove;
+    }
+    if (manualActive || this.manualOverrideRemaining > 0) {
+      this.lastAssistReason = manualActive
+        ? this.lastAssistReason
+        : `${autoBattleReasonLabel('manual-recovery')} ${this.manualOverrideRemaining.toFixed(1)}s`;
+      this.assistReasonText.text = `AUTO · ${this.lastAssistReason}`;
+      return manualMove;
+    }
+
     const basicAction = config.combo[0];
     if (!basicAction) return manualMove;
     const telegraph = target.controller.telegraph;
@@ -1211,14 +1275,18 @@ export class BattleScene implements Scene {
       basicAction,
       skill1Action: config.skills.skill1,
       skill2Action: config.skills.skill2,
-      useSkills: context.combatAssist.current.autoSkills,
-      useDodge: context.combatAssist.current.autoDodge,
-      bossAutoMode: context.combatAssist.current.bossAutoMode,
-      devicePreset: context.combatAssist.current.devicePreset,
+      useSkills: settings.autoSkills,
+      useDodge: settings.autoDodge,
+      bossAutoMode: settings.bossAutoMode,
+      devicePreset: settings.devicePreset,
+      autoSkillHpRule: settings.autoSkillHpRule,
+      bossDodgePolicy: settings.bossDodgePolicy,
     });
 
     player.facing.x = decision.facing.x;
     player.facing.y = decision.facing.y;
+    this.lastAssistReason = autoBattleReasonLabel(decision.reason);
+    this.assistReasonText.text = `AUTO · ${this.lastAssistReason}`;
     this.autoActionCooldown = Math.max(0, this.autoActionCooldown - Math.max(0, deltaSeconds));
     if (this.autoActionCooldown <= 0) {
       if (decision.action === 'dodge') {

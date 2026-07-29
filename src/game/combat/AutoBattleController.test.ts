@@ -42,6 +42,8 @@ const base = {
   useDodge: true,
   bossAutoMode: 'full' as const,
   devicePreset: 'balanced' as const,
+  autoSkillHpRule: 'below-85' as const,
+  bossDodgePolicy: 'critical-only' as const,
 };
 
 describe('resolveAutoBattle', () => {
@@ -76,5 +78,21 @@ describe('resolveAutoBattle', () => {
     const responsive = resolveAutoBattle({ ...base, targetDistance: 70, useSkills: false, devicePreset: 'responsive' });
     const stable = resolveAutoBattle({ ...base, targetDistance: 70, useSkills: false, devicePreset: 'stable' });
     expect(responsive.cooldownSeconds).toBeLessThan(stable.cooldownSeconds);
+  });
+
+  it('holds skills until the configured HP condition is met', () => {
+    const gated = resolveAutoBattle({ ...base, targetDistance: 70, playerHpRatio: 0.95, autoSkillHpRule: 'below-85' });
+    const allowed = resolveAutoBattle({ ...base, targetDistance: 70, playerHpRatio: 0.8, autoSkillHpRule: 'below-85' });
+    expect(gated.action).toBe('attack');
+    expect(gated.reason).toBe('skill-hp-gated');
+    expect(allowed.action).toBe('skill1');
+  });
+
+  it('only dodges critical boss patterns in critical-only mode', () => {
+    const early = resolveAutoBattle({ ...base, targetRank: 'boss', targetDistance: 80, targetTelegraphProgress: 0.68, targetTelegraphRange: 120 });
+    const critical = resolveAutoBattle({ ...base, targetRank: 'boss', targetDistance: 80, targetTelegraphProgress: 0.86, targetTelegraphRange: 120 });
+    expect(early.action).not.toBe('dodge');
+    expect(critical.action).toBe('dodge');
+    expect(critical.reason).toBe('boss-critical-evade');
   });
 });

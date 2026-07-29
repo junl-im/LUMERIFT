@@ -1,4 +1,10 @@
-import type { BossAutoMode, CombatDevicePreset } from '../../core/input/CombatAssistController';
+import {
+  autoSkillHpThreshold,
+  type AutoSkillHpRule,
+  type BossAutoMode,
+  type BossDodgePolicy,
+  type CombatDevicePreset,
+} from '../../core/input/CombatAssistController';
 import type { CombatActionConfig, MonsterRank } from './combatData';
 import { normalize, type Vec2 } from './geometry';
 
@@ -25,6 +31,8 @@ export interface AutoBattleInput {
   readonly useDodge: boolean;
   readonly bossAutoMode: BossAutoMode;
   readonly devicePreset: CombatDevicePreset;
+  readonly autoSkillHpRule: AutoSkillHpRule;
+  readonly bossDodgePolicy: BossDodgePolicy;
 }
 
 export interface AutoBattleDecision {
@@ -63,8 +71,13 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
   if (input.targetRank === 'boss' && input.bossAutoMode !== 'full') return idle(`boss-${input.bossAutoMode}`);
 
   const dangerRange = (input.targetTelegraphRange ?? 0) + input.targetRadius + 18;
-  const imminent = (input.targetTelegraphProgress ?? 0) >= tuning.imminentThreshold && input.targetDistance <= dangerRange;
-  if (input.useDodge && imminent && input.dodgeCooldown <= 0
+  const telegraphProgress = input.targetTelegraphProgress ?? 0;
+  const imminent = telegraphProgress >= tuning.imminentThreshold && input.targetDistance <= dangerRange;
+  const bossDodgeAllowed = input.targetRank !== 'boss'
+    || input.bossDodgePolicy === 'all'
+    || (input.bossDodgePolicy === 'critical-only'
+      && (telegraphProgress >= Math.min(0.9, tuning.imminentThreshold + 0.17) || input.playerHpRatio <= 0.42));
+  if (input.useDodge && imminent && bossDodgeAllowed && input.dodgeCooldown <= 0
     && (input.playerState === 'idle' || input.playerState === 'moving' || input.playerState === 'attacking' || input.playerState === 'skill')) {
     const perpendicular = input.targetRank === 'boss'
       ? normalize({ x: -facing.y, y: facing.x }, { x: 1, y: 0 })
@@ -73,7 +86,7 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
       moveAxis: { x: 0, y: 0 },
       action: 'dodge',
       facing: perpendicular,
-      reason: 'telegraph-evade',
+      reason: input.targetRank === 'boss' ? 'boss-critical-evade' : 'telegraph-evade',
       cooldownSeconds: tuning.dodgeCooldown,
     };
   }
@@ -88,12 +101,19 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
   }
   if (input.playerState === 'skill' || input.playerState === 'dodging') return idle('action-in-progress', { x: 0, y: 0 });
 
-  if (input.useSkills && input.skill2Cooldown <= 0 && input.targetDistance <= skill2Range
+  const skillHpAllowed = input.autoSkillHpRule === 'always'
+    || input.playerHpRatio <= autoSkillHpThreshold(input.autoSkillHpRule);
+  if (input.useSkills && skillHpAllowed && input.skill2Cooldown <= 0 && input.targetDistance <= skill2Range
     && (input.targetRank === 'boss' || input.playerHpRatio < 0.72)) {
     return { moveAxis: { x: 0, y: 0 }, action: 'skill2', facing, reason: 'priority-skill2', cooldownSeconds: tuning.skillCooldown + 0.04 };
   }
-  if (input.useSkills && input.skill1Cooldown <= 0 && input.targetDistance <= skill1Range) {
+  if (input.useSkills && skillHpAllowed && input.skill1Cooldown <= 0 && input.targetDistance <= skill1Range) {
     return { moveAxis: { x: 0, y: 0 }, action: 'skill1', facing, reason: 'skill1-ready', cooldownSeconds: tuning.skillCooldown };
+  }
+  if (input.useSkills && !skillHpAllowed && input.targetDistance <= Math.max(skill1Range, skill2Range)) {
+    if (input.targetDistance <= basicRange) {
+      return { moveAxis: { x: 0, y: 0 }, action: 'attack', facing, reason: 'skill-hp-gated', cooldownSeconds: tuning.attackCooldown };
+    }
   }
   if (input.targetDistance <= basicRange) {
     return { moveAxis: { x: 0, y: 0 }, action: 'attack', facing, reason: 'basic-range', cooldownSeconds: tuning.attackCooldown };
@@ -101,5 +121,26 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
 
   const preferredRange = Math.max(52, basicRange * tuning.preferredRangeRatio);
   if (input.targetDistance > preferredRange) return { moveAxis: facing, action: 'none', facing, reason: 'approach-target', cooldownSeconds: 0 };
+  if (input.targetRank === 'boss' && imminent && !bossDodgeAllowed) return idle('boss-dodge-policy-hold', { x: 0, y: 0 });
   return idle('hold-range', { x: 0, y: 0 });
+}
+
+export function autoBattleReasonLabel(reason: string): string {
+  if (reason === 'manual-override') return '수동 입력 우선';
+  if (reason === 'manual-recovery') return '수동 조작 후 복귀 대기';
+  if (reason === 'boss-target-only') return '보스전 타겟만 유지';
+  if (reason === 'boss-off') return '보스전 자동 기능 금지';
+  if (reason === 'telegraph-evade') return '공격 예고 자동 회피';
+  if (reason === 'boss-critical-evade') return '보스 치명 패턴 회피';
+  if (reason === 'queue-combo') return '3단 콤보 연결';
+  if (reason === 'priority-skill2') return 'HP·보스 조건 스킬 2';
+  if (reason === 'skill1-ready') return 'HP 조건 충족 스킬 1';
+  if (reason === 'skill-hp-gated') return '스킬 HP 조건 대기';
+  if (reason === 'basic-range') return '기본 공격 거리 진입';
+  if (reason === 'approach-target') return '타겟 공격 거리 접근';
+  if (reason === 'hold-range') return '현재 공격 거리 유지';
+  if (reason === 'boss-dodge-policy-hold') return '보스 회피 정책에 따라 유지';
+  if (reason === 'action-in-progress') return '현재 액션 완료 대기';
+  if (reason === 'attack-in-progress') return '공격 모션 완료 대기';
+  return '자동 전투 대기';
 }

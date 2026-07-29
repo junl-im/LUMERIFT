@@ -1,6 +1,9 @@
 export type AutoTargetPriority = 'balanced' | 'nearest' | 'boss' | 'weak' | 'threat';
 export type BossAutoMode = 'full' | 'target-only' | 'off';
 export type CombatDevicePreset = 'responsive' | 'balanced' | 'stable';
+export type AutoSkillHpRule = 'always' | 'below-85' | 'below-65' | 'emergency';
+export type BossDodgePolicy = 'all' | 'critical-only' | 'off';
+export type ManualResumeDelay = 'instant' | 'brief' | 'delayed';
 
 export interface CombatAssistSettings {
   readonly autoTarget: boolean;
@@ -10,13 +13,20 @@ export interface CombatAssistSettings {
   readonly autoDodge: boolean;
   readonly bossAutoMode: BossAutoMode;
   readonly devicePreset: CombatDevicePreset;
+  readonly autoSkillHpRule: AutoSkillHpRule;
+  readonly bossDodgePolicy: BossDodgePolicy;
+  readonly manualResumeDelay: ManualResumeDelay;
 }
 
-const STORAGE_KEY = 'lumerift.combatAssist.v2';
+const STORAGE_KEY = 'lumerift.combatAssist.v3';
+const LEGACY_V2_STORAGE_KEY = 'lumerift.combatAssist.v2';
 const LEGACY_STORAGE_KEY = 'lumerift.combatAssist.v1';
 const TARGET_PRIORITY_ORDER: readonly AutoTargetPriority[] = ['balanced', 'nearest', 'boss', 'weak', 'threat'];
 const BOSS_MODE_ORDER: readonly BossAutoMode[] = ['target-only', 'full', 'off'];
 const DEVICE_PRESET_ORDER: readonly CombatDevicePreset[] = ['balanced', 'responsive', 'stable'];
+const AUTO_SKILL_HP_ORDER: readonly AutoSkillHpRule[] = ['below-85', 'below-65', 'emergency', 'always'];
+const BOSS_DODGE_ORDER: readonly BossDodgePolicy[] = ['critical-only', 'all', 'off'];
+const MANUAL_RESUME_ORDER: readonly ManualResumeDelay[] = ['brief', 'instant', 'delayed'];
 
 const DEFAULT_SETTINGS: CombatAssistSettings = {
   autoTarget: true,
@@ -26,6 +36,9 @@ const DEFAULT_SETTINGS: CombatAssistSettings = {
   autoDodge: true,
   bossAutoMode: 'target-only',
   devicePreset: 'balanced',
+  autoSkillHpRule: 'below-85',
+  bossDodgePolicy: 'critical-only',
+  manualResumeDelay: 'brief',
 };
 
 export class CombatAssistController {
@@ -101,6 +114,34 @@ export class CombatAssistController {
     return this.settings.devicePreset;
   }
 
+
+  public cycleAutoSkillHpRule(): AutoSkillHpRule {
+    this.settings = {
+      ...this.settings,
+      autoSkillHpRule: nextValue(AUTO_SKILL_HP_ORDER, this.settings.autoSkillHpRule),
+    };
+    this.persist();
+    return this.settings.autoSkillHpRule;
+  }
+
+  public cycleBossDodgePolicy(): BossDodgePolicy {
+    this.settings = {
+      ...this.settings,
+      bossDodgePolicy: nextValue(BOSS_DODGE_ORDER, this.settings.bossDodgePolicy),
+    };
+    this.persist();
+    return this.settings.bossDodgePolicy;
+  }
+
+  public cycleManualResumeDelay(): ManualResumeDelay {
+    this.settings = {
+      ...this.settings,
+      manualResumeDelay: nextValue(MANUAL_RESUME_ORDER, this.settings.manualResumeDelay),
+    };
+    this.persist();
+    return this.settings.manualResumeDelay;
+  }
+
   public set(next: Partial<CombatAssistSettings>): CombatAssistSettings {
     const autoBattle = next.autoBattle ?? this.settings.autoBattle;
     const autoTarget = autoBattle ? true : (next.autoTarget ?? this.settings.autoTarget);
@@ -120,6 +161,9 @@ export class CombatAssistController {
     document.documentElement.dataset.autoBattle = this.settings.autoBattle ? 'on' : 'off';
     document.documentElement.dataset.autoTargetPriority = this.settings.targetPriority;
     document.documentElement.dataset.autoDevicePreset = this.settings.devicePreset;
+    document.documentElement.dataset.autoSkillHpRule = this.settings.autoSkillHpRule;
+    document.documentElement.dataset.bossDodgePolicy = this.settings.bossDodgePolicy;
+    document.documentElement.dataset.manualResumeDelay = this.settings.manualResumeDelay;
   }
 }
 
@@ -143,11 +187,44 @@ export function combatDevicePresetLabel(value: CombatDevicePreset): string {
   return '균형형';
 }
 
+
+export function autoSkillHpRuleLabel(value: AutoSkillHpRule): string {
+  if (value === 'always') return 'HP 조건 없음';
+  if (value === 'below-65') return 'HP 65% 이하';
+  if (value === 'emergency') return 'HP 40% 이하';
+  return 'HP 85% 이하';
+}
+
+export function bossDodgePolicyLabel(value: BossDodgePolicy): string {
+  if (value === 'all') return '모든 패턴 회피';
+  if (value === 'off') return '보스 자동 회피 OFF';
+  return '치명 패턴만 회피';
+}
+
+export function manualResumeDelayLabel(value: ManualResumeDelay): string {
+  if (value === 'instant') return '즉시 복귀';
+  if (value === 'delayed') return '0.9초 후 복귀';
+  return '0.45초 후 복귀';
+}
+
+export function autoSkillHpThreshold(value: AutoSkillHpRule): number {
+  if (value === 'always') return 1;
+  if (value === 'below-65') return 0.65;
+  if (value === 'emergency') return 0.4;
+  return 0.85;
+}
+
+export function manualResumeDelaySeconds(value: ManualResumeDelay): number {
+  if (value === 'instant') return 0;
+  if (value === 'delayed') return 0.9;
+  return 0.45;
+}
+
 function readSettings(storage: Pick<Storage, 'getItem'> | undefined): CombatAssistSettings {
   try {
     const raw = storage?.getItem(STORAGE_KEY);
     if (raw) return sanitizeSettings(JSON.parse(raw) as Partial<CombatAssistSettings>);
-    const legacyRaw = storage?.getItem(LEGACY_STORAGE_KEY);
+    const legacyRaw = storage?.getItem(LEGACY_V2_STORAGE_KEY) ?? storage?.getItem(LEGACY_STORAGE_KEY);
     if (!legacyRaw) return DEFAULT_SETTINGS;
     const legacy = JSON.parse(legacyRaw) as Partial<CombatAssistSettings>;
     return sanitizeSettings({
@@ -176,6 +253,15 @@ function sanitizeSettings(value: Partial<CombatAssistSettings>): CombatAssistSet
     devicePreset: DEVICE_PRESET_ORDER.includes(value.devicePreset as CombatDevicePreset)
       ? value.devicePreset as CombatDevicePreset
       : DEFAULT_SETTINGS.devicePreset,
+    autoSkillHpRule: AUTO_SKILL_HP_ORDER.includes(value.autoSkillHpRule as AutoSkillHpRule)
+      ? value.autoSkillHpRule as AutoSkillHpRule
+      : DEFAULT_SETTINGS.autoSkillHpRule,
+    bossDodgePolicy: BOSS_DODGE_ORDER.includes(value.bossDodgePolicy as BossDodgePolicy)
+      ? value.bossDodgePolicy as BossDodgePolicy
+      : DEFAULT_SETTINGS.bossDodgePolicy,
+    manualResumeDelay: MANUAL_RESUME_ORDER.includes(value.manualResumeDelay as ManualResumeDelay)
+      ? value.manualResumeDelay as ManualResumeDelay
+      : DEFAULT_SETTINGS.manualResumeDelay,
   };
 }
 

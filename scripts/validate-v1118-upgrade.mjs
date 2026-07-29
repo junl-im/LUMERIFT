@@ -49,10 +49,10 @@ const requirements = {
   'src/scenes/BattleScene.ts': [
     'autoTargetPriorityLabel',
     'combatDevicePresetLabel',
-    'useSkills: context.combatAssist.current.autoSkills',
-    'useDodge: context.combatAssist.current.autoDodge',
-    'bossAutoMode: context.combatAssist.current.bossAutoMode',
-    'devicePreset: context.combatAssist.current.devicePreset',
+    'useSkills: settings.autoSkills',
+    'useDodge: settings.autoDodge',
+    'bossAutoMode: settings.bossAutoMode',
+    'devicePreset: settings.devicePreset',
     'createCombatOverlayChrome()',
   ],
   'src/scenes/SettingsScene.ts': [
@@ -81,7 +81,6 @@ const requirements = {
     'commandDot',
   ],
   'README.md': [
-    '# LUMERIFT: 균열의 계승자 v1.11.8',
     'docs/MEGA_INTERFACE_RENEWAL_v1.11.8.md',
     'docs/COMBAT_ASSIST_TUNING_v1.11.8.md',
   ],
