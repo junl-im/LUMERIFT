@@ -1,20 +1,17 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.4",
-  "baseVersion": "1.11.3",
+  "version": "1.11.5",
+  "baseVersion": "1.11.4",
   "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
-  "qualityStage": "production-candidate-input-ui-visual-polish",
+  "fullArchive": "LUMERIFT_FULL_v1.11.5.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.4_to_v1.11.5.zip",
+  "qualityStage": "production-candidate-webtoon-ui-combat-hud-polish",
   "features": [
-    "adds virtual joystick calibration with reverse correction default and user-cycling modes for screen, horizontal and vertical inversion",
-    "routes only touch joystick movement through calibration while preserving keyboard and pointer movement rules",
-    "upgrades player combat readability with stronger floor shadow, focus halo, silhouette glow and slightly larger default base scale",
-    "brightens the glass UI palette, panel highlights and scene chrome to reduce dullness and visual clutter",
-    "adds a settings shortcut for joystick correction alongside existing FPS, graphics, accessibility and QA controls",
-    "preserves Firebase App Check disabled state, player art variants, QA analysis, haptics, announcements and layered combat audio",
-    "adds v1.11.4 cumulative release validation for direction calibration, UI refinement and player visual polish"
+    "웹툰형 클린 UI 리디자인",
+    "전투 HUD 대정리",
+    "방향 텔레메트리와 공격 방향 VFX 강화",
+    "CRIT/BURN/HIT 및 CHAIN/CRITICAL 타격 피드백 강화"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -39,12 +36,9 @@
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
-    "release-version validation runs before the main verification chain",
-    "v1.10 through v1.11.4 cumulative validators protect mobile, accessibility, recovery, combat, graphics, input, player art variants and QA analysis contracts",
-    "touch joystick calibration defaults to reverse correction and can cycle through screen, invert-x and invert-y modes",
-    "player presentation now includes floor shadow, focus halo, silhouette glow and overdrive tint without changing cloud-save contracts",
-    "scene chrome and panel helpers render with the brighter v1.11.4 palette and updated contrast rules",
-    "all TypeScript sources are syntax-parsed with the available compiler and all static release validators pass",
-    "full and patch archives are extracted and compared by SHA-256 against the v1.11.4 working tree"
+    "validate-release-version",
+    "validate-v1114-upgrade",
+    "validate-v1115-upgrade",
+    "asset registry release sync"
   ]
 }

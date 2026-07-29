@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.4",
+  "version": "1.11.5",
   "updatedAt": "2026-07-29",
-  "currentPhase": "v1.11.4 입력 방향 보정·UI 정리·캐릭터 polish 완료, 실기기 체감 방향성과 시인성 추가 피드백 대기",
-  "qualityStage": "production-candidate-input-ui-visual-polish",
+  "currentPhase": "v1.11.5 웹툰형 UI 리디자인·전투 HUD 대정리·방향/타격감 polish 완료, 실브라우저 미세 정렬 대기",
+  "qualityStage": "production-candidate-webtoon-ui-combat-hud-polish",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -169,15 +169,16 @@
     "기존 OGG를 재사용하는 기본 공격·치명타·스킬·정밀 회피·Overdrive 다층 음향 디렉터 추가",
     "보스 예고·위험 단계와 피격·저체력·Overdrive 접근성 알림 및 중복 억제 연결",
     "v1.11.4 전용 누적 검증과 플레이어 도색·QA 분석·전투 접근성·음향 문서 추가",
-    "v1.11.4 가상 조이스틱 반전 보정, 설정 순환 교정, 밝은 UI 리파인, 플레이어 시각 polish 적용"
+    "v1.11.4 가상 조이스틱 반전 보정, 설정 순환 교정, 밝은 UI 리파인, 플레이어 시각 polish 적용",
+    "v1.11.5: 웹툰형 UI 리디자인, 전투 HUD 대정리, ATTACK VECTOR 방향 검수, CHAIN/CRITICAL 히트 배너 적용"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "v1.11.4 Android Chrome·Samsung Internet·iOS Safari 20분 전투 QA JSON 실표본 수집",
-    "실표본 기반 DeviceCalibration·CombatRenderBudget 임계값 재조정",
-    "전용 플레이어 도색 후보의 수작업 실루엣·재질·프레임 보간과 기본 Atlas 승격 후보 제작",
-    "독립 제작 OGG 효과음·보스 패턴 진동 강도·화면 낭독 문구 실기기 검수",
-    "Playwright 기반 멀티터치·정밀 회피·보스 장판·QA 분석·복구 JSON 실브라우저 E2E 연결"
+    "v1.11.6 HUD safe area 및 실브라우저 정렬 미세 조정",
+    "캐릭터 8방향 공격 성공 프레임·타격 포즈 추가 감수",
+    "스킬별 화면 흔들림/사운드 레이어 세부 보정",
+    "보스 패턴별 경고 말풍선·아이콘 분화",
+    "모바일 장시간 전투 UI 잔상 및 오입력 E2E 검수"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -291,8 +292,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.5.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.4_to_v1.11.5.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -361,6 +362,8 @@
   },
   "releaseArchives": {
     "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip"
+    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
+    "full": "LUMERIFT_FULL_v1.11.5.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.4_to_v1.11.5.zip"
   }
 }

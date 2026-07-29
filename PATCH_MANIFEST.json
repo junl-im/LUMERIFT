@@ -1,343 +1,39 @@
 {
-  "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "baseVersion": "1.11.2",
-  "targetVersion": "1.11.3",
-  "releaseDate": "2026-07-29",
-  "payloadFiles": 55,
-  "payloadBytes": 1618334,
-  "directDeleteFiles": 0,
-  "relocationMoves": 0,
-  "apply": [
-    "프로젝트 최상위에 덮어쓰기",
-    "npm install",
-    "npm run verify"
-  ],
-  "moves": [],
-  "files": [
-    {
-      "path": "AGENTS.md",
-      "status": "changed",
-      "bytes": 17512,
-      "sha256": "1aaaffa9e575c1af47c3c31fd6b76d51f6fc3a1c4fa45fec63e2844a686dbd5a"
-    },
-    {
-      "path": "HANDOFF_STATE.json",
-      "status": "changed",
-      "bytes": 29117,
-      "sha256": "2e359402c93bc40fdaf2facf4532f3c9766b5e4b1fb78b9c0eceebf5f0627e4b"
-    },
-    {
-      "path": "INSTALL_AND_START.bat",
-      "status": "changed",
-      "bytes": 648,
-      "sha256": "87526b06ceadacb7db448898d84bf2b1a2923cd644e8d997062837b037ee78fa"
-    },
-    {
-      "path": "PATCH_DELETE_LIST.txt",
-      "status": "changed",
-      "bytes": 56,
-      "sha256": "a7e2d1c7feee373700aa6dfa1a00241ea4a041f9f621aa189ef9432fe0b585eb"
-    },
-    {
-      "path": "PATCH_INFO.md",
-      "status": "changed",
-      "bytes": 284,
-      "sha256": "a3e6c4fe959573fd3ba6b1a166e7d5d1ab03e2789f8094dbbc7ea41f851abe5f"
-    },
-    {
-      "path": "PATCH_README.txt",
-      "status": "changed",
-      "bytes": 231,
-      "sha256": "1ab9fa12022c4f60bc1fed3fecdb05336d87f918595a5c60f83b4f61a2f51d7b"
-    },
-    {
-      "path": "PROJECT_HANDOFF.md",
-      "status": "changed",
-      "bytes": 1296,
-      "sha256": "2578f56af79f836eff370a87e32b924452fc31a44b88ed7e66c0fa75dfcfe813"
-    },
-    {
-      "path": "README.md",
-      "status": "changed",
-      "bytes": 1160,
-      "sha256": "62622a38807bcb5e86c7b559b2a704135ede9eba5ce69570b494c1afd095b41e"
-    },
-    {
-      "path": "RELEASE_MANIFEST.json",
-      "status": "changed",
-      "bytes": 2915,
-      "sha256": "f7bd6c40bbe23c46f6474b8cd47ce809a909f0a678b3c38d9b8dc68d221fe254"
-    },
-    {
-      "path": "VERIFY.bat",
-      "status": "changed",
-      "bytes": 233,
-      "sha256": "e31ec0f9ef7a388a0050b95981b8456f3fed9268ffa60a40e89c4109da2b3692"
-    },
-    {
-      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
-      "status": "added",
-      "bytes": 559301,
-      "sha256": "61100a80ae838a02195a01f17332ade8eec96fdad6fc0a3a528253d04093daf8"
-    },
-    {
-      "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_spec.json",
-      "status": "added",
-      "bytes": 941,
-      "sha256": "16bc0109db699d6fbfa72743ce8529ec64435c8d7e07523574f56bbce05cf9a2"
-    },
-    {
-      "path": "asset_registry/ASSET_REGISTRY.json",
-      "status": "changed",
-      "bytes": 117119,
-      "sha256": "1d8156dd5e538d966ccaff81e245ce1ba00356ccb2e89551c8ccfed1edcdd334"
-    },
-    {
-      "path": "docs/CHANGELOG.md",
-      "status": "changed",
-      "bytes": 23408,
-      "sha256": "2afcf748069dcb2c97e67d32616963195cc53065738ef5540bdb37969d71ba19"
-    },
-    {
-      "path": "docs/COMBAT_ACCESSIBILITY_FEEDBACK_v1.11.3.md",
-      "status": "added",
-      "bytes": 658,
-      "sha256": "f02fa02e89779f3ea97cf2e1e167934f7e2e52bd0a7a5efce9e94e9d85031eab"
-    },
-    {
-      "path": "docs/COMBAT_AUDIO_LAYERS_v1.11.3.md",
-      "status": "added",
-      "bytes": 591,
-      "sha256": "d44d514721575a1f9c2d22d964f64c932cb12374069005c2420bf74d2463e07a"
-    },
-    {
-      "path": "docs/DEVICE_QA_ANALYSIS_v1.11.3.md",
-      "status": "added",
-      "bytes": 863,
-      "sha256": "bc3935366e527486ad581841e409654cfa87b4374f44113d763e16504a61da61"
-    },
-    {
-      "path": "docs/HANDOFF_LOG.md",
-      "status": "changed",
-      "bytes": 15021,
-      "sha256": "5430de5abdd854b181091bc4c407d9addc26bb0ea6f5ed41966cb58ec0b9c3ff"
-    },
-    {
-      "path": "docs/HANDOFF_MASTER.md",
-      "status": "changed",
-      "bytes": 20487,
-      "sha256": "8fbfc24b944747b2596a8a1e5917c3a20ab62f9d4760abfd79bf5d9ec2072225"
-    },
-    {
-      "path": "docs/MOBILE_COMBAT_E2E_v1.11.3.md",
-      "status": "added",
-      "bytes": 799,
-      "sha256": "8c739feb591080a7640614110951fc8cc74f47ab0cac1922c70020f9a0947a25"
-    },
-    {
-      "path": "docs/NEXT_UPDATE_v1.11.4.md",
-      "status": "added",
-      "bytes": 496,
-      "sha256": "8d4e8930098169e3cb85816c600051c3439007df0ca5094b402e65b67e458779"
-    },
-    {
-      "path": "docs/PATCH_NOTES_v1.11.3.md",
-      "status": "added",
-      "bytes": 590,
-      "sha256": "2ead308f77368ad603fabd4a87e7e64fbc09f2b52ac076be119c10c3e6ba4ee0"
-    },
-    {
-      "path": "docs/PLAYER_PAINTED_CANDIDATE_v1.11.3.md",
-      "status": "added",
-      "bytes": 814,
-      "sha256": "c057812c508f524e2dc60bbcf536a05c69b679cbfd1017d234b95ddd4d46450b"
-    },
-    {
-      "path": "docs/ROADMAP.md",
-      "status": "changed",
-      "bytes": 15975,
-      "sha256": "b777b8335562d9898c8d81aa60367b43b8618e5114df0b3eac6e7e0d2642c3ad"
-    },
-    {
-      "path": "docs/TEST_CHECKLIST.md",
-      "status": "changed",
-      "bytes": 9895,
-      "sha256": "ce1a15fe1852195f7812c67545e738b666b227e4079642b2d441edd555624329"
-    },
-    {
-      "path": "docs/VERIFICATION.md",
-      "status": "changed",
-      "bytes": 11507,
-      "sha256": "67bac09178bcb8b44726acee57ca034a12492158804e3fceed16781fa8b9d7d2"
-    },
-    {
-      "path": "docs/previews/v1.11.3_owned_player_painted_contact.webp",
-      "status": "added",
-      "bytes": 244244,
-      "sha256": "bc609e0d332383ee790528ff6df17e345dbf2638bd2ce3b467361d89e1c6776e"
-    },
-    {
-      "path": "package.json",
-      "status": "changed",
-      "bytes": 4170,
-      "sha256": "b11a4824c07c2d21c85f6358c893b3740268015cb384dd735cf2e2f038fee98a"
-    },
-    {
-      "path": "public/assets/ASSET_MANIFEST.json",
-      "status": "changed",
-      "bytes": 3718,
-      "sha256": "636ed8852fb6a1c5b3c96f1888510cc2a513e4f0f2f4e6de44a906b7af479b3c"
-    },
-    {
-      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.json",
-      "status": "added",
-      "bytes": 63364,
-      "sha256": "721a8f2e7aefbba171e95752bae8aa642687aa9fde120df4f59a18ae81179ac0"
-    },
-    {
-      "path": "public/assets/live/v7/atlases/player/player_owned_painted_v7.webp",
-      "status": "added",
-      "bytes": 307432,
-      "sha256": "bf9cdbed691146110a8df062556b10b8a5f0985c737b063be315912d78896b50"
-    },
-    {
-      "path": "scripts/validate-release-version.mjs",
-      "status": "changed",
-      "bytes": 3382,
-      "sha256": "ac13060bb472ed158fa840ba65d6a63122e931abce46e5bb5044014210da347c"
-    },
-    {
-      "path": "scripts/validate-v111-release.mjs",
-      "status": "changed",
-      "bytes": 3272,
-      "sha256": "08046b089e56f0b8846e44a3113a92f41c7f551ac2c727d313fe2a5b0ea84079"
-    },
-    {
-      "path": "scripts/validate-v1112-upgrade.mjs",
-      "status": "changed",
-      "bytes": 5862,
-      "sha256": "92e367bf5ab8f8d5d4931624151f1f986073bb004ed3364a432703869e655882"
-    },
-    {
-      "path": "scripts/validate-v1113-upgrade.mjs",
-      "status": "added",
-      "bytes": 5723,
-      "sha256": "573fa37b9a2e1c0c1f9b7b424ca80494588866eeade79dc6443d63c95230ca11"
-    },
-    {
-      "path": "src/app/AppContext.ts",
-      "status": "changed",
-      "bytes": 2455,
-      "sha256": "f83133de552398816d5f0aa20362a35ea26b31994c59c67e96c47a4737a2ecaa"
-    },
-    {
-      "path": "src/app/GameApp.ts",
-      "status": "changed",
-      "bytes": 8504,
-      "sha256": "22fdca3a574fea34ed67615283ad234b5cacb2a9a8b0fb84886a44d51123dbf2"
-    },
-    {
-      "path": "src/app/brand.ts",
-      "status": "changed",
-      "bytes": 517,
-      "sha256": "6d9838835a44218192ed94bcf8dbf0305a888fb555cd408852f1abeafee5038f"
-    },
-    {
-      "path": "src/core/accessibility/AccessibilityController.test.ts",
-      "status": "changed",
-      "bytes": 1149,
-      "sha256": "f83c6391be52132649fd22de6d41650eb692f21edea8820383f4fc0aea64bb9f"
-    },
-    {
-      "path": "src/core/accessibility/AccessibilityController.ts",
-      "status": "changed",
-      "bytes": 5578,
-      "sha256": "4bfd39f7c3739af22f3ab51d8b21131ad87a4d90a4b2ffa9b589882b033413cf"
-    },
-    {
-      "path": "src/core/accessibility/HapticFeedbackController.test.ts",
-      "status": "added",
-      "bytes": 744,
-      "sha256": "a6b61e9c4479d03a0d650d73656566d18c2c4df1fa6d6b0a0384f0bd0c4649e3"
-    },
-    {
-      "path": "src/core/accessibility/HapticFeedbackController.ts",
-      "status": "added",
-      "bytes": 1920,
-      "sha256": "1374a431ae8d99bc0036bec8d23d4a528e906c3c1c39b3055ec73544a3015eca"
-    },
-    {
-      "path": "src/core/accessibility/LiveRegionAnnouncer.ts",
-      "status": "added",
-      "bytes": 2460,
-      "sha256": "716daaeb1a5801386940458179b1ce7cff6d63b41a203f76cd5ae3520b220576"
-    },
-    {
-      "path": "src/core/assets/AssetCatalog.ts",
-      "status": "changed",
-      "bytes": 7049,
-      "sha256": "a1568540f53b95ad187abd2fa6287b4a7028dd620347dc4714752156db94ae12"
-    },
-    {
-      "path": "src/core/audio/AudioManager.ts",
-      "status": "changed",
-      "bytes": 4621,
-      "sha256": "23da05a37031d37f12b85c80438945643eb25be7a2fb21d42c577c3523b59411"
-    },
-    {
-      "path": "src/core/performance/DeviceQaReport.ts",
-      "status": "changed",
-      "bytes": 3950,
-      "sha256": "31a3a382099c31b282116c8c59455711483105a5c61a09e6754a83284693147a"
-    },
-    {
-      "path": "src/core/performance/DeviceQaSessionAnalyzer.test.ts",
-      "status": "added",
-      "bytes": 2409,
-      "sha256": "64ac277fd92769e0bab6af3d48767e1093378b0e92c2f7b580d15e1a4625de57"
-    },
-    {
-      "path": "src/core/performance/DeviceQaSessionAnalyzer.ts",
-      "status": "added",
-      "bytes": 7641,
-      "sha256": "6ef331ddf057583fd9d6e3a7495211b11652e1f71b2e46f0459cc075bd1079d0"
-    },
-    {
-      "path": "src/core/presentation/PlayerArtVariantController.test.ts",
-      "status": "changed",
-      "bytes": 970,
-      "sha256": "9c3a81b10bae7c8859d6d143dba7559259f2eb874536098e9ca3189b13b25a9c"
-    },
-    {
-      "path": "src/core/presentation/PlayerArtVariantController.ts",
-      "status": "changed",
-      "bytes": 1759,
-      "sha256": "0f88ce7326df4a21d220ff44aacd99a8ede21b4be3184932d961d72a6b57a79a"
-    },
-    {
-      "path": "src/game/presentation/CombatAudioDirector.test.ts",
-      "status": "added",
-      "bytes": 875,
-      "sha256": "67db3dce9bb9624d3d357628fddb3148e1068d2ac27962247960fcdae841d1eb"
-    },
-    {
-      "path": "src/game/presentation/CombatAudioDirector.ts",
-      "status": "added",
-      "bytes": 3276,
-      "sha256": "057bbc56b0b750f878ba65efe44070c568fed457fc94177c77baf29b2588d073"
-    },
-    {
-      "path": "src/scenes/BattleScene.ts",
-      "status": "changed",
-      "bytes": 66129,
-      "sha256": "945a20d14e5fe82a0a16b43a7cdeb3bc494e269480c3e6c32e40a18440121a0c"
-    },
-    {
-      "path": "src/scenes/SettingsScene.ts",
-      "status": "changed",
-      "bytes": 12320,
-      "sha256": "2e00848f87ef0cfda75f74841677a7255f31a6346d7ad31e23ae3d011036b64c"
-    }
+  "fromVersion": "1.11.4",
+  "toVersion": "1.11.5",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.4_to_v1.11.5.zip",
+  "strategy": "overwrite-project-root",
+  "deleteRequired": [],
+  "changedFiles": [
+    "AGENTS.md",
+    "HANDOFF_STATE.json",
+    "PATCH_INFO.md",
+    "PROJECT_HANDOFF.md",
+    "README.md",
+    "RELEASE_MANIFEST.json",
+    "asset_registry/ASSET_REGISTRY.json",
+    "docs/CHANGELOG.md",
+    "docs/COMBAT_HUD_REWORK_v1.11.5.md",
+    "docs/HANDOFF_LOG.md",
+    "docs/HANDOFF_MASTER.md",
+    "docs/HIT_FEEDBACK_DIRECTION_REVIEW_v1.11.5.md",
+    "docs/NEXT_UPDATE_v1.11.5.md",
+    "docs/PATCH_NOTES_v1.11.5.md",
+    "docs/ROADMAP.md",
+    "docs/WEBTOON_UI_DIRECTION_v1.11.5.md",
+    "package.json",
+    "public/assets/ASSET_MANIFEST.json",
+    "scripts/validate-release-version.mjs",
+    "scripts/validate-v1114-upgrade.mjs",
+    "scripts/validate-v1115-upgrade.mjs",
+    "src/app/brand.ts",
+    "src/scenes/BattleScene.ts",
+    "src/ui/CombatActionButton.ts",
+    "src/ui/UiButton.ts",
+    "src/ui/UiSkin.ts",
+    "src/ui/VirtualJoystick.ts",
+    "PATCH_DELETE_LIST.txt",
+    "LUMERIFT_v1.11.5_UI_HUD_VERIFICATION.txt"
   ]
 }

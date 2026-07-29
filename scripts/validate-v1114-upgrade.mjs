@@ -4,9 +4,18 @@ const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'));
 const pkg = await readJson('package.json');
 const manifest = await readJson('public/assets/ASSET_MANIFEST.json');
 const errors = [];
+const atLeast = (version, minimum) => {
+  const left = version.split('.').map(Number);
+  const right = minimum.split('.').map(Number);
+  for (let index = 0; index < 3; index += 1) {
+    if ((left[index] ?? 0) > (right[index] ?? 0)) return true;
+    if ((left[index] ?? 0) < (right[index] ?? 0)) return false;
+  }
+  return true;
+};
 
-if (pkg.version !== '1.11.4') errors.push(`package version must be 1.11.4: ${pkg.version}`);
-if (manifest.release !== '1.11.4') errors.push(`asset manifest release must be 1.11.4: ${manifest.release}`);
+if (!atLeast(pkg.version, '1.11.4')) errors.push(`package version must preserve 1.11.4+ contracts: ${pkg.version}`);
+if (!atLeast(manifest.release, '1.11.4')) errors.push(`asset manifest release must preserve 1.11.4+ contracts: ${manifest.release}`);
 if (pkg.scripts?.['validate:upgrade:v1114'] !== 'node scripts/validate-v1114-upgrade.mjs') errors.push('v1.11.4 validator script is not connected');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v1114')) errors.push('verify does not include v1.11.4 validator');
 

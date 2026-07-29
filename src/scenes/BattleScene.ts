@@ -35,6 +35,7 @@ import {
   PlayerActorView,
 } from '../game/presentation/BattleActorView';
 import { applyStageVictory, resolveStageDrops } from '../game/progression/battleRewards';
+import { directionFromVector, type DirectionId } from '../game/presentation/direction';
 import { buildPlayerCombatConfig, ensureStarterInventory } from '../game/items/inventoryLogic';
 import { createDefaultProfile, type PlayerProfile } from '../repositories/PlayerRepository';
 import { UiButton } from '../ui/UiButton';
@@ -57,6 +58,7 @@ interface FloatingText {
   readonly text: Text;
   life: number;
   maxLife: number;
+  baseScale: number;
 }
 
 interface CombatEffect {
@@ -95,6 +97,7 @@ export class BattleScene implements Scene {
     }),
     life: 0,
     maxLife: 0.7,
+    baseScale: 1,
   }), 18);
   private readonly effectPool = new ObjectPool<CombatEffect>(() => ({
     view: new Graphics(),
@@ -162,6 +165,25 @@ export class BattleScene implements Scene {
     text: 'D',
     style: new TextStyle({ fill: 0x788793, fontSize: 22, fontWeight: '700', letterSpacing: 1 }),
   });
+  private readonly directionArrow = new Graphics();
+  private readonly directionText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xf8f6ef, fontSize: 13, fontWeight: '800', letterSpacing: 0.4 }),
+  });
+  private readonly attackTelemetryText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xc8d8dd, fontSize: 10, fontWeight: '700', lineHeight: 14 }),
+  });
+  private readonly hitFeedbackPanel = new Container();
+  private readonly hitFeedbackAccent = new Graphics();
+  private readonly hitFeedbackText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xfff3cc, fontSize: 20, fontWeight: '900', letterSpacing: 1.2, align: 'center', dropShadow: { color: 0x0b0807, alpha: 0.86, blur: 4, distance: 1 } }),
+  });
+  private readonly hitFeedbackSubtext = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xf4fbfb, fontSize: 10, fontWeight: '700', letterSpacing: 0.7, align: 'center' }),
+  });
   private readonly waveText = new Text({
     text: '',
     style: new TextStyle({ fill: COLORS.primaryBright, fontSize: 16, fontWeight: '700' }),
@@ -181,6 +203,7 @@ export class BattleScene implements Scene {
     }),
   });
   private announcementRemaining = 0;
+  private hitFeedbackRemaining = 0;
 
   private readonly bossCinematicLayer = new Container();
   private readonly bossCinematicBackdrop = new Graphics();
@@ -517,31 +540,49 @@ export class BattleScene implements Scene {
     const stage = this.stage;
     if (!stage) return;
 
-    const playerPanel = createRasterPanel(14, 14, 268, 82, 'panel_glass');
+    const playerPanel = createRasterPanel(14, 14, 274, 84, 'panel_glass');
+    const chapterTag = createRasterPanel(20, 18, 86, 20, 'resource_chip');
+    const chapterText = new Text({
+      text: 'HERO CUT',
+      style: new TextStyle({ fill: 0xffedb8, fontSize: 9, fontWeight: '800', letterSpacing: 1.2 }),
+    });
+    chapterText.position.set(35, 23);
     const playerName = new Text({
       text: `♥ Lv.${this.profile?.level ?? 1}  ${this.profile?.nickname ?? '계승자'}`,
       style: new TextStyle({ fill: COLORS.text, fontSize: this.accessibility?.largeHud ? 16 : 14, fontWeight: '700' }),
     });
-    playerName.position.set(30, 27);
+    playerName.position.set(30, 43);
     const hpTrack = new Graphics()
-      .roundRect(30, 58, 214, 18, 9)
+      .roundRect(30, 70, 214, 14, 7)
       .fill({ color: 0x03080c, alpha: 0.94 })
       .stroke({ color: this.combatPalette?.outline ?? 0xffffff, alpha: this.accessibility?.visionMode === 'highContrast' ? 0.78 : 0.18, width: this.accessibility?.visionMode === 'highContrast' ? 2 : 1 });
+    const hpTag = createRasterPanel(246, 68, 34, 18, 'resource_chip');
+    const hpTagText = new Text({
+      text: 'HP',
+      style: new TextStyle({ fill: 0xfff1c7, fontSize: 9, fontWeight: '800', letterSpacing: 0.8 }),
+    });
+    hpTagText.position.set(255, 72);
     this.playerHpText.style = new TextStyle({ fill: COLORS.text, fontSize: this.accessibility?.largeHud ? 15 : 13, fontWeight: '700' });
     this.playerHpText.anchor.set(1, 0.5);
-    this.playerHpText.position.set(265, 67);
+    this.playerHpText.position.set(265, 52);
 
     const stagePanel = createRasterPanel(296, 14, 176, 60, 'panel_strong');
+    const stageRibbon = createRasterPanel(304, 20, 76, 18, 'resource_chip');
+    const stageRibbonText = new Text({
+      text: 'SCENE',
+      style: new TextStyle({ fill: 0xffeab5, fontSize: 9, fontWeight: '800', letterSpacing: 1.1 }),
+    });
+    stageRibbonText.position.set(323, 24);
     const stageText = new Text({
       text: stage.label,
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 13, fontWeight: '700' }),
     });
-    stageText.position.set(314, 27);
+    stageText.position.set(314, 44);
     this.waveText.anchor.set(0, 0);
-    this.waveText.position.set(314, 50);
+    this.waveText.position.set(314, 61);
     this.waveText.style = new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '700' });
     this.enemyCountText.anchor.set(1, 0);
-    this.enemyCountText.position.set(455, 49);
+    this.enemyCountText.position.set(455, 60);
     this.enemyCountText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 11, fontWeight: '700' });
 
     this.pauseButton = new UiButton({
@@ -579,18 +620,48 @@ export class BattleScene implements Scene {
     });
     controlHint.position.set(30, 797);
 
-    const comboChip = createRasterPanel(134, 181, 272, 58, 'resource_chip');
+    const comboChip = createRasterPanel(132, 181, 276, 58, 'resource_chip');
+    const comboHeader = createRasterPanel(142, 186, 84, 18, 'resource_chip');
+    const comboHeaderText = new Text({
+      text: 'HYPE METER',
+      style: new TextStyle({ fill: 0xffedba, fontSize: 8, fontWeight: '800', letterSpacing: 1.1 }),
+    });
+    comboHeaderText.position.set(153, 190);
     const driveTrack = new Graphics()
       .roundRect(198, 220, 170, 7, 4)
       .fill({ color: 0x020609, alpha: 0.9 })
       .stroke({ color: 0x7fffe0, alpha: 0.24, width: 1 });
     this.comboText.anchor.set(0.5);
-    this.comboText.position.set(DESIGN_WIDTH / 2 + 12, 198);
+    this.comboText.position.set(DESIGN_WIDTH / 2 + 12, 206);
     this.comboText.style = new TextStyle({ fill: 0xf4dca0, fontSize: 14, fontWeight: '700', letterSpacing: 0.6 });
     this.styleText.anchor.set(0.5);
-    this.styleText.position.set(164, 209);
+    this.styleText.position.set(164, 214);
     this.driveText.anchor.set(1, 0.5);
     this.driveText.position.set(394, 224);
+
+    const telemetryPanel = createRasterPanel(14, 722, 250, 54, 'panel_strong');
+    const telemetryTag = createRasterPanel(24, 728, 102, 18, 'resource_chip');
+    const telemetryTagText = new Text({
+      text: 'ATTACK VECTOR',
+      style: new TextStyle({ fill: 0xffefbe, fontSize: 8, fontWeight: '800', letterSpacing: 1.2 }),
+    });
+    telemetryTagText.position.set(34, 732);
+    this.directionText.position.set(76, 748);
+    this.attackTelemetryText.position.set(76, 762);
+
+    this.hitFeedbackPanel.visible = false;
+    this.hitFeedbackPanel.position.set(DESIGN_WIDTH / 2, 286);
+    const feedbackPlate = createRasterPanel(-132, -10, 264, 52, 'panel_strong');
+    this.hitFeedbackAccent
+      .roundRect(-126, -4, 252, 10, 5)
+      .fill({ color: 0xffffff, alpha: 0.06 })
+      .roundRect(-126, 26, 252, 8, 4)
+      .fill({ color: 0x0d1014, alpha: 0.35 });
+    this.hitFeedbackText.anchor.set(0.5, 0.5);
+    this.hitFeedbackText.position.set(0, 8);
+    this.hitFeedbackSubtext.anchor.set(0.5, 0.5);
+    this.hitFeedbackSubtext.position.set(0, 27);
+    this.hitFeedbackPanel.addChild(feedbackPlate, this.hitFeedbackAccent, this.hitFeedbackText, this.hitFeedbackSubtext);
 
     this.joystick = new VirtualJoystick({ radius: 66, deadZone: 0.2 });
     this.joystick.position.set(88, 865);
@@ -636,24 +707,39 @@ export class BattleScene implements Scene {
 
     this.hud.addChild(
       playerPanel,
+      chapterTag,
+      chapterText,
       playerName,
       hpTrack,
+      hpTag,
+      hpTagText,
       this.playerHpFill,
       this.playerHpText,
       stagePanel,
+      stageRibbon,
+      stageRibbonText,
       stageText,
       this.waveText,
       this.enemyCountText,
       this.pauseButton,
       this.bossPanel,
       comboChip,
+      comboHeader,
+      comboHeaderText,
       driveTrack,
       this.driveFill,
       this.driveText,
       this.styleText,
+      telemetryPanel,
+      telemetryTag,
+      telemetryTagText,
+      this.directionArrow,
+      this.directionText,
+      this.attackTelemetryText,
       controlDock,
       controlHint,
       this.comboText,
+      this.hitFeedbackPanel,
       this.dangerText,
       this.joystick,
       this.dodgeButton,
@@ -1165,6 +1251,12 @@ export class BattleScene implements Scene {
       }
 
       if (hitCount > 0) {
+        const direction = this.directionLabel(directionFromVector(event.facing));
+        const banner = criticalCount > 0
+          ? criticalCount >= 2 ? 'CRITICAL RUSH' : 'CRITICAL CUT'
+          : hitCount >= 3 ? 'CHAIN SLASH' : event.action.label.toUpperCase();
+        const subline = `${hitCount} HIT · ${criticalCount} CRIT · ${direction}`;
+        this.presentHitFeedback(banner, subline, criticalCount > 0);
         this.combatAudio?.play({
           kind: 'impact',
           tier: event.action.impactTier,
@@ -1265,6 +1357,12 @@ export class BattleScene implements Scene {
         .fill({ color, alpha: 0.08 * quality.effectDensity * budget.intensity })
         .circle(0, 0, footprint.range)
         .stroke({ color, alpha: 0.88, width: 4 + quality.effectDensity * 3 });
+      effect.view
+        .moveTo(-footprint.range * 0.24, 0)
+        .lineTo(footprint.range * 0.24, 0)
+        .moveTo(0, -footprint.range * 0.24)
+        .lineTo(0, footprint.range * 0.24)
+        .stroke({ color: 0xffffff, alpha: 0.42 * budget.intensity, width: 2 });
       if (budget.effectLayers >= 2) {
         effect.view
           .circle(0, 0, footprint.range * 0.72)
@@ -1290,6 +1388,21 @@ export class BattleScene implements Scene {
       if (budget.effectLayers >= 2 && drawPath()) {
         effect.view.stroke({ color: 0xffffff, alpha: 0.34 * budget.intensity, width: 1.5 });
       }
+      const arrowLength = footprint.range * 0.84;
+      effect.view
+        .moveTo(0, 0)
+        .lineTo(facing.x * arrowLength, facing.y * arrowLength)
+        .stroke({ color: 0xffffff, alpha: 0.38 * budget.intensity, width: 2.2 });
+      const tipX = facing.x * arrowLength;
+      const tipY = facing.y * arrowLength;
+      const tipAngle = Math.atan2(facing.y, facing.x);
+      const arrowSize = 10 + quality.effectDensity * 4;
+      effect.view
+        .moveTo(tipX, tipY)
+        .lineTo(tipX + Math.cos(tipAngle + Math.PI * 0.82) * arrowSize, tipY + Math.sin(tipAngle + Math.PI * 0.82) * arrowSize)
+        .lineTo(tipX + Math.cos(tipAngle - Math.PI * 0.82) * arrowSize, tipY + Math.sin(tipAngle - Math.PI * 0.82) * arrowSize)
+        .closePath()
+        .fill({ color: 0xffffff, alpha: 0.26 * budget.intensity });
     }
 
     effect.view.alpha = 1;
@@ -1317,7 +1430,9 @@ export class BattleScene implements Scene {
     for (const floating of [...this.activeDamage]) {
       floating.life -= deltaSeconds;
       floating.text.y -= 52 * deltaSeconds;
-      floating.text.alpha = Math.max(0, floating.life / floating.maxLife);
+      const ratio = Math.max(0, floating.life / floating.maxLife);
+      floating.text.alpha = ratio;
+      floating.text.scale.set(floating.baseScale + (1 - ratio) * 0.18);
       if (floating.life > 0) continue;
       floating.text.parent?.removeChild(floating.text);
       this.activeDamage.delete(floating);
@@ -1387,6 +1502,7 @@ export class BattleScene implements Scene {
       : `${Math.round(momentum.drive)} / ${momentum.maxDrive}`;
 
     this.updateBossHud();
+    this.updateCombatTelemetry(player);
 
     this.attackButton?.setEnabled(player.state !== 'dead');
     this.attackButton?.setLabel(player.comboStep > 0 ? `공격 ${Math.min(player.comboStep + 1, 3)}` : '공격');
@@ -1407,6 +1523,94 @@ export class BattleScene implements Scene {
     if (this.announcementText.visible) {
       this.announcementText.alpha = Math.min(1, this.announcementRemaining * 2);
     }
+
+    this.hitFeedbackRemaining = Math.max(0, this.hitFeedbackRemaining - deltaSeconds);
+    this.hitFeedbackPanel.visible = this.hitFeedbackRemaining > 0;
+    if (this.hitFeedbackPanel.visible) {
+      const alpha = Math.min(1, this.hitFeedbackRemaining * 3);
+      this.hitFeedbackPanel.alpha = alpha;
+      this.hitFeedbackPanel.scale.set(1 + (1 - alpha) * 0.03);
+    }
+  }
+
+  private updateCombatTelemetry(player: PlayerCombatController): void {
+    const direction = directionFromVector(player.facing);
+    const arrow = this.directionArrowGlyph(direction);
+    const label = this.directionLabel(direction);
+    this.directionText.text = `INPUT ${arrow} ${label}`;
+
+    const action = player.activeAction;
+    const status = action
+      ? `${action.label} · ${action.hitShape === 'circle' ? 'RADIAL' : 'CONE'} · RANGE ${Math.round(action.range)}`
+      : player.state === 'dodging'
+        ? '회피 중 · 입력 방향으로 무적 이동'
+        : player.state === 'moving'
+          ? '이동 중 · 현재 바라보는 방향으로 기본 공격'
+          : '대기 중 · 공격은 캐릭터가 바라보는 방향으로 발동';
+    this.attackTelemetryText.text = status;
+
+    const angle = Math.atan2(player.facing.y, player.facing.x);
+    this.directionArrow.clear();
+    this.directionArrow.position.set(44, 754);
+    this.directionArrow.rotation = angle;
+    this.directionArrow
+      .roundRect(-8, -4, 26, 8, 4)
+      .fill({ color: 0x1b2735, alpha: 0.94 })
+      .roundRect(-8, -4, 26, 8, 4)
+      .stroke({ color: 0xffefba, alpha: 0.88, width: 1.5 })
+      .moveTo(22, 0)
+      .lineTo(40, 0)
+      .lineTo(20, -10)
+      .lineTo(20, 10)
+      .closePath()
+      .fill({ color: 0x7fffe0, alpha: 0.95 })
+      .moveTo(-15, 0)
+      .lineTo(-8, 0)
+      .stroke({ color: 0xffffff, alpha: 0.4, width: 2 });
+  }
+
+  private directionArrowGlyph(direction: DirectionId): string {
+    const mapping: Record<DirectionId, string> = {
+      n: '↑',
+      ne: '↗',
+      e: '→',
+      se: '↘',
+      s: '↓',
+      sw: '↙',
+      w: '←',
+      nw: '↖',
+    };
+    return mapping[direction] ?? '•';
+  }
+
+  private directionLabel(direction: DirectionId): string {
+    const mapping: Record<DirectionId, string> = {
+      n: '상단',
+      ne: '우상단',
+      e: '우측',
+      se: '우하단',
+      s: '하단',
+      sw: '좌하단',
+      w: '좌측',
+      nw: '좌상단',
+    };
+    return mapping[direction] ?? '정지';
+  }
+
+  private presentHitFeedback(headline: string, subline: string, critical: boolean): void {
+    this.hitFeedbackText.text = headline;
+    this.hitFeedbackSubtext.text = subline;
+    this.hitFeedbackText.style.fill = critical ? 0xfff0bf : 0xe7fbff;
+    this.hitFeedbackSubtext.style.fill = critical ? 0xffe3a2 : 0xbfe1e9;
+    this.hitFeedbackAccent.clear()
+      .roundRect(-120, 0, 240, 4, 2)
+      .fill({ color: critical ? 0xffd36a : 0x7fffe0, alpha: 0.88 })
+      .roundRect(-96, 30, 192, 4, 2)
+      .fill({ color: critical ? 0xffd36a : 0x7fffe0, alpha: 0.42 });
+    this.hitFeedbackRemaining = critical ? 0.92 : 0.62;
+    this.hitFeedbackPanel.alpha = 1;
+    this.hitFeedbackPanel.scale.set(1);
+    this.hitFeedbackPanel.visible = true;
   }
 
   private updateBossHud(): void {
@@ -1619,17 +1823,36 @@ export class BattleScene implements Scene {
   ): void {
     if (!this.renderBudget.canSpawnFloatingText(this.activeDamage.size, emphasized)) return;
     const floating = this.damagePool.acquire();
-    floating.maxLife = emphasized ? 0.88 : 0.7;
+    floating.maxLife = tone === 'critical' ? 0.98 : emphasized ? 0.88 : 0.72;
     floating.life = floating.maxLife;
-    const prefix = tone === 'burn' ? '🔥 ' : tone === 'critical' ? '✦ ' : '';
-    floating.text.text = `${prefix}${amount}`;
-    floating.text.style.fill = tone === 'player'
-      ? (this.combatPalette?.criticalHp ?? COLORS.danger)
+    floating.baseScale = tone === 'critical' ? 1.2 : emphasized ? 1.08 : 0.98;
+
+    const text = tone === 'critical'
+      ? `CRIT\n${amount}`
       : tone === 'burn'
-        ? COLORS.warning
-        : COLORS.text;
+        ? `BURN\n${amount}`
+        : tone === 'player'
+          ? `HIT\n${amount}`
+          : `${amount}`;
+    floating.text.text = text;
+    floating.text.style = new TextStyle({
+      fill: tone === 'critical'
+        ? 0xfff1bc
+        : tone === 'player'
+          ? (this.combatPalette?.criticalHp ?? COLORS.danger)
+          : tone === 'burn'
+            ? 0xffd487
+            : COLORS.text,
+      fontSize: tone === 'critical' ? 24 : tone === 'player' || tone === 'burn' ? 18 : 22,
+      fontWeight: '900',
+      letterSpacing: tone === 'critical' ? 1.1 : 0.4,
+      align: 'center',
+      lineHeight: tone === 'critical' ? 19 : 16,
+      stroke: { color: tone === 'critical' ? 0x4b2200 : 0x081018, width: tone === 'critical' ? 5 : 4, join: 'round' },
+      dropShadow: { color: 0x030507, alpha: 0.88, blur: 4, distance: 1 },
+    });
     floating.text.alpha = 1;
-    floating.text.scale.set(emphasized ? 1.18 : 1);
+    floating.text.scale.set(floating.baseScale);
     floating.text.anchor.set(0.5);
     floating.text.position.set(x, y);
     this.activeDamage.add(floating);

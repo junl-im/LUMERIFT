@@ -69,6 +69,20 @@ export class UiButton extends Container {
     this.labelText.position.set(labelX, options.subtitle ? height * 0.38 : height / 2 - 1);
 
     this.addChild(this.background);
+    const stickerShadow = new Graphics()
+      .roundRect(6, 6, width - 12, Math.max(16, height - 12), 18)
+      .stroke({ color: 0xffffff, alpha: 0.06, width: 1 })
+      .roundRect(10, 10, Math.min(96, width * 0.3), 12, 6)
+      .fill({ color: 0xffffff, alpha: 0.05 });
+    const topSheen = new Graphics()
+      .roundRect(8, 8, width - 16, Math.max(10, height * 0.26), 14)
+      .fill({ color: 0xffffff, alpha: 0.05 })
+      .moveTo(width - 42, 10)
+      .lineTo(width - 20, 10)
+      .lineTo(width - 16, 14)
+      .lineTo(width - 16, 26)
+      .stroke({ color: COLORS.warning, alpha: 0.22, width: 1.5 });
+    this.addChild(stickerShadow, topSheen);
     if (options.icon) {
       const iconTexture = getUiIconTexture(options.icon);
       if (iconTexture) {
@@ -85,7 +99,7 @@ export class UiButton extends Container {
     if (options.subtitle) {
       const subtitle = new Text({
         text: options.subtitle,
-        style: new TextStyle({ fill: COLORS.muted, fontSize: Math.max(9, (options.fontSize ?? 16) - 6), wordWrap: true, wordWrapWidth: width - labelX - 18 }),
+        style: new TextStyle({ fill: 0xb4c6ce, fontSize: Math.max(9, (options.fontSize ?? 16) - 6), fontWeight: '700', wordWrap: true, wordWrapWidth: width - labelX - 18 }),
       });
       subtitle.position.set(labelX, height * 0.58);
       this.addChild(subtitle);

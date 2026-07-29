@@ -290,3 +290,11 @@
 - 캐릭터 그림자·포커스 링·실루엣 glow 강화
 - 공통 UI 팔레트와 패널 대비 개선
 - ASSET_REGISTRY 1.11.4 재생성 및 v1.11.3 누적 검증의 상위 버전 호환 수정
+
+## v1.11.5
+
+- 웹툰형 클린 UI 패널·버튼·조이스틱 장식 보강
+- HERO CUT / HYPE METER / ATTACK VECTOR 기반 전투 HUD 대정리
+- 방향 검수용 텔레메트리와 공격 방향 VFX 화살표 보강
+- CRIT/BURN/HIT 플로팅 텍스트와 CHAIN/CRITICAL 히트 배너 추가
+- v1.11.5 릴리스 버전·문서·검증 체계 갱신

@@ -47,6 +47,7 @@ export function createRasterPanel(
       .fill({ color: COLORS.panel, alpha: 0.96 })
       .stroke({ color: COLORS.warning, alpha: 0.42, width: 2 }));
     addPanelDepth(root, x, y, width, height, textureName);
+    addPanelComicAccent(root, x, y, width, height, textureName);
     return root;
   }
 
@@ -62,7 +63,41 @@ export function createRasterPanel(
   panel.height = height;
   root.addChild(panel);
   addPanelDepth(root, x, y, width, height, textureName);
+  addPanelComicAccent(root, x, y, width, height, textureName);
   return root;
+}
+
+function addPanelComicAccent(
+  root: Container,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  textureName: string,
+): void {
+  if (width < 70 || height < 26) return;
+  const compact = textureName === 'resource_chip' || height < 52;
+  const shadow = new Graphics()
+    .roundRect(x + 3, y + 5, width - 6, Math.max(10, height - 8), compact ? 10 : 16)
+    .fill({ color: COLORS.dark, alpha: compact ? 0.1 : 0.14 });
+  root.addChildAt(shadow, 0);
+
+  const sticker = new Graphics();
+  if (!compact) {
+    sticker
+      .roundRect(x + 10, y + 10, Math.min(76, width * 0.24), 14, 7)
+      .fill({ color: 0xffffff, alpha: 0.06 })
+      .moveTo(x + width - 34, y + 9)
+      .lineTo(x + width - 20, y + 9)
+      .lineTo(x + width - 16, y + 13)
+      .lineTo(x + width - 16, y + 23)
+      .stroke({ color: COLORS.warning, alpha: 0.28, width: 1.5 });
+  } else {
+    sticker
+      .circle(x + width - 11, y + 11, 2.5)
+      .fill({ color: COLORS.primaryBright, alpha: 0.58 });
+  }
+  root.addChild(sticker);
 }
 
 function addPanelDepth(

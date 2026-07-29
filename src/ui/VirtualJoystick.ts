@@ -12,6 +12,7 @@ export class VirtualJoystick extends Container {
   private readonly radius: number;
   private readonly deadZone: number;
   private readonly knob = new Graphics();
+  private readonly headingNeedle = new Graphics();
   private activePointerId?: number;
   private axisValue: Vec2 = { x: 0, y: 0 };
 
@@ -35,13 +36,21 @@ export class VirtualJoystick extends Container {
         .stroke({ color: COLORS.primaryBright, alpha: 0.62, width: 4 }));
     }
 
+    const spoke = this.radius - 28;
+    const diagonal = spoke * 0.72;
     const guide = new Graphics()
       .circle(0, 0, this.radius - 14)
       .stroke({ color: 0xffffff, alpha: 0.08, width: 2 })
-      .moveTo(-this.radius + 28, 0)
-      .lineTo(this.radius - 28, 0)
-      .moveTo(0, -this.radius + 28)
-      .lineTo(0, this.radius - 28)
+      .circle(0, 0, this.radius * 0.46)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.08, width: 1.5 })
+      .moveTo(-spoke, 0)
+      .lineTo(spoke, 0)
+      .moveTo(0, -spoke)
+      .lineTo(0, spoke)
+      .moveTo(-diagonal, -diagonal)
+      .lineTo(diagonal, diagonal)
+      .moveTo(-diagonal, diagonal)
+      .lineTo(diagonal, -diagonal)
       .stroke({ color: COLORS.primaryBright, alpha: 0.1, width: 2 });
 
     this.knob
@@ -50,7 +59,8 @@ export class VirtualJoystick extends Container {
       .circle(0, 0, this.radius * 0.26)
       .stroke({ color: COLORS.text, alpha: 0.42, width: 2 });
 
-    this.addChild(guide, this.knob);
+    this.headingNeedle.alpha = 0.9;
+    this.addChild(guide, this.headingNeedle, this.knob);
     this.eventMode = 'static';
     this.cursor = 'pointer';
     this.hitArea = {
@@ -73,6 +83,7 @@ export class VirtualJoystick extends Container {
     this.axisValue = { x: 0, y: 0 };
     this.knob.position.set(0, 0);
     this.knob.alpha = 0.82;
+    this.headingNeedle.clear();
   }
 
   private begin(event: FederatedPointerEvent): void {
@@ -100,6 +111,21 @@ export class VirtualJoystick extends Container {
     const x = local.x * scale;
     const y = local.y * scale;
     this.knob.position.set(x, y);
+    this.headingNeedle.clear();
+    if (distance > 0) {
+      const angle = Math.atan2(local.y, local.x);
+      const tip = this.radius - 20;
+      const tail = this.radius * 0.18;
+      this.headingNeedle
+        .moveTo(Math.cos(angle) * tail, Math.sin(angle) * tail)
+        .lineTo(Math.cos(angle) * tip, Math.sin(angle) * tip)
+        .stroke({ color: COLORS.warning, alpha: 0.44, width: 3 })
+        .moveTo(Math.cos(angle) * tip, Math.sin(angle) * tip)
+        .lineTo(Math.cos(angle + Math.PI * 0.84) * 10 + Math.cos(angle) * tip, Math.sin(angle + Math.PI * 0.84) * 10 + Math.sin(angle) * tip)
+        .lineTo(Math.cos(angle - Math.PI * 0.84) * 10 + Math.cos(angle) * tip, Math.sin(angle - Math.PI * 0.84) * 10 + Math.sin(angle) * tip)
+        .closePath()
+        .fill({ color: COLORS.primaryBright, alpha: 0.72 });
+    }
 
     const normalizedMagnitude = Math.min(1, distance / maximum);
     if (normalizedMagnitude <= this.deadZone || distance === 0) {

@@ -56,20 +56,33 @@ export class CombatActionButton extends Container {
       .fill({ color: COLORS.dark, alpha: 0.22 })
       .circle(0, 0, this.radius - 13)
       .stroke({ color: 0xffffff, alpha: 0.08, width: 1 });
-    this.addChild(inner);
+    const flare = new Graphics()
+      .ellipse(-this.radius * 0.12, -this.radius * 0.22, this.radius * 0.58, this.radius * 0.34)
+      .fill({ color: 0xffffff, alpha: 0.06 });
+    const tag = new Graphics()
+      .roundRect(-this.radius * 0.48, -this.radius * 0.88, this.radius * 0.96, 16, 8)
+      .fill({ color: 0x0d121a, alpha: 0.82 })
+      .stroke({ color: options.tone === 'secondary' ? 0xffd36a : 0x7fffe0, alpha: 0.62, width: 1.4 });
+    const roleText = new Text({
+      text: options.tone === 'secondary' ? 'SKILL' : options.label === '회피' ? 'DODGE' : 'ACTION',
+      style: new TextStyle({ fill: 0xffefbe, fontSize: 8, fontWeight: '800', letterSpacing: 1.0, align: 'center' }),
+    });
+    roleText.anchor.set(0.5);
+    roleText.position.set(0, -this.radius * 0.88 + 8);
+    this.addChild(inner, flare, tag, roleText);
 
     this.labelText = new Text({
       text: options.label,
       style: new TextStyle({
         fill: COLORS.text,
         fontSize: Math.max(13, Math.round(this.radius * 0.31)),
-        fontWeight: '700',
+        fontWeight: '800',
         align: 'center',
         dropShadow: { color: COLORS.dark, alpha: 0.8, blur: 3, distance: 1 },
       }),
     });
     this.labelText.anchor.set(0.5);
-    this.labelText.position.set(0, 1);
+    this.labelText.position.set(0, 4);
 
     this.cooldownText = new Text({
       text: '',
