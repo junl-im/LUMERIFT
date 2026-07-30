@@ -4,6 +4,7 @@ const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'));
 const pkg = await readJson('package.json');
 const manifest = await readJson('public/assets/ASSET_MANIFEST.json');
 const errors = [];
+
 const atLeast = (version, minimum) => {
   const left = version.split('.').map(Number);
   const right = minimum.split('.').map(Number);
@@ -19,6 +20,7 @@ if (!atLeast(manifest.release, '1.11.10')) errors.push(`asset manifest release m
 if (pkg.scripts?.['validate:upgrade:v11110'] !== 'node scripts/validate-v11110-upgrade.mjs') errors.push('v1.11.10 validator script is not connected');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11110')) errors.push('verify does not include v1.11.10 validator');
 
+// Preserve the v1.11.10 feature contracts without freezing later UI copy.
 const requirements = {
   'src/ui/InterfaceChrome.ts': [
     'export function createFeatureMarquee(',
@@ -26,21 +28,25 @@ const requirements = {
     'const speedLines = new Graphics()',
   ],
   'src/ui/SceneChrome.ts': [
-    "const updateTag = createComicTag('LIVE RENEWAL', 0xf0ca78);",
-    "const headlineMarquee = createFeatureMarquee('WEBTOON CLEAN'",
+    'const updateTag = createComicTag(',
+    'const headlineMarquee = createFeatureMarquee(',
+    'root.addChild(interfaceBackdrop',
   ],
   'src/ui/UiTheme.ts': [
     'const storyRibbon = new Graphics()',
     'const bevelLine = new Graphics()',
   ],
   'src/scenes/LobbyScene.ts': [
-    '리뉴얼 브리핑',
-    "createFeatureMarquee('전술·아트·자동화 업그레이드'",
-    "createComicTag('STYLE UP!'",
+    'private createRenewalBriefing(',
+    'const marquee = createFeatureMarquee(',
+    'const updateTag = createComicTag(',
+    'new AssetGalleryScene()',
   ],
   'src/scenes/AssetGalleryScene.ts': [
-    "createFeatureMarquee('아트 룩·에셋 라인업'",
-    "createComicTag('production-line'",
+    'QUALITY_GALLERY_CATEGORIES',
+    'createFeatureMarquee(',
+    'createComicTag(',
+    'loadCurrentCategory()',
   ],
   'README.md': [
     '## v1.11.10 핵심 업데이트',
@@ -52,7 +58,9 @@ const requirements = {
 
 for (const [path, markers] of Object.entries(requirements)) {
   const source = await readFile(path, 'utf8');
-  for (const marker of markers) if (!source.includes(marker)) errors.push(`${path}: v1.11.10 marker missing: ${marker}`);
+  for (const marker of markers) {
+    if (!source.includes(marker)) errors.push(`${path}: v1.11.10 feature contract missing: ${marker}`);
+  }
 }
 
 for (const doc of [
@@ -60,13 +68,16 @@ for (const doc of [
   'docs/ASSET_RENEWAL_v1.11.10.md',
   'docs/PATCH_NOTES_v1.11.10.md',
 ]) {
-  try { await readFile(doc, 'utf8'); }
-  catch { errors.push(`missing v1.11.10 document: ${doc}`); }
+  try {
+    await readFile(doc, 'utf8');
+  } catch {
+    errors.push(`missing v1.11.10 document: ${doc}`);
+  }
 }
 
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS v1.11.10 upgrade: webtoon-clean interface chrome, renewal briefing, and asset gallery production-line guidance');
+  console.log('PASS v1.11.10 upgrade: interface chrome, renewal briefing, and asset gallery feature contracts preserved across later copy revisions');
 }
