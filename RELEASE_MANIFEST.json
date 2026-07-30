@@ -1,18 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.11",
-  "baseVersion": "1.11.10",
-  "releaseDate": "2026-07-29",
-  "fullArchive": "LUMERIFT_FULL_v1.11.11.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.10_to_v1.11.11.zip",
-  "qualityStage": "production-candidate-auto-session-boss-rules-mobile-safe-area",
+  "version": "1.11.12",
+  "baseVersion": "1.11.11",
+  "releaseDate": "2026-07-30",
+  "fullArchive": "LUMERIFT_FULL_v1.11.12.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.11_to_v1.11.12.zip",
+  "qualityStage": "production-candidate-ui-ux-asset-polish",
   "features": [
-    "자동 전투 세션 로그와 결과 화면 AUTO ASSIST REPORT",
-    "심연 절단·심연 폭발·추적 균열 패턴별 회피 시점과 방향 규칙",
-    "HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단",
-    "iOS·Android visualViewport 기반 전투 HUD Safe Area 보정",
-    "가상 조이스틱 기본 반전 제거와 화면 기준 실제 이동·8방향 방향 복구"
+    "로비 커맨드 허브 정보 위계 재정리와 퀵 브리핑 가독성 강화",
+    "에셋 보관소 분류별 품질 태그·감수 포인트·모바일 제작용 마스터 안내 강화",
+    "결과 화면 전술 요약·성과 분류·다음 추천 행동 표시 개선",
+    "공통 SceneChrome 헤더 문구와 업데이트 마키를 v1.11.12 기준으로 재정비",
+    "v1.11.11 자동 전투 세션 로그·플랫폼 Safe Area·이동 방향 핫픽스 계약 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -38,10 +38,9 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1119-upgrade",
-    "validate-v11110-upgrade",
     "validate-v11111-upgrade",
-    "asset registry release sync",
-    "joystick screen-axis runtime harness"
+    "validate-v11112-upgrade",
+    "asset gallery category audit markers",
+    "result scene tactical summary markers"
   ]
 }

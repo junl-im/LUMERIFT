@@ -109,11 +109,13 @@ export class ResultScene implements Scene {
     medalGroup.addChild(grade);
 
     const badge = createBadge(
-      this.outcome.firstClear ? 'FIRST CLEAR' : this.outcome.victory ? 'MISSION CLEAR' : 'RETRY',
+      this.outcome.firstClear ? 'FIRST CLEAR' : this.outcome.victory ? 'TACTICAL CLEAR' : 'RETRY REQUIRED',
       this.outcome.victory ? 'success' : 'danger',
     );
     badge.position.set(224, 350);
-    this.view.addChild(medalGroup, badge);
+    const performanceBadge = createBadge(this.performanceLabel(), this.outcome.victory ? 'warning' : 'secondary');
+    performanceBadge.position.set(352, 350);
+    this.view.addChild(medalGroup, badge, performanceBadge);
   }
 
   private createMetrics(): void {
@@ -138,8 +140,8 @@ export class ResultScene implements Scene {
     const summary = this.outcome.autoAssist;
     const panel = createSectionPanel(58, 492, 424, 78, 'panel_gold');
     const title = new Text({
-      text: 'AUTO ASSIST REPORT',
-      style: new TextStyle({ fill: 0xf4dca0, fontSize: 11, fontWeight: '800', letterSpacing: 0.8 }),
+      text: 'TACTICAL SUMMARY · AUTO ASSIST REPORT',
+      style: new TextStyle({ fill: 0xf4dca0, fontSize: 10, fontWeight: '800', letterSpacing: 0.65 }),
     });
     title.position.set(76, 503);
     const totals = summary
@@ -149,12 +151,12 @@ export class ResultScene implements Scene {
       text: totals,
       style: new TextStyle({ fill: COLORS.text, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
     });
-    totalText.position.set(76, 524);
+    totalText.position.set(76, 523);
     const reasonText = new Text({
-      text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)}` : '수동 전투 또는 기록되지 않은 이전 결과입니다.',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700' }),
+      text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)} · 다음 추천 · ${this.nextRecommendation()}` : `수동 전투 결과 · 다음 추천 · ${this.nextRecommendation()}`,
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
     });
-    reasonText.position.set(76, 545);
+    reasonText.position.set(76, 544);
     this.view.addChild(panel, title, totalText, reasonText);
   }
 
@@ -162,12 +164,12 @@ export class ResultScene implements Scene {
     const dropNames = this.outcome.itemDrops.length > 0
       ? this.outcome.itemDrops.map((itemId) => context.gameData.getItem(itemId).name).join(' · ')
       : '획득 장비 없음';
-    const rewardPanel = createSectionPanel(58, 580, 424, 148, 'panel_strong');
+    const rewardPanel = createSectionPanel(58, 580, 424, 160, 'panel_strong');
     const chest = createIconSprite('inventory', 28);
     chest.position.set(80, 592);
     const rewardTitle = new Text({
-      text: 'MISSION REWARD',
-      style: new TextStyle({ fill: 0xf4dca0, fontSize: 14, fontWeight: '700', letterSpacing: 0.7 }),
+      text: 'MISSION REWARD · LOOT OVERVIEW',
+      style: new TextStyle({ fill: 0xf4dca0, fontSize: 12, fontWeight: '700', letterSpacing: 0.6 }),
     });
     rewardTitle.position.set(116, 596);
     const expIcon = createIconSprite('energy', 24);
@@ -187,19 +189,26 @@ export class ResultScene implements Scene {
       text: dropNames,
       style: new TextStyle({
         fill: COLORS.text,
-        fontSize: 15,
+        fontSize: 13,
         fontWeight: '700',
         wordWrap: true,
         wordWrapWidth: 360,
+        lineHeight: 15,
       }),
     });
-    equipment.position.set(82, 692);
-    this.view.addChild(rewardPanel, chest, rewardTitle, exp, gold, expIcon, goldIcon, equipmentLabel, equipment);
+    equipment.position.set(82, 690);
+    const followUp = new Text({
+      text: `다음 추천 행동 · ${this.nextRecommendation()}`,
+      style: new TextStyle({ fill: 0xc3d7d3, fontSize: 10, fontWeight: '700', wordWrap: true, wordWrapWidth: 360 }),
+    });
+    followUp.position.set(82, 720);
+    this.view.addChild(rewardPanel, chest, rewardTitle, exp, gold, expIcon, goldIcon, equipmentLabel, equipment, followUp);
   }
 
   private createActions(context: AppContext): void {
     const retry = new UiButton({
       label: '재도전',
+      subtitle: '같은 스테이지를 바로 다시 시작합니다.',
       icon: 'recovery',
       width: 148,
       height: 56,
@@ -209,11 +218,12 @@ export class ResultScene implements Scene {
     retry.position.set(28, 756);
 
     const next = new UiButton({
-      label: this.outcome.nextStageId ? '다음 작전' : '작전도',
+      label: this.outcome.nextStageId ? '다음 스테이지 진행' : '작전도 열기',
+      subtitle: this.outcome.nextStageId ? '승리 시 다음 작전으로 바로 이동합니다.' : '현재 챕터의 스테이지를 다시 고릅니다.',
       icon: this.outcome.nextStageId ? 'play' : 'stage',
       width: 176,
       height: 56,
-      fontSize: 15,
+      fontSize: 13,
       onPress: async () => context.scenes.change(
         () => this.outcome.nextStageId && this.outcome.victory
           ? new BattleScene(this.outcome.nextStageId)
@@ -225,17 +235,19 @@ export class ResultScene implements Scene {
 
     const stages = new UiButton({
       label: '스테이지 선택',
+      subtitle: '다른 스테이지를 확인합니다.',
       icon: 'stage',
       width: 148,
       height: 56,
       tone: 'secondary',
-      fontSize: 14,
+      fontSize: 13,
       onPress: async () => context.scenes.change(() => new StageSelectScene(this.outcome.stageId)),
     });
     stages.position.set(364, 756);
 
     const inventory = new UiButton({
       label: '장비 확인',
+      subtitle: '획득 장비와 성장 상태를 검토합니다.',
       icon: 'equipment',
       width: 230,
       height: 58,
@@ -247,6 +259,7 @@ export class ResultScene implements Scene {
 
     const lobby = new UiButton({
       label: '거점 복귀',
+      subtitle: '로비에서 다음 행동을 준비합니다.',
       icon: 'home',
       width: 230,
       height: 58,
@@ -262,5 +275,19 @@ export class ResultScene implements Scene {
     if (this.outcome.clearSeconds <= 55 && this.outcome.maxCombo >= 3) return 'S';
     if (this.outcome.clearSeconds <= 90) return 'A';
     return 'B';
+  }
+
+  private performanceLabel(): string {
+    if (!this.outcome.victory) return 'TACTICAL RESET';
+    if (this.outcome.clearSeconds <= 50 && this.outcome.maxCombo >= 4) return 'SPEED FOCUS';
+    if (this.outcome.maxCombo >= 3) return 'CONTROL STABLE';
+    return 'PROGRESS CLEAR';
+  }
+
+  private nextRecommendation(): string {
+    if (!this.outcome.victory) return '장비를 점검하고 회피 타이밍을 정비한 뒤 재도전';
+    if (this.outcome.nextStageId) return '다음 스테이지로 진행해 전투 리듬을 이어가기';
+    if (this.outcome.itemDrops.length > 0) return '획득 장비를 확인하고 강화/교체 여부 검토';
+    return '로비로 복귀해 퀘스트와 성장 상태를 점검';
   }
 }

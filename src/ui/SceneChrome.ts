@@ -76,9 +76,9 @@ export function createBackground(title: string, subtitle: string): Container {
   description.position.set(38, 115);
   const stamp = createInterfaceStamp('CHAPTER CORE', 124);
   stamp.position.set(382, 58);
-  const updateTag = createComicTag('LIVE RENEWAL', 0xf0ca78);
+  const updateTag = createComicTag('UX UPGRADE', 0xf0ca78);
   updateTag.position.set(382, 94);
-  const headlineMarquee = createFeatureMarquee('WEBTOON CLEAN', '말풍선형 강조 카드와 선명한 잉크 라인으로 화면 인상을 정리했습니다.', 178);
+  const headlineMarquee = createFeatureMarquee('TACTICAL COMIC UI', '정보 위계, 가독성, 다음 행동 안내를 강화한 v1.11.12 인터페이스 라인입니다.', 178);
   headlineMarquee.position.set(334, 128);
   headlineMarquee.scale.set(0.78);
   const divider = createGlowDivider(462);

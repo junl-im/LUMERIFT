@@ -123,7 +123,7 @@ export class LobbyScene implements Scene {
     const topBar = createRasterPanel(12, 12, DESIGN_WIDTH - 24, 94, 'panel_strong');
     const commandStamp = createInterfaceStamp('COMMAND HUB', 126);
     commandStamp.position.set(392, 70);
-    const updateTag = createComicTag('STYLE UP!', COLORS.sunrise);
+    const updateTag = createComicTag('UX UPGRADE', COLORS.sunrise);
     updateTag.position.set(388, 38);
     const portraitFrame = createRasterPanel(22, 22, 72, 72, 'portrait_small');
     const brand = new Text({
@@ -172,7 +172,7 @@ export class LobbyScene implements Scene {
     }
 
     const namePlate = createRasterPanel(26, 536, 292, 78, 'panel_gold');
-    const marquee = createFeatureMarquee('전술·아트·자동화 업그레이드', '캐릭터 방향감, 웹툰형 UI, 자동 보조 전투 설정을 한 화면에서 정리합니다.', 268);
+    const marquee = createFeatureMarquee('커맨드 허브 · UX 업그레이드', '첫 진입에서 필요한 행동과 아트·자동화 상태를 더 빠르게 읽도록 브리핑 구조를 재정비했습니다.', 268);
     marquee.position.set(36, 446);
     const name = new Text({
       text: this.profile?.nickname ?? '계승자',
@@ -248,13 +248,16 @@ export class LobbyScene implements Scene {
 
   private createRenewalBriefing(context: AppContext): void {
     const panel = createRasterPanel(26, 620, 236, 90, 'panel_glass');
-    const title = new Text({ text: '리뉴얼 브리핑', style: new TextStyle({ fill: COLORS.paper, fontSize: 13, fontWeight: '900', letterSpacing: 0.8 }) });
-    title.position.set(40, 634);
+    const title = new Text({ text: '커맨드 브리핑', style: new TextStyle({ fill: COLORS.paper, fontSize: 13, fontWeight: '900', letterSpacing: 0.8 }) });
+    title.position.set(40, 632);
     const detail = new Text({
-      text: '웹툰형 강조 카드·아트 보관소·자동 전투 세부 프리셋을 묶은 대형 업데이트 라인입니다.',
+      text: '전투 진입 · 보상 확인 · 에셋 감수 흐름을 한눈에 읽도록 문구와 우선순위를 재정리했습니다.',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 204, lineHeight: 12 }),
     });
-    detail.position.set(40, 654);
+    detail.position.set(40, 651);
+    const tag = createBadge('asset audit ready', 'warning');
+    tag.position.set(40, 682);
+    tag.scale.set(0.58);
     const gallery = new UiButton({
       label: '에셋 보관소',
       width: 96,
@@ -264,13 +267,13 @@ export class LobbyScene implements Scene {
       onPress: async () => context.scenes.change(() => new AssetGalleryScene()),
     });
     gallery.position.set(154, 674);
-    this.view.addChild(panel, title, detail, gallery);
+    this.view.addChild(panel, title, detail, tag, gallery);
   }
 
   private createPrimaryAction(context: AppContext): void {
     const battle = new UiButton({
       label: '전투 시작',
-      subtitle: '해금된 스테이지를 선택해 균열 작전을 시작합니다.',
+      subtitle: '현재 성장 상태를 바탕으로 다음 스테이지를 바로 선택합니다.',
       icon: 'play',
       align: 'left',
       width: 248,

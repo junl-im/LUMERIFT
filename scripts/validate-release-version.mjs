@@ -112,6 +112,14 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11111')) {
   errors.push('verify에서 v1.11.11 자동 세션 로그·보스 회피·복합 스킬 검사가 누락되었습니다.');
 }
 
+
+if (pkg.scripts?.['validate:upgrade:v11112'] !== 'node scripts/validate-v11112-upgrade.mjs') {
+  errors.push('package.json v1.11.12 UI·UX·에셋 업그레이드 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11112')) {
+  errors.push('verify에서 v1.11.12 UI·UX·에셋 업그레이드 검사가 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

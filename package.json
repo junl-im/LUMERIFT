@@ -1,6 +1,6 @@
 {
   "name": "lumerift-web-rpg",
-  "version": "1.11.11",
+  "version": "1.11.12",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,7 @@
     "test": "vitest run",
     "validate:assets": "node scripts/validate-assets.mjs",
     "validate:bundle": "node scripts/validate-bundle.mjs",
-    "verify": "npm run validate:config && npm run validate:release && npm run validate:firebase && npm run validate:account && npm run validate:combat && npm run typecheck && npm run validate:assets && npm run validate:data && npm run validate:atlas && npm run validate:manifest && npm run validate:asset-cleanup && npm run validate:art && npm run validate:archive && npm run validate:sourceart && npm run validate:ui && npm run validate:operations && npm run validate:mobile && npm run validate:mobile:v110 && npm run validate:mobile:v111 && npm run validate:upgrade:v111 && npm run validate:upgrade:v1111 && npm run validate:upgrade:v1112 && npm run validate:upgrade:v1113 && npm run validate:upgrade:v1114 && npm run validate:upgrade:v1115 && npm run validate:upgrade:v1116 && npm run validate:upgrade:v1117 && npm run validate:upgrade:v1118 && npm run validate:upgrade:v1119 && npm run validate:upgrade:v11110 && npm run validate:upgrade:v11111 && npm run validate:liveart && npm run validate:source && npm run validate:handoff && npm run report:assets && npm run report:inventory && npm run report:asset-cleanup && npm run test && npm run build && npm run validate:bundle",
+    "verify": "npm run validate:config && npm run validate:release && npm run validate:firebase && npm run validate:account && npm run validate:combat && npm run typecheck && npm run validate:assets && npm run validate:data && npm run validate:atlas && npm run validate:manifest && npm run validate:asset-cleanup && npm run validate:art && npm run validate:archive && npm run validate:sourceart && npm run validate:ui && npm run validate:operations && npm run validate:mobile && npm run validate:mobile:v110 && npm run validate:mobile:v111 && npm run validate:upgrade:v111 && npm run validate:upgrade:v1111 && npm run validate:upgrade:v1112 && npm run validate:upgrade:v1113 && npm run validate:upgrade:v1114 && npm run validate:upgrade:v1115 && npm run validate:upgrade:v1116 && npm run validate:upgrade:v1117 && npm run validate:upgrade:v1118 && npm run validate:upgrade:v1119 && npm run validate:upgrade:v11110 && npm run validate:upgrade:v11111 && npm run validate:upgrade:v11112 && npm run validate:liveart && npm run validate:source && npm run validate:handoff && npm run report:assets && npm run report:inventory && npm run report:asset-cleanup && npm run test && npm run build && npm run validate:bundle",
     "validate:source": "node scripts/check-source-imports.mjs",
     "validate:data": "node scripts/validate-game-data.mjs",
     "validate:atlas": "node scripts/validate-atlas.mjs",
@@ -59,7 +59,8 @@
     "validate:upgrade:v1118": "node scripts/validate-v1118-upgrade.mjs",
     "validate:upgrade:v1119": "node scripts/validate-v1119-upgrade.mjs",
     "validate:upgrade:v11110": "node scripts/validate-v11110-upgrade.mjs",
-    "validate:upgrade:v11111": "node scripts/validate-v11111-upgrade.mjs"
+    "validate:upgrade:v11111": "node scripts/validate-v11111-upgrade.mjs",
+    "validate:upgrade:v11112": "node scripts/validate-v11112-upgrade.mjs"
   },
   "dependencies": {
     "firebase": "12.16.0",
