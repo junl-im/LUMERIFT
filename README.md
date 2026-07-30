@@ -42,14 +42,18 @@ npm run dev
 - 관련 문서: `docs/INTERFACE_RENEWAL_v1.11.10.md`, `docs/ASSET_RENEWAL_v1.11.10.md`, `docs/PATCH_NOTES_v1.11.10.md`
 
 
-## v1.11.12 핵심 업데이트
+## v1.11.11 핵심 업데이트
 - 자동 전투 세션 로그와 결과 화면 `AUTO ASSIST REPORT`
 - 타겟 전환·공격·스킬·회피·수동 개입 통계
 - 심연 절단·심연 폭발·추적 균열 패턴별 회피 시점과 방향 규칙
 - HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단
 - iOS·Android visualViewport 기반 전투 HUD Safe Area 보정
-- 관련 문서: `docs/AUTO_COMBAT_SESSION_REPORT_v1.11.12.md`, `docs/BOSS_DODGE_RULES_v1.11.12.md`, `docs/COMPOSITE_AUTO_SKILL_v1.11.12.md`, `docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.12.md`
+- 관련 문서: `docs/AUTO_COMBAT_SESSION_REPORT_v1.11.11.md`, `docs/BOSS_DODGE_RULES_v1.11.11.md`, `docs/COMPOSITE_AUTO_SKILL_v1.11.11.md`, `docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md`
+- 캐릭터 이동 방향 핫픽스: `docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.11.md`
 
-- 캐릭터 이동 방향 핫픽스: `docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.12.md`
-
-- 추가 문서: `docs/UI_UX_RENEWAL_v1.11.12.md`, `docs/ASSET_AUDIT_v1.11.12.md`, `docs/PATCH_NOTES_v1.11.12.md`
+## v1.11.12 핵심 업데이트
+- 로비 커맨드 허브의 정보 우선순위와 브리핑 문구 재정리
+- 에셋 보관소에 분류별 품질 태그·감수 포인트·모바일 제작용 마스터 안내 추가
+- 결과 화면에 전술 요약·성과 분류·다음 추천 행동 표시
+- 공통 SceneChrome 헤더와 마키 문구를 v1.11.12 기준으로 재정비
+- 관련 문서: `docs/UI_UX_RENEWAL_v1.11.12.md`, `docs/ASSET_AUDIT_v1.11.12.md`, `docs/PATCH_NOTES_v1.11.12.md`
