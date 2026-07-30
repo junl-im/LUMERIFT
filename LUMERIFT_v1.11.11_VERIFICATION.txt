@@ -37,3 +37,11 @@ PACKAGE INTEGRITY
 - Clean v1.11.10 + patch comparison: missing 0, extra 0, SHA-256 mismatch 0
 - Full ZIP extraction comparison: missing 0, extra 0, SHA-256 mismatch 0
 - Full ZIP and patch ZIP CRC test: PASS
+
+CI TEST HOTFIX
+- AutoBattleController HP-gate test now fixes driveRatio at 0.3 so the test isolates HP gating from the v1.11.11 high-Drive skill2 priority rule.
+- Runtime harness PASS:
+  - HP 95% + Drive 30% => attack / skill-hp-gated
+  - HP 80% + Drive 30% => skill1
+  - HP 80% + Drive 100% => skill2
+- Production AutoBattleController logic was not changed.

@@ -81,8 +81,20 @@ describe('resolveAutoBattle', () => {
   });
 
   it('holds skills until the configured HP condition is met', () => {
-    const gated = resolveAutoBattle({ ...base, targetDistance: 70, playerHpRatio: 0.95, autoSkillHpRule: 'below-85' });
-    const allowed = resolveAutoBattle({ ...base, targetDistance: 70, playerHpRatio: 0.8, autoSkillHpRule: 'below-85' });
+    const gated = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.95,
+      driveRatio: 0.3,
+      autoSkillHpRule: 'below-85',
+    });
+    const allowed = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.8,
+      driveRatio: 0.3,
+      autoSkillHpRule: 'below-85',
+    });
     expect(gated.action).toBe('attack');
     expect(gated.reason).toBe('skill-hp-gated');
     expect(allowed.action).toBe('skill1');

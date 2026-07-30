@@ -1,0 +1,39 @@
+LUMERIFT v1.11.6 Verification Summary
+Date: 2026-07-29
+Release focus: 8-direction movement naturalness polish and player presentation detail upgrade
+
+Changed runtime/source files:
+- src/game/presentation/BattleActorView.ts
+- src/game/presentation/PlayerMotionDirector.ts
+- src/game/presentation/PlayerMotionDirector.test.ts
+- src/app/brand.ts
+- package.json
+- scripts/validate-release-version.mjs
+- scripts/validate-v1115-upgrade.mjs
+- scripts/validate-v1116-upgrade.mjs
+
+Changed handoff/manifest/docs:
+- README.md
+- PROJECT_HANDOFF.md
+- HANDOFF_STATE.json
+- RELEASE_MANIFEST.json
+- public/assets/ASSET_MANIFEST.json
+- asset_registry/ASSET_REGISTRY.json
+- AGENTS.md
+- docs/HANDOFF_MASTER.md
+- docs/HANDOFF_LOG.md
+- docs/CHANGELOG.md
+- docs/ROADMAP.md
+- docs/EIGHT_DIRECTION_POLISH_v1.11.6.md
+- docs/PATCH_NOTES_v1.11.6.md
+
+Validation executed in this environment:
+- node scripts/validate-release-version.mjs -> PASS
+- node scripts/validate-v1115-upgrade.mjs -> PASS
+- node scripts/validate-v1116-upgrade.mjs -> PASS
+- node scripts/validate-handoff.mjs -> PASS
+- node scripts/validate-asset-cleanup.mjs -> PASS
+
+Notes:
+- This environment did not include installed npm dependencies, so full npm verify / vitest / vite build were not executed here.
+- No delete/move patch steps are required for v1.11.5 -> v1.11.6.

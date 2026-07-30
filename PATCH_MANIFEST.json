@@ -5,9 +5,9 @@
   "patchArchive": "LUMERIFT_PATCH_v1.11.10_to_v1.11.11.zip",
   "strategy": "overwrite-project-root-cumulative",
   "deleteRequired": [],
-  "payloadFileCount": 52,
-  "listedFileCount": 51,
-  "payloadBytes": 450378,
+  "payloadFileCount": 36,
+  "listedFileCount": 35,
+  "payloadBytes": 378555,
   "files": [
     {
       "path": "HANDOFF_STATE.json",
@@ -17,8 +17,8 @@
     },
     {
       "path": "LUMERIFT_v1.11.11_VERIFICATION.txt",
-      "bytes": 1993,
-      "sha256": "acbae322112312240dd4f814762f205732e0b93cdf2cbba804202b1f287ef841",
+      "bytes": 2353,
+      "sha256": "5da45d0e898ba474cbdb94f3c003e67a4d137c855aa8f83d047e3f21c9f4fc20",
       "status": "added"
     },
     {
@@ -64,22 +64,10 @@
       "status": "modified"
     },
     {
-      "path": "docs/AUTO_COMBAT_DIAGNOSTICS_v1.11.9.md",
-      "bytes": 1133,
-      "sha256": "2ceac17d4865268e99f4604e216d74e0aee984b4d2b01141f7a5de64adb18d35",
-      "status": "cumulative"
-    },
-    {
       "path": "docs/AUTO_COMBAT_SESSION_REPORT_v1.11.11.md",
       "bytes": 676,
       "sha256": "d762cdea5c8373ace75e1746f72180c0ff4eb326415ab71fc1df6246954040e4",
       "status": "added"
-    },
-    {
-      "path": "docs/AUTO_TARGET_AUTO_BATTLE_v1.11.7.md",
-      "bytes": 1309,
-      "sha256": "a4468bad166c2c51ed45a22554758a5ec02e57c0d86d54c600eff9482e1b4d37",
-      "status": "cumulative"
     },
     {
       "path": "docs/BOSS_DODGE_RULES_v1.11.11.md",
@@ -94,22 +82,10 @@
       "status": "modified"
     },
     {
-      "path": "docs/COMBAT_ASSIST_TUNING_v1.11.8.md",
-      "bytes": 682,
-      "sha256": "3b9824c35afe01cdbabbef1bf9cd9e2ee2f98e7cb285f881c99838c2ddca19b9",
-      "status": "cumulative"
-    },
-    {
       "path": "docs/COMPOSITE_AUTO_SKILL_v1.11.11.md",
       "bytes": 518,
       "sha256": "90475c65c318999d3f32af69567cd27b7e7e07f603bd73c7415c3403fd82073c",
       "status": "added"
-    },
-    {
-      "path": "docs/EIGHT_DIRECTION_POLISH_v1.11.6.md",
-      "bytes": 1305,
-      "sha256": "9be3cc02d9695944031e943538e7a77bbeae945a1e44d68e0e1126f2d0b6d8b0",
-      "status": "cumulative"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
@@ -122,12 +98,6 @@
       "bytes": 22243,
       "sha256": "917bbc4a0c0b39ad47e06d4cd669e6c2473626ccc83802241988f2c4ec83fd09",
       "status": "modified"
-    },
-    {
-      "path": "docs/MEGA_INTERFACE_RENEWAL_v1.11.8.md",
-      "bytes": 785,
-      "sha256": "a6a5a932eb41f0547f37319b7edd4080224442548d47515762588140c239fe55",
-      "status": "cumulative"
     },
     {
       "path": "docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md",
@@ -146,12 +116,6 @@
       "bytes": 362,
       "sha256": "951628ad241f54e8fe4245c2f5acc25899040a18cc7230496ffd768fe1d6d87c",
       "status": "added"
-    },
-    {
-      "path": "docs/PATCH_NOTES_v1.11.6.md",
-      "bytes": 588,
-      "sha256": "27af199defaa4700371f48c039320cb50cc357176aa62446f448d82bce76403c",
-      "status": "cumulative"
     },
     {
       "path": "package.json",
@@ -184,40 +148,10 @@
       "status": "added"
     },
     {
-      "path": "scripts/validate-v1116-upgrade.mjs",
-      "bytes": 2803,
-      "sha256": "db709948d79e8ec783562b90949b4bedb300c3925b323bdf2041416fb3d639cd",
-      "status": "cumulative"
-    },
-    {
-      "path": "scripts/validate-v1117-upgrade.mjs",
-      "bytes": 3273,
-      "sha256": "c7df42fed30dc2cf6f40c72ad232b128521c72c0ab11564d0d64cbd09fbf915e",
-      "status": "cumulative"
-    },
-    {
-      "path": "scripts/validate-v1118-upgrade.mjs",
-      "bytes": 3680,
-      "sha256": "ea20422da3cad3ca5703269bd451c33f7c8e88197fb57d9e8a45cf3bfc41b3c8",
-      "status": "cumulative"
-    },
-    {
-      "path": "scripts/validate-v1119-upgrade.mjs",
-      "bytes": 3873,
-      "sha256": "ffe58fa909222e92f08cbe1ba20c1ccc856518a61513ec82ee1ae1d4054033ef",
-      "status": "cumulative"
-    },
-    {
       "path": "src/app/brand.ts",
       "bytes": 579,
       "sha256": "ed96754b4c14d635eee96f7eee5678d3f98e5be1987d89c01a760bbf574842d7",
       "status": "modified"
-    },
-    {
-      "path": "src/core/input/CombatAssistController.ts",
-      "bytes": 10168,
-      "sha256": "8d86bb1d1b66b631a3699010e0c715e12d55dd7b49c9d1a5f0edc4ab8476bda6",
-      "status": "cumulative"
     },
     {
       "path": "src/core/layout/BattleHudSafeArea.test.ts",
@@ -239,8 +173,8 @@
     },
     {
       "path": "src/game/combat/AutoBattleController.test.ts",
-      "bytes": 4808,
-      "sha256": "2f4996bea834d8ecd711444eade026a0f61556a25c0604b813a33981210dce11",
+      "bytes": 4912,
+      "sha256": "b5a8d00b0eb435b8cede4b0d4d2439d0210574f088952906777a75122570f93b",
       "status": "modified"
     },
     {
@@ -262,18 +196,6 @@
       "status": "added"
     },
     {
-      "path": "src/game/combat/AutoTargetController.test.ts",
-      "bytes": 2140,
-      "sha256": "995cc40224a5fe9c2bf8b000df453435a27576bcd0f90b4586c26c851b90e8a4",
-      "status": "cumulative"
-    },
-    {
-      "path": "src/game/combat/AutoTargetController.ts",
-      "bytes": 6136,
-      "sha256": "4c6581e316fa004582563a15b08d13b02d358fecd75aa7716fd8619bc7ffb58e",
-      "status": "cumulative"
-    },
-    {
       "path": "src/game/combat/BossDodgeRules.test.ts",
       "bytes": 752,
       "sha256": "4d816d2c07dd72975070476881d70b1d4a828bd4e2eae15fc0148b65f766c481",
@@ -284,24 +206,6 @@
       "bytes": 2195,
       "sha256": "b7d53efc0f9226b25c8904365089030659e0573a98774c3f518c83166480841a",
       "status": "added"
-    },
-    {
-      "path": "src/game/presentation/BattleActorView.ts",
-      "bytes": 29377,
-      "sha256": "856dabfc8a042ce0d29df3f42ae444ea28a48c20833803cd8a1a5b0a8eddb0f9",
-      "status": "cumulative"
-    },
-    {
-      "path": "src/game/presentation/PlayerMotionDirector.test.ts",
-      "bytes": 1393,
-      "sha256": "1d01058b1ece9d7b5d8959ebf51a7f121d81e3d191250bc62fe1c1d3255a290f",
-      "status": "cumulative"
-    },
-    {
-      "path": "src/game/presentation/PlayerMotionDirector.ts",
-      "bytes": 3642,
-      "sha256": "4eeea2fa0108f89a5d25cef0986ce86fc67cc5a072a5dc12f34cc2bfb590d45d",
-      "status": "cumulative"
     },
     {
       "path": "src/scenes/BattleScene.ts",

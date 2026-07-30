@@ -1,0 +1,20 @@
+LUMERIFT v1.11.9 validator hotfix
+Date: 2026-07-29
+
+Root cause:
+- validate-v1118-upgrade.mjs required the literal import marker autoTargetPriorityLabel in BattleScene.ts.
+- That import was removed correctly because it was unused and caused TS6133.
+- The v1.11.8 functionality remained active through assist.targetPriority and devicePreset wiring.
+
+Fix:
+- Replaced the obsolete import-name marker with the actual runtime contract marker:
+  priority: assist.targetPriority
+
+Validated:
+- validate-v1118-upgrade.mjs PASS
+- validate-v1119-upgrade.mjs PASS
+- validate-release-version.mjs PASS
+- validate-handoff.mjs PASS
+- validate-asset-cleanup.mjs PASS
+
+No runtime gameplay logic changed.

@@ -1,0 +1,23 @@
+LUMERIFT v1.11.10 README Validator Hotfix Verification
+Date: 2026-07-29
+
+Root cause:
+- scripts/validate-v1119-upgrade.mjs required the exact README heading '# LUMERIFT: 균열의 계승자 v1.11.9'.
+- v1.11.10 correctly changed the current README heading to v1.11.10, so the old validator produced a false failure.
+
+Fix:
+- Replaced the exact current-release heading check with the preserved v1.11.9 section marker '## v1.11.9 핵심'.
+- The validator continues to verify all v1.11.9 runtime markers and documents.
+- README current version remains v1.11.10.
+
+Validation PASS:
+- validate-v1110 through validate-v11110 cumulative upgrade validators
+- validate-release-version
+- validate-handoff
+- validate-asset-cleanup
+- check-source-imports
+- report-asset-budget
+
+Not executed locally:
+- Full tsc/vitest/vite build because the isolated package registry does not provide the required project dependencies.
+- The exact GitHub Actions failure path was reproduced and now passes locally.

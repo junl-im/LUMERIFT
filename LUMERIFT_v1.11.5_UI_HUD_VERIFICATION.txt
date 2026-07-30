@@ -1,0 +1,16 @@
+LUMERIFT v1.11.5 verification summary
+Date: 2026-07-29
+
+Validated locally:
+- node scripts/validate-release-version.mjs
+- node scripts/validate-v1114-upgrade.mjs
+- node scripts/validate-v1115-upgrade.mjs
+- node scripts/validate-asset-cleanup.mjs
+- node scripts/validate-handoff.mjs
+- TypeScript transpileModule syntax checks for modified TS files
+
+Key scope:
+- Webtoon-clean UI redesign layers
+- Combat HUD restructure
+- Direction telemetry / attack vector panel
+- Richer hit feedback / CRIT-BURN-HIT floating text
