@@ -1,7 +1,9 @@
+import type { AutoBattleStrategyPreset } from '../../core/input/CombatAssistController';
 import type { AutoBattleAction } from './AutoBattleController';
 
 export interface AutoCombatSessionSummary {
   readonly enabledSeconds: number;
+  readonly strategyPreset: AutoBattleStrategyPreset;
   readonly targetChanges: number;
   readonly attacks: number;
   readonly skill1Uses: number;
@@ -15,6 +17,7 @@ export interface AutoCombatSessionSummary {
 
 export class AutoCombatSessionLog {
   private enabledSeconds = 0;
+  private strategyPreset: AutoBattleStrategyPreset = 'balanced';
   private targetChanges = 0;
   private attacks = 0;
   private skill1Uses = 0;
@@ -27,8 +30,13 @@ export class AutoCombatSessionLog {
   private lastTargetId?: string;
   private lastReason = '';
 
-  public update(deltaSeconds: number, enabled: boolean): void {
+  public update(deltaSeconds: number, enabled: boolean, strategyPreset?: AutoBattleStrategyPreset): void {
     if (enabled) this.enabledSeconds += Math.max(0, deltaSeconds);
+    if (strategyPreset) this.strategyPreset = strategyPreset;
+  }
+
+  public setStrategyPreset(strategyPreset: AutoBattleStrategyPreset): void {
+    this.strategyPreset = strategyPreset;
   }
 
   public recordTarget(targetId: string | undefined, reason: string): void {
@@ -70,6 +78,7 @@ export class AutoCombatSessionLog {
   public snapshot(): AutoCombatSessionSummary {
     return {
       enabledSeconds: Math.round(this.enabledSeconds * 10) / 10,
+      strategyPreset: this.strategyPreset,
       targetChanges: this.targetChanges,
       attacks: this.attacks,
       skill1Uses: this.skill1Uses,

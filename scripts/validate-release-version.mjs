@@ -128,6 +128,14 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11113')) {
   errors.push('verify에서 v1.11.13 상황 기반 UI·에셋 품질 검사가 누락되었습니다.');
 }
 
+
+if (pkg.scripts?.['validate:upgrade:v11114'] !== 'node scripts/validate-v11114-upgrade.mjs') {
+  errors.push('package.json v1.11.14 자동 전략 프리셋·보스 위협 HUD 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11114')) {
+  errors.push('verify에서 v1.11.14 자동 전략 프리셋·보스 위협 HUD 검사가 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

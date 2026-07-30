@@ -1,5 +1,7 @@
 import {
+  autoBattleStrategyTuning,
   autoSkillHpThreshold,
+  type AutoBattleStrategyPreset,
   type AutoSkillHpRule,
   type BossAutoMode,
   type BossDodgePolicy,
@@ -36,6 +38,7 @@ export interface AutoBattleInput {
   readonly bossAutoMode: BossAutoMode;
   readonly devicePreset: CombatDevicePreset;
   readonly autoSkillHpRule: AutoSkillHpRule;
+  readonly strategyPreset?: AutoBattleStrategyPreset;
   readonly bossDodgePolicy: BossDodgePolicy;
 }
 
@@ -107,23 +110,31 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
   }
   if (input.playerState === 'skill' || input.playerState === 'dodging') return idle('action-in-progress', { x: 0, y: 0 });
 
+  const strategy = autoBattleStrategyTuning(input.strategyPreset ?? 'balanced');
   const skillHpAllowed = input.autoSkillHpRule === 'always'
     || input.playerHpRatio <= autoSkillHpThreshold(input.autoSkillHpRule);
   const driveRatio = Math.max(0, Math.min(1, input.driveRatio ?? 1));
   const targetHpRatio = Math.max(0, Math.min(1, input.targetHpRatio ?? 1));
-  const skill2DriveReady = driveRatio >= Math.max(0.42, input.skill2Action.driveCost / 100);
-  const skill1DriveReady = driveRatio >= Math.max(0.16, input.skill1Action.driveCost / 140);
-  const conserveFinisher = targetHpRatio <= 0.12 && input.targetRank !== 'boss';
+  const skill2DriveReady = driveRatio >= Math.max(strategy.skill2DriveFloor, input.skill2Action.driveCost / 100);
+  const skill1DriveReady = driveRatio >= Math.max(strategy.skill1DriveFloor, input.skill1Action.driveCost / 140);
+  const conserveFinisher = targetHpRatio <= strategy.finisherSaveThreshold && input.targetRank !== 'boss';
 
   if (conserveFinisher && input.targetDistance <= basicRange) {
-    return { moveAxis: { x: 0, y: 0 }, action: 'attack', facing, reason: 'target-finisher-save', cooldownSeconds: tuning.attackCooldown };
+    return {
+      moveAxis: { x: 0, y: 0 },
+      action: 'attack',
+      facing,
+      reason: input.strategyPreset === 'conservative' ? 'preset-conservative-save' : 'target-finisher-save',
+      cooldownSeconds: tuning.attackCooldown,
+    };
   }
   if (input.useSkills && skillHpAllowed && skill2DriveReady && input.skill2Cooldown <= 0 && input.targetDistance <= skill2Range
-    && targetHpRatio > 0.16 && (input.targetRank === 'boss' || input.playerHpRatio < 0.72 || driveRatio >= 0.82)) {
+    && targetHpRatio > strategy.skill2TargetHpFloor
+    && (input.targetRank === 'boss' || input.playerHpRatio < 0.72 || driveRatio >= strategy.skill2PriorityDrive)) {
     return { moveAxis: { x: 0, y: 0 }, action: 'skill2', facing, reason: 'priority-skill2', cooldownSeconds: tuning.skillCooldown + 0.04 };
   }
   if (input.useSkills && skillHpAllowed && skill1DriveReady && input.skill1Cooldown <= 0 && input.targetDistance <= skill1Range
-    && targetHpRatio > 0.08) {
+    && targetHpRatio > strategy.skill1TargetHpFloor) {
     return { moveAxis: { x: 0, y: 0 }, action: 'skill1', facing, reason: 'skill1-ready', cooldownSeconds: tuning.skillCooldown };
   }
   if (input.useSkills && (!skillHpAllowed || (!skill1DriveReady && !skill2DriveReady))
@@ -136,7 +147,7 @@ export function resolveAutoBattle(input: AutoBattleInput): AutoBattleDecision {
     return { moveAxis: { x: 0, y: 0 }, action: 'attack', facing, reason: 'basic-range', cooldownSeconds: tuning.attackCooldown };
   }
 
-  const preferredRange = Math.max(52, basicRange * tuning.preferredRangeRatio);
+  const preferredRange = Math.max(52, basicRange * tuning.preferredRangeRatio * strategy.preferredRangeMultiplier);
   if (input.targetDistance > preferredRange) return { moveAxis: facing, action: 'none', facing, reason: 'approach-target', cooldownSeconds: 0 };
   if (input.targetRank === 'boss' && imminent && !bossDodgeAllowed) return idle('boss-dodge-policy-hold', { x: 0, y: 0 });
   return idle('hold-range', { x: 0, y: 0 });
@@ -156,6 +167,7 @@ export function autoBattleReasonLabel(reason: string): string {
   if (reason === 'skill1-ready') return 'HP·Drive 조건 충족 스킬 1';
   if (reason === 'skill-hp-gated') return 'HP·Drive 조건 대기';
   if (reason === 'target-finisher-save') return '마무리 기본 공격으로 Drive 보존';
+  if (reason === 'preset-conservative-save') return '보존형 프리셋 · Drive 절약 마무리';
   if (reason === 'basic-range') return '기본 공격 거리 진입';
   if (reason === 'approach-target') return '타겟 공격 거리 접근';
   if (reason === 'hold-range') return '현재 공격 거리 유지';

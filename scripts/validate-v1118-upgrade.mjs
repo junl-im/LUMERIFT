@@ -48,7 +48,6 @@ const requirements = {
   ],
   'src/scenes/BattleScene.ts': [
     'priority: assist.targetPriority',
-    'combatDevicePresetLabel',
     'useSkills: settings.autoSkills',
     'useDodge: settings.autoDodge',
     'bossAutoMode: settings.bossAutoMode',

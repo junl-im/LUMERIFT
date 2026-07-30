@@ -1,0 +1,35 @@
+LUMERIFT v1.11.14 RELEASE VERIFICATION
+Date: 2026-07-30
+Base: v1.11.13
+Target: v1.11.14
+
+[Implemented]
+- Aggressive / Balanced / Conservative auto-battle strategy presets
+- Custom preset state after detailed option changes
+- Combat Assist local storage v4 with legacy v3/v2/v1 migration
+- Preset-specific Drive, skill, finisher-save, and preferred-range tuning
+- Boss threat HUD with warning/danger/critical guidance
+- AUTO EVADE READY vs manual dodge guidance
+- Mobile action-button finger-clearance layout tuning
+- Result AUTO ASSIST REPORT preset label
+
+[Passed]
+- Release version and cumulative validators v1.11.0 through v1.11.14
+- Firebase integration policy; App Check remains disabled
+- Shared telegraph/hit AttackFootprint combat contract
+- Asset/data/atlas/manifest/cleanup/art/archive/source-art validators
+- UI/operations/mobile/live-art/source/handoff validators
+- TypeScript parse: 157 source files, 0 parse diagnostics
+- Offline strict TypeScript project check with temporary external-library type stubs
+- Runtime harness: strategy preset bundle, strategy action selection, boss threat guidance, session preset recording
+- Active public assets: 41 files, 5.46 MB
+- Estimated initial payload source inputs: 0.99 MB / 15 MB
+
+[Not executed in this environment]
+- Full project tsc -b with installed project dependencies
+- Full Vitest suite
+- Vite production build
+- validate:bundle
+- Physical Android/iOS device FPS, heat, battery, touch-occlusion, and long-session testing
+
+These unexecuted checks must be confirmed by GitHub Actions and physical-device QA before claiming final device certification.

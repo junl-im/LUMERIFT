@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.13
+# LUMERIFT: 균열의 계승자 v1.11.14
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -66,3 +66,10 @@ npm run dev
 - 작은 결과 버튼의 부제목 줄 간격·세로 정렬 개선
 - 관련 문서: `docs/CONTEXTUAL_UX_FLOW_v1.11.13.md`, `docs/ASSET_QUALITY_MATRIX_v1.11.13.md`, `docs/PATCH_NOTES_v1.11.13.md`
 
+## v1.11.14 핵심 업데이트
+- 공격형·균형형·보존형 자동 전투 프리셋과 세부 조정 시 `사용자 설정` 전환
+- 프리셋별 Drive·스킬·거리 유지 판단 튜닝 및 v3 → v4 설정 마이그레이션
+- 보스 예고·위험·즉시 회피 단계별 위협 HUD와 자동 회피 준비 상태 표시
+- 모바일 우측 액션 버튼 간격을 넓혀 손가락 가림과 오입력 가능성 감소
+- 결과 화면 `AUTO ASSIST REPORT`에 실제 사용 프리셋 기록
+- 관련 문서: `docs/AUTO_BATTLE_STRATEGY_PRESETS_v1.11.14.md`, `docs/BOSS_THREAT_HUD_v1.11.14.md`, `docs/FINGER_CLEARANCE_CONTROLS_v1.11.14.md`, `docs/PATCH_NOTES_v1.11.14.md`

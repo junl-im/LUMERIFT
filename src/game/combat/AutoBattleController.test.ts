@@ -43,6 +43,7 @@ const base = {
   bossAutoMode: 'full' as const,
   devicePreset: 'balanced' as const,
   autoSkillHpRule: 'below-85' as const,
+  strategyPreset: 'balanced' as const,
   bossDodgePolicy: 'critical-only' as const,
 };
 
@@ -107,6 +108,7 @@ describe('resolveAutoBattle', () => {
     expect(critical.action).toBe('dodge');
     expect(critical.reason).toBe('boss-critical-evade');
   });
+
   it('uses pattern-specific boss dodge timing and reason', () => {
     const result = resolveAutoBattle({
       ...base,
@@ -144,4 +146,48 @@ describe('resolveAutoBattle', () => {
     expect(result.reason).toBe('skill-hp-gated');
   });
 
+  it('uses skills earlier in aggressive mode than conservative mode', () => {
+    const aggressive = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.7,
+      driveRatio: 0.4,
+      strategyPreset: 'aggressive',
+      autoSkillHpRule: 'always',
+    });
+    const conservative = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.7,
+      driveRatio: 0.4,
+      strategyPreset: 'conservative',
+      autoSkillHpRule: 'always',
+    });
+    expect(aggressive.action).toBe('skill2');
+    expect(conservative.action).toBe('skill1');
+  });
+
+  it('conserves Drive earlier with the conservative preset', () => {
+    const balanced = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.18,
+      driveRatio: 1,
+      strategyPreset: 'balanced',
+    });
+    const conservative = resolveAutoBattle({
+      ...base,
+      targetDistance: 70,
+      playerHpRatio: 0.7,
+      targetHpRatio: 0.18,
+      driveRatio: 1,
+      strategyPreset: 'conservative',
+    });
+    expect(balanced.action).not.toBe('attack');
+    expect(conservative.action).toBe('attack');
+    expect(conservative.reason).toBe('preset-conservative-save');
+  });
 });

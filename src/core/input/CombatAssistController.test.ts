@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { CombatAssistController, autoSkillHpThreshold, manualResumeDelaySeconds } from './CombatAssistController';
+import {
+  CombatAssistController,
+  autoBattleStrategyPresetLabel,
+  autoSkillHpThreshold,
+  manualResumeDelaySeconds,
+} from './CombatAssistController';
 
 class MemoryStorage {
   private readonly values = new Map<string, string>();
@@ -13,6 +18,7 @@ describe('CombatAssistController', () => {
     expect(controller.current).toEqual({
       autoTarget: true,
       autoBattle: false,
+      strategyPreset: 'balanced',
       targetPriority: 'balanced',
       autoSkills: true,
       autoDodge: true,
@@ -32,7 +38,28 @@ describe('CombatAssistController', () => {
     expect(controller.current.autoBattle).toBe(true);
   });
 
-  it('cycles target, boss, device, hp, dodge and manual-resume presets independently', () => {
+  it('cycles strategy presets and applies their complete setting bundle', () => {
+    const controller = new CombatAssistController(new MemoryStorage());
+    expect(controller.cycleStrategyPreset()).toBe('aggressive');
+    expect(controller.current).toMatchObject({
+      strategyPreset: 'aggressive',
+      targetPriority: 'threat',
+      bossAutoMode: 'full',
+      devicePreset: 'responsive',
+      autoSkillHpRule: 'always',
+      bossDodgePolicy: 'all',
+      manualResumeDelay: 'instant',
+    });
+    expect(autoBattleStrategyPresetLabel(controller.current.strategyPreset)).toBe('공격형');
+  });
+
+  it('marks the strategy as custom after a detailed option changes', () => {
+    const controller = new CombatAssistController(new MemoryStorage());
+    controller.cycleTargetPriority();
+    expect(controller.current.strategyPreset).toBe('custom');
+  });
+
+  it('cycles target, boss, device, hp, dodge and manual-resume options independently', () => {
     const controller = new CombatAssistController(new MemoryStorage());
     expect(controller.cycleTargetPriority()).toBe('nearest');
     expect(controller.cycleBossAutoMode()).toBe('full');

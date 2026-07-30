@@ -33,17 +33,18 @@ export function resolveBattleHudSafeArea(
   const baseY = 865 - bottomLift;
   const viewportInset = clamp((metrics.offsetLeft / Math.max(1, metrics.width)) * 540, 0, 14);
   const horizontalInset = (compactWidth ? 8 : 0) + viewportInset;
+  const fingerClearance = compact ? 8 : 14;
 
   return {
     compact,
     profile,
     controlScale,
     topOffset,
-    joystick: { x: 88 - horizontalInset, y: baseY },
-    dodge: { x: 205 - horizontalInset * 0.6, y: baseY - 23 },
-    skill2: { x: 294 - horizontalInset * 0.25, y: baseY + 19 },
-    skill1: { x: 385 - horizontalInset * 0.1, y: baseY - 7 },
-    attack: { x: 478 - horizontalInset, y: baseY - 27 },
+    joystick: { x: 84 - horizontalInset, y: baseY },
+    dodge: { x: 194 - horizontalInset * 0.6, y: baseY - 28 },
+    skill2: { x: 284 - horizontalInset * 0.25, y: baseY + 20 },
+    skill1: { x: 374 - horizontalInset * 0.1 - fingerClearance * 0.2, y: baseY - 10 },
+    attack: { x: 484 - horizontalInset - fingerClearance * 0.15, y: baseY - 30 },
   };
 }
 

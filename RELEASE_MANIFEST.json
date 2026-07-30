@@ -1,18 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.13",
-  "baseVersion": "1.11.12",
+  "version": "1.11.14",
+  "baseVersion": "1.11.13",
   "releaseDate": "2026-07-30",
-  "fullArchive": "LUMERIFT_FULL_v1.11.13.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-contextual-ux-asset-quality-matrix",
+  "fullArchive": "LUMERIFT_FULL_v1.11.14.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.13_to_v1.11.14_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-auto-strategy-boss-threat-finger-clearance",
   "features": [
-    "로비 진행 상태 기반 NEXT BEST ACTION 추천과 동적 주 행동 버튼",
-    "설정 변경 즉시 확인 가능한 인라인 피드백 배너",
-    "결과 화면 성과 평가·추천 행동 로직 분리와 버튼 부제목 정렬 개선",
-    "에셋 보관소 분류별 QUALITY 점수·MOBILE ROLE·감수 기준 강화",
-    "v1.11.10~v1.11.12 UI·자동 전투·Safe Area·조이스틱 이동 계약 유지"
+    "공격형·균형형·보존형 자동 전투 프리셋과 사용자 설정 전환",
+    "프리셋별 Drive·스킬·거리 유지 판단 튜닝 및 v4 설정 마이그레이션",
+    "보스 공격 예고·위험·즉시 회피 단계별 위협 HUD와 자동 회피 상태 안내",
+    "모바일 전투 버튼 손가락 가림 감소를 위한 우측 액션 클러스터 간격 재조정",
+    "전투 결과 AUTO ASSIST REPORT에 실제 사용 프리셋 기록"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -38,11 +38,11 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v11110-upgrade",
-    "validate-v11111-upgrade",
-    "validate-v11112-upgrade",
+    "validate-v1119-upgrade",
     "validate-v11113-upgrade",
-    "pure UX decision runtime harness",
+    "validate-v11114-upgrade",
+    "offline strict TypeScript project check",
+    "auto strategy and boss threat runtime harness",
     "asset registry release sync"
   ]
 }

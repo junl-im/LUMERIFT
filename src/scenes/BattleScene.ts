@@ -10,6 +10,7 @@ import { createRasterPanel } from '../ui/UiSkin';
 import { BattleVfxSystem } from '../game/presentation/BattleVfxSystem';
 import { CombatAudioDirector } from '../game/presentation/CombatAudioDirector';
 import { resolveBossTelegraphStyle, type TelegraphUrgency } from '../game/presentation/BossTelegraphLanguage';
+import { resolveBossThreatHud } from '../game/presentation/BossThreatHud';
 import { normalizeBossPhase, resolveStageVisualProfile, type StageVisualProfile } from '../game/presentation/StageVisualProfile';
 import { bossCinematicAlpha, resolveBossPhasePresentation } from '../game/presentation/BossPhaseDirector';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
@@ -47,7 +48,7 @@ import { CombatRenderBudget } from '../core/performance/CombatRenderBudget';
 import { AutoTargetController, autoTargetReasonLabel } from '../game/combat/AutoTargetController';
 import { autoBattleReasonLabel, resolveAutoBattle } from '../game/combat/AutoBattleController';
 import { AutoCombatSessionLog } from '../game/combat/AutoCombatSessionLog';
-import { combatDevicePresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
+import { autoBattleStrategyPresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
 import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 
@@ -217,6 +218,13 @@ export class BattleScene implements Scene {
   private readonly waveText = new Text({
     text: '',
     style: new TextStyle({ fill: COLORS.primaryBright, fontSize: 16, fontWeight: '700' }),
+  });
+  private readonly bossThreatPanel = new Container();
+  private readonly bossThreatBackdrop = new Graphics();
+  private readonly bossThreatAccent = new Graphics();
+  private readonly bossThreatGuidanceText = new Text({
+    text: '',
+    style: new TextStyle({ fill: 0xd7e5e3, fontSize: 9, fontWeight: '700', align: 'center', letterSpacing: 0.35 }),
   });
   private readonly dangerText = new Text({
     text: '',
@@ -460,7 +468,11 @@ export class BattleScene implements Scene {
     if (this.paused) return;
 
     this.elapsed += deltaSeconds;
-    this.autoCombatLog.update(deltaSeconds, context.combatAssist.current.autoBattle && !this.tutorialEnabled);
+    this.autoCombatLog.update(
+      deltaSeconds,
+      context.combatAssist.current.autoBattle && !this.tutorialEnabled,
+      context.combatAssist.current.strategyPreset,
+    );
     this.applyHudSafeArea();
     this.perfectDodgeLock = Math.max(0, this.perfectDodgeLock - deltaSeconds);
     this.momentum.update(deltaSeconds);
@@ -658,7 +670,9 @@ export class BattleScene implements Scene {
     this.autoTargetButton.position.set(296, 76);
 
     this.autoBattleButton = new UiButton({
-      label: this.context?.combatAssist.current.autoBattle ? 'AUTO · 균형형' : 'AUTO · OFF',
+      label: this.context?.combatAssist.current.autoBattle
+        ? `AUTO · ${autoBattleStrategyPresetLabel(this.context.combatAssist.current.strategyPreset)}`
+        : 'AUTO · OFF',
       width: 108,
       height: 28,
       tone: 'secondary',
@@ -786,9 +800,22 @@ export class BattleScene implements Scene {
     });
     this.attackButton.position.set(478, 838);
 
+    this.bossThreatPanel.position.set(DESIGN_WIDTH / 2, 258);
+    this.bossThreatBackdrop
+      .roundRect(-206, -28, 412, 58, 18)
+      .fill({ color: 0x12080c, alpha: 0.9 })
+      .stroke({ color: COLORS.danger, alpha: 0.54, width: 2 });
+    this.bossThreatAccent
+      .roundRect(-190, -21, 380, 4, 2)
+      .fill({ color: COLORS.warning, alpha: 0.82 })
+      .roundRect(-136, 22, 272, 3, 2)
+      .fill({ color: COLORS.danger, alpha: 0.48 });
     this.dangerText.anchor.set(0.5);
-    this.dangerText.position.set(DESIGN_WIDTH / 2, 258);
-    this.dangerText.visible = false;
+    this.dangerText.position.set(0, -7);
+    this.bossThreatGuidanceText.anchor.set(0.5);
+    this.bossThreatGuidanceText.position.set(0, 13);
+    this.bossThreatPanel.addChild(this.bossThreatBackdrop, this.bossThreatAccent, this.dangerText, this.bossThreatGuidanceText);
+    this.bossThreatPanel.visible = false;
 
     this.announcementText.anchor.set(0.5);
     this.announcementText.position.set(DESIGN_WIDTH / 2, 330);
@@ -837,7 +864,7 @@ export class BattleScene implements Scene {
       controlHint,
       this.comboText,
       this.hitFeedbackPanel,
-      this.dangerText,
+      this.bossThreatPanel,
       this.joystick,
       this.dodgeButton,
       this.skill2Button,
@@ -1296,6 +1323,7 @@ export class BattleScene implements Scene {
       bossAutoMode: settings.bossAutoMode,
       devicePreset: settings.devicePreset,
       autoSkillHpRule: settings.autoSkillHpRule,
+      strategyPreset: settings.strategyPreset,
       bossDodgePolicy: settings.bossDodgePolicy,
     });
 
@@ -1352,7 +1380,7 @@ export class BattleScene implements Scene {
     if (!settings) return;
     const targetMode = settings.targetPriority === 'balanced' ? 'BAL' : settings.targetPriority.toUpperCase();
     this.autoTargetButton?.setLabel(settings.autoTarget ? `TARGET · ${targetMode}` : 'TARGET · OFF');
-    this.autoBattleButton?.setLabel(settings.autoBattle ? `AUTO · ${combatDevicePresetLabel(settings.devicePreset)}` : 'AUTO · OFF');
+    this.autoBattleButton?.setLabel(settings.autoBattle ? `AUTO · ${autoBattleStrategyPresetLabel(settings.strategyPreset)}` : 'AUTO · OFF');
   }
 
   private handleKeyboardActions(moveAxis: Vec2): boolean {
@@ -2018,7 +2046,7 @@ export class BattleScene implements Scene {
     const boss = this.enemies.find((enemy) => enemy.definition.combat.rank === 'boss' && enemy.controller.isAlive);
     if (!boss) {
       this.bossPanel.visible = false;
-      this.dangerText.visible = false;
+      this.bossThreatPanel.visible = false;
       return;
     }
 
@@ -2047,12 +2075,35 @@ export class BattleScene implements Scene {
           this.announceAssistive(`즉시 회피. ${telegraph.pattern.label}.`, 'assertive', 850);
         }
       }
-      this.dangerText.text = `${style.label} · ${remaining.toFixed(1)}s`;
-      this.dangerText.style.fill = style.urgency === 'critical' ? 0xffffff : telegraph.pattern.effectColor;
-      this.dangerText.visible = true;
-      this.dangerText.alpha = style.urgency === 'critical' ? 0.72 + Math.sin(this.elapsed * 18) * 0.28 : 0.82;
+      const assist = this.context?.combatAssist.current;
+      const threat = resolveBossThreatHud({
+        urgency: style.urgency,
+        patternLabel: telegraph.pattern.label,
+        remainingSeconds: remaining,
+        autoBattle: assist?.autoBattle ?? false,
+        autoDodge: assist?.autoDodge ?? false,
+        bossDodgePolicy: assist?.bossDodgePolicy ?? 'off',
+        strategyPreset: assist?.strategyPreset ?? 'balanced',
+      });
+      const threatColor = threat.tone === 'critical' ? 0xfff4f4 : threat.tone === 'danger' ? 0xffd36a : telegraph.pattern.effectColor;
+      this.dangerText.text = threat.headline;
+      this.dangerText.style.fill = threatColor;
+      this.bossThreatGuidanceText.text = threat.guidance;
+      this.bossThreatGuidanceText.style.fill = threat.showAutoBadge ? 0x92fff1 : 0xd7e5e3;
+      this.bossThreatAccent.clear()
+        .roundRect(-190, -21, 380, 4, 2)
+        .fill({ color: threatColor, alpha: 0.86 })
+        .roundRect(-136, 22, 272, 3, 2)
+        .fill({ color: threat.showAutoBadge ? 0x7fffe0 : threatColor, alpha: 0.52 });
+      this.bossThreatPanel.visible = true;
+      this.bossThreatPanel.alpha = threat.tone === 'critical'
+        ? 0.78 + Math.sin(this.elapsed * threat.pulseRate) * 0.22
+        : 0.92;
+      const pulseScale = threat.tone === 'critical' ? 1 + Math.sin(this.elapsed * threat.pulseRate) * 0.018 : 1;
+      this.bossThreatPanel.scale.set(pulseScale);
     } else {
-      this.dangerText.visible = false;
+      this.bossThreatPanel.visible = false;
+      this.bossThreatPanel.scale.set(1);
       this.lastBossTelegraphKey = '';
       this.lastBossTelegraphUrgency = undefined;
     }

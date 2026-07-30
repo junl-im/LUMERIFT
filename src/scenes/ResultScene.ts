@@ -12,6 +12,7 @@ import { BattleScene } from './BattleScene';
 import { InventoryScene } from './InventoryScene';
 import { StageSelectScene } from './StageSelectScene';
 import { autoBattleReasonLabel } from '../game/combat/AutoBattleController';
+import { autoBattleStrategyPresetLabel } from '../core/input/CombatAssistController';
 import type { AutoCombatSessionSummary } from '../game/combat/AutoCombatSessionLog';
 import { resolveResultActionPlan, type ResultActionPlan } from '../game/presentation/ResultActionPlan';
 
@@ -146,7 +147,7 @@ export class ResultScene implements Scene {
     });
     title.position.set(76, 503);
     const totals = summary
-      ? `AUTO ${summary.enabledSeconds.toFixed(1)}s · TARGET ${summary.targetChanges} · ATK ${summary.attacks} · SKILL ${summary.skill1Uses + summary.skill2Uses} · DODGE ${summary.dodges} · MANUAL ${summary.manualInterventions}`
+      ? `PRESET ${autoBattleStrategyPresetLabel(summary.strategyPreset)} · AUTO ${summary.enabledSeconds.toFixed(1)}s · TARGET ${summary.targetChanges} · ATK ${summary.attacks} · SKILL ${summary.skill1Uses + summary.skill2Uses} · DODGE ${summary.dodges} · MANUAL ${summary.manualInterventions}`
       : '자동 전투 기록 없음';
     const totalText = new Text({
       text: totals,

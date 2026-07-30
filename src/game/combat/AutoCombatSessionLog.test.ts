@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { AutoCombatSessionLog } from './AutoCombatSessionLog';
 
 describe('AutoCombatSessionLog', () => {
-  it('summarizes target changes, automated actions, and manual intervention', () => {
+  it('summarizes the active preset, target changes, automated actions, and manual intervention', () => {
     const log = new AutoCombatSessionLog();
-    log.update(1.2, true);
+    log.update(1.2, true, 'aggressive');
     log.recordTarget('enemy-1', 'nearest-target');
     log.recordTarget('enemy-2', 'boss-priority');
     log.recordAction('attack', 'basic-range');
@@ -14,6 +14,7 @@ describe('AutoCombatSessionLog', () => {
 
     const summary = log.snapshot();
     expect(summary.enabledSeconds).toBe(1.2);
+    expect(summary.strategyPreset).toBe('aggressive');
     expect(summary.targetChanges).toBe(1);
     expect(summary.attacks).toBe(1);
     expect(summary.skill1Uses).toBe(1);

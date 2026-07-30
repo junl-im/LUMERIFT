@@ -38,4 +38,11 @@ describe('resolveBattleHudSafeArea', () => {
     expect(ios.joystick.y).toBeLessThan(android.joystick.y);
   });
 
+  it('keeps the right action cluster separated for finger clearance', () => {
+    const layout = resolveBattleHudSafeArea(metrics(390, 844));
+    const skillToAttack = Math.hypot(layout.attack.x - layout.skill1.x, layout.attack.y - layout.skill1.y);
+    const skillGap = Math.hypot(layout.skill1.x - layout.skill2.x, layout.skill1.y - layout.skill2.y);
+    expect(skillToAttack).toBeGreaterThan(100);
+    expect(skillGap).toBeGreaterThan(88);
+  });
 });

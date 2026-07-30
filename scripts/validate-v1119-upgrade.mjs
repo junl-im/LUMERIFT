@@ -69,7 +69,7 @@ const requirements = {
     '스킬 HP 조건',
     '보스 자동 회피 정책',
     '수동 입력 후 자동 복귀',
-    'ASSIST MATRIX 3',
+    'ASSIST MATRIX',
   ],
   'README.md': [
     '## v1.11.9 핵심',

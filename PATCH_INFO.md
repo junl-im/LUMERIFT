@@ -1,20 +1,13 @@
-# LUMERIFT v1.11.13 Patch Info
+# LUMERIFT v1.11.14 Patch Info
 
-- 기준 버전: v1.11.12 최신 핫픽스 반영본
-- 대상 버전: v1.11.13
-- 패치 방식: `package.json`이 보이는 프로젝트 최상위에 직접 덮어쓰기
+- 기준 버전: v1.11.13
+- 대상 버전: v1.11.14
+- 패치 방식: package.json이 있는 프로젝트 최상위에 직접 덮어쓰기
 - 삭제/이동 필요: 없음
 
 ## 주요 변경
-- 로비 상황 기반 NEXT BEST ACTION 추천과 동적 주 행동 버튼
-- 설정 변경 피드백 배너
-- 결과 화면 성과/추천 행동 순수 로직 분리
-- 에셋 분류별 QUALITY 점수·MOBILE ROLE·감수 기준
-- 작은 버튼 부제목 정렬 개선
-
-## 유지 계약
-- Firebase App Check 비활성
-- Player Save v4
-- AttackFootprint 공유 계약
-- 조이스틱 화면 기준 기본 이동
-- PNG/WebP 및 초기 다운로드 15MB 정책
+- 공격형·균형형·보존형 자동 전투 프리셋과 사용자 설정 전환
+- Combat Assist 저장 규격 v4 및 v3 자동 마이그레이션
+- 보스 예고·위험·즉시 회피 위협 HUD
+- 우측 액션 버튼 손가락 가림 감소 배치
+- 결과 화면 AUTO ASSIST REPORT 프리셋 기록

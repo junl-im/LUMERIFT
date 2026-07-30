@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.13",
+  "version": "1.11.14",
   "updatedAt": "2026-07-30",
-  "currentPhase": "v1.11.13 상황 기반 UI 흐름·에셋 품질 매트릭스 업그레이드 완료, GitHub Actions 전체 확인 대기",
+  "currentPhase": "v1.11.14 자동 전투 전략 프리셋·보스 위협 HUD·손가락 가림 보정 완료, GitHub Actions 전체 확인 대기",
   "qualityStage": "production-candidate-contextual-ux-asset-quality-matrix",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -179,14 +179,15 @@
     "v1.11.11: 자동 전투 세션 로그, AUTO ASSIST REPORT, 보스 3패턴 회피 규칙, HP·Drive·타겟 HP 복합 스킬 판단, iOS·Android Safe Area 보정 적용",
     "v1.11.11 hotfix: 가상 조이스틱 기본 reverse 설정을 screen으로 수정하고 저장 키 v2 및 방향 단위 테스트 추가",
     "v1.11.12: 로비/에셋 보관소/결과 화면 UX 재정리, 품질 태그 및 전술 요약 강화",
-    "v1.11.13: 로비 NEXT BEST ACTION, 설정 피드백 배너, 결과 행동 계획, 에셋 QUALITY/MOBILE ROLE 감수 정보 적용"
+    "v1.11.13: 로비 NEXT BEST ACTION, 설정 피드백 배너, 결과 행동 계획, 에셋 QUALITY/MOBILE ROLE 감수 정보 적용",
+    "v1.11.14: 공격형·균형형·보존형 자동 전투 프리셋, 보스 위협 HUD, 전투 버튼 손가락 가림 보정 적용"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "Android Chrome·iOS Safari 실제 캡처 기반 NEXT BEST ACTION 카드 및 결과 버튼 미세 정렬",
-    "보스전 HUD 위험 신호 대비와 손가락 가림 영역 재점검",
-    "8방향 공격 프레임·무기 궤적·타격 VFX 고급화",
-    "자동 전투 공격형·균형형·보존형 사용자 프리셋 저장 슬롯"
+    "Android Chrome·iOS Safari 실제 캡처 기반 보스 위협 HUD와 액션 버튼 미세 정렬",
+    "8방향 공격 전용 프레임·무기 궤적·타격 VFX 고급화",
+    "자동 전투 프리셋 사용자 저장 슬롯과 프리셋별 전투 통계 비교",
+    "보스 패턴 JSON 데이터 분리 및 스테이지별 위험 신호 테마 확장"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -300,8 +301,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.13.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.14.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.13_to_v1.11.14_ROOT_OVERWRITE.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
