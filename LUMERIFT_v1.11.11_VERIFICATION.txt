@@ -45,3 +45,11 @@ CI TEST HOTFIX
   - HP 80% + Drive 30% => skill1
   - HP 80% + Drive 100% => skill2
 - Production AutoBattleController logic was not changed.
+
+[Movement Direction Hotfix]
+- Root cause: joystick raw screen axis was inverted again by default calibration mode reverse.
+- Default calibration: screen
+- Storage migration: lumerift.joystickCalibration.v2
+- Right input => x +1, Left => x -1, Up => y -1, Down => y +1
+- Keyboard, pointer movement and auto-battle movement formulas unchanged.
+- TypeScript syntax: 151 files, 0 failures.

@@ -1,0 +1,41 @@
+LUMERIFT v1.11.11 Movement Direction Hotfix Verification
+Date: 2026-07-30
+
+ROOT CAUSE
+- VirtualJoystick already returned screen coordinates correctly.
+- JoystickCalibrationController defaulted to reverse.
+- BattleScene applied that default to every virtual joystick input.
+- Therefore X/Y position, facing and 8-direction animation all moved opposite to the finger direction.
+
+FIX
+- Default calibration changed from reverse to screen.
+- Calibration order changed to screen -> invert-x -> invert-y -> reverse.
+- Storage key changed from lumerift.joystickCalibration.v1 to v2 so the retired reverse default is not reused.
+- Explicit correction modes remain available in Settings.
+- Added JoystickCalibrationController.test.ts.
+
+VERIFIED
+- Right input => {x: 1, y: 0}
+- Left input => {x: -1, y: 0}
+- Up input => {x: 0, y: -1}
+- Down input => {x: 0, y: 1}
+- Explicit reverse still maps {x: 1, y: -1} to {x: -1, y: 1}.
+- Strict TypeScript compile passed for brand, geometry and joystick calibration modules.
+- TypeScript syntax parser: 151 source/test files, 0 failures.
+- validate:upgrade:v1114 PASS
+- validate:upgrade:v11111 PASS
+- validate:source PASS
+- validate:release PASS
+- validate:handoff PASS
+- validate:asset-cleanup PASS
+
+UNCHANGED
+- Keyboard movement
+- Pointer/click movement
+- Auto-battle approach movement
+- Combat collision and AttackFootprint
+- Player Save v4 and Firebase App Check disabled policy
+
+NOT RUN LOCALLY
+- Full Vitest/Vite production build because project node_modules are not included in the archive.
+- Physical Android/iOS device test.

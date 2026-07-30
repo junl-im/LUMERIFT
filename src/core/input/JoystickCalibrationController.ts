@@ -3,14 +3,15 @@ import type { Vec2 } from '../../game/combat/geometry';
 
 export type JoystickCalibrationMode = 'screen' | 'reverse' | 'invert-x' | 'invert-y';
 
-const ORDER: readonly JoystickCalibrationMode[] = ['reverse', 'screen', 'invert-x', 'invert-y'];
+const ORDER: readonly JoystickCalibrationMode[] = ['screen', 'invert-x', 'invert-y', 'reverse'];
 
 export class JoystickCalibrationController {
   private value: JoystickCalibrationMode;
 
   public constructor(private readonly storage: Pick<Storage, 'getItem' | 'setItem'> | undefined = getStorage()) {
     const stored = storage?.getItem(STORAGE_KEYS.joystickCalibration);
-    this.value = isJoystickCalibrationMode(stored) ? stored : 'reverse';
+    this.value = isJoystickCalibrationMode(stored) ? stored : 'screen';
+    if (!isJoystickCalibrationMode(stored)) this.storage?.setItem(STORAGE_KEYS.joystickCalibration, 'screen');
     this.applyDocumentState();
   }
 
@@ -20,7 +21,7 @@ export class JoystickCalibrationController {
 
   public cycle(): JoystickCalibrationMode {
     const index = ORDER.indexOf(this.value);
-    this.set(ORDER[(index + 1) % ORDER.length] ?? 'reverse');
+    this.set(ORDER[(index + 1) % ORDER.length] ?? 'screen');
     return this.value;
   }
 
@@ -31,17 +32,7 @@ export class JoystickCalibrationController {
   }
 
   public apply(axis: Vec2): Vec2 {
-    switch (this.value) {
-      case 'screen':
-        return { x: axis.x, y: axis.y };
-      case 'invert-x':
-        return { x: -axis.x, y: axis.y };
-      case 'invert-y':
-        return { x: axis.x, y: -axis.y };
-      case 'reverse':
-      default:
-        return { x: -axis.x, y: -axis.y };
-    }
+    return applyJoystickCalibration(axis, this.value);
   }
 
   private applyDocumentState(): void {
@@ -50,11 +41,24 @@ export class JoystickCalibrationController {
   }
 }
 
+export function applyJoystickCalibration(axis: Vec2, mode: JoystickCalibrationMode): Vec2 {
+  switch (mode) {
+    case 'screen':
+      return { x: axis.x, y: axis.y };
+    case 'invert-x':
+      return { x: -axis.x, y: axis.y };
+    case 'invert-y':
+      return { x: axis.x, y: -axis.y };
+    case 'reverse':
+      return { x: -axis.x, y: -axis.y };
+  }
+}
+
 export function joystickCalibrationLabel(mode: JoystickCalibrationMode): string {
-  if (mode === 'screen') return '화면 기준';
+  if (mode === 'screen') return '화면 기준(정상)';
   if (mode === 'invert-x') return '좌우 반전';
   if (mode === 'invert-y') return '상하 반전';
-  return '반전 보정';
+  return '상하·좌우 반전';
 }
 
 function isJoystickCalibrationMode(value: string | null | undefined): value is JoystickCalibrationMode {

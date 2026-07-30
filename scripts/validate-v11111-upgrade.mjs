@@ -59,12 +59,25 @@ const requirements = {
     "profile === 'ios' ? 14",
     "profile === 'android' ? 7",
   ],
+  'src/core/input/JoystickCalibrationController.ts': [
+    "const ORDER: readonly JoystickCalibrationMode[] = ['screen', 'invert-x', 'invert-y', 'reverse']",
+    "this.value = isJoystickCalibrationMode(stored) ? stored : 'screen'",
+    'export function applyJoystickCalibration(',
+  ],
+  'src/core/input/JoystickCalibrationController.test.ts': [
+    "expect(controller.current).toBe('screen')",
+    "expect(STORAGE_KEYS.joystickCalibration).toContain('.v2')",
+  ],
+  'src/app/brand.ts': [
+    'joystickCalibration.v2',
+  ],
   'README.md': [
     '## v1.11.11 핵심 업데이트',
     'docs/AUTO_COMBAT_SESSION_REPORT_v1.11.11.md',
     'docs/BOSS_DODGE_RULES_v1.11.11.md',
     'docs/COMPOSITE_AUTO_SKILL_v1.11.11.md',
     'docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md',
+    'docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.11.md',
   ],
 };
 
@@ -79,6 +92,7 @@ for (const doc of [
   'docs/COMPOSITE_AUTO_SKILL_v1.11.11.md',
   'docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md',
   'docs/PATCH_NOTES_v1.11.11.md',
+  'docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.11.md',
 ]) {
   try { await readFile(doc, 'utf8'); }
   catch { errors.push(`missing v1.11.11 document: ${doc}`); }
@@ -88,5 +102,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS v1.11.11 upgrade: auto session report, boss dodge rules, composite skill logic, and platform safe area');
+  console.log('PASS v1.11.11 upgrade: auto session report, boss dodge rules, composite skill logic, platform safe area, and screen-aligned joystick movement');
 }

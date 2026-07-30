@@ -11,7 +11,8 @@
     "자동 전투 세션 로그와 결과 화면 AUTO ASSIST REPORT",
     "심연 절단·심연 폭발·추적 균열 패턴별 회피 시점과 방향 규칙",
     "HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단",
-    "iOS·Android visualViewport 기반 전투 HUD Safe Area 보정"
+    "iOS·Android visualViewport 기반 전투 HUD Safe Area 보정",
+    "가상 조이스틱 기본 반전 제거와 화면 기준 실제 이동·8방향 방향 복구"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -40,6 +41,7 @@
     "validate-v1119-upgrade",
     "validate-v11110-upgrade",
     "validate-v11111-upgrade",
-    "asset registry release sync"
+    "asset registry release sync",
+    "joystick screen-axis runtime harness"
   ]
 }

@@ -3,22 +3,28 @@
   "fromVersion": "1.11.10",
   "toVersion": "1.11.11",
   "patchArchive": "LUMERIFT_PATCH_v1.11.10_to_v1.11.11.zip",
-  "strategy": "overwrite-project-root-cumulative",
+  "strategy": "overwrite-project-root-cumulative-hotfix",
   "deleteRequired": [],
-  "payloadFileCount": 36,
-  "listedFileCount": 35,
-  "payloadBytes": 378555,
+  "payloadFileCount": 41,
+  "listedFileCount": 40,
+  "payloadBytes": 405391,
   "files": [
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 30811,
-      "sha256": "614a550e94a98466e119ae623ff857bdc93cb9a27a8881732e3fb68bb1f04d07",
+      "bytes": 30902,
+      "sha256": "67ab9ee10cc5530ec748d746eb2b95085278f9b11139eb383ac9e7d57bdecaa3",
       "status": "modified"
     },
     {
+      "path": "LUMERIFT_v1.11.11_MOVEMENT_DIRECTION_HOTFIX_VERIFICATION.txt",
+      "bytes": 1562,
+      "sha256": "838049cc57188e9335edd8e9f2f82525594dd131c0bb732d32c20d1df5402f6f",
+      "status": "added"
+    },
+    {
       "path": "LUMERIFT_v1.11.11_VERIFICATION.txt",
-      "bytes": 2353,
-      "sha256": "5da45d0e898ba474cbdb94f3c003e67a4d137c855aa8f83d047e3f21c9f4fc20",
+      "bytes": 2740,
+      "sha256": "583cb0e89432631c69a8de7261133dfe2dad67a9cf804be012beb57ed3dab23e",
       "status": "added"
     },
     {
@@ -29,32 +35,32 @@
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 631,
-      "sha256": "2c09711deb64203d27d3d2984cc34171fd984e65f26dc109ed47a07e01a171ca",
+      "bytes": 884,
+      "sha256": "7f57fc769fc5d2e07ae3d377baa498834cebc91e7d4e8d9283b8960d73e35406",
       "status": "modified"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 656,
-      "sha256": "4159a847e34662678df83b4d241574c58c5951a960b29a2fedd4e4e345a4ef42",
+      "bytes": 760,
+      "sha256": "9f2d9266b1513520a2a5c0d091c47dbbf7157f96f113f702eebc30e3f9da2a6c",
       "status": "modified"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1400,
-      "sha256": "6271fae0ea47112d4098f0623323929c1369309d3deeac9d71eb9bc458061431",
+      "bytes": 1511,
+      "sha256": "f4620ae0eaacdbba6937e934a165200cdabe8b3b33c17416df2796f1003396ec",
       "status": "modified"
     },
     {
       "path": "README.md",
-      "bytes": 2173,
-      "sha256": "cadec27c2e72a70493b0988173973e336ff44047926152afed2b4175c9a190fd",
+      "bytes": 2256,
+      "sha256": "3405f52b8124771aef39e65fc3e1b49cf4aa3103913c8018e4c9aa65f025aa81",
       "status": "modified"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1465,
-      "sha256": "0250139822ba6407db95113601b43774a092cef363ff48359850c1601295060c",
+      "bytes": 1611,
+      "sha256": "1732c3367dd3ddec7f9e43f3e05acc408168dc7b8694ff1efcb36ea5c9b34036",
       "status": "modified"
     },
     {
@@ -77,8 +83,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 25672,
-      "sha256": "da3f2ae90ee122ba5159af2207e6ca8f8fc2ccfa02237c76856e7b39d15299d7",
+      "bytes": 25764,
+      "sha256": "c66639cbb54e53dd0107b496cdf032f09dff465d1aed84f642beef0859d650cd",
       "status": "modified"
     },
     {
@@ -89,20 +95,26 @@
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "bytes": 17263,
-      "sha256": "49b9fdb421e9a263155dfdac2c58f8d02aa8e1b52b2afcbad6303b52f35c3295",
+      "bytes": 17355,
+      "sha256": "10d0c800834d1ebd24778f065c497ed966add54e728a368e2c8c4174b5a5a8f1",
       "status": "modified"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 22243,
-      "sha256": "917bbc4a0c0b39ad47e06d4cd669e6c2473626ccc83802241988f2c4ec83fd09",
+      "bytes": 22356,
+      "sha256": "2e170ae923d0e813b46f45ff48ac20921370bd6d7a9eb43014950edcdf7aa666",
       "status": "modified"
     },
     {
       "path": "docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md",
       "bytes": 600,
       "sha256": "6131716ed218f22f27f36d613d8ebbe11c1fc3f2977195120bb35b899d68ea8f",
+      "status": "added"
+    },
+    {
+      "path": "docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.11.md",
+      "bytes": 1071,
+      "sha256": "ccf3f1ca6f14a9f412b22b06a419f023cd5fcded63da8b554ec480d4176db45e",
       "status": "added"
     },
     {
@@ -143,14 +155,26 @@
     },
     {
       "path": "scripts/validate-v11111-upgrade.mjs",
-      "bytes": 3439,
-      "sha256": "7776615b4e8e7a7a879eddfddfe779977725224c54036403f2362e04f348e899",
+      "bytes": 4095,
+      "sha256": "883ab28235cfecbdbda21c8279c0510971d0ca6e3c77e822f8fc3ac7132e19e5",
       "status": "added"
     },
     {
       "path": "src/app/brand.ts",
       "bytes": 579,
-      "sha256": "ed96754b4c14d635eee96f7eee5678d3f98e5be1987d89c01a760bbf574842d7",
+      "sha256": "dc38f57b39da730ead09335a52cfb42943c1455f43da1c48b7de815d24be90d9",
+      "status": "modified"
+    },
+    {
+      "path": "src/core/input/JoystickCalibrationController.test.ts",
+      "bytes": 1932,
+      "sha256": "a98cf89791808eb80424a127b59fb23e6135f0b6103e3c3c18f5c06e9a43e7e0",
+      "status": "added"
+    },
+    {
+      "path": "src/core/input/JoystickCalibrationController.ts",
+      "bytes": 2490,
+      "sha256": "fd2b2db50d885b134ce326381a1c1c9879b497a3dab327c63869a91fd76be9fc",
       "status": "modified"
     },
     {
@@ -217,6 +241,12 @@
       "path": "src/scenes/ResultScene.ts",
       "bytes": 9846,
       "sha256": "07ef5fa7b8989d5918c1a20c21c3ca0c1568798e6b33f3806ea0a8f2a0c3b214",
+      "status": "modified"
+    },
+    {
+      "path": "src/scenes/SettingsScene.ts",
+      "bytes": 17653,
+      "sha256": "ea730c7ff57de5ef4d40ce36694093efc263304492928cdf51a4068a6dac78f5",
       "status": "modified"
     }
   ]

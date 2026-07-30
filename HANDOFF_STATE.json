@@ -3,7 +3,7 @@
   "game": "LUMERIFT: 균열의 계승자",
   "version": "1.11.11",
   "updatedAt": "2026-07-29",
-  "currentPhase": "v1.11.11 자동 전투 세션 로그·보스 패턴별 회피·복합 스킬 판단·모바일 플랫폼 Safe Area 완료, CI 최종 확인 대기",
+  "currentPhase": "v1.11.11 캐릭터 이동 방향 반전 핫픽스 완료, GitHub Actions 전체 확인 대기",
   "qualityStage": "production-candidate-auto-session-boss-rules-mobile-safe-area",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -176,7 +176,8 @@
     "v1.11.8: RIFT INTERFACE 전 화면 리뉴얼, 자동 타겟 우선순위/자동 스킬/자동 회피/보스전 제한/기기 프리셋 적용",
     "v1.11.9: 자동 타겟 점수·행동 이유 HUD, HP 조건형 스킬, 보스 회피 정책, 수동 복귀 지연, 전투 Safe Area, 방향별 공격 포즈 적용",
     "v1.11.10: 웹툰형 인터페이스 크롬·코믹 태그·로비 브리핑·에셋 보관소 production-line 안내를 포함한 초대규모 디자인·에셋 리뉴얼 적용",
-    "v1.11.11: 자동 전투 세션 로그, AUTO ASSIST REPORT, 보스 3패턴 회피 규칙, HP·Drive·타겟 HP 복합 스킬 판단, iOS·Android Safe Area 보정 적용"
+    "v1.11.11: 자동 전투 세션 로그, AUTO ASSIST REPORT, 보스 3패턴 회피 규칙, HP·Drive·타겟 HP 복합 스킬 판단, iOS·Android Safe Area 보정 적용",
+    "v1.11.11 hotfix: 가상 조이스틱 기본 reverse 설정을 screen으로 수정하고 저장 키 v2 및 방향 단위 테스트 추가"
   ],
   "inProgress": [
     "GitHub Actions 전체 typecheck/test/build/bundle 확인",

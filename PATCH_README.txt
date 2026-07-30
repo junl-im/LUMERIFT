@@ -8,3 +8,4 @@ LUMERIFT v1.11.10 -> v1.11.11 CUMULATIVE PATCH
 6. 자동 스킬은 HP·Drive·타겟 잔여 HP를 함께 판단합니다.
 7. iOS와 Android는 각 플랫폼에 맞춰 전투 버튼 하단 여백을 추가 보정합니다.
 8. npm install 후 npm run verify를 실행합니다.
+- HOTFIX: 가상 조이스틱 기본 반전을 제거하고 화면 기준 이동을 복구했습니다.

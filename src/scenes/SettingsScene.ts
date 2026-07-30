@@ -99,10 +99,10 @@ export class SettingsScene implements Scene {
 
     const joystick = new UiButton({
       label: `조이스틱 보정 · ${joystickCalibrationLabel(context.joystickCalibration.current)}`,
-      subtitle: '화면/반전/좌우/상하 보정을 순환합니다.',
+      subtitle: '기본은 화면 기준입니다. 방향이 어긋난 기기에서만 좌우·상하·전체 반전을 선택합니다.',
       width: 442,
       height: 42,
-      tone: context.joystickCalibration.current === 'reverse' ? 'primary' : 'secondary',
+      tone: context.joystickCalibration.current === 'screen' ? 'secondary' : 'primary',
       fontSize: 11,
       align: 'left',
       onPress: async () => {

@@ -49,3 +49,5 @@ npm run dev
 - HP·Drive·타겟 잔여 HP 복합 자동 스킬 판단
 - iOS·Android visualViewport 기반 전투 HUD Safe Area 보정
 - 관련 문서: `docs/AUTO_COMBAT_SESSION_REPORT_v1.11.11.md`, `docs/BOSS_DODGE_RULES_v1.11.11.md`, `docs/COMPOSITE_AUTO_SKILL_v1.11.11.md`, `docs/MOBILE_PLATFORM_SAFE_AREA_v1.11.11.md`
+
+- 캐릭터 이동 방향 핫픽스: `docs/MOVEMENT_DIRECTION_HOTFIX_v1.11.11.md`
