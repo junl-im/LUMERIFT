@@ -1,18 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.14",
-  "baseVersion": "1.11.13",
+  "version": "1.11.15",
+  "baseVersion": "1.11.14",
   "releaseDate": "2026-07-30",
-  "fullArchive": "LUMERIFT_FULL_v1.11.14.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.13_to_v1.11.14_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-auto-strategy-boss-threat-finger-clearance",
+  "fullArchive": "LUMERIFT_FULL_v1.11.15.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.14_to_v1.11.15_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-data-driven-boss-rules-preset-vault-performance-advisor",
   "features": [
-    "공격형·균형형·보존형 자동 전투 프리셋과 사용자 설정 전환",
-    "프리셋별 Drive·스킬·거리 유지 판단 튜닝 및 v4 설정 마이그레이션",
-    "보스 공격 예고·위험·즉시 회피 단계별 위협 HUD와 자동 회피 상태 안내",
-    "모바일 전투 버튼 손가락 가림 감소를 위한 우측 액션 클러스터 간격 재조정",
-    "전투 결과 AUTO ASSIST REPORT에 실제 사용 프리셋 기록"
+    "보스 회피 규칙을 버전형 JSON 데이터 카탈로그로 분리하고 몬스터 패턴 참조 검증 연결",
+    "자동 전투 사용자 프리셋 3개 슬롯 저장·불러오기·초기화 기능",
+    "설정 화면에서 프리셋 연구소와 사용자 프리셋 저장소 진입",
+    "전투 세션 통계 기반 공격형·균형형·보존형 적합도 비교 및 추천",
+    "v1.11.9·v1.11.11 누적 검증기를 이후 문구·데이터 구조 변경에 견디도록 보강"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -38,11 +38,12 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v1119-upgrade",
-    "validate-v11113-upgrade",
-    "validate-v11114-upgrade",
+    "validate-game-data boss dodge catalog",
+    "validate-v1119 cumulative compatibility",
+    "validate-v11111 cumulative data contract",
+    "validate-v11115-upgrade",
     "offline strict TypeScript project check",
-    "auto strategy and boss threat runtime harness",
+    "preset slot and performance runtime harness",
     "asset registry release sync"
   ]
 }

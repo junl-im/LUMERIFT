@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.14
+# LUMERIFT: 균열의 계승자 v1.11.15
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -73,3 +73,11 @@ npm run dev
 - 모바일 우측 액션 버튼 간격을 넓혀 손가락 가림과 오입력 가능성 감소
 - 결과 화면 `AUTO ASSIST REPORT`에 실제 사용 프리셋 기록
 - 관련 문서: `docs/AUTO_BATTLE_STRATEGY_PRESETS_v1.11.14.md`, `docs/BOSS_THREAT_HUD_v1.11.14.md`, `docs/FINGER_CLEARANCE_CONTROLS_v1.11.14.md`, `docs/PATCH_NOTES_v1.11.14.md`
+
+
+## v1.11.15 핵심 업데이트
+- 보스 회피 규칙을 `src/data/boss-dodge-rules.json` 버전형 데이터로 분리
+- 사용자 자동 전투 프리셋 3개 슬롯 저장·불러오기·초기화
+- 설정 화면에서 자동 전투 프리셋 연구소 진입
+- 결과 화면에서 공격형·균형형·보존형 적합도 비교와 추천 표시
+- 관련 문서: `docs/BOSS_DODGE_DATA_v1.11.15.md`, `docs/AUTO_PRESET_VAULT_v1.11.15.md`, `docs/AUTO_PRESET_PERFORMANCE_v1.11.15.md`, `docs/PATCH_NOTES_v1.11.15.md`

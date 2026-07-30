@@ -1,3 +1,10 @@
+import {
+  AutoBattlePresetSlotStore,
+  type AutoBattlePresetSlot,
+  type AutoBattlePresetSlotId,
+  type AutoBattlePresetSlotState,
+} from './AutoBattlePresetSlots';
+
 export type AutoTargetPriority = 'balanced' | 'nearest' | 'boss' | 'weak' | 'threat';
 export type BossAutoMode = 'full' | 'target-only' | 'off';
 export type CombatDevicePreset = 'responsive' | 'balanced' | 'stable';
@@ -131,14 +138,44 @@ const STRATEGY_TUNING: Readonly<Record<AutoBattleStrategyPreset, AutoBattleStrat
 
 export class CombatAssistController {
   private settings: CombatAssistSettings;
+  private readonly presetSlotStore: AutoBattlePresetSlotStore;
 
   public constructor(private readonly storage: Pick<Storage, 'getItem' | 'setItem'> | undefined = getStorage()) {
+    this.presetSlotStore = new AutoBattlePresetSlotStore(storage);
     this.settings = readSettings(storage);
     this.persist();
   }
 
   public get current(): CombatAssistSettings {
     return this.settings;
+  }
+
+  public get presetSlots(): AutoBattlePresetSlotState {
+    return this.presetSlotStore.current;
+  }
+
+  public cycleCustomPresetSlot(): AutoBattlePresetSlotId {
+    return this.presetSlotStore.cycleSelectedSlot();
+  }
+
+  public selectCustomPresetSlot(slotId: AutoBattlePresetSlotId): AutoBattlePresetSlotId {
+    return this.presetSlotStore.selectSlot(slotId);
+  }
+
+  public saveSelectedCustomPreset(): AutoBattlePresetSlot {
+    return this.presetSlotStore.save(this.settings);
+  }
+
+  public loadSelectedCustomPreset(): boolean {
+    const snapshot = this.presetSlotStore.load();
+    if (!snapshot) return false;
+    this.settings = sanitizeSettings({ ...this.settings, ...snapshot, strategyPreset: 'custom' });
+    this.persist();
+    return true;
+  }
+
+  public clearSelectedCustomPreset(): void {
+    this.presetSlotStore.clear();
   }
 
   public toggleAutoTarget(): boolean {

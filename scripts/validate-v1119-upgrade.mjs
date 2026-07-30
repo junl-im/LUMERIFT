@@ -68,7 +68,8 @@ const requirements = {
   'src/scenes/SettingsScene.ts': [
     '스킬 HP 조건',
     '보스 자동 회피 정책',
-    '수동 입력 후 자동 복귀',
+    'manualResumeDelayLabel(settings.manualResumeDelay)',
+    'context.combatAssist.cycleManualResumeDelay()',
     'ASSIST MATRIX',
   ],
   'README.md': [

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "defaultRule": {
+    "patternId": "unknown",
+    "label": "보스 패턴",
+    "triggerProgress": 0.72,
+    "critical": true,
+    "directionMode": "perpendicular",
+    "reason": "boss-critical-evade"
+  },
+  "patterns": [
+    {
+      "patternId": "boss_cleave",
+      "label": "심연 절단",
+      "triggerProgress": 0.54,
+      "critical": false,
+      "directionMode": "perpendicular",
+      "reason": "boss-cleave-evade"
+    },
+    {
+      "patternId": "boss_nova",
+      "label": "심연 폭발",
+      "triggerProgress": 0.46,
+      "critical": true,
+      "directionMode": "away",
+      "reason": "boss-nova-evade"
+    },
+    {
+      "patternId": "boss_rupture",
+      "label": "추적 균열",
+      "triggerProgress": 0.66,
+      "critical": true,
+      "directionMode": "diagonal",
+      "reason": "boss-rupture-evade"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ const monsters = await readJson('src/data/monsters.json');
 const items = await readJson('src/data/items.json');
 const stages = await readJson('src/data/stages.json');
 const quests = await readJson('src/data/quests.json');
+const bossDodgeRules = await readJson('src/data/boss-dodge-rules.json');
 const errors = [];
 
 const actionIds = new Set();
@@ -51,6 +52,32 @@ for (const [index, monster] of monsters.monsters.entries()) {
 }
 if (ranks.normal < 5 || ranks.elite < 2 || ranks.boss < 1) {
   errors.push(`MVP 몬스터 수량 부족: normal ${ranks.normal}, elite ${ranks.elite}, boss ${ranks.boss}`);
+}
+
+
+const bossPatternIds = new Set(
+  monsters.monsters
+    .filter((monster) => monster.rank === 'boss')
+    .flatMap((monster) => monster.patterns.map((pattern) => pattern.id)),
+);
+if (bossDodgeRules.version !== 1) errors.push(`보스 회피 규칙 버전 오류: ${bossDodgeRules.version}`);
+if (!bossDodgeRules.defaultRule || typeof bossDodgeRules.defaultRule.triggerProgress !== 'number') {
+  errors.push('보스 회피 기본 규칙 누락');
+}
+const dodgeRuleIds = new Set();
+for (const rule of bossDodgeRules.patterns ?? []) {
+  if (dodgeRuleIds.has(rule.patternId)) errors.push(`중복 보스 회피 규칙: ${rule.patternId}`);
+  dodgeRuleIds.add(rule.patternId);
+  if (!bossPatternIds.has(rule.patternId)) errors.push(`보스 패턴 참조 누락: ${rule.patternId}`);
+  if (typeof rule.triggerProgress !== 'number' || rule.triggerProgress < 0 || rule.triggerProgress > 1) {
+    errors.push(`보스 회피 시점 오류: ${rule.patternId}`);
+  }
+  if (!['perpendicular', 'away', 'diagonal'].includes(rule.directionMode)) {
+    errors.push(`보스 회피 방향 오류: ${rule.patternId}/${rule.directionMode}`);
+  }
+}
+for (const patternId of bossPatternIds) {
+  if (!dodgeRuleIds.has(patternId)) errors.push(`보스 회피 규칙 누락: ${patternId}`);
 }
 
 const itemIds = new Set();
@@ -123,5 +150,5 @@ if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`PASS game data: ${actionIds.size} actions, ${monsterIds.size} monsters, ${itemIds.size} items, ${stageIds.size} stages, ${questIds.size} quests`);
+  console.log(`PASS game data: ${actionIds.size} actions, ${monsterIds.size} monsters, ${itemIds.size} items, ${stageIds.size} stages, ${questIds.size} quests, ${dodgeRuleIds.size} boss dodge rules`);
 }

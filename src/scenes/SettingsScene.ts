@@ -21,6 +21,7 @@ import {
   manualResumeDelayLabel,
 } from '../core/input/CombatAssistController';
 import { visionModeLabel } from '../core/accessibility/AccessibilityController';
+import { autoBattlePresetSlotLabel } from '../core/input/AutoBattlePresetSlots';
 import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
 import { createBadge } from '../ui/PremiumUi';
@@ -29,6 +30,7 @@ import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { LoginScene } from './LoginScene';
+import { AutoPresetLabScene } from './AutoPresetLabScene';
 
 export class SettingsScene implements Scene {
   public readonly view = new Container();
@@ -257,8 +259,8 @@ export class SettingsScene implements Scene {
     device.position.set(282, 580);
 
     const resume = new UiButton({
-      label: `수동 입력 후 자동 복귀 · ${manualResumeDelayLabel(settings.manualResumeDelay)}`,
-      width: 442,
+      label: `자동 복귀 · ${manualResumeDelayLabel(settings.manualResumeDelay)}`,
+      width: 210,
       height: 28,
       tone: 'secondary',
       fontSize: 9,
@@ -269,6 +271,16 @@ export class SettingsScene implements Scene {
     });
     resume.position.set(42, 618);
 
+    const presetVault = new UiButton({
+      label: `프리셋 저장소 · ${autoBattlePresetSlotLabel(context.combatAssist.presetSlots)}`,
+      width: 210,
+      height: 28,
+      tone: 'secondary',
+      fontSize: 8,
+      onPress: async () => context.scenes.change(() => new AutoPresetLabScene()),
+    });
+    presetVault.position.set(282, 618);
+
     const diagnosticsText = new Text({
       text: diagnosticsSummaryCompact(context),
       style: new TextStyle({ fill: COLORS.muted, fontSize: 7, lineHeight: 8, wordWrap: true, wordWrapWidth: 442 }),
@@ -276,7 +288,7 @@ export class SettingsScene implements Scene {
     diagnosticsText.position.set(42, 648);
     this.diagnosticsText = diagnosticsText;
 
-    this.view.addChild(panel, title, stamp, helper, autoTarget, autoBattle, strategy, priority, skills, dodge, skillHp, bossDodge, boss, device, resume, diagnosticsText);
+    this.view.addChild(panel, title, stamp, helper, autoTarget, autoBattle, strategy, priority, skills, dodge, skillHp, bossDodge, boss, device, resume, presetVault, diagnosticsText);
   }
 
   private createAccessibilityPanel(context: AppContext): void {

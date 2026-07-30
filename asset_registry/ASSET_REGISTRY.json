@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.14",
-  "generatedAt": "2026-07-30T16:51:00+09:00",
+  "release": "1.11.15",
+  "generatedAt": "2026-07-30T17:55:00+09:00",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",

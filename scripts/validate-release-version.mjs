@@ -136,6 +136,14 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11114')) {
   errors.push('verify에서 v1.11.14 자동 전략 프리셋·보스 위협 HUD 검사가 누락되었습니다.');
 }
 
+
+if (pkg.scripts?.['validate:upgrade:v11115'] !== 'node scripts/validate-v11115-upgrade.mjs') {
+  errors.push('package.json v1.11.15 보스 회피 데이터·프리셋 저장소 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11115')) {
+  errors.push('verify에서 v1.11.15 보스 회피 데이터·프리셋 저장소 검사가 누락되었습니다.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

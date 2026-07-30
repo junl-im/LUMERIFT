@@ -15,6 +15,7 @@ import { autoBattleReasonLabel } from '../game/combat/AutoBattleController';
 import { autoBattleStrategyPresetLabel } from '../core/input/CombatAssistController';
 import type { AutoCombatSessionSummary } from '../game/combat/AutoCombatSessionLog';
 import { resolveResultActionPlan, type ResultActionPlan } from '../game/presentation/ResultActionPlan';
+import { autoPresetPerformanceCompactLabel, resolveAutoPresetPerformance } from '../game/presentation/AutoPresetPerformance';
 
 export interface BattleOutcome {
   readonly victory: boolean;
@@ -140,7 +141,14 @@ export class ResultScene implements Scene {
 
   private createAutoAssistReport(): void {
     const summary = this.outcome.autoAssist;
-    const panel = createSectionPanel(58, 492, 424, 78, 'panel_gold');
+    const performance = resolveAutoPresetPerformance({
+      victory: this.outcome.victory,
+      clearSeconds: this.outcome.clearSeconds,
+      maxCombo: this.outcome.maxCombo,
+      defeated: this.outcome.defeated,
+      summary,
+    });
+    const panel = createSectionPanel(58, 492, 424, 90, 'panel_gold');
     const title = new Text({
       text: 'TACTICAL SUMMARY · AUTO ASSIST REPORT',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 10, fontWeight: '800', letterSpacing: 0.65 }),
@@ -158,35 +166,40 @@ export class ResultScene implements Scene {
       text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)} · 다음 추천 · ${this.actionPlan().recommendation}` : `수동 전투 결과 · 다음 추천 · ${this.actionPlan().recommendation}`,
       style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
     });
-    reasonText.position.set(76, 544);
-    this.view.addChild(panel, title, totalText, reasonText);
+    reasonText.position.set(76, 543);
+    const comparisonText = new Text({
+      text: `프리셋 적합도 · ${autoPresetPerformanceCompactLabel(performance)} · 추천 ${performance.headline}`,
+      style: new TextStyle({ fill: 0xc7d8d6, fontSize: 8, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
+    });
+    comparisonText.position.set(76, 562);
+    this.view.addChild(panel, title, totalText, reasonText, comparisonText);
   }
 
   private createRewards(context: AppContext): void {
     const dropNames = this.outcome.itemDrops.length > 0
       ? this.outcome.itemDrops.map((itemId) => context.gameData.getItem(itemId).name).join(' · ')
       : '획득 장비 없음';
-    const rewardPanel = createSectionPanel(58, 580, 424, 160, 'panel_strong');
+    const rewardPanel = createSectionPanel(58, 590, 424, 160, 'panel_strong');
     const chest = createIconSprite('inventory', 28);
-    chest.position.set(80, 592);
+    chest.position.set(80, 602);
     const rewardTitle = new Text({
       text: 'MISSION REWARD · LOOT OVERVIEW',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 12, fontWeight: '700', letterSpacing: 0.6 }),
     });
-    rewardTitle.position.set(116, 596);
+    rewardTitle.position.set(116, 606);
     const expIcon = createIconSprite('energy', 24);
-    expIcon.position.set(82, 629);
+    expIcon.position.set(82, 639);
     const goldIcon = createIconSprite('gold', 24);
-    goldIcon.position.set(282, 629);
+    goldIcon.position.set(282, 639);
     const exp = createMetric('경험치', `+${this.outcome.exp.toLocaleString()}`, 174);
-    exp.position.set(82, 612);
+    exp.position.set(82, 622);
     const gold = createMetric('골드', `+${this.outcome.gold.toLocaleString()}`, 174);
-    gold.position.set(282, 612);
+    gold.position.set(282, 622);
     const equipmentLabel = new Text({
       text: '획득 장비',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 11, fontWeight: '700' }),
     });
-    equipmentLabel.position.set(82, 672);
+    equipmentLabel.position.set(82, 682);
     const equipment = new Text({
       text: dropNames,
       style: new TextStyle({
@@ -198,12 +211,12 @@ export class ResultScene implements Scene {
         lineHeight: 15,
       }),
     });
-    equipment.position.set(82, 690);
+    equipment.position.set(82, 700);
     const followUp = new Text({
       text: `다음 추천 행동 · ${this.actionPlan().recommendation}`,
       style: new TextStyle({ fill: 0xc3d7d3, fontSize: 10, fontWeight: '700', wordWrap: true, wordWrapWidth: 360 }),
     });
-    followUp.position.set(82, 720);
+    followUp.position.set(82, 730);
     this.view.addChild(rewardPanel, chest, rewardTitle, exp, gold, expIcon, goldIcon, equipmentLabel, equipment, followUp);
   }
 

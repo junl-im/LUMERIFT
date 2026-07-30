@@ -69,6 +69,27 @@ describe('CombatAssistController', () => {
     expect(controller.cycleManualResumeDelay()).toBe('instant');
   });
 
+
+  it('saves and restores a custom strategy through the selected slot', () => {
+    const controller = new CombatAssistController(new MemoryStorage());
+    controller.set({
+      strategyPreset: 'custom',
+      targetPriority: 'boss',
+      autoDodge: false,
+      bossAutoMode: 'full',
+    });
+    controller.selectCustomPresetSlot(2);
+    controller.saveSelectedCustomPreset();
+    controller.applyStrategyPreset('balanced');
+    expect(controller.loadSelectedCustomPreset()).toBe(true);
+    expect(controller.current).toMatchObject({
+      strategyPreset: 'custom',
+      targetPriority: 'boss',
+      autoDodge: false,
+      bossAutoMode: 'full',
+    });
+  });
+
   it('exposes deterministic hp thresholds and manual recovery delays', () => {
     expect(autoSkillHpThreshold('below-65')).toBe(0.65);
     expect(autoSkillHpThreshold('emergency')).toBe(0.4);

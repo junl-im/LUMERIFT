@@ -1,0 +1,35 @@
+LUMERIFT v1.11.15 RELEASE VERIFICATION
+Date: 2026-07-30
+Base: v1.11.14
+Target: v1.11.15
+
+[Implemented]
+- Versioned JSON boss dodge catalog: src/data/boss-dodge-rules.json
+- Runtime normalization and fallback for boss dodge data
+- Game-data validation linking all boss patterns to dodge rules
+- Three user auto-battle preset slots with save/load/clear
+- Auto Preset Lab scene and Settings entry point
+- Session-based Aggressive / Balanced / Conservative suitability comparison
+- Result AUTO ASSIST REPORT preset suitability summary
+- Cumulative v1.11.9 and v1.11.11 validator compatibility updates
+
+[Passed]
+- Release version and cumulative validators v1.11.0 through v1.11.15
+- Firebase integration policy; App Check remains disabled
+- Shared telegraph/hit AttackFootprint combat contract
+- Asset/data/atlas/manifest/cleanup/art/archive/source-art validators
+- UI/operations/mobile/live-art/source/handoff validators
+- TypeScript syntax parse: 163 source files, 0 parse diagnostics
+- Offline strict TypeScript project check with temporary external-library type stubs
+- Runtime harness: preset slot save/load, aggressive performance recommendation, JSON boss dodge catalog
+- Active public assets: 41 files, 5.46 MB
+- Estimated initial payload source inputs: 1.02 MB / 15 MB
+
+[Not executed in this environment]
+- Full project tsc -b with installed project dependencies
+- Full Vitest suite
+- Vite production build
+- validate:bundle
+- Physical Android/iOS device FPS, heat, battery, touch-occlusion, and long-session testing
+
+These unexecuted checks must be confirmed by GitHub Actions and physical-device QA before claiming final device certification.

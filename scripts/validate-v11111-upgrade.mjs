@@ -27,10 +27,15 @@ const requirements = {
     'bossPatternDodges',
   ],
   'src/game/combat/BossDodgeRules.ts': [
-    "boss_cleave",
-    "boss_nova",
-    "boss_rupture",
+    "import bossDodgeRuleData from '../../data/boss-dodge-rules.json'",
+    'BOSS_DODGE_RULE_VERSION',
+    'bossDodgeRuleCatalog',
     'resolveBossDodgeDirection',
+  ],
+  'src/data/boss-dodge-rules.json': [
+    'boss_cleave',
+    'boss_nova',
+    'boss_rupture',
   ],
   'src/game/combat/AutoBattleController.ts': [
     'readonly targetHpRatio?: number',

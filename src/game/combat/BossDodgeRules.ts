@@ -1,3 +1,4 @@
+import bossDodgeRuleData from '../../data/boss-dodge-rules.json';
 import { normalize, type Vec2 } from './geometry';
 
 export type BossDodgeDirectionMode = 'perpendicular' | 'away' | 'diagonal';
@@ -11,7 +12,13 @@ export interface BossDodgeRule {
   readonly reason: string;
 }
 
-const DEFAULT_RULE: BossDodgeRule = {
+interface BossDodgeRuleDocument {
+  readonly version: number;
+  readonly defaultRule: BossDodgeRule;
+  readonly patterns: readonly BossDodgeRule[];
+}
+
+const FALLBACK_RULE: BossDodgeRule = {
   patternId: 'unknown',
   label: '보스 패턴',
   triggerProgress: 0.72,
@@ -20,35 +27,17 @@ const DEFAULT_RULE: BossDodgeRule = {
   reason: 'boss-critical-evade',
 };
 
-const BOSS_DODGE_RULES: Readonly<Record<string, BossDodgeRule>> = {
-  boss_cleave: {
-    patternId: 'boss_cleave',
-    label: '심연 절단',
-    triggerProgress: 0.54,
-    critical: false,
-    directionMode: 'perpendicular',
-    reason: 'boss-cleave-evade',
-  },
-  boss_nova: {
-    patternId: 'boss_nova',
-    label: '심연 폭발',
-    triggerProgress: 0.46,
-    critical: true,
-    directionMode: 'away',
-    reason: 'boss-nova-evade',
-  },
-  boss_rupture: {
-    patternId: 'boss_rupture',
-    label: '추적 균열',
-    triggerProgress: 0.66,
-    critical: true,
-    directionMode: 'diagonal',
-    reason: 'boss-rupture-evade',
-  },
-};
+const DOCUMENT = normalizeRuleDocument(bossDodgeRuleData);
+const RULES = new Map(DOCUMENT.patterns.map((rule) => [rule.patternId, rule] as const));
+
+export const BOSS_DODGE_RULE_VERSION = DOCUMENT.version;
+
+export function bossDodgeRuleCatalog(): readonly BossDodgeRule[] {
+  return DOCUMENT.patterns;
+}
 
 export function resolveBossDodgeRule(patternId: string | undefined): BossDodgeRule {
-  return patternId ? (BOSS_DODGE_RULES[patternId] ?? DEFAULT_RULE) : DEFAULT_RULE;
+  return patternId ? (RULES.get(patternId) ?? DOCUMENT.defaultRule) : DOCUMENT.defaultRule;
 }
 
 export function resolveBossDodgeDirection(rule: BossDodgeRule, targetDirection: Vec2): Vec2 {
@@ -66,8 +55,51 @@ export function resolveBossDodgeDirection(rule: BossDodgeRule, targetDirection: 
 }
 
 export function bossDodgeReasonLabel(reason: string): string {
-  if (reason === 'boss-cleave-evade') return '심연 절단 측면 회피';
-  if (reason === 'boss-nova-evade') return '심연 폭발 범위 이탈';
-  if (reason === 'boss-rupture-evade') return '추적 균열 대각 회피';
+  const matched = DOCUMENT.patterns.find((rule) => rule.reason === reason);
+  if (matched) return `${matched.label} ${directionLabel(matched.directionMode)}`;
   return '보스 치명 패턴 회피';
+}
+
+function normalizeRuleDocument(value: unknown): BossDodgeRuleDocument {
+  if (!isRecord(value)) return { version: 1, defaultRule: FALLBACK_RULE, patterns: [] };
+  const version = typeof value.version === 'number' && Number.isFinite(value.version)
+    ? Math.max(1, Math.floor(value.version))
+    : 1;
+  const defaultRule = normalizeRule(value.defaultRule) ?? FALLBACK_RULE;
+  const patterns = Array.isArray(value.patterns)
+    ? value.patterns.map(normalizeRule).filter((rule): rule is BossDodgeRule => rule !== undefined)
+    : [];
+  return { version, defaultRule, patterns };
+}
+
+function normalizeRule(value: unknown): BossDodgeRule | undefined {
+  if (!isRecord(value)) return undefined;
+  if (typeof value.patternId !== 'string' || value.patternId.length === 0) return undefined;
+  if (typeof value.label !== 'string' || value.label.length === 0) return undefined;
+  if (typeof value.reason !== 'string' || value.reason.length === 0) return undefined;
+  if (typeof value.critical !== 'boolean') return undefined;
+  if (!isDirectionMode(value.directionMode)) return undefined;
+  if (typeof value.triggerProgress !== 'number' || !Number.isFinite(value.triggerProgress)) return undefined;
+  return {
+    patternId: value.patternId,
+    label: value.label,
+    triggerProgress: Math.max(0, Math.min(1, value.triggerProgress)),
+    critical: value.critical,
+    directionMode: value.directionMode,
+    reason: value.reason,
+  };
+}
+
+function isDirectionMode(value: unknown): value is BossDodgeDirectionMode {
+  return value === 'perpendicular' || value === 'away' || value === 'diagonal';
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function directionLabel(mode: BossDodgeDirectionMode): string {
+  if (mode === 'away') return '범위 이탈';
+  if (mode === 'diagonal') return '대각 회피';
+  return '측면 회피';
 }

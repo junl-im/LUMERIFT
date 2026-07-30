@@ -100,6 +100,14 @@
 - [x] 에셋 QUALITY 점수·MOBILE ROLE
 - [x] compact button subtitle 정렬
 
+## 완료: 데이터 기반 자동 전투 운영 v1.11.15
+
+- [x] 보스 회피 규칙 JSON 데이터 분리
+- [x] 보스 패턴/회피 규칙 참조 검증
+- [x] 사용자 프리셋 3개 저장 슬롯
+- [x] 자동 전투 프리셋 연구소
+- [x] 전투 결과 프리셋 적합도 비교
+
 ## 환경 검증 잔여
 
 - [ ] 실제 package-lock.json

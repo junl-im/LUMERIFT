@@ -1,2 +1,1 @@
-# v1.11.14 delete list
-# No files require deletion or relocation.
+삭제 또는 이동이 필요한 파일 없음

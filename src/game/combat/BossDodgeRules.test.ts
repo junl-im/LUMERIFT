@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { resolveBossDodgeDirection, resolveBossDodgeRule } from './BossDodgeRules';
+import { BOSS_DODGE_RULE_VERSION, bossDodgeRuleCatalog, resolveBossDodgeDirection, resolveBossDodgeRule } from './BossDodgeRules';
 
 describe('BossDodgeRules', () => {
+
+  it('loads the three boss patterns from the versioned JSON catalog', () => {
+    expect(BOSS_DODGE_RULE_VERSION).toBe(1);
+    expect(bossDodgeRuleCatalog().map((rule) => rule.patternId)).toEqual([
+      'boss_cleave',
+      'boss_nova',
+      'boss_rupture',
+    ]);
+  });
   it('uses an early outward escape for abyss nova', () => {
     const rule = resolveBossDodgeRule('boss_nova');
     const direction = resolveBossDodgeDirection(rule, { x: 1, y: 0 });

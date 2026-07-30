@@ -1,230 +1,242 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
-  "fromVersion": "1.11.13",
-  "toVersion": "1.11.14",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.13_to_v1.11.14_ROOT_OVERWRITE.zip",
+  "fromVersion": "1.11.14",
+  "toVersion": "1.11.15",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.14_to_v1.11.15_ROOT_OVERWRITE.zip",
   "strategy": "overwrite-project-root",
   "rootOverwrite": true,
   "deleteRequired": [],
-  "payloadFileCount": 37,
-  "listedFileCount": 36,
+  "payloadFileCount": 39,
+  "listedFileCount": 38,
   "manifestSelfExcludedFromFiles": true,
-  "payloadBytes": 439314,
+  "payloadBytes": 376586,
   "files": [
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 31224,
-      "sha256": "1655f714c447fe6b2c68461adc69c5daf48b5589815d9a722dc5a2c16fe32b78",
+      "bytes": 31454,
+      "sha256": "768f14bd55a482f33accd5c5868e0b9fe8a4437f461c3545577b9fc4304d9bd5",
       "status": "modified"
     },
     {
-      "path": "LUMERIFT_v1.11.14_VERIFICATION.txt",
-      "bytes": 1613,
-      "sha256": "7c2898d2a1d93cb6938684a94770b7f8448e7a552e42bf9b8bba99a58402a585",
+      "path": "LUMERIFT_v1.11.15_VERIFICATION.txt",
+      "bytes": 1649,
+      "sha256": "66152b3bb1f2a117890581598aaaee818ec2834e781c9cd0429aad147001db72",
       "status": "added"
     },
     {
       "path": "PATCH_DELETE_LIST.txt",
-      "bytes": 66,
-      "sha256": "d4d5aa9d01abfc53219b8734abf73428e4ba4d7312fd566187c5f357ede21219",
+      "bytes": 48,
+      "sha256": "32a2bb57e2054b5a46f62c6d958ec14ac4795dd5a858974adaae0faf4ee3b5eb",
       "status": "modified"
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 526,
-      "sha256": "5b72b0af21b1648c7b550fd565864b9a3f48b49439488836bb11897afe43f7d2",
+      "bytes": 477,
+      "sha256": "561e0c7779497874504f333289346c7c339d70c6f0899f612550d507a573cce8",
       "status": "modified"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 260,
-      "sha256": "4157cdd287b3bcba88b73cd855758b3d98a9606fc2679b23c945ae62e7bfb218",
+      "bytes": 317,
+      "sha256": "89795170b789b572cf247ffdd30548da1f2441f0c3c5825abb7ab72552a2cfa9",
       "status": "modified"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1540,
-      "sha256": "f023dd6430eed0957134b60ea3c5af5629b6a479a5d3c6988b3e9d1cfe53c2d1",
+      "bytes": 1420,
+      "sha256": "0846ddf29edae48e065768e16223bf95ad57dd7b2d4dd59938c96131c70cdbe9",
       "status": "modified"
     },
     {
       "path": "README.md",
-      "bytes": 4033,
-      "sha256": "3220dd598b244e005b959fa8f6907d03077a7d869c09c646ba6cabeeba0667a9",
+      "bytes": 4553,
+      "sha256": "db595f29a8440b268f597347dd81af84e5ded73f19f80c60ddeb141b27bad5a3",
       "status": "modified"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1758,
-      "sha256": "03e4b12748ef967d8df872fc2c20e9424913dda471157936a176b70f51f7b91c",
+      "bytes": 1880,
+      "sha256": "37b8303ebc48a5cee763127a583a32c49e990a77063c339dd90626083cf3638f",
       "status": "modified"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
       "bytes": 117121,
-      "sha256": "a51329cbfc1517475ea80fc358a0bb67daf8a1383d585efd50fae6508bcc2b06",
+      "sha256": "d6e8432d7e5d0825493c5c23087bfc59620642ebe70c67c759b77af1c0471922",
       "status": "modified"
     },
     {
-      "path": "docs/AUTO_BATTLE_STRATEGY_PRESETS_v1.11.14.md",
-      "bytes": 841,
-      "sha256": "8daad4934b85e81be0cb9c5d3923a2e94ac943bca6ad7ae34479de9eab0964f8",
+      "path": "docs/AUTO_PRESET_PERFORMANCE_v1.11.15.md",
+      "bytes": 509,
+      "sha256": "29bad400cb5588552cc68247ef10861792f882131d300ea55275ac56ef836db5",
       "status": "added"
     },
     {
-      "path": "docs/BOSS_THREAT_HUD_v1.11.14.md",
-      "bytes": 580,
-      "sha256": "8e5fabc1353733ba83c3ac66701206468c794493456c19c25360b873d57e0634",
+      "path": "docs/AUTO_PRESET_VAULT_v1.11.15.md",
+      "bytes": 541,
+      "sha256": "0c6f36c35c6c4908726fa545daf1e2ae455ffdf70d93da865617a3259fa673b0",
+      "status": "added"
+    },
+    {
+      "path": "docs/BOSS_DODGE_DATA_v1.11.15.md",
+      "bytes": 570,
+      "sha256": "24a78834c3c7024adcef4a1fced6ffafc9aefbd793f5b4b3542e7e4a026952b9",
       "status": "added"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 27130,
-      "sha256": "d876d5db55dd8a4da99750c6ba3abfbced0f99763e302485809ee1c8db8b2241",
+      "bytes": 27757,
+      "sha256": "0f28fd5da6b23e44c4b2614b713a9e3eee26909813d80089e0595cf69543c611",
       "status": "modified"
     },
     {
-      "path": "docs/FINGER_CLEARANCE_CONTROLS_v1.11.14.md",
-      "bytes": 513,
-      "sha256": "1aff46281b9390ede746a53e05fcec975838e76f5628ff4dd9048bb79786e6f4",
-      "status": "added"
+      "path": "docs/HANDOFF_LOG.md",
+      "bytes": 18101,
+      "sha256": "03d69bf7d96e4e7e5686fd6488ed59321983d3e4355c3d54ca53452ba4318de3",
+      "status": "modified"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 23408,
-      "sha256": "5c99e29694f3ee9b30aca4889f441f9eac4c304dd974e5d87aa3a907d302adca",
+      "bytes": 23744,
+      "sha256": "88828f65378a809efa814228bbe02f4acc803a286b6ffa7793edd54cde865df1",
       "status": "modified"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.11.14.md",
-      "bytes": 762,
-      "sha256": "817f42bf9c79c35bce0f8a9f38c2ab51c91a6fd055ddea09297abc0691192260",
+      "path": "docs/NEXT_UPDATE_v1.11.16.md",
+      "bytes": 264,
+      "sha256": "08d44a8baa76b91b10269106ae0c2f92b2d1d515f20271348ff8542abad77060",
+      "status": "added"
+    },
+    {
+      "path": "docs/PATCH_NOTES_v1.11.15.md",
+      "bytes": 698,
+      "sha256": "31f7ff5ca33d11ace7d07f51682baca9ba6f3e6543cc51483de17daa7639f31b",
       "status": "added"
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 18802,
-      "sha256": "37ca0bb6d1938e7b844f1ea3b6f1b874540c6dedf08bd12891b6f312c2a77e40",
+      "bytes": 19091,
+      "sha256": "f361bb92b50dc96978e8b78fd1e6365f4fff15977a3fb95097648e3ad16a603a",
       "status": "modified"
     },
     {
       "path": "package.json",
-      "bytes": 5363,
-      "sha256": "07eeecb5d7dc494dabc5cb13a8050aa4ff69fe8dbd17d9ed686485535b0676e9",
+      "bytes": 5473,
+      "sha256": "b462851726f0c677ab675043f960decaa271194f47e49332277b64446dd5242c",
       "status": "modified"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
       "bytes": 3719,
-      "sha256": "3a0de0fee52a00631f1ac250774334b5a153e89cc9547f74af45b41f1779b3ce",
+      "sha256": "34d70fab6a031e668eb78e3dc04c80e3aa228a82fbdee914ee639777763bf7f2",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/validate-game-data.mjs",
+      "bytes": 7460,
+      "sha256": "f94ad92657082fe1a9e27c23a125e58593beb85ea5e32acd207c31ae979ab80d",
       "status": "modified"
     },
     {
       "path": "scripts/validate-release-version.mjs",
-      "bytes": 7611,
-      "sha256": "86eeb6e44d7419a6c17b4ed2fb063479c386915ae2fe52951360843ab57632d0",
+      "bytes": 8028,
+      "sha256": "0ec4830153a70be369fca5905474ae2eca50b4996bf354b6818ec7608cbaa028",
       "status": "modified"
     },
     {
-      "path": "scripts/validate-v11114-upgrade.mjs",
-      "bytes": 3953,
-      "sha256": "b3f03ee8cde3d26b2a9d6d0a58860f1035b7c022e1dfdc5cb5212d74d859a20d",
+      "path": "scripts/validate-v11111-upgrade.mjs",
+      "bytes": 3935,
+      "sha256": "8e1c59a58ed5d519b0567b0f1a57edcffce707954600ff0286b6c907ec20aa0a",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/validate-v11115-upgrade.mjs",
+      "bytes": 4388,
+      "sha256": "32948ecf69c4a1532ca24c662d8cadb558c677c67924271c9fcb659ca86f8b91",
       "status": "added"
     },
     {
-      "path": "scripts/validate-v1118-upgrade.mjs",
-      "bytes": 3649,
-      "sha256": "8a685d46d5300295b6276c6f31066419090285a88e10165424ca83c9a0acceff",
-      "status": "modified"
-    },
-    {
       "path": "scripts/validate-v1119-upgrade.mjs",
-      "bytes": 3871,
-      "sha256": "1c1ffa4d96b9db039354baa635ec17bba8d4383458284ec8d546963477287566",
+      "bytes": 3943,
+      "sha256": "c7974692a516f2941b8852ec94e088cf759e1b38d596edf32c865e3d54d1513d",
       "status": "modified"
     },
     {
       "path": "src/app/brand.ts",
       "bytes": 579,
-      "sha256": "f9cd626e497f24f8b9fcb0071bf8ffe3423803d020d988ad879fb6c97276a36e",
+      "sha256": "70b6f9a6f93afd129caf4d20447e7c009dd8b5517d02e7c1e77dc55ac339e12e",
       "status": "modified"
     },
     {
+      "path": "src/core/input/AutoBattlePresetSlots.test.ts",
+      "bytes": 1555,
+      "sha256": "68e75bc125b7d52df40ff279e7023765bd1d38931ad7fa1cf10280eae2e7d30d",
+      "status": "added"
+    },
+    {
+      "path": "src/core/input/AutoBattlePresetSlots.ts",
+      "bytes": 7221,
+      "sha256": "c60059227476e75a92e30ea02ed026eab6fcee0160a24dd693285910b6b65076",
+      "status": "added"
+    },
+    {
       "path": "src/core/input/CombatAssistController.test.ts",
-      "bytes": 3079,
-      "sha256": "102dbad677fed47b2dec14bfe538b6c02eb8e6d111044de7a3a0d64d554f93ce",
+      "bytes": 3745,
+      "sha256": "9b0450db582a2733e47b1c26d4f76884d361bb8425073687abf3e1153c298bee",
       "status": "modified"
     },
     {
       "path": "src/core/input/CombatAssistController.ts",
-      "bytes": 15493,
-      "sha256": "ec374f4f7f048b49a4ffdf14a52d2d37026ed37dbfff1b42eaa92f0c7aa657b4",
+      "bytes": 16629,
+      "sha256": "a7a7447fe51a572079a1544691b8e480d0d1c11cd4a868727843710d9313a651",
       "status": "modified"
     },
     {
-      "path": "src/core/layout/BattleHudSafeArea.test.ts",
-      "bytes": 1905,
-      "sha256": "25ce83d606be767f401a499e4e116ec0188c8ce71ed29fc4414825fca662936f",
-      "status": "modified"
-    },
-    {
-      "path": "src/core/layout/BattleHudSafeArea.ts",
-      "bytes": 2502,
-      "sha256": "ddceb307ac988b66ee9a5dbd3904c5e71343a64c0589e13b1df3c75e10e6cb1f",
-      "status": "modified"
-    },
-    {
-      "path": "src/game/combat/AutoBattleController.test.ts",
-      "bytes": 6248,
-      "sha256": "d4f250b427dba27713b589a2b92706c67325da219a8d9610f52f7e4d24bc73ba",
-      "status": "modified"
-    },
-    {
-      "path": "src/game/combat/AutoBattleController.ts",
-      "bytes": 9451,
-      "sha256": "8ec3fdc74a6af3105b9348e2704e7ae92065404a62c1861081c71b0cccc178b0",
-      "status": "modified"
-    },
-    {
-      "path": "src/game/combat/AutoCombatSessionLog.test.ts",
-      "bytes": 1053,
-      "sha256": "41dcd24f2dab7cedd934ecdd863cab1e942e5ee9a8d3e83bad47bba97ddd8270",
-      "status": "modified"
-    },
-    {
-      "path": "src/game/combat/AutoCombatSessionLog.ts",
-      "bytes": 3648,
-      "sha256": "bf65a99cd8ba991c7f3c8b15d37d5a2d520016cc5f3e6f230a1a737d3d44ff7a",
-      "status": "modified"
-    },
-    {
-      "path": "src/game/presentation/BossThreatHud.test.ts",
-      "bytes": 1200,
-      "sha256": "3b67cecfaac7c5cdb830f1a0df618ef6b04407b4695e49bc8a7caa5a0996ea26",
+      "path": "src/data/boss-dodge-rules.json",
+      "bytes": 861,
+      "sha256": "de1a18232b019fd46b6af5e7eb571a92f9e3e3a27beab6e304670390162934b8",
       "status": "added"
     },
     {
-      "path": "src/game/presentation/BossThreatHud.ts",
-      "bytes": 2522,
-      "sha256": "319aa68cfcad660745dde2853a3e408b31c09a8ffd26f089fff11b9cbd89b595",
+      "path": "src/game/combat/BossDodgeRules.test.ts",
+      "bytes": 1074,
+      "sha256": "4b60b78f8a577052810d6fb94912eee7fd11ac0bf29309a235bb93d560f4e9e5",
+      "status": "modified"
+    },
+    {
+      "path": "src/game/combat/BossDodgeRules.ts",
+      "bytes": 3923,
+      "sha256": "da7e2e900049634fdfdb36a83fbed1b06e076c27df15aa30e3851503fd0b62fd",
+      "status": "modified"
+    },
+    {
+      "path": "src/game/presentation/AutoPresetPerformance.test.ts",
+      "bytes": 980,
+      "sha256": "14fbf5afcb611e0a7ad45304d0ff69c09f49b02e7ea720079c0f28d1b6c454ba",
       "status": "added"
     },
     {
-      "path": "src/scenes/BattleScene.ts",
-      "bytes": 95309,
-      "sha256": "b9090970fc486e798c0cfd7a61e04f7fc05cc75fb443b90540bb8d4c75f3436a",
-      "status": "modified"
+      "path": "src/game/presentation/AutoPresetPerformance.ts",
+      "bytes": 5176,
+      "sha256": "62dc142e256cfb62a16fbf21ceefda8fb30bfee75d5190c7a2b021522cca619d",
+      "status": "added"
+    },
+    {
+      "path": "src/scenes/AutoPresetLabScene.ts",
+      "bytes": 8189,
+      "sha256": "d55a8604fdb620eb496b48a78d77a7194143003f2312a5bf4b546f59ce91c27f",
+      "status": "added"
     },
     {
       "path": "src/scenes/ResultScene.ts",
-      "bytes": 11540,
-      "sha256": "4cee84d3f0f62b03535a915938e2d9cc6131d962f8d637690ea3f043da5c18e8",
+      "bytes": 12248,
+      "sha256": "365b5ad105c64636df0d95658ebb2cdd24447466d42ceff32761f4f07f0546e7",
       "status": "modified"
     },
     {
       "path": "src/scenes/SettingsScene.ts",
-      "bytes": 19126,
-      "sha256": "2ab9f928e2ae334158e4b01d2fa56ddca14fbe08e296c00785df094dd8b14ca9",
+      "bytes": 19613,
+      "sha256": "a1021859aff29c0c52f7160fd5756251f1fa3bc81f4cf4c4c14c1093fe6a7f9b",
       "status": "modified"
     }
   ]
