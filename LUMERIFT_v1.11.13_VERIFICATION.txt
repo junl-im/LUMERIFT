@@ -1,0 +1,55 @@
+LUMERIFT v1.11.13 Verification
+Date: 2026-07-30
+Base: v1.11.12 latest corrected full archive
+Target: v1.11.13
+
+[Implemented]
+- Contextual NEXT BEST ACTION in Lobby
+- Settings inline feedback banner
+- ResultActionPlan shared performance/recommendation logic
+- Asset gallery QUALITY score and MOBILE ROLE audit display
+- Compact subtitle layout support in UiButton
+- Cleaned duplicated PROJECT_HANDOFF content
+
+[Contracts kept]
+- Firebase App Check remains disabled
+- Player Save v4 remains unchanged
+- AttackFootprint telegraph/collision contract remains unchanged
+- Screen-aligned joystick movement remains the default
+- PNG/WebP image policy and 15 MB initial input budget remain active
+
+[Validation passed]
+- validate:config
+- validate:release
+- validate:firebase
+- validate:account
+- validate:combat
+- validate:assets
+- validate:data
+- validate:atlas
+- validate:manifest
+- validate:asset-cleanup
+- validate:art
+- validate:archive
+- validate:sourceart
+- validate:ui
+- validate:operations
+- validate:mobile
+- validate:mobile:v110
+- validate:mobile:v111
+- validate:upgrade:v111 through validate:upgrade:v11113
+- validate:liveart
+- validate:source
+- validate:handoff
+- TypeScript parse: 156 source files, 0 parse errors
+- Offline strict TypeScript project check with temporary external-module stubs
+- Pure UX runtime harness: 6 cases
+
+[Asset metrics]
+- Active public assets: 41 files, 5.46 MB
+- Archived runtime assets: 194 files, 23.47 MB
+- Estimated initial payload inputs: 0.97 MB / 15 MB
+
+[Not claimed]
+- Real npm dependency typecheck, Vitest suite, Vite production build, and bundle validation require the actual node_modules installed by CI.
+- Android/iOS physical-device screenshots, FPS, temperature, battery, and GPU memory were not measured.

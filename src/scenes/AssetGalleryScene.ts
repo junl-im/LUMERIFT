@@ -5,7 +5,7 @@ import type { Scene } from '../core/scenes/Scene';
 import { QUALITY_GALLERY_CATEGORIES, type QualityGalleryCategoryDefinition } from '../core/assets/AssetCatalog';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createComicTag, createFeatureMarquee } from '../ui/InterfaceChrome';
-import { createBadge } from '../ui/PremiumUi';
+import { createBadge, createProgressBar } from '../ui/PremiumUi';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 
@@ -15,6 +15,8 @@ interface GalleryAuditSummary {
   readonly title: string;
   readonly detail: string;
   readonly audit: string;
+  readonly score: number;
+  readonly mobileRole: string;
 }
 
 export class AssetGalleryScene implements Scene {
@@ -31,11 +33,12 @@ export class AssetGalleryScene implements Scene {
   private summaryDetailText?: Text;
   private summaryAuditText?: Text;
   private summaryBadge?: Container;
+  private summaryScoreGroup?: Container;
   private loadingToken = 0;
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.12 기준 실사용 아트·보관 원본·모바일 제작용 마스터 관점을 함께 점검합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.13 기준 실사용·후보·보관 에셋을 품질 점수와 모바일 역할까지 함께 점검합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 650));
     this.view.addChild(createPanel(36, 260, 468, 88));
 
@@ -255,15 +258,29 @@ export class AssetGalleryScene implements Scene {
     if (!category || !this.summaryTitleText || !this.summaryDetailText || !this.summaryAuditText) return;
     const summary = this.summaryFor(category);
     this.summaryTitleText.text = summary.title;
-    this.summaryDetailText.text = summary.detail;
+    this.summaryDetailText.text = `${summary.detail} · MOBILE ROLE ${summary.mobileRole}`;
     this.summaryAuditText.text = summary.audit;
     if (this.summaryBadge) {
       this.view.removeChild(this.summaryBadge);
       this.summaryBadge.destroy({ children: true });
     }
+    if (this.summaryScoreGroup) {
+      this.view.removeChild(this.summaryScoreGroup);
+      this.summaryScoreGroup.destroy({ children: true });
+    }
     this.summaryBadge = createBadge(summary.tag, summary.tone);
     this.summaryBadge.position.set(364, 274);
-    this.view.addChild(this.summaryBadge);
+    this.summaryScoreGroup = new Container();
+    const scoreLabel = new Text({
+      text: `QUALITY ${summary.score}/100`,
+      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '900', letterSpacing: 0.45 }),
+    });
+    scoreLabel.position.set(0, 0);
+    const scoreBar = createProgressBar(112, summary.score / 100, summary.score >= 85 ? 'success' : summary.score >= 70 ? 'primary' : 'warning', 7);
+    scoreBar.position.set(0, 13);
+    this.summaryScoreGroup.position.set(366, 310);
+    this.summaryScoreGroup.addChild(scoreLabel, scoreBar);
+    this.view.addChild(this.summaryBadge, this.summaryScoreGroup);
   }
 
   private summaryFor(category: QualityGalleryCategoryDefinition): GalleryAuditSummary {
@@ -276,6 +293,8 @@ export class AssetGalleryScene implements Scene {
           title: '실사용 배경/초상 감수',
           detail: `런타임 화면의 첫인상을 담당하는 메인 비주얼입니다. 현재 번들은 ${bundleLabel} 규모로 모바일 첫 체감 품질을 좌우합니다.`,
           audit: '감수 포인트 · 화면 비율 유지 · 글자 가독성 방해 여부 · 분위기 통일 · 배경/초상 톤 일치',
+          score: 88,
+          mobileRole: 'LIVE HERO VISUAL',
         };
       case 'live-player':
         return {
@@ -284,6 +303,8 @@ export class AssetGalleryScene implements Scene {
           title: '실사용 플레이어 모션 점검',
           detail: `전투 런타임에서 직접 쓰는 플레이어 동작입니다. 방향감·실루엣·타격 자세가 읽히는지 확인합니다.`,
           audit: '감수 포인트 · 8방향 판독성 · 이동/공격 방향감 · 실루엣 충돌 최소화',
+          score: 82,
+          mobileRole: 'COMBAT CORE',
         };
       case 'owned-player-preview':
         return {
@@ -292,6 +313,8 @@ export class AssetGalleryScene implements Scene {
           title: '전용 모션 미리보기',
           detail: `LUMERIFT 전용 제작 후보 라인입니다. 실사용 대체 후보이므로 제작용 마스터 기준에서 해상도와 프레임 키 계약을 함께 봅니다.`,
           audit: '감수 포인트 · 키 이름 계약 유지 · 교체 가능성 · 마스터 보관 가치 · 용량 예산 적합성',
+          score: 76,
+          mobileRole: 'MOTION MASTER',
         };
       case 'owned-player-painted':
         return {
@@ -300,6 +323,8 @@ export class AssetGalleryScene implements Scene {
           title: '도색 후보 아트 감수',
           detail: `전용 도색 후보군입니다. 최종 채택 전까지는 감수/비교용 성격이 강하며 제작용 마스터 관리 규칙을 우선합니다.`,
           audit: '감수 포인트 · 색 일관성 · UI 위 가독성 · 채색 명암 · 런타임 대체 비용',
+          score: 71,
+          mobileRole: 'PAINT CANDIDATE',
         };
       case 'live-monsters':
         return {
@@ -308,6 +333,8 @@ export class AssetGalleryScene implements Scene {
           title: '실사용 몬스터 라인업',
           detail: `전투 체감과 스테이지 개성을 만드는 몬스터 런타임 자산입니다. 번들 규모는 ${bundleLabel}이며 lazy loading 기준으로 관리합니다.`,
           audit: '감수 포인트 · 피격 판독성 · 크기 대비 선명도 · 패턴별 개성 · 과도한 프레임 낭비 여부',
+          score: 84,
+          mobileRole: 'LAZY COMBAT PACK',
         };
       case 'live-ui':
         return {
@@ -316,6 +343,8 @@ export class AssetGalleryScene implements Scene {
           title: '실사용 UI 스킨 기준선',
           detail: '버튼, 슬롯, 패널 등 공통 컴포넌트에 쓰이는 스킨입니다. 전투/로비/결과 화면의 톤 통일을 확인합니다.',
           audit: '감수 포인트 · 대비 · 터치 영역 강조 · 상태 구분색 · 전체 시각 언어 일관성',
+          score: 90,
+          mobileRole: 'UI BASELINE',
         };
       case 'operations-ui':
         return {
@@ -324,6 +353,8 @@ export class AssetGalleryScene implements Scene {
           title: '운영 UI 보상 아이콘',
           detail: '우편, 보상, 출석, 운영 화면에서 사용하는 운영형 아이콘 묶음입니다. 작은 크기에서도 기능이 읽히는지가 핵심입니다.',
           audit: '감수 포인트 · 소형 아이콘 식별성 · 배지/카운트 중첩 · 리워드 의미 전달',
+          score: 86,
+          mobileRole: 'OPS MICRO ICON',
         };
       default:
         return {
@@ -332,6 +363,8 @@ export class AssetGalleryScene implements Scene {
           title: category.label,
           detail: `선택된 분류 번들 크기 ${bundleLabel}. 모바일 제작용 마스터와 런타임 사용성을 함께 점검합니다.`,
           audit: '감수 포인트 · 목적 적합성 · 용량 예산 · 런타임 적용성',
+          score: 70,
+          mobileRole: 'REVIEW QUEUE',
         };
     }
   }

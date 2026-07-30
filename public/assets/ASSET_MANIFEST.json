@@ -1,7 +1,7 @@
 {
   "version": 13,
   "game": "LUMERIFT",
-  "release": "1.11.12",
+  "release": "1.11.13",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {

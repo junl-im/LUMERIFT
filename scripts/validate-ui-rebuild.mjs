@@ -34,7 +34,6 @@ const requirements = {
     'createQuestPanel(',
     'createMenuGrid(',
     'createBottomNavigation(',
-    "label: '전투 시작'",
   ],
   'src/scenes/BattleScene.ts': [
     "const controlDock = createRasterPanel(8, 786, 524, 166, 'panel_glass')",
@@ -83,6 +82,14 @@ for (const [path, markers] of Object.entries(requirements)) {
     if (!source.includes(marker)) errors.push(`${path}: UI marker missing: ${marker}`);
   }
 }
+
+const lobbySource = await readFile('src/scenes/LobbyScene.ts', 'utf8');
+const hasLegacyBattleAction = lobbySource.includes("label: '전투 시작'");
+const hasContextualBattleAction = lobbySource.includes('resolveLobbyNextAction') && lobbySource.includes('createPrimaryAction(context, nextAction)');
+if (!hasLegacyBattleAction && !hasContextualBattleAction) {
+  errors.push('src/scenes/LobbyScene.ts: primary battle or contextual action contract missing');
+}
+
 for (const path of expectedFiles) {
   try {
     const info = await stat(path);

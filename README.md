@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.12
+# LUMERIFT: 균열의 계승자 v1.11.13
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -57,3 +57,12 @@ npm run dev
 - 결과 화면에 전술 요약·성과 분류·다음 추천 행동 표시
 - 공통 SceneChrome 헤더와 마키 문구를 v1.11.12 기준으로 재정비
 - 관련 문서: `docs/UI_UX_RENEWAL_v1.11.12.md`, `docs/ASSET_AUDIT_v1.11.12.md`, `docs/PATCH_NOTES_v1.11.12.md`
+
+## v1.11.13 핵심 업데이트
+- 퀘스트 보상·운영 알림·스토리 진행 상태를 분석해 로비에 `NEXT BEST ACTION` 표시
+- 설정 변경 후 적용 결과를 즉시 보여주는 인라인 피드백 배너 추가
+- 결과 화면 성과 평가와 다음 행동 추천을 `ResultActionPlan` 순수 로직으로 분리
+- 에셋 보관소에 분류별 `QUALITY` 점수와 `MOBILE ROLE` 표시
+- 작은 결과 버튼의 부제목 줄 간격·세로 정렬 개선
+- 관련 문서: `docs/CONTEXTUAL_UX_FLOW_v1.11.13.md`, `docs/ASSET_QUALITY_MATRIX_v1.11.13.md`, `docs/PATCH_NOTES_v1.11.13.md`
+

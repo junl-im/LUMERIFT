@@ -1,3 +1,20 @@
+## v1.11.13 - 2026-07-30
+
+### Added
+- 로비 `NEXT BEST ACTION` 상황 기반 추천
+- 설정 변경 인라인 피드백 배너
+- 에셋 분류별 QUALITY 점수와 MOBILE ROLE
+- LobbyNextAction·ResultActionPlan 순수 로직 테스트
+
+### Changed
+- 결과 화면 추천 행동과 주 버튼 목적을 동일 로직으로 통합
+- 작은 버튼 부제목 세로 정렬과 줄 간격 개선
+- PROJECT_HANDOFF 중복 내용을 정리하고 릴리스 경로 최신화
+
+### Known limitations
+- Android Chrome·iOS Safari 실제 캡처 기반 미세 정렬은 아직 수행하지 않았다.
+- 전체 npm verify와 Vite production build는 의존성이 있는 CI에서 최종 확인한다.
+
 ## v1.11.12
 - 로비 커맨드 허브 정보 위계 재정리와 브리핑 가독성 개선
 - 에셋 보관소 품질 태그·감수 포인트·모바일 제작용 마스터 안내 추가

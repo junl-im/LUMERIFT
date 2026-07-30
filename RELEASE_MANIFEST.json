@@ -1,18 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.12",
-  "baseVersion": "1.11.11",
+  "version": "1.11.13",
+  "baseVersion": "1.11.12",
   "releaseDate": "2026-07-30",
-  "fullArchive": "LUMERIFT_FULL_v1.11.12.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.11_to_v1.11.12.zip",
-  "qualityStage": "production-candidate-ui-ux-asset-polish",
+  "fullArchive": "LUMERIFT_FULL_v1.11.13.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-contextual-ux-asset-quality-matrix",
   "features": [
-    "로비 커맨드 허브 정보 위계 재정리와 퀵 브리핑 가독성 강화",
-    "에셋 보관소 분류별 품질 태그·감수 포인트·모바일 제작용 마스터 안내 강화",
-    "결과 화면 전술 요약·성과 분류·다음 추천 행동 표시 개선",
-    "공통 SceneChrome 헤더 문구와 업데이트 마키를 v1.11.12 기준으로 재정비",
-    "v1.11.11 자동 전투 세션 로그·플랫폼 Safe Area·이동 방향 핫픽스 계약 유지"
+    "로비 진행 상태 기반 NEXT BEST ACTION 추천과 동적 주 행동 버튼",
+    "설정 변경 즉시 확인 가능한 인라인 피드백 배너",
+    "결과 화면 성과 평가·추천 행동 로직 분리와 버튼 부제목 정렬 개선",
+    "에셋 보관소 분류별 QUALITY 점수·MOBILE ROLE·감수 기준 강화",
+    "v1.11.10~v1.11.12 UI·자동 전투·Safe Area·조이스틱 이동 계약 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -38,9 +38,11 @@
   },
   "verification": [
     "validate-release-version",
+    "validate-v11110-upgrade",
     "validate-v11111-upgrade",
     "validate-v11112-upgrade",
-    "asset gallery category audit markers",
-    "result scene tactical summary markers"
+    "validate-v11113-upgrade",
+    "pure UX decision runtime harness",
+    "asset registry release sync"
   ]
 }

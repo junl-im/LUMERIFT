@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.12",
+  "version": "1.11.13",
   "updatedAt": "2026-07-30",
-  "currentPhase": "v1.11.12 UI·UX·에셋 재검토 업그레이드 패치 완료, GitHub Actions 전체 확인 대기",
-  "qualityStage": "production-candidate-auto-session-boss-rules-mobile-safe-area",
+  "currentPhase": "v1.11.13 상황 기반 UI 흐름·에셋 품질 매트릭스 업그레이드 완료, GitHub Actions 전체 확인 대기",
+  "qualityStage": "production-candidate-contextual-ux-asset-quality-matrix",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -178,18 +178,15 @@
     "v1.11.10: 웹툰형 인터페이스 크롬·코믹 태그·로비 브리핑·에셋 보관소 production-line 안내를 포함한 초대규모 디자인·에셋 리뉴얼 적용",
     "v1.11.11: 자동 전투 세션 로그, AUTO ASSIST REPORT, 보스 3패턴 회피 규칙, HP·Drive·타겟 HP 복합 스킬 판단, iOS·Android Safe Area 보정 적용",
     "v1.11.11 hotfix: 가상 조이스틱 기본 reverse 설정을 screen으로 수정하고 저장 키 v2 및 방향 단위 테스트 추가",
-    "v1.11.12: 로비/에셋 보관소/결과 화면 UX 재정리, 품질 태그 및 전술 요약 강화"
+    "v1.11.12: 로비/에셋 보관소/결과 화면 UX 재정리, 품질 태그 및 전술 요약 강화",
+    "v1.11.13: 로비 NEXT BEST ACTION, 설정 피드백 배너, 결과 행동 계획, 에셋 QUALITY/MOBILE ROLE 감수 정보 적용"
   ],
-  "inProgress": [
-    "GitHub Actions 전체 typecheck/test/build/bundle 확인",
-    "Android Chrome·Samsung Internet·iOS Safari 실제 화면 캡처 검수",
-    "AUTO ASSIST REPORT 실전 통계 가독성 검수"
-  ],
+  "inProgress": [],
   "nextPlanned": [
-    "Android Chrome 및 iOS Safari 실기기 캡처 기준 UI 레이아웃 검수",
-    "보스전 HUD 세부 대비와 손가락 가림 영역 재점검",
-    "8방향 공격 프레임 및 무기 궤적 고급 이펙트 강화",
-    "자동 전투 프리셋 별 추천 템플릿과 사용자 저장 슬롯 추가"
+    "Android Chrome·iOS Safari 실제 캡처 기반 NEXT BEST ACTION 카드 및 결과 버튼 미세 정렬",
+    "보스전 HUD 위험 신호 대비와 손가락 가림 영역 재점검",
+    "8방향 공격 프레임·무기 궤적·타격 VFX 고급화",
+    "자동 전투 공격형·균형형·보존형 사용자 프리셋 저장 슬롯"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -303,8 +300,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.12.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.11_to_v1.11.12.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.13.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,
@@ -312,7 +309,7 @@
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
   },
-  "lastUpdated": "2026-07-29",
+  "lastUpdated": "2026-07-30",
   "featureMetrics": {
     "bossPhaseCinematics": 3,
     "cloudRecoveryMaxPoints": 5,
@@ -380,9 +377,9 @@
     "mobileSafeAreaPlatformProfiles": 3
   },
   "releaseArchives": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.4.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.3_to_v1.11.4.zip",
-    "full": "LUMERIFT_FULL_v1.11.11.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.10_to_v1.11.11.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.13.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip",
+    "full": "LUMERIFT_FULL_v1.11.13.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.12_to_v1.11.13_ROOT_OVERWRITE.zip"
   }
 }

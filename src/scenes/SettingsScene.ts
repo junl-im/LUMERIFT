@@ -23,6 +23,7 @@ import { createBackground } from '../ui/SceneChrome';
 import { createRasterPanel } from '../ui/UiSkin';
 import { createBadge } from '../ui/PremiumUi';
 import { createInterfaceStamp } from '../ui/InterfaceChrome';
+import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { LoginScene } from './LoginScene';
@@ -38,6 +39,13 @@ export class SettingsScene implements Scene {
   public enter(context: AppContext): void {
     this.context = context;
     this.view.addChild(createBackground('시스템 커맨드 센터', '성능·입력·자동 전투·접근성·실기기 QA를 하나의 콘솔에서 관리합니다.'));
+    const feedback = createInlineFeedback(
+      this.message || '설정 변경은 즉시 저장되며, 조이스틱 기본값은 화면 기준으로 유지됩니다.',
+      this.message ? 'success' : 'neutral',
+      484,
+    );
+    feedback.position.set(28, 136);
+    this.view.addChild(feedback);
     this.createPerformancePanel(context);
     this.createCombatAssistPanel(context);
     this.createAccessibilityPanel(context);

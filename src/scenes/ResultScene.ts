@@ -13,6 +13,7 @@ import { InventoryScene } from './InventoryScene';
 import { StageSelectScene } from './StageSelectScene';
 import { autoBattleReasonLabel } from '../game/combat/AutoBattleController';
 import type { AutoCombatSessionSummary } from '../game/combat/AutoCombatSessionLog';
+import { resolveResultActionPlan, type ResultActionPlan } from '../game/presentation/ResultActionPlan';
 
 export interface BattleOutcome {
   readonly victory: boolean;
@@ -113,7 +114,7 @@ export class ResultScene implements Scene {
       this.outcome.victory ? 'success' : 'danger',
     );
     badge.position.set(224, 350);
-    const performanceBadge = createBadge(this.performanceLabel(), this.outcome.victory ? 'warning' : 'secondary');
+    const performanceBadge = createBadge(this.actionPlan().performanceLabel, this.outcome.victory ? 'warning' : 'secondary');
     performanceBadge.position.set(352, 350);
     this.view.addChild(medalGroup, badge, performanceBadge);
   }
@@ -153,7 +154,7 @@ export class ResultScene implements Scene {
     });
     totalText.position.set(76, 523);
     const reasonText = new Text({
-      text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)} · 다음 추천 · ${this.nextRecommendation()}` : `수동 전투 결과 · 다음 추천 · ${this.nextRecommendation()}`,
+      text: summary ? `주요 판단 · ${autoBattleReasonLabel(summary.topReason)} · 다음 추천 · ${this.actionPlan().recommendation}` : `수동 전투 결과 · 다음 추천 · ${this.actionPlan().recommendation}`,
       style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 386 }),
     });
     reasonText.position.set(76, 544);
@@ -198,7 +199,7 @@ export class ResultScene implements Scene {
     });
     equipment.position.set(82, 690);
     const followUp = new Text({
-      text: `다음 추천 행동 · ${this.nextRecommendation()}`,
+      text: `다음 추천 행동 · ${this.actionPlan().recommendation}`,
       style: new TextStyle({ fill: 0xc3d7d3, fontSize: 10, fontWeight: '700', wordWrap: true, wordWrapWidth: 360 }),
     });
     followUp.position.set(82, 720);
@@ -217,17 +218,21 @@ export class ResultScene implements Scene {
     });
     retry.position.set(28, 756);
 
+    const actionPlan = this.actionPlan();
     const next = new UiButton({
-      label: this.outcome.nextStageId ? '다음 스테이지 진행' : '작전도 열기',
-      subtitle: this.outcome.nextStageId ? '승리 시 다음 작전으로 바로 이동합니다.' : '현재 챕터의 스테이지를 다시 고릅니다.',
-      icon: this.outcome.nextStageId ? 'play' : 'stage',
+      label: actionPlan.primaryLabel,
+      subtitle: actionPlan.primarySubtitle,
+      subtitleFontSize: 8,
+      icon: this.outcome.nextStageId ? 'play' : this.outcome.itemDrops.length > 0 ? 'equipment' : 'stage',
       width: 176,
       height: 56,
       fontSize: 13,
       onPress: async () => context.scenes.change(
         () => this.outcome.nextStageId && this.outcome.victory
           ? new BattleScene(this.outcome.nextStageId)
-          : new StageSelectScene(this.outcome.stageId),
+          : this.outcome.itemDrops.length > 0
+            ? new InventoryScene()
+            : new StageSelectScene(this.outcome.stageId),
       ),
     });
     next.position.set(182, 756);
@@ -277,17 +282,13 @@ export class ResultScene implements Scene {
     return 'B';
   }
 
-  private performanceLabel(): string {
-    if (!this.outcome.victory) return 'TACTICAL RESET';
-    if (this.outcome.clearSeconds <= 50 && this.outcome.maxCombo >= 4) return 'SPEED FOCUS';
-    if (this.outcome.maxCombo >= 3) return 'CONTROL STABLE';
-    return 'PROGRESS CLEAR';
-  }
-
-  private nextRecommendation(): string {
-    if (!this.outcome.victory) return '장비를 점검하고 회피 타이밍을 정비한 뒤 재도전';
-    if (this.outcome.nextStageId) return '다음 스테이지로 진행해 전투 리듬을 이어가기';
-    if (this.outcome.itemDrops.length > 0) return '획득 장비를 확인하고 강화/교체 여부 검토';
-    return '로비로 복귀해 퀘스트와 성장 상태를 점검';
+  private actionPlan(): ResultActionPlan {
+    return resolveResultActionPlan({
+      victory: this.outcome.victory,
+      clearSeconds: this.outcome.clearSeconds,
+      maxCombo: this.outcome.maxCombo,
+      nextStageId: this.outcome.nextStageId,
+      itemDropCount: this.outcome.itemDrops.length,
+    });
   }
 }

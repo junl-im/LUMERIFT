@@ -37,8 +37,6 @@ const requirements = {
     'TACTICAL SUMMARY · AUTO ASSIST REPORT',
     'MISSION REWARD · LOOT OVERVIEW',
     '다음 추천 행동 ·',
-    'performanceLabel()',
-    'nextRecommendation()',
   ],
   'src/ui/SceneChrome.ts': [
     'UX UPGRADE',
@@ -56,6 +54,14 @@ const requirements = {
 for (const [path, markers] of Object.entries(requirements)) {
   const source = await readFile(path, 'utf8');
   for (const marker of markers) if (!source.includes(marker)) errors.push(`${path}: v1.11.12 marker missing: ${marker}`);
+}
+
+
+const resultSource = await readFile('src/scenes/ResultScene.ts', 'utf8');
+const hasLegacyResultPlan = resultSource.includes('performanceLabel()') && resultSource.includes('nextRecommendation()');
+const hasExtractedResultPlan = resultSource.includes('actionPlan.primaryLabel') && resultSource.includes('this.actionPlan().recommendation');
+if (!hasLegacyResultPlan && !hasExtractedResultPlan) {
+  errors.push('src/scenes/ResultScene.ts: v1.11.12 tactical recommendation contract missing');
 }
 
 for (const doc of [

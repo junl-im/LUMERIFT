@@ -11,6 +11,8 @@ interface UiButtonOptions {
   readonly fontSize?: number;
   readonly lineHeight?: number;
   readonly subtitle?: string;
+  readonly subtitleFontSize?: number;
+  readonly subtitleLineHeight?: number;
   readonly icon?: string;
   readonly align?: 'center' | 'left';
   readonly onPress: () => void | Promise<void>;
@@ -67,7 +69,8 @@ export class UiButton extends Container {
       }),
     });
     this.labelText.anchor.set(leftAligned ? 0 : 0.5, 0.5);
-    this.labelText.position.set(labelX, options.subtitle ? height * 0.38 : height / 2 - 1);
+    const compactSubtitle = Boolean(options.subtitle) && height <= 58;
+    this.labelText.position.set(labelX, options.subtitle ? height * (compactSubtitle ? 0.31 : 0.38) : height / 2 - 1);
 
     this.addChild(this.background);
     const stickerShadow = new Graphics()
@@ -106,11 +109,19 @@ export class UiButton extends Container {
     this.addChild(this.labelText);
 
     if (options.subtitle) {
+      const subtitleFontSize = options.subtitleFontSize ?? Math.max(8, (options.fontSize ?? 16) - (compactSubtitle ? 7 : 6));
       const subtitle = new Text({
         text: options.subtitle,
-        style: new TextStyle({ fill: 0xb4c6ce, fontSize: Math.max(9, (options.fontSize ?? 16) - 6), fontWeight: '700', wordWrap: true, wordWrapWidth: width - labelX - 18 }),
+        style: new TextStyle({
+          fill: 0xb4c6ce,
+          fontSize: subtitleFontSize,
+          lineHeight: options.subtitleLineHeight ?? Math.max(9, subtitleFontSize + 2),
+          fontWeight: '700',
+          wordWrap: true,
+          wordWrapWidth: Math.max(36, width - labelX - 16),
+        }),
       });
-      subtitle.position.set(labelX, height * 0.58);
+      subtitle.position.set(labelX, height * (compactSubtitle ? 0.5 : 0.58));
       this.addChild(subtitle);
     }
 

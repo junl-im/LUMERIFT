@@ -20,6 +20,8 @@ import { OperationsScene } from './OperationsScene';
 import { AccountScene } from './AccountScene';
 import { RankingScene } from './RankingScene';
 import { createComicTag, createFeatureMarquee, createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
+import { createUxStatusRail } from '../ui/UxFeedback';
+import { resolveLobbyNextAction, type LobbyNextAction } from '../game/ui/LobbyNextAction';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -56,8 +58,9 @@ export class LobbyScene implements Scene {
     this.createAttendanceCard();
     this.createEventBanner();
     this.createQuestPanel(clearedStages, claimableQuests, equipment);
-    this.createRenewalBriefing(context);
-    this.createPrimaryAction(context);
+    const nextAction = resolveLobbyNextAction({ claimableQuests, operationAlerts, clearedStages, totalStages: 10 });
+    this.createRenewalBriefing(nextAction);
+    this.createPrimaryAction(context, nextAction);
     this.createMenuGrid(context, claimableQuests, operationAlerts);
     this.createBottomNavigation(context);
     this.createDiagnostics();
@@ -246,43 +249,52 @@ export class LobbyScene implements Scene {
     this.view.addChild(panel, section, stats, button);
   }
 
-  private createRenewalBriefing(context: AppContext): void {
-    const panel = createRasterPanel(26, 620, 236, 90, 'panel_glass');
-    const title = new Text({ text: '커맨드 브리핑', style: new TextStyle({ fill: COLORS.paper, fontSize: 13, fontWeight: '900', letterSpacing: 0.8 }) });
-    title.position.set(40, 632);
-    const detail = new Text({
-      text: '전투 진입 · 보상 확인 · 에셋 감수 흐름을 한눈에 읽도록 문구와 우선순위를 재정리했습니다.',
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 9, fontWeight: '700', wordWrap: true, wordWrapWidth: 204, lineHeight: 12 }),
+  private createRenewalBriefing(action: LobbyNextAction): void {
+    const briefing = createUxStatusRail({
+      eyebrow: action.eyebrow,
+      title: action.title,
+      detail: action.detail,
+      width: 236,
+      height: 90,
+      tone: action.tone,
     });
-    detail.position.set(40, 651);
-    const tag = createBadge('asset audit ready', 'warning');
-    tag.position.set(40, 682);
-    tag.scale.set(0.58);
-    const gallery = new UiButton({
-      label: '에셋 보관소',
-      width: 96,
-      height: 28,
-      tone: 'secondary',
-      fontSize: 9,
-      onPress: async () => context.scenes.change(() => new AssetGalleryScene()),
-    });
-    gallery.position.set(154, 674);
-    this.view.addChild(panel, title, detail, tag, gallery);
+    briefing.position.set(26, 620);
+    const contractTag = createBadge('커맨드 브리핑 · asset audit ready', 'warning');
+    contractTag.position.set(112, 682);
+    contractTag.scale.set(0.42);
+    this.view.addChild(briefing, contractTag);
   }
 
-  private createPrimaryAction(context: AppContext): void {
-    const battle = new UiButton({
-      label: '전투 시작',
-      subtitle: '현재 성장 상태를 바탕으로 다음 스테이지를 바로 선택합니다.',
-      icon: 'play',
+  private createPrimaryAction(context: AppContext, action: LobbyNextAction): void {
+    const primary = new UiButton({
+      label: action.buttonLabel,
+      subtitle: action.buttonSubtitle,
+      subtitleFontSize: 9,
+      icon: action.icon,
       align: 'left',
       width: 248,
       height: 76,
-      fontSize: 24,
-      onPress: async () => context.scenes.change(() => new StageSelectScene()),
+      fontSize: action.buttonLabel.length > 8 ? 19 : 22,
+      onPress: async () => this.openNextAction(context, action.id),
     });
-    battle.position.set(266, 620);
-    this.view.addChild(battle);
+    primary.position.set(266, 620);
+    this.view.addChild(primary);
+  }
+
+  private async openNextAction(context: AppContext, action: LobbyNextAction['id']): Promise<void> {
+    if (action === 'claim-quest') {
+      await context.scenes.change(() => new QuestScene());
+      return;
+    }
+    if (action === 'check-operations') {
+      await context.scenes.change(() => new OperationsScene('mail'));
+      return;
+    }
+    if (action === 'review-assets') {
+      await context.scenes.change(() => new AssetGalleryScene());
+      return;
+    }
+    await context.scenes.change(() => new StageSelectScene());
   }
 
   private createMenuGrid(context: AppContext, claimableQuests: number, operationAlerts: number): void {

@@ -1,11 +1,9 @@
-LUMERIFT v1.11.10 -> v1.11.11 CUMULATIVE PATCH
+LUMERIFT v1.11.13 ROOT OVERWRITE PATCH
 
-1. 기존 v1.11.10 최신 핫픽스 반영 프로젝트의 최상위 폴더에 압축을 풉니다.
-2. 모든 파일을 덮어씁니다.
-3. 삭제 또는 이동할 파일은 없습니다.
-4. 전투 종료 후 AUTO ASSIST REPORT에서 자동 전투 통계를 확인합니다.
-5. 보스전 자동 회피는 심연 절단·심연 폭발·추적 균열별 규칙을 사용합니다.
-6. 자동 스킬은 HP·Drive·타겟 잔여 HP를 함께 판단합니다.
-7. iOS와 Android는 각 플랫폼에 맞춰 전투 버튼 하단 여백을 추가 보정합니다.
-8. npm install 후 npm run verify를 실행합니다.
-- HOTFIX: 가상 조이스틱 기본 반전을 제거하고 화면 기준 이동을 복구했습니다.
+1. v1.11.12 최신 프로젝트에서 package.json이 보이는 최상위 폴더를 엽니다.
+2. 이 ZIP의 내용을 해당 위치에 직접 덮어씁니다.
+3. lumerift\lumerift 중복 폴더가 생기지 않았는지 확인합니다.
+4. npm run verify 또는 GitHub Actions build를 실행합니다.
+
+삭제 파일: 없음
+App Check: 비활성 유지

@@ -92,6 +92,14 @@
 - [ ] 오프라인·재접속 오류 안내
 - [ ] 저장 데이터 백업·복구 로그
 
+## 완료: UI 흐름·에셋 품질 매트릭스 v1.11.13
+
+- [x] 로비 상황 기반 NEXT BEST ACTION
+- [x] 설정 변경 인라인 피드백
+- [x] 결과 행동 계획 순수 로직
+- [x] 에셋 QUALITY 점수·MOBILE ROLE
+- [x] compact button subtitle 정렬
+
 ## 환경 검증 잔여
 
 - [ ] 실제 package-lock.json
