@@ -11,10 +11,14 @@ import { resolveBossTelegraphStyle } from './BossTelegraphLanguage';
 import { directionFromVector } from './direction';
 import { resolveDirectionalAttackPose } from './DirectionalAttackPose';
 import { resolvePlayerMotion } from './PlayerMotionDirector';
+import type { CharacterEquipmentAppearance } from './CharacterEquipmentVisualProfile';
+import { resolveCharacterStateMaterial } from './CharacterStateMaterialProfile';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
   readonly premiumOverlaySheet?: Spritesheet;
+  readonly characterFxSheet?: Spritesheet;
+  readonly equipmentAppearance?: CharacterEquipmentAppearance;
   readonly spriteBaseScale?: number;
 }
 
@@ -40,11 +44,15 @@ export class PlayerActorView {
   private readonly attackPoseAccent = new Graphics();
   private readonly sprite?: AnimatedSprite;
   private readonly premiumOverlay?: Sprite;
+  private readonly characterFxBack?: Sprite;
+  private readonly characterFxFront?: Sprite;
   private readonly equipmentLayer?: Sprite;
   private readonly afterimages: Sprite[] = [];
   private readonly spriteBaseScale: number;
   private readonly mirrorWest: boolean;
   private readonly optionsPremiumOverlaySheet?: Spritesheet;
+  private readonly characterFxSheet?: Spritesheet;
+  private readonly equipmentAppearance: CharacterEquipmentAppearance;
   private animationKey = '';
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
@@ -60,6 +68,24 @@ export class PlayerActorView {
     this.spriteBaseScale = options.spriteBaseScale ?? 1.05;
     this.mirrorWest = options.mirrorWest ?? true;
     this.optionsPremiumOverlaySheet = options.premiumOverlaySheet;
+    this.characterFxSheet = options.characterFxSheet;
+    this.equipmentAppearance = options.equipmentAppearance ?? {
+      weaponGrade: 'common',
+      armorGrade: 'common',
+      accessoryGrade: 'common',
+      dominantGrade: 'common',
+      label: 'STEEL',
+      primaryColor: 0x9fb4bd,
+      secondaryColor: 0xdfe9ec,
+      runeColor: 0x76d9ce,
+      weaponTrailColor: 0xa8f3e8,
+      auraStrength: 0.82,
+      materialFrameKeys: {
+        weapon: 'equipment_material.weapon.common',
+        armor: 'equipment_material.armor.common',
+        accessory: 'equipment_material.accessory.common',
+      },
+    };
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -105,6 +131,24 @@ export class PlayerActorView {
       this.premiumOverlay.position.set(0, -8);
     }
 
+    const characterFxTexture = options.characterFxSheet?.textures['character_fx.idle.s'];
+    if (characterFxTexture) {
+      this.characterFxBack = new Sprite(characterFxTexture);
+      this.characterFxBack.anchor.set(0.5);
+      this.characterFxBack.alpha = 0.34;
+      this.characterFxBack.scale.set(0.96);
+      this.characterFxBack.position.set(0, -7);
+      this.characterFxBack.tint = this.equipmentAppearance.primaryColor;
+
+      this.characterFxFront = new Sprite(characterFxTexture);
+      this.characterFxFront.anchor.set(0.5);
+      this.characterFxFront.alpha = 0.48;
+      this.characterFxFront.blendMode = 'add';
+      this.characterFxFront.scale.set(0.96);
+      this.characterFxFront.position.set(0, -7);
+      this.characterFxFront.tint = this.equipmentAppearance.secondaryColor;
+    }
+
     const equipmentTexture = weaponItemId ? equipmentSheet?.textures[`item.${weaponItemId}`] : undefined;
     if (equipmentTexture) {
       this.equipmentLayer = new Sprite(equipmentTexture);
@@ -113,9 +157,12 @@ export class PlayerActorView {
       this.equipmentLayer.alpha = 0.88;
     }
 
-    this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
+    this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow);
+    if (this.characterFxBack) this.root.addChild(this.characterFxBack);
+    this.root.addChild(this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
     if (this.premiumOverlay) this.root.addChild(this.premiumOverlay);
+    if (this.characterFxFront) this.root.addChild(this.characterFxFront);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
     this.root.addChild(this.stepHighlights, this.attackPoseAccent, this.motionAccent);
   }
@@ -178,6 +225,30 @@ export class PlayerActorView {
         comboStep: controller.comboStep,
         reducedMotion: frame.reducedMotion,
       });
+      const material = resolveCharacterStateMaterial(
+        controller.state,
+        frame.overdrive,
+        frame.driveRatio,
+        frame.reducedMotion,
+      );
+      const characterFxTexture = this.resolveCharacterFxTexture(material.state, direction);
+      const materialPulse = 1 + Math.sin(elapsed * material.pulseSpeed) * (frame.reducedMotion ? 0.01 : 0.025);
+      if (this.characterFxBack && characterFxTexture) {
+        this.characterFxBack.texture = characterFxTexture;
+        this.characterFxBack.alpha = material.backAlpha * this.equipmentAppearance.auraStrength;
+        this.characterFxBack.rotation = pose.rotation * material.rotationFactor - 0.015 * facing.x;
+        this.characterFxBack.scale.set(material.scale * materialPulse);
+        this.characterFxBack.tint = this.equipmentAppearance.primaryColor;
+      }
+      if (this.characterFxFront && characterFxTexture) {
+        this.characterFxFront.texture = characterFxTexture;
+        this.characterFxFront.alpha = material.frontAlpha * Math.min(1.08, this.equipmentAppearance.auraStrength);
+        this.characterFxFront.rotation = pose.rotation * material.rotationFactor;
+        this.characterFxFront.scale.set(material.scale * (2 - materialPulse));
+        this.characterFxFront.tint = frame.overdrive
+          ? this.equipmentAppearance.runeColor
+          : this.equipmentAppearance.secondaryColor;
+      }
       const overlayTexture = this.premiumOverlay ? this.resolvePremiumOverlayTexture(direction) : undefined;
       if (this.premiumOverlay && overlayTexture) {
         this.premiumOverlay.texture = overlayTexture;
@@ -203,6 +274,7 @@ export class PlayerActorView {
         pose.accentLateralOffset,
         pose.accentVerticalLift,
         frame.overdrive,
+        this.equipmentAppearance.weaponTrailColor,
       );
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
     } else {
@@ -217,6 +289,13 @@ export class PlayerActorView {
   private resolvePremiumOverlayTexture(direction: string): Texture | undefined {
     const sheet = this.optionsPremiumOverlaySheet;
     return sheet?.textures[`premium_overlay.${direction}`] ?? sheet?.textures['premium_overlay.s'];
+  }
+
+  private resolveCharacterFxTexture(state: string, direction: string): Texture | undefined {
+    const sheet = this.characterFxSheet;
+    return sheet?.textures[`character_fx.${state}.${direction}`]
+      ?? sheet?.textures[`character_fx.idle.${direction}`]
+      ?? sheet?.textures['character_fx.idle.s'];
   }
 
   private updateAnimation(controller: PlayerCombatController, animationSpeed: number): void {
@@ -246,11 +325,12 @@ export class PlayerActorView {
     lateralOffset: number,
     verticalLift: number,
     overdrive: boolean,
+    materialColor: number,
   ): void {
     this.attackPoseAccent.clear();
     if (alpha <= 0.01 || length <= 0) return;
     const perpendicular = { x: -facing.y, y: facing.x };
-    const color = overdrive ? 0xffd36a : 0x92fff1;
+    const color = overdrive ? this.equipmentAppearance.runeColor : materialColor;
     const start = 10;
     const layers = Math.max(2, echoes);
     for (let index = 0; index < layers; index += 1) {
@@ -315,7 +395,11 @@ export class PlayerActorView {
       .ellipse(0, feetY + 6, shadowWidth * scaleX, shadowHeight * scaleY)
       .fill({ color: COLORS.dark, alpha: overdrive ? 0.5 : 0.4 });
 
-    const glowColor = overdrive ? 0xffd78d : controller.state === 'skill' ? COLORS.accent : COLORS.primaryBright;
+    const glowColor = overdrive
+      ? this.equipmentAppearance.runeColor
+      : controller.state === 'skill'
+        ? this.equipmentAppearance.secondaryColor
+        : this.equipmentAppearance.primaryColor;
     this.silhouetteGlow.clear();
     this.silhouetteGlow
       .ellipse(0, -4, 26 * scaleX, 38 * scaleY)
@@ -342,7 +426,11 @@ export class PlayerActorView {
     trailLength: number,
     overdrive: boolean,
   ): void {
-    const color = overdrive ? 0xffd36a : controller.state === 'skill' ? 0xa88cff : 0x63e8d7;
+    const color = overdrive
+      ? this.equipmentAppearance.runeColor
+      : controller.state === 'skill'
+        ? this.equipmentAppearance.secondaryColor
+        : this.equipmentAppearance.primaryColor;
     const direction = directionFromVector(facing);
     this.riftAura.clear();
     if (auraAlpha > 0.01) {

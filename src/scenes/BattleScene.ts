@@ -51,6 +51,7 @@ import { AutoCombatSessionLog } from '../game/combat/AutoCombatSessionLog';
 import { autoBattleStrategyPresetLabel, manualResumeDelaySeconds } from '../core/input/CombatAssistController';
 import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
+import { resolveCharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
 
 interface EnemyActor {
   readonly runtimeId: string;
@@ -86,6 +87,7 @@ export class BattleScene implements Scene {
   private playerPresentation?: PlayerActorView;
   private playerSheet?: Spritesheet;
   private premiumPlayerOverlaySheet?: Spritesheet;
+  private characterFxSheet?: Spritesheet;
   private monsterSheet?: Spritesheet;
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
@@ -352,6 +354,7 @@ export class BattleScene implements Scene {
       ?? context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
     this.monsterSheet = context.assets.get<Spritesheet>(ASSET_PATHS.monsterAtlas);
     this.premiumPlayerOverlaySheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerOverlayAtlas);
+    this.characterFxSheet = context.assets.get<Spritesheet>(ASSET_PATHS.characterFxAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
@@ -401,8 +404,11 @@ export class BattleScene implements Scene {
     this.world.addChild(this.vfx.view);
     const equippedWeaponUid = this.profile.equipped.weapon;
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
+    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData);
     this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
       premiumOverlaySheet: this.premiumPlayerOverlaySheet,
+      characterFxSheet: this.characterFxSheet,
+      equipmentAppearance,
       mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate),
       spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 1.12,
     });

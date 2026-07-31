@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.17",
-  "updatedAt": "2026-07-30",
-  "currentPhase": "v1.11.17 프리미엄 캐릭터 디자인·에셋 업그레이드 완료",
-  "qualityStage": "production-candidate-data-driven-boss-rules-preset-vault-performance-advisor",
+  "version": "1.11.18",
+  "updatedAt": "2026-07-31",
+  "currentPhase": "v1.11.18 캐릭터 본체·장비 재질 동기화 업그레이드 완료",
+  "qualityStage": "production-candidate-character-equipment-material-sync",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -183,15 +183,18 @@
     "v1.11.14: 공격형·균형형·보존형 자동 전투 프리셋, 보스 위협 HUD, 전투 버튼 손가락 가림 보정 적용",
     "v1.11.15: 보스 회피 규칙 JSON 분리, 사용자 자동 전투 프리셋 3개 슬롯, 전투 결과 프리셋 적합도 비교 적용",
     "v1.11.16: 최근 자동 전투 18건 로컬 기록, 프리셋 성과 분석 화면, 보스 HUD 데이터 v2, 8방향 무기 궤적 강화",
-    "v1.11.17: 프리미엄 영웅 초상, 8방향 재질광 오버레이, 캐릭터 실루엣 강화"
+    "v1.11.17: 프리미엄 영웅 초상, 8방향 재질광 오버레이, 캐릭터 실루엣 강화",
+    "v1.11.18: 8방향 상태별 캐릭터 FX, 장비 등급별 재질 동기화, 로비·인벤토리 외형 미리보기",
+    "v1.11.18 8방향·4상태 캐릭터 FX Atlas v9를 기존 전투 캐릭터에 후면·전면 레이어로 연결",
+    "장비 등급별 갑주 재질·룬·오라·무기 궤적 색상을 로비·전투·인벤토리에 동기화",
+    "캐릭터·장비 신규 원본을 모바일 제작용 마스터 규격으로 보존"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "GitHub Actions 전체 TypeScript·Vitest·Vite 빌드·번들 검사 확인",
-    "Android Chrome·iOS Safari 실제 캡처 기반 전투 HUD 미세 정렬",
-    "자동 전투 기록 JSON 내보내기 및 비교 필터",
-    "보스 패턴별 텔레그래프 모양과 VFX 데이터 확장",
-    "전용 8방향 공격 Atlas 최종 아트 교체 준비"
+    "전용 8방향 캐릭터 본체 Atlas 최종 교체",
+    "무기별 고유 실루엣과 공격 궤적 분리",
+    "장비 세트 외형과 염색 프리셋",
+    "Android Chrome·iOS Safari 실기기 캐릭터 가독성 검수"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -236,25 +239,25 @@
     "다층 전투 음향은 동시 재생 수와 볼륨을 제한해 모바일 오디오 피로와 클리핑을 방지한다."
   ],
   "assetMetrics": {
-    "activeAtlasCount": 9,
-    "activeRuntimeBytes": 5461854,
-    "activeRuntimeFileCount": 41,
+    "activeAtlasCount": 12,
+    "activeRuntimeBytes": 5872743,
+    "activeRuntimeFileCount": 43,
     "archivedAtlasCount": 47,
     "archivedRuntimeBytes": 23474797,
     "archivedRuntimeFileCount": 194,
-    "preservedAtlasCount": 56,
-    "preservedFrameCount": 3898,
-    "preservedAnimationCount": 762,
-    "fullProjectBytes": 111297910,
+    "preservedAtlasCount": 59,
+    "preservedFrameCount": 3947,
+    "preservedAnimationCount": 811,
+    "fullProjectBytes": 112157696,
     "sourceArchiveIncludedInFull": true,
-    "sourceArchiveFileCount": 284,
+    "sourceArchiveFileCount": 287,
     "legacyArchiveIncludedInFull": true,
     "legacyRuntimeDefaultEnabled": false,
     "chapterOneBackgroundTiers": 4,
     "bossPhasePortraits": 3,
     "v170RuntimeArtBytes": 4672157,
     "v180PreviewFiles": 4,
-    "fullProjectFileCount": 795,
+    "fullProjectFileCount": 833,
     "v190RuntimeUiBytes": 189271,
     "v190RuntimeUiFiles": 5,
     "v190UiFrames": 60,
@@ -282,7 +285,11 @@
     "v1113OwnedPaintedRuntimeFrames": 128,
     "v1113OwnedPaintedRuntimeAnimations": 80,
     "v1113OwnedPaintedRuntimeDefaultEnabled": false,
-    "v1113DeviceQaSchema": "lumerift-device-qa-v3"
+    "v1113DeviceQaSchema": "lumerift-device-qa-v3",
+    "v1118RuntimeImageFiles": 4,
+    "v1118RuntimeAtlasCount": 2,
+    "v1118CharacterFxFrames": 32,
+    "v1118EquipmentMaterialFrames": 9
   },
   "knownLimitations": [
     "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
@@ -305,16 +312,16 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.17.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.16_to_v1.11.17_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip"
   },
   "sourceArtMetrics": {
-    "totalBytes": 101616061,
+    "totalBytes": 101981733,
     "ownedProductionBytes": 55329050,
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
   },
-  "lastUpdated": "2026-07-30",
+  "lastUpdated": "2026-07-31",
   "featureMetrics": {
     "bossPhaseCinematics": 3,
     "cloudRecoveryMaxPoints": 5,
@@ -380,15 +387,21 @@
     "bossDodgePatternRules": 3,
     "compositeAutoSkillInputs": 3,
     "mobileSafeAreaPlatformProfiles": 3,
-    "bossDodgeRuleDataVersion": 1,
+    "bossDodgeRuleDataVersion": 2,
     "autoBattlePresetSlots": 3,
     "autoPresetPerformanceProfiles": 3,
-    "autoPresetLabScene": true
+    "autoPresetLabScene": true,
+    "characterFxAtlasVersion": 9,
+    "characterFxDirections": 8,
+    "characterFxStates": 4,
+    "equipmentMaterialGrades": 3,
+    "equipmentVisualSyncScreens": 3,
+    "playerSaveVersion": 4
   },
   "releaseArchives": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.15.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.14_to_v1.11.15_ROOT_OVERWRITE.zip",
-    "full": "LUMERIFT_FULL_v1.11.15.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.14_to_v1.11.15_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip",
+    "full": "LUMERIFT_FULL_v1.11.18.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip"
   }
 }

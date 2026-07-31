@@ -1,33 +1,33 @@
-# PROJECT HANDOFF v1.11.17
+# PROJECT HANDOFF v1.11.18
 
 # LUMERIFT 프로젝트 인수인계
 
-**현재 버전:** v1.11.17  
-**상태:** 최근 자동 전투 기록·8방향 무기 궤적·보스 HUD 데이터 v2 완료
+**현재 버전:** v1.11.18  
+**상태:** 캐릭터 본체 FX·장비 재질 동기화·외형 미리보기 완료
 
 ## 우선 확인
 
 1. `AGENTS.md`
 2. `HANDOFF_STATE.json`
 3. `docs/HANDOFF_MASTER.md`
-4. `docs/BOSS_DODGE_DATA_v1.11.15.md`
-5. `docs/AUTO_PRESET_VAULT_v1.11.15.md`
-6. `docs/AUTO_PRESET_PERFORMANCE_v1.11.15.md`
-7. `docs/PATCH_NOTES_v1.11.15.md`
+4. `docs/PREMIUM_CHARACTER_SYSTEM_v1.11.18.md`
+5. `docs/EQUIPMENT_VISUAL_SYNC_v1.11.18.md`
+6. `docs/PATCH_NOTES_v1.11.18.md`
+7. `docs/NEXT_UPDATE_v1.11.19.md`
 
 ## 현재 상태
 
-- 보스 회피 규칙은 버전형 JSON 데이터 카탈로그에서 로드한다.
-- 자동 전투 세부 설정은 3개 사용자 슬롯에 저장·복원할 수 있다.
-- 결과 화면은 한 전투의 자동 전투 기록으로 세 프리셋 적합도를 비교한다.
+- 기존 플레이어 본체 위에 8방향·4상태 캐릭터 FX Atlas v9를 후면·전면 레이어로 합성한다.
+- 장착 무기·방어구·장신구 등급이 갑주 광원·룬·오라·무기 궤적 색상에 반영된다.
+- 로비와 인벤토리에서 실제 장착/선택 장비의 재질 미리보기를 제공한다.
 - 자동 타겟 기본 ON, 자동 전투 기본 OFF, 수동 입력 우선 계약을 유지한다.
 - Firebase App Check 비활성, Player Save v4, AttackFootprint 계약을 유지한다.
 
 ## 릴리스
 
-- 전체본: `LUMERIFT_FULL_v1.11.16.zip`
-- 최상위 덮어쓰기 패치: `LUMERIFT_PATCH_v1.11.15_to_v1.11.16_ROOT_OVERWRITE.zip`
-- 기준 버전: v1.11.15
+- 전체본: `LUMERIFT_FULL_v1.11.18.zip`
+- 최상위 덮어쓰기 패치: `LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip`
+- 기준 버전: v1.11.17
 - 삭제/이동: 없음
 
 ## 검증 원칙
@@ -44,3 +44,9 @@
 
 ## v1.11.17
 프리미엄 영웅 초상과 8방향 재질광 오버레이를 적용했다.
+
+
+## v1.11.18
+- 8방향·4상태 캐릭터 FX Atlas v9 연결
+- 장비 등급별 재질·룬·무기 궤적 색상 동기화
+- 로비·인벤토리 외형 미리보기 연결

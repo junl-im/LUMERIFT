@@ -1,4 +1,4 @@
-import { Container, Text, TextStyle, type Spritesheet } from 'pixi.js';
+import { Container, Sprite, Text, TextStyle, type Spritesheet } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
@@ -33,6 +33,7 @@ import {
 } from '../ui/PremiumUi';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
+import { materialFrameKey } from '../game/presentation/CharacterEquipmentVisualProfile';
 
 const PAGE_SIZE = 12;
 const GRID_COLUMNS = 3;
@@ -43,6 +44,7 @@ export class InventoryScene implements Scene {
   private context?: AppContext;
   private profile?: PlayerProfile;
   private equipmentSheet?: Spritesheet;
+  private equipmentMaterialSheet?: Spritesheet;
   private equipmentBundleLoaded = false;
 
   public constructor(
@@ -64,6 +66,7 @@ export class InventoryScene implements Scene {
     await context.assets.loadBundle(EQUIPMENT_UI_BUNDLE);
     this.equipmentBundleLoaded = true;
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
+    this.equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
 
     const sorted = sortInventory(this.profile, context.gameData, this.sortMode, this.filter);
     const maxPage = Math.max(0, Math.ceil(sorted.length / PAGE_SIZE) - 1);
@@ -282,6 +285,17 @@ export class InventoryScene implements Scene {
     gradeBadge.scale.set(0.78);
     gradeBadge.position.set(350, 314);
 
+    const materialTexture = this.equipmentMaterialSheet?.textures[
+      materialFrameKey(definition.slot, definition.grade)
+    ];
+    const materialBackdrop = materialTexture ? new Sprite(materialTexture) : undefined;
+    if (materialBackdrop) {
+      materialBackdrop.anchor.set(0.5);
+      materialBackdrop.width = 112;
+      materialBackdrop.height = 112;
+      materialBackdrop.alpha = 0.52;
+      materialBackdrop.position.set(423, 397);
+    }
     const detailIcon = createItemFrame(
       this.equipmentSheet?.textures[`item.${selected.itemId}`],
       94,
@@ -388,6 +402,7 @@ export class InventoryScene implements Scene {
     divider.position.set(354, 646);
     this.view.addChild(
       gradeBadge,
+      ...(materialBackdrop ? [materialBackdrop] : []),
       detailIcon,
       title,
       statsText,

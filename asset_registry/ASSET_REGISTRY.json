@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.17",
-  "generatedAt": "2026-07-31T02:24:59.450Z",
+  "release": "1.11.18",
+  "generatedAt": "2026-07-31T03:08:07.714Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 90,
-      "bytes": 78141264,
+      "files": 93,
+      "bytes": 78506936,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 44,
-      "bytes": 5593941,
-      "atlases": 10,
-      "frames": 721,
-      "animations": 319
+      "files": 48,
+      "bytes": 5879291,
+      "atlases": 12,
+      "frames": 762,
+      "animations": 360
     }
   },
   "entries": [
@@ -62,6 +62,30 @@
       "type": "json",
       "bytes": 527,
       "sha256": "0b2a526554ad2d744a59209af412e9c270a6ad80af535debc45797010d8449ae"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.18/character/character_equipment_art_v11118_spec.json",
+      "relativePath": "lumerift_original/v1.11.18/character/character_equipment_art_v11118_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 909,
+      "sha256": "23febe1113ddb04e95909d2c2cbc637816c22073019ada399288c183d7a37b8e"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.18/character/equipment_material_v9_master.png",
+      "relativePath": "lumerift_original/v1.11.18/character/equipment_material_v9_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 85734,
+      "sha256": "8396ce2918496a5860c28a2494d6453df6b142fd2c78d691530fadd9a5074b41"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.18/character/player_character_fx_v9_master.png",
+      "relativePath": "lumerift_original/v1.11.18/character/player_character_fx_v9_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 279029,
+      "sha256": "a4b9995f70103d203a5c0537416aa257663cc5a70cc56718b1895380118e9849"
     },
     {
       "path": "art_source/lumerift_original/v1.11.2/player/player_owned_runtime_v1_spec.json",
@@ -2543,8 +2567,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 3899,
-      "sha256": "e8ecd5764eae6e2d3624285f6f231598ef23e2148d8ed06bbcfd040b0e16379b"
+      "bytes": 4616,
+      "sha256": "ea86d46e5e5e0338569ceb691799c9718ac68d129678899c9aa6821699d07860"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2923,6 +2947,48 @@
       "type": "webp",
       "bytes": 126054,
       "sha256": "5e2b12991023d6bd60fae5f704445c85e74fd03ea9f78852cca4d4c229802833"
+    },
+    {
+      "path": "public/assets/live/v9/atlases/equipment/equipment_material_v9.json",
+      "relativePath": "live/v9/atlases/equipment/equipment_material_v9.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 4267,
+      "sha256": "4b3bfb0e650041b045f5b154aef234a5de5a6fe6e44ade76974332c84e09d6b5",
+      "atlas": {
+        "frames": 9,
+        "animations": 9,
+        "image": "equipment_material_v9.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v9/atlases/equipment/equipment_material_v9.webp",
+      "relativePath": "live/v9/atlases/equipment/equipment_material_v9.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 41242,
+      "sha256": "e29dacd7dc3ac615844197d7853b14b81317f3dd593397db70cf055c780d6153"
+    },
+    {
+      "path": "public/assets/live/v9/atlases/player/player_character_fx_v9.json",
+      "relativePath": "live/v9/atlases/player/player_character_fx_v9.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 13632,
+      "sha256": "c352472826f8236380727ef467df49c4f63817c091a43293676102d05ecac89c",
+      "atlas": {
+        "frames": 32,
+        "animations": 32,
+        "image": "player_character_fx_v9.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v9/atlases/player/player_character_fx_v9.webp",
+      "relativePath": "live/v9/atlases/player/player_character_fx_v9.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 225492,
+      "sha256": "43e2c7f9474095f81117b7fb8328ebcba5ccaf8690451d316bb797b6d7874d0a"
     },
     {
       "path": "public/assets/OPERATIONS_V130_SUMMARY.json",

@@ -1,0 +1,43 @@
+{
+  "release": "1.11.18",
+  "purpose": "모바일 제작용 캐릭터 보조 실루엣·장비 재질 표현",
+  "runtime": {
+    "characterFx": "public/assets/live/v9/atlases/player/player_character_fx_v9.webp",
+    "equipmentMaterial": "public/assets/live/v9/atlases/equipment/equipment_material_v9.webp"
+  },
+  "master": {
+    "characterFx": "player_character_fx_v9_master.png",
+    "equipmentMaterial": "equipment_material_v9_master.png"
+  },
+  "directions": [
+    "n",
+    "ne",
+    "e",
+    "se",
+    "s",
+    "sw",
+    "w",
+    "nw"
+  ],
+  "states": [
+    "idle",
+    "attack",
+    "skill",
+    "dodge"
+  ],
+  "equipmentGrades": [
+    "common",
+    "rare",
+    "heroic"
+  ],
+  "equipmentSlots": [
+    "weapon",
+    "armor",
+    "accessory"
+  ],
+  "notes": [
+    "기존 본체 Atlas 위에 합성하는 보조 레이어",
+    "Player Save v4와 무관",
+    "PNG master -> lossless WebP runtime"
+  ]
+}

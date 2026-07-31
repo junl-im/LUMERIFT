@@ -1,17 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.17",
-  "baseVersion": "1.11.16",
+  "version": "1.11.18",
+  "baseVersion": "1.11.17",
   "releaseDate": "2026-07-31",
-  "fullArchive": "LUMERIFT_FULL_v1.11.17.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.16_to_v1.11.17_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-premium-character-art",
+  "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-character-equipment-material-sync",
   "features": [
-    "프리미엄 영웅 초상 v8",
-    "8방향 갑주·문양·무기 에너지 오버레이",
-    "로비와 전투 캐릭터 색·재질 통일",
-    "v1.11.16 전투 기록·보스 HUD 계약 유지"
+    "8방향 상태별 캐릭터 FX Atlas v9",
+    "망토·머리카락·갑주·무기 에너지 보조 실루엣",
+    "장비 등급별 전투 재질·무기 궤적 색상 동기화",
+    "로비·인벤토리 장비 외형 미리보기",
+    "v1.11.17 프리미엄 초상·오버레이 계약 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -37,11 +38,9 @@
   },
   "verification": [
     "validate-release-version",
-    "validate-v11114 cumulative compatibility",
-    "validate-v11115 boss data v2 compatibility",
-    "validate-v11116-upgrade",
-    "TypeScript syntax parse",
-    "auto combat history runtime harness",
+    "cumulative validators v1.11.0 through v1.11.18",
+    "asset/data/atlas/manifest/cleanup validators",
+    "TypeScript syntax parse and strict stub check",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"
   ]

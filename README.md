@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.17
+# LUMERIFT: 균열의 계승자 v1.11.18
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -96,3 +96,11 @@ npm run dev
 - 8방향 갑주·문양·무기 에너지 오버레이 Atlas 추가
 - 로비와 전투 캐릭터의 청록·골드 재질 언어 통일
 - 관련 문서: `docs/PREMIUM_CHARACTER_ART_v1.11.17.md`, `docs/PATCH_NOTES_v1.11.17.md`
+
+
+## v1.11.18 핵심 업데이트
+- 8방향·4상태 캐릭터 보조 FX Atlas v9 추가
+- 망토·머리카락·갑주·무기 에너지를 방향과 전투 상태에 맞춰 합성
+- 장착 장비 등급에 따라 전투 재질광·룬·무기 궤적 색상을 동기화
+- 로비와 인벤토리에 무기·방어구·장신구 외형 미리보기 추가
+- 관련 문서: `docs/PREMIUM_CHARACTER_SYSTEM_v1.11.18.md`, `docs/EQUIPMENT_VISUAL_SYNC_v1.11.18.md`, `docs/PATCH_NOTES_v1.11.18.md`

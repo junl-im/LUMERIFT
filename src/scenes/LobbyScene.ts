@@ -1,4 +1,4 @@
-import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, TextStyle, type Spritesheet, type Texture } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS, DESIGN_HEIGHT, DESIGN_WIDTH } from '../app/constants';
 import type { Scene } from '../core/scenes/Scene';
@@ -22,6 +22,7 @@ import { RankingScene } from './RankingScene';
 import { createComicTag, createFeatureMarquee, createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
 import { createUxStatusRail } from '../ui/UxFeedback';
 import { resolveLobbyNextAction, type LobbyNextAction } from '../game/ui/LobbyNextAction';
+import { resolveCharacterEquipmentAppearance, type CharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -45,8 +46,10 @@ export class LobbyScene implements Scene {
     this.lobbyBundleLoaded = true;
     const backgroundTexture = context.assets.get<Texture>(ASSET_PATHS.lobbyBackground);
     const portraitTexture = context.assets.get<Texture>(ASSET_PATHS.heroPortrait);
+    const equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
 
     const equipment = calculateEquipmentSummary(this.profile, context.gameData);
+    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData);
     const power = calculateTotalPower(context.gameData.player, this.profile, context.gameData);
     const claimableQuests = countClaimableQuests(this.profile, context.gameData);
     const clearedStages = Object.values(this.profile.stageProgress).filter((entry) => entry.clearCount > 0).length;
@@ -54,7 +57,7 @@ export class LobbyScene implements Scene {
 
     this.createBackdrop(backgroundTexture);
     this.createHeader(power, operationAlerts);
-    this.createHeroPresentation(portraitTexture, power);
+    this.createHeroPresentation(portraitTexture, power, equipmentMaterialSheet, equipmentAppearance);
     this.createAttendanceCard();
     this.createEventBanner();
     this.createQuestPanel(clearedStages, claimableQuests, equipment);
@@ -165,13 +168,53 @@ export class LobbyScene implements Scene {
     this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText, commandStamp, updateTag);
   }
 
-  private createHeroPresentation(texture?: Texture, power = 0): void {
+  private createHeroPresentation(
+    texture?: Texture,
+    power = 0,
+    equipmentMaterialSheet?: Spritesheet,
+    appearance?: CharacterEquipmentAppearance,
+  ): void {
     if (texture) {
       const portrait = new Sprite(texture);
       portrait.position.set(40, 112);
       portrait.width = 342;
       portrait.height = 510;
       this.view.addChild(portrait);
+    }
+
+    if (equipmentMaterialSheet && appearance) {
+      const previewPanel = createRasterPanel(36, 490, 282, 42, 'panel_glass');
+      this.view.addChild(previewPanel);
+      const slots = [
+        { key: appearance.materialFrameKeys.weapon, label: '검' },
+        { key: appearance.materialFrameKeys.armor, label: '갑' },
+        { key: appearance.materialFrameKeys.accessory, label: '핵' },
+      ] as const;
+      slots.forEach((entry, index) => {
+        const texture = equipmentMaterialSheet.textures[entry.key];
+        if (!texture) return;
+        const icon = new Sprite(texture);
+        icon.anchor.set(0.5);
+        icon.width = 34;
+        icon.height = 34;
+        icon.position.set(58 + index * 42, 511);
+        const label = new Text({
+          text: entry.label,
+          style: new TextStyle({ fill: COLORS.text, fontSize: 8, fontWeight: '700' }),
+        });
+        label.anchor.set(0.5);
+        label.position.set(58 + index * 42, 525);
+        this.view.addChild(icon, label);
+      });
+      const materialTone = appearance.dominantGrade === 'heroic'
+        ? 'warning'
+        : appearance.dominantGrade === 'rare'
+          ? 'primary'
+          : 'secondary';
+      const materialBadge = createBadge(`${appearance.label} · 외형 동기화`, materialTone);
+      materialBadge.scale.set(0.62);
+      materialBadge.position.set(178, 498);
+      this.view.addChild(materialBadge);
     }
 
     const namePlate = createRasterPanel(26, 536, 292, 78, 'panel_gold');

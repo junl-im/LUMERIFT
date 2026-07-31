@@ -1,7 +1,7 @@
 {
-  "version": 13,
+  "version": 14,
   "game": "LUMERIFT",
-  "release": "1.11.17",
+  "release": "1.11.18",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -19,9 +19,11 @@
     "equipment-ui": {
       "files": [
         "atlases/items/equipment_icons_v1.json",
-        "atlases/items/equipment_icons_v1.webp"
+        "atlases/items/equipment_icons_v1.webp",
+        "live/v9/atlases/equipment/equipment_material_v9.json",
+        "live/v9/atlases/equipment/equipment_material_v9.webp"
       ],
-      "bytes": 6308
+      "bytes": 51817
     },
     "lobby-character": {
       "files": [
@@ -33,9 +35,11 @@
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp",
         "live/v8/portraits/hero_premium_v8.webp",
-        "live/v4/portraits/hero_v4.webp"
+        "live/v4/portraits/hero_v4.webp",
+        "live/v9/atlases/equipment/equipment_material_v9.json",
+        "live/v9/atlases/equipment/equipment_material_v9.webp"
       ],
-      "bytes": 357727
+      "bytes": 403236
     },
     "battle-chapter-1": {
       "files": [
@@ -64,9 +68,11 @@
         "audio/combat/dodge_v1.ogg",
         "audio/bgm/forest_rift_loop_v1.opus",
         "live/v8/atlases/player/player_premium_overlay_v8.json",
-        "live/v8/atlases/player/player_premium_overlay_v8.webp"
+        "live/v8/atlases/player/player_premium_overlay_v8.webp",
+        "live/v9/atlases/player/player_character_fx_v9.json",
+        "live/v9/atlases/player/player_character_fx_v9.webp"
       ],
-      "bytes": 4733084
+      "bytes": 4972208
     },
     "operations-ui-v3": {
       "files": [
@@ -93,11 +99,20 @@
         "live/v7/atlases/player/player_owned_painted_v7.webp"
       ],
       "bytes": 370796
+    },
+    "premium-character-v9": {
+      "files": [
+        "live/v9/atlases/player/player_character_fx_v9.json",
+        "live/v9/atlases/player/player_character_fx_v9.webp",
+        "live/v9/atlases/equipment/equipment_material_v9.json",
+        "live/v9/atlases/equipment/equipment_material_v9.webp"
+      ],
+      "bytes": 284633
     }
   },
   "deployment": {
-    "publicAssetFiles": 41,
-    "publicAssetBytes": 5461854,
+    "publicAssetFiles": 43,
+    "publicAssetBytes": 5872743,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

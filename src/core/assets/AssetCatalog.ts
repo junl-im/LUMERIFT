@@ -28,6 +28,8 @@ export const ASSET_PATHS = {
   lobbyBackground: assetUrl('assets/live/v4/backgrounds/lobby_forest_v4.webp'),
   heroPortrait: assetUrl('assets/live/v8/portraits/hero_premium_v8.webp'),
   premiumPlayerOverlayAtlas: assetUrl('assets/live/v8/atlases/player/player_premium_overlay_v8.json'),
+  characterFxAtlas: assetUrl('assets/live/v9/atlases/player/player_character_fx_v9.json'),
+  equipmentMaterialAtlas: assetUrl('assets/live/v9/atlases/equipment/equipment_material_v9.json'),
   bossPortrait: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
   bossPortraitPhase1: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
   bossPortraitPhase2: assetUrl('assets/live/v4/portraits/boss_phase_2_v4.webp'),
@@ -49,14 +51,14 @@ export const CORE_UI_BUNDLE: AssetBundleDefinition = {
 
 export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
   id: 'equipment-ui',
-  urls: [ASSET_PATHS.equipmentAtlas],
-  estimatedBytes: 7_000,
+  urls: [ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+  estimatedBytes: 55_000,
 };
 
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
-  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas],
-  estimatedBytes: 560_000,
+  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+  estimatedBytes: 610_000,
 };
 
 
@@ -95,8 +97,9 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.bossPortraitPhase2,
     ASSET_PATHS.bossPortraitPhase3,
     ASSET_PATHS.premiumPlayerOverlayAtlas,
+    ASSET_PATHS.characterFxAtlas,
   ],
-  estimatedBytes: 6_050_000,
+  estimatedBytes: 6_300_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -151,6 +154,15 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     atlasPaths: [ASSET_PATHS.ownedPaintedPlayerAtlas],
     imagePaths: [],
     bundle: { id: 'owned-player-painted-gallery', urls: [ASSET_PATHS.ownedPaintedPlayerAtlas], estimatedBytes: 325_000 },
+  },
+
+  {
+    id: 'premium-character-v9',
+    label: '프리미엄 캐릭터·장비 재질 v9',
+    kind: 'atlas',
+    atlasPaths: [ASSET_PATHS.characterFxAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+    imagePaths: [],
+    bundle: { id: 'premium-character-v9-gallery', urls: [ASSET_PATHS.characterFxAtlas, ASSET_PATHS.equipmentMaterialAtlas], estimatedBytes: 285_000 },
   },
   {
     id: 'live-monsters',
