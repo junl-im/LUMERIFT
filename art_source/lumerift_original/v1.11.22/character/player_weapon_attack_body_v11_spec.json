@@ -1,0 +1,37 @@
+{
+  "asset": "player_weapon_attack_body_v11",
+  "release": "1.11.22",
+  "runtime": "public/assets/live/v11/atlases/player/player_weapon_attack_body_v11.webp",
+  "atlas": "public/assets/live/v11/atlases/player/player_weapon_attack_body_v11.json",
+  "master": "player_weapon_attack_body_v11_master.png",
+  "source": "public/assets/live/v10/atlases/player/player_premium_body_v10.webp",
+  "families": [
+    "blade",
+    "greatblade",
+    "riftlance"
+  ],
+  "poses": [
+    "attack1",
+    "attack2",
+    "attack3"
+  ],
+  "directions": [
+    "n",
+    "ne",
+    "e",
+    "se",
+    "s",
+    "sw",
+    "w",
+    "nw"
+  ],
+  "framesPerAnimation": 6,
+  "frameSize": [
+    112,
+    112
+  ],
+  "frames": 432,
+  "animations": 72,
+  "productionStatus": "production-candidate-generated-derivative",
+  "note": "전용 무기 실루엣과 접촉 프레임을 v10 본체 파생 프레임에 합성한 모바일 제작용 후보입니다. 수작업 최종 원화로 주장하지 않습니다."
+}
