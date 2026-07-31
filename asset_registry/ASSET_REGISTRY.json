@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.18",
-  "generatedAt": "2026-07-31T03:08:07.714Z",
+  "release": "1.11.21",
+  "generatedAt": "2026-07-31T06:27:33.565Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 93,
-      "bytes": 78506936,
+      "files": 95,
+      "bytes": 79534404,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 48,
-      "bytes": 5879291,
-      "atlases": 12,
-      "frames": 762,
-      "animations": 360
+      "files": 50,
+      "bytes": 7142300,
+      "atlases": 13,
+      "frames": 1410,
+      "animations": 440
     }
   },
   "entries": [
@@ -86,6 +86,22 @@
       "type": "png",
       "bytes": 279029,
       "sha256": "a4b9995f70103d203a5c0537416aa257663cc5a70cc56718b1895380118e9849"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.19/character/player_premium_body_v10_master.png",
+      "relativePath": "lumerift_original/v1.11.19/character/player_premium_body_v10_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 1026612,
+      "sha256": "e3ff3825516a8c5a891ee5c6bd0f20c115b08d30d9f625e93be87913ab8350e4"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.19/character/player_premium_body_v10_spec.json",
+      "relativePath": "lumerift_original/v1.11.19/character/player_premium_body_v10_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 856,
+      "sha256": "c0c80b3629cf7a421abf859f0b82782b4aab08e3229d7ea8ee62ea3cfc2b3fee"
     },
     {
       "path": "art_source/lumerift_original/v1.11.2/player/player_owned_runtime_v1_spec.json",
@@ -2567,8 +2583,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 4616,
-      "sha256": "ea86d46e5e5e0338569ceb691799c9718ac68d129678899c9aa6821699d07860"
+      "bytes": 5044,
+      "sha256": "1dc38727dabda6b1a2313d3869240d1d8171cd0491b3f4738db852705d2fbfd4"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2670,6 +2686,27 @@
       "type": "txt",
       "bytes": 743,
       "sha256": "1d94eb474817ecaeb0c84e6f2369d752740ec78fb8677806605428db5c9d4844"
+    },
+    {
+      "path": "public/assets/live/v10/atlases/player/player_premium_body_v10.json",
+      "relativePath": "live/v10/atlases/player/player_premium_body_v10.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 291887,
+      "sha256": "b981aa30cbb6199885e07d918726e6628ac99c9cd202d4d1f41da038afcc362b",
+      "atlas": {
+        "frames": 648,
+        "animations": 80,
+        "image": "player_premium_body_v10.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v10/atlases/player/player_premium_body_v10.webp",
+      "relativePath": "live/v10/atlases/player/player_premium_body_v10.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 970694,
+      "sha256": "de44cebcc3ff3ae1d778ff26d096beb055f3a96d27bb9080000c96a2819e3561"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

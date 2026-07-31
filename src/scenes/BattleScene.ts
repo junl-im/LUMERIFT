@@ -52,6 +52,8 @@ import { autoBattleStrategyPresetLabel, manualResumeDelaySeconds } from '../core
 import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/BattleHudSafeArea';
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 import { resolveCharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
+import { resolveCharacterDisplayCalibration } from '../core/performance/CharacterDisplayCalibration';
+import { applyWeaponMotionProfile } from '../game/combat/WeaponMotionProfile';
 
 interface EnemyActor {
   readonly runtimeId: string;
@@ -386,10 +388,14 @@ export class BattleScene implements Scene {
     this.profile = ensureStarterInventory(loaded, context.gameData);
     await context.playerRepository.save(this.profile);
 
-    this.playerConfig = buildPlayerCombatConfig(
-      context.gameData.player,
-      this.profile,
-      context.gameData,
+    const wardrobe = context.characterWardrobe.current;
+    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData, context.characterDye.current, {
+      costumeSet: wardrobe.costumeSet,
+      dyeChannels: wardrobe.dyeChannels,
+    });
+    this.playerConfig = applyWeaponMotionProfile(
+      buildPlayerCombatConfig(context.gameData.player, this.profile, context.gameData),
+      equipmentAppearance.weaponVisualFamily,
     );
     this.player = new PlayerCombatController(this.playerConfig, this.stage.playerSpawn);
     this.tutorialOrigin = { ...this.stage.playerSpawn };
@@ -404,13 +410,13 @@ export class BattleScene implements Scene {
     this.world.addChild(this.vfx.view);
     const equippedWeaponUid = this.profile.equipped.weapon;
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
-    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData);
     this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
       premiumOverlaySheet: this.premiumPlayerOverlaySheet,
       characterFxSheet: this.characterFxSheet,
       equipmentAppearance,
-      mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate),
-      spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 1.12,
+      displayCalibration: resolveCharacterDisplayCalibration(),
+      mirrorWest: false,
+      spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 2.02,
     });
     this.world.addChild(this.playerPresentation.root);
     this.prepareTextureWarmup();

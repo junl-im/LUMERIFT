@@ -1,10 +1,10 @@
-# HANDOFF MASTER v1.11.18
+# HANDOFF MASTER v1.11.20
 
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.11.18
+**현재 버전:** v1.11.20
 **갱신일:** 2026-07-31  
-**상태:** 캐릭터 본체 FX·장비 재질 동기화·외형 미리보기 완료
+**상태:** 캐릭터·코스튬 아틀리에와 무기별 전투 모션 프로필 연결 완료
 
 ## 1. 프로젝트 목적
 
@@ -98,6 +98,24 @@ LUMERIFT는 모바일 브라우저에서 빠르고 아름답게 실행되는 세
 - 자동 전투 사용자 프리셋 3개 저장 슬롯과 프리셋 연구소
 - 전투 결과 기반 세 프리셋 적합도 비교와 추천
 - v1.11.9·v1.11.11 누적 검증의 문구/하드코딩 의존 제거
+
+
+
+### v1.11.20 릴리스 포인트
+
+- 캐릭터·코스튬 아틀리에와 v10 본체 8개 전투 포즈 실시간 미리보기
+- 염색·포즈 로컬 외형 슬롯 3개 저장·불러오기·초기화
+- 균열검·대검·균열 장창별 공격 준비·사거리·공격각·타격 정지 차등화
+- Player Save v4와 외형 슬롯 저장소 분리
+- 기존 v10 본체·v4 fallback·AttackFootprint·App Check 비활성 정책 유지
+
+### v1.11.19 릴리스 포인트
+
+- 기본 전투 플레이어를 648프레임·80애니메이션의 v10 Atlas로 전환
+- 장비 등급 기반 균열검·대검·균열 장창 실루엣
+- 4종 로컬 염색 프리셋과 세트 조화 로비 표시
+- v4 플레이어 Atlas 비상 fallback 및 v6/v7 Lazy Loading 후보 보존
+- Player Save v4·AttackFootprint·App Check 비활성 정책 유지
 
 ## 5. 라이선스
 
@@ -393,3 +411,13 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 장비 등급별 재질광·룬·무기 궤적 동기화
 - 로비·인벤토리 장비 외형 미리보기
 - Player Save v4·AttackFootprint·App Check 비활성 계약 유지
+
+## v1.11.21 캐릭터 스튜디오 8방향 비교·무기 본체 프레임
+
+- `CharacterWardrobeController`는 방향·코스튬·갑주/망토/룬 채널·비교 슬롯·최근 프리셋을 로컬 저장한다.
+- v1.11.20 슬롯은 방향 남, 정찰대 강철 세트, BASE 채널로 자동 마이그레이션한다.
+- `CharacterWardrobeScene`은 현재 장비와 교체 후보를 같은 조건으로 좌우 동시 렌더링한다.
+- `WeaponBodyAttackFrames`는 검·대검·장창별 기존 v10 본체 프레임 순서와 속도를 분리한다.
+- `WeaponMotionProfile`과 `PlayerMotionDirector`는 무기별 선행·접촉·회수·전진·회전 값을 공유한다.
+- `CharacterDisplayCalibration`은 Android Chrome·iOS Safari 캡처 준비용 기준을 제공하되 물리 캡처 승인 전 상태를 `pending-physical-capture`로 유지한다.
+- Player Save v4, Firebase App Check 비활성, AttackFootprint, PNG/WebP, 15MB 초기 예산 계약은 변경하지 않는다.

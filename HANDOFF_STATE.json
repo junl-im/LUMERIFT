@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.18",
+  "version": "1.11.21",
   "updatedAt": "2026-07-31",
-  "currentPhase": "v1.11.18 캐릭터 본체·장비 재질 동기화 업그레이드 완료",
-  "qualityStage": "production-candidate-character-equipment-material-sync",
+  "currentPhase": "v1.11.21 캐릭터 스튜디오 8방향 비교·무기 본체 프레임·세부 염색·모바일 보정 완료",
+  "qualityStage": "production-candidate-character-studio-directional-comparison-weapon-frame-calibration",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
     "Boot → Login → Lobby → Stage Select → Battle → Result 흐름",
@@ -187,14 +187,30 @@
     "v1.11.18: 8방향 상태별 캐릭터 FX, 장비 등급별 재질 동기화, 로비·인벤토리 외형 미리보기",
     "v1.11.18 8방향·4상태 캐릭터 FX Atlas v9를 기존 전투 캐릭터에 후면·전면 레이어로 연결",
     "장비 등급별 갑주 재질·룬·오라·무기 궤적 색상을 로비·전투·인벤토리에 동기화",
-    "캐릭터·장비 신규 원본을 모바일 제작용 마스터 규격으로 보존"
+    "캐릭터·장비 신규 원본을 모바일 제작용 마스터 규격으로 보존",
+    "프리미엄 8방향 플레이어 본체 Atlas v10 648프레임·80애니메이션 기본 연결",
+    "균열검·대검·균열 장창 장비 기반 무기 실루엣 연결",
+    "4종 캐릭터 염색 프리셋과 로컬 저장 연결",
+    "로비 장비 세트 조화·무기 계열·염색 미리보기 확장",
+    "레거시 v4 플레이어 Atlas 비상 fallback 보존과 기본 중복 로딩 방지",
+    "v1.11.20: 캐릭터·코스튬 아틀리에에서 v10 본체 8개 전투 포즈 실시간 미리보기 연결",
+    "v1.11.20: 염색·포즈를 Player Save v4와 분리한 로컬 외형 슬롯 3개 저장·불러오기·초기화",
+    "v1.11.20: 균열검·대검·균열 장창별 공격 준비·사거리·공격각·타격 정지 프로필 적용",
+    "v1.11.20: 로비 캐릭터·영웅 메뉴를 장비 외형 관리 흐름에 연결",
+    "v1.11.21: 캐릭터 스튜디오 8방향 수동 회전과 방향별 실시간 본체 프레임 연결",
+    "v1.11.21: 무기·방어구·장신구 슬롯별 현재·교체 후보 외형 동시 비교",
+    "v1.11.21: 균열검·대검·균열 장창별 본체 프레임 레시피와 접촉·회수 타이밍 분리",
+    "v1.11.21: 정찰대·감시자·전령 세트 코스튬과 갑주·망토·룬 세부 염색 채널",
+    "v1.11.21: 최근 외형 프리셋 빠른 적용과 v1.11.20 로컬 슬롯 하위 호환 마이그레이션",
+    "v1.11.21: Android Chrome·iOS Safari 캡처 준비용 캐릭터 크기·발광 기준 프로필 연결"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "전용 8방향 캐릭터 본체 Atlas 최종 교체",
-    "무기별 고유 실루엣과 공격 궤적 분리",
-    "장비 세트 외형과 염색 프리셋",
-    "Android Chrome·iOS Safari 실기기 캐릭터 가독성 검수"
+    "Android Chrome·iOS Safari 실제 물리 기기 캡처를 수집해 현재 기준 프로필을 승인값으로 교체",
+    "검·대검·장창 전용 수작업 공격 본체 Atlas 제작과 런타임 프레임 레시피 교체",
+    "장비 파츠별 망토·갑주·룬 레이어 독립 교체와 확대 비교",
+    "외형 프리셋 즐겨찾기·이름 변경·내보내기 UX",
+    "GitHub Actions 전체 test/build/bundle 확인"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -239,25 +255,25 @@
     "다층 전투 음향은 동시 재생 수와 볼륨을 제한해 모바일 오디오 피로와 클리핑을 방지한다."
   ],
   "assetMetrics": {
-    "activeAtlasCount": 12,
-    "activeRuntimeBytes": 5872743,
-    "activeRuntimeFileCount": 43,
+    "activeAtlasCount": 13,
+    "activeRuntimeBytes": 7142300,
+    "activeRuntimeFileCount": 50,
     "archivedAtlasCount": 47,
     "archivedRuntimeBytes": 23474797,
     "archivedRuntimeFileCount": 194,
-    "preservedAtlasCount": 59,
-    "preservedFrameCount": 3947,
-    "preservedAnimationCount": 811,
-    "fullProjectBytes": 112157696,
+    "preservedAtlasCount": 60,
+    "preservedFrameCount": 4595,
+    "preservedAnimationCount": 891,
+    "fullProjectBytes": 114574938,
     "sourceArchiveIncludedInFull": true,
-    "sourceArchiveFileCount": 287,
+    "sourceArchiveFileCount": 289,
     "legacyArchiveIncludedInFull": true,
     "legacyRuntimeDefaultEnabled": false,
     "chapterOneBackgroundTiers": 4,
     "bossPhasePortraits": 3,
     "v170RuntimeArtBytes": 4672157,
     "v180PreviewFiles": 4,
-    "fullProjectFileCount": 833,
+    "fullProjectFileCount": 864,
     "v190RuntimeUiBytes": 189271,
     "v190RuntimeUiFiles": 5,
     "v190UiFrames": 60,
@@ -289,7 +305,14 @@
     "v1118RuntimeImageFiles": 4,
     "v1118RuntimeAtlasCount": 2,
     "v1118CharacterFxFrames": 32,
-    "v1118EquipmentMaterialFrames": 9
+    "v1118EquipmentMaterialFrames": 9,
+    "v1119RuntimeImageFiles": 2,
+    "v1119RuntimeAtlasCount": 1,
+    "v1119PlayerBodyFrames": 648,
+    "v1119PlayerBodyAnimations": 80,
+    "v11121NewRuntimeImageFiles": 0,
+    "v11121ProgrammaticCharacterUpgrade": true,
+    "v11121PatchProjectFiles": 37
   },
   "knownLimitations": [
     "현재 플레이어 프로필과 랭킹 점수는 클라이언트 권한형 MVP라 완전한 부정행위 방지는 서버 검증 전까지 제한적이다.",
@@ -309,11 +332,13 @@
     "v1.11.4 전용 플레이어 도색 Atlas는 선택형 제작 후보이며 최종 기본 원화로 승인되지 않았다.",
     "Vibration API와 ARIA live region 동작은 브라우저·OS 접근성 설정에 따라 제한될 수 있다.",
     "다층 전투 음향은 기존 OGG의 재생 변형이며 독립 수작업 효과음 세트는 다음 단계다.",
-    "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
+    "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다.",
+    "v1.11.21 Android Chrome·iOS Safari 크기·발광 값은 캡처 준비용 기준 프로필이며 실제 물리 기기 캡처 승인값이 아니다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.21.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.20_to_v1.11.21_ROOT_OVERWRITE.zip",
+    "verificationReport": "LUMERIFT_v1.11.21_RELEASE_VERIFICATION.txt"
   },
   "sourceArtMetrics": {
     "totalBytes": 101981733,
@@ -321,7 +346,7 @@
     "thirdPartyOriginalsPreserved": true,
     "maximumSourceBudgetBytes": 120000000
   },
-  "lastUpdated": "2026-07-31",
+  "lastUpdated": "2026-07-31T15:18:00+09:00",
   "featureMetrics": {
     "bossPhaseCinematics": 3,
     "cloudRecoveryMaxPoints": 5,
@@ -396,12 +421,28 @@
     "characterFxStates": 4,
     "equipmentMaterialGrades": 3,
     "equipmentVisualSyncScreens": 3,
-    "playerSaveVersion": 4
+    "playerSaveVersion": 4,
+    "premiumPlayerBodyAtlasVersion": 10,
+    "premiumPlayerBodyFrames": 648,
+    "premiumPlayerBodyAnimations": 80,
+    "premiumPlayerBodyDirections": 8,
+    "characterDyePresets": 4,
+    "weaponVisualFamilies": 3,
+    "legacyPlayerFallback": true,
+    "characterStudioDirections": 8,
+    "characterComparisonSlots": 3,
+    "characterCostumeSets": 3,
+    "characterDyeChannels": 3,
+    "recentAppearancePresetMax": 5,
+    "weaponBodyFrameFamilies": 3,
+    "weaponAttackTimingFamilies": 3,
+    "characterDisplayCalibrationProfiles": 4,
+    "physicalCharacterCaptureVerified": false
   },
   "releaseArchives": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip",
-    "full": "LUMERIFT_FULL_v1.11.18.zip",
-    "patch": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.21.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.20_to_v1.11.21_ROOT_OVERWRITE.zip",
+    "full": "LUMERIFT_FULL_v1.11.21.zip",
+    "patch": "LUMERIFT_PATCH_v1.11.20_to_v1.11.21_ROOT_OVERWRITE.zip"
   }
 }

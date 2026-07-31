@@ -158,6 +158,15 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11117')) errors.pu
 if (pkg.scripts?.['validate:upgrade:v11118'] !== 'node scripts/validate-v11118-upgrade.mjs') errors.push('v1.11.18 validator missing');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11118')) errors.push('verify missing v1.11.18');
 
+if (pkg.scripts?.['validate:upgrade:v11119'] !== 'node scripts/validate-v11119-upgrade.mjs') errors.push('v1.11.19 validator missing');
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11119')) errors.push('verify missing v1.11.19');
+
+if (pkg.scripts?.['validate:upgrade:v11120'] !== 'node scripts/validate-v11120-upgrade.mjs') errors.push('v1.11.20 validator missing');
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11120')) errors.push('verify missing v1.11.20');
+
+if (pkg.scripts?.['validate:upgrade:v11121'] !== 'node scripts/validate-v11121-upgrade.mjs') errors.push('v1.11.21 validator missing');
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11121')) errors.push('verify missing v1.11.21');
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

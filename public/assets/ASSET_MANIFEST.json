@@ -1,7 +1,7 @@
 {
-  "version": 14,
+  "version": 15,
   "game": "LUMERIFT",
-  "release": "1.11.18",
+  "release": "1.11.21",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -43,8 +43,8 @@
     },
     "battle-chapter-1": {
       "files": [
-        "live/v4/atlases/player/player_live_v4.json",
-        "live/v4/atlases/player/player_live_v4.webp",
+        "live/v10/atlases/player/player_premium_body_v10.json",
+        "live/v10/atlases/player/player_premium_body_v10.webp",
         "live/v4/atlases/monsters/monsters_live_v4.json",
         "live/v4/atlases/monsters/monsters_live_v4.webp",
         "live/v4/atlases/effects/combat_effects_v4.json",
@@ -72,7 +72,7 @@
         "live/v9/atlases/player/player_character_fx_v9.json",
         "live/v9/atlases/player/player_character_fx_v9.webp"
       ],
-      "bytes": 4972208
+      "bytes": 5439466
     },
     "operations-ui-v3": {
       "files": [
@@ -108,11 +108,25 @@
         "live/v9/atlases/equipment/equipment_material_v9.webp"
       ],
       "bytes": 284633
+    },
+    "legacy-player-fallback": {
+      "files": [
+        "live/v4/atlases/player/player_live_v4.json",
+        "live/v4/atlases/player/player_live_v4.webp"
+      ],
+      "bytes": 795323
+    },
+    "premium-character-v10": {
+      "files": [
+        "live/v10/atlases/player/player_premium_body_v10.json",
+        "live/v10/atlases/player/player_premium_body_v10.webp"
+      ],
+      "bytes": 1262581
     }
   },
   "deployment": {
-    "publicAssetFiles": 43,
-    "publicAssetBytes": 5872743,
+    "publicAssetFiles": 50,
+    "publicAssetBytes": 7142300,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

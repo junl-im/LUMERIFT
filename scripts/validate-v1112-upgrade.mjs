@@ -87,7 +87,7 @@ const requirements = {
     'deviceQaSession.update',
   ],
   'src/scenes/SettingsScene.ts': [
-    '캐릭터 원화',
+    'playerArtVariantLabel',
     'QA 기록 시작',
     'QA 기록 종료',
     'context.deviceQaSession.snapshot()',
@@ -95,7 +95,7 @@ const requirements = {
   'src/scenes/BattleScene.ts': [
     'OWNED_PLAYER_PREVIEW_BUNDLE',
     "playerArtVariant === 'owned-preview'",
-    'mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate)',
+    'mirrorWest: false',
     '고급 기본 원화로 복구합니다',
   ],
   'src/game/presentation/BattleActorView.ts': [

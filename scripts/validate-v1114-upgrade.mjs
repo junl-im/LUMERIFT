@@ -27,7 +27,7 @@ const requirements = {
   ],
   'src/scenes/BattleScene.ts': [
     'joystickCalibration.apply(rawJoystick)',
-    'spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 1.12',
+    'spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 2.02',
   ],
   'src/scenes/SettingsScene.ts': [
     '조이스틱 보정',
@@ -38,7 +38,7 @@ const requirements = {
     'private readonly silhouetteGlow = new Graphics()',
     'private readonly focusHalo = new Graphics()',
     'drawCharacterPolish(',
-    'this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff',
+    'this.sprite.tint = frame.overdrive ? 0xfff5c8 : this.equipmentAppearance.bodyTint',
   ],
   'src/ui/SceneChrome.ts': [
     'RIFT PANEL',

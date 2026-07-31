@@ -16,6 +16,8 @@ import type { AccessibilityController } from '../core/accessibility/Accessibilit
 import type { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
 import type { MobileViewportController } from '../core/layout/MobileViewportController';
 import type { PlayerArtVariantController } from '../core/presentation/PlayerArtVariantController';
+import type { CharacterDyeController } from '../core/presentation/CharacterDyeController';
+import type { CharacterWardrobeController } from '../core/presentation/CharacterWardrobeController';
 import type { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
 import type { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import type { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
@@ -34,6 +36,8 @@ export interface AppContext {
   readonly adaptivePerformance: AdaptivePerformanceController;
   readonly mobileViewport: MobileViewportController;
   readonly playerArtVariant: PlayerArtVariantController;
+  readonly characterDye: CharacterDyeController;
+  readonly characterWardrobe: CharacterWardrobeController;
   readonly deviceQaSession: DeviceQaSessionRecorder;
   readonly haptics: HapticFeedbackController;
   readonly liveAnnouncer: LiveRegionAnnouncer;

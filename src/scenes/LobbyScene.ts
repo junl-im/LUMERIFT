@@ -15,6 +15,7 @@ import { StageSelectScene } from './StageSelectScene';
 import { SettingsScene } from './SettingsScene';
 import { QuestScene } from './QuestScene';
 import { InventoryScene } from './InventoryScene';
+import { CharacterWardrobeScene } from './CharacterWardrobeScene';
 import { AssetGalleryScene } from './AssetGalleryScene';
 import { OperationsScene } from './OperationsScene';
 import { AccountScene } from './AccountScene';
@@ -22,7 +23,8 @@ import { RankingScene } from './RankingScene';
 import { createComicTag, createFeatureMarquee, createInterfaceBackdrop, createInterfaceStamp } from '../ui/InterfaceChrome';
 import { createUxStatusRail } from '../ui/UxFeedback';
 import { resolveLobbyNextAction, type LobbyNextAction } from '../game/ui/LobbyNextAction';
-import { resolveCharacterEquipmentAppearance, type CharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
+import { resolveCharacterEquipmentAppearance, weaponVisualFamilyLabel, type CharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
+import { characterDyeLabel } from '../core/presentation/CharacterDyeController';
 
 export class LobbyScene implements Scene {
   public readonly view = new Container();
@@ -49,7 +51,11 @@ export class LobbyScene implements Scene {
     const equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
 
     const equipment = calculateEquipmentSummary(this.profile, context.gameData);
-    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData);
+    const wardrobe = context.characterWardrobe.current;
+    const equipmentAppearance = resolveCharacterEquipmentAppearance(this.profile, context.gameData, context.characterDye.current, {
+      costumeSet: wardrobe.costumeSet,
+      dyeChannels: wardrobe.dyeChannels,
+    });
     const power = calculateTotalPower(context.gameData.player, this.profile, context.gameData);
     const claimableQuests = countClaimableQuests(this.profile, context.gameData);
     const clearedStages = Object.values(this.profile.stageProgress).filter((entry) => entry.clearCount > 0).length;
@@ -211,10 +217,17 @@ export class LobbyScene implements Scene {
         : appearance.dominantGrade === 'rare'
           ? 'primary'
           : 'secondary';
-      const materialBadge = createBadge(`${appearance.label} · 외형 동기화`, materialTone);
+      // v1.11.18 외형 동기화 계약을 유지하면서 v1.11.19 세트·무기 실루엣 정보를 확장합니다.
+      const materialBadge = createBadge(`${appearance.setLabel} · ${weaponVisualFamilyLabel(appearance.weaponVisualFamily)}`, materialTone);
       materialBadge.scale.set(0.62);
       materialBadge.position.set(178, 498);
       this.view.addChild(materialBadge);
+      const dyeLabel = new Text({
+        text: `DYE · ${characterDyeLabel(appearance.dyePreset)} · 세트 조화 ${appearance.setHarmony ? 'ON' : 'MIX'}`,
+        style: new TextStyle({ fill: COLORS.muted, fontSize: 7, fontWeight: '600' }),
+      });
+      dyeLabel.position.set(180, 520);
+      this.view.addChild(dyeLabel);
     }
 
     const namePlate = createRasterPanel(26, 536, 292, 78, 'panel_gold');
@@ -343,7 +356,7 @@ export class LobbyScene implements Scene {
   private createMenuGrid(context: AppContext, claimableQuests: number, operationAlerts: number): void {
     const entries = [
       { icon: 'stage', label: '스테이지', press: async () => context.scenes.change(() => new StageSelectScene()) },
-      { icon: 'equipment', label: '장비', press: async () => context.scenes.change(() => new InventoryScene()) },
+      { icon: 'hero', label: '캐릭터', press: async () => context.scenes.change(() => new CharacterWardrobeScene()) },
       { icon: 'inventory', label: '인벤토리', press: async () => context.scenes.change(() => new InventoryScene()) },
       { icon: 'quest', label: '퀘스트', badge: claimableQuests > 0 ? String(claimableQuests) : undefined, press: async () => context.scenes.change(() => new QuestScene()) },
       { icon: 'mail', label: '우편', badge: operationAlerts > 0 ? String(operationAlerts) : undefined, press: async () => context.scenes.change(() => new OperationsScene('mail')) },
@@ -363,7 +376,7 @@ export class LobbyScene implements Scene {
     this.view.addChild(dock);
     const items = [
       { icon: 'home', label: '홈', active: true, press: async () => undefined },
-      { icon: 'hero', label: '영웅', active: false, press: async () => context.scenes.change(() => new InventoryScene()) },
+      { icon: 'hero', label: '영웅', active: false, press: async () => context.scenes.change(() => new CharacterWardrobeScene()) },
       { icon: 'summon', label: '도감', active: false, press: async () => context.scenes.change(() => new AssetGalleryScene()) },
       { icon: 'shop', label: '운영', active: false, press: async () => context.scenes.change(() => new OperationsScene()) },
       { icon: 'menu', label: '설정', active: false, press: async () => { await context.scenes.change(() => new SettingsScene('lobby')); } },

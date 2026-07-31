@@ -25,6 +25,8 @@ import { RankingService } from '../services/ranking/RankingService';
 import { AccessibilityController } from '../core/accessibility/AccessibilityController';
 import { AdaptivePerformanceController } from '../core/performance/AdaptivePerformanceController';
 import { PlayerArtVariantController } from '../core/presentation/PlayerArtVariantController';
+import { CharacterDyeController } from '../core/presentation/CharacterDyeController';
+import { CharacterWardrobeController } from '../core/presentation/CharacterWardrobeController';
 import { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
 import { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
@@ -76,6 +78,8 @@ export class GameApp {
     const graphicsQuality = new GraphicsQualityController();
     const accessibility = new AccessibilityController();
     const playerArtVariant = new PlayerArtVariantController();
+    const characterDye = new CharacterDyeController();
+    const characterWardrobe = new CharacterWardrobeController();
     const deviceQaSession = new DeviceQaSessionRecorder();
     const haptics = new HapticFeedbackController();
     const liveAnnouncer = new LiveRegionAnnouncer();
@@ -120,6 +124,8 @@ export class GameApp {
       adaptivePerformance,
       mobileViewport: this.mobileViewport,
       playerArtVariant,
+      characterDye,
+      characterWardrobe,
       deviceQaSession,
       haptics,
       liveAnnouncer,

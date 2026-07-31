@@ -9,6 +9,7 @@ import type { DeviceQaSessionSampleInput } from '../core/performance/DeviceQaSes
 import { analyzeDeviceQaSession } from '../core/performance/DeviceQaSessionAnalyzer';
 import { performanceLevelLabel } from '../core/performance/AdaptivePerformanceController';
 import { playerArtVariantLabel } from '../core/presentation/PlayerArtVariantController';
+import { characterDyeLabel } from '../core/presentation/CharacterDyeController';
 import { joystickCalibrationLabel } from '../core/input/JoystickCalibrationController';
 import {
   autoBattleStrategyPresetDescription,
@@ -319,19 +320,32 @@ export class SettingsScene implements Scene {
     announcements.position.set(282, 772);
 
     const artVariant = new UiButton({
-      label: `캐릭터 원화 · ${playerArtVariantLabel(context.playerArtVariant.current)}`,
-      width: 442,
+      label: `본체 · ${playerArtVariantLabel(context.playerArtVariant.current)}`,
+      width: 210,
       height: 28,
       tone: context.playerArtVariant.current === 'detail' ? 'secondary' : 'primary',
-      fontSize: 10,
+      fontSize: 9,
       onPress: async () => {
         context.playerArtVariant.cycle();
-        await context.scenes.change(() => new SettingsScene(this.returnTo, '다음 전투부터 플레이어 원화를 변경합니다.'));
+        await context.scenes.change(() => new SettingsScene(this.returnTo, '다음 전투부터 플레이어 본체 원화를 변경합니다.'));
       },
     });
     artVariant.position.set(42, 808);
 
-    this.view.addChild(panel, title, vision, largeHud, reduceFlash, haptics, announcements, artVariant);
+    const characterDye = new UiButton({
+      label: `염색 · ${characterDyeLabel(context.characterDye.current)}`,
+      width: 210,
+      height: 28,
+      tone: context.characterDye.current === 'heir-gold' ? 'primary' : 'secondary',
+      fontSize: 9,
+      onPress: async () => {
+        context.characterDye.cycle();
+        await context.scenes.change(() => new SettingsScene(this.returnTo, `캐릭터 염색을 ${characterDyeLabel(context.characterDye.current)}로 변경했습니다.`));
+      },
+    });
+    characterDye.position.set(282, 808);
+
+    this.view.addChild(panel, title, vision, largeHud, reduceFlash, haptics, announcements, artVariant, characterDye);
   }
 
   private createQaPanel(context: AppContext): void {

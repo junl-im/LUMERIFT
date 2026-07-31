@@ -14,7 +14,8 @@ export const ASSET_PATHS = {
   uiAtlas: assetUrl('assets/live/v5/atlases/ui/ui_luminous_v5.json'),
   uiIcons: assetUrl('assets/live/v5/atlases/ui/ui_icons_v5.json'),
   titleBackground: assetUrl('assets/live/v5/backgrounds/title_screen_v5.webp'),
-  playerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
+  playerAtlas: assetUrl('assets/live/v10/atlases/player/player_premium_body_v10.json'),
+  legacyPlayerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
   ownedPlayerAtlas: assetUrl('assets/live/v6/atlases/player/player_owned_motion_v6.json'),
   ownedPaintedPlayerAtlas: assetUrl('assets/live/v7/atlases/player/player_owned_painted_v7.json'),
   monsterAtlas: assetUrl('assets/live/v4/atlases/monsters/monsters_live_v4.json'),
@@ -61,6 +62,12 @@ export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   estimatedBytes: 610_000,
 };
 
+export const WARDROBE_UI_BUNDLE: AssetBundleDefinition = {
+  id: 'character-wardrobe-v1',
+  urls: [ASSET_PATHS.playerAtlas, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+  estimatedBytes: 1_950_000,
+};
+
 
 export const OPERATIONS_UI_BUNDLE: AssetBundleDefinition = {
   id: 'operations-ui-v3',
@@ -99,7 +106,7 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.premiumPlayerOverlayAtlas,
     ASSET_PATHS.characterFxAtlas,
   ],
-  estimatedBytes: 6_300_000,
+  estimatedBytes: 7_500_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -129,12 +136,22 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
   },
   {
     id: 'live-player',
-    label: '실사용 플레이어 모션',
+    label: '프리미엄 8방향 플레이어 본체 v10',
     kind: 'atlas',
-    prefix: 'knight_',
+    prefix: 'premium_body.',
     atlasPaths: [ASSET_PATHS.playerAtlas],
     imagePaths: [],
-    bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 950_000 },
+    bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 1_300_000 },
+  },
+
+  {
+    id: 'legacy-player-fallback',
+    label: '레거시 플레이어 본체 · 비상 fallback',
+    kind: 'atlas',
+    prefix: 'knight_',
+    atlasPaths: [ASSET_PATHS.legacyPlayerAtlas],
+    imagePaths: [],
+    bundle: { id: 'legacy-player-gallery', urls: [ASSET_PATHS.legacyPlayerAtlas], estimatedBytes: 950_000 },
   },
 
   {

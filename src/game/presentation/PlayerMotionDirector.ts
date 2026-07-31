@@ -1,4 +1,6 @@
 import type { PlayerState } from '../actors/player/PlayerCombatController';
+import { resolveWeaponAttackTiming } from '../combat/WeaponMotionProfile';
+import type { WeaponVisualFamily } from './CharacterEquipmentVisualProfile';
 
 export interface PlayerMotionInput {
   readonly state: PlayerState;
@@ -8,6 +10,7 @@ export interface PlayerMotionInput {
   readonly overdrive: boolean;
   readonly reducedMotion: boolean;
   readonly renderIntensity: number;
+  readonly weaponFamily?: WeaponVisualFamily;
 }
 
 export interface PlayerMotionProfile {
@@ -52,20 +55,29 @@ export function resolvePlayerMotion(input: PlayerMotionInput): PlayerMotionProfi
     trailAlpha = 0.09 * intensity;
     trailLength = 20;
   } else if (input.state === 'attacking') {
+    const family = input.weaponFamily ?? 'blade';
+    const weaponTiming = resolveWeaponAttackTiming(family, input.comboStep);
     const comboPower = 1 + Math.max(0, input.comboStep - 1) * 0.08;
-    scaleX = 1 + anticipation * 0.09 * comboPower * reduced;
-    scaleY = 1 - anticipation * 0.045 * reduced;
-    rotation = Math.sin(progress * Math.PI * 2) * 0.025 * comboPower * reduced;
-    animationSpeed = 0.27 + input.comboStep * 0.012;
-    trailAlpha = 0.45 * comboPower * intensity;
-    trailLength = 42 + input.comboStep * 10;
+    const contactPulse = phasePulse(progress, weaponTiming.contactRatio, family === 'greatblade' ? 0.24 : 0.18);
+    const anticipationPulse = phasePulse(progress, weaponTiming.anticipationRatio, 0.22);
+    scaleX = 1 + (anticipationPulse * 0.05 + contactPulse * 0.075) * comboPower * reduced;
+    scaleY = 1 - contactPulse * (family === 'greatblade' ? 0.06 : 0.038) * reduced;
+    rotation = Math.sin(progress * Math.PI * 2) * 0.026 * comboPower * weaponTiming.rotationWeight * reduced;
+    offsetY = family === 'riftlance' ? -contactPulse * 2.2 * reduced : family === 'greatblade' ? anticipationPulse * 1.5 : 0;
+    animationSpeed = weaponTiming.bodyAnimationSpeed;
+    trailAlpha = (family === 'greatblade' ? 0.58 : family === 'riftlance' ? 0.48 : 0.45) * comboPower * intensity;
+    trailLength = (family === 'riftlance' ? 58 : family === 'greatblade' ? 50 : 42) + input.comboStep * 10;
   } else if (input.state === 'skill') {
-    scaleX = 1 + anticipation * 0.12 * reduced;
-    scaleY = 1 + anticipation * 0.05 * reduced;
-    offsetY = -anticipation * 4 * reduced;
-    animationSpeed = 0.2;
+    const family = input.weaponFamily ?? 'blade';
+    const weaponTiming = resolveWeaponAttackTiming(family, input.comboStep, true);
+    const contactPulse = phasePulse(progress, weaponTiming.contactRatio, 0.22);
+    scaleX = 1 + (anticipation * 0.08 + contactPulse * 0.06) * reduced;
+    scaleY = 1 + contactPulse * 0.05 * reduced;
+    offsetY = -contactPulse * (family === 'riftlance' ? 2 : 4) * reduced;
+    rotation = Math.sin(progress * Math.PI) * 0.018 * weaponTiming.rotationWeight * reduced;
+    animationSpeed = weaponTiming.bodyAnimationSpeed;
     trailAlpha = 0.72 * intensity;
-    trailLength = 76;
+    trailLength = family === 'riftlance' ? 94 : family === 'greatblade' ? 82 : 76;
     afterimageInterval = 0.06;
     afterimageAlpha = 0.24 * intensity;
   } else if (input.state === 'dodging') {
@@ -101,6 +113,11 @@ export function resolvePlayerMotion(input: PlayerMotionInput): PlayerMotionProfi
     afterimageInterval,
     afterimageAlpha,
   };
+}
+
+function phasePulse(progress: number, center: number, width: number): number {
+  const distance = Math.abs(progress - center);
+  return Math.max(0, 1 - distance / Math.max(0.01, width));
 }
 
 function clamp01(value: number): number {

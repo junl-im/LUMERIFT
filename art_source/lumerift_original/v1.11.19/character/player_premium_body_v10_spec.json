@@ -1,0 +1,40 @@
+{
+  "release": "1.11.19",
+  "asset": "player_premium_body_v10",
+  "runtime": "public/assets/live/v10/atlases/player/player_premium_body_v10.webp",
+  "source": "public/assets/live/v4/atlases/player/player_live_v4.webp",
+  "directions": [
+    "n",
+    "ne",
+    "e",
+    "se",
+    "s",
+    "sw",
+    "w",
+    "nw"
+  ],
+  "states": [
+    "idle",
+    "run",
+    "attack1",
+    "attack2",
+    "attack3",
+    "skill1",
+    "skill2",
+    "hit",
+    "death",
+    "dodge"
+  ],
+  "runtimeFrameSize": [
+    88,
+    88
+  ],
+  "runtimeFrameCount": 648,
+  "animationCount": 80,
+  "policy": "mobile production master; derived from licensed v4 knight; PNG/WebP only",
+  "notes": [
+    "direction-specific cape, hair, shoulder plates and rune highlights",
+    "gameplay timing and animation keys preserved",
+    "no collision, AttackFootprint or Player Save changes"
+  ]
+}

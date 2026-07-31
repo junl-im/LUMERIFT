@@ -25,7 +25,7 @@ const requirements = {
     'private readonly stepHighlights = new Graphics()',
     'private smoothedFacing: Vec2 = { x: 0, y: -1 }',
     'const facing = blendFacing(this.smoothedFacing, controller.facing',
-    'this.drawMotionLayers(controller, facing, motion.auraAlpha, motion.auraRadius, motion.trailAlpha, motion.trailLength, frame.overdrive);',
+    'this.drawMotionLayers(',
     '.ellipse(-facing.x * 7, 2 + Math.abs(facing.x) * 1.6, 13 * scaleX, 8 * scaleY)',
     'const diagonalWeight = direction.length === 2 ? 1 : 0.78;',
   ],

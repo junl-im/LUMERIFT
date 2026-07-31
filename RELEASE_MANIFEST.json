@@ -1,18 +1,20 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.18",
-  "baseVersion": "1.11.17",
+  "version": "1.11.21",
+  "baseVersion": "1.11.20",
   "releaseDate": "2026-07-31",
-  "fullArchive": "LUMERIFT_FULL_v1.11.18.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.17_to_v1.11.18_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-character-equipment-material-sync",
+  "fullArchive": "LUMERIFT_FULL_v1.11.21.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.20_to_v1.11.21_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-character-studio-directional-comparison-weapon-frame-calibration",
   "features": [
-    "8방향 상태별 캐릭터 FX Atlas v9",
-    "망토·머리카락·갑주·무기 에너지 보조 실루엣",
-    "장비 등급별 전투 재질·무기 궤적 색상 동기화",
-    "로비·인벤토리 장비 외형 미리보기",
-    "v1.11.17 프리미엄 초상·오버레이 계약 유지"
+    "캐릭터 스튜디오 8방향 수동 회전과 현재·교체 후 동시 외형 비교",
+    "무기·방어구·장신구 슬롯별 카탈로그 교체 후보 미리보기",
+    "균열검·대검·균열 장창별 전용 본체 프레임 레시피와 접촉 타이밍 분리",
+    "장비 세트 코스튬 3종과 갑주·망토·룬 세부 염색 채널",
+    "최근 외형 프리셋 빠른 적용과 기존 로컬 슬롯 마이그레이션",
+    "Android Chrome·iOS Safari 캡처 준비용 크기·발광 기준 프로필(물리 캡처 승인 대기)",
+    "Player Save v4·AttackFootprint·App Check 비활성 계약 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -38,9 +40,10 @@
   },
   "verification": [
     "validate-release-version",
-    "cumulative validators v1.11.0 through v1.11.18",
+    "cumulative validators v1.11.0 through v1.11.21",
     "asset/data/atlas/manifest/cleanup validators",
-    "TypeScript syntax parse and strict stub check",
+    "offline strict TypeScript check with local external-library declarations",
+    "runtime logic harness for wardrobe, weapon timing, frame recipe and calibration",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"
   ]

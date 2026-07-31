@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.18
+# LUMERIFT: 균열의 계승자 v1.11.21
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -91,12 +91,21 @@ npm run dev
 - 관련 문서: `docs/AUTO_COMBAT_HISTORY_v1.11.16.md`, `docs/DIRECTIONAL_WEAPON_TRAILS_v1.11.16.md`, `docs/BOSS_HUD_DATA_v1.11.16.md`, `docs/PATCH_NOTES_v1.11.16.md`
 
 
-## v1.11.17 핵심 업데이트
-- 프리미엄 영웅 초상 `hero_premium_v8.webp` 적용
-- 8방향 갑주·문양·무기 에너지 오버레이 Atlas 추가
-- 로비와 전투 캐릭터의 청록·골드 재질 언어 통일
-- 관련 문서: `docs/PREMIUM_CHARACTER_ART_v1.11.17.md`, `docs/PATCH_NOTES_v1.11.17.md`
 
+
+## v1.11.20 핵심 업데이트
+- 캐릭터·코스튬 아틀리에에서 v10 본체의 대기·이동·3연격·스킬·회피 포즈 실시간 미리보기
+- 염색과 미리보기 포즈를 저장하는 로컬 외형 슬롯 3개
+- 균열검·대검·균열 장창별 공격 준비·사거리·공격각·타격 정지 프로필
+- 로비 캐릭터·영웅 메뉴와 장비 보관소를 하나의 외형 관리 흐름으로 연결
+- 관련 문서: `docs/CHARACTER_WARDROBE_v1.11.20.md`, `docs/WEAPON_MOTION_PROFILES_v1.11.20.md`, `docs/PATCH_NOTES_v1.11.20.md`
+
+## v1.11.19 핵심 업데이트
+- 기본 전투 캐릭터를 648프레임·80애니메이션의 프리미엄 8방향 본체 Atlas v10으로 교체
+- 균열검·대검·균열 장창 무기 실루엣과 장비 세트 조화 표시 추가
+- 계승자 골드·균열 애저·심연 바이올렛·월광 실버 염색 프리셋 추가
+- v4 플레이어 Atlas는 비상 fallback으로 보존하고 Player Save v4·AttackFootprint 계약 유지
+- 관련 문서: `docs/PREMIUM_DIRECTIONAL_BODY_v1.11.19.md`, `docs/CHARACTER_DYE_AND_WEAPON_VISUALS_v1.11.19.md`, `docs/PATCH_NOTES_v1.11.19.md`
 
 ## v1.11.18 핵심 업데이트
 - 8방향·4상태 캐릭터 보조 FX Atlas v9 추가
@@ -104,3 +113,19 @@ npm run dev
 - 장착 장비 등급에 따라 전투 재질광·룬·무기 궤적 색상을 동기화
 - 로비와 인벤토리에 무기·방어구·장신구 외형 미리보기 추가
 - 관련 문서: `docs/PREMIUM_CHARACTER_SYSTEM_v1.11.18.md`, `docs/EQUIPMENT_VISUAL_SYNC_v1.11.18.md`, `docs/PATCH_NOTES_v1.11.18.md`
+
+## v1.11.17 핵심 업데이트
+- 프리미엄 영웅 초상 `hero_premium_v8.webp` 적용
+- 8방향 갑주·문양·무기 에너지 오버레이 Atlas 추가
+- 로비와 전투 캐릭터의 청록·골드 재질 언어 통일
+- 관련 문서: `docs/PREMIUM_CHARACTER_ART_v1.11.17.md`, `docs/PATCH_NOTES_v1.11.17.md`
+
+## v1.11.21 핵심 업데이트
+- 캐릭터 스튜디오에서 8방향 수동 회전과 현재·교체 후 외형 동시 비교
+- 무기·방어구·장신구 슬롯별 교체 후보와 세트 코스튬 3종 미리보기
+- 균열검·대검·균열 장창별 본체 공격 프레임·접촉 타이밍 분리
+- 갑주·망토·룬 세부 염색 채널과 최근 외형 프리셋 빠른 적용
+- Android Chrome·iOS Safari 캡처 준비용 캐릭터 크기·발광 기준 프로필
+- 관련 문서: `docs/CHARACTER_STUDIO_v1.11.21.md`, `docs/WEAPON_BODY_ATTACK_FRAMES_v1.11.21.md`, `docs/MOBILE_CHARACTER_CAPTURE_CALIBRATION_v1.11.21.md`, `docs/PATCH_NOTES_v1.11.21.md`
+
+실제 Android/iOS 물리 기기 캡처가 확보되기 전에는 보정 프로필을 최종 승인값으로 기록하지 않는다.
