@@ -377,3 +377,41 @@
 - 최근 외형 프리셋 최대 5개 빠른 적용과 이전 슬롯 하위 호환
 - Android Chrome·iOS Safari 캡처 준비용 크기·발광 기준 추가
 - 물리 기기 캡처 미수행 상태를 제한사항으로 유지
+
+## 2026-07-31 · v1.11.22
+
+- 무기 계열별 공격 본체 Atlas v11을 432프레임·72애니메이션으로 추가했다.
+- 전투와 캐릭터 아틀리에 공격 포즈가 전용 Atlas를 우선 사용하고 기존 v10 레시피로 폴백한다.
+- 무기·갑주·망토·룬 집중 보기와 FIT/CLOSE/DETAIL 확대를 추가했다.
+- 외형 프리셋 이름 변경·즐겨찾기·삭제·JSON 백업/복원 전용 화면을 추가했다.
+- 실제 Android/iOS 캡처와 정상 의존성 기반 빌드는 완료로 기록하지 않았다.
+
+## 2026-07-31 · v1.11.23
+
+- 캐릭터 본체와 분리된 갑주·망토·룬 프로그램 레이어를 추가하고 전투·아틀리에에 공통 연결했다.
+- 외형 프리셋을 최근 수정·즐겨찾기·이름순으로 정렬하고 이름·세트·방향·포즈 검색을 지원한다.
+- 슬롯 고정은 수동 덮어쓰기와 JSON 가져오기 교체를 차단한다.
+- Archive v2는 슬롯 고정 상태를 포함하며 v1 JSON을 계속 가져온다.
+- Android/iOS 캡처 승인 JSON은 검토자·촬영 시각·viewport·DPR·캡처 참조·보정 범위를 검증한다.
+- 승인 자료가 없는 기본 프로필은 계속 `pending-physical-capture`다.
+- 외형 Cloud Save는 manual-opt-in 봉투와 UID 가드까지만 구현했으며 Firestore에는 연결하지 않았다.
+
+
+## 2026-07-31 · v1.11.24
+
+- `CharacterAppearanceCloudRepository`와 `CharacterAppearanceCloudService`로 외형 프리셋 Firestore I/O를 연결했다.
+- 동의 전 원격 I/O 금지, revision 비교, 양쪽 변경 충돌 중지, 실패 업로드 재시도 큐를 적용했다.
+- Cloud 가져오기에서 고정 슬롯을 로컬 우선으로 병합하고 통합본을 다시 업로드한다.
+- 외형 Archive v3에 슬롯 순서를 추가하고 v1·v2 하위 호환을 유지한다.
+- 갑주·망토·룬 아이템 계열별 프로그램 마스크와 무기 계열별 프레임 정렬 보정을 적용했다.
+- 실제 Android/iOS 캡처와 수작업 최종 원화는 여전히 미완료다.
+
+## 2026-07-31 · v1.11.25
+
+- `CharacterAppearanceConflictResolver`로 슬롯 3개·순서·고정·최근 프리셋 선택 병합을 분리했다.
+- 로컬 고정 슬롯은 병합 계획과 관계없이 로컬 내용을 유지한다.
+- `CharacterAppearanceRecoveryStore`에 UID별 최대 5개 외형 복구 지점을 추가했다.
+- Cloud 업로드와 충돌 병합 전 자동 백업, 복구 적용 전 재백업을 연결했다.
+- `CharacterAppearanceConflictScene`과 `CharacterAppearanceRecoveryScene`을 Cloud Save 화면에서 진입하도록 연결했다.
+- 오프라인 엄격 TypeScript 검사와 선택 병합·복구 실행 하네스를 통과했다.
+- 실제 물리 기기 캡처, 최종 수작업 공격·장비 원화, 실제 npm 의존성 기반 빌드는 완료로 기록하지 않았다.

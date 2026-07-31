@@ -8,13 +8,15 @@ import {
   type CharacterDisplayCalibration,
 } from '../core/performance/CharacterDisplayCalibration';
 import {
+  characterAppearanceFocusLabel,
   characterCostumeSetLabel,
   characterDirectionLabel,
   characterDyeChannelLabel,
+  characterPreviewZoomLabel,
+  characterPreviewZoomMultiplier,
   characterShowcasePoseLabel,
   equipmentSlotLabel,
   recentPresetUpdatedLabel,
-  wardrobeSlotUpdatedLabel,
   type CharacterDyeChannel,
 } from '../core/presentation/CharacterWardrobeController';
 import { characterDyeLabel } from '../core/presentation/CharacterDyeController';
@@ -23,25 +25,40 @@ import type { EquipmentSlot, ItemDefinition } from '../game/items/itemTypes';
 import { ensureStarterInventory } from '../game/items/inventoryLogic';
 import { resolveWeaponMotionProfile, resolveWeaponAttackTiming } from '../game/combat/WeaponMotionProfile';
 import {
-  characterCapeStyleLabel,
   resolveCharacterEquipmentAppearance,
   resolveEquipmentDefinition,
   weaponVisualFamilyLabel,
   type CharacterEquipmentAppearance,
 } from '../game/presentation/CharacterEquipmentVisualProfile';
-import { resolveWeaponBodyTextures } from '../game/presentation/WeaponBodyAttackFrames';
+import {
+  resolveWeaponBodyFrameCorrection,
+  resolveWeaponBodyTextures,
+  type WeaponBodyFrameRecipe,
+} from '../game/presentation/WeaponBodyAttackFrames';
+import { CharacterEquipmentLayerView } from '../game/presentation/CharacterEquipmentLayerView';
 import { createDefaultProfile } from '../repositories/PlayerRepository';
 import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { AppearancePresetManagerScene } from './AppearancePresetManagerScene';
+import { CharacterCalibrationScene } from './CharacterCalibrationScene';
 import { InventoryScene } from './InventoryScene';
 import { LobbyScene } from './LobbyScene';
 
 interface PreviewSide {
   readonly sprite?: AnimatedSprite;
   readonly aura?: Graphics;
+  readonly equipment?: CharacterEquipmentLayerView;
+  readonly recipe?: WeaponBodyFrameRecipe;
+  readonly direction?: CharacterWardrobeControllerDirection;
+  readonly baseX?: number;
+  readonly baseY?: number;
+  readonly baseScale?: number;
+  readonly facingX?: number;
 }
+
+type CharacterWardrobeControllerDirection = AppContext['characterWardrobe']['current']['direction'];
 
 export class CharacterWardrobeScene implements Scene {
   public readonly view = new Container();
@@ -64,6 +81,7 @@ export class CharacterWardrobeScene implements Scene {
     await context.assets.loadBundle(WARDROBE_UI_BUNDLE);
     this.bundleLoaded = true;
     const playerSheet = context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
+    const weaponAttackSheet = context.assets.get<Spritesheet>(ASSET_PATHS.weaponAttackBodyAtlas);
     const wardrobe = context.characterWardrobe.current;
     const calibration = resolveCharacterDisplayCalibration();
     const candidates = equipmentCandidates(context, wardrobe.comparisonSlot);
@@ -113,6 +131,7 @@ export class CharacterWardrobeScene implements Scene {
       item: equipped,
       appearance: currentAppearance,
       sheet: playerSheet,
+      attackSheet: weaponAttackSheet,
       calibration,
       isCandidate: false,
     });
@@ -122,6 +141,7 @@ export class CharacterWardrobeScene implements Scene {
       item: candidate,
       appearance: candidateAppearance,
       sheet: playerSheet,
+      attackSheet: weaponAttackSheet,
       calibration,
       isCandidate: true,
     });
@@ -136,9 +156,18 @@ export class CharacterWardrobeScene implements Scene {
       style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '700' }),
     });
     baseline.position.set(36, 542);
-    this.view.addChild(captureBadge, baseline);
+    const calibrationButton = new UiButton({
+      label: '실기기 보정',
+      width: 112,
+      height: 32,
+      tone: calibration.captureStatus === 'capture-verified' ? 'primary' : 'secondary',
+      fontSize: 8,
+      onPress: async () => context.scenes.change(() => new CharacterCalibrationScene()),
+    });
+    calibrationButton.position.set(392, 512);
+    this.view.addChild(captureBadge, baseline, calibrationButton);
 
-    this.createControlGrid(context, candidates, candidate, currentAppearance, candidateAppearance);
+    this.createControlGrid(context, candidates, candidate);
     this.createStorageControls(context);
     this.createBottomActions(context);
   }
@@ -154,7 +183,29 @@ export class CharacterWardrobeScene implements Scene {
 
   public update(deltaSeconds: number): void {
     this.elapsed += deltaSeconds;
-    this.previewSides.forEach(({ aura }, index) => {
+    this.previewSides.forEach((side, index) => {
+      const { aura, equipment, sprite, recipe, direction, baseX, baseY, baseScale, facingX } = side;
+      if (sprite && recipe && direction && baseX !== undefined && baseY !== undefined && baseScale !== undefined) {
+        const correction = resolveWeaponBodyFrameCorrection(recipe, sprite.currentFrame, direction);
+        const actionProgress = sprite.totalFrames > 1 ? sprite.currentFrame / (sprite.totalFrames - 1) : 0;
+        sprite.position.set(baseX + correction.offsetX, baseY + correction.offsetY);
+        sprite.scale.set(baseScale * correction.scaleX, baseScale * correction.scaleY);
+        sprite.rotation = correction.rotation;
+        equipment?.update({
+          x: baseX + correction.offsetX,
+          y: baseY + correction.offsetY,
+          scaleX: baseScale * correction.scaleX,
+          scaleY: baseScale * correction.scaleY,
+          rotation: correction.rotation + correction.layerLag,
+          facingX: facingX ?? 0,
+          elapsed: this.elapsed + index * 0.4,
+          actionProgress,
+          state: 'showcase',
+          overdrive: false,
+        });
+      } else {
+        equipment?.tick(this.elapsed + index * 0.4);
+      }
       if (!aura) return;
       aura.alpha = 0.72 + Math.sin(this.elapsed * 2.35 + index * 0.8) * 0.12;
       aura.rotation += deltaSeconds * (index === 0 ? 0.07 : -0.07);
@@ -167,6 +218,7 @@ export class CharacterWardrobeScene implements Scene {
     readonly item: ItemDefinition | undefined;
     readonly appearance: CharacterEquipmentAppearance;
     readonly sheet: Spritesheet | undefined;
+    readonly attackSheet: Spritesheet | undefined;
     readonly calibration: CharacterDisplayCalibration;
     readonly isCandidate: boolean;
   }): void {
@@ -188,11 +240,37 @@ export class CharacterWardrobeScene implements Scene {
       .circle(input.x + 115, 356, 39)
       .stroke({ color: input.appearance.runeColor, alpha: 0.26 * input.calibration.auraMultiplier, width: 2 });
 
+    const focus = focusPreviewTransform(wardrobe.focusPart);
+    const armorScale = input.appearance.armorSilhouette === 'royal'
+      ? 1.06
+      : input.appearance.armorSilhouette === 'guarded' ? 1.03 : 1;
+    const previewScale = 2.02
+      * input.calibration.studioScale
+      * armorScale
+      * characterPreviewZoomMultiplier(wardrobe.previewZoom)
+      * focus.scale;
+    const previewX = input.x + 115 + focus.x;
+    const previewY = 408 + focus.y;
+    const equipmentLayers = new CharacterEquipmentLayerView(input.appearance);
+    equipmentLayers.update({
+      x: previewX,
+      y: previewY,
+      scaleX: previewScale,
+      scaleY: previewScale,
+      rotation: 0,
+      facingX: directionFacingX(wardrobe.direction),
+      elapsed: this.elapsed,
+      actionProgress: wardrobe.pose.startsWith('attack') || wardrobe.pose.startsWith('skill') ? 0.5 : 0,
+      state: 'showcase',
+      overdrive: wardrobe.pose === 'skill2',
+    });
+
     const body = resolveWeaponBodyTextures(
       input.sheet,
       input.appearance.weaponVisualFamily,
       wardrobe.pose,
       wardrobe.direction,
+      input.attackSheet,
     );
     let sprite: AnimatedSprite | undefined;
     if (body?.textures.length) {
@@ -203,11 +281,8 @@ export class CharacterWardrobeScene implements Scene {
         autoPlay: true,
       });
       sprite.anchor.set(0.5, 0.76);
-      sprite.position.set(input.x + 115, 408);
-      const armorScale = input.appearance.armorSilhouette === 'royal'
-        ? 1.06
-        : input.appearance.armorSilhouette === 'guarded' ? 1.03 : 1;
-      sprite.scale.set(2.02 * input.calibration.studioScale * armorScale);
+      sprite.position.set(previewX, previewY);
+      sprite.scale.set(previewScale);
       sprite.tint = input.appearance.bodyTint;
     }
 
@@ -222,7 +297,8 @@ export class CharacterWardrobeScene implements Scene {
         `${equipmentSlotLabel(wardrobe.comparisonSlot)} · ${input.item?.name ?? '기본 장비'}`,
         `${weaponVisualFamilyLabel(input.appearance.weaponVisualFamily)} · ${motion.cadenceLabel}`,
         `${characterDirectionLabel(wardrobe.direction)} · ${characterShowcasePoseLabel(wardrobe.pose)}`,
-        `${input.appearance.costumeLabel} · ${characterCapeStyleLabel(input.appearance.capeStyle)}`,
+        `${characterAppearanceFocusLabel(wardrobe.focusPart)} · ${characterPreviewZoomLabel(wardrobe.previewZoom)}`,
+        `${input.appearance.costumeLabel} · ${input.appearance.layerVariantLabel}`,
         `${body?.recipe.phaseLabel ?? '공통 본체 프레임'} · 접촉 ${Math.round(timing.contactRatio * 100)}%`,
       ].join('\n'),
       style: new TextStyle({
@@ -236,18 +312,26 @@ export class CharacterWardrobeScene implements Scene {
     });
     info.position.set(input.x + 14, 430);
 
-    this.view.addChild(panel, title, aura);
+    this.view.addChild(panel, title, aura, equipmentLayers.back);
     if (sprite) this.view.addChild(sprite);
-    this.view.addChild(info);
-    this.previewSides.push({ sprite, aura });
+    this.view.addChild(equipmentLayers.front, info);
+    this.previewSides.push({
+      sprite,
+      aura,
+      equipment: equipmentLayers,
+      recipe: body?.recipe,
+      direction: wardrobe.direction,
+      baseX: previewX,
+      baseY: previewY,
+      baseScale: previewScale,
+      facingX: directionFacingX(wardrobe.direction),
+    });
   }
 
   private createControlGrid(
     context: AppContext,
     candidates: readonly ItemDefinition[],
     candidate: ItemDefinition | undefined,
-    currentAppearance: CharacterEquipmentAppearance,
-    candidateAppearance: CharacterEquipmentAppearance,
   ): void {
     const wardrobe = context.characterWardrobe.current;
     const restart = async (message: string, remember = true): Promise<void> => {
@@ -308,25 +392,28 @@ export class CharacterWardrobeScene implements Scene {
       return button;
     });
 
-    const comparison = new Text({
-      text: [
-        `교체 변화 · ${currentAppearance.setLabel} → ${candidateAppearance.setLabel}`,
-        `무기 모션 · ${weaponVisualFamilyLabel(currentAppearance.weaponVisualFamily)} → ${weaponVisualFamilyLabel(candidateAppearance.weaponVisualFamily)}`,
-      ].join('\n'),
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, lineHeight: 13, fontWeight: '800' }),
+    const focus = compactButton('파트 확대', characterAppearanceFocusLabel(wardrobe.focusPart), 216, async () => {
+      const next = context.characterWardrobe.cycleFocusPart();
+      await restart(`${characterAppearanceFocusLabel(next)} 보기로 전환했습니다.`, false);
     });
-    comparison.position.set(36, 762);
+    focus.position.set(36, 762);
+    const zoom = compactButton('확대 비율', characterPreviewZoomLabel(wardrobe.previewZoom), 216, async () => {
+      const next = context.characterWardrobe.cyclePreviewZoom();
+      await restart(`${characterPreviewZoomLabel(next)} 확대 비율을 적용했습니다.`, false);
+    });
+    zoom.position.set(258, 762);
 
-    this.view.addChild(rotateLeft, rotateRight, pose, slot, candidateButton, costume, dye, ...channelButtons, comparison);
+    this.view.addChild(rotateLeft, rotateRight, pose, slot, candidateButton, costume, dye, ...channelButtons, focus, zoom);
   }
 
   private createStorageControls(context: AppContext): void {
     const state = context.characterWardrobe.current;
-    const slots = ([1, 2, 3] as const).map((slotId, index) => {
+    const slots = state.slotOrder.map((slotId, index) => {
       const saved = Boolean(state.slots[slotId]);
+      const locked = state.lockedSlots[slotId];
       const button = new UiButton({
-        label: `${slotId} · ${saved ? 'SAVED' : 'EMPTY'}`,
-        width: 94,
+        label: `#${index + 1} · S${slotId} · ${locked ? 'LOCK' : saved ? 'SAVE' : 'EMPTY'}`,
+        width: 88,
         height: 36,
         tone: state.selectedSlot === slotId ? 'primary' : 'secondary',
         fontSize: 8,
@@ -335,77 +422,123 @@ export class CharacterWardrobeScene implements Scene {
           await context.scenes.change(() => new CharacterWardrobeScene(`외형 슬롯 ${slotId}을 선택했습니다.`));
         },
       });
-      button.position.set(36 + index * 100, 792);
+      button.position.set(36 + index * 94, 816);
       return button;
     });
 
     const selected = state.slots[state.selectedSlot];
+    const selectedLocked = state.lockedSlots[state.selectedSlot];
     const selectedInfo = new Text({
-      text: `SLOT ${state.selectedSlot} · ${wardrobeSlotUpdatedLabel(selected)}`,
-      style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '800' }),
+      text: `S${state.selectedSlot} · ${selectedLocked ? 'LOCKED' : selected ? 'SAVED' : 'EMPTY'}`,
+      style: new TextStyle({ fill: selectedLocked ? COLORS.primary : COLORS.muted, fontSize: 8, fontWeight: '900' }),
     });
-    selectedInfo.position.set(36, 832);
+    selectedInfo.position.set(208, 868);
+
+    const moveLeft = new UiButton({
+      label: '순서 ←', width: 78, height: 34, tone: 'secondary', fontSize: 8,
+      onPress: async () => {
+        context.characterWardrobe.moveSelectedSlot(-1);
+        await context.scenes.change(() => new CharacterWardrobeScene(`SLOT ${state.selectedSlot} 우선순위를 앞으로 이동했습니다.`));
+      },
+    });
+    moveLeft.position.set(36, 856);
+    const moveRight = new UiButton({
+      label: '순서 →', width: 78, height: 34, tone: 'secondary', fontSize: 8,
+      onPress: async () => {
+        context.characterWardrobe.moveSelectedSlot(1);
+        await context.scenes.change(() => new CharacterWardrobeScene(`SLOT ${state.selectedSlot} 우선순위를 뒤로 이동했습니다.`));
+      },
+    });
+    moveRight.position.set(120, 856);
 
     const save = new UiButton({
-      label: '저장', width: 58, height: 36, tone: 'primary', fontSize: 8,
+      label: '저장', width: 58, height: 36, tone: selectedLocked ? 'secondary' : 'primary', fontSize: 8,
       onPress: async () => {
+        if (selectedLocked) {
+          await context.scenes.change(() => new CharacterWardrobeScene(`SLOT ${state.selectedSlot}은 고정되어 있어 덮어쓸 수 없습니다.`));
+          return;
+        }
         context.characterWardrobe.saveSelectedSlot(context.characterDye.current);
         await context.scenes.change(() => new CharacterWardrobeScene(`SLOT ${state.selectedSlot}에 현재 외형을 저장했습니다.`));
       },
     });
-    save.position.set(338, 792);
+    save.position.set(318, 816);
     const load = new UiButton({
-      label: '불러오기', width: 70, height: 36, tone: selected ? 'primary' : 'secondary', fontSize: 8,
+      label: '불러오기', width: 66, height: 36, tone: selected ? 'primary' : 'secondary', fontSize: 8,
       onPress: async () => {
         const preset = context.characterWardrobe.loadSelectedSlot();
         if (preset) context.characterDye.set(preset.dyePreset);
         await context.scenes.change(() => new CharacterWardrobeScene(preset ? '저장 외형을 불러왔습니다.' : '선택 슬롯이 비어 있습니다.'));
       },
     });
-    load.position.set(402, 792);
+    load.position.set(382, 816);
+    const lock = new UiButton({
+      label: selectedLocked ? '고정 해제' : '슬롯 고정',
+      width: 60,
+      height: 36,
+      tone: selectedLocked ? 'primary' : 'secondary',
+      fontSize: 7,
+      onPress: async () => {
+        const locked = context.characterWardrobe.toggleSlotLock();
+        await context.scenes.change(() => new CharacterWardrobeScene(`SLOT ${state.selectedSlot} 고정을 ${locked ? '설정' : '해제'}했습니다.`));
+      },
+    });
+    lock.position.set(452, 816);
 
-    const recent = state.recentPresets[0];
+    const recent = state.recentPresets[state.selectedRecentIndex] ?? state.recentPresets[0];
     const recentButton = new UiButton({
-      label: '최근 외형 빠른 적용',
+      label: '외형 프리셋 관리',
       subtitle: recentPresetUpdatedLabel(recent),
       width: 176,
       height: 42,
       tone: recent ? 'primary' : 'secondary',
       fontSize: 9,
       subtitleFontSize: 7,
-      onPress: async () => {
-        const preset = context.characterWardrobe.applyRecentPreset(0);
-        if (preset) context.characterDye.set(preset.dyePreset);
-        await context.scenes.change(() => new CharacterWardrobeScene(preset ? '최근 외형 프리셋을 적용했습니다.' : '최근 외형 프리셋이 없습니다.'));
-      },
+      onPress: async () => context.scenes.change(() => new AppearancePresetManagerScene()),
     });
-    recentButton.position.set(298, 828);
+    recentButton.position.set(298, 852);
 
-    this.view.addChild(...slots, selectedInfo, save, load, recentButton);
+    this.view.addChild(...slots, selectedInfo, moveLeft, moveRight, save, load, lock, recentButton);
   }
 
   private createBottomActions(context: AppContext): void {
     const inventory = new UiButton({
       label: '장비 보관소',
       width: 232,
-      height: 52,
+      height: 44,
       tone: 'primary',
       fontSize: 13,
       onPress: async () => context.scenes.change(() => new InventoryScene()),
     });
-    inventory.position.set(28, 888);
+    inventory.position.set(28, 906);
     const back = new UiButton({
       label: '커맨드 허브로 복귀',
       width: 232,
-      height: 52,
+      height: 44,
       tone: 'secondary',
       fontSize: 13,
       onPress: async () => context.scenes.change(() => new LobbyScene()),
     });
-    back.position.set(280, 888);
+    back.position.set(280, 906);
     this.view.addChild(inventory, back);
   }
 }
+
+
+function directionFacingX(direction: string): number {
+  if (direction.includes('w')) return -0.82;
+  if (direction.includes('e')) return 0.82;
+  return 0;
+}
+
+function focusPreviewTransform(part: 'full' | 'weapon' | 'armor' | 'cape' | 'rune'): { readonly x: number; readonly y: number; readonly scale: number } {
+  if (part === 'weapon') return { x: -12, y: 4, scale: 1.12 };
+  if (part === 'armor') return { x: 0, y: 16, scale: 1.18 };
+  if (part === 'cape') return { x: 12, y: 12, scale: 1.16 };
+  if (part === 'rune') return { x: 0, y: -10, scale: 1.24 };
+  return { x: 0, y: 0, scale: 1 };
+}
+
 
 function equipmentCandidates(context: AppContext, slot: EquipmentSlot): readonly ItemDefinition[] {
   return context.gameData.itemIds

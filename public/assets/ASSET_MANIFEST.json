@@ -1,7 +1,7 @@
 {
-  "version": 15,
+  "version": 16,
   "game": "LUMERIFT",
-  "release": "1.11.21",
+  "release": "1.11.25",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -70,9 +70,11 @@
         "live/v8/atlases/player/player_premium_overlay_v8.json",
         "live/v8/atlases/player/player_premium_overlay_v8.webp",
         "live/v9/atlases/player/player_character_fx_v9.json",
-        "live/v9/atlases/player/player_character_fx_v9.webp"
+        "live/v9/atlases/player/player_character_fx_v9.webp",
+        "live/v11/atlases/player/player_weapon_attack_body_v11.json",
+        "live/v11/atlases/player/player_weapon_attack_body_v11.webp"
       ],
-      "bytes": 5439466
+      "bytes": 8875585
     },
     "operations-ui-v3": {
       "files": [
@@ -122,11 +124,18 @@
         "live/v10/atlases/player/player_premium_body_v10.webp"
       ],
       "bytes": 1262581
+    },
+    "premium-character-v11": {
+      "files": [
+        "live/v11/atlases/player/player_weapon_attack_body_v11.json",
+        "live/v11/atlases/player/player_weapon_attack_body_v11.webp"
+      ],
+      "bytes": 3436119
     }
   },
   "deployment": {
-    "publicAssetFiles": 50,
-    "publicAssetBytes": 7142300,
+    "publicAssetFiles": 52,
+    "publicAssetBytes": 10578786,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

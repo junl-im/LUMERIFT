@@ -421,3 +421,46 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - `WeaponMotionProfile`과 `PlayerMotionDirector`는 무기별 선행·접촉·회수·전진·회전 값을 공유한다.
 - `CharacterDisplayCalibration`은 Android Chrome·iOS Safari 캡처 준비용 기준을 제공하되 물리 캡처 승인 전 상태를 `pending-physical-capture`로 유지한다.
 - Player Save v4, Firebase App Check 비활성, AttackFootprint, PNG/WebP, 15MB 초기 예산 계약은 변경하지 않는다.
+
+## v1.11.22 무기 공격 Atlas·외형 프리셋 보관소
+
+- `player_weapon_attack_body_v11`은 3개 무기 계열·3개 공격·8방향·6프레임으로 구성된 432프레임·72애니메이션 Atlas다.
+- 공격 상태에서는 전용 Atlas를 우선 사용하고 로딩 실패·대체 원화 선택 시 v10 프레임 레시피로 복구한다.
+- 아틀리에의 파트 집중 보기와 확대는 미리보기 표현만 변경하며 장비 데이터와 전투 판정을 변경하지 않는다.
+- 외형 프리셋의 이름·즐겨찾기·JSON 보관소는 로컬 표시 설정이며 Player Save v4·Cloud Save와 분리한다.
+- 전용 공격 Atlas는 v10 파생 production-candidate이며 최종 수작업 원화로 보고하지 않는다.
+- Android Chrome·iOS Safari 캡처 승인 전 `CharacterDisplayCalibration.captureStatus`는 `pending-physical-capture`를 유지한다.
+
+## v1.11.23 독립 장비 레이어·프리셋 인덱스·캡처 승인 흐름
+
+- `CharacterEquipmentLayerView`는 갑주·망토·룬을 프로그램 도형 레이어로 분리한다.
+- `BattleActorView`와 `CharacterWardrobeScene`은 동일한 레이어 구현을 사용한다.
+- `CharacterWardrobeController`는 정렬 모드, 검색어, 3개 슬롯 고정 상태를 로컬 저장한다.
+- 외형 Archive v2는 `lockedSlots`를 포함하고 v1 Archive 가져오기를 지원한다.
+- `CharacterDisplayCalibrationStore`는 물리 캡처 증빙 조건을 충족한 승인 JSON만 저장한다.
+- 승인 JSON이 없는 플랫폼은 `pending-physical-capture`를 유지한다.
+- `CharacterAppearanceCloudSync`는 manual-opt-in 봉투·UID 가드·경로 계약만 제공한다.
+- Player Save v4, AttackFootprint, Firebase App Check 비활성 정책은 변경하지 않는다.
+
+
+## v1.11.24 외형 Firestore 동기화·장비 마스크·프레임 정렬
+
+- 외형 Cloud 문서는 `users/{uid}/settings/characterAppearance`를 사용한다.
+- 사용자가 `manual-opt-in`을 켜기 전에는 원격 읽기·쓰기를 하지 않는다.
+- Archive revision을 비교해 한쪽 변경만 자동 반영하고 양쪽 변경은 충돌로 중지한다.
+- 업로드 실패 데이터는 로컬 재시도 큐에 보존한다.
+- 원격 가져오기는 고정 슬롯을 로컬 우선으로 병합한 뒤 통합본을 재업로드한다.
+- Archive v3는 `slotOrder`를 포함하고 v1·v2 JSON을 가져온다.
+- 아이템별 갑주·망토·룬 프로그램 마스크와 무기별 공격 프레임 보정은 표현 계층이다.
+- Player Save v4, AttackFootprint, App Check 비활성 정책은 변경하지 않는다.
+
+## v1.11.25 외형 충돌 선택 병합·복구 지점
+
+- `CharacterAppearanceConflictResolver`는 슬롯 1·2·3, 슬롯 순서, 고정 상태, 최근 프리셋의 6개 범주를 독립적으로 비교·병합한다.
+- 슬롯 선택은 로컬·Cloud·최신 중 하나이며 로컬 고정 슬롯은 항상 로컬 내용을 유지한다.
+- 최근 프리셋 선택 병합은 동일 외형을 중복 제거하고 즐겨찾기와 의미 있는 이름을 보존한다.
+- 선택 병합 적용 전 `pre-conflict-merge` 복구 지점을 생성한다.
+- `CharacterAppearanceRecoveryStore`는 계정 UID별 최대 5개 외형 Archive v3 복구 지점을 저장한다.
+- 복구 적용 전 현재 상태를 `pre-recovery-restore`로 다시 저장하며 복구 후 Cloud에 자동 업로드하지 않는다.
+- 복구 묶음 JSON은 현재 UID와 일치할 때만 가져온다.
+- Player Save v4, AttackFootprint, App Check 비활성, PNG/WebP, 초기 15MB 예산 계약은 변경하지 않는다.

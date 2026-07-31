@@ -31,6 +31,11 @@ import { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionReco
 import { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
 import { AutoCombatHistoryStore } from '../game/combat/AutoCombatHistoryStore';
+import { CharacterAppearanceCloudService } from '../services/cloud/CharacterAppearanceCloudService';
+import {
+  DisabledCharacterAppearanceCloudRepository,
+  FirestoreCharacterAppearanceCloudRepository,
+} from '../repositories/CharacterAppearanceCloudRepository';
 
 export class GameApp {
   private readonly pixi = new Application();
@@ -103,6 +108,11 @@ export class GameApp {
       ? new ResilientPlayerRepository(localPlayerRepository, new FirestorePlayerRepository(firebase.db))
       : new LocalManagedPlayerRepository(localPlayerRepository);
 
+    const characterAppearanceCloudRepository = firebase.db
+      ? new FirestoreCharacterAppearanceCloudRepository(firebase.db)
+      : new DisabledCharacterAppearanceCloudRepository();
+    const characterAppearanceCloud = new CharacterAppearanceCloudService(characterAppearanceCloudRepository);
+
     const operationsContent = new OperationsContentService(firebase.db);
     const ranking = new RankingService(firebase.db);
 
@@ -126,6 +136,7 @@ export class GameApp {
       playerArtVariant,
       characterDye,
       characterWardrobe,
+      characterAppearanceCloud,
       deviceQaSession,
       haptics,
       liveAnnouncer,

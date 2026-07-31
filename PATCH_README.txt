@@ -1,10 +1,9 @@
-LUMERIFT v1.11.20 -> v1.11.21 ROOT OVERWRITE PATCH
+LUMERIFT v1.11.24 -> v1.11.25 ROOT OVERWRITE PATCH
 
-1. package.json이 보이는 프로젝트 최상위에서 압축을 풉니다.
-2. 모든 파일을 덮어씁니다.
-3. 삭제하거나 이동할 파일은 없습니다.
-4. npm install 후 npm run verify를 실행합니다.
+1. 기존 v1.11.24 프로젝트를 백업합니다.
+2. package.json이 있는 프로젝트 최상위에 이 압축의 내용을 풉니다.
+3. 같은 이름의 파일은 모두 덮어씁니다.
+4. 삭제할 파일은 없습니다.
+5. VERIFY.bat 또는 npm run verify로 검증합니다.
 
-ZIP 최상단에 별도 lumerift 폴더가 없습니다.
-캐릭터 스튜디오 8방향 비교, 무기별 본체 프레임, 세부 염색과 최근 프리셋이 추가됩니다.
-Android/iOS 보정값은 실제 물리 캡처 전 기준 프로필이며 최종 승인값이 아닙니다.
+실제 물리 기기 캡처와 최종 수작업 원화는 이 패치의 완료 범위가 아닙니다.

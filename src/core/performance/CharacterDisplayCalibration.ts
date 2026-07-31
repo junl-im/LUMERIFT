@@ -1,3 +1,5 @@
+import { captureEvidenceToCalibration, loadCharacterDisplayCaptureEvidence } from './CharacterDisplayCalibrationStore';
+
 export type CharacterDisplayPlatform = 'android-chrome' | 'ios-safari' | 'generic-mobile' | 'desktop';
 
 export interface CharacterDisplayCalibration {
@@ -54,20 +56,39 @@ const PROFILES: Readonly<Record<CharacterDisplayPlatform, CharacterDisplayCalibr
   },
 };
 
-export function resolveCharacterDisplayCalibration(userAgent = browserUserAgent()): CharacterDisplayCalibration {
+export function resolveCharacterDisplayCalibration(
+  userAgent = browserUserAgent(),
+  storage: Pick<Storage, 'getItem'> | undefined = getStorage(),
+): CharacterDisplayCalibration {
+  const platform = resolveCharacterDisplayPlatform(userAgent);
+  const baseline = PROFILES[platform];
+  if (platform !== 'android-chrome' && platform !== 'ios-safari') return baseline;
+  const evidence = loadCharacterDisplayCaptureEvidence(platform, storage);
+  return evidence ? captureEvidenceToCalibration(evidence, baseline) : baseline;
+}
+
+export function resolveCharacterDisplayPlatform(userAgent = browserUserAgent()): CharacterDisplayPlatform {
   const normalized = userAgent.toLowerCase();
   const ios = /iphone|ipad|ipod/.test(normalized);
   const android = normalized.includes('android');
   const chrome = /chrome|crios/.test(normalized) && !normalized.includes('edg');
   const safari = normalized.includes('safari') && !normalized.includes('chrome') && !normalized.includes('crios');
-  if (ios && safari) return PROFILES['ios-safari'];
-  if (android && chrome) return PROFILES['android-chrome'];
-  if (ios || android || normalized.includes('mobile')) return PROFILES['generic-mobile'];
-  return PROFILES.desktop;
+  if (ios && safari) return 'ios-safari';
+  if (android && chrome) return 'android-chrome';
+  if (ios || android || normalized.includes('mobile')) return 'generic-mobile';
+  return 'desktop';
 }
 
 export function characterCalibrationStatusLabel(profile: CharacterDisplayCalibration): string {
   return profile.captureStatus === 'capture-verified' ? 'CAPTURE VERIFIED' : 'CAPTURE PENDING';
+}
+
+function getStorage(): Storage | undefined {
+  try {
+    return typeof window === 'undefined' ? undefined : window.localStorage;
+  } catch {
+    return undefined;
+  }
 }
 
 function browserUserAgent(): string {

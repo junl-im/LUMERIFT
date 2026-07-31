@@ -31,13 +31,19 @@ const contracts = {
   'src/core/assets/AssetCatalog.ts': ['WARDROBE_UI_BUNDLE', "id: 'character-wardrobe-v1'"],
   'src/core/presentation/CharacterWardrobeController.ts': ['saveSelectedSlot', 'loadSelectedSlot', 'cyclePose', 'CharacterShowcasePose'],
   'src/game/combat/WeaponMotionProfile.ts': ['applyWeaponMotionProfile', 'greatblade', 'riftlance', 'tuneComboAction'],
-  'src/scenes/CharacterWardrobeScene.ts': ['캐릭터·코스튬 아틀리에', '장비 보관소', '최근 외형 빠른 적용', 'resolveWeaponBodyTextures'],
+  'src/scenes/CharacterWardrobeScene.ts': ['캐릭터·코스튬 아틀리에', '장비 보관소', 'resolveWeaponBodyTextures'],
   'src/scenes/LobbyScene.ts': ['new CharacterWardrobeScene()', "label: '캐릭터'"],
   'src/scenes/BattleScene.ts': ['applyWeaponMotionProfile(', 'equipmentAppearance.weaponVisualFamily'],
 };
 for (const [path, markers] of Object.entries(contracts)) {
   const source = await readFile(path, 'utf8');
   for (const marker of markers) if (!source.includes(marker)) errors.push(`${path}: marker missing ${marker}`);
+}
+
+
+const wardrobeScene = await readFile('src/scenes/CharacterWardrobeScene.ts', 'utf8');
+if (!wardrobeScene.includes('최근 외형 빠른 적용') && !wardrobeScene.includes('AppearancePresetManagerScene')) {
+  errors.push('src/scenes/CharacterWardrobeScene.ts: recent appearance quick-apply flow missing');
 }
 
 for (const pose of ['idle', 'run', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'dodge']) {

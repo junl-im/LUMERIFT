@@ -15,6 +15,7 @@ export const ASSET_PATHS = {
   uiIcons: assetUrl('assets/live/v5/atlases/ui/ui_icons_v5.json'),
   titleBackground: assetUrl('assets/live/v5/backgrounds/title_screen_v5.webp'),
   playerAtlas: assetUrl('assets/live/v10/atlases/player/player_premium_body_v10.json'),
+  weaponAttackBodyAtlas: assetUrl('assets/live/v11/atlases/player/player_weapon_attack_body_v11.json'),
   legacyPlayerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
   ownedPlayerAtlas: assetUrl('assets/live/v6/atlases/player/player_owned_motion_v6.json'),
   ownedPaintedPlayerAtlas: assetUrl('assets/live/v7/atlases/player/player_owned_painted_v7.json'),
@@ -64,8 +65,8 @@ export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
 
 export const WARDROBE_UI_BUNDLE: AssetBundleDefinition = {
   id: 'character-wardrobe-v1',
-  urls: [ASSET_PATHS.playerAtlas, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
-  estimatedBytes: 1_950_000,
+  urls: [ASSET_PATHS.playerAtlas, ASSET_PATHS.weaponAttackBodyAtlas, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+  estimatedBytes: 5_300_000,
 };
 
 
@@ -92,6 +93,7 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
   id: 'battle-chapter-1',
   urls: [
     ASSET_PATHS.playerAtlas,
+    ASSET_PATHS.weaponAttackBodyAtlas,
     ASSET_PATHS.monsterAtlas,
     ASSET_PATHS.effectsAtlas,
     ASSET_PATHS.equipmentAtlas,
@@ -106,7 +108,7 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.premiumPlayerOverlayAtlas,
     ASSET_PATHS.characterFxAtlas,
   ],
-  estimatedBytes: 7_500_000,
+  estimatedBytes: 10_900_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -142,6 +144,16 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     atlasPaths: [ASSET_PATHS.playerAtlas],
     imagePaths: [],
     bundle: { id: 'live-player-gallery', urls: [ASSET_PATHS.playerAtlas], estimatedBytes: 1_300_000 },
+  },
+
+  {
+    id: 'weapon-attack-body-v11',
+    label: '무기 계열별 공격 본체 v11',
+    kind: 'atlas',
+    prefix: 'weapon_body.',
+    atlasPaths: [ASSET_PATHS.weaponAttackBodyAtlas],
+    imagePaths: [],
+    bundle: { id: 'weapon-attack-body-gallery', urls: [ASSET_PATHS.weaponAttackBodyAtlas], estimatedBytes: 3_350_000 },
   },
 
   {

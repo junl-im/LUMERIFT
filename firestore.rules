@@ -54,6 +54,44 @@ service cloud.firestore {
       allow update: if validProfile(uid) && request.resource.data.uid == resource.data.uid;
       allow delete: if false;
 
+
+      match /settings/{settingId} {
+        function validCharacterAppearance() {
+          return owns(uid)
+            && settingId == 'characterAppearance'
+            && request.resource.data.keys().hasOnly([
+              'schema', 'ownerUid', 'updatedAt', 'revision', 'syncMode', 'archive', 'serverUpdatedAt'
+            ])
+            && request.resource.data.schema == 'lumerift-character-appearance-cloud-v2'
+            && request.resource.data.ownerUid == uid
+            && request.resource.data.updatedAt is int
+            && request.resource.data.updatedAt > 0
+            && request.resource.data.revision is string
+            && request.resource.data.revision.matches('^appearance-[0-9a-f]{8}$')
+            && request.resource.data.syncMode == 'manual-opt-in'
+            && request.resource.data.archive is map
+            && request.resource.data.archive.keys().hasOnly([
+              'schemaVersion', 'game', 'kind', 'exportedAt', 'slotOrder', 'lockedSlots', 'slots', 'presets'
+            ])
+            && request.resource.data.archive.schemaVersion == 3
+            && request.resource.data.archive.game == 'LUMERIFT'
+            && request.resource.data.archive.kind == 'character-appearance-presets'
+            && request.resource.data.archive.exportedAt is number
+            && request.resource.data.archive.slotOrder is list
+            && request.resource.data.archive.slotOrder.size() == 3
+            && request.resource.data.archive.lockedSlots is map
+            && request.resource.data.archive.slots is map
+            && request.resource.data.archive.presets is list
+            && request.resource.data.archive.presets.size() <= 5
+            && request.resource.data.serverUpdatedAt == request.time;
+        }
+
+        allow get: if owns(uid) && settingId == 'characterAppearance';
+        allow list: if false;
+        allow create, update: if validCharacterAppearance();
+        allow delete: if false;
+      }
+
       match /mail/{mailId} {
         allow get, list: if owns(uid);
         allow create, delete: if false;

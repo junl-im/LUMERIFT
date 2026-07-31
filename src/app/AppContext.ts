@@ -22,6 +22,7 @@ import type { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessio
 import type { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import type { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
 import type { AutoCombatHistoryStore } from '../game/combat/AutoCombatHistoryStore';
+import type { CharacterAppearanceCloudService } from '../services/cloud/CharacterAppearanceCloudService';
 
 export interface AppContext {
   readonly auth: AuthService;
@@ -38,6 +39,7 @@ export interface AppContext {
   readonly playerArtVariant: PlayerArtVariantController;
   readonly characterDye: CharacterDyeController;
   readonly characterWardrobe: CharacterWardrobeController;
+  readonly characterAppearanceCloud: CharacterAppearanceCloudService;
   readonly deviceQaSession: DeviceQaSessionRecorder;
   readonly haptics: HapticFeedbackController;
   readonly liveAnnouncer: LiveRegionAnnouncer;

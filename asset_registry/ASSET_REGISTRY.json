@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.21",
-  "generatedAt": "2026-07-31T06:27:33.565Z",
+  "release": "1.11.25",
+  "generatedAt": "2026-07-31T07:05:24.100Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 95,
-      "bytes": 79534404,
+      "files": 97,
+      "bytes": 84037519,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 50,
-      "bytes": 7142300,
-      "atlases": 13,
-      "frames": 1410,
-      "animations": 440
+      "files": 52,
+      "bytes": 10578786,
+      "atlases": 14,
+      "frames": 1842,
+      "animations": 512
     }
   },
   "entries": [
@@ -110,6 +110,22 @@
       "type": "json",
       "bytes": 824,
       "sha256": "e5501191f89b21de4ae0f9bef494f9c77f6348a052897364a9625bb67704fc4d"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.22/character/player_weapon_attack_body_v11_master.png",
+      "relativePath": "lumerift_original/v1.11.22/character/player_weapon_attack_body_v11_master.png",
+      "classification": "source-master",
+      "type": "png",
+      "bytes": 4502140,
+      "sha256": "1dd0dd69398d03ae49ede549dcc879d21258b7c9b1eebc77d068d7dbea1adc09"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.22/character/player_weapon_attack_body_v11_spec.json",
+      "relativePath": "lumerift_original/v1.11.22/character/player_weapon_attack_body_v11_spec.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 975,
+      "sha256": "73afa82f64ab938b42361eb00f93fbcfd3dc2cb10000bb65b59d79d5f4bfff66"
     },
     {
       "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
@@ -2583,8 +2599,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 5044,
-      "sha256": "1dc38727dabda6b1a2313d3869240d1d8171cd0491b3f4738db852705d2fbfd4"
+      "bytes": 5411,
+      "sha256": "57c99c13781c2681d003aef7b0fd27057171ff43933e0a3d977f230e35ad282b"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2707,6 +2723,27 @@
       "type": "webp",
       "bytes": 970694,
       "sha256": "de44cebcc3ff3ae1d778ff26d096beb055f3a96d27bb9080000c96a2819e3561"
+    },
+    {
+      "path": "public/assets/live/v11/atlases/player/player_weapon_attack_body_v11.json",
+      "relativePath": "live/v11/atlases/player/player_weapon_attack_body_v11.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 207703,
+      "sha256": "c05f97ad13ec8ed8e70b7cca6d3a7ac799e1f591b3a8cd009c963de24932685e",
+      "atlas": {
+        "frames": 432,
+        "animations": 72,
+        "image": "player_weapon_attack_body_v11.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v11/atlases/player/player_weapon_attack_body_v11.webp",
+      "relativePath": "live/v11/atlases/player/player_weapon_attack_body_v11.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 3228416,
+      "sha256": "44625bb92a2aaeea3388df16ed5f87f407fda0bf856015ff7d95642665b38e2b"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

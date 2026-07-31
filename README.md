@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.21
+# LUMERIFT: 균열의 계승자 v1.11.25
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -129,3 +129,48 @@ npm run dev
 - 관련 문서: `docs/CHARACTER_STUDIO_v1.11.21.md`, `docs/WEAPON_BODY_ATTACK_FRAMES_v1.11.21.md`, `docs/MOBILE_CHARACTER_CAPTURE_CALIBRATION_v1.11.21.md`, `docs/PATCH_NOTES_v1.11.21.md`
 
 실제 Android/iOS 물리 기기 캡처가 확보되기 전에는 보정 프로필을 최종 승인값으로 기록하지 않는다.
+
+
+## v1.11.22 핵심 업데이트
+- 검·대검·균열 장창 전용 공격 본체 Atlas v11: 432프레임·72애니메이션
+- 공격 포즈 전용 Atlas 우선 사용과 기존 v10 안전 폴백
+- 무기·갑주·망토·룬 파트 집중 보기와 FIT/CLOSE/DETAIL 확대
+- 외형 프리셋 이름 변경·즐겨찾기·삭제·JSON 백업/복원
+- 관련 문서: `docs/WEAPON_ATTACK_BODY_ATLAS_v1.11.22.md`, `docs/APPEARANCE_PRESET_VAULT_v1.11.22.md`, `docs/PATCH_NOTES_v1.11.22.md`
+
+실제 Android/iOS 물리 기기 캡처와 정상 의존성 기반 빌드는 검증 전까지 완료로 기록하지 않는다.
+
+## v1.11.23 핵심 업데이트
+
+- 갑주·망토·룬 독립 프로그램 런타임 레이어를 전투와 캐릭터 아틀리에에 연결
+- 외형 프리셋 최근 수정·즐겨찾기·이름순 정렬과 이름·세트·방향·포즈 검색
+- 외형 슬롯 3개 고정 보호와 Archive v2 JSON 병합
+- Android Chrome·iOS Safari 실기기 캡처 승인 템플릿·증빙 검증·가져오기
+- 선택형 외형 Cloud Save manual-opt-in 봉투·UID 가드 설계
+- 물리 단말 캡처와 Firestore 실제 동기화는 아직 완료로 기록하지 않음
+
+관련 문서: `docs/PATCH_NOTES_v1.11.23.md`, `docs/CHARACTER_APPEARANCE_CLOUD_SAVE_DESIGN_v1.11.23.md`, `docs/NEXT_UPDATE_v1.11.24.md`
+
+
+## v1.11.24 핵심 업데이트
+
+- 사용자 명시 동의 기반 외형 프리셋 Firestore 읽기·쓰기
+- revision 비교, 양쪽 변경 충돌 중지, 실패 업로드 재시도 큐
+- 외형 Archive v3 슬롯 순서 변경과 고정 슬롯 로컬 우선 병합
+- 갑주·망토·룬 아이템 계열별 프로그램 마스크
+- 검·대검·균열 장창 공격 본체 프레임 정렬 보정
+- 관련 문서: `docs/PATCH_NOTES_v1.11.24.md`, `docs/CHARACTER_APPEARANCE_CLOUD_SAVE_v1.11.24.md`, `docs/NEXT_UPDATE_v1.11.25.md`
+
+실제 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.
+
+
+## v1.11.25 핵심 업데이트
+
+- 외형 슬롯 1·2·3, 슬롯 순서, 고정 상태, 최근 프리셋을 각각 선택하는 Cloud 충돌 비교·병합
+- 로컬·Cloud·최신 슬롯 선택과 로컬 고정 슬롯 강제 보호
+- 최근 프리셋 중복 제거·즐겨찾기 보존·최신 우선 병합
+- Cloud 작업 전 자동 외형 복구 지점과 수동 백업·복원·JSON 내보내기/가져오기
+- 계정 UID별 최대 5개 복구 지점과 다른 UID 복구 JSON 차단
+- 관련 문서: `docs/PATCH_NOTES_v1.11.25.md`, `docs/CHARACTER_APPEARANCE_CONFLICT_RESOLUTION_v1.11.25.md`, `docs/CHARACTER_APPEARANCE_RECOVERY_v1.11.25.md`
+
+실제 Android/iOS 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.

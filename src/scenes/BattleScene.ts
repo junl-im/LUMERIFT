@@ -90,6 +90,7 @@ export class BattleScene implements Scene {
   private playerSheet?: Spritesheet;
   private premiumPlayerOverlaySheet?: Spritesheet;
   private characterFxSheet?: Spritesheet;
+  private weaponAttackBodySheet?: Spritesheet;
   private monsterSheet?: Spritesheet;
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
@@ -357,6 +358,7 @@ export class BattleScene implements Scene {
     this.monsterSheet = context.assets.get<Spritesheet>(ASSET_PATHS.monsterAtlas);
     this.premiumPlayerOverlaySheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerOverlayAtlas);
     this.characterFxSheet = context.assets.get<Spritesheet>(ASSET_PATHS.characterFxAtlas);
+    this.weaponAttackBodySheet = context.assets.get<Spritesheet>(ASSET_PATHS.weaponAttackBodyAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
@@ -413,6 +415,7 @@ export class BattleScene implements Scene {
     this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
       premiumOverlaySheet: this.premiumPlayerOverlaySheet,
       characterFxSheet: this.characterFxSheet,
+      weaponAttackBodySheet: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? undefined : this.weaponAttackBodySheet,
       equipmentAppearance,
       displayCalibration: resolveCharacterDisplayCalibration(),
       mirrorWest: false,

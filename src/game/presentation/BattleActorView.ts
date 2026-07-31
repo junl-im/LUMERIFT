@@ -11,16 +11,22 @@ import { resolveBossTelegraphStyle } from './BossTelegraphLanguage';
 import { directionFromVector } from './direction';
 import { resolveDirectionalAttackPose } from './DirectionalAttackPose';
 import { resolvePlayerMotion } from './PlayerMotionDirector';
-import { resolveWeaponBodyTextures } from './WeaponBodyAttackFrames';
+import {
+  resolveWeaponBodyFrameCorrection,
+  resolveWeaponBodyTextures,
+  type WeaponBodyFrameRecipe,
+} from './WeaponBodyAttackFrames';
 import { resolveCharacterDisplayCalibration, type CharacterDisplayCalibration } from '../../core/performance/CharacterDisplayCalibration';
 import type { CharacterShowcasePose } from '../../core/presentation/CharacterWardrobeController';
 import type { CharacterEquipmentAppearance } from './CharacterEquipmentVisualProfile';
 import { resolveCharacterStateMaterial } from './CharacterStateMaterialProfile';
+import { CharacterEquipmentLayerView } from './CharacterEquipmentLayerView';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
   readonly premiumOverlaySheet?: Spritesheet;
   readonly characterFxSheet?: Spritesheet;
+  readonly weaponAttackBodySheet?: Spritesheet;
   readonly equipmentAppearance?: CharacterEquipmentAppearance;
   readonly spriteBaseScale?: number;
   readonly displayCalibration?: CharacterDisplayCalibration;
@@ -58,7 +64,9 @@ export class PlayerActorView {
   private readonly displayCalibration: CharacterDisplayCalibration;
   private readonly optionsPremiumOverlaySheet?: Spritesheet;
   private readonly characterFxSheet?: Spritesheet;
+  private readonly weaponAttackBodySheet?: Spritesheet;
   private readonly equipmentAppearance: CharacterEquipmentAppearance;
+  private readonly equipmentLayers: CharacterEquipmentLayerView;
   private animationKey = '';
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
@@ -76,6 +84,7 @@ export class PlayerActorView {
     this.mirrorWest = options.mirrorWest ?? true;
     this.optionsPremiumOverlaySheet = options.premiumOverlaySheet;
     this.characterFxSheet = options.characterFxSheet;
+    this.weaponAttackBodySheet = options.weaponAttackBodySheet;
     this.equipmentAppearance = options.equipmentAppearance ?? {
       weaponGrade: 'common',
       armorGrade: 'common',
@@ -102,7 +111,12 @@ export class PlayerActorView {
       dyeChannels: { primary: 1, secondary: 1, rune: 1 },
       capeStyle: 'short-scout',
       armorSilhouette: 'light',
+      armorLayerMask: 'scout-chevron',
+      capeLayerMask: 'scout-sash',
+      runeLayerMask: 'lumen-orbit',
+      layerVariantLabel: '정찰 갈매기갑 · 루멘 궤도룬',
     };
+    this.equipmentLayers = new CharacterEquipmentLayerView(this.equipmentAppearance);
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -176,9 +190,9 @@ export class PlayerActorView {
 
     this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow);
     if (this.characterFxBack) this.root.addChild(this.characterFxBack);
-    this.root.addChild(this.body, this.weapon);
+    this.root.addChild(this.equipmentLayers.back, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
-    this.root.addChild(this.weaponSilhouette);
+    this.root.addChild(this.equipmentLayers.front, this.weaponSilhouette);
     if (this.premiumOverlay) this.root.addChild(this.premiumOverlay);
     if (this.characterFxFront) this.root.addChild(this.characterFxFront);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
@@ -243,7 +257,7 @@ export class PlayerActorView {
     this.body.alpha = flashRemaining > 0 ? 0.45 : 1;
 
     if (this.sprite) {
-      this.updateAnimation(controller, motion.animationSpeed);
+      const bodyRecipe = this.updateAnimation(controller, motion.animationSpeed);
       const direction = directionFromVector(facing);
       const pose = resolveDirectionalAttackPose({
         direction,
@@ -291,11 +305,29 @@ export class PlayerActorView {
       const armorScale = this.equipmentAppearance.armorSilhouette === 'royal'
         ? 1.045
         : this.equipmentAppearance.armorSilhouette === 'guarded' ? 1.02 : 0.985;
-      const xScale = this.spriteBaseScale * pose.scaleX * armorScale;
-      const yScale = this.spriteBaseScale * (1 + Math.abs(facing.y) * 0.018) * pose.scaleY * armorScale;
+      const correction = bodyRecipe
+        ? resolveWeaponBodyFrameCorrection(bodyRecipe, this.sprite.currentFrame, direction)
+        : { offsetX: 0, offsetY: 0, rotation: 0, scaleX: 1, scaleY: 1, layerLag: 0 };
+      const xScale = this.spriteBaseScale * pose.scaleX * armorScale * correction.scaleX;
+      const yScale = this.spriteBaseScale * (1 + Math.abs(facing.y) * 0.018) * pose.scaleY * armorScale * correction.scaleY;
+      const bodyX = pose.offsetX + correction.offsetX;
+      const bodyY = motion.offsetY - strideLift + pose.offsetY + correction.offsetY;
       this.sprite.scale.set(mirrored ? -xScale : xScale, yScale);
-      this.sprite.position.set(pose.offsetX, motion.offsetY - strideLift + pose.offsetY);
-      this.sprite.rotation = motion.rotation + pose.rotation + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
+      this.sprite.position.set(bodyX, bodyY);
+      this.sprite.rotation = motion.rotation + pose.rotation + correction.rotation
+        + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
+      this.equipmentLayers.update({
+        x: bodyX,
+        y: bodyY,
+        scaleX: mirrored ? -xScale : xScale,
+        scaleY: yScale,
+        rotation: this.sprite.rotation + correction.layerLag,
+        facingX: facing.x,
+        elapsed,
+        actionProgress: controller.stateProgress,
+        state: controller.state,
+        overdrive: frame.overdrive,
+      });
       this.sprite.tint = frame.overdrive ? 0xfff5c8 : this.equipmentAppearance.bodyTint;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
       this.drawAttackPoseAccent(
@@ -317,6 +349,18 @@ export class PlayerActorView {
       );
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
     } else {
+      this.equipmentLayers.update({
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        facingX: facing.x,
+        elapsed,
+        actionProgress: controller.stateProgress,
+        state: controller.state,
+        overdrive: frame.overdrive,
+      });
       this.attackPoseAccent.clear();
       this.weaponSilhouette.clear();
     }
@@ -338,25 +382,26 @@ export class PlayerActorView {
       ?? sheet?.textures['character_fx.idle.s'];
   }
 
-  private updateAnimation(controller: PlayerCombatController, animationSpeed: number): void {
+  private updateAnimation(controller: PlayerCombatController, animationSpeed: number): WeaponBodyFrameRecipe | undefined {
     const sprite = this.sprite;
     const sheet = this.sheet;
-    if (!sprite || !sheet) return;
+    if (!sprite || !sheet) return undefined;
     const state = playerAnimationState(controller);
     const direction = directionFromVector(controller.facing);
     const dedicated = isShowcasePose(state)
-      ? resolveWeaponBodyTextures(sheet, this.equipmentAppearance.weaponVisualFamily, state, direction)
+      ? resolveWeaponBodyTextures(sheet, this.equipmentAppearance.weaponVisualFamily, state, direction, this.weaponAttackBodySheet)
       : undefined;
     const key = dedicated?.key ?? `player.${state}.${direction}`;
     if (key !== this.animationKey) {
       const textures = (dedicated?.textures ?? sheet.animations[key]) as readonly Texture[] | undefined;
-      if (!textures || textures.length === 0) return;
+      if (!textures || textures.length === 0) return undefined;
       this.animationKey = key;
       sprite.textures = [...textures];
       sprite.loop = dedicated?.recipe.loop ?? (state === 'idle' || state === 'run');
       sprite.gotoAndPlay(0);
     }
     sprite.animationSpeed = dedicated?.recipe.animationSpeed ?? animationSpeed;
+    return dedicated?.recipe;
   }
 
   private drawAttackPoseAccent(
@@ -723,7 +768,7 @@ export class MonsterActorView {
   private updateAnimation(state: MonsterState): void {
     const sprite = this.sprite;
     const sheet = this.sheet;
-    if (!sprite || !sheet) return;
+    if (!sprite || !sheet) return undefined;
     const mapped = monsterAnimationState(state);
     const preferredKey = `monster.${this.definition.combat.id}.${mapped}`;
     const fallbackKey = `monster.${this.definition.combat.rank}.${mapped}`;

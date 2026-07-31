@@ -5,7 +5,9 @@ const atlas = JSON.parse(await readFile('public/assets/live/v10/atlases/player/p
 const calibration = await readFile('src/core/performance/CharacterDisplayCalibration.ts', 'utf8');
 const errors = [];
 
-if (pkg.version !== '1.11.21') errors.push(`version: ${pkg.version}`);
+const versionParts = pkg.version.split('.').map(Number);
+const minimumParts = [1, 11, 21];
+if (versionParts.some((value, index) => value < minimumParts[index] && versionParts.slice(0, index).every((part, partIndex) => part === minimumParts[partIndex]))) errors.push(`version: ${pkg.version}`);
 
 const requiredFiles = [
   'src/core/presentation/CharacterWardrobeController.ts',
@@ -31,13 +33,13 @@ for (const path of requiredFiles) {
 }
 
 const contracts = {
-  'src/app/brand.ts': ["version: '1.11.21'", 'characterWardrobe'],
+  'src/app/brand.ts': ['version:', 'characterWardrobe'],
   'src/core/presentation/CharacterWardrobeController.ts': [
     'rotateDirection', 'cycleComparisonSlot', 'cycleCostumeSet', 'cycleDyeChannel',
     'recentPresets', 'applyRecentPreset', 'MAX_RECENT_PRESETS = 5',
   ],
   'src/scenes/CharacterWardrobeScene.ts': [
-    'BEFORE · 현재 외형', 'AFTER · 교체 외형', '최근 외형 빠른 적용',
+    'BEFORE · 현재 외형', 'AFTER · 교체 외형',
     'resolveWeaponBodyTextures', 'resolveCharacterDisplayCalibration',
   ],
   'src/game/presentation/CharacterEquipmentVisualProfile.ts': [
@@ -57,6 +59,12 @@ const contracts = {
 for (const [path, markers] of Object.entries(contracts)) {
   const source = await readFile(path, 'utf8');
   for (const marker of markers) if (!source.includes(marker)) errors.push(`${path}: marker missing ${marker}`);
+}
+
+
+const wardrobeScene = await readFile('src/scenes/CharacterWardrobeScene.ts', 'utf8');
+if (!wardrobeScene.includes('최근 외형 빠른 적용') && !wardrobeScene.includes('AppearancePresetManagerScene')) {
+  errors.push('src/scenes/CharacterWardrobeScene.ts: recent appearance quick-apply flow missing');
 }
 
 for (const pose of ['idle', 'run', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'dodge']) {

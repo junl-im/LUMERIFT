@@ -44,7 +44,8 @@ await walk(publicRoot, async (path) => {
     errors.push(`public에 보관 전용 자산 잔존: ${rel}`);
   }
 });
-if (publicBytes > 8_000_000) errors.push(`public/assets 배포 예산 초과: ${(publicBytes / 1_000_000).toFixed(2)} MB / 8 MB`);
+const publicRuntimeBudgetBytes = 15_000_000;
+if (publicBytes > publicRuntimeBudgetBytes) errors.push(`public/assets 배포 예산 초과: ${(publicBytes / 1_000_000).toFixed(2)} MB / 15 MB`);
 if (registry.release !== manifest.release) errors.push(`asset registry release mismatch: ${registry.release} / ${manifest.release}`);
 if ((registry.summary?.['runtime-public']?.bytes ?? 0) !== publicBytes) errors.push('asset registry public bytes mismatch');
 

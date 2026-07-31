@@ -10,6 +10,9 @@ import type {
 export type WeaponVisualFamily = 'blade' | 'greatblade' | 'riftlance';
 export type CharacterCapeStyle = 'short-scout' | 'split-warden' | 'long-harbinger';
 export type CharacterArmorSilhouette = 'light' | 'guarded' | 'royal';
+export type CharacterArmorLayerMask = 'scout-chevron' | 'warden-bastion' | 'harbinger-crown';
+export type CharacterCapeLayerMask = 'scout-sash' | 'warden-split' | 'harbinger-banner';
+export type CharacterRuneLayerMask = 'lumen-orbit' | 'core-hex' | 'rift-crown';
 
 export interface CharacterAppearanceOptions {
   readonly costumeSet?: CharacterCostumeSet;
@@ -39,6 +42,12 @@ export interface CharacterEquipmentAppearance {
   readonly dyeChannels: CharacterDyeChannels;
   readonly capeStyle: CharacterCapeStyle;
   readonly armorSilhouette: CharacterArmorSilhouette;
+  readonly armorLayerMask: CharacterArmorLayerMask;
+  readonly capeLayerMask: CharacterCapeLayerMask;
+  readonly runeLayerMask: CharacterRuneLayerMask;
+  readonly armorItemId?: string;
+  readonly accessoryItemId?: string;
+  readonly layerVariantLabel: string;
 }
 
 const DEFAULT_DYE_CHANNELS: CharacterDyeChannels = { primary: 1, secondary: 1, rune: 1 };
@@ -137,6 +146,7 @@ export function resolveCharacterEquipmentAppearance(
   const dye = resolveCharacterDyeProfile(dyePreset);
   const costume = COSTUME_STYLE[costumeSet];
   const setHarmony = weaponGrade === armorGrade && armorGrade === accessoryGrade;
+  const layerProfile = resolveEquipmentLayerMaskProfile(armorDefinition?.id, accessoryDefinition?.id, costumeSet);
   const primaryBase = blendColor(style.primaryColor, dye.primaryColor, 0.56);
   const secondaryBase = blendColor(style.secondaryColor, dye.secondaryColor, 0.58);
   const runeBase = blendColor(style.runeColor, dye.runeColor, 0.68);
@@ -178,7 +188,50 @@ export function resolveCharacterEquipmentAppearance(
     dyeChannels,
     capeStyle: costume.capeStyle,
     armorSilhouette: costume.armorSilhouette,
+    armorLayerMask: layerProfile.armor,
+    capeLayerMask: layerProfile.cape,
+    runeLayerMask: layerProfile.rune,
+    armorItemId: armorDefinition?.id,
+    accessoryItemId: accessoryDefinition?.id,
+    layerVariantLabel: layerProfile.label,
   };
+}
+
+
+export function resolveEquipmentLayerMaskProfile(
+  armorItemId: string | undefined,
+  accessoryItemId: string | undefined,
+  costumeSet: CharacterCostumeSet = 'scout-steel',
+): {
+  readonly armor: CharacterArmorLayerMask;
+  readonly cape: CharacterCapeLayerMask;
+  readonly rune: CharacterRuneLayerMask;
+  readonly label: string;
+} {
+  const armor = armorItemId === 'armor_harbinger_heroic'
+    ? 'harbinger-crown'
+    : armorItemId === 'armor_warden_rare'
+      ? 'warden-bastion'
+      : armorItemId === 'armor_scout_common'
+        ? 'scout-chevron'
+        : costumeSet === 'harbinger-heir'
+          ? 'harbinger-crown'
+          : costumeSet === 'warden-rift'
+            ? 'warden-bastion'
+            : 'scout-chevron';
+  const cape = armor === 'harbinger-crown'
+    ? 'harbinger-banner'
+    : armor === 'warden-bastion'
+      ? 'warden-split'
+      : 'scout-sash';
+  const rune = accessoryItemId === 'accessory_rift_heroic'
+    ? 'rift-crown'
+    : accessoryItemId === 'accessory_core_rare'
+      ? 'core-hex'
+      : 'lumen-orbit';
+  const armorLabel = armor === 'harbinger-crown' ? '전령 왕관갑' : armor === 'warden-bastion' ? '감시자 보루갑' : '정찰 갈매기갑';
+  const runeLabel = rune === 'rift-crown' ? '심연 왕관룬' : rune === 'core-hex' ? '코어 육각룬' : '루멘 궤도룬';
+  return { armor, cape, rune, label: `${armorLabel} · ${runeLabel}` };
 }
 
 export function materialFrameKey(slot: EquipmentSlot, grade: ItemGrade): string {

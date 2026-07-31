@@ -26,6 +26,29 @@ try {
   const profile = validProfile(ownerUser.uid);
   await expectAllowed('owner profile create', () => setDoc(doc(owner.db, 'users', ownerUser.uid), profile));
   await expectAllowed('owner profile read', () => getDoc(doc(owner.db, 'users', ownerUser.uid)));
+  const appearanceDocument = appearance(ownerUser.uid);
+  await expectAllowed('owner appearance create', () => setDoc(
+    doc(owner.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+    appearanceDocument,
+  ));
+  await expectAllowed('owner appearance read', () => getDoc(
+    doc(owner.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+  ));
+  await expectDenied('other user appearance read', () => getDoc(
+    doc(attacker.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+  ));
+  await expectDenied('other user appearance write', () => setDoc(
+    doc(attacker.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+    appearanceDocument,
+  ));
+  await expectDenied('invalid appearance owner', () => setDoc(
+    doc(owner.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+    { ...appearanceDocument, ownerUid: attackerUser.uid },
+  ));
+  await expectDenied('invalid appearance archive schema', () => setDoc(
+    doc(owner.db, 'users', ownerUser.uid, 'settings', 'characterAppearance'),
+    { ...appearanceDocument, archive: { ...appearanceDocument.archive, schemaVersion: 2 } },
+  ));
   await expectDenied('other user profile read', () => getDoc(doc(attacker.db, 'users', ownerUser.uid)));
   await expectDenied('other user ranking write', () => setDoc(doc(attacker.db, 'rankings', ownerUser.uid), ranking(ownerUser.uid)));
   await expectAllowed('owner overall ranking write', () => setDoc(doc(owner.db, 'rankings', ownerUser.uid), ranking(ownerUser.uid)));
@@ -52,7 +75,7 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('PASS Firestore emulator rules: owner isolation, public ranking read, weekly+season ownership, coupon deny');
+  console.log('PASS Firestore emulator rules: owner isolation, appearance Cloud Save ownership+schema, public ranking read, weekly+season ownership, coupon deny');
 }
 
 async function client(name) {
@@ -96,5 +119,26 @@ function validProfile(uid) {
     tutorial: { completed: false, skipped: false },
     operations: { attendanceCycleKey: '', attendanceClaims: [], noticeReads: {}, mailClaims: {}, redeemedCoupons: {} },
     updatedAt: Date.now(), serverUpdatedAt: serverTimestamp(),
+  };
+}
+
+function appearance(uid) {
+  return {
+    schema: 'lumerift-character-appearance-cloud-v2',
+    ownerUid: uid,
+    updatedAt: Date.now(),
+    revision: 'appearance-1a2b3c4d',
+    syncMode: 'manual-opt-in',
+    archive: {
+      schemaVersion: 3,
+      game: 'LUMERIFT',
+      kind: 'character-appearance-presets',
+      exportedAt: Date.now(),
+      slotOrder: [1, 2, 3],
+      lockedSlots: { '1': false, '2': false, '3': false },
+      slots: { '1': null, '2': null, '3': null },
+      presets: [],
+    },
+    serverUpdatedAt: serverTimestamp(),
   };
 }

@@ -1,19 +1,20 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.21",
-  "baseVersion": "1.11.20",
+  "version": "1.11.25",
+  "baseVersion": "1.11.24",
   "releaseDate": "2026-07-31",
-  "fullArchive": "LUMERIFT_FULL_v1.11.21.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.20_to_v1.11.21_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-character-studio-directional-comparison-weapon-frame-calibration",
+  "fullArchive": "LUMERIFT_FULL_v1.11.25.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.24_to_v1.11.25_ROOT_OVERWRITE.zip",
+  "qualityStage": "granular-appearance-conflict-merge-uid-recovery",
   "features": [
-    "캐릭터 스튜디오 8방향 수동 회전과 현재·교체 후 동시 외형 비교",
-    "무기·방어구·장신구 슬롯별 카탈로그 교체 후보 미리보기",
-    "균열검·대검·균열 장창별 전용 본체 프레임 레시피와 접촉 타이밍 분리",
-    "장비 세트 코스튬 3종과 갑주·망토·룬 세부 염색 채널",
-    "최근 외형 프리셋 빠른 적용과 기존 로컬 슬롯 마이그레이션",
-    "Android Chrome·iOS Safari 캡처 준비용 크기·발광 기준 프로필(물리 캡처 승인 대기)",
+    "외형 슬롯 1·2·3의 로컬·Cloud·최신 항목별 선택 병합",
+    "슬롯 표시 순서·고정 상태·최근 프리셋 독립 선택",
+    "로컬 고정 슬롯 Cloud 덮어쓰기 강제 차단",
+    "최근 프리셋 중복 제거·즐겨찾기 보존·최신 우선 병합",
+    "Cloud 업로드·충돌 병합·복구 적용 전 자동 외형 복구 지점",
+    "UID별 최대 5개 복구 지점과 JSON 내보내기·가져오기",
+    "외형 Archive v3 전체 교체 API와 실행 하네스",
     "Player Save v4·AttackFootprint·App Check 비활성 계약 유지"
   ],
   "assetPolicy": {
@@ -34,16 +35,15 @@
       "bmp",
       "tiff"
     ],
-    "publicPolicy": "public/assets contains manifest-reachable active runtime art, opt-in lazy bundles, validation summaries and required license notices",
-    "archivePolicy": "source masters and replaced runtime art remain in art_source; painted player art is a candidate and not the default final art",
+    "publicPolicy": "public/assets manifest-reachable runtime assets only; no new runtime image in v1.11.25",
+    "archivePolicy": "v1.11.25 changes are cloud conflict and recovery logic; no final hand-drawn attack or equipment art is claimed",
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
     "validate-release-version",
-    "cumulative validators v1.11.0 through v1.11.21",
-    "asset/data/atlas/manifest/cleanup validators",
-    "offline strict TypeScript check with local external-library declarations",
-    "runtime logic harness for wardrobe, weapon timing, frame recipe and calibration",
+    "cumulative validators v1.11.0 through v1.11.25",
+    "offline strict TypeScript 5.8.3 check",
+    "compiled runtime harness for conflict merge and UID recovery",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"
   ]
