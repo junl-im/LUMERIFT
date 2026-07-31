@@ -48,7 +48,8 @@ const requirements = {
     'private readonly autoCombatLog = new AutoCombatSessionLog()',
     'this.autoCombatLog.recordTarget(',
     'this.autoCombatLog.recordAction(',
-    'autoAssist: this.autoCombatLog.snapshot()',
+    'const autoAssist = this.autoCombatLog.snapshot()',
+    'autoAssist,',
   ],
   'src/scenes/ResultScene.ts': [
     'readonly autoAssist?: AutoCombatSessionSummary',

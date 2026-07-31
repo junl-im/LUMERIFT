@@ -1,7 +1,7 @@
 {
   "version": 13,
   "game": "LUMERIFT",
-  "release": "1.11.15",
+  "release": "1.11.17",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -26,15 +26,16 @@
     "lobby-character": {
       "files": [
         "live/v4/backgrounds/lobby_forest_v4.webp",
-        "live/v4/portraits/hero_v4.webp",
         "live/v5/atlases/ui/ui_luminous_v5.json",
         "live/v5/atlases/ui/ui_luminous_v5.webp",
         "live/v5/atlases/ui/ui_icons_v5.json",
         "live/v5/atlases/ui/ui_icons_v5.webp",
         "atlases/items/equipment_icons_v1.json",
-        "atlases/items/equipment_icons_v1.webp"
+        "atlases/items/equipment_icons_v1.webp",
+        "live/v8/portraits/hero_premium_v8.webp",
+        "live/v4/portraits/hero_v4.webp"
       ],
-      "bytes": 231673
+      "bytes": 357727
     },
     "battle-chapter-1": {
       "files": [
@@ -61,9 +62,11 @@
         "audio/combat/hit_v1.ogg",
         "audio/combat/skill_v1.ogg",
         "audio/combat/dodge_v1.ogg",
-        "audio/bgm/forest_rift_loop_v1.opus"
+        "audio/bgm/forest_rift_loop_v1.opus",
+        "live/v8/atlases/player/player_premium_overlay_v8.json",
+        "live/v8/atlases/player/player_premium_overlay_v8.webp"
       ],
-      "bytes": 4727232
+      "bytes": 4733084
     },
     "operations-ui-v3": {
       "files": [

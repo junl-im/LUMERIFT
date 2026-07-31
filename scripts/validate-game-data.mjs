@@ -60,7 +60,7 @@ const bossPatternIds = new Set(
     .filter((monster) => monster.rank === 'boss')
     .flatMap((monster) => monster.patterns.map((pattern) => pattern.id)),
 );
-if (bossDodgeRules.version !== 1) errors.push(`보스 회피 규칙 버전 오류: ${bossDodgeRules.version}`);
+if (typeof bossDodgeRules.version !== 'number' || bossDodgeRules.version < 1) errors.push(`보스 회피 규칙 버전 오류: ${bossDodgeRules.version}`);
 if (!bossDodgeRules.defaultRule || typeof bossDodgeRules.defaultRule.triggerProgress !== 'number') {
   errors.push('보스 회피 기본 규칙 누락');
 }
@@ -74,6 +74,13 @@ for (const rule of bossDodgeRules.patterns ?? []) {
   }
   if (!['perpendicular', 'away', 'diagonal'].includes(rule.directionMode)) {
     errors.push(`보스 회피 방향 오류: ${rule.patternId}/${rule.directionMode}`);
+  }
+  if (bossDodgeRules.version >= 2) {
+    if (typeof rule.hudIcon !== 'string' || rule.hudIcon.length === 0) errors.push(`보스 HUD 아이콘 누락: ${rule.patternId}`);
+    if (typeof rule.safeMoveLabel !== 'string' || rule.safeMoveLabel.length < 4) errors.push(`보스 안전 이동 안내 누락: ${rule.patternId}`);
+    for (const colorKey of ['warningColor', 'dangerColor', 'criticalColor']) {
+      if (!Number.isInteger(rule[colorKey]) || rule[colorKey] < 0 || rule[colorKey] > 0xffffff) errors.push(`보스 HUD 색상 오류: ${rule.patternId}/${colorKey}`);
+    }
   }
 }
 for (const patternId of bossPatternIds) {

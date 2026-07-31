@@ -144,6 +144,17 @@ if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11115')) {
   errors.push('verify에서 v1.11.15 보스 회피 데이터·프리셋 저장소 검사가 누락되었습니다.');
 }
 
+
+if (pkg.scripts?.['validate:upgrade:v11116'] !== 'node scripts/validate-v11116-upgrade.mjs') {
+  errors.push('package.json v1.11.16 자동 전투 기록·보스 HUD 데이터·8방향 무기 궤적 검증 연결이 누락되었습니다.');
+}
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11116')) {
+  errors.push('verify에서 v1.11.16 자동 전투 기록·보스 HUD 데이터·8방향 무기 궤적 검사가 누락되었습니다.');
+}
+
+if (pkg.scripts?.['validate:upgrade:v11117'] !== 'node scripts/validate-v11117-upgrade.mjs') errors.push('v1.11.17 validator missing');
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11117')) errors.push('verify missing v1.11.17');
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

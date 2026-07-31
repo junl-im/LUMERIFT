@@ -17,6 +17,7 @@ import { createBadge, createProgressBar } from '../ui/PremiumUi';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { SettingsScene } from './SettingsScene';
+import { AutoCombatHistoryScene } from './AutoCombatHistoryScene';
 
 export class AutoPresetLabScene implements Scene {
   public readonly view = new Container();
@@ -137,11 +138,23 @@ export class AutoPresetLabScene implements Scene {
     });
     clear.position.set(342, 642);
 
+    const history = new UiButton({
+      label: '최근 전투 기록 분석',
+      subtitle: `저장된 세션 ${context.autoCombatHistory.current.length}건 · 프리셋 성과 비교`,
+      width: 416,
+      height: 48,
+      tone: 'secondary',
+      fontSize: 12,
+      subtitleFontSize: 8,
+      onPress: async () => context.scenes.change(() => new AutoCombatHistoryScene()),
+    });
+    history.position.set(58, 704);
+
     const note = new Text({
       text: '자동 전투 ON/OFF와 자동 타겟 ON/OFF는 전투 진입 안전을 위해 슬롯에 저장하지 않습니다.',
       style: new TextStyle({ fill: COLORS.muted, fontSize: 8, fontWeight: '700', wordWrap: true, wordWrapWidth: 410 }),
     });
-    note.position.set(58, 714);
+    note.position.set(58, 758);
 
     const back = new UiButton({
       label: '시스템 커맨드 센터로 복귀',
@@ -167,6 +180,7 @@ export class AutoPresetLabScene implements Scene {
       save,
       load,
       clear,
+      history,
       note,
       back,
     );

@@ -19,12 +19,14 @@ import type { PlayerArtVariantController } from '../core/presentation/PlayerArtV
 import type { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
 import type { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import type { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
+import type { AutoCombatHistoryStore } from '../game/combat/AutoCombatHistoryStore';
 
 export interface AppContext {
   readonly auth: AuthService;
   readonly input: InputManager;
   readonly joystickCalibration: JoystickCalibrationController;
   readonly combatAssist: CombatAssistController;
+  readonly autoCombatHistory: AutoCombatHistoryStore;
   readonly performance: PerformanceMonitor;
   readonly frameRate: FrameRateController;
   readonly graphicsQuality: GraphicsQualityController;

@@ -26,7 +26,8 @@ export const ASSET_PATHS = {
   forestDepthsMap: assetUrl('assets/live/v4/backgrounds/forest_depths_v4.webp'),
   riftCoreMap: assetUrl('assets/live/v4/backgrounds/rift_core_v4.webp'),
   lobbyBackground: assetUrl('assets/live/v4/backgrounds/lobby_forest_v4.webp'),
-  heroPortrait: assetUrl('assets/live/v4/portraits/hero_v4.webp'),
+  heroPortrait: assetUrl('assets/live/v8/portraits/hero_premium_v8.webp'),
+  premiumPlayerOverlayAtlas: assetUrl('assets/live/v8/atlases/player/player_premium_overlay_v8.json'),
   bossPortrait: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
   bossPortraitPhase1: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
   bossPortraitPhase2: assetUrl('assets/live/v4/portraits/boss_phase_2_v4.webp'),
@@ -55,7 +56,7 @@ export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
   urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas],
-  estimatedBytes: 430_000,
+  estimatedBytes: 560_000,
 };
 
 
@@ -93,8 +94,9 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.bossPortraitPhase1,
     ASSET_PATHS.bossPortraitPhase2,
     ASSET_PATHS.bossPortraitPhase3,
+    ASSET_PATHS.premiumPlayerOverlayAtlas,
   ],
-  estimatedBytes: 5_900_000,
+  estimatedBytes: 6_050_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';

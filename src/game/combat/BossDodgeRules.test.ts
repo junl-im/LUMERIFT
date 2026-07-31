@@ -4,7 +4,7 @@ import { BOSS_DODGE_RULE_VERSION, bossDodgeRuleCatalog, resolveBossDodgeDirectio
 describe('BossDodgeRules', () => {
 
   it('loads the three boss patterns from the versioned JSON catalog', () => {
-    expect(BOSS_DODGE_RULE_VERSION).toBe(1);
+    expect(BOSS_DODGE_RULE_VERSION).toBe(2);
     expect(bossDodgeRuleCatalog().map((rule) => rule.patternId)).toEqual([
       'boss_cleave',
       'boss_nova',
@@ -16,6 +16,8 @@ describe('BossDodgeRules', () => {
     const direction = resolveBossDodgeDirection(rule, { x: 1, y: 0 });
     expect(rule.triggerProgress).toBeLessThan(0.5);
     expect(direction.x).toBeLessThan(0);
+    expect(rule.hudIcon).toBe('◎');
+    expect(rule.safeMoveLabel).toContain('바깥');
   });
 
   it('uses a diagonal escape for tracking rupture', () => {

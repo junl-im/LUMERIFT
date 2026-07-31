@@ -14,6 +14,7 @@ import { resolvePlayerMotion } from './PlayerMotionDirector';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
+  readonly premiumOverlaySheet?: Spritesheet;
   readonly spriteBaseScale?: number;
 }
 
@@ -38,10 +39,12 @@ export class PlayerActorView {
   private readonly stepHighlights = new Graphics();
   private readonly attackPoseAccent = new Graphics();
   private readonly sprite?: AnimatedSprite;
+  private readonly premiumOverlay?: Sprite;
   private readonly equipmentLayer?: Sprite;
   private readonly afterimages: Sprite[] = [];
   private readonly spriteBaseScale: number;
   private readonly mirrorWest: boolean;
+  private readonly optionsPremiumOverlaySheet?: Spritesheet;
   private animationKey = '';
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
@@ -56,6 +59,7 @@ export class PlayerActorView {
   ) {
     this.spriteBaseScale = options.spriteBaseScale ?? 1.05;
     this.mirrorWest = options.mirrorWest ?? true;
+    this.optionsPremiumOverlaySheet = options.premiumOverlaySheet;
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -91,6 +95,16 @@ export class PlayerActorView {
       }
     }
 
+    const premiumTexture = options.premiumOverlaySheet?.textures['premium_overlay.s'];
+    if (premiumTexture) {
+      this.premiumOverlay = new Sprite(premiumTexture);
+      this.premiumOverlay.anchor.set(0.5);
+      this.premiumOverlay.alpha = 0.82;
+      this.premiumOverlay.blendMode = 'add';
+      this.premiumOverlay.scale.set(0.92);
+      this.premiumOverlay.position.set(0, -8);
+    }
+
     const equipmentTexture = weaponItemId ? equipmentSheet?.textures[`item.${weaponItemId}`] : undefined;
     if (equipmentTexture) {
       this.equipmentLayer = new Sprite(equipmentTexture);
@@ -101,6 +115,7 @@ export class PlayerActorView {
 
     this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
+    if (this.premiumOverlay) this.root.addChild(this.premiumOverlay);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
     this.root.addChild(this.stepHighlights, this.attackPoseAccent, this.motionAccent);
   }
@@ -163,6 +178,13 @@ export class PlayerActorView {
         comboStep: controller.comboStep,
         reducedMotion: frame.reducedMotion,
       });
+      const overlayTexture = this.premiumOverlay ? this.resolvePremiumOverlayTexture(direction) : undefined;
+      if (this.premiumOverlay && overlayTexture) {
+        this.premiumOverlay.texture = overlayTexture;
+        this.premiumOverlay.alpha = frame.overdrive ? 0.98 : controller.state === 'attacking' || controller.state === 'skill' ? 0.9 : 0.68;
+        this.premiumOverlay.rotation = pose.rotation * 0.28;
+        this.premiumOverlay.scale.set(frame.overdrive ? 1.02 : 0.92);
+      }
       const mirrored = this.mirrorWest && (direction === 'w' || direction === 'sw' || direction === 'nw');
       const strideLift = controller.state === 'moving' ? (Math.abs(facing.x) + Math.abs(facing.y)) * 0.35 : 0;
       const xScale = this.spriteBaseScale * pose.scaleX;
@@ -172,7 +194,16 @@ export class PlayerActorView {
       this.sprite.rotation = motion.rotation + pose.rotation + facing.x * 0.018 * (controller.state === 'moving' ? 1 : 0.45);
       this.sprite.tint = frame.overdrive ? 0xfff5c8 : 0xffffff;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
-      this.drawAttackPoseAccent(facing, pose.accentAlpha, pose.accentLength, frame.overdrive);
+      this.drawAttackPoseAccent(
+        facing,
+        pose.accentAlpha,
+        pose.accentLength,
+        pose.accentWidth,
+        pose.accentEchoes,
+        pose.accentLateralOffset,
+        pose.accentVerticalLift,
+        frame.overdrive,
+      );
       this.updateAfterimages(controller, frame.deltaSeconds, motion.afterimageInterval, motion.afterimageAlpha);
     } else {
       this.attackPoseAccent.clear();
@@ -181,6 +212,11 @@ export class PlayerActorView {
     this.root.alpha = controller.isInvulnerable && Math.floor(elapsed * 26) % 2 === 0 ? 0.45 : 1;
     const stateScale = scaleForPlayerState(controller.state);
     this.root.scale.set(stateScale * motion.scaleX, stateScale * motion.scaleY);
+  }
+
+  private resolvePremiumOverlayTexture(direction: string): Texture | undefined {
+    const sheet = this.optionsPremiumOverlaySheet;
+    return sheet?.textures[`premium_overlay.${direction}`] ?? sheet?.textures['premium_overlay.s'];
   }
 
   private updateAnimation(controller: PlayerCombatController, animationSpeed: number): void {
@@ -201,18 +237,40 @@ export class PlayerActorView {
     sprite.animationSpeed = animationSpeed;
   }
 
-  private drawAttackPoseAccent(facing: Vec2, alpha: number, length: number, overdrive: boolean): void {
+  private drawAttackPoseAccent(
+    facing: Vec2,
+    alpha: number,
+    length: number,
+    width: number,
+    echoes: number,
+    lateralOffset: number,
+    verticalLift: number,
+    overdrive: boolean,
+  ): void {
     this.attackPoseAccent.clear();
     if (alpha <= 0.01 || length <= 0) return;
     const perpendicular = { x: -facing.y, y: facing.x };
     const color = overdrive ? 0xffd36a : 0x92fff1;
     const start = 10;
-    for (let index = -1; index <= 1; index += 1) {
-      const lateral = index * 7;
+    const layers = Math.max(2, echoes);
+    for (let index = 0; index < layers; index += 1) {
+      const centered = index - (layers - 1) / 2;
+      const lateral = lateralOffset + centered * width * 1.15;
+      const endLateral = lateral * (0.3 + index * 0.05);
       this.attackPoseAccent
-        .moveTo(facing.x * start + perpendicular.x * lateral, facing.y * start + perpendicular.y * lateral - 7)
-        .lineTo(facing.x * length + perpendicular.x * lateral * 0.4, facing.y * length + perpendicular.y * lateral * 0.4 - 7)
-        .stroke({ color: index === 0 ? 0xffffff : color, alpha: alpha * (index === 0 ? 0.72 : 0.42), width: index === 0 ? 2.4 : 4.2 });
+        .moveTo(
+          facing.x * start + perpendicular.x * lateral,
+          facing.y * start + perpendicular.y * lateral + verticalLift,
+        )
+        .lineTo(
+          facing.x * length + perpendicular.x * endLateral,
+          facing.y * length + perpendicular.y * endLateral + verticalLift,
+        )
+        .stroke({
+          color: index === Math.floor(layers / 2) ? 0xffffff : color,
+          alpha: alpha * (index === Math.floor(layers / 2) ? 0.78 : Math.max(0.2, 0.5 - Math.abs(centered) * 0.12)),
+          width: index === Math.floor(layers / 2) ? Math.max(2, width * 0.34) : width,
+        });
     }
   }
 

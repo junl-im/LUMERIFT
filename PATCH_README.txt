@@ -1,4 +1,4 @@
-LUMERIFT v1.11.14 -> v1.11.15 ROOT OVERWRITE PATCH
+LUMERIFT v1.11.15 -> v1.11.16 ROOT OVERWRITE PATCH
 
 1. package.json이 보이는 프로젝트 최상위에서 압축을 풉니다.
 2. 모든 파일을 덮어씁니다.

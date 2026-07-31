@@ -1,12 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "defaultRule": {
     "patternId": "unknown",
     "label": "보스 패턴",
     "triggerProgress": 0.72,
     "critical": true,
     "directionMode": "perpendicular",
-    "reason": "boss-critical-evade"
+    "reason": "boss-critical-evade",
+    "hudIcon": "◇",
+    "warningColor": 16763904,
+    "dangerColor": 16749418,
+    "criticalColor": 16729177,
+    "safeMoveLabel": "측면 안전 경로 확보"
   },
   "patterns": [
     {
@@ -15,7 +20,12 @@
       "triggerProgress": 0.54,
       "critical": false,
       "directionMode": "perpendicular",
-      "reason": "boss-cleave-evade"
+      "reason": "boss-cleave-evade",
+      "hudIcon": "╱",
+      "warningColor": 14264319,
+      "dangerColor": 16764006,
+      "criticalColor": 16734567,
+      "safeMoveLabel": "검격 축과 직각으로 측면 회피"
     },
     {
       "patternId": "boss_nova",
@@ -23,7 +33,12 @@
       "triggerProgress": 0.46,
       "critical": true,
       "directionMode": "away",
-      "reason": "boss-nova-evade"
+      "reason": "boss-nova-evade",
+      "hudIcon": "◎",
+      "warningColor": 16753286,
+      "dangerColor": 16737089,
+      "criticalColor": 16717913,
+      "safeMoveLabel": "중심에서 바깥 방향으로 즉시 이탈"
     },
     {
       "patternId": "boss_rupture",
@@ -31,7 +46,12 @@
       "triggerProgress": 0.66,
       "critical": true,
       "directionMode": "diagonal",
-      "reason": "boss-rupture-evade"
+      "reason": "boss-rupture-evade",
+      "hudIcon": "✦",
+      "warningColor": 5637823,
+      "dangerColor": 6750159,
+      "criticalColor": 8650751,
+      "safeMoveLabel": "표식 중심을 벗어나 대각선으로 이동"
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "game": "LUMERIFT: 균열의 계승자",
-  "version": "1.11.15",
+  "version": "1.11.17",
   "updatedAt": "2026-07-30",
-  "currentPhase": "v1.11.15 데이터 기반 보스 회피·사용자 프리셋 저장소·프리셋 성과 비교 완료, GitHub Actions 전체 확인 대기",
+  "currentPhase": "v1.11.17 프리미엄 캐릭터 디자인·에셋 업그레이드 완료",
   "qualityStage": "production-candidate-data-driven-boss-rules-preset-vault-performance-advisor",
   "completed": [
     "Vite + TypeScript + PixiJS 8 프로젝트 기반",
@@ -181,14 +181,17 @@
     "v1.11.12: 로비/에셋 보관소/결과 화면 UX 재정리, 품질 태그 및 전술 요약 강화",
     "v1.11.13: 로비 NEXT BEST ACTION, 설정 피드백 배너, 결과 행동 계획, 에셋 QUALITY/MOBILE ROLE 감수 정보 적용",
     "v1.11.14: 공격형·균형형·보존형 자동 전투 프리셋, 보스 위협 HUD, 전투 버튼 손가락 가림 보정 적용",
-    "v1.11.15: 보스 회피 규칙 JSON 분리, 사용자 자동 전투 프리셋 3개 슬롯, 전투 결과 프리셋 적합도 비교 적용"
+    "v1.11.15: 보스 회피 규칙 JSON 분리, 사용자 자동 전투 프리셋 3개 슬롯, 전투 결과 프리셋 적합도 비교 적용",
+    "v1.11.16: 최근 자동 전투 18건 로컬 기록, 프리셋 성과 분석 화면, 보스 HUD 데이터 v2, 8방향 무기 궤적 강화",
+    "v1.11.17: 프리미엄 영웅 초상, 8방향 재질광 오버레이, 캐릭터 실루엣 강화"
   ],
   "inProgress": [],
   "nextPlanned": [
-    "8방향 공격 전용 프레임·무기 궤적·타격 VFX 고급화",
-    "보스 패턴별 위험 신호 테마 JSON 데이터 확장",
-    "프리셋 최근 전투 세션 로컬 비교 기록",
-    "Android Chrome·iOS Safari 실제 캡처 기반 HUD 미세 정렬"
+    "GitHub Actions 전체 TypeScript·Vitest·Vite 빌드·번들 검사 확인",
+    "Android Chrome·iOS Safari 실제 캡처 기반 전투 HUD 미세 정렬",
+    "자동 전투 기록 JSON 내보내기 및 비교 필터",
+    "보스 패턴별 텔레그래프 모양과 VFX 데이터 확장",
+    "전용 8방향 공격 Atlas 최종 아트 교체 준비"
   ],
   "immutableRules": [
     "PNG/WebP만 사용하고 SVG를 금지한다.",
@@ -302,8 +305,8 @@
     "QA 자동 분석은 브라우저 프레임 표본의 권장값이며 실제 표면 온도·GPU 메모리 측정을 대체하지 않는다."
   ],
   "releaseArtifacts": {
-    "fullArchive": "LUMERIFT_FULL_v1.11.15.zip",
-    "patchArchive": "LUMERIFT_PATCH_v1.11.14_to_v1.11.15_ROOT_OVERWRITE.zip"
+    "fullArchive": "LUMERIFT_FULL_v1.11.17.zip",
+    "patchArchive": "LUMERIFT_PATCH_v1.11.16_to_v1.11.17_ROOT_OVERWRITE.zip"
   },
   "sourceArtMetrics": {
     "totalBytes": 101616061,

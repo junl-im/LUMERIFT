@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.15
+# LUMERIFT: 균열의 계승자 v1.11.17
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -81,3 +81,18 @@ npm run dev
 - 설정 화면에서 자동 전투 프리셋 연구소 진입
 - 결과 화면에서 공격형·균형형·보존형 적합도 비교와 추천 표시
 - 관련 문서: `docs/BOSS_DODGE_DATA_v1.11.15.md`, `docs/AUTO_PRESET_VAULT_v1.11.15.md`, `docs/AUTO_PRESET_PERFORMANCE_v1.11.15.md`, `docs/PATCH_NOTES_v1.11.15.md`
+
+
+## v1.11.16 핵심 업데이트
+- 최근 자동 전투 결과를 로컬에 최대 18건 저장하고 프리셋 연구소에서 기록 분석 화면으로 확인
+- 공격형·균형형·보존형 평균 적합도·실사용 횟수·승리·평균 시간·수동 개입 비교
+- 보스 회피 JSON v2에 HUD 아이콘·단계별 색상·안전 이동 안내 추가
+- 8방향별 공격 자세와 무기 궤적 길이·폭·오프셋·잔상 수 차등화
+- 관련 문서: `docs/AUTO_COMBAT_HISTORY_v1.11.16.md`, `docs/DIRECTIONAL_WEAPON_TRAILS_v1.11.16.md`, `docs/BOSS_HUD_DATA_v1.11.16.md`, `docs/PATCH_NOTES_v1.11.16.md`
+
+
+## v1.11.17 핵심 업데이트
+- 프리미엄 영웅 초상 `hero_premium_v8.webp` 적용
+- 8방향 갑주·문양·무기 에너지 오버레이 Atlas 추가
+- 로비와 전투 캐릭터의 청록·골드 재질 언어 통일
+- 관련 문서: `docs/PREMIUM_CHARACTER_ART_v1.11.17.md`, `docs/PATCH_NOTES_v1.11.17.md`

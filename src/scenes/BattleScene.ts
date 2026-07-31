@@ -85,6 +85,7 @@ export class BattleScene implements Scene {
   private readonly hud = new Container();
   private playerPresentation?: PlayerActorView;
   private playerSheet?: Spritesheet;
+  private premiumPlayerOverlaySheet?: Spritesheet;
   private monsterSheet?: Spritesheet;
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
@@ -350,6 +351,7 @@ export class BattleScene implements Scene {
     this.playerSheet = context.assets.get<Spritesheet>(selectedPlayerAtlas)
       ?? context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
     this.monsterSheet = context.assets.get<Spritesheet>(ASSET_PATHS.monsterAtlas);
+    this.premiumPlayerOverlaySheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerOverlayAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
@@ -400,6 +402,7 @@ export class BattleScene implements Scene {
     const equippedWeaponUid = this.profile.equipped.weapon;
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
     this.playerPresentation = new PlayerActorView(this.playerSheet, this.equipmentSheet, equippedWeaponId, {
+      premiumOverlaySheet: this.premiumPlayerOverlaySheet,
       mirrorWest: !(this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate),
       spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 1.12,
     });
@@ -2078,6 +2081,7 @@ export class BattleScene implements Scene {
       const assist = this.context?.combatAssist.current;
       const threat = resolveBossThreatHud({
         urgency: style.urgency,
+        patternId: telegraph.pattern.id,
         patternLabel: telegraph.pattern.label,
         remainingSeconds: remaining,
         autoBattle: assist?.autoBattle ?? false,
@@ -2085,7 +2089,7 @@ export class BattleScene implements Scene {
         bossDodgePolicy: assist?.bossDodgePolicy ?? 'off',
         strategyPreset: assist?.strategyPreset ?? 'balanced',
       });
-      const threatColor = threat.tone === 'critical' ? 0xfff4f4 : threat.tone === 'danger' ? 0xffd36a : telegraph.pattern.effectColor;
+      const threatColor = threat.accentColor;
       this.dangerText.text = threat.headline;
       this.dangerText.style.fill = threatColor;
       this.bossThreatGuidanceText.text = threat.guidance;
@@ -2192,6 +2196,7 @@ export class BattleScene implements Scene {
     }
 
     const nextStage = this.context.gameData.stagesInOrder.find((stage) => stage.order === this.stage!.order + 1);
+    const autoAssist = this.autoCombatLog.snapshot();
     const outcome: BattleOutcome = {
       victory,
       stageId: this.stage.id,
@@ -2204,8 +2209,18 @@ export class BattleScene implements Scene {
       defeated: this.defeatedCount,
       maxCombo: this.maxCombo,
       clearSeconds,
-      autoAssist: this.autoCombatLog.snapshot(),
+      autoAssist,
     };
+
+    this.context.autoCombatHistory.record({
+      stageId: outcome.stageId,
+      stageLabel: outcome.stageLabel,
+      victory: outcome.victory,
+      clearSeconds: outcome.clearSeconds,
+      maxCombo: outcome.maxCombo,
+      defeated: outcome.defeated,
+      summary: autoAssist,
+    });
 
     await this.context.scenes.change(() => new ResultScene(outcome));
   }

@@ -1,0 +1,33 @@
+LUMERIFT v1.11.16 RELEASE VERIFICATION
+Date: 2026-07-30
+Base: v1.11.15
+Target: v1.11.16
+
+[Implemented]
+- Local auto-combat history store with up to 18 recent sessions
+- Auto Combat History scene with preset suitability and actual-use statistics
+- Preset Lab entry point for recent combat analysis
+- Boss dodge rule JSON v2: HUD icon, warning/danger/critical colors, safe-move guidance
+- Eight-direction weapon trail profiles for pose accents and slash VFX
+- Cumulative validator compatibility updates for v1.11.11, v1.11.14, and v1.11.15
+
+[Passed]
+- Release, Firebase, account/cloud/ranking, combat presentation validators
+- Asset/data/atlas/manifest/cleanup/art/archive/source-art validators
+- UI/operations/mobile/live-art/source/handoff validators
+- Cumulative upgrade validators v1.11.0 through v1.11.16
+- TypeScript syntax parse: 169 source files, 0 diagnostics
+- Strict TypeScript project check with temporary external-library declarations
+- Strict pure-module compile for history, boss HUD data, and directional trail modules
+- Runtime harness: history persistence/analysis, direction trail mapping, boss HUD data v2
+- Active public assets: 41 files, 5.46 MB
+- Estimated initial payload source inputs: 1.04 MB / 15 MB
+
+[Not executed in this environment]
+- Full project tsc -b with the pinned npm dependency set
+- Full Vitest suite
+- Vite production build
+- validate:bundle
+- Physical Android/iOS device FPS, heat, battery, touch-occlusion, screenshot, and long-session testing
+
+These unexecuted checks must be confirmed by GitHub Actions and physical-device QA before final device certification.

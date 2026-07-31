@@ -44,7 +44,8 @@ const requirements = {
   'src/game/presentation/BossThreatHud.ts': [
     'export function resolveBossThreatHud',
     'AUTO EVADE READY',
-    '치명 단계까지 거리 유지',
+    'criticalOnlyHold',
+    'safeMoveLabel',
   ],
   'src/core/layout/BattleHudSafeArea.ts': [
     'const fingerClearance = compact ? 8 : 14',

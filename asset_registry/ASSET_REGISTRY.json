@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.15",
-  "generatedAt": "2026-07-30T17:55:00+09:00",
+  "release": "1.11.17",
+  "generatedAt": "2026-07-31T02:24:59.450Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 41,
-      "bytes": 5461855,
-      "atlases": 9,
-      "frames": 713,
-      "animations": 311
+      "files": 44,
+      "bytes": 5593941,
+      "atlases": 10,
+      "frames": 721,
+      "animations": 319
     }
   },
   "entries": [
@@ -2543,8 +2543,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 3718,
-      "sha256": "722b2c16a75e5e7d094ec6fd2bfb53ee4d8905f638a3e5fbb1aba6b6deba117c"
+      "bytes": 3899,
+      "sha256": "e8ecd5764eae6e2d3624285f6f231598ef23e2148d8ed06bbcfd040b0e16379b"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2894,6 +2894,35 @@
       "type": "webp",
       "bytes": 307432,
       "sha256": "bf9cdbed691146110a8df062556b10b8a5f0985c737b063be315912d78896b50"
+    },
+    {
+      "path": "public/assets/live/v8/atlases/player/player_premium_overlay_v8.json",
+      "relativePath": "live/v8/atlases/player/player_premium_overlay_v8.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 3530,
+      "sha256": "a77a72c600c10deed1d8557bcbc34b771a7141d0c2aaaf6b9964438086730bfc",
+      "atlas": {
+        "frames": 8,
+        "animations": 8,
+        "image": "player_premium_overlay_v8.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v8/atlases/player/player_premium_overlay_v8.webp",
+      "relativePath": "live/v8/atlases/player/player_premium_overlay_v8.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 2322,
+      "sha256": "e902d70b3ea83c1cd69e63bc7d85afbfea7cbd6aa27ae70589256e1ed1ddcea2"
+    },
+    {
+      "path": "public/assets/live/v8/portraits/hero_premium_v8.webp",
+      "relativePath": "live/v8/portraits/hero_premium_v8.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 126054,
+      "sha256": "5e2b12991023d6bd60fae5f704445c85e74fd03ea9f78852cca4d4c229802833"
     },
     {
       "path": "public/assets/OPERATIONS_V130_SUMMARY.json",

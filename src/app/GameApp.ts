@@ -28,6 +28,7 @@ import { PlayerArtVariantController } from '../core/presentation/PlayerArtVarian
 import { DeviceQaSessionRecorder } from '../core/performance/DeviceQaSessionRecorder';
 import { HapticFeedbackController } from '../core/accessibility/HapticFeedbackController';
 import { LiveRegionAnnouncer } from '../core/accessibility/LiveRegionAnnouncer';
+import { AutoCombatHistoryStore } from '../game/combat/AutoCombatHistoryStore';
 
 export class GameApp {
   private readonly pixi = new Application();
@@ -71,6 +72,7 @@ export class GameApp {
     const frameRate = new FrameRateController(this.pixi.ticker, performance);
     const joystickCalibration = new JoystickCalibrationController();
     const combatAssist = new CombatAssistController();
+    const autoCombatHistory = new AutoCombatHistoryStore();
     const graphicsQuality = new GraphicsQualityController();
     const accessibility = new AccessibilityController();
     const playerArtVariant = new PlayerArtVariantController();
@@ -110,6 +112,7 @@ export class GameApp {
       input: this.input,
       joystickCalibration,
       combatAssist,
+      autoCombatHistory,
       performance,
       frameRate,
       graphicsQuality,

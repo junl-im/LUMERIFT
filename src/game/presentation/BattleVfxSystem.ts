@@ -3,6 +3,7 @@ import type { GraphicsQualityPreset } from '../../core/graphics/GraphicsQualityC
 import { ObjectPool } from '../../core/pooling/ObjectPool';
 import type { CombatImpactTier } from '../combat/combatData';
 import type { Vec2 } from '../combat/geometry';
+import { resolveDirectionalWeaponTrailFromAngle, type DirectionalWeaponTrailProfile } from './DirectionalWeaponTrail';
 
 interface ActiveVfx {
   readonly root: Container;
@@ -13,6 +14,7 @@ interface ActiveVfx {
   duration: number;
   color: number;
   impactTier: CombatImpactTier;
+  trailProfile: DirectionalWeaponTrailProfile;
 }
 
 export interface BattleVfxSpawnOptions {
@@ -59,6 +61,7 @@ export class BattleVfxSystem {
     item.remaining = item.duration;
     item.color = options.color ?? defaultColor(key);
     item.impactTier = options.impactTier ?? defaultTier(key);
+    item.trailProfile = resolveDirectionalWeaponTrailFromAngle(rotation);
     item.root.position.set(position.x, position.y);
     item.root.rotation = rotation;
     item.root.scale.set(scale * (0.78 + this.quality.effectDensity * 0.3) * this.intensity);
@@ -117,6 +120,7 @@ export class BattleVfxSystem {
         duration: 0.3,
         color: defaultColor(key),
         impactTier: defaultTier(key),
+        trailProfile: resolveDirectionalWeaponTrailFromAngle(0),
       };
     }, 8);
     this.pools.set(key, pool);
@@ -145,13 +149,27 @@ export class BattleVfxSystem {
     }
 
     if (item.key === 'slash') {
-      const radius = (42 + progress * 34) * tierScale;
-      for (let layer = 0; layer < (this.quality.effectDensity > 0.75 ? 3 : 2); layer += 1) {
-        const start = -1.15 + layer * 0.08;
-        const end = 1.15 - layer * 0.05;
-        graphics.arc(0, 0, radius - layer * 7, start, end)
-          .stroke({ color: layer === 0 ? 0xffffff : color, alpha: alpha * (0.74 - layer * 0.16), width: layer === 0 ? 2 : 7 - layer });
+      const profile = item.trailProfile;
+      const radius = (42 + progress * 34) * tierScale * profile.lengthMultiplier;
+      const layers = Math.max(2, Math.round((this.quality.effectDensity > 0.75 ? 3 : 2) + profile.echoCount - 2));
+      for (let layer = 0; layer < layers; layer += 1) {
+        const centered = layer - (layers - 1) / 2;
+        const start = -1.12 + layer * 0.07 + profile.rotationBias;
+        const end = 1.12 - layer * 0.045 + profile.rotationBias;
+        const offsetX = profile.lateralOffset * 0.45 + centered * 2.2;
+        const offsetY = profile.verticalLift * 0.55;
+        graphics.arc(offsetX, offsetY, radius - layer * 6, start, end)
+          .stroke({
+            color: layer === 0 ? 0xffffff : color,
+            alpha: alpha * Math.max(0.18, 0.78 - layer * 0.13),
+            width: layer === 0 ? 2 : Math.max(2.2, (7 - layer) * profile.widthMultiplier),
+          });
       }
+      const bladeLength = radius * 0.88;
+      graphics
+        .moveTo(-bladeLength * 0.38, profile.verticalLift)
+        .lineTo(bladeLength, profile.verticalLift + profile.lateralOffset * 0.18)
+        .stroke({ color: 0xffffff, alpha: alpha * 0.42, width: 1.6 });
       return;
     }
 

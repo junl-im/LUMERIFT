@@ -23,8 +23,8 @@ if (!atLeast(registry.release, '1.11.15')) errors.push(`asset registry release m
 if (pkg.scripts?.['validate:upgrade:v11115'] !== 'node scripts/validate-v11115-upgrade.mjs') errors.push('v1.11.15 validator script is not connected');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11115')) errors.push('verify does not include v1.11.15 validator');
 
-if (bossRules.version !== 1) errors.push(`boss dodge data version must be 1: ${bossRules.version}`);
-if (!Array.isArray(bossRules.patterns) || bossRules.patterns.length !== 3) errors.push('boss dodge JSON must preserve 3 pattern rules');
+if (typeof bossRules.version !== 'number' || bossRules.version < 1) errors.push(`boss dodge data version must preserve v1+ contracts: ${bossRules.version}`);
+if (!Array.isArray(bossRules.patterns) || bossRules.patterns.length < 3) errors.push('boss dodge JSON must preserve at least 3 pattern rules');
 for (const id of ['boss_cleave', 'boss_nova', 'boss_rupture']) {
   if (!bossRules.patterns?.some((rule) => rule.patternId === id)) errors.push(`boss dodge JSON pattern missing: ${id}`);
 }

@@ -10,6 +10,11 @@ export interface BossDodgeRule {
   readonly critical: boolean;
   readonly directionMode: BossDodgeDirectionMode;
   readonly reason: string;
+  readonly hudIcon: string;
+  readonly warningColor: number;
+  readonly dangerColor: number;
+  readonly criticalColor: number;
+  readonly safeMoveLabel: string;
 }
 
 interface BossDodgeRuleDocument {
@@ -25,6 +30,11 @@ const FALLBACK_RULE: BossDodgeRule = {
   critical: true,
   directionMode: 'perpendicular',
   reason: 'boss-critical-evade',
+  hudIcon: '◇',
+  warningColor: 0xffcc00,
+  dangerColor: 0xff934a,
+  criticalColor: 0xff3759,
+  safeMoveLabel: '측면 안전 경로 확보',
 };
 
 const DOCUMENT = normalizeRuleDocument(bossDodgeRuleData);
@@ -80,6 +90,9 @@ function normalizeRule(value: unknown): BossDodgeRule | undefined {
   if (typeof value.critical !== 'boolean') return undefined;
   if (!isDirectionMode(value.directionMode)) return undefined;
   if (typeof value.triggerProgress !== 'number' || !Number.isFinite(value.triggerProgress)) return undefined;
+  if (typeof value.hudIcon !== 'string' || value.hudIcon.length === 0) return undefined;
+  if (typeof value.safeMoveLabel !== 'string' || value.safeMoveLabel.length === 0) return undefined;
+  if (!isColor(value.warningColor) || !isColor(value.dangerColor) || !isColor(value.criticalColor)) return undefined;
   return {
     patternId: value.patternId,
     label: value.label,
@@ -87,7 +100,16 @@ function normalizeRule(value: unknown): BossDodgeRule | undefined {
     critical: value.critical,
     directionMode: value.directionMode,
     reason: value.reason,
+    hudIcon: value.hudIcon,
+    warningColor: value.warningColor,
+    dangerColor: value.dangerColor,
+    criticalColor: value.criticalColor,
+    safeMoveLabel: value.safeMoveLabel,
   };
+}
+
+function isColor(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 0xffffff;
 }
 
 function isDirectionMode(value: unknown): value is BossDodgeDirectionMode {
