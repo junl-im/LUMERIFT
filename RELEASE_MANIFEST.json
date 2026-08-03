@@ -1,19 +1,19 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.28",
-  "baseVersion": "1.11.27",
+  "version": "1.11.29",
+  "baseVersion": "1.11.28",
   "releaseDate": "2026-08-03",
-  "fullArchive": "LUMERIFT_FULL_v1.11.28.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.27_to_v1.11.28_ROOT_OVERWRITE.zip",
-  "qualityStage": "approved-premium-art-direction-v2-lazy-reference",
+  "fullArchive": "LUMERIFT_FULL_v1.11.29.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.28_to_v1.11.29_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-procedural-character-centered-runtime-first-pass-v13",
   "features": [
-    "승인 캐릭터·몬스터 쇼케이스를 LUMERIFT 차기 전체 아트 기준선으로 등록",
-    "캐릭터·몬스터·UI·스킬 VFX·장비 5개 도메인 Premium Art Direction v2 품질 게이트",
-    "에셋 보관소 첫 분류에서 승인 기준 이미지 2종 직접 비교",
-    "941×1672 WebP 런타임 감수본과 고품질 제작용 마스터 분리",
-    "Lazy Reference 전용 번들로 초기 다운로드 증가 0 bytes",
-    "Player Save v4·AttackFootprint·App Check 비활성·15MB 예산 유지"
+    "Premium Art Direction v2 기반 플레이어 금속 트림·얼굴 크레스트·흉부 룬·망토 윤곽 런타임 1차 적용",
+    "검·대검·균열 장창 3개 계열·8방향·10개 행동·6개 레이어 제작 규격 확정",
+    "엘리트·보스 왕관형 크리스털·약점 코어·발톱 실루엣과 3종 엘리트·1종 보스 Atlas 계획",
+    "Light·Heavy·Ultimate 충격 등급별 6/8/12광선 룬 VFX 합성",
+    "공통 패널·버튼 이중 금속·유리 프레임 v3 적용",
+    "신규 런타임 이미지 0개·초기 자산 번들 증가 0 bytes·기존 Atlas 안전 폴백 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -33,15 +33,15 @@
       "bmp",
       "tiff"
     ],
-    "publicPolicy": "public/assets manifest-reachable assets; v1.11.28 art references are lazy-review-only and excluded from core/battle bundles",
-    "archivePolicy": "v1.11.28 preserves approved mobile production masters; runtime combat Atlas replacement is not claimed",
+    "publicPolicy": "public/assets manifest-reachable assets; v1.11.29 adds four lazy production JSON contracts and zero runtime images",
+    "archivePolicy": "v1.11.29 preserves Premium Art Direction v2 masters and v13 production contracts; final hand-painted Atlas completion is not claimed",
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
     "validate-release-version",
-    "cumulative validators v1.11.0 through v1.11.28",
-    "premium art reference SHA-256 and byte contract",
-    "offline strict TypeScript check",
+    "cumulative validators v1.11.0 through v1.11.29",
+    "v1.11.29 production contract execution verifier",
+    "offline strict TypeScript 5.8.3 check with temporary dependency declarations",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"
   ]

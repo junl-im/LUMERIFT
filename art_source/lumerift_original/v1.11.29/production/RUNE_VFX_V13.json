@@ -1,0 +1,15 @@
+{
+  "schema": "lumerift-premium-rune-vfx-v1",
+  "runtimeMode": "programmatic-plus-existing-atlas",
+  "glyphs": ["lumen-orbit", "rift-crown", "core-hex", "impact-star"],
+  "impactTiers": {
+    "light": { "spokes": 6, "rings": 1 },
+    "heavy": { "spokes": 8, "rings": 2 },
+    "ultimate": { "spokes": 12, "rings": 3 }
+  },
+  "budgets": {
+    "low": { "activeLimit": 6, "minimumEffectDensity": 0.42 },
+    "medium": { "activeLimit": 12, "minimumEffectDensity": 0.55 },
+    "high": { "activeLimit": 18, "minimumEffectDensity": 0.7 }
+  }
+}

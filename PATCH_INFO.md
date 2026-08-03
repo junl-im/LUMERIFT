@@ -1,8 +1,10 @@
-# LUMERIFT v1.11.28 Patch Info
+# LUMERIFT v1.11.29 Patch Info
 
-- 기준 버전: v1.11.27
-- 대상 버전: v1.11.28
+- 기준 버전: v1.11.28
+- 대상 버전: v1.11.29
 - 적용 위치: `package.json`이 있는 프로젝트 최상위
 - 방식: 전체 덮어쓰기
 - 삭제 파일: 없음
-- 핵심: 승인 캐릭터·몬스터 Premium Art Direction v2, Lazy Reference 보관소, 5개 아트 도메인 품질 게이트
+- 핵심: 캐릭터 중심 런타임 디테일 1차, 엘리트·보스 약점 코어, 등급형 룬 VFX, 이중 금속·유리 UI Frame v3
+- 신규 런타임 이미지: 0개
+- 최종 수작업 Atlas 완료 여부: 아니오

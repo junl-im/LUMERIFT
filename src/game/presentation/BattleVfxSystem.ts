@@ -4,6 +4,7 @@ import { ObjectPool } from '../../core/pooling/ObjectPool';
 import type { CombatImpactTier } from '../combat/combatData';
 import type { Vec2 } from '../combat/geometry';
 import { resolveDirectionalWeaponTrailFromAngle, type DirectionalWeaponTrailProfile } from './DirectionalWeaponTrail';
+import { drawPremiumRuneGlyph, premiumRuneProfile } from './PremiumRuneVfxLanguage';
 
 interface ActiveVfx {
   readonly root: Container;
@@ -133,6 +134,20 @@ export class BattleVfxSystem {
     const tierScale = item.impactTier === 'ultimate' ? 1.34 : item.impactTier === 'heavy' ? 1.12 : 0.92;
     const alpha = (1 - progress) * this.intensity;
     const color = item.color;
+    const runeProfile = premiumRuneProfile(item.impactTier);
+    const runeRadius = (item.key === 'nova' || item.key === 'explosion' ? 42 : item.key === 'slash' ? 30 : 20)
+      * tierScale
+      * (0.86 + this.quality.effectDensity * 0.18);
+    if (item.key !== 'dodge' && this.quality.effectDensity > 0.42) {
+      drawPremiumRuneGlyph(
+        graphics,
+        runeProfile,
+        runeRadius * (0.82 + progress * 0.22),
+        progress,
+        color,
+        alpha * (item.key === 'hit' ? 0.42 : 0.62),
+      );
+    }
 
     if (item.key === 'hit') {
       const rayCount = item.impactTier === 'ultimate' ? 12 : item.impactTier === 'heavy' ? 9 : 6;

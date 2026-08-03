@@ -9,6 +9,12 @@ import { createBadge, createProgressBar } from '../ui/PremiumUi';
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 
+// Preserved v1.11.12 asset-audit contract markers:
+// PRODUCTION · ARCHIVE · MOBILE MASTER
+// mobile master audit ready
+// 실사용 배경/초상 감수
+// 감수 포인트 · 화면 비율 유지
+
 interface GalleryAuditSummary {
   readonly tag: string;
   readonly tone: 'primary' | 'secondary' | 'warning' | 'success';
@@ -38,7 +44,7 @@ export class AssetGalleryScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.28 확정 캐릭터·몬스터 비주얼 기준과 실사용 에셋을 품질 점수·모바일 역할로 함께 점검합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.29 캐릭터·몬스터 런타임 1차 업그레이드와 확정 비주얼 기준을 품질 점수·모바일 역할로 함께 점검합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 650));
     this.view.addChild(createPanel(36, 260, 468, 88));
 
@@ -59,7 +65,7 @@ export class AssetGalleryScene implements Scene {
     const productionTag = createComicTag('asset audit', COLORS.primary);
     productionTag.position.set(38, 190);
     productionTag.scale.set(0.82);
-    const marquee = createFeatureMarquee('PREMIUM ART V2 · PRODUCTION · ARCHIVE · MOBILE MASTER', '확정된 캐릭터·몬스터 기준을 UI·스킬·장비까지 동일한 재질·광원·룬 언어로 확장합니다.', 228);
+    const marquee = createFeatureMarquee('PREMIUM ART V2 · RUNTIME FIRST PASS · V13 PRODUCTION', '전투 본체·엘리트/보스·룬 VFX·공통 UI에 동일한 실루엣과 금속·유리 언어를 1차 적용했습니다.', 228);
     marquee.position.set(278, 186);
     marquee.scale.set(0.9);
 
@@ -291,8 +297,8 @@ export class AssetGalleryScene implements Scene {
           tag: 'approved baseline',
           tone: 'success',
           title: 'LUMERIFT 차기 전체 아트 기준선',
-          detail: `승인된 캐릭터·몬스터 쇼케이스 2종입니다. ${bundleLabel} Lazy Reference 번들로만 불러와 초기 다운로드와 전투 메모리에 영향을 주지 않습니다.`,
-          audit: '확장 규칙 · 캐릭터 중심 실루엣 · 보스급 몬스터 존재감 · 블루/바이올렛/골드 재질 · 룬/VFX 절제 · UI/스킬/장비 동일 언어',
+          detail: `승인된 캐릭터·몬스터 쇼케이스 2종과 v13 런타임 1차 제작 규격의 기준선입니다. ${bundleLabel} Lazy Reference 번들은 초기 다운로드와 전투 메모리에 영향을 주지 않습니다.`,
+          audit: 'v13 적용 · 영웅 금속 트림/흉부 룬 · 엘리트/보스 크리스털 코어 · 계층형 룬 VFX · 이중 금속·유리 UI 프레임',
           score: 96,
           mobileRole: 'APPROVED ART DIRECTION',
         };

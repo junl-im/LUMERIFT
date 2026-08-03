@@ -2,6 +2,7 @@ import { Container, Graphics, NineSliceSprite, type Spritesheet, type Texture } 
 import { COLORS } from '../app/constants';
 import type { AssetManager } from '../core/assets/AssetManager';
 import { ASSET_PATHS, CORE_UI_BUNDLE } from '../core/assets/AssetCatalog';
+import { createPremiumFrameAccents } from './PremiumFrameV3';
 
 let sheet: Spritesheet | undefined;
 let iconSheet: Spritesheet | undefined;
@@ -48,6 +49,7 @@ export function createRasterPanel(
       .stroke({ color: COLORS.warning, alpha: 0.42, width: 2 }));
     addPanelDepth(root, x, y, width, height, textureName);
     addPanelComicAccent(root, x, y, width, height, textureName);
+    root.addChild(createPremiumFrameAccents(x, y, width, height, textureName === 'resource_chip' ? 'compact' : 'panel'));
     return root;
   }
 
@@ -64,6 +66,7 @@ export function createRasterPanel(
   root.addChild(panel);
   addPanelDepth(root, x, y, width, height, textureName);
   addPanelComicAccent(root, x, y, width, height, textureName);
+  root.addChild(createPremiumFrameAccents(x, y, width, height, textureName === 'resource_chip' ? 'compact' : 'panel'));
   return root;
 }
 

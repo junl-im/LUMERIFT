@@ -1,0 +1,9 @@
+{
+  "schema": "lumerift-production-master-v13",
+  "release": "1.11.29",
+  "approvedBaseline": "Premium Art Direction v2",
+  "runtimeFirstPass": true,
+  "finalHandPaintedAtlasesComplete": false,
+  "domains": ["character", "monster", "skill-vfx", "ui"],
+  "notes": "Programmatic runtime layers establish silhouette, rune, material and UI language before final hand-painted Atlas replacement."
+}

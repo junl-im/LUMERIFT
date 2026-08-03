@@ -1,163 +1,248 @@
 {
-  "fromVersion": "1.11.27",
-  "toVersion": "1.11.28",
+  "fromVersion": "1.11.28",
+  "toVersion": "1.11.29",
   "rootOverwrite": true,
   "delete": [],
   "files": [
     {
       "path": "AGENTS.md",
-      "bytes": 30589,
-      "sha256": "71fe449deca1c759bcd75d0f1257bcf7740fd9313b684e1f4f572db971f041aa"
+      "bytes": 30748,
+      "sha256": "aa45a47eae1f12cdfe9aa065d91a2d2adbe691bb26a5b325be3115145e7960b7"
     },
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 40993,
-      "sha256": "21306f75ac9a8bd013b3c3c38a2d5424cc8fc7d55458816398318cd5a4973b0a"
+      "bytes": 42745,
+      "sha256": "4700b0a7e6ef72fa809ea578e490874237036a445aa815b85c11a9086cbb90c4"
     },
     {
       "path": "PATCH_DELETE_LIST.txt",
       "bytes": 43,
-      "sha256": "58b5b58b5507d754dc9adfc68a9cb3d18739fd85c2cd3450d0eb0b8eb49fd0af"
+      "sha256": "a092ef958cdf45631aec335d3fb95c28640b76085c12eca7ab51b35c7ee1362c"
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 332,
-      "sha256": "193dfaf756b63aa39ac6d9dbe31d95e8a00a20ff89ae564de89b07a3b6318b0c"
+      "bytes": 427,
+      "sha256": "1cd9611c35a6f6cfcc55fb4b4d487035b5439b20b23af66e0b96218efd3e0ccf"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 478,
-      "sha256": "e34723e135ceeb704f1c8ee800826222abfdca7468a0165efe3b08313ce8a8b7"
+      "bytes": 713,
+      "sha256": "66d0541dcd05cdcff0f1af39f00f20cd8566b53f886ea749ba2019ec64cb04a4"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1375,
-      "sha256": "9b1c74ac3f7f5fa8e97c8e3590f7abdadd8302337470b0c49d1ec2de6145737a"
+      "bytes": 1619,
+      "sha256": "fbd1049341d2e5900115f9cecc0bb4afdc3ec63fbd3987470a4c7b48e39cbe87"
     },
     {
       "path": "README.md",
-      "bytes": 12650,
-      "sha256": "b96887f643d10200364417b606cf5adbda8393554d24010bc9fd8898f0cc0181"
+      "bytes": 13499,
+      "sha256": "3d0b51915d02c44388bcfe4495f6ac39262849b19c1ed80cfebcfb4cbe5925a8"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1746,
-      "sha256": "ff71b205034195838e886f5d501ac3b64dfcab80ac217cdd21cf65c37ac508f3"
+      "bytes": 1928,
+      "sha256": "32d31ea4c4ab9c1cec9afa7199d2fc3e776f1a3b34d10318e9549f72884cd009"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.28/art-direction/ART_DIRECTION_MASTER.json",
-      "bytes": 1327,
-      "sha256": "dcc7f3299c4f0f6e571a57ae2921551842d2148fd98ca3558f060c0728ab2c4f"
+      "path": "art_source/lumerift_original/v1.11.29/production/CHARACTER_BODY_V13.json",
+      "bytes": 794,
+      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.28/art-direction/character_quality_upgrade_master_v12.webp",
-      "bytes": 471804,
-      "sha256": "81edcf969124225cf2370ed5551777991e106311dc2326324b6a57e610e80b22"
+      "path": "art_source/lumerift_original/v1.11.29/production/MONSTER_ELITE_BOSS_V13.json",
+      "bytes": 761,
+      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.28/art-direction/monster_quality_upgrade_master_v12.webp",
-      "bytes": 559154,
-      "sha256": "4d9263a1fd98993f83e5b9ff8c352b8bf51d23b8f330ad8ed13241696e7156c7"
+      "path": "art_source/lumerift_original/v1.11.29/production/PRODUCTION_MASTER_V13.json",
+      "bytes": 393,
+      "sha256": "88a5f60be89b29e9275815d1eef02cbaf14721fac13d639d2492ce0718c51b5c"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/RUNE_VFX_V13.json",
+      "bytes": 536,
+      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/UI_FRAME_V13.json",
+      "bytes": 349,
+      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
-      "bytes": 126384,
-      "sha256": "54b6ca6ce95727fdd983b83fda0a1dcdce7288c388010000554415c1129cb809"
+      "bytes": 129434,
+      "sha256": "a8c86b3cd5a595861dae8da8838f9d401b5e25921f73e905ebfb04b7adcb0570"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 35511,
-      "sha256": "b9c4e550944e59e89058cd5907f17fbbe93acae101606ddc60aca59b03532168"
+      "bytes": 36072,
+      "sha256": "6c9439cca0d9c91dd8df5781f30954827ad53f915887e4a1ce683331f333ba71"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "bytes": 25233,
-      "sha256": "4714c21292958d8cdac737fb7107ea5b205356fc27429b82d43fac0a8c0a33f5"
+      "bytes": 25833,
+      "sha256": "233a4393d796b1c71c34f23efa97f16330c69c172b5995cb1cb45cecfe5cf88e"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 31687,
-      "sha256": "62d2f3b90a705371f8a07dc7d94f99272ef3ba495d28cf47dc3c493216345f93"
+      "bytes": 32453,
+      "sha256": "04df5a49146cc0e949fafec07cec93e8db099c70d65956f3ac85054455a26360"
     },
     {
-      "path": "docs/NEXT_UPDATE_v1.11.29.md",
-      "bytes": 591,
-      "sha256": "64e810a8bf27b6e1c761d8a6632b793e70906d510c93c0aecaf645420f888708"
+      "path": "docs/NEXT_UPDATE_v1.11.30.md",
+      "bytes": 567,
+      "sha256": "709f7a9de7d89a41a1b9c2ba3914a38b46a1072fa1d4f6e431352e6d8cf72fc2"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.11.28.md",
-      "bytes": 1869,
-      "sha256": "8b13fb7e9532656e2f00e219fa13380094b1f50e183c7d4e3890f4c8799065dc"
+      "path": "docs/PATCH_NOTES_v1.11.29.md",
+      "bytes": 1641,
+      "sha256": "7e8921a67def91ea2da880760b7b7ee5fa83c43951c4b73df14bbbdc6cb87142"
     },
     {
-      "path": "docs/PREMIUM_ART_DIRECTION_v1.11.28.md",
-      "bytes": 2087,
-      "sha256": "782eeaec134d290a3a4b3625af60f82561b15be154d3a0afdbc7022ea642e769"
+      "path": "docs/PREMIUM_CHARACTER_RUNTIME_FIRST_PASS_v1.11.29.md",
+      "bytes": 1358,
+      "sha256": "53fe72560febc3b9d80c5d93430c4e062ebc047b4efbf7e6f68931c179b314cd"
+    },
+    {
+      "path": "docs/PREMIUM_MONSTER_PRODUCTION_PLAN_v1.11.29.md",
+      "bytes": 910,
+      "sha256": "fff62663c8e487921ee7a10d1488205424298c9d9ee333672e491d49b61f06a6"
+    },
+    {
+      "path": "docs/PREMIUM_RUNE_UI_SYSTEM_v1.11.29.md",
+      "bytes": 921,
+      "sha256": "81c4359565d729e700adae0c2fdc8b21568fcfca7b697705098802b48c3907d0"
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 26649,
-      "sha256": "a8db9d2f2f11efb922531fb3c557a2bb4d5ef124594bd7fbe01319d2c7bc55ab"
+      "bytes": 27139,
+      "sha256": "42776ca5f5d72a86b10ec6e8bec730830716db58e03405b807d42f39faf1419f"
     },
     {
       "path": "package.json",
-      "bytes": 6903,
-      "sha256": "d576073d3371c48281b8e7cb4b64a8ae5173a0bdae169c16fe6f94eff46a36fb"
+      "bytes": 7130,
+      "sha256": "fe6c55fd0a6ba467ad6ef0a03c110ff2077e374db430fb58dcfcd49880b8a193"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
-      "bytes": 5693,
-      "sha256": "20a80438ecabaa6a5bf65357157e875cea0479987dbeeed2cbd8db31a9e5206c"
+      "bytes": 6032,
+      "sha256": "154482e75b5b732e604076d41529ca6aa3c7625da0f814f5b9b76d071ad793c9"
     },
     {
-      "path": "public/assets/live/v12/art-direction/ART_DIRECTION_V12.json",
-      "bytes": 1254,
-      "sha256": "95d24ba46ab463980bc51cca41c07cbe4ca151221e3f5843a7a620cb2769ecc3"
+      "path": "public/assets/live/v13/production/CHARACTER_BODY_V13.json",
+      "bytes": 794,
+      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
     },
     {
-      "path": "public/assets/live/v12/art-direction/character_quality_upgrade_v12.webp",
-      "bytes": 302298,
-      "sha256": "a88044741b077488420f536f3c17336a4db20b8fd01ada19e0cc12bdbccdd04b"
+      "path": "public/assets/live/v13/production/MONSTER_ELITE_BOSS_V13.json",
+      "bytes": 761,
+      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
     },
     {
-      "path": "public/assets/live/v12/art-direction/monster_quality_upgrade_v12.webp",
-      "bytes": 366308,
-      "sha256": "533bae8786ad3ddb215b981497d07ce8f2c1244b07671fab4877fa7fe65f4361"
+      "path": "public/assets/live/v13/production/RUNE_VFX_V13.json",
+      "bytes": 536,
+      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
     },
     {
-      "path": "scripts/validate-v11127-upgrade.mjs",
-      "bytes": 4582,
-      "sha256": "749f1509b5026194572b0be1c463f218df42980d387df9cd6f81db356f5bd1cb"
+      "path": "public/assets/live/v13/production/UI_FRAME_V13.json",
+      "bytes": 349,
+      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
     },
     {
       "path": "scripts/validate-v11128-upgrade.mjs",
-      "bytes": 5002,
-      "sha256": "1a08da31b2c0456af49fa0ac1444aded26ef3f23d4547a5e11f2042b0f4eb9c2"
+      "bytes": 5412,
+      "sha256": "6fe7ad3d967ea28c0a4796bb1c859b680fc0658c406b2759c8d661f2ea759335"
+    },
+    {
+      "path": "scripts/validate-v11129-upgrade.mjs",
+      "bytes": 7235,
+      "sha256": "73569cf86af1a4a33530e7848fcf31c880c60d82e7e4889a597be61955a14a26"
+    },
+    {
+      "path": "scripts/verify-v11129-production.mjs",
+      "bytes": 1985,
+      "sha256": "d4fef238c830998d36b533a7b1dfcce58135bf2a7cccff06f463262a76e938a7"
     },
     {
       "path": "src/app/brand.ts",
       "bytes": 1064,
-      "sha256": "9aa2290726e5ca123a87d3a1d14096e9c0119ddef6903633faa1658a5d9a13bb"
+      "sha256": "06faba85908180445dc0b34aeea7405da45dcd0dc901780867a82067da6ae4ca"
     },
     {
       "path": "src/core/assets/AssetCatalog.ts",
-      "bytes": 9967,
-      "sha256": "bc2d4a34d5dd4fd74b36b50a886542bf5151356bfdfc72e2ff47454678290e7f"
+      "bytes": 10683,
+      "sha256": "5846c484660fc342cc4ff7602b9066739cd2259d409c21831e4723e212b7ca2d"
     },
     {
-      "path": "src/game/presentation/PremiumArtDirection.test.ts",
-      "bytes": 1382,
-      "sha256": "3a33a418cfa0f5ad237a4896aedb0cc765448b6dc796a40546dac33173052494"
+      "path": "src/game/presentation/BattleActorView.ts",
+      "bytes": 44123,
+      "sha256": "b3b3b68204dbb08170bbcc75eb7ebf8442bff8ec1596163be6940dc47999e46a"
     },
     {
-      "path": "src/game/presentation/PremiumArtDirection.ts",
-      "bytes": 4745,
-      "sha256": "abd6e066fe70fdb109ca1fec03d257fb7e300ab675da6d3c9b426111ae430a0a"
+      "path": "src/game/presentation/BattleVfxSystem.ts",
+      "bytes": 9528,
+      "sha256": "e49c69d68c7ebe9bf2430f0be52bc1a3135f82ee03eb961f749b6a6baa0e5c3a"
+    },
+    {
+      "path": "src/game/presentation/PremiumCharacterDetailLayerView.ts",
+      "bytes": 6088,
+      "sha256": "e094533211dbcfa981b701c2da58f064a03401eb6000b6c1aaed948fef64d191"
+    },
+    {
+      "path": "src/game/presentation/PremiumCharacterProductionSpec.test.ts",
+      "bytes": 775,
+      "sha256": "978a4fa3048876df84370bbac70a9353396d1b81249c880fa6da1bc88e71f940"
+    },
+    {
+      "path": "src/game/presentation/PremiumCharacterProductionSpec.ts",
+      "bytes": 4428,
+      "sha256": "0afc203ccb2ee58d41e67cbbba13b2493f85227acb5394d3081dd94ee1b69643"
+    },
+    {
+      "path": "src/game/presentation/PremiumMonsterDetailLayerView.ts",
+      "bytes": 5174,
+      "sha256": "1d115e4bf6bd65b5c6cb6bf5fa1ccf3773be4261a98a69f22e989c90d93c4a04"
+    },
+    {
+      "path": "src/game/presentation/PremiumMonsterProductionPlan.test.ts",
+      "bytes": 639,
+      "sha256": "e9145a1a7d83bd0ac591ca65a3da31093120b3b35795f85956c2ff9d74c8bd34"
+    },
+    {
+      "path": "src/game/presentation/PremiumMonsterProductionPlan.ts",
+      "bytes": 2837,
+      "sha256": "aa70e5a49e33023d7b4c6d7fa6d3dd87be6ca400da766e68b3b1cd2b4e637912"
+    },
+    {
+      "path": "src/game/presentation/PremiumRuneVfxLanguage.test.ts",
+      "bytes": 389,
+      "sha256": "b9ce198003657740ed12691485df9ca36542137c582c02d8810077b4b49fca0e"
+    },
+    {
+      "path": "src/game/presentation/PremiumRuneVfxLanguage.ts",
+      "bytes": 2775,
+      "sha256": "b44479dd53f9d4839a6c9893fb1b31f68d93a665ccb84681c8bb58fea7c8ee60"
     },
     {
       "path": "src/scenes/AssetGalleryScene.ts",
-      "bytes": 18166,
-      "sha256": "5eaf75ad6701eb8f05834570bb94fc570d7a12ef541d7040b7c0490605751c25"
+      "bytes": 18400,
+      "sha256": "0b2382c7d6776c27eb8ef09d57cdf3dda241729760ffde10880a3e22f5ec1411"
+    },
+    {
+      "path": "src/ui/PremiumFrameV3.ts",
+      "bytes": 2667,
+      "sha256": "9db2148f4a92f1ed36f769b8bd7a1caf223d1346ece95904cfc5dad4bbd222c4"
+    },
+    {
+      "path": "src/ui/UiButton.ts",
+      "bytes": 5484,
+      "sha256": "05e82e6c9c145ecbb13a6c369a3a7be1afea29ff36c88874c490b4b7071c8d2e"
+    },
+    {
+      "path": "src/ui/UiSkin.ts",
+      "bytes": 5816,
+      "sha256": "6737dfea58aec5e7ebecfc457ced669b01e2e1c29783353a9074ec770f1d0cdf"
     }
   ]
 }

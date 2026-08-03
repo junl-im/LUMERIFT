@@ -1,7 +1,7 @@
 {
-  "version": 17,
+  "version": 18,
   "game": "LUMERIFT",
-  "release": "1.11.28",
+  "release": "1.11.29",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -139,11 +139,20 @@
         "live/v12/art-direction/monster_quality_upgrade_v12.webp"
       ],
       "bytes": 669860
+    },
+    "premium-production-contract-v13": {
+      "files": [
+        "live/v13/production/CHARACTER_BODY_V13.json",
+        "live/v13/production/MONSTER_ELITE_BOSS_V13.json",
+        "live/v13/production/RUNE_VFX_V13.json",
+        "live/v13/production/UI_FRAME_V13.json"
+      ],
+      "bytes": 2440
     }
   },
   "deployment": {
-    "publicAssetFiles": 55,
-    "publicAssetBytes": 11248928,
+    "publicAssetFiles": 59,
+    "publicAssetBytes": 11251707,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",
@@ -152,5 +161,6 @@
     "runtimeArchiveFiles": 194,
     "runtimeArchiveBytes": 23474797,
     "registry": "asset_registry/ASSET_REGISTRY.json"
-  }
+  },
+  "activeRuntimeBytes": 11251707
 }

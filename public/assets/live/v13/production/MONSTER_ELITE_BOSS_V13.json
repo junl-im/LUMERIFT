@@ -1,0 +1,17 @@
+{
+  "schema": "lumerift-premium-monster-production-v1",
+  "status": "runtime-first-pass-programmatic-overlays",
+  "finalHandPaintedAtlas": false,
+  "entries": [
+    { "id": "elite_void_warden", "rank": "elite", "element": "void", "directions": 8, "plannedFrames": 192 },
+    { "id": "elite_frost_mauler", "rank": "elite", "element": "frost", "directions": 8, "plannedFrames": 176 },
+    { "id": "elite_inferno_stalker", "rank": "elite", "element": "inferno", "directions": 8, "plannedFrames": 184 },
+    { "id": "boss_abyssal_crown", "rank": "boss", "element": "lumen", "directions": 8, "plannedFrames": 384 }
+  ],
+  "runtime": {
+    "eliteCrystalCrown": true,
+    "bossPhaseCore": true,
+    "weakPointReadability": true,
+    "initialBundleAddedBytes": 0
+  }
+}

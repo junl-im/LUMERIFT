@@ -1,0 +1,31 @@
+{
+  "schema": "lumerift-premium-character-production-v1",
+  "status": "runtime-first-pass-programmatic-overlays",
+  "finalHandPaintedAtlas": false,
+  "directions": ["n", "ne", "e", "se", "s", "sw", "w", "nw"],
+  "weaponFamilies": ["blade", "greatblade", "riftlance"],
+  "layers": ["cape", "body", "armor", "face", "weapon", "rune"],
+  "actions": {
+    "idle": 8,
+    "run": 8,
+    "attack1": 6,
+    "attack2": 6,
+    "attack3": 7,
+    "skill1": 8,
+    "skill2": 10,
+    "dodge": 6,
+    "hit": 4,
+    "death": 10
+  },
+  "mobileMaster": {
+    "designHeight": 96,
+    "safeSilhouettePadding": 8,
+    "minimumFaceContrast": 0.18,
+    "maximumIdleGlowAlpha": 0.34
+  },
+  "runtime": {
+    "programmaticDetailLayer": true,
+    "existingBodyAtlasFallback": true,
+    "initialBundleAddedBytes": 0
+  }
+}

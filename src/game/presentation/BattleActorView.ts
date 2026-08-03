@@ -21,6 +21,8 @@ import type { CharacterShowcasePose } from '../../core/presentation/CharacterWar
 import type { CharacterEquipmentAppearance } from './CharacterEquipmentVisualProfile';
 import { resolveCharacterStateMaterial } from './CharacterStateMaterialProfile';
 import { CharacterEquipmentLayerView } from './CharacterEquipmentLayerView';
+import { PremiumCharacterDetailLayerView } from './PremiumCharacterDetailLayerView';
+import { PremiumMonsterDetailLayerView } from './PremiumMonsterDetailLayerView';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
@@ -67,6 +69,7 @@ export class PlayerActorView {
   private readonly weaponAttackBodySheet?: Spritesheet;
   private readonly equipmentAppearance: CharacterEquipmentAppearance;
   private readonly equipmentLayers: CharacterEquipmentLayerView;
+  private readonly premiumDetailLayers: PremiumCharacterDetailLayerView;
   private animationKey = '';
   private afterimageElapsed = 0;
   private afterimageCursor = 0;
@@ -117,6 +120,7 @@ export class PlayerActorView {
       layerVariantLabel: '정찰 갈매기갑 · 루멘 궤도룬',
     };
     this.equipmentLayers = new CharacterEquipmentLayerView(this.equipmentAppearance);
+    this.premiumDetailLayers = new PremiumCharacterDetailLayerView(this.equipmentAppearance);
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -190,9 +194,9 @@ export class PlayerActorView {
 
     this.root.addChild(this.focusHalo, this.riftAura, this.directionRibbon, ...this.afterimages, this.shadow, this.silhouetteGlow);
     if (this.characterFxBack) this.root.addChild(this.characterFxBack);
-    this.root.addChild(this.equipmentLayers.back, this.body, this.weapon);
+    this.root.addChild(this.premiumDetailLayers.back, this.equipmentLayers.back, this.body, this.weapon);
     if (this.sprite) this.root.addChild(this.sprite);
-    this.root.addChild(this.equipmentLayers.front, this.weaponSilhouette);
+    this.root.addChild(this.equipmentLayers.front, this.premiumDetailLayers.front, this.weaponSilhouette);
     if (this.premiumOverlay) this.root.addChild(this.premiumOverlay);
     if (this.characterFxFront) this.root.addChild(this.characterFxFront);
     if (this.equipmentLayer && !this.sprite) this.root.addChild(this.equipmentLayer);
@@ -328,6 +332,20 @@ export class PlayerActorView {
         state: controller.state,
         overdrive: frame.overdrive,
       });
+      this.premiumDetailLayers.update({
+        x: bodyX,
+        y: bodyY,
+        scaleX: mirrored ? -xScale : xScale,
+        scaleY: yScale,
+        rotation: this.sprite.rotation + correction.layerLag * 0.6,
+        facingX: facing.x,
+        facingY: facing.y,
+        elapsed,
+        actionProgress: controller.stateProgress,
+        state: controller.state,
+        overdrive: frame.overdrive,
+        flashRemaining,
+      });
       this.sprite.tint = frame.overdrive ? 0xfff5c8 : this.equipmentAppearance.bodyTint;
       this.sprite.alpha = flashRemaining > 0 ? 0.42 : 1;
       this.drawAttackPoseAccent(
@@ -360,6 +378,20 @@ export class PlayerActorView {
         actionProgress: controller.stateProgress,
         state: controller.state,
         overdrive: frame.overdrive,
+      });
+      this.premiumDetailLayers.update({
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        facingX: facing.x,
+        facingY: facing.y,
+        elapsed,
+        actionProgress: controller.stateProgress,
+        state: controller.state,
+        overdrive: frame.overdrive,
+        flashRemaining,
       });
       this.attackPoseAccent.clear();
       this.weaponSilhouette.clear();
@@ -640,7 +672,10 @@ export class MonsterActorView {
   });
   private readonly sprite?: AnimatedSprite;
   private readonly spriteBaseScale: number;
+  private readonly premiumDetailLayers: PremiumMonsterDetailLayerView;
   private previousX?: number;
+  private facingSign: -1 | 1 = 1;
+  private elapsed = 0;
   private animationKey = '';
   private readonly statusText = new Text({
     text: '',
@@ -654,6 +689,7 @@ export class MonsterActorView {
   ) {
     const { combat, visual } = definition;
     this.spriteBaseScale = combat.rank === 'boss' ? 1.22 : combat.rank === 'elite' ? 0.92 : 0.78;
+    this.premiumDetailLayers = new PremiumMonsterDetailLayerView(combat.rank, combat.radius, visual);
     const shadow = new Graphics()
       .ellipse(0, combat.radius * 0.75, combat.radius * 1.05, combat.radius * 0.38)
       .fill({ color: COLORS.dark, alpha: 0.38 });
@@ -685,9 +721,9 @@ export class MonsterActorView {
     this.statusText.position.set(0, -combat.radius - 24);
     this.telegraphText.anchor.set(0.5, 1);
     this.telegraphText.visible = false;
-    this.root.addChild(this.phaseAura, this.telegraph, shadow, this.body);
+    this.root.addChild(this.phaseAura, this.telegraph, shadow, this.premiumDetailLayers.back, this.body);
     if (this.sprite) this.root.addChild(this.sprite);
-    this.root.addChild(this.hpBar, this.statusText, this.telegraphText);
+    this.root.addChild(this.premiumDetailLayers.front, this.hpBar, this.statusText, this.telegraphText);
   }
 
   public update(
@@ -698,11 +734,14 @@ export class MonsterActorView {
   ): void {
     const deltaX = this.previousX === undefined ? 0 : controller.position.x - this.previousX;
     this.previousX = controller.position.x;
+    this.elapsed += Math.max(0, _deltaSeconds);
+    if (deltaX < -0.08) this.facingSign = -1;
+    else if (deltaX > 0.08) this.facingSign = 1;
     this.root.position.set(controller.position.x, controller.position.y);
     this.body.alpha = flashRemaining > 0 ? 0.38 : 1;
     if (this.sprite) {
       this.updateAnimation(controller.state);
-      const facingScale = deltaX < -0.08 ? -this.spriteBaseScale : this.spriteBaseScale;
+      const facingScale = this.facingSign * this.spriteBaseScale;
       this.sprite.scale.set(facingScale, this.spriteBaseScale);
       this.sprite.alpha = flashRemaining > 0 ? 0.4 : 1;
     }
@@ -715,6 +754,14 @@ export class MonsterActorView {
     this.drawTelegraph(controller);
     this.drawStatuses(controller.statuses.activeIds);
     this.drawPhaseAura(controller);
+    this.premiumDetailLayers.update({
+      elapsed: this.elapsed,
+      state: controller.state,
+      phase: controller.phase,
+      facingSign: this.facingSign,
+      flashRemaining,
+      alive: controller.isAlive,
+    });
 
     if (!controller.isAlive) {
       const alpha = Math.max(0, 1 - deathElapsed / 0.38);

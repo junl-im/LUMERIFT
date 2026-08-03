@@ -58,8 +58,18 @@ const pkg = JSON.parse(await read('package.json'));
 const state = JSON.parse(await read('HANDOFF_STATE.json'));
 const release = JSON.parse(await read('RELEASE_MANIFEST.json'));
 const assets = JSON.parse(await read('public/assets/ASSET_MANIFEST.json'));
+const versionAtLeast = (value, minimum) => {
+  const current = String(value).split('.').map(Number);
+  const floor = String(minimum).split('.').map(Number);
+  for (let index = 0; index < Math.max(current.length, floor.length); index += 1) {
+    const left = current[index] ?? 0;
+    const right = floor[index] ?? 0;
+    if (left !== right) return left > right;
+  }
+  return true;
+};
 for (const [label, version] of Object.entries({ package: pkg.version, state: state.version, release: release.version, assets: assets.release })) {
-  if (version !== '1.11.28') errors.push(`${label} version ${version} != 1.11.28`);
+  if (!versionAtLeast(version, '1.11.28')) errors.push(`${label} version ${version} is below 1.11.28`);
 }
 if (pkg.scripts?.['validate:upgrade:v11128'] !== 'node scripts/validate-v11128-upgrade.mjs') errors.push('v1.11.28 package validator missing');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11128')) errors.push('verify chain missing v1.11.28');
@@ -71,7 +81,7 @@ if (state.featureMetrics?.premiumArtReferenceInitialBundle !== false) errors.pus
 if (state.assetMetrics?.v11128NewRuntimeImageFiles !== 2) errors.push('v1.11.28 runtime reference image count mismatch');
 if (state.assetMetrics?.v11128NewRuntimeImageBytes !== 668606) errors.push('v1.11.28 runtime reference image bytes mismatch');
 const brand = await read('src/app/brand.ts');
-if (!brand.includes("version: '1.11.28'")) errors.push('brand version mismatch');
+if (!brand.includes(`version: '${pkg.version}'`)) errors.push('brand version mismatch');
 
 if (errors.length) {
   console.error(errors.join('\n'));

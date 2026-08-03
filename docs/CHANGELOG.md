@@ -890,3 +890,17 @@
 - 5개 아트 도메인 품질 평가 계약 추가
 - 모바일 판독성 최소 80점 승인 규칙 추가
 - 제작용 마스터와 런타임 감수용 WebP 분리
+
+
+## v1.11.29 · Character-centered runtime first pass
+
+### Added
+- 플레이어 프로그램형 금속 트림·얼굴 크레스트·흉부 룬·망토 윤곽
+- 엘리트·보스 크리스털 왕관·약점 코어·발톱 실루엣
+- 충격 등급별 Premium Rune VFX 문법
+- 공통 Premium UI Frame v3
+- 플레이어 1,752프레임·몬스터 936프레임 차기 제작 계약
+
+### Known limitations
+- 신규 수작업 본체·장비 이미지 Atlas는 아직 없다.
+- Android/iOS 실제 캡처와 실제 의존성 기반 Vite/Vitest 검증은 미완료다.

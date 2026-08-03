@@ -2,6 +2,7 @@ import { Container, Graphics, NineSliceSprite, Sprite, Text, TextStyle } from 'p
 import { COLORS } from '../app/constants';
 import { buttonTextureName, getUiIconTexture, getUiTexture } from './UiSkin';
 import { bindPressFeedback } from './UiMotion';
+import { createPremiumFrameAccents } from './PremiumFrameV3';
 
 interface UiButtonOptions {
   readonly label: string;
@@ -94,7 +95,7 @@ export class UiButton extends Container {
     const commandDot = new Graphics()
       .circle(width - 18, 18, 3)
       .fill({ color: options.tone === 'danger' ? COLORS.danger : COLORS.primaryBright, alpha: 0.72 });
-    this.addChild(stickerShadow, topSheen, commandRail, commandDot);
+    this.addChild(stickerShadow, topSheen, commandRail, commandDot, createPremiumFrameAccents(0, 0, width, height, 'button'));
     if (options.icon) {
       const iconTexture = getUiIconTexture(options.icon);
       if (iconTexture) {

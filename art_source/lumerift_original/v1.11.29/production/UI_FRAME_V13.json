@@ -1,0 +1,13 @@
+{
+  "schema": "lumerift-premium-ui-frame-v3",
+  "runtimeMode": "programmatic-plus-v5-atlas",
+  "roles": ["panel", "button", "boss", "compact"],
+  "traits": [
+    "double metal-glass border",
+    "soft-gold hierarchy",
+    "blue-violet rune point",
+    "48px minimum touch area",
+    "mobile-safe inner padding"
+  ],
+  "initialBundleAddedBytes": 0
+}

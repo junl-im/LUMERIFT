@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.28",
-  "generatedAt": "2026-08-03T04:22:26.964Z",
+  "release": "1.11.29",
+  "generatedAt": "2026-08-03T05:40:22.942Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 100,
-      "bytes": 85069804,
+      "files": 105,
+      "bytes": 85072637,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,8 +23,8 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 55,
-      "bytes": 11248928,
+      "files": 59,
+      "bytes": 11251707,
       "atlases": 14,
       "frames": 1842,
       "animations": 512
@@ -150,6 +150,46 @@
       "type": "webp",
       "bytes": 559154,
       "sha256": "4d9263a1fd98993f83e5b9ff8c352b8bf51d23b8f330ad8ed13241696e7156c7"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/CHARACTER_BODY_V13.json",
+      "relativePath": "lumerift_original/v1.11.29/production/CHARACTER_BODY_V13.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 794,
+      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/MONSTER_ELITE_BOSS_V13.json",
+      "relativePath": "lumerift_original/v1.11.29/production/MONSTER_ELITE_BOSS_V13.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 761,
+      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/PRODUCTION_MASTER_V13.json",
+      "relativePath": "lumerift_original/v1.11.29/production/PRODUCTION_MASTER_V13.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 393,
+      "sha256": "88a5f60be89b29e9275815d1eef02cbaf14721fac13d639d2492ce0718c51b5c"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/RUNE_VFX_V13.json",
+      "relativePath": "lumerift_original/v1.11.29/production/RUNE_VFX_V13.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 536,
+      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.29/production/UI_FRAME_V13.json",
+      "relativePath": "lumerift_original/v1.11.29/production/UI_FRAME_V13.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 349,
+      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
     },
     {
       "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
@@ -2623,8 +2663,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 5693,
-      "sha256": "20a80438ecabaa6a5bf65357157e875cea0479987dbeeed2cbd8db31a9e5206c"
+      "bytes": 6032,
+      "sha256": "154482e75b5b732e604076d41529ca6aa3c7625da0f814f5b9b76d071ad793c9"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2792,6 +2832,38 @@
       "type": "webp",
       "bytes": 366308,
       "sha256": "533bae8786ad3ddb215b981497d07ce8f2c1244b07671fab4877fa7fe65f4361"
+    },
+    {
+      "path": "public/assets/live/v13/production/CHARACTER_BODY_V13.json",
+      "relativePath": "live/v13/production/CHARACTER_BODY_V13.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 794,
+      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
+    },
+    {
+      "path": "public/assets/live/v13/production/MONSTER_ELITE_BOSS_V13.json",
+      "relativePath": "live/v13/production/MONSTER_ELITE_BOSS_V13.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 761,
+      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
+    },
+    {
+      "path": "public/assets/live/v13/production/RUNE_VFX_V13.json",
+      "relativePath": "live/v13/production/RUNE_VFX_V13.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 536,
+      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
+    },
+    {
+      "path": "public/assets/live/v13/production/UI_FRAME_V13.json",
+      "relativePath": "live/v13/production/UI_FRAME_V13.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 349,
+      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

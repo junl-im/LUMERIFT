@@ -40,6 +40,10 @@ export const ASSET_PATHS = {
   premiumCharacterArtReference: assetUrl('assets/live/v12/art-direction/character_quality_upgrade_v12.webp'),
   premiumMonsterArtReference: assetUrl('assets/live/v12/art-direction/monster_quality_upgrade_v12.webp'),
   premiumArtDirectionContract: assetUrl('assets/live/v12/art-direction/ART_DIRECTION_V12.json'),
+  premiumCharacterProductionContract: assetUrl('assets/live/v13/production/CHARACTER_BODY_V13.json'),
+  premiumMonsterProductionContract: assetUrl('assets/live/v13/production/MONSTER_ELITE_BOSS_V13.json'),
+  premiumRuneVfxContract: assetUrl('assets/live/v13/production/RUNE_VFX_V13.json'),
+  premiumUiFrameContract: assetUrl('assets/live/v13/production/UI_FRAME_V13.json'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -130,6 +134,17 @@ export const PREMIUM_ART_DIRECTION_REFERENCE_BUNDLE: AssetBundleDefinition = {
   id: 'premium-art-direction-v12',
   urls: [ASSET_PATHS.premiumCharacterArtReference, ASSET_PATHS.premiumMonsterArtReference],
   estimatedBytes: 668_606,
+};
+
+export const PREMIUM_PRODUCTION_CONTRACT_BUNDLE: AssetBundleDefinition = {
+  id: 'premium-production-contract-v13',
+  urls: [
+    ASSET_PATHS.premiumCharacterProductionContract,
+    ASSET_PATHS.premiumMonsterProductionContract,
+    ASSET_PATHS.premiumRuneVfxContract,
+    ASSET_PATHS.premiumUiFrameContract,
+  ],
+  estimatedBytes: 5_000,
 };
 
 export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [

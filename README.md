@@ -1,6 +1,17 @@
-# LUMERIFT: 균열의 계승자 v1.11.28
+# LUMERIFT: 균열의 계승자 v1.11.29
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
+
+## v1.11.29 핵심 업데이트
+- 플레이어 금속 트림·얼굴 크레스트·흉부 룬·망토 윤곽 런타임 1차 적용
+- 검·대검·균열 장창 3개 계열, 8방향, 10개 행동, 6개 레이어 제작 규격 확정
+- 엘리트·보스 왕관형 크리스털·약점 코어·발톱 실루엣 적용
+- Light·Heavy·Ultimate 충격 등급별 룬 VFX 합성
+- 공통 패널·버튼 이중 금속·유리 Premium UI Frame v3 적용
+- 신규 런타임 이미지 0개, 초기 자산 번들 증가 0 bytes
+- 관련 문서: `docs/PATCH_NOTES_v1.11.29.md`, `docs/PREMIUM_CHARACTER_RUNTIME_FIRST_PASS_v1.11.29.md`, `docs/PREMIUM_MONSTER_PRODUCTION_PLAN_v1.11.29.md`, `docs/PREMIUM_RUNE_UI_SYSTEM_v1.11.29.md`
+
+최종 수작업 플레이어·몬스터 Atlas와 실제 장비 파츠 이미지 Atlas는 아직 완료로 기록하지 않는다.
 
 ## v1.11.9 핵심
 - 자동 타겟 점수·선정 이유와 자동 전투 행동 이유를 전투 HUD에 실시간 표시
