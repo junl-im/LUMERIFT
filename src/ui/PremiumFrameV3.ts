@@ -2,6 +2,7 @@ import { Container, Graphics } from 'pixi.js';
 import { COLORS } from '../app/constants';
 
 export const PREMIUM_UI_FRAME_SCHEMA = 'lumerift-premium-ui-frame-v3' as const;
+export const PREMIUM_UI_FRAME_RUNTIME_SCHEMA = 'lumerift-premium-ui-frame-v3.1' as const;
 
 export type PremiumFrameRole = 'panel' | 'button' | 'boss' | 'compact';
 
@@ -57,6 +58,33 @@ export function createPremiumFrameAccents(
       .fill({ color: COLORS.primaryBright, alpha: runeAlpha });
   }
 
+  if (!compact && width >= 150 && height >= 58) {
+    const sideY = y + height * 0.52;
+    const facet = Math.min(18, height * 0.18);
+    frame
+      .moveTo(x + 5, sideY - facet)
+      .lineTo(x + 10, sideY)
+      .lineTo(x + 5, sideY + facet)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.24, width: 1.2 })
+      .moveTo(x + width - 5, sideY - facet)
+      .lineTo(x + width - 10, sideY)
+      .lineTo(x + width - 5, sideY + facet)
+      .stroke({ color: 0xf3dfb0, alpha: 0.28, width: 1.2 })
+      .circle(x + 10, sideY, 1.8)
+      .fill({ color: COLORS.primaryBright, alpha: 0.28 })
+      .circle(x + width - 10, sideY, 1.8)
+      .fill({ color: 0xf3dfb0, alpha: 0.3 });
+
+    const railWidth = Math.min(42, width * 0.12);
+    frame
+      .moveTo(x + 18, y + height - 9)
+      .lineTo(x + 18 + railWidth, y + height - 9)
+      .stroke({ color: COLORS.primaryBright, alpha: 0.18, width: 2 })
+      .moveTo(x + width - 18 - railWidth, y + height - 9)
+      .lineTo(x + width - 18, y + height - 9)
+      .stroke({ color: 0xf3dfb0, alpha: 0.2, width: 2 });
+  }
+
   if (role === 'boss') {
     const centerX = x + width / 2;
     frame
@@ -65,7 +93,13 @@ export function createPremiumFrameAccents(
       .lineTo(centerX, y + height - 13)
       .lineTo(centerX + 7, y + height - 6)
       .lineTo(centerX + 24, y + height - 6)
-      .stroke({ color: 0xf3dfb0, alpha: 0.72, width: 1.8 });
+      .stroke({ color: 0xf3dfb0, alpha: 0.72, width: 1.8 })
+      .moveTo(centerX - 8, y + 10)
+      .lineTo(centerX, y + 18)
+      .lineTo(centerX + 8, y + 10)
+      .lineTo(centerX, y + 2)
+      .closePath()
+      .stroke({ color: COLORS.primaryBright, alpha: 0.42, width: 1.2 });
   }
 
   root.addChild(frame);

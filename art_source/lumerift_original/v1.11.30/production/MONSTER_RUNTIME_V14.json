@@ -1,0 +1,60 @@
+{
+  "schema": "lumerift-premium-monster-runtime-v2",
+  "status": "runtime-second-pass-programmatic-variants",
+  "finalHandPaintedAtlas": false,
+  "variants": [
+    {
+      "id": "void-warden",
+      "monsterId": "monster_warden",
+      "rank": "elite",
+      "crestSpikes": 5,
+      "shoulderSpikes": 4,
+      "jawFangs": 2,
+      "phaseShards": 4,
+      "motionWeight": 1.06
+    },
+    {
+      "id": "lumen-mender",
+      "monsterId": "monster_mender",
+      "rank": "elite",
+      "crestSpikes": 4,
+      "shoulderSpikes": 3,
+      "jawFangs": 1,
+      "phaseShards": 5,
+      "motionWeight": 0.92
+    },
+    {
+      "id": "abyssal-harbinger",
+      "monsterId": "boss_harbinger",
+      "rank": "boss",
+      "crestSpikes": 7,
+      "shoulderSpikes": 6,
+      "jawFangs": 4,
+      "phaseShards": 10,
+      "motionWeight": 1.24
+    },
+    {
+      "id": "elite-generic",
+      "monsterId": "fallback",
+      "rank": "elite",
+      "crestSpikes": 4,
+      "shoulderSpikes": 4,
+      "jawFangs": 2,
+      "phaseShards": 4,
+      "motionWeight": 1.0
+    }
+  ],
+  "layers": [
+    "mane",
+    "silhouette",
+    "tailArc",
+    "crown",
+    "jaw",
+    "core",
+    "claws",
+    "phaseShards"
+  ],
+  "phaseResponsive": true,
+  "weakPointReadability": true,
+  "initialBundleAddedBytes": 0
+}

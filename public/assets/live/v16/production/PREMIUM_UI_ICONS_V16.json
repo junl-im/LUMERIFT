@@ -1,0 +1,27 @@
+{
+  "schema": "lumerift-premium-ui-icons-v16",
+  "version": "1.11.32",
+  "stage": "premium-ui-icon-expansion-first-batch",
+  "atlas": "live/v16/atlases/ui/premium_ui_icons_v16.json",
+  "image": "live/v16/atlases/ui/premium_ui_icons_v16.webp",
+  "frames": 16,
+  "animations": 16,
+  "size": {
+    "w": 512,
+    "h": 512
+  },
+  "categories": {
+    "skills": 3,
+    "itemGrades": 4,
+    "bossPatterns": 5,
+    "equipmentAndPhase": 4
+  },
+  "screens": [
+    "battle",
+    "inventory",
+    "boss-hud"
+  ],
+  "gameplayDataChanged": false,
+  "fallback": "Premium HUD v15 and text/icon treatments",
+  "notes": "Icons extend the approved premium art language without replacing underlying skill, item, or boss pattern data."
+}

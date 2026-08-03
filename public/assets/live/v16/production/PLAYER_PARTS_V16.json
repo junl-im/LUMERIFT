@@ -1,0 +1,42 @@
+{
+  "schema": "lumerift-premium-player-parts-v16",
+  "version": "1.11.32",
+  "stage": "first-raster-part-batch",
+  "atlas": "live/v16/atlases/player/player_parts_v16.json",
+  "image": "live/v16/atlases/player/player_parts_v16.webp",
+  "frames": 16,
+  "animations": 16,
+  "size": {
+    "w": 512,
+    "h": 512
+  },
+  "parts": [
+    "hair-back",
+    "hair-front",
+    "face-crest",
+    "armor-shoulders",
+    "armor-chest",
+    "cape-fabric",
+    "cape-edge",
+    "rune-core",
+    "weapon-sword",
+    "weapon-greatsword",
+    "weapon-lance",
+    "impact",
+    "guard",
+    "aura-back",
+    "aura-front",
+    "overdrive"
+  ],
+  "runtimeComposite": true,
+  "wardrobeParity": true,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "player_premium_body_v10",
+    "player_weapon_attack_body_v11",
+    "programmatic-detail-layer"
+  ],
+  "playerSaveChanged": false,
+  "attackFootprintChanged": false,
+  "notes": "Transparent WebP parts are composited over the existing body. This is not a claim that the final full-body hand-painted Atlas is complete."
+}

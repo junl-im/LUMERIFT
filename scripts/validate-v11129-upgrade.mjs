@@ -2,6 +2,17 @@ import { readFile, stat } from 'node:fs/promises';
 
 const errors = [];
 const read = (path) => readFile(path, 'utf8');
+const versionAtLeast = (value, target) => {
+  const left = String(value).split('.').map(Number);
+  const right = String(target).split('.').map(Number);
+  for (let index = 0; index < Math.max(left.length, right.length); index += 1) {
+    const a = left[index] ?? 0;
+    const b = right[index] ?? 0;
+    if (a !== b) return a > b;
+  }
+  return true;
+};
+
 const required = [
   'src/game/presentation/PremiumCharacterProductionSpec.ts',
   'src/game/presentation/PremiumCharacterDetailLayerView.ts',
@@ -100,7 +111,7 @@ const state = JSON.parse(await read('HANDOFF_STATE.json'));
 const release = JSON.parse(await read('RELEASE_MANIFEST.json'));
 const assets = JSON.parse(await read('public/assets/ASSET_MANIFEST.json'));
 for (const [label, version] of Object.entries({ package: pkg.version, state: state.version, release: release.version, assets: assets.release })) {
-  if (version !== '1.11.29') errors.push(`${label} version ${version} != 1.11.29`);
+  if (!versionAtLeast(version, '1.11.29')) errors.push(`${label} version ${version} < 1.11.29`);
 }
 if (pkg.scripts?.['validate:upgrade:v11129'] !== 'node scripts/validate-v11129-upgrade.mjs') errors.push('v1.11.29 package validator missing');
 if (pkg.scripts?.['validate:production:v11129'] !== 'node scripts/verify-v11129-production.mjs') errors.push('v1.11.29 production verifier missing');
@@ -118,7 +129,7 @@ if (state.featureMetrics?.finalHandPaintedV13AtlasesComplete !== false) errors.p
 if (state.assetMetrics?.v11129NewRuntimeImageFiles !== 0) errors.push('v1.11.29 must not claim new runtime images');
 if (state.assetMetrics?.v11129InitialBundleAddedBytes !== 0) errors.push('v1.11.29 initial asset bundle added bytes must be 0');
 const brand = await read('src/app/brand.ts');
-if (!brand.includes("version: '1.11.29'")) errors.push('brand version mismatch');
+if (!/version: '1\.11\.(?:29|[3-9]\d)'/.test(brand)) errors.push('brand version below v1.11.29');
 
 if (errors.length) {
   console.error(errors.join('\n'));

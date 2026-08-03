@@ -1,248 +1,273 @@
 {
-  "fromVersion": "1.11.28",
-  "toVersion": "1.11.29",
+  "fromVersion": "1.11.31",
+  "toVersion": "1.11.32",
   "rootOverwrite": true,
   "delete": [],
   "files": [
     {
       "path": "AGENTS.md",
-      "bytes": 30748,
-      "sha256": "aa45a47eae1f12cdfe9aa065d91a2d2adbe691bb26a5b325be3115145e7960b7"
+      "bytes": 32677,
+      "sha256": "d35a6b915799a5a486c41bc228b8685fbce4ac64b80764a20ac518aaf3926385"
     },
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 42745,
-      "sha256": "4700b0a7e6ef72fa809ea578e490874237036a445aa815b85c11a9086cbb90c4"
-    },
-    {
-      "path": "PATCH_DELETE_LIST.txt",
-      "bytes": 43,
-      "sha256": "a092ef958cdf45631aec335d3fb95c28640b76085c12eca7ab51b35c7ee1362c"
+      "bytes": 47022,
+      "sha256": "be3271e09daa6e7c49b0fe8e30c1e772ea0d73a2356fe49e38bbe471bbbe5d15"
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 427,
-      "sha256": "1cd9611c35a6f6cfcc55fb4b4d487035b5439b20b23af66e0b96218efd3e0ccf"
+      "bytes": 393,
+      "sha256": "a5048194a17aaea658ffe35deb864a6b820a59df18305e97a511ea875a7888cc"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 713,
-      "sha256": "66d0541dcd05cdcff0f1af39f00f20cd8566b53f886ea749ba2019ec64cb04a4"
+      "bytes": 209,
+      "sha256": "23311422683966d1ed053770919b4d610900f0ad950f94954de2cec5b3441070"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1619,
-      "sha256": "fbd1049341d2e5900115f9cecc0bb4afdc3ec63fbd3987470a4c7b48e39cbe87"
+      "bytes": 1375,
+      "sha256": "d3b63ca860104c9d4bc2481adad9c470de16e5779ca994ba0904e13188ce3276"
     },
     {
       "path": "README.md",
-      "bytes": 13499,
-      "sha256": "3d0b51915d02c44388bcfe4495f6ac39262849b19c1ed80cfebcfb4cbe5925a8"
+      "bytes": 14054,
+      "sha256": "952a8a1d5612c9c49c1271dd5ac7c63a887c4aa8420800d7955661e00e526655"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1928,
-      "sha256": "32d31ea4c4ab9c1cec9afa7199d2fc3e776f1a3b34d10318e9549f72884cd009"
+      "bytes": 1700,
+      "sha256": "6e88bb5644094db3e53d5d222e077e15391ceeed8e95e6dc26b4a18954e05488"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.29/production/CHARACTER_BODY_V13.json",
-      "bytes": 794,
-      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
+      "path": "art_source/lumerift_owned/premium_parts_v16/README.md",
+      "bytes": 388,
+      "sha256": "8bd079bda3616dcdf8144d4f84126b7597507f777a80c5317ccd948d03eddf61"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.29/production/MONSTER_ELITE_BOSS_V13.json",
-      "bytes": 761,
-      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
+      "path": "art_source/lumerift_owned/premium_parts_v16/boss_core_fx_v16_master.webp",
+      "bytes": 87228,
+      "sha256": "d737b668089a577ccbecfda496f2de3afd2864e03dfae368cb7b789039d0fc58"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.29/production/PRODUCTION_MASTER_V13.json",
-      "bytes": 393,
-      "sha256": "88a5f60be89b29e9275815d1eef02cbaf14721fac13d639d2492ce0718c51b5c"
+      "path": "art_source/lumerift_owned/premium_parts_v16/monster_parts_v16_master.webp",
+      "bytes": 151360,
+      "sha256": "9b046a2d7c5c4e0633d2c87a0d42d1b72f7a7aad8a2b488aae1843cce45366ae"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.29/production/RUNE_VFX_V13.json",
-      "bytes": 536,
-      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
+      "path": "art_source/lumerift_owned/premium_parts_v16/player_parts_v16_master.webp",
+      "bytes": 120320,
+      "sha256": "80d4cc88921f5d6cb8bc10db775b785593de1c70985ee184afa1808a84845ca4"
     },
     {
-      "path": "art_source/lumerift_original/v1.11.29/production/UI_FRAME_V13.json",
-      "bytes": 349,
-      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
+      "path": "art_source/lumerift_owned/premium_parts_v16/premium_ui_icons_v16_master.webp",
+      "bytes": 173434,
+      "sha256": "0d42c35b0887840aba20f22c7eecf1e56b9dab7376922b8bf11df49313c45abf"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
-      "bytes": 129434,
-      "sha256": "a8c86b3cd5a595861dae8da8838f9d401b5e25921f73e905ebfb04b7adcb0570"
+      "bytes": 141750,
+      "sha256": "e79b383c9f2696b03aaae7c9b1b364a973a8cf2261c5e5f5eabadd35209fa40d"
+    },
+    {
+      "path": "docs/BOSS_CORE_FX_v1.11.32.md",
+      "bytes": 471,
+      "sha256": "43f6252228d17243866b3d1c94424367be2d02e947d1714c90f09644db825333"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 36072,
-      "sha256": "6c9439cca0d9c91dd8df5781f30954827ad53f915887e4a1ce683331f333ba71"
+      "bytes": 36696,
+      "sha256": "1829ca54e2270acf2a7ae7691ac25f7d8e3a57de4cd3599f28c995a7c6970785"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "bytes": 25833,
-      "sha256": "233a4393d796b1c71c34f23efa97f16330c69c172b5995cb1cb45cecfe5cf88e"
+      "bytes": 27525,
+      "sha256": "15825c5f8bd872945cc37c9488f98a4cb7665e9103e3d6ade6ca011918c7c874"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 32453,
-      "sha256": "04df5a49146cc0e949fafec07cec93e8db099c70d65956f3ac85054455a26360"
+      "bytes": 34146,
+      "sha256": "911aa15f88989b03ac408015483efc3234dc86d63ca4169934efb25c5bb65484"
     },
     {
-      "path": "docs/NEXT_UPDATE_v1.11.30.md",
-      "bytes": 567,
-      "sha256": "709f7a9de7d89a41a1b9c2ba3914a38b46a1072fa1d4f6e431352e6d8cf72fc2"
+      "path": "docs/NEXT_UPDATE_v1.11.33.md",
+      "bytes": 509,
+      "sha256": "fbdc99ab2d3472def217f74717c919f43173f8bf3e814961a674b12a05a302ba"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.11.29.md",
-      "bytes": 1641,
-      "sha256": "7e8921a67def91ea2da880760b7b7ee5fa83c43951c4b73df14bbbdc6cb87142"
+      "path": "docs/PATCH_NOTES_v1.11.32.md",
+      "bytes": 1099,
+      "sha256": "7f15cc9a9549c0d60fa03cc68f3023b46493cf40c6fb8f66780ca2a02b3e77ac"
     },
     {
-      "path": "docs/PREMIUM_CHARACTER_RUNTIME_FIRST_PASS_v1.11.29.md",
-      "bytes": 1358,
-      "sha256": "53fe72560febc3b9d80c5d93430c4e062ebc047b4efbf7e6f68931c179b314cd"
+      "path": "docs/PREMIUM_PARTS_ATLAS_v1.11.32.md",
+      "bytes": 927,
+      "sha256": "1d76f8c2d58db40f1b5be2c53cfc20197ab93e925101d7f9d289c4a1603ca69a"
     },
     {
-      "path": "docs/PREMIUM_MONSTER_PRODUCTION_PLAN_v1.11.29.md",
-      "bytes": 910,
-      "sha256": "fff62663c8e487921ee7a10d1488205424298c9d9ee333672e491d49b61f06a6"
-    },
-    {
-      "path": "docs/PREMIUM_RUNE_UI_SYSTEM_v1.11.29.md",
-      "bytes": 921,
-      "sha256": "81c4359565d729e700adae0c2fdc8b21568fcfca7b697705098802b48c3907d0"
+      "path": "docs/PREMIUM_UI_ICONS_v1.11.32.md",
+      "bytes": 524,
+      "sha256": "3beffc58905a9a750120255feade10bd1b49337b3100f4b0207f4f3a15cc0bd2"
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 27139,
-      "sha256": "42776ca5f5d72a86b10ec6e8bec730830716db58e03405b807d42f39faf1419f"
+      "bytes": 27726,
+      "sha256": "e4e4169d9aae4f62942a93ae2e8d29f80f51b12d01f912a642b630bcd82d11d8"
     },
     {
       "path": "package.json",
-      "bytes": 7130,
-      "sha256": "fe6c55fd0a6ba467ad6ef0a03c110ff2077e374db430fb58dcfcd49880b8a193"
+      "bytes": 7811,
+      "sha256": "126ebb7d11e0aa77515f7550652ef057ef5178428f519877bcb4099db6bf2f41"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
-      "bytes": 6032,
-      "sha256": "154482e75b5b732e604076d41529ca6aa3c7625da0f814f5b9b76d071ad793c9"
+      "bytes": 8816,
+      "sha256": "1899f9b3004e2379379afd9b9b191c6df08a7767f0f7185a4488afa0dc66ba27"
     },
     {
-      "path": "public/assets/live/v13/production/CHARACTER_BODY_V13.json",
-      "bytes": 794,
-      "sha256": "5bd732897adb67347d71156e82143801ab3b2b70360cf921c63085ac2b4f7b58"
+      "path": "public/assets/live/v16/atlases/effects/boss_core_fx_v16.json",
+      "bytes": 5989,
+      "sha256": "15c8aa4b0be96b6bbc17eb6a264b2825cd96d45160bf342ad05519740d00ea04"
     },
     {
-      "path": "public/assets/live/v13/production/MONSTER_ELITE_BOSS_V13.json",
-      "bytes": 761,
-      "sha256": "133be7c43364512e74e32b4d5cc1a77c18d0d42ea17f85a0e19f8525524483f0"
+      "path": "public/assets/live/v16/atlases/effects/boss_core_fx_v16.webp",
+      "bytes": 87228,
+      "sha256": "d737b668089a577ccbecfda496f2de3afd2864e03dfae368cb7b789039d0fc58"
     },
     {
-      "path": "public/assets/live/v13/production/RUNE_VFX_V13.json",
-      "bytes": 536,
-      "sha256": "0450a9fdc2188a5078319479f9017ecf2430b49f3808fa45a425b9801337bbe3"
+      "path": "public/assets/live/v16/atlases/monsters/monster_parts_v16.json",
+      "bytes": 8689,
+      "sha256": "7e066c222910616c6b1002b67861c1a3cbea7f2b0727f990a6b239ef494ce9cf"
     },
     {
-      "path": "public/assets/live/v13/production/UI_FRAME_V13.json",
-      "bytes": 349,
-      "sha256": "876684a51e34d63752aad2e687eb8e5237a1a100e4377c52178783ee37fbe8ba"
+      "path": "public/assets/live/v16/atlases/monsters/monster_parts_v16.webp",
+      "bytes": 151360,
+      "sha256": "9b046a2d7c5c4e0633d2c87a0d42d1b72f7a7aad8a2b488aae1843cce45366ae"
     },
     {
-      "path": "scripts/validate-v11128-upgrade.mjs",
-      "bytes": 5412,
-      "sha256": "6fe7ad3d967ea28c0a4796bb1c859b680fc0658c406b2759c8d661f2ea759335"
+      "path": "public/assets/live/v16/atlases/player/player_parts_v16.json",
+      "bytes": 8685,
+      "sha256": "3a170bde63a19ba04c3b367ddf003b46396af8d7cc0868f1738fe34edc0e47c8"
     },
     {
-      "path": "scripts/validate-v11129-upgrade.mjs",
-      "bytes": 7235,
-      "sha256": "73569cf86af1a4a33530e7848fcf31c880c60d82e7e4889a597be61955a14a26"
+      "path": "public/assets/live/v16/atlases/player/player_parts_v16.webp",
+      "bytes": 120320,
+      "sha256": "80d4cc88921f5d6cb8bc10db775b785593de1c70985ee184afa1808a84845ca4"
     },
     {
-      "path": "scripts/verify-v11129-production.mjs",
-      "bytes": 1985,
-      "sha256": "d4fef238c830998d36b533a7b1dfcce58135bf2a7cccff06f463262a76e938a7"
+      "path": "public/assets/live/v16/atlases/ui/premium_ui_icons_v16.json",
+      "bytes": 8197,
+      "sha256": "98b81e58b0de2a3ec58411064e44deb994de656ddf4f181032c41837ad28fd8b"
+    },
+    {
+      "path": "public/assets/live/v16/atlases/ui/premium_ui_icons_v16.webp",
+      "bytes": 173434,
+      "sha256": "0d42c35b0887840aba20f22c7eecf1e56b9dab7376922b8bf11df49313c45abf"
+    },
+    {
+      "path": "public/assets/live/v16/production/BOSS_CORE_FX_V16.json",
+      "bytes": 697,
+      "sha256": "0d95d1c3db845ca4cecc8d23dc2a08e97269860c4c088152166279d6cabd0793"
+    },
+    {
+      "path": "public/assets/live/v16/production/MONSTER_PARTS_V16.json",
+      "bytes": 878,
+      "sha256": "b9536f8ec0d65f68b79da29c152b98572db84dc0648859c924041dfeb048b046"
+    },
+    {
+      "path": "public/assets/live/v16/production/PLAYER_PARTS_V16.json",
+      "bytes": 1066,
+      "sha256": "0ca365fc2b5620524418b994c34aa026fbf1fa9cf2c18fa602d7cd89c2013b71"
+    },
+    {
+      "path": "public/assets/live/v16/production/PREMIUM_UI_ICONS_V16.json",
+      "bytes": 716,
+      "sha256": "50388c915321f5b357f8256180c3569d65a2ff6f15a248f9734b6eefbc20f2af"
+    },
+    {
+      "path": "scripts/validate-release-version.mjs",
+      "bytes": 12155,
+      "sha256": "77380413b70a5a149ef2c7484d73e36c8e5fae1947f627598592a512a80eec7f"
+    },
+    {
+      "path": "scripts/validate-v11131-upgrade.mjs",
+      "bytes": 6374,
+      "sha256": "cdee8c19070475e1bb39d2f790a8a6af6cf680435e6bf125993a708524d59664"
+    },
+    {
+      "path": "scripts/validate-v11132-upgrade.mjs",
+      "bytes": 7243,
+      "sha256": "60fa83a812229c0c993954e601d0df3a7b7344572f289b825dfb7cb65738e5cf"
+    },
+    {
+      "path": "scripts/verify-v11132-production.mjs",
+      "bytes": 2276,
+      "sha256": "1af5acf12c58715e4244823f4d4c8c791120b4862166b8f4e42f0b442770adc9"
     },
     {
       "path": "src/app/brand.ts",
       "bytes": 1064,
-      "sha256": "06faba85908180445dc0b34aeea7405da45dcd0dc901780867a82067da6ae4ca"
+      "sha256": "1fa9dc04286bdcd48707a55e40f0bd5d43dc3cf641cb08da1b267ccaab628796"
     },
     {
       "path": "src/core/assets/AssetCatalog.ts",
-      "bytes": 10683,
-      "sha256": "5846c484660fc342cc4ff7602b9066739cd2259d409c21831e4723e212b7ca2d"
+      "bytes": 14211,
+      "sha256": "a2971f7656295267d5b84610624c9f5656ce01706acde34db315581c088986bb"
     },
     {
       "path": "src/game/presentation/BattleActorView.ts",
-      "bytes": 44123,
-      "sha256": "b3b3b68204dbb08170bbcc75eb7ebf8442bff8ec1596163be6940dc47999e46a"
-    },
-    {
-      "path": "src/game/presentation/BattleVfxSystem.ts",
-      "bytes": 9528,
-      "sha256": "e49c69d68c7ebe9bf2430f0be52bc1a3135f82ee03eb961f749b6a6baa0e5c3a"
+      "bytes": 44548,
+      "sha256": "ae11fb08ea6e933c18b066a446035d85a33d0492b1cecc6abe79e0dcf392a0b6"
     },
     {
       "path": "src/game/presentation/PremiumCharacterDetailLayerView.ts",
-      "bytes": 6088,
-      "sha256": "e094533211dbcfa981b701c2da58f064a03401eb6000b6c1aaed948fef64d191"
-    },
-    {
-      "path": "src/game/presentation/PremiumCharacterProductionSpec.test.ts",
-      "bytes": 775,
-      "sha256": "978a4fa3048876df84370bbac70a9353396d1b81249c880fa6da1bc88e71f940"
-    },
-    {
-      "path": "src/game/presentation/PremiumCharacterProductionSpec.ts",
-      "bytes": 4428,
-      "sha256": "0afc203ccb2ee58d41e67cbbba13b2493f85227acb5394d3081dd94ee1b69643"
+      "bytes": 21377,
+      "sha256": "051318b24a87fd61e7b9cfee380553a93210c58b5fb53b232550df68c14add4f"
     },
     {
       "path": "src/game/presentation/PremiumMonsterDetailLayerView.ts",
-      "bytes": 5174,
-      "sha256": "1d115e4bf6bd65b5c6cb6bf5fa1ccf3773be4261a98a69f22e989c90d93c4a04"
+      "bytes": 17559,
+      "sha256": "5734f33bceec00c494b31d40fd6ab22beabc17339ebab58668e2ce90f4015da8"
     },
     {
-      "path": "src/game/presentation/PremiumMonsterProductionPlan.test.ts",
-      "bytes": 639,
-      "sha256": "e9145a1a7d83bd0ac591ca65a3da31093120b3b35795f85956c2ff9d74c8bd34"
+      "path": "src/game/presentation/PremiumPartAtlasV16.test.ts",
+      "bytes": 609,
+      "sha256": "c2a00230ffc3ad4118af1c085914a2b62060e98ef5f61ea5ce1600c5e863c422"
     },
     {
-      "path": "src/game/presentation/PremiumMonsterProductionPlan.ts",
-      "bytes": 2837,
-      "sha256": "aa70e5a49e33023d7b4c6d7fa6d3dd87be6ca400da766e68b3b1cd2b4e637912"
+      "path": "src/game/presentation/PremiumPartAtlasV16.ts",
+      "bytes": 4566,
+      "sha256": "8def7ce1ecc0d919e983768bcfd649c3c8c1cd40e4e8d5e7f2d5b2cd31570d6e"
     },
     {
-      "path": "src/game/presentation/PremiumRuneVfxLanguage.test.ts",
-      "bytes": 389,
-      "sha256": "b9ce198003657740ed12691485df9ca36542137c582c02d8810077b4b49fca0e"
+      "path": "src/scenes/BattleScene.ts",
+      "bytes": 101940,
+      "sha256": "33a89bd629ba88022c87cb9e5dfc6334bf3a5edcd1ba3c0ad124565fcec3bdd8"
     },
     {
-      "path": "src/game/presentation/PremiumRuneVfxLanguage.ts",
-      "bytes": 2775,
-      "sha256": "b44479dd53f9d4839a6c9893fb1b31f68d93a665ccb84681c8bb58fea7c8ee60"
+      "path": "src/scenes/CharacterWardrobeScene.ts",
+      "bytes": 26573,
+      "sha256": "f67930020015238978ecf8b4a8cab891cc6dc2cf956871c4dfeef87fc6230d20"
     },
     {
-      "path": "src/scenes/AssetGalleryScene.ts",
-      "bytes": 18400,
-      "sha256": "0b2382c7d6776c27eb8ef09d57cdf3dda241729760ffde10880a3e22f5ec1411"
+      "path": "src/scenes/InventoryScene.ts",
+      "bytes": 18865,
+      "sha256": "d6fcddbe98e395a2c7dc933afb82f9b81e48f7f79864da000c2d41a4573c7f00"
     },
     {
-      "path": "src/ui/PremiumFrameV3.ts",
-      "bytes": 2667,
-      "sha256": "9db2148f4a92f1ed36f769b8bd7a1caf223d1346ece95904cfc5dad4bbd222c4"
+      "path": "src/ui/PremiumUiIconArtV16.test.ts",
+      "bytes": 723,
+      "sha256": "78e5f3adcce35a47877cea396ce88112112174650e38f23a2530c3b9926b84f7"
     },
     {
-      "path": "src/ui/UiButton.ts",
-      "bytes": 5484,
-      "sha256": "05e82e6c9c145ecbb13a6c369a3a7be1afea29ff36c88874c490b4b7071c8d2e"
+      "path": "src/ui/PremiumUiIconArtV16.ts",
+      "bytes": 2177,
+      "sha256": "f0018cb4146a0ac34e876d6f4ab9cc3944a89a95066ed452e28459c29140729b"
     },
     {
-      "path": "src/ui/UiSkin.ts",
-      "bytes": 5816,
-      "sha256": "6737dfea58aec5e7ebecfc457ced669b01e2e1c29783353a9074ec770f1d0cdf"
+      "path": "tools/build_premium_parts_v16.py",
+      "bytes": 22036,
+      "sha256": "a3070a40552455ec1b1fa9015bfe39f33be8f53628da82b2803bd4d5171a2df5"
     }
   ]
 }

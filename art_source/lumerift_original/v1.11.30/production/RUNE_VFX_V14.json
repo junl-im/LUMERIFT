@@ -1,0 +1,32 @@
+{
+  "schema": "lumerift-premium-rune-vfx-v1.1",
+  "status": "runtime-premium-particle-second-pass",
+  "impactTiers": {
+    "light": {
+      "spokes": 6,
+      "rings": 1,
+      "sparks": 5
+    },
+    "heavy": {
+      "spokes": 8,
+      "rings": 2,
+      "sparks": 8
+    },
+    "ultimate": {
+      "spokes": 12,
+      "rings": 3,
+      "sparks": 12
+    }
+  },
+  "densityGate": 0.62,
+  "layers": [
+    "glyph",
+    "rings",
+    "spokes",
+    "sparkField"
+  ],
+  "mobileBudget": {
+    "maximumSparkCount": 12,
+    "initialBundleAddedBytes": 0
+  }
+}

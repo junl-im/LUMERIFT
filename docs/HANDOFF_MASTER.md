@@ -1,10 +1,10 @@
-# HANDOFF MASTER v1.11.29
+# HANDOFF MASTER v1.11.32
 
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.11.29
+**현재 버전:** v1.11.32
 **갱신일:** 2026-08-03  
-**상태:** Premium Art Direction v2 기반 캐릭터 중심 런타임 제작 1차 완료
+**상태:** Premium Art Direction v2 기반 투명 래스터 파츠 v16 첫 배치 완료
 
 ## 1. 프로젝트 목적
 
@@ -502,3 +502,27 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 기존 VFX Atlas 위에 충격 등급별 룬을 합성하고 모든 공통 패널·버튼에 Premium UI Frame v3를 적용했다.
 - 신규 런타임 이미지는 없고 초기 자산 번들 증가도 0 bytes다.
 - 실제 수작업 본체·장비 파츠 Atlas, 물리 단말 캡처, 실제 npm 빌드는 미완료다.
+
+
+## v1.11.30 Premium Runtime Second Pass
+- 캐릭터 얼굴·헤어·갑주·망토·룬 독립 레이어 10종을 전투와 캐릭터 스튜디오에 공통 적용했다.
+- 검·대검·균열 장창 공격 실루엣을 정밀 연격·중량 절단·직선 관통으로 분리했다.
+- 엘리트 2종과 보스 1종의 크리스털·코어·위상 파편 실루엣을 개별화했다.
+- 룬 스파크 5/8/12단계와 UI Frame v3.1을 확대 적용했다.
+- 최종 수작업 Atlas, 물리 기기 승인, 정상 npm 기반 전체 빌드는 미완료다.
+
+
+## v1.11.31 Premium HUD · Boss Core · Capture Evidence v2
+- 승인 아트 기준에서 파생한 512×256 WebP UI Atlas 8프레임을 전투 버튼·보스 코어 HUD·인벤토리에 적용했다.
+- 보스 본체와 HUD는 `lumerift-boss-core-lifecycle-v1`의 보호·균열·파괴·재생·폭주 상태를 공유한다.
+- 캡처 증빙 v2는 JSON과 실제 이미지의 파일명·SHA-256·바이트·픽셀 크기를 모두 교차 검증한다.
+- Premium HUD는 UI 전용이며 최종 수작업 캐릭터·몬스터 본체 Atlas 완료를 의미하지 않는다.
+- Android Chrome·iOS Safari 실제 승인 패키지와 정상 npm 기반 Vitest·Vite build는 미완료다.
+
+
+## v1.11.32 Premium Raster Parts Runtime v16
+
+- 플레이어·몬스터 투명 WebP 래스터 파츠를 기존 본체 위에 합성한다.
+- 보스 코어 FX와 UI 아이콘은 표현 계층이며 전투 판정·저장 데이터는 바꾸지 않는다.
+- v16 로딩 실패 시 기존 본체·Premium HUD v15·프로그램형 디테일 레이어로 폴백한다.
+- 최종 전신 수작업 Atlas와 물리 기기 캡처 승인은 미완료로 유지한다.

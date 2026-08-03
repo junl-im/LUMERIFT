@@ -1,4 +1,4 @@
-import { Container, Graphics, Sprite, Text, TextStyle, type FederatedPointerEvent } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, TextStyle, type FederatedPointerEvent, type Texture } from 'pixi.js';
 import { COLORS } from '../app/constants';
 import { ASSET_PATHS } from '../core/assets/AssetCatalog';
 import { TouchActionGate } from '../core/input/TouchActionGate';
@@ -8,6 +8,8 @@ export interface CombatActionButtonOptions {
   readonly label: string;
   readonly radius?: number;
   readonly tone?: 'primary' | 'secondary' | 'danger';
+  readonly iconTexture?: Texture;
+  readonly iconScale?: number;
   readonly onPress: () => void;
 }
 
@@ -71,6 +73,21 @@ export class CombatActionButton extends Container {
     roleText.position.set(0, -this.radius * 0.88 + 8);
     this.addChild(inner, flare, tag, roleText);
 
+    if (options.iconTexture) {
+      const iconHalo = new Graphics()
+        .circle(0, -this.radius * 0.04, this.radius * 0.52)
+        .fill({ color: 0x050912, alpha: 0.48 })
+        .stroke({ color: options.tone === 'secondary' ? 0xd8b86e : 0x7fffe0, alpha: 0.34, width: 1.2 });
+      const icon = new Sprite(options.iconTexture);
+      icon.anchor.set(0.5);
+      const iconSize = this.radius * 1.08 * (options.iconScale ?? 1);
+      icon.width = iconSize;
+      icon.height = iconSize;
+      icon.position.set(0, -this.radius * 0.06);
+      icon.alpha = 0.92;
+      this.addChild(iconHalo, icon);
+    }
+
     this.labelText = new Text({
       text: options.label,
       style: new TextStyle({
@@ -82,7 +99,7 @@ export class CombatActionButton extends Container {
       }),
     });
     this.labelText.anchor.set(0.5);
-    this.labelText.position.set(0, 4);
+    this.labelText.position.set(0, options.iconTexture ? this.radius * 0.55 : 4);
 
     this.cooldownText = new Text({
       text: '',

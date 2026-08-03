@@ -1,0 +1,19 @@
+{
+  "schema": "lumerift-boss-core-lifecycle-v1",
+  "release": "1.11.31",
+  "states": [
+    "shielded",
+    "fractured",
+    "shattered",
+    "regenerating",
+    "overdrive"
+  ],
+  "phaseBreakSeconds": 0.24,
+  "phaseReformSeconds": 0.86,
+  "phaseThresholds": {
+    "phase2HpRatio": 0.65,
+    "phase3HpRatio": 0.3
+  },
+  "sharedWithBossHud": true,
+  "attackFootprintChanged": false
+}

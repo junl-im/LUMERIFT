@@ -1,0 +1,14 @@
+{
+  "schema": "lumerift-monster-part-atlas-handoff-v1",
+  "release": "1.11.31",
+  "status": "production-handoff-not-final-atlas",
+  "approvedArtReference": "../../v12/art-direction/monster_quality_upgrade_v12.webp",
+  "variants": [
+    "void-warden",
+    "lumen-mender",
+    "abyssal-harbinger"
+  ],
+  "bossCoreLifecycle": "lumerift-boss-core-lifecycle-v1",
+  "finalHandPaintedAtlasComplete": false,
+  "runtimeFallback": "monster v4 plus premium runtime detail layers"
+}

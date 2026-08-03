@@ -1,0 +1,56 @@
+{
+  "schema": "lumerift-premium-character-runtime-v2",
+  "status": "runtime-second-pass-programmatic-layers",
+  "finalHandPaintedAtlas": false,
+  "weaponFamilies": {
+    "blade": {
+      "cadence": "precision-combo",
+      "bladeLength": 50,
+      "bladeWidth": 4.2,
+      "guardWidth": 14,
+      "motionArc": 0.92,
+      "thrustBias": 0.18,
+      "echoCount": 2
+    },
+    "greatblade": {
+      "cadence": "weighted-cleave",
+      "bladeLength": 64,
+      "bladeWidth": 9.5,
+      "guardWidth": 22,
+      "motionArc": 1.18,
+      "thrustBias": 0.04,
+      "echoCount": 3
+    },
+    "riftlance": {
+      "cadence": "linear-pierce",
+      "bladeLength": 76,
+      "bladeWidth": 3.4,
+      "guardWidth": 11,
+      "motionArc": 0.46,
+      "thrustBias": 0.82,
+      "echoCount": 3
+    }
+  },
+  "runtimeLayers": [
+    "hairBack",
+    "capeFabric",
+    "armorPlate",
+    "armorTrim",
+    "faceRim",
+    "faceCrest",
+    "hairFront",
+    "runeCore",
+    "weaponRune",
+    "weaponImpact"
+  ],
+  "contexts": [
+    "battle",
+    "character-wardrobe"
+  ],
+  "mobileRules": {
+    "minimumReadabilityScore": 80,
+    "idleGlowAlphaMax": 0.34,
+    "existingBodyAtlasFallback": true
+  },
+  "initialBundleAddedBytes": 0
+}

@@ -1,7 +1,8 @@
 import { Container, Text, TextStyle } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
-import { downloadJson, openJsonFile } from '../core/files/JsonFileTransfer';
+import { downloadJson } from '../core/files/JsonFileTransfer';
+import { openCharacterCaptureEvidencePackage, openCharacterCaptureFiles } from '../core/files/CharacterCaptureEvidenceTransfer';
 import {
   characterCalibrationStatusLabel,
   resolveCharacterDisplayCalibration,
@@ -82,9 +83,16 @@ export class CharacterCalibrationScene implements Scene {
       fontSize: 10,
       subtitleFontSize: 8,
       onPress: async () => {
-        const baseline = resolveCharacterDisplayCalibration('Mozilla/5.0 (Linux; Android 15) Chrome/140 Mobile Safari/537.36', undefined);
-        downloadJson('LUMERIFT_ANDROID_CHARACTER_CAPTURE_TEMPLATE.json', createCharacterDisplayCaptureTemplate('android-chrome', baseline));
-        await context.scenes.change(() => new CharacterCalibrationScene('Android Chrome 캡처 승인 템플릿을 저장했습니다.'));
+        try {
+          const screenshots = await openCharacterCaptureFiles();
+          if (!screenshots) return;
+          const baseline = resolveCharacterDisplayCalibration('Mozilla/5.0 (Linux; Android 15) Chrome/140 Mobile Safari/537.36', undefined);
+          const template = createCharacterDisplayCaptureTemplate('android-chrome', baseline);
+          downloadJson('LUMERIFT_ANDROID_CHARACTER_CAPTURE_TEMPLATE.json', { ...template, screenshots });
+          await context.scenes.change(() => new CharacterCalibrationScene('Android 캡처 SHA-256이 포함된 승인 템플릿을 저장했습니다.'));
+        } catch (error: unknown) {
+          await context.scenes.change(() => new CharacterCalibrationScene(error instanceof Error ? error.message : 'Android 캡처 해시 생성에 실패했습니다.'));
+        }
       },
     });
     androidTemplate.position.set(36, 566);
@@ -98,9 +106,16 @@ export class CharacterCalibrationScene implements Scene {
       fontSize: 10,
       subtitleFontSize: 8,
       onPress: async () => {
-        const baseline = resolveCharacterDisplayCalibration('Mozilla/5.0 (iPhone) AppleWebKit/605.1.15 Version/18.0 Mobile Safari/604.1', undefined);
-        downloadJson('LUMERIFT_IOS_CHARACTER_CAPTURE_TEMPLATE.json', createCharacterDisplayCaptureTemplate('ios-safari', baseline));
-        await context.scenes.change(() => new CharacterCalibrationScene('iOS Safari 캡처 승인 템플릿을 저장했습니다.'));
+        try {
+          const screenshots = await openCharacterCaptureFiles();
+          if (!screenshots) return;
+          const baseline = resolveCharacterDisplayCalibration('Mozilla/5.0 (iPhone) AppleWebKit/605.1.15 Version/18.0 Mobile Safari/604.1', undefined);
+          const template = createCharacterDisplayCaptureTemplate('ios-safari', baseline);
+          downloadJson('LUMERIFT_IOS_CHARACTER_CAPTURE_TEMPLATE.json', { ...template, screenshots });
+          await context.scenes.change(() => new CharacterCalibrationScene('iOS 캡처 SHA-256이 포함된 승인 템플릿을 저장했습니다.'));
+        } catch (error: unknown) {
+          await context.scenes.change(() => new CharacterCalibrationScene(error instanceof Error ? error.message : 'iOS 캡처 해시 생성에 실패했습니다.'));
+        }
       },
     });
     iosTemplate.position.set(278, 566);
@@ -115,13 +130,13 @@ export class CharacterCalibrationScene implements Scene {
       subtitleFontSize: 8,
       onPress: async () => {
         try {
-          const value = await openJsonFile();
-          if (value === null) return;
-          const evidence = importCharacterDisplayCaptureEvidence(value);
+          const packageValue = await openCharacterCaptureEvidencePackage();
+          if (packageValue === null) return;
+          const evidence = importCharacterDisplayCaptureEvidence(packageValue.jsonValue, packageValue.verifiedFiles);
           await context.scenes.change(() => new CharacterCalibrationScene(
             evidence
-              ? `${platformLabel(evidence.platform)} 승인 보정값을 적용했습니다.`
-              : '승인 조건을 충족하지 못한 JSON입니다. approved·증빙·측정값을 확인하세요.',
+              ? `${platformLabel(evidence.platform)} SHA-256 검증 승인값을 적용했습니다.`
+              : 'JSON과 선택한 캡처 파일의 이름·SHA-256·크기·해상도가 일치하지 않습니다.',
           ));
         } catch (error: unknown) {
           await context.scenes.change(() => new CharacterCalibrationScene(error instanceof Error ? error.message : '승인 JSON 가져오기에 실패했습니다.'));
@@ -187,7 +202,7 @@ export class CharacterCalibrationScene implements Scene {
 
 function evidenceLabel(value: ReturnType<typeof loadCharacterDisplayCaptureEvidence>): string {
   if (!value) return 'PENDING';
-  return `${value.reviewer} · ${new Date(value.capturedAt).toLocaleDateString('ko-KR')} · ${value.screenshotRefs.length} captures`;
+  return `${value.reviewer} · ${new Date(value.capturedAt).toLocaleDateString('ko-KR')} · SHA-256 ${value.screenshots.length} captures`;
 }
 
 function percent(value: number): string {

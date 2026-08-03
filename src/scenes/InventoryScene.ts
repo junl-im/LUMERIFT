@@ -34,6 +34,12 @@ import {
 import { UiButton } from '../ui/UiButton';
 import { LobbyScene } from './LobbyScene';
 import { materialFrameKey } from '../game/presentation/CharacterEquipmentVisualProfile';
+import { PREMIUM_HUD_TEXTURE_KEYS, premiumHudTexture } from '../ui/PremiumHudArt';
+import {
+  PREMIUM_UI_ICON_KEYS,
+  premiumGradeTextureKey,
+  premiumUiV16Texture,
+} from '../ui/PremiumUiIconArtV16';
 
 const PAGE_SIZE = 12;
 const GRID_COLUMNS = 3;
@@ -45,6 +51,8 @@ export class InventoryScene implements Scene {
   private profile?: PlayerProfile;
   private equipmentSheet?: Spritesheet;
   private equipmentMaterialSheet?: Spritesheet;
+  private premiumHudSheet?: Spritesheet;
+  private premiumUiV16Sheet?: Spritesheet;
   private equipmentBundleLoaded = false;
 
   public constructor(
@@ -67,6 +75,8 @@ export class InventoryScene implements Scene {
     this.equipmentBundleLoaded = true;
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
     this.equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
+    this.premiumHudSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumHudAtlas);
+    this.premiumUiV16Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV16Atlas);
 
     const sorted = sortInventory(this.profile, context.gameData, this.sortMode, this.filter);
     const maxPage = Math.max(0, Math.ceil(sorted.length / PAGE_SIZE) - 1);
@@ -187,13 +197,25 @@ export class InventoryScene implements Scene {
         definition.grade,
         selected,
       );
+      const gradeTexture = premiumUiV16Texture(
+        this.premiumUiV16Sheet,
+        premiumGradeTextureKey(definition.grade),
+      );
+      const gradeArt = gradeTexture ? new Sprite(gradeTexture) : undefined;
+      if (gradeArt) {
+        gradeArt.anchor.set(0.5);
+        gradeArt.position.set(SLOT_SIZE / 2, SLOT_SIZE / 2);
+        gradeArt.width = SLOT_SIZE - 4;
+        gradeArt.height = SLOT_SIZE - 4;
+        gradeArt.alpha = selected ? 0.42 : 0.24;
+      }
       const level = new Text({
         text: `+${item.level}`,
         style: new TextStyle({ fill: COLORS.text, fontSize: 12, fontWeight: '700' }),
       });
       level.anchor.set(1, 1);
       level.position.set(76, 76);
-      root.addChild(frame, level);
+      root.addChild(...(gradeArt ? [gradeArt] : []), frame, level);
 
       if (equipped) {
         const badge = createBadge('E', 'success');
@@ -284,6 +306,45 @@ export class InventoryScene implements Scene {
     const gradeBadge = createBadge(gradeLabel(definition.grade), gradeTone(definition.grade));
     gradeBadge.scale.set(0.78);
     gradeBadge.position.set(350, 314);
+
+    const premiumInventoryTexture = premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.inventory);
+    const premiumInventoryArt = premiumInventoryTexture ? new Sprite(premiumInventoryTexture) : undefined;
+    if (premiumInventoryArt) {
+      premiumInventoryArt.anchor.set(0.5);
+      premiumInventoryArt.width = 132;
+      premiumInventoryArt.height = 132;
+      premiumInventoryArt.position.set(423, 397);
+      premiumInventoryArt.alpha = 0.18;
+      premiumInventoryArt.tint = definition.grade === 'heroic' ? 0xffd79b : definition.grade === 'rare' ? 0x9eefff : 0xffffff;
+    }
+
+    const gradeTexture = premiumUiV16Texture(
+      this.premiumUiV16Sheet,
+      premiumGradeTextureKey(definition.grade),
+    );
+    const premiumGradeArt = gradeTexture ? new Sprite(gradeTexture) : undefined;
+    if (premiumGradeArt) {
+      premiumGradeArt.anchor.set(0.5);
+      premiumGradeArt.width = 142;
+      premiumGradeArt.height = 142;
+      premiumGradeArt.position.set(423, 397);
+      premiumGradeArt.alpha = 0.32;
+    }
+
+    const slotTextureKey = definition.slot === 'weapon'
+      ? PREMIUM_UI_ICON_KEYS.equipmentWeapon
+      : definition.slot === 'armor'
+        ? PREMIUM_UI_ICON_KEYS.equipmentArmor
+        : PREMIUM_UI_ICON_KEYS.equipmentAccessory;
+    const slotTexture = premiumUiV16Texture(this.premiumUiV16Sheet, slotTextureKey);
+    const premiumSlotArt = slotTexture ? new Sprite(slotTexture) : undefined;
+    if (premiumSlotArt) {
+      premiumSlotArt.anchor.set(0.5);
+      premiumSlotArt.width = 38;
+      premiumSlotArt.height = 38;
+      premiumSlotArt.position.set(484, 331);
+      premiumSlotArt.alpha = 0.88;
+    }
 
     const materialTexture = this.equipmentMaterialSheet?.textures[
       materialFrameKey(definition.slot, definition.grade)
@@ -402,6 +463,9 @@ export class InventoryScene implements Scene {
     divider.position.set(354, 646);
     this.view.addChild(
       gradeBadge,
+      ...(premiumInventoryArt ? [premiumInventoryArt] : []),
+      ...(premiumGradeArt ? [premiumGradeArt] : []),
+      ...(premiumSlotArt ? [premiumSlotArt] : []),
       ...(materialBackdrop ? [materialBackdrop] : []),
       detailIcon,
       title,

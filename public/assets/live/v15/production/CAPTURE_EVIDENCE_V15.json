@@ -1,0 +1,15 @@
+{
+  "schema": "lumerift-character-display-capture-v2",
+  "release": "1.11.31",
+  "platforms": ["android-chrome", "ios-safari"],
+  "requiredCaptureFiles": 2,
+  "hashAlgorithm": "SHA-256",
+  "verification": [
+    "file name match",
+    "SHA-256 digest match",
+    "byte size match",
+    "pixel dimensions match"
+  ],
+  "physicalCaptureApprovedByDefault": false,
+  "appCheckEnabled": false
+}

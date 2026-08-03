@@ -1,0 +1,22 @@
+{
+  "schema": "lumerift-character-part-atlas-handoff-v1",
+  "release": "1.11.31",
+  "status": "production-handoff-not-final-atlas",
+  "approvedArtReference": "../../v12/art-direction/character_quality_upgrade_v12.webp",
+  "layers": [
+    "face-rim",
+    "hair-back",
+    "hair-front",
+    "armor-plate",
+    "armor-trim",
+    "cape-fabric",
+    "cape-edge",
+    "rune-core",
+    "weapon-rune",
+    "weapon-impact"
+  ],
+  "weaponFamilies": ["blade", "greatblade", "riftlance"],
+  "directions": 8,
+  "finalHandPaintedAtlasComplete": false,
+  "runtimeFallback": "premium procedural layers over player v10/v11"
+}

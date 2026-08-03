@@ -36,6 +36,7 @@ import {
   type WeaponBodyFrameRecipe,
 } from '../game/presentation/WeaponBodyAttackFrames';
 import { CharacterEquipmentLayerView } from '../game/presentation/CharacterEquipmentLayerView';
+import { PremiumCharacterDetailLayerView } from '../game/presentation/PremiumCharacterDetailLayerView';
 import { createDefaultProfile } from '../repositories/PlayerRepository';
 import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
@@ -50,6 +51,7 @@ interface PreviewSide {
   readonly sprite?: AnimatedSprite;
   readonly aura?: Graphics;
   readonly equipment?: CharacterEquipmentLayerView;
+  readonly premium?: PremiumCharacterDetailLayerView;
   readonly recipe?: WeaponBodyFrameRecipe;
   readonly direction?: CharacterWardrobeControllerDirection;
   readonly baseX?: number;
@@ -82,6 +84,7 @@ export class CharacterWardrobeScene implements Scene {
     this.bundleLoaded = true;
     const playerSheet = context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
     const weaponAttackSheet = context.assets.get<Spritesheet>(ASSET_PATHS.weaponAttackBodyAtlas);
+    const premiumPlayerPartSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerPartsAtlas);
     const wardrobe = context.characterWardrobe.current;
     const calibration = resolveCharacterDisplayCalibration();
     const candidates = equipmentCandidates(context, wardrobe.comparisonSlot);
@@ -132,6 +135,7 @@ export class CharacterWardrobeScene implements Scene {
       appearance: currentAppearance,
       sheet: playerSheet,
       attackSheet: weaponAttackSheet,
+      premiumPartSheet: premiumPlayerPartSheet,
       calibration,
       isCandidate: false,
     });
@@ -142,6 +146,7 @@ export class CharacterWardrobeScene implements Scene {
       appearance: candidateAppearance,
       sheet: playerSheet,
       attackSheet: weaponAttackSheet,
+      premiumPartSheet: premiumPlayerPartSheet,
       calibration,
       isCandidate: true,
     });
@@ -184,7 +189,7 @@ export class CharacterWardrobeScene implements Scene {
   public update(deltaSeconds: number): void {
     this.elapsed += deltaSeconds;
     this.previewSides.forEach((side, index) => {
-      const { aura, equipment, sprite, recipe, direction, baseX, baseY, baseScale, facingX } = side;
+      const { aura, equipment, premium, sprite, recipe, direction, baseX, baseY, baseScale, facingX } = side;
       if (sprite && recipe && direction && baseX !== undefined && baseY !== undefined && baseScale !== undefined) {
         const correction = resolveWeaponBodyFrameCorrection(recipe, sprite.currentFrame, direction);
         const actionProgress = sprite.totalFrames > 1 ? sprite.currentFrame / (sprite.totalFrames - 1) : 0;
@@ -203,8 +208,38 @@ export class CharacterWardrobeScene implements Scene {
           state: 'showcase',
           overdrive: false,
         });
+        premium?.update({
+          x: baseX + correction.offsetX,
+          y: baseY + correction.offsetY,
+          scaleX: baseScale * correction.scaleX,
+          scaleY: baseScale * correction.scaleY,
+          rotation: correction.rotation + correction.layerLag * 0.6,
+          facingX: facingX ?? 0,
+          facingY: directionFacingY(direction),
+          elapsed: this.elapsed + index * 0.4,
+          actionProgress,
+          comboStep: comboStepForPose(this.context?.characterWardrobe.current.pose ?? 'idle'),
+          state: 'showcase',
+          overdrive: this.context?.characterWardrobe.current.pose === 'skill2',
+          flashRemaining: 0,
+        });
       } else {
         equipment?.tick(this.elapsed + index * 0.4);
+        premium?.update({
+          x: baseX ?? 0,
+          y: baseY ?? 0,
+          scaleX: baseScale ?? 1,
+          scaleY: baseScale ?? 1,
+          rotation: 0,
+          facingX: facingX ?? 0,
+          facingY: directionFacingY(direction),
+          elapsed: this.elapsed + index * 0.4,
+          actionProgress: 0.5,
+          comboStep: comboStepForPose(this.context?.characterWardrobe.current.pose ?? 'idle'),
+          state: 'showcase',
+          overdrive: this.context?.characterWardrobe.current.pose === 'skill2',
+          flashRemaining: 0,
+        });
       }
       if (!aura) return;
       aura.alpha = 0.72 + Math.sin(this.elapsed * 2.35 + index * 0.8) * 0.12;
@@ -219,6 +254,7 @@ export class CharacterWardrobeScene implements Scene {
     readonly appearance: CharacterEquipmentAppearance;
     readonly sheet: Spritesheet | undefined;
     readonly attackSheet: Spritesheet | undefined;
+    readonly premiumPartSheet: Spritesheet | undefined;
     readonly calibration: CharacterDisplayCalibration;
     readonly isCandidate: boolean;
   }): void {
@@ -263,6 +299,22 @@ export class CharacterWardrobeScene implements Scene {
       actionProgress: wardrobe.pose.startsWith('attack') || wardrobe.pose.startsWith('skill') ? 0.5 : 0,
       state: 'showcase',
       overdrive: wardrobe.pose === 'skill2',
+    });
+    const premiumLayers = new PremiumCharacterDetailLayerView(input.appearance, input.premiumPartSheet);
+    premiumLayers.update({
+      x: previewX,
+      y: previewY,
+      scaleX: previewScale,
+      scaleY: previewScale,
+      rotation: 0,
+      facingX: directionFacingX(wardrobe.direction),
+      facingY: directionFacingY(wardrobe.direction),
+      elapsed: this.elapsed,
+      actionProgress: wardrobe.pose.startsWith('attack') || wardrobe.pose.startsWith('skill') ? 0.5 : 0.35,
+      comboStep: comboStepForPose(wardrobe.pose),
+      state: 'showcase',
+      overdrive: wardrobe.pose === 'skill2',
+      flashRemaining: 0,
     });
 
     const body = resolveWeaponBodyTextures(
@@ -312,13 +364,14 @@ export class CharacterWardrobeScene implements Scene {
     });
     info.position.set(input.x + 14, 430);
 
-    this.view.addChild(panel, title, aura, equipmentLayers.back);
+    this.view.addChild(panel, title, aura, premiumLayers.back, equipmentLayers.back);
     if (sprite) this.view.addChild(sprite);
-    this.view.addChild(equipmentLayers.front, info);
+    this.view.addChild(equipmentLayers.front, premiumLayers.front, info);
     this.previewSides.push({
       sprite,
       aura,
       equipment: equipmentLayers,
+      premium: premiumLayers,
       recipe: body?.recipe,
       direction: wardrobe.direction,
       baseX: previewX,
@@ -528,6 +581,13 @@ export class CharacterWardrobeScene implements Scene {
 function directionFacingX(direction: string): number {
   if (direction.includes('w')) return -0.82;
   if (direction.includes('e')) return 0.82;
+  return 0;
+}
+
+function directionFacingY(direction: string | undefined): number {
+  if (!direction) return 0;
+  if (direction.includes('n')) return -0.82;
+  if (direction.includes('s')) return 0.82;
   return 0;
 }
 

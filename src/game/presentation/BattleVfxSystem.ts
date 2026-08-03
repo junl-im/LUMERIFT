@@ -4,7 +4,7 @@ import { ObjectPool } from '../../core/pooling/ObjectPool';
 import type { CombatImpactTier } from '../combat/combatData';
 import type { Vec2 } from '../combat/geometry';
 import { resolveDirectionalWeaponTrailFromAngle, type DirectionalWeaponTrailProfile } from './DirectionalWeaponTrail';
-import { drawPremiumRuneGlyph, premiumRuneProfile } from './PremiumRuneVfxLanguage';
+import { drawPremiumRuneGlyph, drawPremiumRuneSparkField, premiumRuneProfile } from './PremiumRuneVfxLanguage';
 
 interface ActiveVfx {
   readonly root: Container;
@@ -147,6 +147,16 @@ export class BattleVfxSystem {
         color,
         alpha * (item.key === 'hit' ? 0.42 : 0.62),
       );
+      if (this.quality.effectDensity > 0.62) {
+        drawPremiumRuneSparkField(
+          graphics,
+          item.impactTier,
+          runeRadius,
+          progress,
+          color,
+          alpha * (item.key === 'hit' ? 0.34 : 0.48),
+        );
+      }
     }
 
     if (item.key === 'hit') {

@@ -1,0 +1,26 @@
+{
+  "schema": "lumerift-premium-ui-frame-v3.1",
+  "status": "runtime-frame-expansion",
+  "roles": [
+    "panel",
+    "button",
+    "boss",
+    "compact"
+  ],
+  "features": [
+    "dual-metal-border",
+    "glass-inset",
+    "corner-facets",
+    "side-facets",
+    "lower-rails",
+    "boss-diamond"
+  ],
+  "targets": [
+    "hud",
+    "inventory",
+    "character-wardrobe",
+    "common-panels",
+    "buttons"
+  ],
+  "initialBundleAddedBytes": 0
+}

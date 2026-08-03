@@ -30,6 +30,11 @@ export const ASSET_PATHS = {
   lobbyBackground: assetUrl('assets/live/v4/backgrounds/lobby_forest_v4.webp'),
   heroPortrait: assetUrl('assets/live/v8/portraits/hero_premium_v8.webp'),
   premiumPlayerOverlayAtlas: assetUrl('assets/live/v8/atlases/player/player_premium_overlay_v8.json'),
+  premiumHudAtlas: assetUrl('assets/live/v15/atlases/ui/premium_hud_v15.json'),
+  premiumPlayerPartsAtlas: assetUrl('assets/live/v16/atlases/player/player_parts_v16.json'),
+  premiumMonsterPartsAtlas: assetUrl('assets/live/v16/atlases/monsters/monster_parts_v16.json'),
+  bossCoreFxAtlas: assetUrl('assets/live/v16/atlases/effects/boss_core_fx_v16.json'),
+  premiumUiIconsV16Atlas: assetUrl('assets/live/v16/atlases/ui/premium_ui_icons_v16.json'),
   characterFxAtlas: assetUrl('assets/live/v9/atlases/player/player_character_fx_v9.json'),
   equipmentMaterialAtlas: assetUrl('assets/live/v9/atlases/equipment/equipment_material_v9.json'),
   bossPortrait: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
@@ -44,6 +49,15 @@ export const ASSET_PATHS = {
   premiumMonsterProductionContract: assetUrl('assets/live/v13/production/MONSTER_ELITE_BOSS_V13.json'),
   premiumRuneVfxContract: assetUrl('assets/live/v13/production/RUNE_VFX_V13.json'),
   premiumUiFrameContract: assetUrl('assets/live/v13/production/UI_FRAME_V13.json'),
+  premiumHudV15Contract: assetUrl('assets/live/v15/production/PREMIUM_HUD_V15.json'),
+  bossCoreV15Contract: assetUrl('assets/live/v15/production/BOSS_CORE_LIFECYCLE_V15.json'),
+  characterPartHandoffV15: assetUrl('assets/live/v15/production/CHARACTER_PART_ATLAS_HANDOFF_V15.json'),
+  monsterPartHandoffV15: assetUrl('assets/live/v15/production/MONSTER_PART_ATLAS_HANDOFF_V15.json'),
+  captureEvidenceV15Contract: assetUrl('assets/live/v15/production/CAPTURE_EVIDENCE_V15.json'),
+  premiumPlayerPartsV16Contract: assetUrl('assets/live/v16/production/PLAYER_PARTS_V16.json'),
+  premiumMonsterPartsV16Contract: assetUrl('assets/live/v16/production/MONSTER_PARTS_V16.json'),
+  bossCoreFxV16Contract: assetUrl('assets/live/v16/production/BOSS_CORE_FX_V16.json'),
+  premiumUiIconsV16Contract: assetUrl('assets/live/v16/production/PREMIUM_UI_ICONS_V16.json'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -60,8 +74,13 @@ export const CORE_UI_BUNDLE: AssetBundleDefinition = {
 
 export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
   id: 'equipment-ui',
-  urls: [ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
-  estimatedBytes: 55_000,
+  urls: [
+    ASSET_PATHS.equipmentAtlas,
+    ASSET_PATHS.equipmentMaterialAtlas,
+    ASSET_PATHS.premiumHudAtlas,
+    ASSET_PATHS.premiumUiIconsV16Atlas,
+  ],
+  estimatedBytes: 305_000,
 };
 
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
@@ -72,8 +91,17 @@ export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
 
 export const WARDROBE_UI_BUNDLE: AssetBundleDefinition = {
   id: 'character-wardrobe-v1',
-  urls: [ASSET_PATHS.playerAtlas, ASSET_PATHS.weaponAttackBodyAtlas, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
-  estimatedBytes: 5_300_000,
+  urls: [
+    ASSET_PATHS.playerAtlas,
+    ASSET_PATHS.weaponAttackBodyAtlas,
+    ASSET_PATHS.heroPortrait,
+    ASSET_PATHS.uiAtlas,
+    ASSET_PATHS.uiIcons,
+    ASSET_PATHS.equipmentAtlas,
+    ASSET_PATHS.equipmentMaterialAtlas,
+    ASSET_PATHS.premiumPlayerPartsAtlas,
+  ],
+  estimatedBytes: 5_440_000,
 };
 
 
@@ -114,8 +142,13 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.bossPortraitPhase3,
     ASSET_PATHS.premiumPlayerOverlayAtlas,
     ASSET_PATHS.characterFxAtlas,
+    ASSET_PATHS.premiumHudAtlas,
+    ASSET_PATHS.premiumPlayerPartsAtlas,
+    ASSET_PATHS.premiumMonsterPartsAtlas,
+    ASSET_PATHS.bossCoreFxAtlas,
+    ASSET_PATHS.premiumUiIconsV16Atlas,
   ],
-  estimatedBytes: 10_900_000,
+  estimatedBytes: 11_540_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -147,6 +180,29 @@ export const PREMIUM_PRODUCTION_CONTRACT_BUNDLE: AssetBundleDefinition = {
   estimatedBytes: 5_000,
 };
 
+export const PREMIUM_RUNTIME_V15_CONTRACT_BUNDLE: AssetBundleDefinition = {
+  id: 'premium-runtime-contract-v15',
+  urls: [
+    ASSET_PATHS.premiumHudV15Contract,
+    ASSET_PATHS.bossCoreV15Contract,
+    ASSET_PATHS.characterPartHandoffV15,
+    ASSET_PATHS.monsterPartHandoffV15,
+    ASSET_PATHS.captureEvidenceV15Contract,
+  ],
+  estimatedBytes: 6_000,
+};
+
+export const PREMIUM_RUNTIME_V16_CONTRACT_BUNDLE: AssetBundleDefinition = {
+  id: 'premium-runtime-contract-v16',
+  urls: [
+    ASSET_PATHS.premiumPlayerPartsV16Contract,
+    ASSET_PATHS.premiumMonsterPartsV16Contract,
+    ASSET_PATHS.bossCoreFxV16Contract,
+    ASSET_PATHS.premiumUiIconsV16Contract,
+  ],
+  estimatedBytes: 5_000,
+};
+
 export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [
   {
     id: 'premium-art-direction-v12',
@@ -155,6 +211,41 @@ export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefiniti
     atlasPaths: [],
     imagePaths: [ASSET_PATHS.premiumCharacterArtReference, ASSET_PATHS.premiumMonsterArtReference],
     bundle: PREMIUM_ART_DIRECTION_REFERENCE_BUNDLE,
+  },
+  {
+    id: 'premium-hud-v15',
+    label: '프리미엄 HUD·스킬·보스 코어 v15',
+    kind: 'atlas',
+    prefix: 'premium.hud.',
+    atlasPaths: [ASSET_PATHS.premiumHudAtlas],
+    imagePaths: [],
+    bundle: { id: 'premium-hud-v15-gallery', urls: [ASSET_PATHS.premiumHudAtlas], estimatedBytes: 66_000 },
+  },
+  {
+    id: 'premium-parts-v16',
+    label: '캐릭터·엘리트·보스 래스터 파츠 v16',
+    kind: 'atlas',
+    prefix: 'premium.parts.',
+    atlasPaths: [ASSET_PATHS.premiumPlayerPartsAtlas, ASSET_PATHS.premiumMonsterPartsAtlas],
+    imagePaths: [],
+    bundle: {
+      id: 'premium-parts-v16-gallery',
+      urls: [ASSET_PATHS.premiumPlayerPartsAtlas, ASSET_PATHS.premiumMonsterPartsAtlas],
+      estimatedBytes: 290_000,
+    },
+  },
+  {
+    id: 'premium-fx-ui-v16',
+    label: '보스 코어 FX·스킬·등급·패턴 아이콘 v16',
+    kind: 'atlas',
+    prefix: 'premium.',
+    atlasPaths: [ASSET_PATHS.bossCoreFxAtlas, ASSET_PATHS.premiumUiIconsV16Atlas],
+    imagePaths: [],
+    bundle: {
+      id: 'premium-fx-ui-v16-gallery',
+      urls: [ASSET_PATHS.bossCoreFxAtlas, ASSET_PATHS.premiumUiIconsV16Atlas],
+      estimatedBytes: 280_000,
+    },
   },
   {
     id: 'live-scenes',

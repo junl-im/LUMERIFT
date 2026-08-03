@@ -66,3 +66,43 @@ export function drawPremiumRuneGlyph(
     }
   }
 }
+
+export interface PremiumRuneSparkFieldOptions {
+  readonly count: number;
+  readonly spread: number;
+  readonly length: number;
+  readonly width: number;
+}
+
+export function premiumRuneSparkField(tier: CombatImpactTier): PremiumRuneSparkFieldOptions {
+  if (tier === 'ultimate') return { count: 12, spread: 1.18, length: 1.22, width: 3.2 };
+  if (tier === 'heavy') return { count: 8, spread: 0.96, length: 1, width: 2.6 };
+  return { count: 5, spread: 0.72, length: 0.78, width: 1.8 };
+}
+
+export function drawPremiumRuneSparkField(
+  graphics: Graphics,
+  tier: CombatImpactTier,
+  radius: number,
+  progress: number,
+  color: number,
+  alpha: number,
+): void {
+  const field = premiumRuneSparkField(tier);
+  const expansion = 0.72 + progress * 0.58;
+  for (let index = 0; index < field.count; index += 1) {
+    const seed = (index * 2.399963229728653 + progress * field.spread) % (Math.PI * 2);
+    const alternating = index % 3;
+    const inner = radius * expansion * (0.34 + alternating * 0.08);
+    const outer = inner + radius * field.length * (0.22 + (index % 2) * 0.09);
+    const bend = seed + (index % 2 === 0 ? 0.045 : -0.045) * (1 - progress);
+    graphics
+      .moveTo(Math.cos(seed) * inner, Math.sin(seed) * inner)
+      .lineTo(Math.cos(bend) * outer, Math.sin(bend) * outer)
+      .stroke({
+        color: alternating === 0 ? 0xffffff : color,
+        alpha: alpha * (alternating === 0 ? 0.52 : 0.34),
+        width: alternating === 0 ? field.width * 0.62 : field.width,
+      });
+  }
+}

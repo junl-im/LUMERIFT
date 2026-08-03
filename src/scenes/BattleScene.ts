@@ -5,6 +5,12 @@ import type { Scene } from '../core/scenes/Scene';
 import { ObjectPool } from '../core/pooling/ObjectPool';
 import { ASSET_PATHS, BATTLE_CHAPTER_1_BUNDLE, OWNED_PLAYER_PAINTED_BUNDLE, OWNED_PLAYER_PREVIEW_BUNDLE } from '../core/assets/AssetCatalog';
 import { CombatActionButton } from '../ui/CombatActionButton';
+import { PREMIUM_HUD_TEXTURE_KEYS, premiumHudTexture } from '../ui/PremiumHudArt';
+import {
+  PREMIUM_UI_ICON_KEYS,
+  premiumBossPatternTextureKey,
+  premiumUiV16Texture,
+} from '../ui/PremiumUiIconArtV16';
 import { VirtualJoystick } from '../ui/VirtualJoystick';
 import { createRasterPanel } from '../ui/UiSkin';
 import { BattleVfxSystem } from '../game/presentation/BattleVfxSystem';
@@ -13,6 +19,8 @@ import { resolveBossTelegraphStyle, type TelegraphUrgency } from '../game/presen
 import { resolveBossThreatHud } from '../game/presentation/BossThreatHud';
 import { normalizeBossPhase, resolveStageVisualProfile, type StageVisualProfile } from '../game/presentation/StageVisualProfile';
 import { bossCinematicAlpha, resolveBossPhasePresentation } from '../game/presentation/BossPhaseDirector';
+import { resolveBossCorePresentation } from '../game/presentation/BossCoreLifecycle';
+import { bossCoreFxTexture } from '../game/presentation/PremiumPartAtlasV16';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
 import { PlayerCombatController } from '../game/actors/player/PlayerCombatController';
 import { MonsterController } from '../game/actors/monsters/MonsterController';
@@ -94,9 +102,17 @@ export class BattleScene implements Scene {
   private monsterSheet?: Spritesheet;
   private effectsSheet?: Spritesheet;
   private equipmentSheet?: Spritesheet;
+  private premiumHudSheet?: Spritesheet;
+  private premiumPlayerPartsSheet?: Spritesheet;
+  private premiumMonsterPartsSheet?: Spritesheet;
+  private bossCoreFxSheet?: Spritesheet;
+  private premiumUiV16Sheet?: Spritesheet;
   private mapTexture?: Texture;
   private readonly bossPortraitTextures: Partial<Record<1 | 2 | 3, Texture>> = {};
   private bossPortraitSprite?: Sprite;
+  private bossCoreSprite?: Sprite;
+  private bossHudObservedPhase = 1;
+  private bossHudPhaseStartedAt = 0;
   private stageVisual?: StageVisualProfile;
   private vfx?: BattleVfxSystem;
   private combatAudio?: CombatAudioDirector;
@@ -228,6 +244,7 @@ export class BattleScene implements Scene {
   private readonly bossThreatPanel = new Container();
   private readonly bossThreatBackdrop = new Graphics();
   private readonly bossThreatAccent = new Graphics();
+  private bossThreatPatternSprite?: Sprite;
   private readonly bossThreatGuidanceText = new Text({
     text: '',
     style: new TextStyle({ fill: 0xd7e5e3, fontSize: 9, fontWeight: '700', align: 'center', letterSpacing: 0.35 }),
@@ -361,6 +378,11 @@ export class BattleScene implements Scene {
     this.weaponAttackBodySheet = context.assets.get<Spritesheet>(ASSET_PATHS.weaponAttackBodyAtlas);
     this.effectsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.effectsAtlas);
     this.equipmentSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentAtlas);
+    this.premiumHudSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumHudAtlas);
+    this.premiumPlayerPartsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerPartsAtlas);
+    this.premiumMonsterPartsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterPartsAtlas);
+    this.bossCoreFxSheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreFxAtlas);
+    this.premiumUiV16Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV16Atlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
     this.bossPortraitTextures[1] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase1);
     this.bossPortraitTextures[2] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase2);
@@ -416,6 +438,7 @@ export class BattleScene implements Scene {
       premiumOverlaySheet: this.premiumPlayerOverlaySheet,
       characterFxSheet: this.characterFxSheet,
       weaponAttackBodySheet: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? undefined : this.weaponAttackBodySheet,
+      premiumPlayerPartSheet: this.premiumPlayerPartsSheet,
       equipmentAppearance,
       displayCalibration: resolveCharacterDisplayCalibration(),
       mirrorWest: false,
@@ -718,8 +741,19 @@ export class BattleScene implements Scene {
       this.bossPortraitSprite.width = 54;
       this.bossPortraitSprite.height = 54;
     }
+    const bossCoreTexture = bossCoreFxTexture(this.bossCoreFxSheet, 'shielded', 0)
+      ?? premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.core);
+    this.bossCoreSprite = bossCoreTexture ? new Sprite(bossCoreTexture) : undefined;
+    if (this.bossCoreSprite) {
+      this.bossCoreSprite.anchor.set(0.5);
+      this.bossCoreSprite.position.set(500, 132);
+      this.bossCoreSprite.width = 38;
+      this.bossCoreSprite.height = 38;
+      this.bossCoreSprite.alpha = 0.86;
+    }
     this.bossPanel.addChild(bossBackground);
     if (this.bossPortraitSprite) this.bossPanel.addChild(this.bossPortraitSprite);
+    if (this.bossCoreSprite) this.bossPanel.addChild(this.bossCoreSprite);
     this.bossPanel.addChild(bossTrack, this.bossHpFill, this.bossNameText);
     this.bossPanel.visible = false;
 
@@ -791,6 +825,8 @@ export class BattleScene implements Scene {
       label: '회피',
       radius: 36,
       tone: 'secondary',
+      iconTexture: premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.dodge),
+      iconScale: 0.86,
       onPress: () => this.requestDodge(this.resolveMoveAxis()),
     });
     this.dodgeButton.position.set(205, 842);
@@ -799,6 +835,8 @@ export class BattleScene implements Scene {
       label: '노바',
       radius: 41,
       tone: 'secondary',
+      iconTexture: premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.skillNova)
+        ?? premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.nova),
       onPress: () => this.requestSkill('skill2'),
     });
     this.skill2Button.position.set(294, 884);
@@ -807,6 +845,8 @@ export class BattleScene implements Scene {
       label: '크래시',
       radius: 46,
       tone: 'secondary',
+      iconTexture: premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.skillCrash)
+        ?? premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.crash),
       onPress: () => this.requestSkill('skill1'),
     });
     this.skill1Button.position.set(385, 858);
@@ -814,6 +854,8 @@ export class BattleScene implements Scene {
     this.attackButton = new CombatActionButton({
       label: '공격',
       radius: 57,
+      iconTexture: premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.skillAttack)
+        ?? premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.attack),
       onPress: () => { this.requestBasicAttack(); },
     });
     this.attackButton.position.set(478, 838);
@@ -832,7 +874,21 @@ export class BattleScene implements Scene {
     this.dangerText.position.set(0, -7);
     this.bossThreatGuidanceText.anchor.set(0.5);
     this.bossThreatGuidanceText.position.set(0, 13);
-    this.bossThreatPanel.addChild(this.bossThreatBackdrop, this.bossThreatAccent, this.dangerText, this.bossThreatGuidanceText);
+    const patternTexture = premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.patternSlash);
+    if (patternTexture) {
+      this.bossThreatPatternSprite = new Sprite(patternTexture);
+      this.bossThreatPatternSprite.anchor.set(0.5);
+      this.bossThreatPatternSprite.position.set(-174, 1);
+      this.bossThreatPatternSprite.scale.set(0.27);
+      this.bossThreatPatternSprite.alpha = 0.92;
+    }
+    this.bossThreatPanel.addChild(
+      this.bossThreatBackdrop,
+      this.bossThreatAccent,
+      ...(this.bossThreatPatternSprite ? [this.bossThreatPatternSprite] : []),
+      this.dangerText,
+      this.bossThreatGuidanceText,
+    );
     this.bossThreatPanel.visible = false;
 
     this.announcementText.anchor.set(0.5);
@@ -1496,7 +1552,13 @@ export class BattleScene implements Scene {
     for (const [spawnIndex, spawn] of wave.enemies.entries()) {
       const definition = context.gameData.getMonster(spawn.monsterId);
       const controller = new MonsterController(definition.combat, { x: spawn.x, y: spawn.y });
-      const presentation = new MonsterActorView(definition, quality, this.monsterSheet);
+      const presentation = new MonsterActorView(
+        definition,
+        quality,
+        this.monsterSheet,
+        this.premiumMonsterPartsSheet,
+        this.bossCoreFxSheet,
+      );
       this.world.addChild(presentation.root);
       this.enemies.push({
         runtimeId: `${wave.id}:${spawnIndex}:${spawn.monsterId}`,
@@ -2105,6 +2167,18 @@ export class BattleScene implements Scene {
         strategyPreset: assist?.strategyPreset ?? 'balanced',
       });
       const threatColor = threat.accentColor;
+      if (this.bossThreatPatternSprite) {
+        const texture = premiumUiV16Texture(
+          this.premiumUiV16Sheet,
+          premiumBossPatternTextureKey(telegraph.pattern.id, telegraph.pattern.shape),
+        );
+        if (texture) this.bossThreatPatternSprite.texture = texture;
+        this.bossThreatPatternSprite.tint = threatColor;
+        this.bossThreatPatternSprite.alpha = threat.tone === 'critical' ? 1 : 0.86;
+        this.bossThreatPatternSprite.rotation = threat.tone === 'critical'
+          ? Math.sin(this.elapsed * threat.pulseRate) * 0.045
+          : 0;
+      }
       this.dangerText.text = threat.headline;
       this.dangerText.style.fill = threatColor;
       this.bossThreatGuidanceText.text = threat.guidance;
@@ -2127,7 +2201,36 @@ export class BattleScene implements Scene {
       this.lastBossTelegraphUrgency = undefined;
     }
     const hpRatio = boss.controller.hp / boss.controller.config.maxHp;
-    this.bossNameText.text = `◆ ${boss.controller.config.name} · PHASE ${boss.controller.phase}`;
+    if (boss.controller.phase !== this.bossHudObservedPhase) {
+      this.bossHudObservedPhase = boss.controller.phase;
+      this.bossHudPhaseStartedAt = this.elapsed;
+    }
+    const bossCore = resolveBossCorePresentation({
+      rank: 'boss',
+      phase: boss.controller.phase,
+      hpRatio,
+      secondsSincePhaseChange: Math.max(0, this.elapsed - this.bossHudPhaseStartedAt),
+      alive: boss.controller.isAlive,
+    });
+    if (this.bossCoreSprite) {
+      const pulse = 0.5 + Math.sin(this.elapsed * bossCore.pulseRate) * 0.5;
+      const texture = bossCoreFxTexture(
+        this.bossCoreFxSheet,
+        bossCore.state,
+        Math.max(0, this.elapsed - this.bossHudPhaseStartedAt),
+      );
+      if (texture) this.bossCoreSprite.texture = texture;
+      this.bossCoreSprite.alpha = Math.min(1, bossCore.coreAlpha * (0.78 + pulse * 0.22));
+      const scale = 0.28 * bossCore.scale * (1 + pulse * 0.05);
+      this.bossCoreSprite.scale.set(scale);
+      this.bossCoreSprite.rotation = this.elapsed * (bossCore.state === 'overdrive' ? 0.22 : 0.1);
+      this.bossCoreSprite.tint = bossCore.state === 'overdrive'
+        ? 0xff8bcf
+        : bossCore.state === 'fractured' || bossCore.state === 'shattered'
+          ? 0xffc27a
+          : 0xffffff;
+    }
+    this.bossNameText.text = `◆ ${boss.controller.config.name} · PHASE ${boss.controller.phase} · ${bossCore.label}`;
     this.updateBossPortrait(boss.controller.phase);
     this.bossHpFill.clear()
       .roundRect(124, 147, 362 * hpRatio, 9, 5)

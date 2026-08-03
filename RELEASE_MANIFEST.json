@@ -1,19 +1,18 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.29",
-  "baseVersion": "1.11.28",
+  "version": "1.11.32",
+  "baseVersion": "1.11.31",
   "releaseDate": "2026-08-03",
-  "fullArchive": "LUMERIFT_FULL_v1.11.29.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.28_to_v1.11.29_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-procedural-character-centered-runtime-first-pass-v13",
+  "fullArchive": "LUMERIFT_FULL_v1.11.32.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.31_to_v1.11.32_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-premium-raster-parts-runtime-v16",
   "features": [
-    "Premium Art Direction v2 기반 플레이어 금속 트림·얼굴 크레스트·흉부 룬·망토 윤곽 런타임 1차 적용",
-    "검·대검·균열 장창 3개 계열·8방향·10개 행동·6개 레이어 제작 규격 확정",
-    "엘리트·보스 왕관형 크리스털·약점 코어·발톱 실루엣과 3종 엘리트·1종 보스 Atlas 계획",
-    "Light·Heavy·Ultimate 충격 등급별 6/8/12광선 룬 VFX 합성",
-    "공통 패널·버튼 이중 금속·유리 프레임 v3 적용",
-    "신규 런타임 이미지 0개·초기 자산 번들 증가 0 bytes·기존 Atlas 안전 폴백 유지"
+    "플레이어 투명 래스터 파츠 v16 16프레임 전투·아틀리에 합성",
+    "엘리트·보스 투명 래스터 파츠 v16 16프레임 합성",
+    "보스 코어 5상태 12프레임 래스터 FX",
+    "스킬·등급·보스 패턴·장비 Premium UI Icons v16 16프레임",
+    "기존 본체와 프로그램형 레이어 안전 폴백 및 최종 전신 Atlas 미완료 명시"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -33,14 +32,14 @@
       "bmp",
       "tiff"
     ],
-    "publicPolicy": "public/assets manifest-reachable assets; v1.11.29 adds four lazy production JSON contracts and zero runtime images",
-    "archivePolicy": "v1.11.29 preserves Premium Art Direction v2 masters and v13 production contracts; final hand-painted Atlas completion is not claimed",
+    "publicPolicy": "public/assets manifest-reachable assets; v1.11.32 adds four transparent runtime WebP Atlases, four Atlas JSON files, and four production contracts",
+    "archivePolicy": "v1.11.32 preserves v16 production masters; final full-body hand-painted character and monster Atlases are not complete",
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
     "validate-release-version",
-    "cumulative validators v1.11.0 through v1.11.29",
-    "v1.11.29 production contract execution verifier",
+    "cumulative non-bundle validators v1.11.0 through v1.11.32",
+    "v1.11.32 production contract verifier",
     "offline strict TypeScript 5.8.3 check with temporary dependency declarations",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"

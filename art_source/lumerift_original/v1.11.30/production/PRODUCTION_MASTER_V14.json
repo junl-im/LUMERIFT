@@ -1,0 +1,13 @@
+{
+  "schema": "lumerift-production-master-v14",
+  "version": "1.11.30",
+  "qualityStage": "production-candidate-procedural-character-centered-runtime-second-pass-v14",
+  "contracts": [
+    "CHARACTER_RUNTIME_V14.json",
+    "MONSTER_RUNTIME_V14.json",
+    "RUNE_VFX_V14.json",
+    "UI_FRAME_V14.json"
+  ],
+  "finalHandPaintedAtlasesComplete": false,
+  "physicalDeviceCaptureApproved": false
+}

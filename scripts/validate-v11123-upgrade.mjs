@@ -54,9 +54,9 @@ const sourceTokens = {
     '외형 프리셋 검색',
   ],
   'src/core/performance/CharacterDisplayCalibrationStore.ts': [
-    "schema: 'lumerift-character-display-capture-v1'",
+    "schema: 'lumerift-character-display-capture-v2'",
     'record.approved !== true',
-    'record.screenshotRefs',
+    'record.screenshots',
     "captureStatus: 'capture-verified'",
   ],
   'src/core/presentation/CharacterAppearanceCloudSync.ts': [

@@ -1,0 +1,37 @@
+{
+  "schema": "lumerift-premium-monster-parts-v16",
+  "version": "1.11.32",
+  "stage": "first-raster-part-batch",
+  "atlas": "live/v16/atlases/monsters/monster_parts_v16.json",
+  "image": "live/v16/atlases/monsters/monster_parts_v16.webp",
+  "frames": 16,
+  "animations": 16,
+  "size": {
+    "w": 512,
+    "h": 512
+  },
+  "families": [
+    "void",
+    "frost",
+    "inferno",
+    "abyssal-boss"
+  ],
+  "parts": [
+    "crest",
+    "core",
+    "claw",
+    "mane",
+    "tail",
+    "aura",
+    "overdrive"
+  ],
+  "runtimeComposite": true,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "monsters_live_v4",
+    "programmatic-monster-detail-layer"
+  ],
+  "enemyDataChanged": false,
+  "attackFootprintChanged": false,
+  "notes": "Elite and boss overlays improve silhouette and material definition while the established monster body remains the safe fallback."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "lumerift-premium-hud-art-v1",
+  "release": "1.11.31",
+  "status": "runtime-active-approved-reference-derived",
+  "atlas": "../atlases/ui/premium_hud_v15.json",
+  "frames": 8,
+  "cellSize": 128,
+  "sourceArt": [
+    "../../v12/art-direction/character_quality_upgrade_v12.webp",
+    "../../v12/art-direction/monster_quality_upgrade_v12.webp"
+  ],
+  "usage": [
+    "battle action buttons",
+    "boss core HUD",
+    "inventory premium crest"
+  ],
+  "combatBodyReplacement": false,
+  "monsterBodyReplacement": false,
+  "initialBundleAddedBytes": 63086
+}

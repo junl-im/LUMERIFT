@@ -1,39 +1,26 @@
-# PROJECT HANDOFF v1.11.29
+# PROJECT HANDOFF v1.11.32
 
-**현재 버전:** v1.11.29  
-**기준 전체본:** v1.11.28  
-**패치 방식:** 프로젝트 최상위 덮어쓰기, 삭제 파일 없음
+**현재 버전:** v1.11.32  
+**기준:** 모바일 웹 9:16 · Premium Art Direction v2 · App Check 비활성
 
-## 이번 릴리스
+## 완료
+- 플레이어 얼굴·헤어·갑주·망토·룬·검·대검·장창 투명 WebP 파츠 16프레임 합성
+- Void·Frost·Inferno 엘리트와 Abyssal 보스 투명 WebP 파츠 16프레임 합성
+- 보스 코어 5상태 12프레임 FX Atlas 적용
+- 스킬·등급·보스 패턴·장비 Premium UI Icons 16프레임 적용
+- 전투·캐릭터 스튜디오·인벤토리 v16 우선 로딩과 기존 v15·프로그램형 레이어 폴백
 
-- Premium Art Direction v2 기반 플레이어 전투 디테일 레이어 1차 적용
-- 검·대검·균열 장창 3계열·8방향·10행동·6레이어 최종 제작 규격 확정
-- 엘리트·보스 왕관형 크리스털·약점 코어·발톱 실루엣 적용
-- 엘리트 3종·보스 1종 총 936프레임 차기 Atlas 계획 등록
-- Light·Heavy·Ultimate 등급별 룬 VFX 문법 적용
-- 공통 패널·버튼 이중 금속·유리 프레임 v3 적용
-- 신규 런타임 이미지 0개, 초기 자산 번들 증가 0 bytes
-
-## 핵심 문서
-
-- `docs/PATCH_NOTES_v1.11.29.md`
-- `docs/PREMIUM_CHARACTER_RUNTIME_FIRST_PASS_v1.11.29.md`
-- `docs/PREMIUM_MONSTER_PRODUCTION_PLAN_v1.11.29.md`
-- `docs/PREMIUM_RUNE_UI_SYSTEM_v1.11.29.md`
-- `docs/NEXT_UPDATE_v1.11.30.md`
-
-## 품질 진실성
-
-이번 버전은 실제 전투 화면에 연결된 프로그램형 제작 1차다. 기존 v10/v11 플레이어 Atlas와 v4 몬스터 Atlas를 유지하며, 최종 수작업 본체·장비 파츠 Atlas가 완성됐다고 기록하지 않는다.
-
-## 미완료로 유지
-
-- 플레이어·몬스터 최종 수작업 Atlas
-- 실제 장비 파츠·스킬/룬 아이콘 이미지 Atlas
-- Android Chrome·iOS Safari 실제 물리 기기 캡처 승인
+## 미완료
+- 8방향 전체 전신·공격 수작업 플레이어·몬스터 Atlas
+- Android Chrome·iOS Safari 검증된 물리 기기 승인 패키지
 - 실제 npm 의존성 기반 Vitest·Vite production build
 
-## 릴리스 파일
+## 고정 규칙
+- v16 파츠는 기존 본체 위 합성용 첫 래스터 배치이며 최종 전신 Atlas로 표현하지 않는다.
+- 보스 코어 FX와 UI 아이콘은 표현 계층이며 `AttackFootprint`, 피해량, 저장 스키마를 변경하지 않는다.
+- v16 로딩 실패 시 기존 v10/v11/v4 본체, Premium HUD v15, 프로그램 레이어로 폴백한다.
+- Player Save v4와 Firebase App Check 비활성 상태를 유지한다.
 
-- 전체본: `LUMERIFT_FULL_v1.11.29.zip`
-- 패치: `LUMERIFT_PATCH_v1.11.28_to_v1.11.29_ROOT_OVERWRITE.zip`
+## 배포
+- 전체본: `LUMERIFT_FULL_v1.11.32.zip`
+- 패치: `LUMERIFT_PATCH_v1.11.31_to_v1.11.32_ROOT_OVERWRITE.zip`

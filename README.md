@@ -1,17 +1,23 @@
-# LUMERIFT: 균열의 계승자 v1.11.29
+# LUMERIFT: 균열의 계승자 v1.11.32
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
-## v1.11.29 핵심 업데이트
-- 플레이어 금속 트림·얼굴 크레스트·흉부 룬·망토 윤곽 런타임 1차 적용
-- 검·대검·균열 장창 3개 계열, 8방향, 10개 행동, 6개 레이어 제작 규격 확정
-- 엘리트·보스 왕관형 크리스털·약점 코어·발톱 실루엣 적용
-- Light·Heavy·Ultimate 충격 등급별 룬 VFX 합성
-- 공통 패널·버튼 이중 금속·유리 Premium UI Frame v3 적용
-- 신규 런타임 이미지 0개, 초기 자산 번들 증가 0 bytes
-- 관련 문서: `docs/PATCH_NOTES_v1.11.29.md`, `docs/PREMIUM_CHARACTER_RUNTIME_FIRST_PASS_v1.11.29.md`, `docs/PREMIUM_MONSTER_PRODUCTION_PLAN_v1.11.29.md`, `docs/PREMIUM_RUNE_UI_SYSTEM_v1.11.29.md`
+## v1.11.32 핵심 업데이트
+- 플레이어 얼굴·헤어·갑주·망토·룬·검·대검·장창 투명 래스터 파츠 Atlas 16프레임 첫 배치
+- Void·Frost·Inferno 엘리트와 Abyssal 보스 파츠 Atlas 16프레임 첫 배치
+- 보스 코어 5상태 12프레임 FX Atlas와 Premium UI Icons 16프레임 적용
+- 전투·캐릭터 스튜디오·인벤토리에서 v16 우선 사용, 기존 v15·프로그램 레이어 안전 폴백
+- 최종 전신 수작업 Atlas와 물리 기기 승인은 미완료 상태 유지
+- 관련 문서: `docs/PATCH_NOTES_v1.11.32.md`, `docs/PREMIUM_PARTS_ATLAS_v1.11.32.md`, `docs/BOSS_CORE_FX_v1.11.32.md`, `docs/PREMIUM_UI_ICONS_v1.11.32.md`
 
-최종 수작업 플레이어·몬스터 Atlas와 실제 장비 파츠 이미지 Atlas는 아직 완료로 기록하지 않는다.
+
+## v1.11.31 핵심 업데이트
+- 승인 아트 기준 파생 512×256 Premium HUD v15 Atlas와 128×128 프레임 8개 적용
+- 공격·스킬·회피 버튼, 보스 코어 HUD, 인벤토리 크레스트 프리미엄 아트 연결
+- 보스 코어 보호·균열·파괴·재생·폭주 라이프사이클 적용
+- Android Chrome·iOS Safari 캡처 JSON과 실제 이미지의 SHA-256·용량·해상도 교차 검증
+- 실제 수작업 플레이어·몬스터 파츠 Atlas는 인수인계 계약만 추가하고 완료로 기록하지 않음
+- 관련 문서: `docs/PATCH_NOTES_v1.11.31.md`, `docs/PREMIUM_HUD_ART_v1.11.31.md`, `docs/BOSS_CORE_LIFECYCLE_v1.11.31.md`, `docs/CAPTURE_EVIDENCE_SHA256_v1.11.31.md`
 
 ## v1.11.9 핵심
 - 자동 타겟 점수·선정 이유와 자동 전투 행동 이유를 전투 HUD에 실시간 표시

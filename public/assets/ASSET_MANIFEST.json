@@ -1,7 +1,7 @@
 {
-  "version": 18,
+  "version": "1.11.32",
   "game": "LUMERIFT",
-  "release": "1.11.29",
+  "release": "1.11.32",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -21,9 +21,13 @@
         "atlases/items/equipment_icons_v1.json",
         "atlases/items/equipment_icons_v1.webp",
         "live/v9/atlases/equipment/equipment_material_v9.json",
-        "live/v9/atlases/equipment/equipment_material_v9.webp"
+        "live/v9/atlases/equipment/equipment_material_v9.webp",
+        "live/v15/atlases/ui/premium_hud_v15.json",
+        "live/v15/atlases/ui/premium_hud_v15.webp",
+        "live/v16/atlases/ui/premium_ui_icons_v16.json",
+        "live/v16/atlases/ui/premium_ui_icons_v16.webp"
       ],
-      "bytes": 51817
+      "bytes": 300739
     },
     "lobby-character": {
       "files": [
@@ -72,9 +76,19 @@
         "live/v9/atlases/player/player_character_fx_v9.json",
         "live/v9/atlases/player/player_character_fx_v9.webp",
         "live/v11/atlases/player/player_weapon_attack_body_v11.json",
-        "live/v11/atlases/player/player_weapon_attack_body_v11.webp"
+        "live/v11/atlases/player/player_weapon_attack_body_v11.webp",
+        "live/v15/atlases/ui/premium_hud_v15.json",
+        "live/v15/atlases/ui/premium_hud_v15.webp",
+        "live/v16/atlases/player/player_parts_v16.json",
+        "live/v16/atlases/player/player_parts_v16.webp",
+        "live/v16/atlases/monsters/monster_parts_v16.json",
+        "live/v16/atlases/monsters/monster_parts_v16.webp",
+        "live/v16/atlases/effects/boss_core_fx_v16.json",
+        "live/v16/atlases/effects/boss_core_fx_v16.webp",
+        "live/v16/atlases/ui/premium_ui_icons_v16.json",
+        "live/v16/atlases/ui/premium_ui_icons_v16.webp"
       ],
-      "bytes": 8875585
+      "bytes": 9506778
     },
     "operations-ui-v3": {
       "files": [
@@ -148,11 +162,74 @@
         "live/v13/production/UI_FRAME_V13.json"
       ],
       "bytes": 2440
+    },
+    "premium-runtime-contract-v14": {
+      "files": [
+        "live/v14/production/CHARACTER_RUNTIME_V14.json",
+        "live/v14/production/MONSTER_RUNTIME_V14.json",
+        "live/v14/production/RUNE_VFX_V14.json",
+        "live/v14/production/UI_FRAME_V14.json"
+      ],
+      "bytes": 3476
+    },
+    "premium-hud-v15": {
+      "files": [
+        "live/v15/atlases/ui/premium_hud_v15.json",
+        "live/v15/atlases/ui/premium_hud_v15.webp"
+      ],
+      "bytes": 67291
+    },
+    "premium-runtime-contract-v15": {
+      "files": [
+        "live/v15/production/PREMIUM_HUD_V15.json",
+        "live/v15/production/BOSS_CORE_LIFECYCLE_V15.json",
+        "live/v15/production/CHARACTER_PART_ATLAS_HANDOFF_V15.json",
+        "live/v15/production/MONSTER_PART_ATLAS_HANDOFF_V15.json",
+        "live/v15/production/CAPTURE_EVIDENCE_V15.json"
+      ],
+      "bytes": 2415
+    },
+    "premium-player-parts-v16": {
+      "files": [
+        "live/v16/atlases/player/player_parts_v16.json",
+        "live/v16/atlases/player/player_parts_v16.webp"
+      ],
+      "bytes": 129005
+    },
+    "premium-monster-parts-v16": {
+      "files": [
+        "live/v16/atlases/monsters/monster_parts_v16.json",
+        "live/v16/atlases/monsters/monster_parts_v16.webp"
+      ],
+      "bytes": 160049
+    },
+    "boss-core-fx-v16": {
+      "files": [
+        "live/v16/atlases/effects/boss_core_fx_v16.json",
+        "live/v16/atlases/effects/boss_core_fx_v16.webp"
+      ],
+      "bytes": 93217
+    },
+    "premium-ui-icons-v16": {
+      "files": [
+        "live/v16/atlases/ui/premium_ui_icons_v16.json",
+        "live/v16/atlases/ui/premium_ui_icons_v16.webp"
+      ],
+      "bytes": 181631
+    },
+    "premium-runtime-contract-v16": {
+      "files": [
+        "live/v16/production/PLAYER_PARTS_V16.json",
+        "live/v16/production/MONSTER_PARTS_V16.json",
+        "live/v16/production/BOSS_CORE_FX_V16.json",
+        "live/v16/production/PREMIUM_UI_ICONS_V16.json"
+      ],
+      "bytes": 3357
     }
   },
   "deployment": {
-    "publicAssetFiles": 59,
-    "publicAssetBytes": 11251707,
+    "publicAssetFiles": 82,
+    "publicAssetBytes": 11893243,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",
@@ -162,5 +239,5 @@
     "runtimeArchiveBytes": 23474797,
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
-  "activeRuntimeBytes": 11251707
+  "activeRuntimeBytes": 11893243
 }

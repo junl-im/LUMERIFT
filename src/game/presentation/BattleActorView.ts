@@ -29,6 +29,7 @@ export interface PlayerActorViewOptions {
   readonly premiumOverlaySheet?: Spritesheet;
   readonly characterFxSheet?: Spritesheet;
   readonly weaponAttackBodySheet?: Spritesheet;
+  readonly premiumPlayerPartSheet?: Spritesheet;
   readonly equipmentAppearance?: CharacterEquipmentAppearance;
   readonly spriteBaseScale?: number;
   readonly displayCalibration?: CharacterDisplayCalibration;
@@ -120,7 +121,10 @@ export class PlayerActorView {
       layerVariantLabel: '정찰 갈매기갑 · 루멘 궤도룬',
     };
     this.equipmentLayers = new CharacterEquipmentLayerView(this.equipmentAppearance);
-    this.premiumDetailLayers = new PremiumCharacterDetailLayerView(this.equipmentAppearance);
+    this.premiumDetailLayers = new PremiumCharacterDetailLayerView(
+      this.equipmentAppearance,
+      options.premiumPlayerPartSheet,
+    );
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -342,6 +346,7 @@ export class PlayerActorView {
         facingY: facing.y,
         elapsed,
         actionProgress: controller.stateProgress,
+        comboStep: controller.comboStep,
         state: controller.state,
         overdrive: frame.overdrive,
         flashRemaining,
@@ -389,6 +394,7 @@ export class PlayerActorView {
         facingY: facing.y,
         elapsed,
         actionProgress: controller.stateProgress,
+        comboStep: controller.comboStep,
         state: controller.state,
         overdrive: frame.overdrive,
         flashRemaining,
@@ -686,10 +692,19 @@ export class MonsterActorView {
     private readonly definition: MonsterDefinition,
     private readonly quality: GraphicsQualityPreset,
     private readonly sheet?: Spritesheet,
+    premiumMonsterPartSheet?: Spritesheet,
+    bossCoreFxSheet?: Spritesheet,
   ) {
     const { combat, visual } = definition;
     this.spriteBaseScale = combat.rank === 'boss' ? 1.22 : combat.rank === 'elite' ? 0.92 : 0.78;
-    this.premiumDetailLayers = new PremiumMonsterDetailLayerView(combat.rank, combat.radius, visual);
+    this.premiumDetailLayers = new PremiumMonsterDetailLayerView(
+      combat.id,
+      combat.rank,
+      combat.radius,
+      visual,
+      premiumMonsterPartSheet,
+      bossCoreFxSheet,
+    );
     const shadow = new Graphics()
       .ellipse(0, combat.radius * 0.75, combat.radius * 1.05, combat.radius * 0.38)
       .fill({ color: COLORS.dark, alpha: 0.38 });
@@ -758,6 +773,7 @@ export class MonsterActorView {
       elapsed: this.elapsed,
       state: controller.state,
       phase: controller.phase,
+      hpRatio: controller.hp / Math.max(1, controller.config.maxHp),
       facingSign: this.facingSign,
       flashRemaining,
       alive: controller.isAlive,

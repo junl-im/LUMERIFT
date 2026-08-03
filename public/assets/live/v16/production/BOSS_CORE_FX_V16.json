@@ -1,0 +1,25 @@
+{
+  "schema": "lumerift-boss-core-fx-v16",
+  "version": "1.11.32",
+  "stage": "painted-core-animation-first-batch",
+  "atlas": "live/v16/atlases/effects/boss_core_fx_v16.json",
+  "image": "live/v16/atlases/effects/boss_core_fx_v16.webp",
+  "frames": 12,
+  "animations": 5,
+  "size": {
+    "w": 512,
+    "h": 384
+  },
+  "states": [
+    "shielded",
+    "fractured",
+    "shattered",
+    "regenerating",
+    "overdrive"
+  ],
+  "bodyAndHudSharedState": true,
+  "gameplayTimingChanged": false,
+  "attackFootprintChanged": false,
+  "fallback": "BossCoreLifecycle v15 programmatic presentation",
+  "notes": "Painted core states are presentation-only and preserve v15 lifecycle timing and combat data."
+}
