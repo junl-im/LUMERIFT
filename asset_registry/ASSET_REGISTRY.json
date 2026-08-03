@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.25",
-  "generatedAt": "2026-07-31T07:05:24.100Z",
+  "release": "1.11.28",
+  "generatedAt": "2026-08-03T04:22:26.964Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 97,
-      "bytes": 84037519,
+      "files": 100,
+      "bytes": 85069804,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,8 +23,8 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 52,
-      "bytes": 10578786,
+      "files": 55,
+      "bytes": 11248928,
       "atlases": 14,
       "frames": 1842,
       "animations": 512
@@ -126,6 +126,30 @@
       "type": "json",
       "bytes": 975,
       "sha256": "73afa82f64ab938b42361eb00f93fbcfd3dc2cb10000bb65b59d79d5f4bfff66"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/ART_DIRECTION_MASTER.json",
+      "relativePath": "lumerift_original/v1.11.28/art-direction/ART_DIRECTION_MASTER.json",
+      "classification": "source-master",
+      "type": "json",
+      "bytes": 1327,
+      "sha256": "dcc7f3299c4f0f6e571a57ae2921551842d2148fd98ca3558f060c0728ab2c4f"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/character_quality_upgrade_master_v12.webp",
+      "relativePath": "lumerift_original/v1.11.28/art-direction/character_quality_upgrade_master_v12.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 471804,
+      "sha256": "81edcf969124225cf2370ed5551777991e106311dc2326324b6a57e610e80b22"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/monster_quality_upgrade_master_v12.webp",
+      "relativePath": "lumerift_original/v1.11.28/art-direction/monster_quality_upgrade_master_v12.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 559154,
+      "sha256": "4d9263a1fd98993f83e5b9ff8c352b8bf51d23b8f330ad8ed13241696e7156c7"
     },
     {
       "path": "art_source/lumerift_original/v1.11.3/player/player_owned_painted_v1_master.png",
@@ -2599,8 +2623,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 5411,
-      "sha256": "57c99c13781c2681d003aef7b0fd27057171ff43933e0a3d977f230e35ad282b"
+      "bytes": 5693,
+      "sha256": "20a80438ecabaa6a5bf65357157e875cea0479987dbeeed2cbd8db31a9e5206c"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -2744,6 +2768,30 @@
       "type": "webp",
       "bytes": 3228416,
       "sha256": "44625bb92a2aaeea3388df16ed5f87f407fda0bf856015ff7d95642665b38e2b"
+    },
+    {
+      "path": "public/assets/live/v12/art-direction/ART_DIRECTION_V12.json",
+      "relativePath": "live/v12/art-direction/ART_DIRECTION_V12.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 1254,
+      "sha256": "95d24ba46ab463980bc51cca41c07cbe4ca151221e3f5843a7a620cb2769ecc3"
+    },
+    {
+      "path": "public/assets/live/v12/art-direction/character_quality_upgrade_v12.webp",
+      "relativePath": "live/v12/art-direction/character_quality_upgrade_v12.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 302298,
+      "sha256": "a88044741b077488420f536f3c17336a4db20b8fd01ada19e0cc12bdbccdd04b"
+    },
+    {
+      "path": "public/assets/live/v12/art-direction/monster_quality_upgrade_v12.webp",
+      "relativePath": "live/v12/art-direction/monster_quality_upgrade_v12.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 366308,
+      "sha256": "533bae8786ad3ddb215b981497d07ce8f2c1244b07671fab4877fa7fe65f4361"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

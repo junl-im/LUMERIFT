@@ -1,21 +1,19 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.25",
-  "baseVersion": "1.11.24",
-  "releaseDate": "2026-07-31",
-  "fullArchive": "LUMERIFT_FULL_v1.11.25.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.24_to_v1.11.25_ROOT_OVERWRITE.zip",
-  "qualityStage": "granular-appearance-conflict-merge-uid-recovery",
+  "version": "1.11.28",
+  "baseVersion": "1.11.27",
+  "releaseDate": "2026-08-03",
+  "fullArchive": "LUMERIFT_FULL_v1.11.28.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.27_to_v1.11.28_ROOT_OVERWRITE.zip",
+  "qualityStage": "approved-premium-art-direction-v2-lazy-reference",
   "features": [
-    "외형 슬롯 1·2·3의 로컬·Cloud·최신 항목별 선택 병합",
-    "슬롯 표시 순서·고정 상태·최근 프리셋 독립 선택",
-    "로컬 고정 슬롯 Cloud 덮어쓰기 강제 차단",
-    "최근 프리셋 중복 제거·즐겨찾기 보존·최신 우선 병합",
-    "Cloud 업로드·충돌 병합·복구 적용 전 자동 외형 복구 지점",
-    "UID별 최대 5개 복구 지점과 JSON 내보내기·가져오기",
-    "외형 Archive v3 전체 교체 API와 실행 하네스",
-    "Player Save v4·AttackFootprint·App Check 비활성 계약 유지"
+    "승인 캐릭터·몬스터 쇼케이스를 LUMERIFT 차기 전체 아트 기준선으로 등록",
+    "캐릭터·몬스터·UI·스킬 VFX·장비 5개 도메인 Premium Art Direction v2 품질 게이트",
+    "에셋 보관소 첫 분류에서 승인 기준 이미지 2종 직접 비교",
+    "941×1672 WebP 런타임 감수본과 고품질 제작용 마스터 분리",
+    "Lazy Reference 전용 번들로 초기 다운로드 증가 0 bytes",
+    "Player Save v4·AttackFootprint·App Check 비활성·15MB 예산 유지"
   ],
   "assetPolicy": {
     "allowedImages": [
@@ -35,15 +33,15 @@
       "bmp",
       "tiff"
     ],
-    "publicPolicy": "public/assets manifest-reachable runtime assets only; no new runtime image in v1.11.25",
-    "archivePolicy": "v1.11.25 changes are cloud conflict and recovery logic; no final hand-drawn attack or equipment art is claimed",
+    "publicPolicy": "public/assets manifest-reachable assets; v1.11.28 art references are lazy-review-only and excluded from core/battle bundles",
+    "archivePolicy": "v1.11.28 preserves approved mobile production masters; runtime combat Atlas replacement is not claimed",
     "registry": "asset_registry/ASSET_REGISTRY.json"
   },
   "verification": [
     "validate-release-version",
-    "cumulative validators v1.11.0 through v1.11.25",
-    "offline strict TypeScript 5.8.3 check",
-    "compiled runtime harness for conflict merge and UID recovery",
+    "cumulative validators v1.11.0 through v1.11.28",
+    "premium art reference SHA-256 and byte contract",
+    "offline strict TypeScript check",
     "patch/full SHA-256 equivalence",
     "ZIP CRC"
   ]

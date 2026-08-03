@@ -26,12 +26,14 @@ export class CharacterAppearanceCloudScene implements Scene {
     const localRevision = characterAppearanceArchiveRevision(archive);
     const remote = cloud.remoteCandidate ?? cloud.conflict?.remote;
     const available = context.characterAppearanceCloud.available;
+    const undo = context.characterAppearanceCloud.mergeUndo(uid);
+    const changedSinceMerge = Boolean(undo && undo.mergedRevision !== localRevision);
 
     this.view.addChild(createBackground(
       '외형 프리셋 Cloud Save',
       '사용자 동의 후에만 UID 전용 문서로 동기화하며 충돌은 자동 덮어쓰지 않습니다.',
     ));
-    this.view.addChild(createPanel(18, 164, 504, 650));
+    this.view.addChild(createPanel(18, 164, 504, 710));
 
     const feedback = createInlineFeedback(
       this.message || cloud.lastError || defaultMessage(available, cloud.optIn, Boolean(cloud.conflict), Boolean(cloud.pendingEnvelope)),
@@ -130,7 +132,7 @@ export class CharacterAppearanceCloudScene implements Scene {
 
     const recovery = new UiButton({
       label: '외형 복구 지점',
-      subtitle: `${context.characterAppearanceCloud.recoveryPoints(uid).length}/5 · 적용 전 자동 백업`,
+      subtitle: `${context.characterAppearanceCloud.recoveryPoints(uid).length}/8 · 이름·고정·검색`,
       width: 226,
       height: 58,
       tone: 'secondary',
@@ -140,11 +142,56 @@ export class CharacterAppearanceCloudScene implements Scene {
     });
     recovery.position.set(278, 554);
 
+    const undoButton = new UiButton({
+      label: undo ? '방금 병합 즉시 실행 취소' : '실행 취소 가능한 병합 없음',
+      subtitle: undo
+        ? `${Math.max(1, Math.ceil((undo.expiresAt - Date.now()) / 60_000))}분 남음${changedSinceMerge ? ' · 이후 로컬 변경은 복구 지점에 보관' : ' · 로컬·Cloud 함께 복원'}`
+        : '충돌 선택 병합 후 30분 동안 1회 제공',
+      width: 468,
+      height: 58,
+      tone: undo ? 'primary' : 'secondary',
+      fontSize: 11,
+      subtitleFontSize: 8,
+      onPress: async () => {
+        const point = context.characterAppearanceCloud.mergeUndo(uid);
+        if (!point) {
+          await context.scenes.change(() => new CharacterAppearanceCloudScene('실행 취소 가능한 병합이 없거나 30분 유효 시간이 지났습니다.'));
+          return;
+        }
+        try {
+          const current = context.characterWardrobe.exportPresetArchive();
+          context.characterAppearanceCloud.createRecoveryPoint(uid, current, 'pre-merge-undo');
+          const restored = context.characterWardrobe.replacePresetArchive(point.archive);
+          let resultMessage = '병합 전 로컬 외형으로 되돌렸습니다. Cloud Save는 현재 사용할 수 없어 로컬만 복원했습니다.';
+          if (cloud.optIn && available) {
+            const result = await context.characterAppearanceCloud.upload(
+              uid,
+              point.archive,
+              Date.now(),
+              '병합 전 외형으로 되돌리고 Cloud 통합본도 갱신했습니다.',
+            );
+            resultMessage = result.message;
+          }
+          context.characterAppearanceCloud.consumeMergeUndo(uid);
+          context.characterAppearanceCloud.recordAudit(uid, {
+            action: 'merge-undo-applied',
+            title: '외형 병합 즉시 실행 취소',
+            revisions: [point.mergedRevision, characterAppearanceArchiveRevision(point.archive)],
+            details: { restoredEntries: restored, cloudUploaded: cloud.optIn && available },
+          });
+          await context.scenes.change(() => new CharacterAppearanceCloudScene(`${restored}개 외형 항목을 즉시 복원했습니다. ${resultMessage}`));
+        } catch (error: unknown) {
+          await context.scenes.change(() => new CharacterAppearanceCloudScene(errorMessage(error)));
+        }
+      },
+    });
+    undoButton.position.set(36, 626);
+
     const policy = new Text({
-      text: '보호 정책 · 선택 병합 전 자동 복구 · 고정 슬롯 로컬 우선 · UID 불일치 거부 · App Check 비활성 유지',
+      text: '보호 정책 · 병합 전 자동 복구 · 30분 1회 실행 취소 · 고정 슬롯 로컬 우선 · UID 격리 · App Check 비활성',
       style: new TextStyle({ fill: COLORS.text, fontSize: 9, lineHeight: 15, fontWeight: '800', wordWrap: true, wordWrapWidth: 468 }),
     });
-    policy.position.set(36, 640);
+    policy.position.set(36, 700);
 
     const back = new UiButton({
       label: '외형 프리셋 보관소로 복귀',
@@ -154,9 +201,9 @@ export class CharacterAppearanceCloudScene implements Scene {
       fontSize: 13,
       onPress: async () => context.scenes.change(() => new AppearancePresetManagerScene()),
     });
-    back.position.set(36, 728);
+    back.position.set(36, 766);
 
-    this.view.addChild(optIn, sync, upload, conflictCenter, recovery, policy, back);
+    this.view.addChild(optIn, sync, upload, conflictCenter, recovery, undoButton, policy, back);
   }
 
   public async exit(): Promise<void> {}

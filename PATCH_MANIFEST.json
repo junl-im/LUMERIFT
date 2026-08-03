@@ -1,178 +1,163 @@
 {
-  "fromVersion": "1.11.24",
-  "toVersion": "1.11.25",
+  "fromVersion": "1.11.27",
+  "toVersion": "1.11.28",
   "rootOverwrite": true,
   "delete": [],
   "files": [
     {
       "path": "AGENTS.md",
-      "bytes": 28863,
-      "sha256": "96e5a3a85e65f3cb26285843eeb7acb114ea29b6645e7f5a873288810b49c786"
+      "bytes": 30589,
+      "sha256": "71fe449deca1c759bcd75d0f1257bcf7740fd9313b684e1f4f572db971f041aa"
     },
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 42245,
-      "sha256": "f12b5a8e0de0ce8864dfd94286448997a22be5015bb88107166e652491dc4b7b"
+      "bytes": 40993,
+      "sha256": "21306f75ac9a8bd013b3c3c38a2d5424cc8fc7d55458816398318cd5a4973b0a"
     },
     {
       "path": "PATCH_DELETE_LIST.txt",
-      "bytes": 58,
-      "sha256": "53d41f564f19359a75cbe96edeb038678d313ef41260e7f8ae636e315dec844f"
+      "bytes": 43,
+      "sha256": "58b5b58b5507d754dc9adfc68a9cb3d18739fd85c2cd3450d0eb0b8eb49fd0af"
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 308,
-      "sha256": "61164f4ebbbc20fbbb25e121511dc9d5d2117fe999d5b8e2b660bc63c79c4371"
+      "bytes": 332,
+      "sha256": "193dfaf756b63aa39ac6d9dbe31d95e8a00a20ff89ae564de89b07a3b6318b0c"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 442,
-      "sha256": "4422d42557ff3d4f656516cf95c8c07c6c69ad0d7c7e3d3ac7d48ff7e673bcf4"
+      "bytes": 478,
+      "sha256": "e34723e135ceeb704f1c8ee800826222abfdca7468a0165efe3b08313ce8a8b7"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1089,
-      "sha256": "b2a9d7705ab8bf67eba627161810eaf89fe8b0c008cc63f2d1aee7a8ac7c40e7"
+      "bytes": 1375,
+      "sha256": "9b1c74ac3f7f5fa8e97c8e3590f7abdadd8302337470b0c49d1ec2de6145737a"
     },
     {
       "path": "README.md",
-      "bytes": 10666,
-      "sha256": "8539513e50fd1742ab499e7a6aebd6a06454703a1f7806e447b29bb31f9c331b"
+      "bytes": 12650,
+      "sha256": "b96887f643d10200364417b606cf5adbda8393554d24010bc9fd8898f0cc0181"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1794,
-      "sha256": "16ab785143bd763903e83065c264c2704f8530164c21f1cd299cf5b8b55806cf"
+      "bytes": 1746,
+      "sha256": "ff71b205034195838e886f5d501ac3b64dfcab80ac217cdd21cf65c37ac508f3"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/ART_DIRECTION_MASTER.json",
+      "bytes": 1327,
+      "sha256": "dcc7f3299c4f0f6e571a57ae2921551842d2148fd98ca3558f060c0728ab2c4f"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/character_quality_upgrade_master_v12.webp",
+      "bytes": 471804,
+      "sha256": "81edcf969124225cf2370ed5551777991e106311dc2326324b6a57e610e80b22"
+    },
+    {
+      "path": "art_source/lumerift_original/v1.11.28/art-direction/monster_quality_upgrade_master_v12.webp",
+      "bytes": 559154,
+      "sha256": "4d9263a1fd98993f83e5b9ff8c352b8bf51d23b8f330ad8ed13241696e7156c7"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
-      "bytes": 124183,
-      "sha256": "9ae7632cd3c743d43a8339adbfc32c14780cf2231151a8668b0fc281b7b99d24"
+      "bytes": 126384,
+      "sha256": "54b6ca6ce95727fdd983b83fda0a1dcdce7288c388010000554415c1129cb809"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 33743,
-      "sha256": "3f996f072bc80804af30a3d1e8736e1a415961012a81b2bcb8d1a7d8021b3f59"
-    },
-    {
-      "path": "docs/CHARACTER_APPEARANCE_CONFLICT_RESOLUTION_v1.11.25.md",
-      "bytes": 1254,
-      "sha256": "520ba40229658cb0774d74b68ad680ef9832dbe2c77a12aa802d78871fb33738"
-    },
-    {
-      "path": "docs/CHARACTER_APPEARANCE_RECOVERY_v1.11.25.md",
-      "bytes": 872,
-      "sha256": "f9306c1bc45776321874d44cd47d7ede63fb5f767d657e6b04a13cfad1512dc3"
+      "bytes": 35511,
+      "sha256": "b9c4e550944e59e89058cd5907f17fbbe93acae101606ddc60aca59b03532168"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "bytes": 23315,
-      "sha256": "c894d611e888f95b25e47b120688d44571c0ac341c5edc95a6161e8c404d9173"
+      "bytes": 25233,
+      "sha256": "4714c21292958d8cdac737fb7107ea5b205356fc27429b82d43fac0a8c0a33f5"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 29690,
-      "sha256": "4bda80998d64512765dcfbb6c55725c8ec61dd81eab49b5fc8a00326b0be6d90"
+      "bytes": 31687,
+      "sha256": "62d2f3b90a705371f8a07dc7d94f99272ef3ba495d28cf47dc3c493216345f93"
     },
     {
-      "path": "docs/NEXT_UPDATE_v1.11.26.md",
-      "bytes": 493,
-      "sha256": "1ac2a2d987650386764b834e0c375815e71baf3eb869512d20eec012e612660a"
+      "path": "docs/NEXT_UPDATE_v1.11.29.md",
+      "bytes": 591,
+      "sha256": "64e810a8bf27b6e1c761d8a6632b793e70906d510c93c0aecaf645420f888708"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.11.25.md",
-      "bytes": 1449,
-      "sha256": "20755b4160cf160c3c6fe4ee1fecfec645b483379bdc39a2c96547b5dc9d3070"
+      "path": "docs/PATCH_NOTES_v1.11.28.md",
+      "bytes": 1869,
+      "sha256": "8b13fb7e9532656e2f00e219fa13380094b1f50e183c7d4e3890f4c8799065dc"
+    },
+    {
+      "path": "docs/PREMIUM_ART_DIRECTION_v1.11.28.md",
+      "bytes": 2087,
+      "sha256": "782eeaec134d290a3a4b3625af60f82561b15be154d3a0afdbc7022ea642e769"
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 25311,
-      "sha256": "f24ecbe65d1c905b4127f68700b49b0c3f0804eef0d28db8c072b28cbab2b305"
+      "bytes": 26649,
+      "sha256": "a8db9d2f2f11efb922531fb3c557a2bb4d5ef124594bd7fbe01319d2c7bc55ab"
     },
     {
       "path": "package.json",
-      "bytes": 6573,
-      "sha256": "236c08d7b1651c3352cd3aea714979c941e5f80c8cdb908086c398d57612afbd"
+      "bytes": 6903,
+      "sha256": "d576073d3371c48281b8e7cb4b64a8ae5173a0bdae169c16fe6f94eff46a36fb"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
-      "bytes": 5411,
-      "sha256": "d44903545d1646a3c9bcf1e1f8df66cdd24477601c5b74bf1bf2f5859ee25136"
+      "bytes": 5693,
+      "sha256": "20a80438ecabaa6a5bf65357157e875cea0479987dbeeed2cbd8db31a9e5206c"
     },
     {
-      "path": "scripts/validate-release-version.mjs",
-      "bytes": 10719,
-      "sha256": "8e9002ca20c3875ae0419cf90cdb73f7ae480a2f43886f04f94c7399730edc85"
+      "path": "public/assets/live/v12/art-direction/ART_DIRECTION_V12.json",
+      "bytes": 1254,
+      "sha256": "95d24ba46ab463980bc51cca41c07cbe4ca151221e3f5843a7a620cb2769ecc3"
     },
     {
-      "path": "scripts/validate-v11124-upgrade.mjs",
-      "bytes": 4768,
-      "sha256": "57d1db275e923d4bd6beda4fc32d75e55c398ac6f594cf5f01e8f4d9b41110b0"
+      "path": "public/assets/live/v12/art-direction/character_quality_upgrade_v12.webp",
+      "bytes": 302298,
+      "sha256": "a88044741b077488420f536f3c17336a4db20b8fd01ada19e0cc12bdbccdd04b"
     },
     {
-      "path": "scripts/validate-v11125-upgrade.mjs",
-      "bytes": 4027,
-      "sha256": "0010a9931ccbf364d69bf7cf98329ff85c9727fd954e1d7c390170ebdf1d5036"
+      "path": "public/assets/live/v12/art-direction/monster_quality_upgrade_v12.webp",
+      "bytes": 366308,
+      "sha256": "533bae8786ad3ddb215b981497d07ce8f2c1244b07671fab4877fa7fe65f4361"
+    },
+    {
+      "path": "scripts/validate-v11127-upgrade.mjs",
+      "bytes": 4582,
+      "sha256": "749f1509b5026194572b0be1c463f218df42980d387df9cd6f81db356f5bd1cb"
+    },
+    {
+      "path": "scripts/validate-v11128-upgrade.mjs",
+      "bytes": 5002,
+      "sha256": "1a08da31b2c0456af49fa0ac1444aded26ef3f23d4547a5e11f2042b0f4eb9c2"
     },
     {
       "path": "src/app/brand.ts",
-      "bytes": 914,
-      "sha256": "309eb7d4801889a150ea31aa3ae4c1551968687307b203f0d29a52b82555129b"
+      "bytes": 1064,
+      "sha256": "9aa2290726e5ca123a87d3a1d14096e9c0119ddef6903633faa1658a5d9a13bb"
     },
     {
-      "path": "src/core/presentation/CharacterAppearanceConflictResolver.test.ts",
-      "bytes": 2827,
-      "sha256": "074e582a0f0d4c9d980cbded5ec236df14d96e79e7b69757de7c9bcaf9750134"
+      "path": "src/core/assets/AssetCatalog.ts",
+      "bytes": 9967,
+      "sha256": "bc2d4a34d5dd4fd74b36b50a886542bf5151356bfdfc72e2ff47454678290e7f"
     },
     {
-      "path": "src/core/presentation/CharacterAppearanceConflictResolver.ts",
-      "bytes": 11168,
-      "sha256": "7a39c10aed33e37f52d85b566598170bd2e9faac1876d1332ce0ea3a00173891"
+      "path": "src/game/presentation/PremiumArtDirection.test.ts",
+      "bytes": 1382,
+      "sha256": "3a33a418cfa0f5ad237a4896aedb0cc765448b6dc796a40546dac33173052494"
     },
     {
-      "path": "src/core/presentation/CharacterWardrobeController.test.ts",
-      "bytes": 5709,
-      "sha256": "f8b6584837073c5ee1e7fa7ec7f1380ac1f5c71fa42445b782bf08b709832114"
+      "path": "src/game/presentation/PremiumArtDirection.ts",
+      "bytes": 4745,
+      "sha256": "abd6e066fe70fdb109ca1fec03d257fb7e300ab675da6d3c9b426111ae430a0a"
     },
     {
-      "path": "src/core/presentation/CharacterWardrobeController.ts",
-      "bytes": 30474,
-      "sha256": "c6625b854e578952e5dd8beb7dd394e32861ac1922025c689e26cb8f0f2f5659"
-    },
-    {
-      "path": "src/scenes/CharacterAppearanceCloudScene.ts",
-      "bytes": 8747,
-      "sha256": "cea61828dd1a6741ce69ca0e933e668a451a2845fb9797b6fb6623e94c084f48"
-    },
-    {
-      "path": "src/scenes/CharacterAppearanceConflictScene.ts",
-      "bytes": 11275,
-      "sha256": "765db2f556f4318a8e6b90f8ece5c9f18adc1593d84ea37c900cdcec5bf87dcc"
-    },
-    {
-      "path": "src/scenes/CharacterAppearanceRecoveryScene.ts",
-      "bytes": 8495,
-      "sha256": "b405a9da71f13f19ff2fcb2d8186678b4763575023b363299fddb2dba36046bc"
-    },
-    {
-      "path": "src/services/cloud/CharacterAppearanceCloudService.test.ts",
-      "bytes": 3908,
-      "sha256": "7f158533f136256c32e4b5a21dd02d72b8a781d3b4bdc91c9861a4c24fa0a0be"
-    },
-    {
-      "path": "src/services/cloud/CharacterAppearanceCloudService.ts",
-      "bytes": 12109,
-      "sha256": "5150044e48d3aed021cec6b3bf09a7e7b31310191756cde1aaa4f0ea378bfb2d"
-    },
-    {
-      "path": "src/services/cloud/CharacterAppearanceRecoveryStore.test.ts",
-      "bytes": 1800,
-      "sha256": "77b160311d8a074706cb87858b52cce3b70af7480bf3c922b20fe44a3eef09a1"
-    },
-    {
-      "path": "src/services/cloud/CharacterAppearanceRecoveryStore.ts",
-      "bytes": 10137,
-      "sha256": "f102680778a7bf37786044649adee127016182549d153ffdba05eed878cc2010"
+      "path": "src/scenes/AssetGalleryScene.ts",
+      "bytes": 18166,
+      "sha256": "5eaf75ad6701eb8f05834570bb94fc570d7a12ef541d7040b7c0490605751c25"
     }
   ]
 }

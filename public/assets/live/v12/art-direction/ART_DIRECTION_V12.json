@@ -1,0 +1,36 @@
+{
+  "schema": "lumerift-premium-art-direction-reference-v1",
+  "release": "1.11.28",
+  "runtimeMode": "lazy-reference-only",
+  "initialBundle": false,
+  "palette": ["midnight-navy", "luminous-blue", "rift-violet", "soft-gold", "silver"],
+  "references": [
+    {
+      "id": "character-quality-upgrade",
+      "domain": "character",
+      "file": "character_quality_upgrade_v12.webp",
+      "width": 941,
+      "height": 1672,
+      "bytes": 302298,
+      "sha256": "a88044741b077488420f536f3c17336a4db20b8fd01ada19e0cc12bdbccdd04b",
+      "status": "approved-visual-baseline"
+    },
+    {
+      "id": "monster-quality-upgrade",
+      "domain": "monster",
+      "file": "monster_quality_upgrade_v12.webp",
+      "width": 941,
+      "height": 1672,
+      "bytes": 366308,
+      "sha256": "533bae8786ad3ddb215b981497d07ce8f2c1244b07671fab4877fa7fe65f4361",
+      "status": "approved-visual-baseline"
+    }
+  ],
+  "extensionPolicy": {
+    "character": "approved baseline",
+    "monster": "approved baseline",
+    "ui": "extend the same luminous frame, material, and hierarchy language",
+    "skillVfx": "extend the same rune, particle, lighting, and impact language",
+    "equipment": "extend the same premium metal, cloth, crystal, and glow language"
+  }
+}

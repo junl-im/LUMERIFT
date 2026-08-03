@@ -37,6 +37,9 @@ export const ASSET_PATHS = {
   bossPortraitPhase2: assetUrl('assets/live/v4/portraits/boss_phase_2_v4.webp'),
   bossPortraitPhase3: assetUrl('assets/live/v4/portraits/boss_phase_3_v4.webp'),
   operationsAtlas: assetUrl('assets/live/v3/atlases/operations/operations_ui_v3.json'),
+  premiumCharacterArtReference: assetUrl('assets/live/v12/art-direction/character_quality_upgrade_v12.webp'),
+  premiumMonsterArtReference: assetUrl('assets/live/v12/art-direction/monster_quality_upgrade_v12.webp'),
+  premiumArtDirectionContract: assetUrl('assets/live/v12/art-direction/ART_DIRECTION_V12.json'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -123,7 +126,21 @@ export interface QualityGalleryCategoryDefinition {
   readonly bundle: AssetBundleDefinition;
 }
 
+export const PREMIUM_ART_DIRECTION_REFERENCE_BUNDLE: AssetBundleDefinition = {
+  id: 'premium-art-direction-v12',
+  urls: [ASSET_PATHS.premiumCharacterArtReference, ASSET_PATHS.premiumMonsterArtReference],
+  estimatedBytes: 668_606,
+};
+
 export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [
+  {
+    id: 'premium-art-direction-v12',
+    label: '확정 비주얼 기준 · 캐릭터 & 몬스터',
+    kind: 'image',
+    atlasPaths: [],
+    imagePaths: [ASSET_PATHS.premiumCharacterArtReference, ASSET_PATHS.premiumMonsterArtReference],
+    bundle: PREMIUM_ART_DIRECTION_REFERENCE_BUNDLE,
+  },
   {
     id: 'live-scenes',
     label: '실사용 배경·초상',

@@ -9,7 +9,6 @@ import {
   cycleCharacterAppearanceLockMerge,
   cycleCharacterAppearanceMergeSource,
   cycleCharacterAppearancePresetMerge,
-  mergeCharacterAppearanceArchives,
   previewCharacterAppearanceConflict,
   type CharacterAppearanceMergePlan,
 } from '../core/presentation/CharacterAppearanceConflictResolver';
@@ -19,7 +18,9 @@ import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { applyCharacterAppearanceConflictMerge } from '../services/cloud/CharacterAppearanceMergeCoordinator';
 import { CharacterAppearanceCloudScene } from './CharacterAppearanceCloudScene';
+import { CharacterAppearanceConflictPreviewScene } from './CharacterAppearanceConflictPreviewScene';
 
 export class CharacterAppearanceConflictScene implements Scene {
   public readonly view = new Container();
@@ -41,7 +42,7 @@ export class CharacterAppearanceConflictScene implements Scene {
       '외형 충돌 비교·선택 병합',
       '슬롯과 최근 프리셋을 항목별로 선택하며, 고정된 로컬 슬롯은 항상 보호됩니다.',
     ));
-    this.view.addChild(createPanel(18, 158, 504, 734));
+    this.view.addChild(createPanel(18, 158, 504, 780));
 
     if (!remote) {
       const feedback = createInlineFeedback('비교할 Cloud 후보가 없습니다. 먼저 안전 동기화 검사를 실행하세요.', 'warning', 468);
@@ -116,22 +117,28 @@ export class CharacterAppearanceConflictScene implements Scene {
     });
     presets.position.set(278, 490);
 
+    const simulate = new UiButton({
+      label: '최종 캐릭터 미리보기',
+      subtitle: 'LOCAL · CLOUD · RESULT 실제 본체 비교', width: 468, height: 56, tone: 'secondary', fontSize: 12, subtitleFontSize: 8,
+      onPress: async () => context.scenes.change(() => new CharacterAppearanceConflictPreviewScene(this.plan)),
+    });
+    simulate.position.set(36, 566);
+
     const apply = new UiButton({
       label: '선택 내용 병합·Cloud 저장',
-      subtitle: '적용 전 로컬 복구 지점 자동 생성', width: 468, height: 60, tone: 'primary', fontSize: 12, subtitleFontSize: 8,
+      subtitle: '복구 지점 + 30분 즉시 실행 취소 생성', width: 468, height: 60, tone: 'primary', fontSize: 12, subtitleFontSize: 8,
       onPress: async () => {
         try {
-          context.characterAppearanceCloud.createRecoveryPoint(uid, local, 'pre-conflict-merge');
-          const merged = mergeCharacterAppearanceArchives(local, remote.archive, this.plan);
-          const replaced = context.characterWardrobe.replacePresetArchive(merged);
-          const result = await context.characterAppearanceCloud.applyRemoteAndConsolidate(uid, remote, merged);
-          await context.scenes.change(() => new CharacterAppearanceCloudScene(`${replaced}개 외형 항목을 선택 병합했습니다. ${result.message}`));
+          const result = await applyCharacterAppearanceConflictMerge(context, uid, remote, this.plan);
+          await context.scenes.change(() => new CharacterAppearanceCloudScene(
+            `${result.replacedEntries}개 외형 항목을 선택 병합했습니다. 30분 동안 즉시 실행 취소할 수 있습니다. ${result.message}`,
+          ));
         } catch (error: unknown) {
           await context.scenes.change(() => new CharacterAppearanceConflictScene(this.plan, errorMessage(error)));
         }
       },
     });
-    apply.position.set(36, 566);
+    apply.position.set(36, 630);
 
     const localAll = new UiButton({
       label: '전체 로컬 선택', subtitle: 'Cloud를 현재 로컬로 교체', width: 226, height: 54, tone: 'secondary', fontSize: 10, subtitleFontSize: 8,
@@ -139,7 +146,7 @@ export class CharacterAppearanceConflictScene implements Scene {
         slots: { 1: 'local', 2: 'local', 3: 'local' }, slotOrder: 'local', lockedSlots: 'local', presets: 'local',
       }, '모든 항목을 로컬로 선택했습니다. 적용 전까지 저장되지 않습니다.')),
     });
-    localAll.position.set(36, 638);
+    localAll.position.set(36, 704);
 
     const remoteAll = new UiButton({
       label: '전체 Cloud 선택', subtitle: '로컬 고정 슬롯만 예외 보호', width: 226, height: 54, tone: 'secondary', fontSize: 10, subtitleFontSize: 8,
@@ -147,7 +154,7 @@ export class CharacterAppearanceConflictScene implements Scene {
         slots: { 1: 'remote', 2: 'remote', 3: 'remote' }, slotOrder: 'remote', lockedSlots: 'remote', presets: 'remote',
       }, '모든 항목을 Cloud로 선택했습니다. 로컬 고정 슬롯 내용은 계속 보호됩니다.')),
     });
-    remoteAll.position.set(278, 638);
+    remoteAll.position.set(278, 704);
 
     const close = new UiButton({
       label: '후보 닫기', width: 226, height: 52, tone: 'secondary', fontSize: 11,
@@ -156,21 +163,21 @@ export class CharacterAppearanceConflictScene implements Scene {
         await context.scenes.change(() => new CharacterAppearanceCloudScene('충돌 후보만 닫았습니다. 로컬과 Cloud 데이터는 변경하지 않았습니다.'));
       },
     });
-    close.position.set(36, 710);
+    close.position.set(36, 770);
 
     const back = new UiButton({
       label: 'Cloud Save로 복귀', width: 226, height: 52, tone: 'secondary', fontSize: 11,
       onPress: async () => context.scenes.change(() => new CharacterAppearanceCloudScene()),
     });
-    back.position.set(278, 710);
+    back.position.set(278, 770);
 
     const policy = new Text({
       text: '병합 보호 · 적용 전 자동 복구 · 고정 슬롯 로컬 우선 · UID 격리 · Player Save v4와 분리',
       style: new TextStyle({ fill: COLORS.text, fontSize: 9, lineHeight: 15, fontWeight: '800', wordWrap: true, wordWrapWidth: 468 }),
     });
-    policy.position.set(36, 782);
+    policy.position.set(36, 838);
 
-    this.view.addChild(slot1, slot2, slot3, order, locks, presets, apply, localAll, remoteAll, close, back, policy);
+    this.view.addChild(slot1, slot2, slot3, order, locks, presets, simulate, apply, localAll, remoteAll, close, back, policy);
   }
 
   public async exit(): Promise<void> {}

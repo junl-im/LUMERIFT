@@ -4,6 +4,7 @@ import {
   DEFAULT_CHARACTER_APPEARANCE_MERGE_PLAN,
   mergeCharacterAppearanceArchives,
   previewCharacterAppearanceConflict,
+  simulateCharacterAppearanceMerge,
 } from './CharacterAppearanceConflictResolver';
 
 class MemoryStorage {
@@ -42,6 +43,25 @@ describe('CharacterAppearanceConflictResolver', () => {
       slots: { 1: 'remote', 2: 'remote', 3: 'remote' },
     }, 400);
     expect(merged.slots[1]?.dyePreset).toBe('heir-gold');
+  });
+
+  it('simulates the final archive and reports the effective source per slot', () => {
+    const localWardrobe = new CharacterWardrobeController(new MemoryStorage());
+    localWardrobe.saveSelectedSlot('heir-gold', 100);
+    localWardrobe.toggleSlotLock(1);
+    const local = localWardrobe.exportPresetArchive(150);
+    const remote = wardrobeArchive('rift-azure', 300);
+    const simulation = simulateCharacterAppearanceMerge(local, remote, {
+      ...DEFAULT_CHARACTER_APPEARANCE_MERGE_PLAN,
+      slots: { 1: 'remote', 2: 'remote', 3: 'newer' },
+      lockedSlots: 'union',
+      presets: 'merge',
+    }, 400);
+    expect(simulation.slots[0]?.requestedSource).toBe('remote');
+    expect(simulation.slots[0]?.effectiveSource).toBe('local');
+    expect(simulation.slots[0]?.protectedByLocalLock).toBe(true);
+    expect(simulation.archive.slots[1]?.dyePreset).toBe('heir-gold');
+    expect(simulation.resultSummary.join(' ')).toContain('최근 프리셋');
   });
 
   it('merges duplicate appearance presets and keeps favorites', () => {

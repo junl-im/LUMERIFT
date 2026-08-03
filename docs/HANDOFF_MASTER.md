@@ -464,3 +464,30 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 복구 적용 전 현재 상태를 `pre-recovery-restore`로 다시 저장하며 복구 후 Cloud에 자동 업로드하지 않는다.
 - 복구 묶음 JSON은 현재 UID와 일치할 때만 가져온다.
 - Player Save v4, AttackFootprint, App Check 비활성, PNG/WebP, 초기 15MB 예산 계약은 변경하지 않는다.
+
+## v1.11.26 외형 3열 병합 미리보기·30분 Undo·복구 v2
+
+- `CharacterAppearanceConflictPreviewScene`은 로컬·Cloud·RESULT 캐릭터를 동일한 Pixi 렌더 계약으로 나란히 표시한다.
+- `simulateCharacterAppearanceMerge`는 슬롯별 요청 출처, 실제 적용 출처, 로컬 고정 보호, 변경 필드와 최종 Archive를 반환한다.
+- `CharacterAppearanceMergeCoordinator`는 적용 전 일반 복구 지점과 30분 Undo 지점을 함께 생성한다.
+- `CharacterAppearanceUndoStore`는 UID별 1개·30분·1회 사용 정책을 적용한다.
+- `CharacterAppearanceRecoveryStore` v2는 이름·고정·검색을 지원하고 고정 3개와 최근 5개를 보존한다.
+- v1 복구 Archive와 지점은 v2로 자동 마이그레이션한다.
+- Player Save v4, AttackFootprint, App Check 비활성, PNG/WebP, 초기 15MB 예산 계약은 변경하지 않는다.
+
+## v1.11.27 외형 복구 차이·감사 기록
+
+- 복구 지점 두 개를 실제 캐릭터 카드로 비교하고 슬롯별 변경 필드를 확인한다.
+- Archive diff는 슬롯·순서·고정·최근 프리셋 차이를 포함한다.
+- 감사 기록은 사용자 UID별 최대 100건이며 게임 진행 저장과 분리한다.
+- 선택 복구 지점 관련 차이와 감사 기록을 단일 JSON으로 내보낼 수 있다.
+- 실제 캡처·최종 원화·정상 npm 빌드는 미완료 상태를 유지한다.
+
+## v1.11.28 Premium Art Direction v2
+
+- 승인 기준: `public/assets/live/v12/art-direction/ART_DIRECTION_V12.json`
+- 제작 마스터: `art_source/lumerift_original/v1.11.28/art-direction`
+- 런타임 감수본은 에셋 보관소에서만 Lazy Loading한다.
+- 캐릭터·몬스터·UI·스킬 VFX·장비는 `PremiumArtDirection.ts` 품질 게이트를 따른다.
+- 모바일 판독성 80점 미만은 총점과 관계없이 승인하지 않는다.
+- 현재 이미지는 제작 방향 승인 자료이며 기존 전투 Atlas의 최종 교체 완료를 의미하지 않는다.

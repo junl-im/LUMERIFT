@@ -1,0 +1,34 @@
+{
+  "schema": "lumerift-mobile-art-direction-master-v1",
+  "release": "1.11.28",
+  "ownership": "LUMERIFT project-approved generated visual direction reference",
+  "purpose": "mobile production master and future asset quality baseline",
+  "runtimeDeployment": false,
+  "masters": [
+    {
+      "id": "character-quality-upgrade-master",
+      "file": "character_quality_upgrade_master_v12.webp",
+      "width": 941,
+      "height": 1672,
+      "bytes": 471804,
+      "sha256": "81edcf969124225cf2370ed5551777991e106311dc2326324b6a57e610e80b22",
+      "quality": 94
+    },
+    {
+      "id": "monster-quality-upgrade-master",
+      "file": "monster_quality_upgrade_master_v12.webp",
+      "width": 941,
+      "height": 1672,
+      "bytes": 559154,
+      "sha256": "4d9263a1fd98993f83e5b9ff8c352b8bf51d23b8f330ad8ed13241696e7156c7",
+      "quality": 94
+    }
+  ],
+  "rules": [
+    "Preserve a readable combat silhouette before adding surface detail.",
+    "Use premium metal, cloth, crystal, and emissive materials with controlled contrast.",
+    "Keep the cool blue-violet core palette with silver and soft-gold hierarchy accents.",
+    "Use runes, particles, and light trails as gameplay-readable accents rather than noise.",
+    "Export runtime derivatives as WebP or atlas textures and lazy-load nonessential showcases."
+  ]
+}

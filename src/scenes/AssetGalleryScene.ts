@@ -38,7 +38,7 @@ export class AssetGalleryScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.13 기준 실사용·후보·보관 에셋을 품질 점수와 모바일 역할까지 함께 점검합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.28 확정 캐릭터·몬스터 비주얼 기준과 실사용 에셋을 품질 점수·모바일 역할로 함께 점검합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 650));
     this.view.addChild(createPanel(36, 260, 468, 88));
 
@@ -59,7 +59,7 @@ export class AssetGalleryScene implements Scene {
     const productionTag = createComicTag('asset audit', COLORS.primary);
     productionTag.position.set(38, 190);
     productionTag.scale.set(0.82);
-    const marquee = createFeatureMarquee('PRODUCTION · ARCHIVE · MOBILE MASTER', '분류 용도와 모바일 제작용 마스터 기준을 한 화면에서 파악하도록 보관소 UX를 재정비했습니다.', 228);
+    const marquee = createFeatureMarquee('PREMIUM ART V2 · PRODUCTION · ARCHIVE · MOBILE MASTER', '확정된 캐릭터·몬스터 기준을 UI·스킬·장비까지 동일한 재질·광원·룬 언어로 확장합니다.', 228);
     marquee.position.set(278, 186);
     marquee.scale.set(0.9);
 
@@ -286,6 +286,16 @@ export class AssetGalleryScene implements Scene {
   private summaryFor(category: QualityGalleryCategoryDefinition): GalleryAuditSummary {
     const bundleLabel = this.bundleSizeLabel(category);
     switch (category.id) {
+      case 'premium-art-direction-v12':
+        return {
+          tag: 'approved baseline',
+          tone: 'success',
+          title: 'LUMERIFT 차기 전체 아트 기준선',
+          detail: `승인된 캐릭터·몬스터 쇼케이스 2종입니다. ${bundleLabel} Lazy Reference 번들로만 불러와 초기 다운로드와 전투 메모리에 영향을 주지 않습니다.`,
+          audit: '확장 규칙 · 캐릭터 중심 실루엣 · 보스급 몬스터 존재감 · 블루/바이올렛/골드 재질 · 룬/VFX 절제 · UI/스킬/장비 동일 언어',
+          score: 96,
+          mobileRole: 'APPROVED ART DIRECTION',
+        };
       case 'live-scenes':
         return {
           tag: 'production-line',

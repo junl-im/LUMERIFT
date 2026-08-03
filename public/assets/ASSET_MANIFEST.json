@@ -1,7 +1,7 @@
 {
-  "version": 16,
+  "version": 17,
   "game": "LUMERIFT",
-  "release": "1.11.25",
+  "release": "1.11.28",
   "distribution": "active-public-plus-source-archive",
   "bundles": {
     "core-ui": {
@@ -131,11 +131,19 @@
         "live/v11/atlases/player/player_weapon_attack_body_v11.webp"
       ],
       "bytes": 3436119
+    },
+    "premium-art-direction-v12": {
+      "files": [
+        "live/v12/art-direction/ART_DIRECTION_V12.json",
+        "live/v12/art-direction/character_quality_upgrade_v12.webp",
+        "live/v12/art-direction/monster_quality_upgrade_v12.webp"
+      ],
+      "bytes": 669860
     }
   },
   "deployment": {
-    "publicAssetFiles": 52,
-    "publicAssetBytes": 10578786,
+    "publicAssetFiles": 55,
+    "publicAssetBytes": 11248928,
     "runtimeArchivePaths": [
       "art_source/runtime_archive/v1.6.0/public/assets",
       "art_source/runtime_archive/v1.7.0/public/assets",

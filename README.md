@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.25
+# LUMERIFT: 균열의 계승자 v1.11.28
 
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
@@ -8,6 +8,15 @@
 - 작은 화면·소프트 키보드 상황에서 조이스틱·전투 버튼 Safe Area 자동 보정
 - 8방향 공격 포즈와 방향별 스트라이크 실루엣 강화
 - 기존 대규모 RIFT INTERFACE·자동 타겟·자동 전투·접근성 계약 유지
+
+
+## v1.11.28 핵심 업데이트
+- 승인 캐릭터·몬스터 쇼케이스를 차기 전체 아트 제작 기준선으로 확정
+- 캐릭터·몬스터·UI·스킬 VFX·장비 5개 도메인 Premium Art Direction v2 품질 게이트
+- 에셋 보관소 첫 분류에서 2개 승인 기준 이미지 Lazy Loading 비교
+- 941×1672 WebP 감수본과 재가공용 고품질 제작 마스터 분리
+- 초기 다운로드 번들 증가 0 bytes, Player Save v4·AttackFootprint·App Check 비활성 유지
+- 관련 문서: `docs/PREMIUM_ART_DIRECTION_v1.11.28.md`, `docs/PATCH_NOTES_v1.11.28.md`, `docs/NEXT_UPDATE_v1.11.29.md`
 
 ## 실행·검증
 
@@ -172,5 +181,27 @@ npm run dev
 - Cloud 작업 전 자동 외형 복구 지점과 수동 백업·복원·JSON 내보내기/가져오기
 - 계정 UID별 최대 5개 복구 지점과 다른 UID 복구 JSON 차단
 - 관련 문서: `docs/PATCH_NOTES_v1.11.25.md`, `docs/CHARACTER_APPEARANCE_CONFLICT_RESOLUTION_v1.11.25.md`, `docs/CHARACTER_APPEARANCE_RECOVERY_v1.11.25.md`
+
+실제 Android/iOS 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.
+
+## v1.11.26 핵심 업데이트
+
+- 로컬·Cloud·RESULT 외형을 실제 캐릭터 3열 미리보기로 비교
+- 슬롯별 병합 결과와 변경 필드를 저장 전에 시뮬레이션
+- 병합 직전 외형을 30분 동안 보존하는 1회 실행 취소
+- 복구 지점 이름 변경·검색·고정과 v1 → v2 자동 마이그레이션
+- 계정별 고정 3개와 최근 5개, 총 8개 복구 지점
+- 관련 문서: `docs/PATCH_NOTES_v1.11.26.md`, `docs/CHARACTER_APPEARANCE_VISUAL_MERGE_PREVIEW_v1.11.26.md`, `docs/CHARACTER_APPEARANCE_MERGE_UNDO_v1.11.26.md`, `docs/CHARACTER_APPEARANCE_RECOVERY_V2_v1.11.26.md`
+
+실제 Android/iOS 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.
+
+## v1.11.27 핵심 업데이트
+
+- 외형 복구 지점 POINT A·POINT B 실제 캐릭터 2열 비교
+- 슬롯·염색·코스튬·방향·포즈·고정·순서·최근 프리셋 차이 계산
+- UID별 최대 100건 외형 감사 기록
+- 복구 차이와 관련 감사 기록 JSON 내보내기
+- Cloud 동기화·충돌 병합·30분 Undo 감사 추적
+- 관련 문서: `docs/PATCH_NOTES_v1.11.27.md`, `docs/CHARACTER_APPEARANCE_RECOVERY_DIFF_AUDIT_v1.11.27.md`, `docs/NEXT_UPDATE_v1.11.28.md`
 
 실제 Android/iOS 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.

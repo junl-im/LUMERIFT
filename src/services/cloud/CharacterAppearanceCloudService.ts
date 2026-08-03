@@ -11,9 +11,20 @@ import type { CharacterAppearanceCloudRepository } from '../../repositories/Char
 import {
   CharacterAppearanceRecoveryStore,
   type CharacterAppearanceRecoveryArchive,
+  type CharacterAppearanceRecoveryPinResult,
   type CharacterAppearanceRecoveryPoint,
   type CharacterAppearanceRecoveryReason,
 } from './CharacterAppearanceRecoveryStore';
+import {
+  CharacterAppearanceAuditStore,
+  type CharacterAppearanceAuditArchive,
+  type CharacterAppearanceAuditInput,
+  type CharacterAppearanceAuditRecord,
+} from './CharacterAppearanceAuditStore';
+import {
+  CharacterAppearanceUndoStore,
+  type CharacterAppearanceMergeUndoPoint,
+} from './CharacterAppearanceUndoStore';
 
 export type CharacterAppearanceCloudSyncStatus =
   | 'unavailable'
@@ -57,12 +68,16 @@ const EMPTY_STATE = (ownerUid: string): CharacterAppearanceCloudLocalState => ({
 
 export class CharacterAppearanceCloudService {
   private readonly recoveryStore: CharacterAppearanceRecoveryStore;
+  private readonly undoStore: CharacterAppearanceUndoStore;
+  private readonly auditStore: CharacterAppearanceAuditStore;
 
   public constructor(
     private readonly repository: CharacterAppearanceCloudRepository,
     private readonly storage: Pick<Storage, 'getItem' | 'setItem'> | undefined = getStorage(),
   ) {
     this.recoveryStore = new CharacterAppearanceRecoveryStore(storage);
+    this.undoStore = new CharacterAppearanceUndoStore(storage);
+    this.auditStore = new CharacterAppearanceAuditStore(storage);
   }
 
   public get available(): boolean {
@@ -73,8 +88,8 @@ export class CharacterAppearanceCloudService {
     return loadState(this.storage?.getItem(STORAGE_KEYS.characterAppearanceCloud), uid);
   }
 
-  public recoveryPoints(uid: string): readonly CharacterAppearanceRecoveryPoint[] {
-    return this.recoveryStore.list(uid);
+  public recoveryPoints(uid: string, query = ''): readonly CharacterAppearanceRecoveryPoint[] {
+    return query ? this.recoveryStore.search(uid, query) : this.recoveryStore.list(uid);
   }
 
   public createRecoveryPoint(
@@ -83,15 +98,70 @@ export class CharacterAppearanceCloudService {
     reason: CharacterAppearanceRecoveryReason = 'manual',
     now = Date.now(),
   ): CharacterAppearanceRecoveryPoint {
-    return this.recoveryStore.create(uid, archive, reason, now);
+    const point = this.recoveryStore.create(uid, archive, reason, now);
+    this.auditStore.record(uid, {
+      action: 'recovery-created',
+      title: point.name,
+      recoveryPointIds: [point.id],
+      revisions: [characterAppearanceArchiveRevision(point.archive)],
+      details: { reason },
+    }, now);
+    return point;
   }
 
   public findRecoveryPoint(uid: string, id: string): CharacterAppearanceRecoveryPoint | undefined {
     return this.recoveryStore.find(uid, id);
   }
 
+  public renameRecoveryPoint(uid: string, id: string, name: string): CharacterAppearanceRecoveryPoint | undefined {
+    const point = this.recoveryStore.rename(uid, id, name);
+    if (point) this.auditStore.record(uid, { action: 'recovery-renamed', title: point.name, recoveryPointIds: [point.id] });
+    return point;
+  }
+
+  public toggleRecoveryPointPin(uid: string, id: string): CharacterAppearanceRecoveryPinResult {
+    const result = this.recoveryStore.togglePin(uid, id);
+    const point = this.recoveryStore.find(uid, id);
+    if (point && (result === 'pinned' || result === 'unpinned')) {
+      this.auditStore.record(uid, {
+        action: result === 'pinned' ? 'recovery-pinned' : 'recovery-unpinned',
+        title: point.name,
+        recoveryPointIds: [point.id],
+      });
+    }
+    return result;
+  }
+
   public deleteRecoveryPoint(uid: string, id: string): boolean {
-    return this.recoveryStore.remove(uid, id);
+    const point = this.recoveryStore.find(uid, id);
+    const removed = this.recoveryStore.remove(uid, id);
+    if (removed) this.auditStore.record(uid, {
+      action: 'recovery-deleted',
+      title: point?.name ?? '삭제된 복구 지점',
+      recoveryPointIds: [id],
+    });
+    return removed;
+  }
+
+  public createMergeUndo(
+    uid: string,
+    archive: CharacterWardrobeArchive,
+    mergedRevision: string,
+    now = Date.now(),
+  ): CharacterAppearanceMergeUndoPoint {
+    return this.undoStore.create(uid, archive, mergedRevision, now);
+  }
+
+  public mergeUndo(uid: string, now = Date.now()): CharacterAppearanceMergeUndoPoint | undefined {
+    return this.undoStore.peek(uid, now);
+  }
+
+  public consumeMergeUndo(uid: string, now = Date.now()): CharacterAppearanceMergeUndoPoint | undefined {
+    return this.undoStore.consume(uid, now);
+  }
+
+  public clearMergeUndo(uid: string): void {
+    this.undoStore.clear(uid);
   }
 
   public exportRecoveryArchive(uid: string, now = Date.now()): CharacterAppearanceRecoveryArchive {
@@ -99,7 +169,25 @@ export class CharacterAppearanceCloudService {
   }
 
   public importRecoveryArchive(uid: string, value: unknown): number {
-    return this.recoveryStore.import(uid, value);
+    const imported = this.recoveryStore.import(uid, value);
+    if (imported) this.auditStore.record(uid, {
+      action: 'recovery-imported',
+      title: `복구 지점 ${imported}개 가져오기`,
+      details: { imported },
+    });
+    return imported;
+  }
+
+  public auditRecords(uid: string): readonly CharacterAppearanceAuditRecord[] {
+    return this.auditStore.list(uid);
+  }
+
+  public recordAudit(uid: string, input: CharacterAppearanceAuditInput, now = Date.now()): CharacterAppearanceAuditRecord {
+    return this.auditStore.record(uid, input, now);
+  }
+
+  public exportAuditArchive(uid: string, recoveryPointIds: readonly string[] = [], now = Date.now()): CharacterAppearanceAuditArchive {
+    return this.auditStore.export(uid, recoveryPointIds, now);
   }
 
   public setOptIn(uid: string, enabled: boolean): CharacterAppearanceCloudLocalState {
@@ -157,6 +245,12 @@ export class CharacterAppearanceCloudService {
         conflict: undefined,
         lastError: undefined,
       });
+      this.auditStore.record(uid, {
+        action: 'cloud-sync-checked',
+        title: '로컬과 Cloud 외형 동일',
+        revisions: [localRevision, remote.revision],
+        details: { status: 'current' },
+      }, now);
       return { status: 'current', localRevision, remote, message: '로컬과 Cloud 외형 프리셋이 동일합니다.' };
     }
     if (comparison === 'local-only-change') {
@@ -169,6 +263,12 @@ export class CharacterAppearanceCloudService {
         conflict: undefined,
         lastError: undefined,
       });
+      this.auditStore.record(uid, {
+        action: 'cloud-sync-checked',
+        title: 'Cloud 외형 변경 후보 감지',
+        revisions: [localRevision, remote.revision],
+        details: { status: 'remote-ready' },
+      }, now);
       return {
         status: 'remote-ready',
         localRevision,
@@ -183,6 +283,12 @@ export class CharacterAppearanceCloudService {
       remote,
     };
     this.commit({ ...currentState, remoteCandidate: remote, conflict, lastError: undefined });
+    this.auditStore.record(uid, {
+      action: 'cloud-sync-checked',
+      title: '외형 Cloud 충돌 감지',
+      revisions: [localRevision, remote.revision],
+      details: { status: 'conflict', comparison },
+    }, now);
     return {
       status: 'conflict',
       localRevision,
@@ -200,7 +306,7 @@ export class CharacterAppearanceCloudService {
     successMessage = '로컬 외형 프리셋을 Cloud에 업로드했습니다.',
   ): Promise<CharacterAppearanceCloudSyncResult> {
     const state = this.requireOptIn(uid);
-    this.recoveryStore.create(uid, archive, 'pre-cloud-upload', now);
+    this.createRecoveryPoint(uid, archive, 'pre-cloud-upload', now);
     const envelope = createCharacterAppearanceCloudEnvelope(uid, archive, now);
     const queuedState: CharacterAppearanceCloudLocalState = {
       ...state,
@@ -212,12 +318,22 @@ export class CharacterAppearanceCloudService {
     this.commit(queuedState);
     const saved = await this.trySave(envelope, queuedState);
     if (!saved) {
+      this.auditStore.record(uid, {
+        action: 'cloud-upload-queued',
+        title: '외형 Cloud 업로드 대기',
+        revisions: [envelope.revision],
+      }, now);
       return {
         status: 'queued',
         localRevision: envelope.revision,
         message: '업로드하지 못해 로컬 재시도 큐에 안전하게 보관했습니다.',
       };
     }
+    this.auditStore.record(uid, {
+      action: 'cloud-uploaded',
+      title: successMessage,
+      revisions: [envelope.revision],
+    }, now);
     return {
       status: 'uploaded',
       localRevision: envelope.revision,

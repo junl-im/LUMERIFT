@@ -39,6 +39,25 @@ export interface CharacterAppearanceConflictPreview {
   readonly totalDifferenceCount: number;
 }
 
+
+export interface CharacterAppearanceMergeSimulationSlot {
+  readonly slot: CharacterWardrobeSlotId;
+  readonly requestedSource: CharacterAppearanceMergeSource;
+  readonly effectiveSource: 'local' | 'remote' | 'empty';
+  readonly protectedByLocalLock: boolean;
+  readonly resultName?: string;
+  readonly changedFields: readonly string[];
+}
+
+export interface CharacterAppearanceMergeSimulation {
+  readonly archive: CharacterWardrobeArchive;
+  readonly preview: CharacterAppearanceConflictPreview;
+  readonly slots: readonly CharacterAppearanceMergeSimulationSlot[];
+  readonly resultPresetCount: number;
+  readonly resultLockedCount: number;
+  readonly resultSummary: readonly string[];
+}
+
 export const DEFAULT_CHARACTER_APPEARANCE_MERGE_PLAN: CharacterAppearanceMergePlan = {
   slots: { 1: 'newer', 2: 'newer', 3: 'newer' },
   slotOrder: 'local',
@@ -113,6 +132,62 @@ export function mergeCharacterAppearanceArchives(
     slots,
     presets: mergePresets(local.presets, remote.presets, plan.presets),
   };
+}
+
+export function simulateCharacterAppearanceMerge(
+  local: CharacterWardrobeArchive,
+  remote: CharacterWardrobeArchive,
+  plan: CharacterAppearanceMergePlan,
+  now = Date.now(),
+): CharacterAppearanceMergeSimulation {
+  const archive = mergeCharacterAppearanceArchives(local, remote, plan, now);
+  const preview = previewCharacterAppearanceConflict(local, remote);
+  const slots = ([1, 2, 3] as const).map((slot): CharacterAppearanceMergeSimulationSlot => {
+    const result = archive.slots[slot];
+    const protectedByLocalLock = local.lockedSlots[slot];
+    const requestedSource = plan.slots[slot];
+    const effectiveSource = resolveEffectiveSlotSource(slot, local, remote, result, protectedByLocalLock);
+    return {
+      slot,
+      requestedSource,
+      effectiveSource,
+      protectedByLocalLock,
+      resultName: result?.name,
+      changedFields: preview.slotDifferences.find((entry) => entry.slot === slot)?.changedFields ?? [],
+    };
+  });
+  const resultLockedCount = ([1, 2, 3] as const).filter((slot) => archive.lockedSlots[slot]).length;
+  const resultSummary = [
+    `슬롯 결과 ${slots.filter((entry) => entry.effectiveSource !== 'empty').length}/3`,
+    `고정 슬롯 ${resultLockedCount}/3`,
+    `최근 프리셋 ${archive.presets.length}/5`,
+    `순서 ${archive.slotOrder.map((slot) => `S${slot}`).join(' → ')}`,
+  ];
+  return {
+    archive,
+    preview,
+    slots,
+    resultPresetCount: archive.presets.length,
+    resultLockedCount,
+    resultSummary,
+  };
+}
+
+function resolveEffectiveSlotSource(
+  slot: CharacterWardrobeSlotId,
+  local: CharacterWardrobeArchive,
+  remote: CharacterWardrobeArchive,
+  result: CharacterWardrobeSlot | undefined,
+  protectedByLocalLock: boolean,
+): 'local' | 'remote' | 'empty' {
+  if (!result) return 'empty';
+  if (protectedByLocalLock) return 'local';
+  const localSlot = local.slots[slot];
+  const remoteSlot = remote.slots[slot];
+  if (localSlot && JSON.stringify(canonicalPreset(localSlot)) === JSON.stringify(canonicalPreset(result))) return 'local';
+  if (remoteSlot && JSON.stringify(canonicalPreset(remoteSlot)) === JSON.stringify(canonicalPreset(result))) return 'remote';
+  if (!localSlot && remoteSlot) return 'remote';
+  return 'local';
 }
 
 export function characterAppearanceMergeSourceLabel(source: CharacterAppearanceMergeSource): string {
