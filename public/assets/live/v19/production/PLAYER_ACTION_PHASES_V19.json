@@ -1,0 +1,25 @@
+{
+  "schema": "lumerift-player-action-phases-v19",
+  "version": "1.11.35",
+  "frames": 72,
+  "animations": 24,
+  "atlas": "live/v19/atlases/player/player_action_phases_v19.json",
+  "phases": [
+    "contact",
+    "sustain",
+    "recover"
+  ],
+  "directions": 8,
+  "actions": [
+    "attack",
+    "dodge",
+    "skill"
+  ],
+  "attackFootprintChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "player_action_parts_v18",
+    "player_direction_parts_v17",
+    "player_parts_v16"
+  ]
+}

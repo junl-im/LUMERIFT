@@ -5,11 +5,13 @@ import type { CombatImpactTier } from '../combat/combatData';
 import type { Vec2 } from '../combat/geometry';
 import { resolveDirectionalWeaponTrailFromAngle, type DirectionalWeaponTrailProfile } from './DirectionalWeaponTrail';
 import { drawPremiumRuneGlyph, drawPremiumRuneSparkField, premiumRuneProfile } from './PremiumRuneVfxLanguage';
+import { premiumCombatVfxTexturesV19 } from './PremiumCombatVfxV19';
 
 interface ActiveVfx {
   readonly root: Container;
   readonly sprite: AnimatedSprite;
   readonly accent: Graphics;
+  readonly premiumSprite?: AnimatedSprite;
   readonly key: BattleVfxKey;
   remaining: number;
   duration: number;
@@ -35,6 +37,7 @@ export class BattleVfxSystem {
   public constructor(
     private readonly sheet: Spritesheet | undefined,
     private quality: GraphicsQualityPreset,
+    private readonly premiumSheetV19?: Spritesheet,
   ) {}
 
   public setRuntimeProfile(quality: GraphicsQualityPreset, intensity: number): void {
@@ -68,8 +71,12 @@ export class BattleVfxSystem {
     item.root.scale.set(scale * (0.78 + this.quality.effectDensity * 0.3) * this.intensity);
     item.root.alpha = 1;
     item.root.visible = true;
-    item.sprite.alpha = 1;
+    item.sprite.alpha = item.premiumSprite ? 0.42 : 1;
     item.sprite.gotoAndPlay(0);
+    if (item.premiumSprite) {
+      item.premiumSprite.alpha = 0.9;
+      item.premiumSprite.gotoAndPlay(0);
+    }
     this.redrawAccent(item, 0);
     this.active.add(item);
     this.view.addChild(item.root);
@@ -111,11 +118,22 @@ export class BattleVfxSystem {
       const sprite = new AnimatedSprite({ textures: safeTextures, loop: false, autoPlay: false });
       sprite.anchor.set(0.5);
       sprite.animationSpeed = key === 'nova' || key === 'explosion' ? 0.26 : 0.34;
+      const premiumTextures = premiumCombatVfxTexturesV19(this.premiumSheetV19, key);
+      const premiumSprite = premiumTextures
+        ? new AnimatedSprite({ textures: [...premiumTextures], loop: false, autoPlay: false })
+        : undefined;
+      if (premiumSprite) {
+        premiumSprite.anchor.set(0.5);
+        premiumSprite.animationSpeed = key === 'nova' || key === 'explosion' ? 0.3 : 0.38;
+        premiumSprite.blendMode = 'add';
+      }
       root.addChild(accent, sprite);
+      if (premiumSprite) root.addChild(premiumSprite);
       return {
         root,
         sprite,
         accent,
+        premiumSprite,
         key,
         remaining: 0,
         duration: 0.3,
@@ -230,6 +248,7 @@ export class BattleVfxSystem {
 
   private release(item: ActiveVfx): void {
     item.sprite.stop();
+    item.premiumSprite?.stop();
     item.root.parent?.removeChild(item.root);
     item.root.visible = false;
     item.accent.clear();

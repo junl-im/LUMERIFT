@@ -1,4 +1,4 @@
-import { AnimatedSprite, Container, Graphics, Text, TextStyle, type Spritesheet } from 'pixi.js';
+import { AnimatedSprite, Container, Graphics, Sprite, Text, TextStyle, type Spritesheet } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
 import { ASSET_PATHS, WARDROBE_UI_BUNDLE } from '../core/assets/AssetCatalog';
@@ -42,6 +42,8 @@ import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { PREMIUM_UI_ICON_V17_KEYS, premiumUiV17Texture } from '../ui/PremiumUiIconArtV17';
+import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
 import { AppearancePresetManagerScene } from './AppearancePresetManagerScene';
 import { CharacterCalibrationScene } from './CharacterCalibrationScene';
 import { InventoryScene } from './InventoryScene';
@@ -85,6 +87,12 @@ export class CharacterWardrobeScene implements Scene {
     const playerSheet = context.assets.get<Spritesheet>(ASSET_PATHS.playerAtlas);
     const weaponAttackSheet = context.assets.get<Spritesheet>(ASSET_PATHS.weaponAttackBodyAtlas);
     const premiumPlayerPartSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerPartsAtlas);
+    const premiumPlayerDirectionV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerDirectionV17Atlas);
+    const premiumUiV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV17Atlas);
+    const premiumPlayerActionV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionV18Atlas);
+    const premiumPlayerActionPhaseV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionPhaseV19Atlas);
+    const premiumPlayerWeaponPhaseV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerWeaponPhaseV20Atlas);
+    const premiumUiV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas);
     const wardrobe = context.characterWardrobe.current;
     const calibration = resolveCharacterDisplayCalibration();
     const candidates = equipmentCandidates(context, wardrobe.comparisonSlot);
@@ -118,6 +126,16 @@ export class CharacterWardrobeScene implements Scene {
       '캐릭터·코스튬 아틀리에',
       '8방향 수동 회전, 슬롯별 교체 비교, 무기별 본체 공격 프레임과 세부 염색을 조정합니다.',
     ));
+    const wardrobeTexture = premiumUiV18Texture(premiumUiV18Sheet, PREMIUM_UI_ICON_V18_KEYS.wardrobeAction)
+      ?? premiumUiV17Texture(premiumUiV17Sheet, PREMIUM_UI_ICON_V17_KEYS.wardrobe);
+    if (wardrobeTexture) {
+      const wardrobeIcon = new Sprite(wardrobeTexture);
+      wardrobeIcon.anchor.set(0.5);
+      wardrobeIcon.position.set(486, 108);
+      wardrobeIcon.scale.set(0.34);
+      wardrobeIcon.alpha = 0.9;
+      this.view.addChild(wardrobeIcon);
+    }
     this.view.addChild(createPanel(18, 164, 504, 706));
 
     const feedback = createInlineFeedback(
@@ -136,6 +154,10 @@ export class CharacterWardrobeScene implements Scene {
       sheet: playerSheet,
       attackSheet: weaponAttackSheet,
       premiumPartSheet: premiumPlayerPartSheet,
+      directionPartSheet: premiumPlayerDirectionV17Sheet,
+      actionPartSheet: premiumPlayerActionV18Sheet,
+      actionPhaseSheet: premiumPlayerActionPhaseV19Sheet,
+      weaponPhaseSheet: premiumPlayerWeaponPhaseV20Sheet,
       calibration,
       isCandidate: false,
     });
@@ -147,6 +169,10 @@ export class CharacterWardrobeScene implements Scene {
       sheet: playerSheet,
       attackSheet: weaponAttackSheet,
       premiumPartSheet: premiumPlayerPartSheet,
+      directionPartSheet: premiumPlayerDirectionV17Sheet,
+      actionPartSheet: premiumPlayerActionV18Sheet,
+      actionPhaseSheet: premiumPlayerActionPhaseV19Sheet,
+      weaponPhaseSheet: premiumPlayerWeaponPhaseV20Sheet,
       calibration,
       isCandidate: true,
     });
@@ -255,6 +281,10 @@ export class CharacterWardrobeScene implements Scene {
     readonly sheet: Spritesheet | undefined;
     readonly attackSheet: Spritesheet | undefined;
     readonly premiumPartSheet: Spritesheet | undefined;
+    readonly directionPartSheet: Spritesheet | undefined;
+    readonly actionPartSheet: Spritesheet | undefined;
+    readonly actionPhaseSheet: Spritesheet | undefined;
+    readonly weaponPhaseSheet: Spritesheet | undefined;
     readonly calibration: CharacterDisplayCalibration;
     readonly isCandidate: boolean;
   }): void {
@@ -300,7 +330,14 @@ export class CharacterWardrobeScene implements Scene {
       state: 'showcase',
       overdrive: wardrobe.pose === 'skill2',
     });
-    const premiumLayers = new PremiumCharacterDetailLayerView(input.appearance, input.premiumPartSheet);
+    const premiumLayers = new PremiumCharacterDetailLayerView(
+      input.appearance,
+      input.premiumPartSheet,
+      input.directionPartSheet,
+      input.actionPartSheet,
+      input.actionPhaseSheet,
+      input.weaponPhaseSheet,
+    );
     premiumLayers.update({
       x: previewX,
       y: previewY,

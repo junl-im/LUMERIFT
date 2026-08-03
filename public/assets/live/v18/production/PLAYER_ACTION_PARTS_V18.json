@@ -1,0 +1,17 @@
+{
+  "schema": "lumerift-player-action-parts-v18",
+  "version": "1.11.34",
+  "stage": "action-specific-raster-overlay-first-pass",
+  "atlas": "live/v18/atlases/player/player_action_parts_v18.json",
+  "frames": 48,
+  "animations": 24,
+  "directions": ["n", "ne", "e", "se", "s", "sw", "w", "nw"],
+  "actions": { "attack": 2, "dodge": 2, "skill": 2 },
+  "runtimeComposite": true,
+  "directionAware": true,
+  "actionProgressAware": true,
+  "attackFootprintChanged": false,
+  "playerSaveChanged": false,
+  "fallback": ["player_direction_parts_v17", "player_parts_v16", "player_premium_body_v10"],
+  "finalFullBodyHandPaintedAtlasComplete": false
+}

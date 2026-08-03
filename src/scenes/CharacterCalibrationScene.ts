@@ -1,6 +1,7 @@
-import { Container, Text, TextStyle } from 'pixi.js';
+import { Container, Sprite, Text, TextStyle, type Spritesheet } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
+import { ASSET_PATHS, PREMIUM_SUPPORT_UI_BUNDLE } from '../core/assets/AssetCatalog';
 import { downloadJson } from '../core/files/JsonFileTransfer';
 import { openCharacterCaptureEvidencePackage, openCharacterCaptureFiles } from '../core/files/CharacterCaptureEvidenceTransfer';
 import {
@@ -20,6 +21,8 @@ import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
+import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
 import { CharacterWardrobeScene } from './CharacterWardrobeScene';
 
 export class CharacterCalibrationScene implements Scene {
@@ -28,6 +31,7 @@ export class CharacterCalibrationScene implements Scene {
   public constructor(private readonly message = '') {}
 
   public async enter(context: AppContext): Promise<void> {
+    await context.assets.loadBundle(PREMIUM_SUPPORT_UI_BUNDLE);
     const detected = resolveCharacterDisplayPlatform();
     const profile = resolveCharacterDisplayCalibration();
     const androidEvidence = loadCharacterDisplayCaptureEvidence('android-chrome');
@@ -38,6 +42,21 @@ export class CharacterCalibrationScene implements Scene {
       '물리 단말 캡처 증빙이 포함된 승인 JSON만 런타임 보정값으로 적용합니다.',
     ));
     this.view.addChild(createPanel(18, 164, 504, 650));
+    const mobileTexture = premiumSupportUiTextureV20(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
+      PREMIUM_SUPPORT_UI_V20_KEYS.mobileVerify,
+    ) ?? premiumUiV18Texture(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas),
+      PREMIUM_UI_ICON_V18_KEYS.mobileQa,
+    );
+    if (mobileTexture) {
+      const icon = new Sprite(mobileTexture);
+      icon.anchor.set(0.5);
+      icon.position.set(486, 108);
+      icon.scale.set(0.34);
+      icon.alpha = 0.9;
+      this.view.addChild(icon);
+    }
 
     const feedback = createInlineFeedback(
       this.message || '템플릿을 내려받아 실제 Android Chrome·iOS Safari 캡처를 비교한 뒤 승인 정보를 채우세요.',

@@ -1,0 +1,31 @@
+{
+  "schema": "lumerift-premium-monster-direction-v19",
+  "version": "1.11.35",
+  "frames": 48,
+  "animations": 48,
+  "atlas": "live/v19/atlases/monsters/monster_direction_limb_v19.json",
+  "variants": [
+    "void",
+    "frost",
+    "inferno",
+    "boss"
+  ],
+  "directions": [
+    "front",
+    "side",
+    "back",
+    "three-quarter"
+  ],
+  "phases": [
+    "telegraph",
+    "impact",
+    "recover"
+  ],
+  "gameplayTimingChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "monster_motion_parts_v18",
+    "monster_body_parts_v17",
+    "monster_parts_v16"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "lumerift-premium-monster-motion-v18",
+  "version": "1.11.34",
+  "stage": "elite-boss-motion-overlay-first-pass",
+  "atlas": "live/v18/atlases/monsters/monster_motion_parts_v18.json",
+  "frames": 32,
+  "animations": 16,
+  "families": ["void", "frost", "inferno", "boss"],
+  "actions": ["idle", "telegraph", "attack", "enrage"],
+  "runtimeComposite": true,
+  "phaseResponsive": true,
+  "gameplayTimingChanged": false,
+  "fallback": ["monster_body_parts_v17", "monster_parts_v16", "monsters_live_v4"],
+  "finalFullBodyHandPaintedAtlasComplete": false
+}

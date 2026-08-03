@@ -1,5 +1,18 @@
-# LUMERIFT: 균열의 계승자 v1.11.32
+# LUMERIFT: 균열의 계승자 v1.11.36
 
+## v1.11.36 핵심 업데이트
+
+- 검·대검·균열 장창 8방향 anticipation·contact·sustain·recover·follow-through 120프레임
+- Void·Frost·Inferno·Abyssal Boss 8방향 피격·다운 128프레임
+- 보스 코어 충돌·소멸·역재생 24프레임
+- 화상·감속 등 상태 이상 Premium VFX 32프레임
+- 모바일 승인·복구·감사·Cloud Premium Support UI 16프레임
+- v20 실패 시 v19·v18·v17·v16·기존 표현 계층 안전 폴백
+- Player Save v4·AttackFootprint·App Check 비활성 유지
+
+관련 문서: `docs/PATCH_NOTES_v1.11.36.md`, `docs/PLAYER_WEAPON_PHASES_v1.11.36.md`, `docs/MONSTER_DAMAGE_PARTS_v1.11.36.md`, `docs/BOSS_CORE_EVENTS_v1.11.36.md`, `docs/STATUS_VFX_SUPPORT_UI_v1.11.36.md`
+
+---
 모바일 웹 우선 9:16 액션 RPG. Vite + TypeScript + PixiJS 8 + Firebase 기반이다.
 
 ## v1.11.32 핵심 업데이트

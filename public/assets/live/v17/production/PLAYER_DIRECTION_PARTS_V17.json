@@ -1,0 +1,26 @@
+{
+  "schema": "lumerift-premium-player-direction-parts-v17",
+  "version": "1.11.33",
+  "stage": "direction-pivot-occlusion-first-pass",
+  "atlas": "live/v17/atlases/player/player_direction_parts_v17.json",
+  "image": "live/v17/atlases/player/player_direction_parts_v17.webp",
+  "directions": ["n", "ne", "e", "se", "s", "sw", "w", "nw"],
+  "partsPerDirection": ["hair", "armor", "cape", "face"],
+  "frames": 32,
+  "animations": 32,
+  "size": { "w": 1024, "h": 512 },
+  "directionAwarePivot": true,
+  "directionAwareOcclusion": true,
+  "weaponFamilyAttackPlacement": ["blade", "greatblade", "riftlance"],
+  "wardrobeParity": true,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "player_parts_v16",
+    "player_premium_body_v10",
+    "player_weapon_attack_body_v11",
+    "programmatic-detail-layer"
+  ],
+  "playerSaveChanged": false,
+  "attackFootprintChanged": false,
+  "notes": "Direction-specific overlays and pivot rules improve occlusion and attack-frame placement without claiming completion of the final hand-painted full-body Atlas."
+}

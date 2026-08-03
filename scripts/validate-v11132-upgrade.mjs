@@ -74,20 +74,25 @@ const pkg = await json('package.json');
 const state = await json('HANDOFF_STATE.json');
 const release = await json('RELEASE_MANIFEST.json');
 const assets = await json('public/assets/ASSET_MANIFEST.json');
+const atLeast = (value, minimum) => {
+  const a = String(value).split('.').map(Number); const b = minimum.split('.').map(Number);
+  for (let i = 0; i < 3; i += 1) { if ((a[i] ?? 0) !== (b[i] ?? 0)) return (a[i] ?? 0) > (b[i] ?? 0); }
+  return true;
+};
 for (const [label, version] of Object.entries({ package: pkg.version, state: state.version, release: release.version, assets: assets.release })) {
-  if (version !== '1.11.32') errors.push(`${label} version ${version} != 1.11.32`);
+  if (!atLeast(version, '1.11.32')) errors.push(`${label} version ${version} is older than 1.11.32`);
 }
 if (assets.bundles?.['premium-player-parts-v16']?.bytes !== 129005) errors.push('player bundle bytes mismatch');
 if (assets.bundles?.['premium-monster-parts-v16']?.bytes !== 160049) errors.push('monster bundle bytes mismatch');
 if (assets.bundles?.['boss-core-fx-v16']?.bytes !== 93217) errors.push('boss core bundle bytes mismatch');
 if (assets.bundles?.['premium-ui-icons-v16']?.bytes !== 181631) errors.push('UI bundle bytes mismatch');
 if (assets.bundles?.['premium-runtime-contract-v16']?.bytes !== 3357) errors.push('v16 contract bundle bytes mismatch');
-if (assets.deployment?.publicAssetFiles !== 82 || assets.activeRuntimeBytes !== 11893243) errors.push('v1.11.32 public asset metrics mismatch');
+if ((assets.deployment?.publicAssetFiles ?? 0) < 82 || (assets.activeRuntimeBytes ?? 0) < 11893243) errors.push('v1.11.32 public asset metrics regressed');
 if (state.featureMetrics?.premiumPlayerPartFrames !== 16 || state.featureMetrics?.premiumBossCoreFxFrames !== 12 || state.featureMetrics?.premiumUiIconsV16Frames !== 16) errors.push('v1.11.32 feature metrics mismatch');
 if (state.featureMetrics?.finalHandPaintedV16FullBodyAtlasesComplete !== false || state.featureMetrics?.physicalDeviceV11132Approved !== false) errors.push('v1.11.32 completion/approval flags mismatch');
 if (!pkg.scripts?.verify?.includes('validate:upgrade:v11132') || !pkg.scripts?.verify?.includes('validate:production:v11132')) errors.push('verify chain missing v1.11.32');
 const brand = await read('src/app/brand.ts');
-if (!brand.includes("version: '1.11.32'")) errors.push('brand version mismatch');
+if (!brand.includes(`version: '${pkg.version}'`)) errors.push('brand version mismatch');
 
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log('PASS v1.11.32 upgrade: raster player/monster parts, boss core FX, premium UI icons, and safe fallbacks');

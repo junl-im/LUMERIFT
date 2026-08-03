@@ -1,0 +1,28 @@
+{
+  "schema": "lumerift-premium-ui-icons-v17",
+  "version": "1.11.33",
+  "stage": "premium-ui-cross-screen-expansion",
+  "atlas": "live/v17/atlases/ui/premium_ui_icons_v17.json",
+  "image": "live/v17/atlases/ui/premium_ui_icons_v17.webp",
+  "frames": 24,
+  "animations": 24,
+  "size": { "w": 768, "h": 512 },
+  "categories": {
+    "wardrobeAndPreset": 8,
+    "combatStatus": 4,
+    "metaNavigation": 4,
+    "skillEquipmentBoss": 4,
+    "platformAndHistory": 4
+  },
+  "screens": [
+    "battle",
+    "inventory",
+    "character-wardrobe",
+    "appearance-preset",
+    "recovery-center",
+    "capture-calibration"
+  ],
+  "gameplayDataChanged": false,
+  "fallback": ["premium_ui_icons_v16", "premium_hud_v15", "text-icon treatments"],
+  "notes": "The approved premium UI language expands to wardrobe, recovery, cloud, status, navigation, and mobile calibration screens."
+}

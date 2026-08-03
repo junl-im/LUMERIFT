@@ -1,0 +1,21 @@
+{
+  "schema": "lumerift-premium-combat-vfx-v19",
+  "version": "1.11.35",
+  "frames": 24,
+  "animations": 6,
+  "atlas": "live/v19/atlases/effects/premium_combat_vfx_v19.json",
+  "effects": [
+    "slash",
+    "hit",
+    "nova",
+    "explosion",
+    "dodge",
+    "ultimate"
+  ],
+  "gameplayDataChanged": false,
+  "adaptiveBudgetPreserved": true,
+  "fallback": [
+    "combat_effects_v4",
+    "programmatic_rune_vfx"
+  ]
+}

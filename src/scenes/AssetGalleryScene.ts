@@ -44,7 +44,7 @@ export class AssetGalleryScene implements Scene {
 
   public async enter(context: AppContext): Promise<void> {
     this.context = context;
-    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.29 캐릭터·몬스터 런타임 1차 업그레이드와 확정 비주얼 기준을 품질 점수·모바일 역할로 함께 점검합니다.'));
+    this.view.addChild(createBackground('아트 제작 보관소', 'v1.11.35 3단계 액션·방향 사지·전투 VFX v19과 확정 비주얼 기준을 품질 점수·모바일 역할로 함께 점검합니다.'));
     this.view.addChild(createPanel(24, 176, 492, 650));
     this.view.addChild(createPanel(36, 260, 468, 88));
 

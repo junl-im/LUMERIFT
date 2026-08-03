@@ -428,3 +428,30 @@
 - 보스 코어 FX와 UI 아이콘은 표현 계층이며 전투 판정·저장 데이터는 바꾸지 않는다.
 - v16 로딩 실패 시 기존 본체·Premium HUD v15·프로그램형 디테일 레이어로 폴백한다.
 - 최종 전신 수작업 Atlas와 물리 기기 캡처 승인은 미완료로 유지한다.
+
+## v1.11.33 Premium Direction & Body Runtime v17
+
+- v17 플레이어 파츠는 8방향별 피벗·가림 순서와 공격 프레임 위치 보정용 투명 WebP 합성 계층이다.
+- v17 몬스터 파츠는 엘리트 3계열과 보스 1계열의 전신 범위 확장 계층이며 적 데이터와 판정을 변경하지 않는다.
+- v17 보스 코어는 애니메이션 밀도만 높이며 BossCoreLifecycle과 AttackFootprint를 변경하지 않는다.
+- v17 UI 아이콘은 표현 전용이며 Player Save v4와 Firebase/App Check 정책을 변경하지 않는다.
+- v17을 최종 8방향 전신 수작업 Atlas 완성으로 보고하지 않는다.
+
+
+## v1.11.35 Premium Action Phase & Direction Runtime v19
+
+- v19 플레이어 파츠는 공격·회피·스킬의 접촉·유지·회수 단계용 투명 WebP 합성 계층이며 AttackFootprint와 행동 타이밍을 변경하지 않는다.
+- 몬스터 방향 사지 오버레이는 표현 계층이며 AI·피격 판정·보상 데이터를 변경하지 않는다.
+- 보스 코어 궤적과 Premium Combat VFX는 기존 상태·오브젝트 풀·적응형 예산을 재사용한다.
+- v19 로딩 실패 시 v18·v17·v16과 기존 전투 VFX로 안전하게 폴백한다.
+- v19을 최종 8방향 전신 수작업 Atlas 완성으로 보고하지 않는다.
+- 물리 기기 캡처와 정상 npm production build가 없으면 승인·완료로 기록하지 않는다.
+
+## v1.11.36 Five-Phase Damage & Status Runtime v20
+
+- v20 플레이어 파츠는 검·대검·균열 장창의 anticipation·contact·sustain·recover·follow-through 표현 계층이며 AttackFootprint와 행동 타이밍을 변경하지 않는다.
+- 몬스터 피격·다운 오버레이는 8방향 표현 계층이며 AI·피격 판정·보상 데이터를 변경하지 않는다.
+- 보스 코어 충돌·소멸·역재생과 상태 이상 VFX는 기존 상태 데이터와 오브젝트 풀·적응형 예산을 재사용한다.
+- Premium Support UI v20은 모바일 승인·복구·감사·Cloud 화면 표현 전용이며 저장 스키마와 인증 정책을 변경하지 않는다.
+- v20 로딩 실패 시 v19·v18·v17·v16과 기존 표현 계층으로 안전하게 폴백한다.
+- v20을 최종 8방향 전신 수작업 Atlas 완성으로 보고하지 않으며 물리 기기 캡처와 정상 npm production build가 없으면 승인·완료로 기록하지 않는다.

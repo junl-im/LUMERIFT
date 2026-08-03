@@ -1,12 +1,14 @@
-import { Container, Text, TextStyle } from 'pixi.js';
+import { Container, Sprite, Text, TextStyle, type Spritesheet } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
+import { ASSET_PATHS, PREMIUM_SUPPORT_UI_BUNDLE } from '../core/assets/AssetCatalog';
 import { characterAppearanceArchiveRevision, characterAppearanceCloudPath } from '../core/presentation/CharacterAppearanceCloudSync';
 import type { Scene } from '../core/scenes/Scene';
 import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
 import { AppearancePresetManagerScene } from './AppearancePresetManagerScene';
 import { CharacterAppearanceConflictScene } from './CharacterAppearanceConflictScene';
 import { CharacterAppearanceRecoveryScene } from './CharacterAppearanceRecoveryScene';
@@ -20,6 +22,7 @@ export class CharacterAppearanceCloudScene implements Scene {
     const session = context.auth.currentSession;
     if (!session) throw new Error('로그인 세션이 없습니다.');
 
+    await context.assets.loadBundle(PREMIUM_SUPPORT_UI_BUNDLE);
     const uid = session.uid;
     const cloud = context.characterAppearanceCloud.state(uid);
     const archive = context.characterWardrobe.exportPresetArchive();
@@ -34,6 +37,18 @@ export class CharacterAppearanceCloudScene implements Scene {
       '사용자 동의 후에만 UID 전용 문서로 동기화하며 충돌은 자동 덮어쓰지 않습니다.',
     ));
     this.view.addChild(createPanel(18, 164, 504, 710));
+    const cloudTexture = premiumSupportUiTextureV20(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
+      PREMIUM_SUPPORT_UI_V20_KEYS.cloud,
+    );
+    if (cloudTexture) {
+      const icon = new Sprite(cloudTexture);
+      icon.anchor.set(0.5);
+      icon.position.set(486, 108);
+      icon.scale.set(0.34);
+      icon.alpha = 0.92;
+      this.view.addChild(icon);
+    }
 
     const feedback = createInlineFeedback(
       this.message || cloud.lastError || defaultMessage(available, cloud.optIn, Boolean(cloud.conflict), Boolean(cloud.pendingEnvelope)),

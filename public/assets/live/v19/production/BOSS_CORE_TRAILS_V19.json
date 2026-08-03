@@ -1,0 +1,21 @@
+{
+  "schema": "lumerift-boss-core-trails-v19",
+  "version": "1.11.35",
+  "frames": 36,
+  "animations": 5,
+  "atlas": "live/v19/atlases/effects/boss_core_trails_v19.json",
+  "continuousTrails": true,
+  "states": [
+    "shielded",
+    "fractured",
+    "shattered",
+    "regenerating",
+    "overdrive"
+  ],
+  "attackFootprintChanged": false,
+  "fallback": [
+    "boss_core_fx_v18",
+    "boss_core_fx_v17",
+    "boss_core_fx_v16"
+  ]
+}

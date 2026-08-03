@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.32",
-  "generatedAt": "2026-08-03T06:52:49.602Z",
+  "release": "1.11.36",
+  "generatedAt": "2026-08-03T09:04:38.184Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 117,
-      "bytes": 85672621,
+      "files": 134,
+      "bytes": 89065613,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 82,
-      "bytes": 11894932,
-      "atlases": 19,
-      "frames": 1910,
-      "animations": 573
+      "files": 133,
+      "bytes": 16553965,
+      "atlases": 36,
+      "frames": 2640,
+      "animations": 917
     }
   },
   "entries": [
@@ -286,6 +286,134 @@
       "type": "md",
       "bytes": 388,
       "sha256": "8bd079bda3616dcdf8144d4f84126b7597507f777a80c5317ccd948d03eddf61"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v17/boss_core_fx_v17_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v17/boss_core_fx_v17_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 366868,
+      "sha256": "017a4c6961a1243de838fecb5a35f013f092ec05e10cc142d18353316f8c9706"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v17/monster_body_parts_v17_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v17/monster_body_parts_v17_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 209430,
+      "sha256": "bbf420674b9b5184d60ac57a95c83378cc461884d331cd2940fbb4ff5a98da18"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v17/player_direction_parts_v17_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v17/player_direction_parts_v17_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 131758,
+      "sha256": "2f758a9524819a1f4af919d45386bc837babc38732aa709f0e74930467af49f4"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v17/premium_ui_icons_v17_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v17/premium_ui_icons_v17_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 244692,
+      "sha256": "917e54d2c84ec0db07b6068e6760d0a4e6c7a1a1147b5774e3644b680155c9ee"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v17/README.md",
+      "relativePath": "lumerift_owned/premium_parts_v17/README.md",
+      "classification": "source-master",
+      "type": "md",
+      "bytes": 356,
+      "sha256": "b85eaaa1c84a3e4257010d623589efd69204f7357a11b851c2310ae015cbcde2"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v19/boss_core_trails_v19_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v19/boss_core_trails_v19_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 187820,
+      "sha256": "ade4e33f804812f51240c0b3f2dece41988ba6bb7b1680001af72d72a65445ee"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v19/monster_direction_limb_v19_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v19/monster_direction_limb_v19_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 338474,
+      "sha256": "c8baad6c224fc7d24e45188b0815c89240b5ddbb4c5330ff1b9efeecd109c78c"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v19/player_action_phases_v19_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v19/player_action_phases_v19_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 381100,
+      "sha256": "f2394d5d516077004993afd1cc86de1265f7eb633200e48b8fa2ebe24da12817"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v19/premium_combat_vfx_v19_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v19/premium_combat_vfx_v19_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 127296,
+      "sha256": "b0bba803c8e41e4a6685e48de04b4409b23a7b72c608cb50bc1dcd192ff036ad"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v19/README.md",
+      "relativePath": "lumerift_owned/premium_parts_v19/README.md",
+      "classification": "source-master",
+      "type": "md",
+      "bytes": 392,
+      "sha256": "e92d360515113909bfb6e6eb7d424d500264c65ae1d34b4084706b8be8ff93bb"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/boss_core_events_v20_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v20/boss_core_events_v20_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 119212,
+      "sha256": "c07c9853cc31d69d6a6c068445d212572638b5dd4cc83d8c2df1b82213dd88f3"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/monster_damage_parts_v20_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v20/monster_damage_parts_v20_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 554686,
+      "sha256": "0c96c9c4a6c26ba81cc26ebf13d15f7256e5ccb33aac9328ded2aa5ae3008abe"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/player_weapon_phases_v20_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v20/player_weapon_phases_v20_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 554828,
+      "sha256": "1a514defb5842fcace8245827e1a57801b2c5f561d8719b0dc78bd7c8c8c1bd3"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/premium_support_ui_v20_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v20/premium_support_ui_v20_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 29640,
+      "sha256": "cf5f53f8f390cf879ea8584d061e80f737ce2df41b1570869667db743daa48ff"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/README.md",
+      "relativePath": "lumerift_owned/premium_parts_v20/README.md",
+      "classification": "source-master",
+      "type": "md",
+      "bytes": 337,
+      "sha256": "5a9403acd5ff5b955e1d426138b560c4390a36686bf573c07b01ac36cd11f7e9"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/status_vfx_v20_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v20/status_vfx_v20_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 145708,
+      "sha256": "c69a81eeb37741637aec310c42854da66eb15ca531115081acd954d0c301cc14"
     },
     {
       "path": "art_source/lumerift_owned/premium_ui_v15/premium_hud_v15_master.webp",
@@ -2755,12 +2883,20 @@
       "sha256": "bad043bab60e704b46f46b5aabb35a8c70f2318de7cd2a2af011025bb824c7a6"
     },
     {
+      "path": "art_source/v18/README.md",
+      "relativePath": "v18/README.md",
+      "classification": "source-master",
+      "type": "md",
+      "bytes": 395,
+      "sha256": "21dd72683cb23b04e02f6bbd1c5fe69e541cf8bf4884085c65d3018a41af2166"
+    },
+    {
       "path": "public/assets/ASSET_MANIFEST.json",
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 8816,
-      "sha256": "1899f9b3004e2379379afd9b9b191c6df08a7767f0f7185a4488afa0dc66ba27"
+      "bytes": 15507,
+      "sha256": "3bbd767be684e4485a7fe80aa5deecf80c0b0fd8758750ce7f460a8dc6756a19"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -3169,6 +3305,499 @@
       "type": "json",
       "bytes": 716,
       "sha256": "50388c915321f5b357f8256180c3569d65a2ff6f15a248f9734b6eefbc20f2af"
+    },
+    {
+      "path": "public/assets/live/v17/atlases/effects/boss_core_fx_v17.json",
+      "relativePath": "live/v17/atlases/effects/boss_core_fx_v17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 11673,
+      "sha256": "acbb59196f4def3904f51b3fb3a5b887d1cb878debbb707a7eff265c512ea104",
+      "atlas": {
+        "frames": 24,
+        "animations": 5,
+        "image": "boss_core_fx_v17.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v17/atlases/effects/boss_core_fx_v17.webp",
+      "relativePath": "live/v17/atlases/effects/boss_core_fx_v17.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 366868,
+      "sha256": "017a4c6961a1243de838fecb5a35f013f092ec05e10cc142d18353316f8c9706"
+    },
+    {
+      "path": "public/assets/live/v17/atlases/monsters/monster_body_parts_v17.json",
+      "relativePath": "live/v17/atlases/monsters/monster_body_parts_v17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 13227,
+      "sha256": "014cfd3a54e1886ab961aec75af2432813e07d9029b5b2354ff24369575d7456",
+      "atlas": {
+        "frames": 24,
+        "animations": 24,
+        "image": "monster_body_parts_v17.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v17/atlases/monsters/monster_body_parts_v17.webp",
+      "relativePath": "live/v17/atlases/monsters/monster_body_parts_v17.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 209430,
+      "sha256": "bbf420674b9b5184d60ac57a95c83378cc461884d331cd2940fbb4ff5a98da18"
+    },
+    {
+      "path": "public/assets/live/v17/atlases/player/player_direction_parts_v17.json",
+      "relativePath": "live/v17/atlases/player/player_direction_parts_v17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 16784,
+      "sha256": "c341a38dfd9f36ed5be5ce77fe0289056d160e21eebe77196bface91ad801b9a",
+      "atlas": {
+        "frames": 32,
+        "animations": 32,
+        "image": "player_direction_parts_v17.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v17/atlases/player/player_direction_parts_v17.webp",
+      "relativePath": "live/v17/atlases/player/player_direction_parts_v17.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 131758,
+      "sha256": "2f758a9524819a1f4af919d45386bc837babc38732aa709f0e74930467af49f4"
+    },
+    {
+      "path": "public/assets/live/v17/atlases/ui/premium_ui_icons_v17.json",
+      "relativePath": "live/v17/atlases/ui/premium_ui_icons_v17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 11992,
+      "sha256": "4c37ef0e784aeb01c8762cd57f38f21ec118affa87f5c38520e4eab12f4c02fc",
+      "atlas": {
+        "frames": 24,
+        "animations": 24,
+        "image": "premium_ui_icons_v17.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v17/atlases/ui/premium_ui_icons_v17.webp",
+      "relativePath": "live/v17/atlases/ui/premium_ui_icons_v17.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 244692,
+      "sha256": "917e54d2c84ec0db07b6068e6760d0a4e6c7a1a1147b5774e3644b680155c9ee"
+    },
+    {
+      "path": "public/assets/live/v17/production/BOSS_CORE_FX_V17.json",
+      "relativePath": "live/v17/production/BOSS_CORE_FX_V17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 723,
+      "sha256": "9beb7d4c018ac38f47462682a686d40dc532bf604d17cb5a7634690e1ad57587"
+    },
+    {
+      "path": "public/assets/live/v17/production/MONSTER_BODY_PARTS_V17.json",
+      "relativePath": "live/v17/production/MONSTER_BODY_PARTS_V17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 923,
+      "sha256": "6199da266b3030432ed7861bd42975a2c6d1d107d99eec99f1435c2735c3c3b9"
+    },
+    {
+      "path": "public/assets/live/v17/production/PLAYER_DIRECTION_PARTS_V17.json",
+      "relativePath": "live/v17/production/PLAYER_DIRECTION_PARTS_V17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 1065,
+      "sha256": "524e0243d035c8aacbcbc1c8c0b1120ff8a86ff2e8159032abb461c8457152c9"
+    },
+    {
+      "path": "public/assets/live/v17/production/PREMIUM_UI_ICONS_V17.json",
+      "relativePath": "live/v17/production/PREMIUM_UI_ICONS_V17.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 869,
+      "sha256": "1bf3d7c6039275f8d9bd990b03738d6e59df35da8f59cb3c0d4bc5d8d2c7126f"
+    },
+    {
+      "path": "public/assets/live/v18/atlases/effects/boss_core_fx_v18.json",
+      "relativePath": "live/v18/atlases/effects/boss_core_fx_v18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 14240,
+      "sha256": "f3e4b8a7b7baf25c902afcfcc8385f3768942cf39e66f7ed3d1e1fe1b351d032",
+      "atlas": {
+        "frames": 30,
+        "animations": 5,
+        "image": "boss_core_fx_v18.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v18/atlases/effects/boss_core_fx_v18.webp",
+      "relativePath": "live/v18/atlases/effects/boss_core_fx_v18.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 301020,
+      "sha256": "2b74701a4dd7e657b5f7d40ba4d331235cd00d6af213d9a09bf26fb8361f8cf0"
+    },
+    {
+      "path": "public/assets/live/v18/atlases/monsters/monster_motion_parts_v18.json",
+      "relativePath": "live/v18/atlases/monsters/monster_motion_parts_v18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 16646,
+      "sha256": "4d957ab29048db37e6f81a69687dae621f82b295a366eadd61a14c6619d93c7c",
+      "atlas": {
+        "frames": 32,
+        "animations": 16,
+        "image": "monster_motion_parts_v18.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v18/atlases/monsters/monster_motion_parts_v18.webp",
+      "relativePath": "live/v18/atlases/monsters/monster_motion_parts_v18.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 288136,
+      "sha256": "8bcc498ed530adf47024df239157153d71c9e466de0eced9c9593bf0dee96e3e"
+    },
+    {
+      "path": "public/assets/live/v18/atlases/player/player_action_parts_v18.json",
+      "relativePath": "live/v18/atlases/player/player_action_parts_v18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 24201,
+      "sha256": "b1b10905c9b652a6a4dea13c0bd4afe96b1b45ea31b60f6ae7c6057c14a82ae0",
+      "atlas": {
+        "frames": 48,
+        "animations": 24,
+        "image": "player_action_parts_v18.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v18/atlases/player/player_action_parts_v18.webp",
+      "relativePath": "live/v18/atlases/player/player_action_parts_v18.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 223776,
+      "sha256": "73e431253b756a8e07f5be0f46169483fcb15b13ca23de343ca9b62c763379b1"
+    },
+    {
+      "path": "public/assets/live/v18/atlases/ui/premium_ui_icons_v18.json",
+      "relativePath": "live/v18/atlases/ui/premium_ui_icons_v18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 8130,
+      "sha256": "3eff550c67cfa1442f2aec8491dcea2043547437e96f3a24680a024bdf14a95d",
+      "atlas": {
+        "frames": 16,
+        "animations": 16,
+        "image": "premium_ui_icons_v18.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v18/atlases/ui/premium_ui_icons_v18.webp",
+      "relativePath": "live/v18/atlases/ui/premium_ui_icons_v18.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 69584,
+      "sha256": "4384c15414e3da6090327526d1200855d445c46ca59abdcd75de7742b94b6d41"
+    },
+    {
+      "path": "public/assets/live/v18/production/BOSS_CORE_FX_V18.json",
+      "relativePath": "live/v18/production/BOSS_CORE_FX_V18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 488,
+      "sha256": "8598046812d7e28065bbdce4f4ac029d366541967432158a1e69af71af4c231c"
+    },
+    {
+      "path": "public/assets/live/v18/production/MONSTER_MOTION_PARTS_V18.json",
+      "relativePath": "live/v18/production/MONSTER_MOTION_PARTS_V18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 565,
+      "sha256": "d14e076698ff48135523008c1768775bdc92d16a54f7c1b39c7334e606a7ebfc"
+    },
+    {
+      "path": "public/assets/live/v18/production/PLAYER_ACTION_PARTS_V18.json",
+      "relativePath": "live/v18/production/PLAYER_ACTION_PARTS_V18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 643,
+      "sha256": "0361ccc3706af3081f97dffc233401212b37b282a54775d590aa7def02e265aa"
+    },
+    {
+      "path": "public/assets/live/v18/production/PREMIUM_UI_ICONS_V18.json",
+      "relativePath": "live/v18/production/PREMIUM_UI_ICONS_V18.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 506,
+      "sha256": "ed1cd2bc851f22a8dcfbb4657cf253464fc662e8728e895ee9e8bcccc42cf57e"
+    },
+    {
+      "path": "public/assets/live/v19/atlases/effects/boss_core_trails_v19.json",
+      "relativePath": "live/v19/atlases/effects/boss_core_trails_v19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 16952,
+      "sha256": "85f28af90a4351e7bb1e4240461e8eeddf4094a71e7cd93f8eff646cef777614",
+      "atlas": {
+        "frames": 36,
+        "animations": 5,
+        "image": "boss_core_trails_v19.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v19/atlases/effects/boss_core_trails_v19.webp",
+      "relativePath": "live/v19/atlases/effects/boss_core_trails_v19.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 187820,
+      "sha256": "ade4e33f804812f51240c0b3f2dece41988ba6bb7b1680001af72d72a65445ee"
+    },
+    {
+      "path": "public/assets/live/v19/atlases/effects/premium_combat_vfx_v19.json",
+      "relativePath": "live/v19/atlases/effects/premium_combat_vfx_v19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 11294,
+      "sha256": "4dc01d504f3d0f6c0618ef1000beb0fb506a6f0623a438dbc045b7fd5b3af2d7",
+      "atlas": {
+        "frames": 24,
+        "animations": 6,
+        "image": "premium_combat_vfx_v19.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v19/atlases/effects/premium_combat_vfx_v19.webp",
+      "relativePath": "live/v19/atlases/effects/premium_combat_vfx_v19.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 127296,
+      "sha256": "b0bba803c8e41e4a6685e48de04b4409b23a7b72c608cb50bc1dcd192ff036ad"
+    },
+    {
+      "path": "public/assets/live/v19/atlases/monsters/monster_direction_limb_v19.json",
+      "relativePath": "live/v19/atlases/monsters/monster_direction_limb_v19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 26823,
+      "sha256": "8dfe1c8e66b01cdd3c2626a4e679aa0510c21bd3fb84c46bfc31b3e824bfee2b",
+      "atlas": {
+        "frames": 48,
+        "animations": 48,
+        "image": "monster_direction_limb_v19.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v19/atlases/monsters/monster_direction_limb_v19.webp",
+      "relativePath": "live/v19/atlases/monsters/monster_direction_limb_v19.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 338474,
+      "sha256": "c8baad6c224fc7d24e45188b0815c89240b5ddbb4c5330ff1b9efeecd109c78c"
+    },
+    {
+      "path": "public/assets/live/v19/atlases/player/player_action_phases_v19.json",
+      "relativePath": "live/v19/atlases/player/player_action_phases_v19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 36024,
+      "sha256": "54d1e1f0692e8be5926c2654787f571db057f03b63fd49fedc3b759bdd1b51eb",
+      "atlas": {
+        "frames": 72,
+        "animations": 24,
+        "image": "player_action_phases_v19.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v19/atlases/player/player_action_phases_v19.webp",
+      "relativePath": "live/v19/atlases/player/player_action_phases_v19.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 381100,
+      "sha256": "f2394d5d516077004993afd1cc86de1265f7eb633200e48b8fa2ebe24da12817"
+    },
+    {
+      "path": "public/assets/live/v19/production/BOSS_CORE_TRAILS_V19.json",
+      "relativePath": "live/v19/production/BOSS_CORE_TRAILS_V19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 432,
+      "sha256": "302a463da13c7a05a561e9891a324469b79f5e23cbf1ce7141eb813aec90d4b2"
+    },
+    {
+      "path": "public/assets/live/v19/production/MONSTER_DIRECTION_LIMB_V19.json",
+      "relativePath": "live/v19/production/MONSTER_DIRECTION_LIMB_V19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 596,
+      "sha256": "a80cb3c68747923cef0e23895293795b4d95cd9ed100b07ad9e6bec536067ffc"
+    },
+    {
+      "path": "public/assets/live/v19/production/PLAYER_ACTION_PHASES_V19.json",
+      "relativePath": "live/v19/production/PLAYER_ACTION_PHASES_V19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 515,
+      "sha256": "38fe38bc4eb59540fa2cf3e3c2752e27f7da49d318a46c64c76ccb7e239d8d3e"
+    },
+    {
+      "path": "public/assets/live/v19/production/PREMIUM_COMBAT_VFX_V19.json",
+      "relativePath": "live/v19/production/PREMIUM_COMBAT_VFX_V19.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 418,
+      "sha256": "0d8fad8a4f076dc8e41a88cb954878a3b6f43a97174286f40438bf709ecc4534"
+    },
+    {
+      "path": "public/assets/live/v20/atlases/effects/boss_core_events_v20.json",
+      "relativePath": "live/v20/atlases/effects/boss_core_events_v20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 11542,
+      "sha256": "9c20a9316eb0d82b6d3ba380619e89cfd4ffc74727bbe908e7d71e4b6c157317",
+      "atlas": {
+        "frames": 24,
+        "animations": 3,
+        "image": "boss_core_events_v20.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v20/atlases/effects/boss_core_events_v20.webp",
+      "relativePath": "live/v20/atlases/effects/boss_core_events_v20.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 119212,
+      "sha256": "c07c9853cc31d69d6a6c068445d212572638b5dd4cc83d8c2df1b82213dd88f3"
+    },
+    {
+      "path": "public/assets/live/v20/atlases/effects/status_vfx_v20.json",
+      "relativePath": "live/v20/atlases/effects/status_vfx_v20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 15087,
+      "sha256": "4881e836fc66028e2312d7f0ddc6093de7be5a06fd1c7234607ea007ebc24ff2",
+      "atlas": {
+        "frames": 32,
+        "animations": 8,
+        "image": "status_vfx_v20.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v20/atlases/effects/status_vfx_v20.webp",
+      "relativePath": "live/v20/atlases/effects/status_vfx_v20.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 145708,
+      "sha256": "c69a81eeb37741637aec310c42854da66eb15ca531115081acd954d0c301cc14"
+    },
+    {
+      "path": "public/assets/live/v20/atlases/monsters/monster_damage_parts_v20.json",
+      "relativePath": "live/v20/atlases/monsters/monster_damage_parts_v20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 65246,
+      "sha256": "ede6b692b762f139c19851b66e9795024d395d126554871c58ee9161380acd9d",
+      "atlas": {
+        "frames": 128,
+        "animations": 64,
+        "image": "monster_damage_parts_v20.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v20/atlases/monsters/monster_damage_parts_v20.webp",
+      "relativePath": "live/v20/atlases/monsters/monster_damage_parts_v20.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 554686,
+      "sha256": "0c96c9c4a6c26ba81cc26ebf13d15f7256e5ccb33aac9328ded2aa5ae3008abe"
+    },
+    {
+      "path": "public/assets/live/v20/atlases/player/player_weapon_phases_v20.json",
+      "relativePath": "live/v20/atlases/player/player_weapon_phases_v20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 60565,
+      "sha256": "17f8c54d13bcd4b46e77b42af0ea63fe3a44ab435ccc69977b4ca91fda1bb796",
+      "atlas": {
+        "frames": 120,
+        "animations": 24,
+        "image": "player_weapon_phases_v20.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v20/atlases/player/player_weapon_phases_v20.webp",
+      "relativePath": "live/v20/atlases/player/player_weapon_phases_v20.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 554828,
+      "sha256": "1a514defb5842fcace8245827e1a57801b2c5f561d8719b0dc78bd7c8c8c1bd3"
+    },
+    {
+      "path": "public/assets/live/v20/atlases/ui/premium_support_ui_v20.json",
+      "relativePath": "live/v20/atlases/ui/premium_support_ui_v20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 8044,
+      "sha256": "4ed967492736238ba9eaf3955718b7c0f5fd46af8b3113542847f009ff33865c",
+      "atlas": {
+        "frames": 16,
+        "animations": 16,
+        "image": "premium_support_ui_v20.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v20/atlases/ui/premium_support_ui_v20.webp",
+      "relativePath": "live/v20/atlases/ui/premium_support_ui_v20.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 29640,
+      "sha256": "cf5f53f8f390cf879ea8584d061e80f737ce2df41b1570869667db743daa48ff"
+    },
+    {
+      "path": "public/assets/live/v20/production/BOSS_CORE_EVENTS_V20.json",
+      "relativePath": "live/v20/production/BOSS_CORE_EVENTS_V20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 314,
+      "sha256": "323373d6c1846fc39762af312b2f31230aacee81e1ceddb6e3170150a9158199"
+    },
+    {
+      "path": "public/assets/live/v20/production/MONSTER_DAMAGE_PARTS_V20.json",
+      "relativePath": "live/v20/production/MONSTER_DAMAGE_PARTS_V20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 417,
+      "sha256": "e83a1a03311ada86319e2402c3b6cba12ee0921ace8da11239ac3690d740d1b6"
+    },
+    {
+      "path": "public/assets/live/v20/production/PLAYER_WEAPON_PHASES_V20.json",
+      "relativePath": "live/v20/production/PLAYER_WEAPON_PHASES_V20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 477,
+      "sha256": "475a88abfd942386219fdf7802415902defd8ad6384edf80482d3106e7abb5f4"
+    },
+    {
+      "path": "public/assets/live/v20/production/PREMIUM_SUPPORT_UI_V20.json",
+      "relativePath": "live/v20/production/PREMIUM_SUPPORT_UI_V20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 561,
+      "sha256": "a1a78b6a3bb1385ca4cacba7fb83b2220fb62d231795923043200d610bbcafd6"
+    },
+    {
+      "path": "public/assets/live/v20/production/STATUS_VFX_V20.json",
+      "relativePath": "live/v20/production/STATUS_VFX_V20.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 332,
+      "sha256": "f1c8494af8538c030d46ac526a27ed1ddc57dd82f3d6f9530084b156ec993985"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

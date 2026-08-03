@@ -1,0 +1,22 @@
+{
+  "schema": "lumerift-boss-core-fx-v17",
+  "version": "1.11.33",
+  "stage": "boss-core-animation-second-pass",
+  "atlas": "live/v17/atlases/effects/boss_core_fx_v17.json",
+  "image": "live/v17/atlases/effects/boss_core_fx_v17.webp",
+  "frames": 24,
+  "animations": 5,
+  "size": { "w": 768, "h": 512 },
+  "states": {
+    "shielded": 4,
+    "fractured": 4,
+    "shattered": 6,
+    "regenerating": 6,
+    "overdrive": 4
+  },
+  "bodyAndHudSharedState": true,
+  "gameplayTimingChanged": false,
+  "attackFootprintChanged": false,
+  "fallback": ["boss_core_fx_v16", "BossCoreLifecycle v15 programmatic presentation"],
+  "notes": "Frame density is doubled for the core lifecycle while timing and combat data remain unchanged."
+}

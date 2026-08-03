@@ -1,6 +1,7 @@
-import { Container, Text, TextStyle } from 'pixi.js';
+import { Container, Sprite, Text, TextStyle, type Spritesheet } from 'pixi.js';
 import type { AppContext } from '../app/AppContext';
 import { COLORS } from '../app/constants';
+import { ASSET_PATHS, PREMIUM_SUPPORT_UI_BUNDLE } from '../core/assets/AssetCatalog';
 import { downloadJson, openJsonFile } from '../core/files/JsonFileTransfer';
 import { characterAppearanceArchiveRevision } from '../core/presentation/CharacterAppearanceCloudSync';
 import type { Scene } from '../core/scenes/Scene';
@@ -14,6 +15,8 @@ import { createBackground, createPanel } from '../ui/SceneChrome';
 import { promptTextValue } from '../ui/TextPromptOverlay';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
+import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
+import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
 import { CharacterAppearanceCloudScene } from './CharacterAppearanceCloudScene';
 import { CharacterAppearanceRecoveryCompareScene } from './CharacterAppearanceRecoveryCompareScene';
 
@@ -29,6 +32,7 @@ export class CharacterAppearanceRecoveryScene implements Scene {
   public async enter(context: AppContext): Promise<void> {
     const session = context.auth.currentSession;
     if (!session) throw new Error('로그인 세션이 없습니다.');
+    await context.assets.loadBundle(PREMIUM_SUPPORT_UI_BUNDLE);
     const uid = session.uid;
     const allPoints = context.characterAppearanceCloud.recoveryPoints(uid);
     const points = context.characterAppearanceCloud.recoveryPoints(uid, this.query);
@@ -46,6 +50,21 @@ export class CharacterAppearanceRecoveryScene implements Scene {
       '이름·고정·검색을 지원하며, 고정 3개와 최근 자동 복구 5개를 UID별로 분리 보관합니다.',
     ));
     this.view.addChild(createPanel(18, 158, 504, 788));
+    const recoveryTexture = premiumSupportUiTextureV20(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
+      PREMIUM_SUPPORT_UI_V20_KEYS.recovery,
+    ) ?? premiumUiV18Texture(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas),
+      PREMIUM_UI_ICON_V18_KEYS.recoveryDiff,
+    );
+    if (recoveryTexture) {
+      const icon = new Sprite(recoveryTexture);
+      icon.anchor.set(0.5);
+      icon.position.set(486, 108);
+      icon.scale.set(0.34);
+      icon.alpha = 0.9;
+      this.view.addChild(icon);
+    }
 
     const feedback = createInlineFeedback(
       this.message || (selected ? '복구 지점을 선택해 이름 변경·고정·복구·내보내기를 실행할 수 있습니다.' : this.query ? '검색 결과가 없습니다.' : '아직 저장된 외형 복구 지점이 없습니다.'),

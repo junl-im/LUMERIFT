@@ -1,0 +1,13 @@
+{
+  "schema": "lumerift-boss-core-fx-v18",
+  "version": "1.11.34",
+  "stage": "dense-destruction-regeneration-loop",
+  "atlas": "live/v18/atlases/effects/boss_core_fx_v18.json",
+  "frames": 30,
+  "animations": 5,
+  "states": { "shielded": 4, "fractured": 4, "shattered": 8, "regenerating": 8, "overdrive": 6 },
+  "stableFallback": "shielded",
+  "gameplayTimingChanged": false,
+  "attackFootprintChanged": false,
+  "fallback": ["boss_core_fx_v17", "boss_core_fx_v16", "premium_hud_v15"]
+}

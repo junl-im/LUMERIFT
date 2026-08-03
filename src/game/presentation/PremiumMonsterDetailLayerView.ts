@@ -4,6 +4,14 @@ import type { MonsterRank, MonsterVisualConfig } from '../combat/combatData';
 import { resolvePremiumMonsterVariant, type PremiumMonsterVariantProfile } from './PremiumMonsterVariantProfile';
 import { resolveBossCorePresentation } from './BossCoreLifecycle';
 import { bossCoreFxTexture, monsterPartTextures } from './PremiumPartAtlasV16';
+import { bossCoreFxTextureV17 } from './BossCoreFxV17';
+import { bossCoreFxTextureV18 } from './BossCoreFxV18';
+import { bossCoreTrailTextureV19 } from './BossCoreTrailsV19';
+import { monsterBodyTexturesV17 } from './PremiumMonsterBodyAtlasV17';
+import { premiumMonsterMotionTextureV18 } from './PremiumMonsterMotionAtlasV18';
+import { premiumMonsterDirectionTextureV19 } from './PremiumMonsterDirectionV19';
+import { monsterDamageTextureV20 } from './MonsterDamagePartsV20';
+import { bossCoreEventTextureV20 } from './BossCoreEventsV20';
 
 export interface PremiumMonsterDetailPose {
   readonly elapsed: number;
@@ -11,6 +19,8 @@ export interface PremiumMonsterDetailPose {
   readonly phase: number;
   readonly hpRatio: number;
   readonly facingSign: -1 | 1;
+  readonly facingX: number;
+  readonly facingY: number;
   readonly flashRemaining: number;
   readonly alive: boolean;
 }
@@ -37,8 +47,25 @@ export class PremiumMonsterDetailLayerView {
   private readonly paintedAura?: Sprite;
   private readonly paintedOverdrive?: Sprite;
   private readonly paintedCoreFx?: Sprite;
+  private readonly paintedHeadplate?: Sprite;
+  private readonly paintedTorso?: Sprite;
+  private readonly paintedForelegs?: Sprite;
+  private readonly paintedHindlegs?: Sprite;
+  private readonly paintedDorsal?: Sprite;
+  private readonly paintedTailtip?: Sprite;
+  private readonly paintedMotionV18?: Sprite;
+  private readonly paintedDirectionV19?: Sprite;
+  private readonly paintedDamageV20?: Sprite;
+  private readonly paintedCoreEventV20?: Sprite;
   private readonly profile: PremiumMonsterVariantProfile;
   private readonly coreFxSheet?: Spritesheet;
+  private readonly coreFxV17Sheet?: Spritesheet;
+  private readonly motionV18Sheet?: Spritesheet;
+  private readonly coreFxV18Sheet?: Spritesheet;
+  private readonly directionV19Sheet?: Spritesheet;
+  private readonly coreTrailV19Sheet?: Spritesheet;
+  private readonly damageV20Sheet?: Spritesheet;
+  private readonly coreEventV20Sheet?: Spritesheet;
   private observedPhase = 1;
   private phaseStartedAt = 0;
 
@@ -49,10 +76,26 @@ export class PremiumMonsterDetailLayerView {
     visual: MonsterVisualConfig,
     partsSheet?: Spritesheet,
     coreFxSheet?: Spritesheet,
+    bodyPartsV17Sheet?: Spritesheet,
+    coreFxV17Sheet?: Spritesheet,
+    motionV18Sheet?: Spritesheet,
+    coreFxV18Sheet?: Spritesheet,
+    directionV19Sheet?: Spritesheet,
+    coreTrailV19Sheet?: Spritesheet,
+    damageV20Sheet?: Spritesheet,
+    coreEventV20Sheet?: Spritesheet,
   ) {
     this.profile = resolvePremiumMonsterVariant(monsterId, rank, visual);
     this.coreFxSheet = coreFxSheet;
+    this.coreFxV17Sheet = coreFxV17Sheet;
+    this.motionV18Sheet = motionV18Sheet;
+    this.coreFxV18Sheet = coreFxV18Sheet;
+    this.directionV19Sheet = directionV19Sheet;
+    this.coreTrailV19Sheet = coreTrailV19Sheet;
+    this.damageV20Sheet = damageV20Sheet;
+    this.coreEventV20Sheet = coreEventV20Sheet;
     const textures = monsterPartTextures(partsSheet, this.profile.variant);
+    const bodyTextures = monsterBodyTexturesV17(bodyPartsV17Sheet, this.profile.variant);
     this.paintedCrest = createMonsterPartSprite(textures.crest);
     this.paintedCore = createMonsterPartSprite(textures.core, true);
     this.paintedClaw = createMonsterPartSprite(textures.claw);
@@ -61,12 +104,45 @@ export class PremiumMonsterDetailLayerView {
     this.paintedAura = createMonsterPartSprite(textures.aura, true);
     this.paintedOverdrive = createMonsterPartSprite(textures.overdrive, true);
     this.paintedCoreFx = createMonsterPartSprite(
-      bossCoreFxTexture(coreFxSheet, 'shielded', 0),
+      bossCoreTrailTextureV19(coreTrailV19Sheet, 'shielded', 0)
+        ?? bossCoreFxTextureV18(coreFxV18Sheet, 'shielded', 0)
+        ?? bossCoreFxTextureV17(coreFxV17Sheet, 'shielded', 0)
+        ?? bossCoreFxTexture(coreFxSheet, 'shielded', 0),
+      true,
+    );
+    this.paintedHeadplate = createMonsterPartSprite(bodyTextures.headplate);
+    this.paintedTorso = createMonsterPartSprite(bodyTextures.torso);
+    this.paintedForelegs = createMonsterPartSprite(bodyTextures.forelegs);
+    this.paintedHindlegs = createMonsterPartSprite(bodyTextures.hindlegs);
+    this.paintedDorsal = createMonsterPartSprite(bodyTextures.dorsal);
+    this.paintedTailtip = createMonsterPartSprite(bodyTextures.tailtip);
+    this.paintedMotionV18 = createMonsterPartSprite(
+      premiumMonsterMotionTextureV18(motionV18Sheet, this.profile.variant, 'idle', 1, 0),
+      true,
+    );
+    this.paintedDirectionV19 = createMonsterPartSprite(
+      premiumMonsterDirectionTextureV19(directionV19Sheet, this.profile.variant, 0, 1, 'idle'),
+      true,
+    );
+    this.paintedDamageV20 = createMonsterPartSprite(
+      monsterDamageTextureV20(damageV20Sheet, this.profile.variant, 0, 1, 'hit', true, 0),
+      true,
+    );
+    this.paintedCoreEventV20 = createMonsterPartSprite(
+      bossCoreEventTextureV20(coreEventV20Sheet, 'shattered', 0),
       true,
     );
     this.drawStatic();
     this.back.addChild(
-      ...compactMonsterSprites(this.paintedAura, this.paintedTail, this.paintedMane),
+      ...compactMonsterSprites(
+        this.paintedAura,
+        this.paintedTailtip,
+        this.paintedTail,
+        this.paintedHindlegs,
+        this.paintedTorso,
+        this.paintedDorsal,
+        this.paintedMane,
+      ),
       this.tailArc,
       this.mane,
       this.silhouette,
@@ -81,11 +157,17 @@ export class PremiumMonsterDetailLayerView {
       this.claws,
       this.phaseShards,
       ...compactMonsterSprites(
+        this.paintedForelegs,
+        this.paintedHeadplate,
         this.paintedCrest,
         this.paintedCore,
         this.paintedClaw,
         this.paintedCoreFx,
         this.paintedOverdrive,
+        this.paintedMotionV18,
+        this.paintedDirectionV19,
+        this.paintedDamageV20,
+        this.paintedCoreEventV20,
       ),
     );
   }
@@ -100,6 +182,9 @@ export class PremiumMonsterDetailLayerView {
     const telegraph = pose.state === 'telegraph' ? 1 : 0;
     const attack = pose.state === 'attack' ? 1 : 0;
     const phaseStrength = this.rank === 'boss' ? Math.max(1, pose.phase) : 1;
+    this.updateMotionOverlayV18(pose, telegraph, attack, phaseStrength);
+    this.updateDirectionOverlayV19(pose, telegraph, attack, phaseStrength);
+    this.updateDamageOverlayV20(pose); 
     if (pose.phase !== this.observedPhase) {
       this.observedPhase = pose.phase;
       this.phaseStartedAt = pose.elapsed;
@@ -166,6 +251,89 @@ export class PremiumMonsterDetailLayerView {
     this.updatePaintedParts(pose, corePresentation.state, corePulse, telegraph, attack, phaseStrength, flash);
   }
 
+
+  private updateMotionOverlayV18(
+    pose: PremiumMonsterDetailPose,
+    telegraph: number,
+    attack: number,
+    phaseStrength: number,
+  ): void {
+    if (!this.paintedMotionV18) return;
+    const texture = premiumMonsterMotionTextureV18(
+      this.motionV18Sheet,
+      this.profile.variant,
+      pose.state,
+      pose.phase,
+      pose.elapsed - this.phaseStartedAt,
+    );
+    if (!texture) {
+      this.paintedMotionV18.visible = false;
+      return;
+    }
+    this.paintedMotionV18.visible = true;
+    this.paintedMotionV18.texture = texture;
+    const baseScale = (this.radius / 52) * (this.rank === 'boss' ? 1.18 : 0.96);
+    this.paintedMotionV18.position.set(pose.facingSign * attack * this.radius * 0.08, -this.radius * 0.04);
+    this.paintedMotionV18.scale.set(pose.facingSign * baseScale, baseScale);
+    this.paintedMotionV18.rotation = pose.facingSign * (telegraph * 0.025 - attack * 0.04);
+    this.paintedMotionV18.alpha = Math.min(0.9, 0.28 + telegraph * 0.34 + attack * 0.4 + (phaseStrength - 1) * 0.08);
+  }
+
+  private updateDirectionOverlayV19(
+    pose: PremiumMonsterDetailPose,
+    telegraph: number,
+    attack: number,
+    phaseStrength: number,
+  ): void {
+    if (!this.paintedDirectionV19) return;
+    const texture = premiumMonsterDirectionTextureV19(
+      this.directionV19Sheet,
+      this.profile.variant,
+      pose.facingX,
+      pose.facingY,
+      pose.state,
+    );
+    if (!texture) {
+      this.paintedDirectionV19.visible = false;
+      return;
+    }
+    this.paintedDirectionV19.visible = true;
+    this.paintedDirectionV19.texture = texture;
+    const baseScale = (this.radius / 48) * (this.rank === 'boss' ? 1.12 : 0.94);
+    const directionLift = pose.facingY < -0.35 ? -this.radius * 0.08 : pose.facingY > 0.35 ? this.radius * 0.03 : 0;
+    this.paintedDirectionV19.position.set(
+      pose.facingSign * attack * this.radius * 0.1,
+      directionLift - this.radius * 0.03,
+    );
+    this.paintedDirectionV19.scale.set(pose.facingSign * baseScale, baseScale);
+    this.paintedDirectionV19.rotation = pose.facingSign * (telegraph * 0.035 - attack * 0.055);
+    this.paintedDirectionV19.alpha = Math.min(0.94, 0.32 + telegraph * 0.3 + attack * 0.42 + (phaseStrength - 1) * 0.07);
+  }
+
+  private updateDamageOverlayV20(pose: PremiumMonsterDetailPose): void {
+    if (!this.paintedDamageV20) return;
+    const texture = monsterDamageTextureV20(
+      this.damageV20Sheet,
+      this.profile.variant,
+      pose.facingX,
+      pose.facingY,
+      pose.state,
+      pose.alive,
+      pose.elapsed,
+    );
+    if (!texture) {
+      this.paintedDamageV20.visible = false;
+      return;
+    }
+    this.paintedDamageV20.visible = true;
+    this.paintedDamageV20.texture = texture;
+    const baseScale = (this.radius / 48) * (this.rank === 'boss' ? 1.14 : 0.96);
+    this.paintedDamageV20.position.set(0, pose.alive ? -this.radius * 0.02 : this.radius * 0.16);
+    this.paintedDamageV20.scale.set(pose.facingSign * baseScale, baseScale);
+    this.paintedDamageV20.rotation = pose.alive ? -pose.facingSign * 0.035 : pose.facingSign * 0.08;
+    this.paintedDamageV20.alpha = pose.flashRemaining > 0 ? 0.98 : 0.82;
+  }
+
   private updatePaintedParts(
     pose: PremiumMonsterDetailPose,
     coreState: ReturnType<typeof resolveBossCorePresentation>['state'],
@@ -184,12 +352,25 @@ export class PremiumMonsterDetailLayerView {
       sprite.alpha = Math.max(0, Math.min(1, alpha));
     };
 
+    configure(this.paintedTorso, 0, this.radius * 0.06, (0.68 + telegraph * 0.12) * flash, 1.02 + (phaseStrength - 1) * 0.025);
+    if (this.paintedTorso) this.paintedTorso.rotation = -pose.facingSign * attack * 0.018;
+    configure(this.paintedDorsal, 0, -this.radius * 0.36, 0.56 + telegraph * 0.22, 1.05 + (phaseStrength - 1) * 0.035);
+    if (this.paintedDorsal) this.paintedDorsal.rotation = pose.facingSign * (telegraph * 0.018 - attack * 0.028);
+    configure(this.paintedHindlegs, -pose.facingSign * this.radius * 0.06, this.radius * 0.36, 0.62 + attack * 0.1, 1.02);
+    if (this.paintedHindlegs) this.paintedHindlegs.rotation = -pose.facingSign * attack * 0.022;
+    configure(this.paintedTailtip, -pose.facingSign * this.radius * 0.28, this.radius * 0.2, 0.56 + attack * 0.18, 1.08);
+    if (this.paintedTailtip) this.paintedTailtip.rotation = -pose.facingSign * (0.06 + Math.sin(pose.elapsed * 2.35) * 0.04 + attack * 0.055);
+
     configure(this.paintedAura, 0, 0, this.rank === 'boss' ? 0.22 + phaseStrength * 0.08 : telegraph * 0.34, 1.16);
     if (this.paintedAura) this.paintedAura.rotation = pose.elapsed * 0.12 * pose.facingSign;
     configure(this.paintedTail, -pose.facingSign * this.radius * 0.22, this.radius * 0.22, 0.5 + attack * 0.16, 1.08);
     if (this.paintedTail) this.paintedTail.rotation = -pose.facingSign * (0.08 + Math.sin(pose.elapsed * 2.2) * 0.035);
     configure(this.paintedMane, 0, -this.radius * 0.2, 0.46 + telegraph * 0.2, 1.04);
     if (this.paintedMane) this.paintedMane.rotation = -pose.facingSign * attack * 0.025;
+    configure(this.paintedForelegs, pose.facingSign * attack * this.radius * 0.04, this.radius * 0.4, 0.68 + attack * 0.2, 1.01);
+    if (this.paintedForelegs) this.paintedForelegs.rotation = pose.facingSign * (attack * 0.035 - telegraph * 0.012);
+    configure(this.paintedHeadplate, 0, -this.radius * 0.48, (0.72 + telegraph * 0.18) * flash, 0.98 + (phaseStrength - 1) * 0.025);
+    if (this.paintedHeadplate) this.paintedHeadplate.rotation = pose.facingSign * (telegraph * 0.018 - attack * 0.04);
     configure(this.paintedCrest, 0, -this.radius * 0.62, (0.7 + telegraph * 0.2) * flash, 0.98);
     if (this.paintedCrest) this.paintedCrest.rotation = pose.facingSign * (telegraph * 0.02 - attack * 0.035);
     configure(this.paintedCore, 0, -this.radius * 0.08, Math.min(1, (0.76 + corePulse * 0.2) * flash), 0.72);
@@ -197,7 +378,12 @@ export class PremiumMonsterDetailLayerView {
     configure(this.paintedClaw, pose.facingSign * attack * this.radius * 0.08, this.radius * 0.38, 0.62 + attack * 0.28, 0.92);
 
     if (this.paintedCoreFx) {
-      const texture = bossCoreFxTexture(this.coreFxSheet, coreState, pose.elapsed - this.phaseStartedAt);
+      const coreElapsed = pose.elapsed - this.phaseStartedAt;
+      const texture = bossCoreEventTextureV20(this.coreEventV20Sheet, coreState, coreElapsed)
+        ?? bossCoreTrailTextureV19(this.coreTrailV19Sheet, coreState, coreElapsed)
+        ?? bossCoreFxTextureV18(this.coreFxV18Sheet, coreState, coreElapsed)
+        ?? bossCoreFxTextureV17(this.coreFxV17Sheet, coreState, pose.elapsed - this.phaseStartedAt)
+        ?? bossCoreFxTexture(this.coreFxSheet, coreState, pose.elapsed - this.phaseStartedAt);
       if (texture) this.paintedCoreFx.texture = texture;
       configure(
         this.paintedCoreFx,
@@ -207,6 +393,17 @@ export class PremiumMonsterDetailLayerView {
         0.78 * (1 + (phaseStrength - 1) * 0.05),
       );
       this.paintedCoreFx.rotation = -pose.elapsed * 0.18 * pose.facingSign;
+    }
+    if (this.paintedCoreEventV20) {
+      const eventTexture = bossCoreEventTextureV20(this.coreEventV20Sheet, coreState, pose.elapsed - this.phaseStartedAt);
+      if (eventTexture) {
+        this.paintedCoreEventV20.visible = true;
+        this.paintedCoreEventV20.texture = eventTexture;
+        configure(this.paintedCoreEventV20, 0, -this.radius * 0.08, this.rank === 'boss' ? 0.9 : 0, 0.82);
+        this.paintedCoreEventV20.rotation = pose.elapsed * 0.1 * pose.facingSign;
+      } else {
+        this.paintedCoreEventV20.visible = false;
+      }
     }
     configure(this.paintedOverdrive, 0, 0, coreState === 'overdrive' ? 0.58 + corePulse * 0.24 : 0, 1.18);
     if (this.paintedOverdrive) this.paintedOverdrive.rotation = pose.elapsed * 0.18;

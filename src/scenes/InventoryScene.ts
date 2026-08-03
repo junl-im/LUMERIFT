@@ -40,6 +40,8 @@ import {
   premiumGradeTextureKey,
   premiumUiV16Texture,
 } from '../ui/PremiumUiIconArtV16';
+import { PREMIUM_UI_ICON_V17_KEYS, premiumUiV17Texture } from '../ui/PremiumUiIconArtV17';
+import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
 
 const PAGE_SIZE = 12;
 const GRID_COLUMNS = 3;
@@ -53,6 +55,8 @@ export class InventoryScene implements Scene {
   private equipmentMaterialSheet?: Spritesheet;
   private premiumHudSheet?: Spritesheet;
   private premiumUiV16Sheet?: Spritesheet;
+  private premiumUiV17Sheet?: Spritesheet;
+  private premiumUiV18Sheet?: Spritesheet;
   private equipmentBundleLoaded = false;
 
   public constructor(
@@ -77,6 +81,8 @@ export class InventoryScene implements Scene {
     this.equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
     this.premiumHudSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumHudAtlas);
     this.premiumUiV16Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV16Atlas);
+    this.premiumUiV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV17Atlas);
+    this.premiumUiV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas);
 
     const sorted = sortInventory(this.profile, context.gameData, this.sortMode, this.filter);
     const maxPage = Math.max(0, Math.ceil(sorted.length / PAGE_SIZE) - 1);
@@ -85,6 +91,16 @@ export class InventoryScene implements Scene {
     const selected = this.resolveSelected(items);
 
     this.view.addChild(createBackground('장비 보관소', '장비를 비교하고 성장 방향을 한눈에 확인하세요.'));
+    const equipmentTexture = premiumUiV18Texture(this.premiumUiV18Sheet, PREMIUM_UI_ICON_V18_KEYS.assetQuality)
+      ?? premiumUiV17Texture(this.premiumUiV17Sheet, PREMIUM_UI_ICON_V17_KEYS.equipment);
+    if (equipmentTexture) {
+      const equipmentIcon = new Sprite(equipmentTexture);
+      equipmentIcon.anchor.set(0.5);
+      equipmentIcon.position.set(486, 108);
+      equipmentIcon.scale.set(0.34);
+      equipmentIcon.alpha = 0.9;
+      this.view.addChild(equipmentIcon);
+    }
     this.view.addChild(createPanel(18, 150, 504, 674));
 
     this.createHeader(context);

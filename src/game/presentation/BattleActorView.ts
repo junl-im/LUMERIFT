@@ -23,6 +23,7 @@ import { resolveCharacterStateMaterial } from './CharacterStateMaterialProfile';
 import { CharacterEquipmentLayerView } from './CharacterEquipmentLayerView';
 import { PremiumCharacterDetailLayerView } from './PremiumCharacterDetailLayerView';
 import { PremiumMonsterDetailLayerView } from './PremiumMonsterDetailLayerView';
+import { premiumStatusKeyV20, premiumStatusVfxTexturesV20 } from './PremiumStatusVfxV20';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
@@ -30,6 +31,10 @@ export interface PlayerActorViewOptions {
   readonly characterFxSheet?: Spritesheet;
   readonly weaponAttackBodySheet?: Spritesheet;
   readonly premiumPlayerPartSheet?: Spritesheet;
+  readonly premiumPlayerDirectionV17Sheet?: Spritesheet;
+  readonly premiumPlayerActionV18Sheet?: Spritesheet;
+  readonly premiumPlayerActionPhaseV19Sheet?: Spritesheet;
+  readonly premiumPlayerWeaponPhaseV20Sheet?: Spritesheet;
   readonly equipmentAppearance?: CharacterEquipmentAppearance;
   readonly spriteBaseScale?: number;
   readonly displayCalibration?: CharacterDisplayCalibration;
@@ -124,6 +129,10 @@ export class PlayerActorView {
     this.premiumDetailLayers = new PremiumCharacterDetailLayerView(
       this.equipmentAppearance,
       options.premiumPlayerPartSheet,
+      options.premiumPlayerDirectionV17Sheet,
+      options.premiumPlayerActionV18Sheet,
+      options.premiumPlayerActionPhaseV19Sheet,
+      options.premiumPlayerWeaponPhaseV20Sheet,
     );
     this.shadow
       .ellipse(0, 22, 31, 12)
@@ -680,9 +689,14 @@ export class MonsterActorView {
   private readonly spriteBaseScale: number;
   private readonly premiumDetailLayers: PremiumMonsterDetailLayerView;
   private previousX?: number;
+  private previousY?: number;
   private facingSign: -1 | 1 = 1;
+  private facingVector: Vec2 = { x: 1, y: 0 };
   private elapsed = 0;
   private animationKey = '';
+  private readonly statusVfx?: AnimatedSprite;
+  private readonly premiumStatusV20Sheet?: Spritesheet;
+  private statusVfxKey = '';
   private readonly statusText = new Text({
     text: '',
     style: new TextStyle({ fill: COLORS.text, fontSize: 12, fontWeight: '700' }),
@@ -694,8 +708,18 @@ export class MonsterActorView {
     private readonly sheet?: Spritesheet,
     premiumMonsterPartSheet?: Spritesheet,
     bossCoreFxSheet?: Spritesheet,
+    premiumMonsterBodyV17Sheet?: Spritesheet,
+    bossCoreFxV17Sheet?: Spritesheet,
+    premiumMonsterMotionV18Sheet?: Spritesheet,
+    bossCoreFxV18Sheet?: Spritesheet,
+    premiumMonsterDirectionV19Sheet?: Spritesheet,
+    bossCoreTrailV19Sheet?: Spritesheet,
+    premiumMonsterDamageV20Sheet?: Spritesheet,
+    bossCoreEventV20Sheet?: Spritesheet,
+    premiumStatusV20Sheet?: Spritesheet,
   ) {
     const { combat, visual } = definition;
+    this.premiumStatusV20Sheet = premiumStatusV20Sheet;
     this.spriteBaseScale = combat.rank === 'boss' ? 1.22 : combat.rank === 'elite' ? 0.92 : 0.78;
     this.premiumDetailLayers = new PremiumMonsterDetailLayerView(
       combat.id,
@@ -704,6 +728,14 @@ export class MonsterActorView {
       visual,
       premiumMonsterPartSheet,
       bossCoreFxSheet,
+      premiumMonsterBodyV17Sheet,
+      bossCoreFxV17Sheet,
+      premiumMonsterMotionV18Sheet,
+      bossCoreFxV18Sheet,
+      premiumMonsterDirectionV19Sheet,
+      bossCoreTrailV19Sheet,
+      premiumMonsterDamageV20Sheet,
+      bossCoreEventV20Sheet,
     );
     const shadow = new Graphics()
       .ellipse(0, combat.radius * 0.75, combat.radius * 1.05, combat.radius * 0.38)
@@ -732,13 +764,24 @@ export class MonsterActorView {
       this.body.visible = false;
     }
 
+    const initialStatusTextures = premiumStatusVfxTexturesV20(premiumStatusV20Sheet, 'burn');
+    if (initialStatusTextures) {
+      this.statusVfx = new AnimatedSprite({ textures: [...initialStatusTextures], animationSpeed: 0.16, loop: true, autoPlay: true });
+      this.statusVfx.anchor.set(0.5);
+      this.statusVfx.position.set(0, -combat.radius * 0.08);
+      this.statusVfx.scale.set((combat.radius / 48) * (combat.rank === 'boss' ? 1.12 : 0.92));
+      this.statusVfx.blendMode = 'add';
+      this.statusVfx.visible = false;
+    }
     this.statusText.anchor.set(0.5, 1);
     this.statusText.position.set(0, -combat.radius - 24);
     this.telegraphText.anchor.set(0.5, 1);
     this.telegraphText.visible = false;
     this.root.addChild(this.phaseAura, this.telegraph, shadow, this.premiumDetailLayers.back, this.body);
     if (this.sprite) this.root.addChild(this.sprite);
-    this.root.addChild(this.premiumDetailLayers.front, this.hpBar, this.statusText, this.telegraphText);
+    this.root.addChild(this.premiumDetailLayers.front);
+    if (this.statusVfx) this.root.addChild(this.statusVfx);
+    this.root.addChild(this.hpBar, this.statusText, this.telegraphText);
   }
 
   public update(
@@ -748,7 +791,16 @@ export class MonsterActorView {
     deathElapsed: number,
   ): void {
     const deltaX = this.previousX === undefined ? 0 : controller.position.x - this.previousX;
+    const deltaY = this.previousY === undefined ? 0 : controller.position.y - this.previousY;
     this.previousX = controller.position.x;
+    this.previousY = controller.position.y;
+    const telegraphFacing = controller.telegraph?.facing;
+    if (telegraphFacing) {
+      this.facingVector = { ...telegraphFacing };
+    } else if (Math.hypot(deltaX, deltaY) > 0.08) {
+      const length = Math.max(0.001, Math.hypot(deltaX, deltaY));
+      this.facingVector = { x: deltaX / length, y: deltaY / length };
+    }
     this.elapsed += Math.max(0, _deltaSeconds);
     if (deltaX < -0.08) this.facingSign = -1;
     else if (deltaX > 0.08) this.facingSign = 1;
@@ -775,6 +827,8 @@ export class MonsterActorView {
       phase: controller.phase,
       hpRatio: controller.hp / Math.max(1, controller.config.maxHp),
       facingSign: this.facingSign,
+      facingX: this.facingVector.x,
+      facingY: this.facingVector.y,
       flashRemaining,
       alive: controller.isAlive,
     });
@@ -945,6 +999,24 @@ export class MonsterActorView {
   }
 
   private drawStatuses(statuses: readonly StatusEffectId[]): void {
+    const primary = statuses[0];
+    if (this.statusVfx) {
+      if (!primary) {
+        this.statusVfx.visible = false;
+      } else {
+        const key = premiumStatusKeyV20(primary);
+        if (key !== this.statusVfxKey) {
+          const textures = premiumStatusVfxTexturesV20(this.premiumStatusV20Sheet, key);
+          if (textures && textures.length > 0) {
+            this.statusVfx.textures = [...textures];
+            this.statusVfx.gotoAndPlay(0);
+          }
+          this.statusVfxKey = key;
+        }
+        this.statusVfx.visible = true;
+        this.statusVfx.alpha = primary === 'burn' ? 0.82 : 0.7;
+      }
+    }
     if (!this.quality.showStatusLabels || statuses.length === 0) {
       this.statusText.text = '';
       return;

@@ -1,0 +1,26 @@
+{
+  "schema": "lumerift-monster-damage-parts-v20",
+  "version": "1.11.36",
+  "variants": [
+    "void",
+    "frost",
+    "inferno",
+    "boss"
+  ],
+  "directions": 8,
+  "states": [
+    "hit",
+    "down"
+  ],
+  "frames": 128,
+  "animations": 64,
+  "gameplayTimingChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "v19",
+    "v18",
+    "v17",
+    "v16",
+    "established-body"
+  ]
+}

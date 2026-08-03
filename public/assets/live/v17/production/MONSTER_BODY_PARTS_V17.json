@@ -1,0 +1,19 @@
+{
+  "schema": "lumerift-premium-monster-body-parts-v17",
+  "version": "1.11.33",
+  "stage": "elite-boss-full-body-overlay-expansion-first-pass",
+  "atlas": "live/v17/atlases/monsters/monster_body_parts_v17.json",
+  "image": "live/v17/atlases/monsters/monster_body_parts_v17.webp",
+  "families": ["void", "frost", "inferno", "boss"],
+  "partsPerFamily": ["headplate", "torso", "forelegs", "hindlegs", "dorsal", "tailtip"],
+  "frames": 24,
+  "animations": 24,
+  "size": { "w": 768, "h": 512 },
+  "runtimeComposite": true,
+  "phaseResponsiveBossParts": true,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": ["monster_parts_v16", "monsters_live_v4", "programmatic-monster-detail-layer"],
+  "enemyDataChanged": false,
+  "attackFootprintChanged": false,
+  "notes": "The torso and limb coverage is expanded for three elite families and one boss family while established monster bodies remain the safe fallback."
+}

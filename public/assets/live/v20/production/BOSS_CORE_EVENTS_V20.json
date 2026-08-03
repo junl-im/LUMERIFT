@@ -1,0 +1,19 @@
+{
+  "schema": "lumerift-boss-core-events-v20",
+  "version": "1.11.36",
+  "events": [
+    "collision",
+    "dissolve",
+    "reverse-regenerate"
+  ],
+  "frames": 24,
+  "animations": 3,
+  "attackFootprintChanged": false,
+  "reverseRegeneration": true,
+  "fallback": [
+    "v19",
+    "v18",
+    "v17",
+    "v16"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "lumerift-premium-ui-icons-v18",
+  "version": "1.11.34",
+  "stage": "combat-production-operations-icon-expansion",
+  "atlas": "live/v18/atlases/ui/premium_ui_icons_v18.json",
+  "frames": 16,
+  "animations": 16,
+  "categories": { "combat": 6, "elite": 3, "character": 2, "qualityOperations": 5 },
+  "runtimeScreens": ["battle", "character-wardrobe", "inventory", "asset-gallery"],
+  "gameplayDataChanged": false,
+  "fallback": ["premium_ui_icons_v17", "premium_ui_icons_v16", "ui_icons_v5"]
+}

@@ -1,4 +1,5 @@
 import { Container, Graphics, Sprite, type Spritesheet } from 'pixi.js';
+import type { DirectionId } from './direction';
 import type { CharacterEquipmentAppearance } from './CharacterEquipmentVisualProfile';
 import {
   PREMIUM_PLAYER_PART_KEYS,
@@ -13,6 +14,17 @@ import {
   type PremiumCharacterRuntimeTuning,
   type PremiumWeaponSilhouetteProfile,
 } from './PremiumCharacterRuntimeV14';
+import {
+  playerDirectionalPartTexture,
+  resolvePremiumAttackPlacement,
+  resolvePremiumDirectionPlacement,
+  type PremiumAttackPlacementV17,
+  type PremiumDirectionPlacementV17,
+  type PremiumDirectionalPlayerPart,
+} from './PremiumPartPlacementV17';
+import { playerActionPartFrameV18 } from './PlayerActionPartsV18';
+import { playerActionPhaseFrameV19 } from './PlayerActionPhasesV19';
+import { playerWeaponPhaseFrameV20 } from './PlayerWeaponPhasesV20';
 
 export interface PremiumCharacterDetailPose {
   readonly x: number;
@@ -59,12 +71,26 @@ export class PremiumCharacterDetailLayerView {
   private readonly paintedAuraFront?: Sprite;
   private readonly paintedOverdrive?: Sprite;
   private readonly paintedGuard?: Sprite;
+  private readonly directionBack = new Container();
+  private readonly directionFront = new Container();
+  private readonly directionalHair?: Sprite;
+  private readonly directionalArmor?: Sprite;
+  private readonly directionalCape?: Sprite;
+  private readonly directionalFace?: Sprite;
+  private readonly actionOverlay?: Sprite;
+  private readonly actionPhaseOverlayV19?: Sprite;
+  private readonly weaponPhaseOverlayV20?: Sprite;
+  private currentDirection: DirectionId = 's';
   private readonly tuning: PremiumCharacterRuntimeTuning;
   private readonly weaponProfile: PremiumWeaponSilhouetteProfile;
 
   public constructor(
     private readonly appearance: CharacterEquipmentAppearance,
     partsSheet?: Spritesheet,
+    private readonly directionSheet?: Spritesheet,
+    private readonly actionSheetV18?: Spritesheet,
+    private readonly actionPhaseSheetV19?: Spritesheet,
+    private readonly weaponPhaseSheetV20?: Spritesheet,
   ) {
     this.tuning = resolvePremiumCharacterRuntimeTuning(appearance);
     this.weaponProfile = premiumWeaponSilhouetteProfile(appearance.weaponVisualFamily);
@@ -82,15 +108,22 @@ export class PremiumCharacterDetailLayerView {
     this.paintedAuraFront = createPartSprite(partsSheet, PREMIUM_PLAYER_PART_KEYS.auraFront, 0.72, true);
     this.paintedOverdrive = createPartSprite(partsSheet, PREMIUM_PLAYER_PART_KEYS.auraOverdrive, 0.74, true);
     this.paintedGuard = createPartSprite(partsSheet, PREMIUM_PLAYER_PART_KEYS.guard, 0.74, true);
+    this.directionalHair = createTextureSprite(playerDirectionalPartTexture(directionSheet, 's', 'hair'), 0.66);
+    this.directionalArmor = createTextureSprite(playerDirectionalPartTexture(directionSheet, 's', 'armor'), 0.7);
+    this.directionalCape = createTextureSprite(playerDirectionalPartTexture(directionSheet, 's', 'cape'), 0.72);
+    this.directionalFace = createTextureSprite(playerDirectionalPartTexture(directionSheet, 's', 'face'), 0.65, true);
+    this.actionOverlay = createTextureSprite(playerActionPartFrameV18(actionSheetV18, 's', 'attacking', 0)?.texture, 0.78, true);
+    this.actionPhaseOverlayV19 = createTextureSprite(playerActionPhaseFrameV19(actionPhaseSheetV19, 's', 'attacking', 0)?.texture, 0.74, true);
+    this.weaponPhaseOverlayV20 = createTextureSprite(playerWeaponPhaseFrameV20(weaponPhaseSheetV20, appearance.weaponVisualFamily, 's', 'attacking', 0)?.texture, 0.76, true);
     this.drawStaticLayers();
-    this.back.addChild(
+    this.back.addChild(this.directionBack,
       ...compactSprites(this.paintedAuraBack, this.paintedCape, this.paintedCapeEdge, this.paintedHairBack),
       this.capeFabric,
       this.capeEdge,
       this.hairBack,
       this.weaponEcho,
     );
-    this.front.addChild(
+    this.front.addChild(this.directionFront,
       this.armorPlate,
       this.armorTrim,
       this.faceRim,
@@ -110,8 +143,12 @@ export class PremiumCharacterDetailLayerView {
         this.paintedGuard,
         this.paintedAuraFront,
         this.paintedOverdrive,
+        this.actionOverlay,
+        this.actionPhaseOverlayV19,
+        this.weaponPhaseOverlayV20,
       ),
     );
+    this.placeDirectionalSprites(resolvePremiumDirectionPlacement(0, 1));
   }
 
   public update(pose: PremiumCharacterDetailPose): void {
@@ -128,6 +165,18 @@ export class PremiumCharacterDetailLayerView {
     const flashMultiplier = pose.flashRemaining > 0 ? 1.35 : 1;
     const directionSign = pose.facingX < -0.08 ? -1 : 1;
     const facingAngle = Math.atan2(pose.facingY, pose.facingX);
+    const directionPlacement = resolvePremiumDirectionPlacement(pose.facingX, pose.facingY);
+    const attackPlacement = resolvePremiumAttackPlacement(
+      this.appearance.weaponVisualFamily,
+      pose.state,
+      pose.actionProgress,
+      pose.comboStep ?? 1,
+      directionPlacement.direction,
+    );
+    this.placeDirectionalSprites(directionPlacement);
+    this.updateActionOverlayV18(pose, directionPlacement);
+    this.updateActionPhaseOverlayV19(pose, directionPlacement);
+    this.updateWeaponPhaseOverlayV20(pose, directionPlacement);
 
     this.capeFabric.rotation = -directionSign * (0.018 + actionPulse * 0.08)
       + Math.sin(pose.elapsed * 2.05) * 0.018;
@@ -189,6 +238,8 @@ export class PremiumCharacterDetailLayerView {
       idlePulse,
       pose,
       weaponRotation,
+      directionPlacement,
+      attackPlacement,
     });
   }
 
@@ -201,22 +252,24 @@ export class PremiumCharacterDetailLayerView {
     readonly idlePulse: number;
     readonly pose: PremiumCharacterDetailPose;
     readonly weaponRotation: number;
+    readonly directionPlacement: PremiumDirectionPlacementV17;
+    readonly attackPlacement: PremiumAttackPlacementV17;
   }): void {
-    const { active, actionPulse, actionWeight, directionSign, idlePulse, pose, weaponRotation } = input;
+    const { active, actionPulse, actionWeight, directionSign, idlePulse, pose, weaponRotation, directionPlacement, attackPlacement } = input;
     const hitAlpha = pose.state === 'hit' ? 0.42 : 1;
     const dodgeAlpha = pose.state === 'dodging' ? 0.42 : 1;
     const commonScale = 0.66 + (this.tuning.shoulderScale - 1) * 0.18;
     const setPose = (sprite: Sprite | undefined, alpha: number, scale = commonScale): void => {
       if (!sprite) return;
-      sprite.position.set(0, -7);
-      sprite.scale.set(scale * directionSign, scale);
+      sprite.position.set(directionPlacement.xOffset, -7 + directionPlacement.yOffset);
+      sprite.scale.set(scale * directionSign * directionPlacement.xCompression, scale);
       sprite.alpha = Math.max(0, Math.min(1, alpha));
     };
 
     setPose(this.paintedCape, (0.44 + actionPulse * 0.14) * dodgeAlpha, 0.72 * this.tuning.capeLength);
     if (this.paintedCape) {
-      this.paintedCape.rotation = this.capeFabric.rotation * 0.9;
-      this.paintedCape.position.set(-pose.facingX * 2, -5 + Math.abs(pose.facingY));
+      this.paintedCape.rotation = this.capeFabric.rotation * 0.9 + attackPlacement.capeRotation;
+      this.paintedCape.position.set(attackPlacement.capeOffsetX, -5 + Math.abs(pose.facingY) + attackPlacement.capeOffsetY);
     }
     setPose(this.paintedCapeEdge, (0.55 + actionPulse * 0.16) * dodgeAlpha, 0.72 * this.tuning.capeLength);
     if (this.paintedCapeEdge) {
@@ -227,25 +280,30 @@ export class PremiumCharacterDetailLayerView {
       );
     }
     setPose(this.paintedHairBack, (0.62 + idlePulse * 0.12) * hitAlpha, 0.66);
-    if (this.paintedHairBack) this.paintedHairBack.rotation = this.hairBack.rotation * 1.15;
+    if (this.paintedHairBack) this.paintedHairBack.rotation = this.hairBack.rotation * 1.15 + attackPlacement.hairRotation;
     setPose(this.paintedHairFront, (0.68 + idlePulse * 0.1) * hitAlpha, 0.66);
-    if (this.paintedHairFront) this.paintedHairFront.rotation = this.hairFront.rotation;
+    if (this.paintedHairFront) this.paintedHairFront.rotation = this.hairFront.rotation + attackPlacement.hairRotation * 0.82;
     setPose(this.paintedArmorShoulders, (0.62 + actionPulse * 0.16) * dodgeAlpha, commonScale);
     setPose(this.paintedArmorChest, (0.58 + actionPulse * 0.13) * dodgeAlpha, commonScale);
-    setPose(this.paintedFaceCrest, (0.58 + idlePulse * 0.18) * hitAlpha, 0.65);
+    for (const armor of [this.paintedArmorShoulders, this.paintedArmorChest]) {
+      if (!armor) continue;
+      armor.position.x += attackPlacement.armorOffsetX;
+      armor.position.y += attackPlacement.armorOffsetY;
+    }
+    setPose(this.paintedFaceCrest, (0.58 + idlePulse * 0.18) * hitAlpha * directionPlacement.faceAlpha, 0.65);
     setPose(this.paintedRuneCore, Math.min(1, this.appearance.auraStrength * (0.62 + idlePulse * 0.24)), 0.68 * this.tuning.runeScale);
     if (this.paintedRuneCore) this.paintedRuneCore.rotation = -pose.elapsed * 0.08;
 
     if (this.paintedWeapon) {
-      this.paintedWeapon.position.set(0, -7);
-      this.paintedWeapon.rotation = weaponRotation + actionPulse * this.weaponProfile.motionArc * directionSign * 0.18;
-      this.paintedWeapon.scale.set(0.68 * directionSign, 0.68);
+      this.paintedWeapon.position.set(attackPlacement.weaponOffsetX, -7 + attackPlacement.weaponOffsetY);
+      this.paintedWeapon.rotation = weaponRotation + actionPulse * this.weaponProfile.motionArc * directionSign * 0.18 + attackPlacement.weaponRotationOffset;
+      this.paintedWeapon.scale.set(0.68 * directionSign * attackPlacement.weaponScaleX, 0.68 * attackPlacement.weaponScaleY);
       this.paintedWeapon.alpha = (active ? 0.8 + actionPulse * 0.18 : 0.56) * dodgeAlpha;
     }
     if (this.paintedWeaponImpact) {
-      this.paintedWeaponImpact.position.set(0, -7);
-      this.paintedWeaponImpact.rotation = weaponRotation + directionSign * actionWeight * this.weaponProfile.motionArc * 0.3;
-      this.paintedWeaponImpact.scale.set(0.68 * directionSign, 0.68);
+      this.paintedWeaponImpact.position.set(attackPlacement.weaponOffsetX, -7 + attackPlacement.weaponOffsetY);
+      this.paintedWeaponImpact.rotation = weaponRotation + directionSign * actionWeight * this.weaponProfile.motionArc * 0.3 + attackPlacement.weaponRotationOffset;
+      this.paintedWeaponImpact.scale.set(0.68 * directionSign * attackPlacement.impactScale, 0.68 * attackPlacement.impactScale);
       this.paintedWeaponImpact.alpha = active ? Math.min(0.92, actionWeight * 0.72) : 0;
     }
     setPose(this.paintedAuraBack, pose.overdrive ? 0.44 + idlePulse * 0.16 : 0.16 + idlePulse * 0.08, 0.72);
@@ -255,6 +313,170 @@ export class PremiumCharacterDetailLayerView {
     setPose(this.paintedOverdrive, pose.overdrive ? 0.58 + idlePulse * 0.24 : 0, 0.74);
     if (this.paintedOverdrive) this.paintedOverdrive.rotation = pose.elapsed * 0.15;
     setPose(this.paintedGuard, pose.state === 'dodging' ? 0.42 : 0, 0.74);
+  }
+
+
+  private updateActionOverlayV18(
+    pose: PremiumCharacterDetailPose,
+    directionPlacement: PremiumDirectionPlacementV17,
+  ): void {
+    if (!this.actionOverlay) return;
+    const resolved = playerActionPartFrameV18(
+      this.actionSheetV18,
+      directionPlacement.direction,
+      pose.state,
+      pose.actionProgress,
+    );
+    if (!resolved?.texture) {
+      this.actionOverlay.visible = false;
+      return;
+    }
+    this.actionOverlay.visible = true;
+    this.actionOverlay.texture = resolved.texture;
+    const sign = directionPlacement.mirror ? -1 : 1;
+    const pulse = Math.sin(Math.max(0, Math.min(1, pose.actionProgress)) * Math.PI);
+    this.actionOverlay.position.set(
+      directionPlacement.xOffset + sign * pulse * (resolved.action === 'dodge' ? -4 : 2),
+      -7 + directionPlacement.yOffset + (resolved.action === 'skill' ? -2 : 0),
+    );
+    const baseScale = resolved.action === 'skill' ? 0.84 : resolved.action === 'dodge' ? 0.8 : 0.78;
+    this.actionOverlay.scale.set(sign * baseScale * directionPlacement.xCompression, baseScale);
+    this.actionOverlay.rotation = sign * (resolved.action === 'attack' ? 0.035 * pulse : resolved.action === 'dodge' ? -0.02 : 0);
+    this.actionOverlay.alpha = resolved.action === 'skill'
+      ? 0.56 + pulse * 0.28
+      : resolved.action === 'dodge'
+        ? 0.5 + pulse * 0.2
+        : 0.48 + pulse * 0.3;
+  }
+
+  private updateActionPhaseOverlayV19(
+    pose: PremiumCharacterDetailPose,
+    directionPlacement: PremiumDirectionPlacementV17,
+  ): void {
+    if (!this.actionPhaseOverlayV19) return;
+    const resolved = playerActionPhaseFrameV19(
+      this.actionPhaseSheetV19,
+      directionPlacement.direction,
+      pose.state,
+      pose.actionProgress,
+    );
+    if (!resolved?.texture) {
+      this.actionPhaseOverlayV19.visible = false;
+      return;
+    }
+    this.actionPhaseOverlayV19.visible = true;
+    this.actionPhaseOverlayV19.texture = resolved.texture;
+    const sign = directionPlacement.mirror ? -1 : 1;
+    const progress = Math.max(0, Math.min(1, pose.actionProgress));
+    const phasePulse = resolved.phase === 'contact'
+      ? Math.min(1, progress / 0.34)
+      : resolved.phase === 'sustain'
+        ? Math.sin(((progress - 0.34) / 0.38) * Math.PI)
+        : Math.max(0, 1 - (progress - 0.72) / 0.28);
+    const lateral = resolved.action === 'dodge' ? -7 : resolved.action === 'attack' ? 3 : 0;
+    this.actionPhaseOverlayV19.position.set(
+      directionPlacement.xOffset + sign * lateral * phasePulse,
+      -7 + directionPlacement.yOffset + (resolved.action === 'skill' ? -3 : resolved.phase === 'recover' ? 2 : 0),
+    );
+    const baseScale = resolved.action === 'skill' ? 0.83 : resolved.action === 'dodge' ? 0.8 : 0.78;
+    const phaseScale = resolved.phase === 'contact' ? 0.96 : resolved.phase === 'sustain' ? 1.04 : 0.92;
+    this.actionPhaseOverlayV19.scale.set(
+      sign * baseScale * phaseScale * directionPlacement.xCompression,
+      baseScale * phaseScale,
+    );
+    this.actionPhaseOverlayV19.rotation = sign * (
+      resolved.action === 'attack' ? 0.055 * phasePulse
+        : resolved.action === 'dodge' ? -0.035 * phasePulse
+          : 0.018 * phasePulse
+    );
+    this.actionPhaseOverlayV19.alpha = 0.42 + phasePulse * (resolved.action === 'skill' ? 0.46 : 0.36);
+  }
+
+  private updateWeaponPhaseOverlayV20(
+    pose: PremiumCharacterDetailPose,
+    directionPlacement: PremiumDirectionPlacementV17,
+  ): void {
+    if (!this.weaponPhaseOverlayV20) return;
+    const resolved = playerWeaponPhaseFrameV20(
+      this.weaponPhaseSheetV20,
+      this.appearance.weaponVisualFamily,
+      directionPlacement.direction,
+      pose.state,
+      pose.actionProgress,
+    );
+    if (!resolved?.texture) {
+      this.weaponPhaseOverlayV20.visible = false;
+      return;
+    }
+    this.weaponPhaseOverlayV20.visible = true;
+    this.weaponPhaseOverlayV20.texture = resolved.texture;
+    const sign = directionPlacement.mirror ? -1 : 1;
+    const progress = Math.max(0, Math.min(1, pose.actionProgress));
+    const phaseScale = resolved.phase === 'contact' ? 1.04
+      : resolved.phase === 'sustain' ? 1.08
+        : resolved.phase === 'anticipation' ? 0.92
+          : resolved.phase === 'follow-through' ? 0.9 : 0.98;
+    const familyOffset = resolved.family === 'riftlance' ? 5 : resolved.family === 'greatblade' ? 2 : 0;
+    this.weaponPhaseOverlayV20.position.set(
+      directionPlacement.xOffset + sign * familyOffset,
+      -7 + directionPlacement.yOffset + (resolved.phase === 'follow-through' ? 2 : 0),
+    );
+    this.weaponPhaseOverlayV20.scale.set(
+      sign * 0.76 * phaseScale * directionPlacement.xCompression,
+      0.76 * phaseScale,
+    );
+    this.weaponPhaseOverlayV20.rotation = sign * (resolved.family === 'riftlance' ? 0.01 : resolved.family === 'greatblade' ? 0.045 : 0.03)
+      * Math.sin(progress * Math.PI);
+    this.weaponPhaseOverlayV20.alpha = resolved.phase === 'contact' ? 0.92 : resolved.phase === 'sustain' ? 0.82 : 0.62;
+  }
+
+  private placeDirectionalSprites(profile: PremiumDirectionPlacementV17): void {
+    if (this.currentDirection !== profile.direction) {
+      this.currentDirection = profile.direction;
+      this.setDirectionalTexture(this.directionalHair, profile.direction, 'hair');
+      this.setDirectionalTexture(this.directionalArmor, profile.direction, 'armor');
+      this.setDirectionalTexture(this.directionalCape, profile.direction, 'cape');
+      this.setDirectionalTexture(this.directionalFace, profile.direction, 'face');
+    }
+    this.reparentDirectional(this.directionalHair, profile.hairDepth);
+    this.reparentDirectional(this.directionalArmor, profile.armorDepth);
+    this.reparentDirectional(this.directionalCape, profile.capeDepth);
+    this.reparentDirectional(this.directionalFace, profile.faceDepth);
+    this.reparentRootSprite(this.paintedWeapon, profile.weaponDepth);
+
+    const sign = profile.mirror ? -1 : 1;
+    const configure = (sprite: Sprite | undefined, alpha: number, scale: number, x = 0, y = 0): void => {
+      if (!sprite) return;
+      sprite.position.set(profile.xOffset + x, -7 + profile.yOffset + y);
+      sprite.scale.set(sign * scale * profile.xCompression, scale);
+      sprite.alpha = alpha;
+    };
+    configure(this.directionalHair, profile.backFacing ? 0.68 : 0.78, 0.66);
+    configure(this.directionalArmor, 0.78, 0.7);
+    configure(this.directionalCape, profile.backFacing ? 0.82 : 0.7, 0.72, profile.capeOffsetX, profile.capeOffsetY);
+    configure(this.directionalFace, profile.faceAlpha * 0.76, 0.65);
+  }
+
+  private setDirectionalTexture(
+    sprite: Sprite | undefined,
+    direction: DirectionId,
+    part: PremiumDirectionalPlayerPart,
+  ): void {
+    if (!sprite) return;
+    const texture = playerDirectionalPartTexture(this.directionSheet, direction, part);
+    if (texture) sprite.texture = texture;
+  }
+
+  private reparentDirectional(sprite: Sprite | undefined, depth: 'back' | 'front'): void {
+    if (!sprite) return;
+    const target = depth === 'back' ? this.directionBack : this.directionFront;
+    if (sprite.parent !== target) target.addChild(sprite);
+  }
+
+  private reparentRootSprite(sprite: Sprite | undefined, depth: 'back' | 'front'): void {
+    if (!sprite) return;
+    const target = depth === 'back' ? this.back : this.front;
+    if (sprite.parent !== target) target.addChild(sprite);
   }
 
   private drawStaticLayers(): void {

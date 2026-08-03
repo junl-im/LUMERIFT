@@ -1,0 +1,22 @@
+{
+  "schema": "lumerift-status-vfx-v20",
+  "version": "1.11.36",
+  "effects": [
+    "burn",
+    "slow",
+    "void",
+    "shock",
+    "bleed",
+    "barrier",
+    "haste",
+    "weaken"
+  ],
+  "frames": 32,
+  "animations": 8,
+  "gameplayDataChanged": false,
+  "adaptiveBudgetPreserved": true,
+  "fallback": [
+    "v19",
+    "v4"
+  ]
+}

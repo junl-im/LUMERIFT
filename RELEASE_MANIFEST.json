@@ -1,47 +1,30 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.32",
-  "baseVersion": "1.11.31",
+  "version": "1.11.36",
+  "baseVersion": "1.11.35",
   "releaseDate": "2026-08-03",
-  "fullArchive": "LUMERIFT_FULL_v1.11.32.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.31_to_v1.11.32_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-premium-raster-parts-runtime-v16",
+  "fullArchive": "LUMERIFT_FULL_v1.11.36.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.35_to_v1.11.36_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-premium-five-phase-damage-status-runtime-v20",
   "features": [
-    "플레이어 투명 래스터 파츠 v16 16프레임 전투·아틀리에 합성",
-    "엘리트·보스 투명 래스터 파츠 v16 16프레임 합성",
-    "보스 코어 5상태 12프레임 래스터 FX",
-    "스킬·등급·보스 패턴·장비 Premium UI Icons v16 16프레임",
-    "기존 본체와 프로그램형 레이어 안전 폴백 및 최종 전신 Atlas 미완료 명시"
+    "검·대검·균열 장창 8방향 anticipation·contact·sustain·recover·follow-through 120프레임·24애니메이션",
+    "Void·Frost·Inferno·Abyssal Boss 8방향 피격·다운 128프레임·64애니메이션",
+    "보스 코어 충돌·소멸·역재생 24프레임·3애니메이션",
+    "화상·감속 등 상태 이상 Premium VFX 32프레임·8애니메이션",
+    "모바일 승인·복구·감사·Cloud 지원 UI 16프레임·16애니메이션",
+    "v20 실패 시 v19·v18·v17·v16·기존 표현 계층 안전 폴백"
   ],
   "assetPolicy": {
-    "allowedImages": [
-      "png",
-      "webp"
-    ],
-    "allowedAudio": [
-      "ogg",
-      "opus"
-    ],
-    "forbidden": [
-      "svg",
-      "svgz",
-      "jpg",
-      "jpeg",
-      "gif",
-      "bmp",
-      "tiff"
-    ],
-    "publicPolicy": "public/assets manifest-reachable assets; v1.11.32 adds four transparent runtime WebP Atlases, four Atlas JSON files, and four production contracts",
-    "archivePolicy": "v1.11.32 preserves v16 production masters; final full-body hand-painted character and monster Atlases are not complete",
-    "registry": "asset_registry/ASSET_REGISTRY.json"
+    "publicPolicy": "public/assets manifest-reachable assets; v1.11.36 adds five v20 runtime WebP Atlases, five Atlas JSON files, and five production contracts",
+    "archivePolicy": "v1.11.36 preserves v20 source masters and production notes; final full-body hand-painted character and monster Atlases are not complete",
+    "initialPayloadBudgetBytes": 15000000
   },
   "verification": [
-    "validate-release-version",
-    "cumulative non-bundle validators v1.11.0 through v1.11.32",
-    "v1.11.32 production contract verifier",
-    "offline strict TypeScript 5.8.3 check with temporary dependency declarations",
-    "patch/full SHA-256 equivalence",
-    "ZIP CRC"
+    "TypeScript 5.8.3 strict app check with offline external declarations",
+    "cumulative non-bundle validators v1.11.0 through v1.11.36",
+    "v1.11.36 production contract verifier",
+    "patch application file hash equivalence",
+    "full and patch ZIP CRC"
   ]
 }

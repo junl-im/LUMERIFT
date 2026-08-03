@@ -1,0 +1,28 @@
+{
+  "schema": "lumerift-player-weapon-phases-v20",
+  "version": "1.11.36",
+  "weapons": [
+    "blade",
+    "greatblade",
+    "riftlance"
+  ],
+  "directions": 8,
+  "phases": [
+    "anticipation",
+    "contact",
+    "sustain",
+    "recover",
+    "follow-through"
+  ],
+  "frames": 120,
+  "animations": 24,
+  "attackFootprintChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "v19",
+    "v18",
+    "v17",
+    "v16",
+    "established-body"
+  ]
+}

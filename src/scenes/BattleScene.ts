@@ -21,6 +21,11 @@ import { normalizeBossPhase, resolveStageVisualProfile, type StageVisualProfile 
 import { bossCinematicAlpha, resolveBossPhasePresentation } from '../game/presentation/BossPhaseDirector';
 import { resolveBossCorePresentation } from '../game/presentation/BossCoreLifecycle';
 import { bossCoreFxTexture } from '../game/presentation/PremiumPartAtlasV16';
+import { bossCoreFxTextureV17 } from '../game/presentation/BossCoreFxV17';
+import { bossCoreFxTextureV18 } from '../game/presentation/BossCoreFxV18';
+import { bossCoreTrailTextureV19 } from '../game/presentation/BossCoreTrailsV19';
+import { PREMIUM_UI_ICON_V17_KEYS, premiumUiV17Texture } from '../ui/PremiumUiIconArtV17';
+import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
 import type { GraphicsQualityPreset } from '../core/graphics/GraphicsQualityController';
 import { PlayerCombatController } from '../game/actors/player/PlayerCombatController';
 import { MonsterController } from '../game/actors/monsters/MonsterController';
@@ -107,6 +112,22 @@ export class BattleScene implements Scene {
   private premiumMonsterPartsSheet?: Spritesheet;
   private bossCoreFxSheet?: Spritesheet;
   private premiumUiV16Sheet?: Spritesheet;
+  private premiumPlayerDirectionV17Sheet?: Spritesheet;
+  private premiumMonsterBodyV17Sheet?: Spritesheet;
+  private bossCoreFxV17Sheet?: Spritesheet;
+  private premiumUiV17Sheet?: Spritesheet;
+  private premiumPlayerActionV18Sheet?: Spritesheet;
+  private premiumMonsterMotionV18Sheet?: Spritesheet;
+  private bossCoreFxV18Sheet?: Spritesheet;
+  private premiumUiV18Sheet?: Spritesheet;
+  private premiumPlayerActionPhaseV19Sheet?: Spritesheet;
+  private premiumMonsterDirectionV19Sheet?: Spritesheet;
+  private bossCoreTrailV19Sheet?: Spritesheet;
+  private premiumCombatVfxV19Sheet?: Spritesheet;
+  private premiumPlayerWeaponPhaseV20Sheet?: Spritesheet;
+  private premiumMonsterDamageV20Sheet?: Spritesheet;
+  private bossCoreEventV20Sheet?: Spritesheet;
+  private premiumStatusV20Sheet?: Spritesheet;
   private mapTexture?: Texture;
   private readonly bossPortraitTextures: Partial<Record<1 | 2 | 3, Texture>> = {};
   private bossPortraitSprite?: Sprite;
@@ -383,6 +404,22 @@ export class BattleScene implements Scene {
     this.premiumMonsterPartsSheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterPartsAtlas);
     this.bossCoreFxSheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreFxAtlas);
     this.premiumUiV16Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV16Atlas);
+    this.premiumPlayerDirectionV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerDirectionV17Atlas);
+    this.premiumMonsterBodyV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterBodyV17Atlas);
+    this.bossCoreFxV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreFxV17Atlas);
+    this.premiumUiV17Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV17Atlas);
+    this.premiumPlayerActionV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionV18Atlas);
+    this.premiumMonsterMotionV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterMotionV18Atlas);
+    this.bossCoreFxV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreFxV18Atlas);
+    this.premiumUiV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas);
+    this.premiumPlayerActionPhaseV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionPhaseV19Atlas);
+    this.premiumMonsterDirectionV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterDirectionV19Atlas);
+    this.bossCoreTrailV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreTrailV19Atlas);
+    this.premiumCombatVfxV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumCombatVfxV19Atlas);
+    this.premiumPlayerWeaponPhaseV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerWeaponPhaseV20Atlas);
+    this.premiumMonsterDamageV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterDamageV20Atlas);
+    this.bossCoreEventV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreEventV20Atlas);
+    this.premiumStatusV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumStatusV20Atlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
     this.bossPortraitTextures[1] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase1);
     this.bossPortraitTextures[2] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase2);
@@ -430,7 +467,7 @@ export class BattleScene implements Scene {
     this.waveTransitionRemaining = this.stage.waves[0]?.spawnDelay ?? 0;
 
     this.createWorld();
-    this.vfx = new BattleVfxSystem(this.effectsSheet, this.quality);
+    this.vfx = new BattleVfxSystem(this.effectsSheet, this.quality, this.premiumCombatVfxV19Sheet);
     this.world.addChild(this.vfx.view);
     const equippedWeaponUid = this.profile.equipped.weapon;
     const equippedWeaponId = equippedWeaponUid ? this.profile.inventory[equippedWeaponUid]?.itemId : undefined;
@@ -439,6 +476,10 @@ export class BattleScene implements Scene {
       characterFxSheet: this.characterFxSheet,
       weaponAttackBodySheet: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? undefined : this.weaponAttackBodySheet,
       premiumPlayerPartSheet: this.premiumPlayerPartsSheet,
+      premiumPlayerDirectionV17Sheet: this.premiumPlayerDirectionV17Sheet,
+      premiumPlayerActionV18Sheet: this.premiumPlayerActionV18Sheet,
+      premiumPlayerActionPhaseV19Sheet: this.premiumPlayerActionPhaseV19Sheet,
+      premiumPlayerWeaponPhaseV20Sheet: this.premiumPlayerWeaponPhaseV20Sheet,
       equipmentAppearance,
       displayCalibration: resolveCharacterDisplayCalibration(),
       mirrorWest: false,
@@ -741,7 +782,10 @@ export class BattleScene implements Scene {
       this.bossPortraitSprite.width = 54;
       this.bossPortraitSprite.height = 54;
     }
-    const bossCoreTexture = bossCoreFxTexture(this.bossCoreFxSheet, 'shielded', 0)
+    const bossCoreTexture = bossCoreTrailTextureV19(this.bossCoreTrailV19Sheet, 'shielded', 0)
+      ?? bossCoreFxTextureV18(this.bossCoreFxV18Sheet, 'shielded', 0)
+      ?? bossCoreFxTextureV17(this.bossCoreFxV17Sheet, 'shielded', 0)
+      ?? bossCoreFxTexture(this.bossCoreFxSheet, 'shielded', 0)
       ?? premiumHudTexture(this.premiumHudSheet, PREMIUM_HUD_TEXTURE_KEYS.core);
     this.bossCoreSprite = bossCoreTexture ? new Sprite(bossCoreTexture) : undefined;
     if (this.bossCoreSprite) {
@@ -874,7 +918,9 @@ export class BattleScene implements Scene {
     this.dangerText.position.set(0, -7);
     this.bossThreatGuidanceText.anchor.set(0.5);
     this.bossThreatGuidanceText.position.set(0, 13);
-    const patternTexture = premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.patternSlash);
+    const patternTexture = premiumUiV18Texture(this.premiumUiV18Sheet, PREMIUM_UI_ICON_V18_KEYS.bossPhase)
+      ?? premiumUiV17Texture(this.premiumUiV17Sheet, PREMIUM_UI_ICON_V17_KEYS.bossWarning)
+      ?? premiumUiV16Texture(this.premiumUiV16Sheet, PREMIUM_UI_ICON_KEYS.patternSlash);
     if (patternTexture) {
       this.bossThreatPatternSprite = new Sprite(patternTexture);
       this.bossThreatPatternSprite.anchor.set(0.5);
@@ -1558,6 +1604,15 @@ export class BattleScene implements Scene {
         this.monsterSheet,
         this.premiumMonsterPartsSheet,
         this.bossCoreFxSheet,
+        this.premiumMonsterBodyV17Sheet,
+        this.bossCoreFxV17Sheet,
+        this.premiumMonsterMotionV18Sheet,
+        this.bossCoreFxV18Sheet,
+        this.premiumMonsterDirectionV19Sheet,
+        this.bossCoreTrailV19Sheet,
+        this.premiumMonsterDamageV20Sheet,
+        this.bossCoreEventV20Sheet,
+        this.premiumStatusV20Sheet,
       );
       this.world.addChild(presentation.root);
       this.enemies.push({
@@ -2214,10 +2269,23 @@ export class BattleScene implements Scene {
     });
     if (this.bossCoreSprite) {
       const pulse = 0.5 + Math.sin(this.elapsed * bossCore.pulseRate) * 0.5;
-      const texture = bossCoreFxTexture(
+      const coreElapsed = Math.max(0, this.elapsed - this.bossHudPhaseStartedAt);
+      const texture = bossCoreTrailTextureV19(
+        this.bossCoreTrailV19Sheet,
+        bossCore.state,
+        coreElapsed,
+      ) ?? bossCoreFxTextureV18(
+        this.bossCoreFxV18Sheet,
+        bossCore.state,
+        coreElapsed,
+      ) ?? bossCoreFxTextureV17(
+        this.bossCoreFxV17Sheet,
+        bossCore.state,
+        coreElapsed,
+      ) ?? bossCoreFxTexture(
         this.bossCoreFxSheet,
         bossCore.state,
-        Math.max(0, this.elapsed - this.bossHudPhaseStartedAt),
+        coreElapsed,
       );
       if (texture) this.bossCoreSprite.texture = texture;
       this.bossCoreSprite.alpha = Math.min(1, bossCore.coreAlpha * (0.78 + pulse * 0.22));

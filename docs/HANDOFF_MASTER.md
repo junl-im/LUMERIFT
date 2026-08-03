@@ -1,10 +1,10 @@
-# HANDOFF MASTER v1.11.32
+# HANDOFF MASTER v1.11.36
 
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.11.32
+**현재 버전:** v1.11.36
 **갱신일:** 2026-08-03  
-**상태:** Premium Art Direction v2 기반 투명 래스터 파츠 v16 첫 배치 완료
+**상태:** Premium Art Direction v2 기반 v20 5단계 무기·피격/다운·상태 VFX·지원 UI 배치 완료
 
 ## 1. 프로젝트 목적
 
@@ -526,3 +526,37 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 보스 코어 FX와 UI 아이콘은 표현 계층이며 전투 판정·저장 데이터는 바꾸지 않는다.
 - v16 로딩 실패 시 기존 본체·Premium HUD v15·프로그램형 디테일 레이어로 폴백한다.
 - 최종 전신 수작업 Atlas와 물리 기기 캡처 승인은 미완료로 유지한다.
+
+## v1.11.33 Premium Direction & Body Runtime v17
+
+- 플레이어 8방향 피벗·가림 순서와 공격 프레임 위치 보정을 `PremiumPartPlacementV17`에서 관리합니다.
+- 엘리트·보스 전신 확장 파츠는 `PremiumMonsterBodyAtlasV17`에서 4계열 × 6파트로 관리합니다.
+- 보스 코어 24프레임은 `BossCoreFxV17`이 관리하며 stable은 shielded 비주얼로 정규화합니다.
+- Premium UI v17은 24개 아이콘을 제공하며 표현 전용입니다.
+- 최종 전신 수작업 Atlas, 실기기 승인, 실제 의존성 기반 production build는 여전히 미완료입니다.
+
+## v1.11.34 Premium Action & Motion Runtime v18
+
+- 플레이어 공격·회피·스킬 동작 오버레이는 8방향 × 3행동 × 2단계, 총 48프레임이다.
+- 엘리트·보스 모션 오버레이는 4계열 × 4행동 × 2단계, 총 32프레임이다.
+- 보스 코어는 30프레임 파괴·재생 루프를 사용하며 전투 판정과 페이즈 타이밍은 변경하지 않는다.
+- Premium UI v18은 전투·캐릭터·QA·빌드 검증 표시에 사용한다.
+- v18 로딩 실패 시 v17·v16·기존 본체로 폴백한다.
+- 최종 전신 수작업 Atlas, 실기기 승인, 실제 npm 기반 build는 미완료다.
+
+
+## v1.11.35 Premium Action Phase & Direction Runtime v19
+
+- 플레이어 8방향 공격·회피·스킬을 contact·sustain·recover로 분리한 72프레임 래스터 계층을 연결했다.
+- 엘리트 3계열과 보스 1계열의 4방향 사지 오버레이 48프레임을 적용했다.
+- 보스 코어 연속 파편 궤적 36프레임과 Premium Combat VFX 24프레임을 연결했다.
+- 최종 전신 수작업 Atlas와 물리 기기 승인, 정상 npm build는 미완료로 유지한다.
+
+## v1.11.36 Five-Phase Damage & Status Runtime v20
+
+- 3개 무기 계열·8방향·5단계 120프레임 플레이어 공격 오버레이를 연결했다.
+- 4개 몬스터 계열·8방향 피격·다운 128프레임을 연결했다.
+- 보스 코어 충돌·소멸·역재생 24프레임과 상태 이상 VFX 32프레임을 연결했다.
+- 모바일 승인·복구·감사·Cloud 지원 화면용 Premium Support UI 16프레임을 적용했다.
+- v19 이하 폴백, Player Save v4, AttackFootprint, App Check 비활성 정책을 유지했다.
+- 최종 전신 수작업 Atlas, 실기기 승인, 실제 의존성 build는 미완료로 유지했다.

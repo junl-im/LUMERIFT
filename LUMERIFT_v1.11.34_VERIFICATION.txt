@@ -1,0 +1,24 @@
+LUMERIFT v1.11.34 INTERNAL VERIFICATION
+Date: 2026-08-03
+
+PASS: TypeScript 5.8.3 strict app check using temporary external module declarations.
+PASS: 62 cumulative non-bundle validators.
+PASS: v1.11.34 upgrade contract.
+PASS: v1.11.34 production contract.
+PASS: Player Save v4 unchanged.
+PASS: AttackFootprint remains the combat hit contract.
+PASS: Firebase App Check remains disabled.
+PASS: v18 runtime fallbacks to v17/v16/base Atlases.
+
+V18 ASSETS
+- Player action overlays: 48 frames / 24 animations
+- Elite and boss motion overlays: 32 frames / 16 animations
+- Boss core FX: 30 frames / 5 animations
+- Premium UI Icons: 16 frames / 16 animations
+- Total: 126 raster frames / 61 animations
+
+KNOWN LIMITATIONS
+- Final hand-painted 8-direction full-body character and monster Atlases are not complete.
+- Android Chrome and iOS Safari physical capture approval has not been performed.
+- npm install cannot complete because the internal registry returns HTTP 404 for required Firebase and @types/node packages.
+- Full dependency-backed Vitest and Vite production build remain pending.

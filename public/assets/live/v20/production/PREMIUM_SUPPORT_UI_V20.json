@@ -1,0 +1,36 @@
+{
+  "schema": "lumerift-premium-support-ui-v20",
+  "version": "1.11.36",
+  "icons": [
+    "mobile-verify",
+    "recovery",
+    "audit",
+    "cloud",
+    "merge",
+    "undo",
+    "compare",
+    "search",
+    "pin",
+    "export",
+    "import",
+    "timeline",
+    "hash",
+    "device",
+    "warning",
+    "approved"
+  ],
+  "frames": 16,
+  "animations": 16,
+  "screens": [
+    "mobile-calibration",
+    "appearance-recovery",
+    "appearance-audit",
+    "cloud-conflict"
+  ],
+  "initialBundleRequired": false,
+  "fallback": [
+    "v18",
+    "v17",
+    "v16"
+  ]
+}

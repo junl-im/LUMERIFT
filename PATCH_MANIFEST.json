@@ -1,273 +1,413 @@
 {
-  "fromVersion": "1.11.31",
-  "toVersion": "1.11.32",
-  "rootOverwrite": true,
-  "delete": [],
+  "schema": "lumerift-root-overwrite-patch-v1",
+  "baseVersion": "1.11.35",
+  "targetVersion": "1.11.36",
+  "generatedAt": "2026-08-03T09:10:00Z",
+  "installRoot": "package.json directory",
   "files": [
     {
       "path": "AGENTS.md",
-      "bytes": 32677,
-      "sha256": "d35a6b915799a5a486c41bc228b8685fbce4ac64b80764a20ac518aaf3926385"
+      "bytes": 35077,
+      "sha256": "57a1c24d90282237e6ae816e0b76e9636a20607e8b2f39edb8e6746f4a7f1521",
+      "status": "changed"
     },
     {
       "path": "HANDOFF_STATE.json",
-      "bytes": 47022,
-      "sha256": "be3271e09daa6e7c49b0fe8e30c1e772ea0d73a2356fe49e38bbe471bbbe5d15"
+      "bytes": 54751,
+      "sha256": "b00cda6608120a63e12893e83bd5ccb7fed95e938d50b2a974f63893b5cc49c0",
+      "status": "changed"
+    },
+    {
+      "path": "PATCH_DELETE_LIST.txt",
+      "bytes": 43,
+      "sha256": "abe7a66d98506281e83e5bfdfe23093a3cd75888340d9bd01072fe4f74a534b2",
+      "status": "changed"
     },
     {
       "path": "PATCH_INFO.md",
-      "bytes": 393,
-      "sha256": "a5048194a17aaea658ffe35deb864a6b820a59df18305e97a511ea875a7888cc"
+      "bytes": 480,
+      "sha256": "c567c553a5ad2aab5b9b2b32caeba0383da7a3a3aa8344769b5837d3e88ae481",
+      "status": "changed"
     },
     {
       "path": "PATCH_README.txt",
-      "bytes": 209,
-      "sha256": "23311422683966d1ed053770919b4d610900f0ad950f94954de2cec5b3441070"
+      "bytes": 423,
+      "sha256": "d520881bc2638d881111b48d0381e7d8ce9e1e759bafd0ef5e000e78e5ca1759",
+      "status": "changed"
     },
     {
       "path": "PROJECT_HANDOFF.md",
-      "bytes": 1375,
-      "sha256": "d3b63ca860104c9d4bc2481adad9c470de16e5779ca994ba0904e13188ce3276"
+      "bytes": 755,
+      "sha256": "eb66e7552c486c4f5d24325c41b4fdd37eccbf424ae406c9e829ee00c4a7d071",
+      "status": "changed"
     },
     {
       "path": "README.md",
-      "bytes": 14054,
-      "sha256": "952a8a1d5612c9c49c1271dd5ac7c63a887c4aa8420800d7955661e00e526655"
+      "bytes": 14799,
+      "sha256": "a719bf31fa15f80500575c472895a1428272980bd1169fa6d83db88dc10d1eb0",
+      "status": "changed"
     },
     {
       "path": "RELEASE_MANIFEST.json",
-      "bytes": 1700,
-      "sha256": "6e88bb5644094db3e53d5d222e077e15391ceeed8e95e6dc26b4a18954e05488"
+      "bytes": 1618,
+      "sha256": "877847b4e6407b673f606c18652647cc4db1376edeba4819bb995c6912de195d",
+      "status": "changed"
     },
     {
-      "path": "art_source/lumerift_owned/premium_parts_v16/README.md",
-      "bytes": 388,
-      "sha256": "8bd079bda3616dcdf8144d4f84126b7597507f777a80c5317ccd948d03eddf61"
+      "path": "art_source/lumerift_owned/premium_parts_v20/README.md",
+      "bytes": 337,
+      "sha256": "5a9403acd5ff5b955e1d426138b560c4390a36686bf573c07b01ac36cd11f7e9",
+      "status": "added"
     },
     {
-      "path": "art_source/lumerift_owned/premium_parts_v16/boss_core_fx_v16_master.webp",
-      "bytes": 87228,
-      "sha256": "d737b668089a577ccbecfda496f2de3afd2864e03dfae368cb7b789039d0fc58"
+      "path": "art_source/lumerift_owned/premium_parts_v20/boss_core_events_v20_master.webp",
+      "bytes": 119212,
+      "sha256": "c07c9853cc31d69d6a6c068445d212572638b5dd4cc83d8c2df1b82213dd88f3",
+      "status": "added"
     },
     {
-      "path": "art_source/lumerift_owned/premium_parts_v16/monster_parts_v16_master.webp",
-      "bytes": 151360,
-      "sha256": "9b046a2d7c5c4e0633d2c87a0d42d1b72f7a7aad8a2b488aae1843cce45366ae"
+      "path": "art_source/lumerift_owned/premium_parts_v20/monster_damage_parts_v20_master.webp",
+      "bytes": 554686,
+      "sha256": "0c96c9c4a6c26ba81cc26ebf13d15f7256e5ccb33aac9328ded2aa5ae3008abe",
+      "status": "added"
     },
     {
-      "path": "art_source/lumerift_owned/premium_parts_v16/player_parts_v16_master.webp",
-      "bytes": 120320,
-      "sha256": "80d4cc88921f5d6cb8bc10db775b785593de1c70985ee184afa1808a84845ca4"
+      "path": "art_source/lumerift_owned/premium_parts_v20/player_weapon_phases_v20_master.webp",
+      "bytes": 554828,
+      "sha256": "1a514defb5842fcace8245827e1a57801b2c5f561d8719b0dc78bd7c8c8c1bd3",
+      "status": "added"
     },
     {
-      "path": "art_source/lumerift_owned/premium_parts_v16/premium_ui_icons_v16_master.webp",
-      "bytes": 173434,
-      "sha256": "0d42c35b0887840aba20f22c7eecf1e56b9dab7376922b8bf11df49313c45abf"
+      "path": "art_source/lumerift_owned/premium_parts_v20/premium_support_ui_v20_master.webp",
+      "bytes": 29640,
+      "sha256": "cf5f53f8f390cf879ea8584d061e80f737ce2df41b1570869667db743daa48ff",
+      "status": "added"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v20/status_vfx_v20_master.webp",
+      "bytes": 145708,
+      "sha256": "c69a81eeb37741637aec310c42854da66eb15ca531115081acd954d0c301cc14",
+      "status": "added"
     },
     {
       "path": "asset_registry/ASSET_REGISTRY.json",
-      "bytes": 141750,
-      "sha256": "e79b383c9f2696b03aaae7c9b1b364a973a8cf2261c5e5f5eabadd35209fa40d"
+      "bytes": 167038,
+      "sha256": "c9a3e35266c12c99b3c29f64563ad03c79b89f8c7b868a6959dcfe129bd9e2df",
+      "status": "changed"
     },
     {
-      "path": "docs/BOSS_CORE_FX_v1.11.32.md",
-      "bytes": 471,
-      "sha256": "43f6252228d17243866b3d1c94424367be2d02e947d1714c90f09644db825333"
-    },
-    {
-      "path": "docs/CHANGELOG.md",
-      "bytes": 36696,
-      "sha256": "1829ca54e2270acf2a7ae7691ac25f7d8e3a57de4cd3599f28c995a7c6970785"
+      "path": "docs/BOSS_CORE_EVENTS_v1.11.36.md",
+      "bytes": 316,
+      "sha256": "27e668602a1b98f42978d321858cdd22b0f280a1e5d3cc70553ab059767ead75",
+      "status": "added"
     },
     {
       "path": "docs/HANDOFF_LOG.md",
-      "bytes": 27525,
-      "sha256": "15825c5f8bd872945cc37c9488f98a4cb7665e9103e3d6ade6ca011918c7c874"
+      "bytes": 29677,
+      "sha256": "8d56b5ae76ed56bcee5a11ab9c52cc32198e38168c349ccd64bc13bac748b73a",
+      "status": "changed"
     },
     {
       "path": "docs/HANDOFF_MASTER.md",
-      "bytes": 34146,
-      "sha256": "911aa15f88989b03ac408015483efc3234dc86d63ca4169934efb25c5bb65484"
+      "bytes": 36562,
+      "sha256": "a98e21f03097b7fc4710f6407617ea30a5bb5b3d65514e3ed6e5d3bd730e4416",
+      "status": "changed"
     },
     {
-      "path": "docs/NEXT_UPDATE_v1.11.33.md",
-      "bytes": 509,
-      "sha256": "fbdc99ab2d3472def217f74717c919f43173f8bf3e814961a674b12a05a302ba"
+      "path": "docs/MONSTER_DAMAGE_PARTS_v1.11.36.md",
+      "bytes": 355,
+      "sha256": "b7bf472b105f6bd1a8367789c0095bc1a07f64eb03d6e34f4edda587fa82fe9e",
+      "status": "added"
     },
     {
-      "path": "docs/PATCH_NOTES_v1.11.32.md",
-      "bytes": 1099,
-      "sha256": "7f15cc9a9549c0d60fa03cc68f3023b46493cf40c6fb8f66780ca2a02b3e77ac"
+      "path": "docs/NEXT_UPDATE_v1.11.37.md",
+      "bytes": 365,
+      "sha256": "1280285712f7baf67913a60fb2cafcfeca643d4ce9c982404345f3ce890900f3",
+      "status": "added"
     },
     {
-      "path": "docs/PREMIUM_PARTS_ATLAS_v1.11.32.md",
-      "bytes": 927,
-      "sha256": "1d76f8c2d58db40f1b5be2c53cfc20197ab93e925101d7f9d289c4a1603ca69a"
+      "path": "docs/PATCH_NOTES_v1.11.36.md",
+      "bytes": 395,
+      "sha256": "da05de10a40c5780ef15d652279aa80c61ac0195f9bcda3ee31705693c05474b",
+      "status": "added"
     },
     {
-      "path": "docs/PREMIUM_UI_ICONS_v1.11.32.md",
-      "bytes": 524,
-      "sha256": "3beffc58905a9a750120255feade10bd1b49337b3100f4b0207f4f3a15cc0bd2"
+      "path": "docs/PLAYER_WEAPON_PHASES_v1.11.36.md",
+      "bytes": 402,
+      "sha256": "11cfd9b2144f145b2daa430cc655ae888803e0fa793f63d08e360ce638a9fc9a",
+      "status": "added"
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 27726,
-      "sha256": "e4e4169d9aae4f62942a93ae2e8d29f80f51b12d01f912a642b630bcd82d11d8"
+      "bytes": 28739,
+      "sha256": "a7b37ab16298437aaa73906952047991e7ea77c491b74fec6d58f4315680268a",
+      "status": "changed"
+    },
+    {
+      "path": "docs/STATUS_VFX_SUPPORT_UI_v1.11.36.md",
+      "bytes": 445,
+      "sha256": "af7e4d95013fecf29df082b6f47154f41f3b848d21748d4f5a6806cf6d85407f",
+      "status": "added"
     },
     {
       "path": "package.json",
-      "bytes": 7811,
-      "sha256": "126ebb7d11e0aa77515f7550652ef057ef5178428f519877bcb4099db6bf2f41"
+      "bytes": 8719,
+      "sha256": "6bbb4d5486b23f50216ecfcb8f954392dd4fb11782483d25ef018138539a7abf",
+      "status": "changed"
     },
     {
       "path": "public/assets/ASSET_MANIFEST.json",
-      "bytes": 8816,
-      "sha256": "1899f9b3004e2379379afd9b9b191c6df08a7767f0f7185a4488afa0dc66ba27"
+      "bytes": 15507,
+      "sha256": "3bbd767be684e4485a7fe80aa5deecf80c0b0fd8758750ce7f460a8dc6756a19",
+      "status": "changed"
     },
     {
-      "path": "public/assets/live/v16/atlases/effects/boss_core_fx_v16.json",
-      "bytes": 5989,
-      "sha256": "15c8aa4b0be96b6bbc17eb6a264b2825cd96d45160bf342ad05519740d00ea04"
+      "path": "public/assets/live/v20/atlases/effects/boss_core_events_v20.json",
+      "bytes": 11542,
+      "sha256": "9c20a9316eb0d82b6d3ba380619e89cfd4ffc74727bbe908e7d71e4b6c157317",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/effects/boss_core_fx_v16.webp",
-      "bytes": 87228,
-      "sha256": "d737b668089a577ccbecfda496f2de3afd2864e03dfae368cb7b789039d0fc58"
+      "path": "public/assets/live/v20/atlases/effects/boss_core_events_v20.webp",
+      "bytes": 119212,
+      "sha256": "c07c9853cc31d69d6a6c068445d212572638b5dd4cc83d8c2df1b82213dd88f3",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/monsters/monster_parts_v16.json",
-      "bytes": 8689,
-      "sha256": "7e066c222910616c6b1002b67861c1a3cbea7f2b0727f990a6b239ef494ce9cf"
+      "path": "public/assets/live/v20/atlases/effects/status_vfx_v20.json",
+      "bytes": 15087,
+      "sha256": "4881e836fc66028e2312d7f0ddc6093de7be5a06fd1c7234607ea007ebc24ff2",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/monsters/monster_parts_v16.webp",
-      "bytes": 151360,
-      "sha256": "9b046a2d7c5c4e0633d2c87a0d42d1b72f7a7aad8a2b488aae1843cce45366ae"
+      "path": "public/assets/live/v20/atlases/effects/status_vfx_v20.webp",
+      "bytes": 145708,
+      "sha256": "c69a81eeb37741637aec310c42854da66eb15ca531115081acd954d0c301cc14",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/player/player_parts_v16.json",
-      "bytes": 8685,
-      "sha256": "3a170bde63a19ba04c3b367ddf003b46396af8d7cc0868f1738fe34edc0e47c8"
+      "path": "public/assets/live/v20/atlases/monsters/monster_damage_parts_v20.json",
+      "bytes": 65246,
+      "sha256": "ede6b692b762f139c19851b66e9795024d395d126554871c58ee9161380acd9d",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/player/player_parts_v16.webp",
-      "bytes": 120320,
-      "sha256": "80d4cc88921f5d6cb8bc10db775b785593de1c70985ee184afa1808a84845ca4"
+      "path": "public/assets/live/v20/atlases/monsters/monster_damage_parts_v20.webp",
+      "bytes": 554686,
+      "sha256": "0c96c9c4a6c26ba81cc26ebf13d15f7256e5ccb33aac9328ded2aa5ae3008abe",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/ui/premium_ui_icons_v16.json",
-      "bytes": 8197,
-      "sha256": "98b81e58b0de2a3ec58411064e44deb994de656ddf4f181032c41837ad28fd8b"
+      "path": "public/assets/live/v20/atlases/player/player_weapon_phases_v20.json",
+      "bytes": 60565,
+      "sha256": "17f8c54d13bcd4b46e77b42af0ea63fe3a44ab435ccc69977b4ca91fda1bb796",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/atlases/ui/premium_ui_icons_v16.webp",
-      "bytes": 173434,
-      "sha256": "0d42c35b0887840aba20f22c7eecf1e56b9dab7376922b8bf11df49313c45abf"
+      "path": "public/assets/live/v20/atlases/player/player_weapon_phases_v20.webp",
+      "bytes": 554828,
+      "sha256": "1a514defb5842fcace8245827e1a57801b2c5f561d8719b0dc78bd7c8c8c1bd3",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/production/BOSS_CORE_FX_V16.json",
-      "bytes": 697,
-      "sha256": "0d95d1c3db845ca4cecc8d23dc2a08e97269860c4c088152166279d6cabd0793"
+      "path": "public/assets/live/v20/atlases/ui/premium_support_ui_v20.json",
+      "bytes": 8044,
+      "sha256": "4ed967492736238ba9eaf3955718b7c0f5fd46af8b3113542847f009ff33865c",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/production/MONSTER_PARTS_V16.json",
-      "bytes": 878,
-      "sha256": "b9536f8ec0d65f68b79da29c152b98572db84dc0648859c924041dfeb048b046"
+      "path": "public/assets/live/v20/atlases/ui/premium_support_ui_v20.webp",
+      "bytes": 29640,
+      "sha256": "cf5f53f8f390cf879ea8584d061e80f737ce2df41b1570869667db743daa48ff",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/production/PLAYER_PARTS_V16.json",
-      "bytes": 1066,
-      "sha256": "0ca365fc2b5620524418b994c34aa026fbf1fa9cf2c18fa602d7cd89c2013b71"
+      "path": "public/assets/live/v20/production/BOSS_CORE_EVENTS_V20.json",
+      "bytes": 314,
+      "sha256": "323373d6c1846fc39762af312b2f31230aacee81e1ceddb6e3170150a9158199",
+      "status": "added"
     },
     {
-      "path": "public/assets/live/v16/production/PREMIUM_UI_ICONS_V16.json",
-      "bytes": 716,
-      "sha256": "50388c915321f5b357f8256180c3569d65a2ff6f15a248f9734b6eefbc20f2af"
+      "path": "public/assets/live/v20/production/MONSTER_DAMAGE_PARTS_V20.json",
+      "bytes": 417,
+      "sha256": "e83a1a03311ada86319e2402c3b6cba12ee0921ace8da11239ac3690d740d1b6",
+      "status": "added"
     },
     {
-      "path": "scripts/validate-release-version.mjs",
-      "bytes": 12155,
-      "sha256": "77380413b70a5a149ef2c7484d73e36c8e5fae1947f627598592a512a80eec7f"
+      "path": "public/assets/live/v20/production/PLAYER_WEAPON_PHASES_V20.json",
+      "bytes": 477,
+      "sha256": "475a88abfd942386219fdf7802415902defd8ad6384edf80482d3106e7abb5f4",
+      "status": "added"
     },
     {
-      "path": "scripts/validate-v11131-upgrade.mjs",
-      "bytes": 6374,
-      "sha256": "cdee8c19070475e1bb39d2f790a8a6af6cf680435e6bf125993a708524d59664"
+      "path": "public/assets/live/v20/production/PREMIUM_SUPPORT_UI_V20.json",
+      "bytes": 561,
+      "sha256": "a1a78b6a3bb1385ca4cacba7fb83b2220fb62d231795923043200d610bbcafd6",
+      "status": "added"
     },
     {
-      "path": "scripts/validate-v11132-upgrade.mjs",
-      "bytes": 7243,
-      "sha256": "60fa83a812229c0c993954e601d0df3a7b7344572f289b825dfb7cb65738e5cf"
+      "path": "public/assets/live/v20/production/STATUS_VFX_V20.json",
+      "bytes": 332,
+      "sha256": "f1c8494af8538c030d46ac526a27ed1ddc57dd82f3d6f9530084b156ec993985",
+      "status": "added"
     },
     {
-      "path": "scripts/verify-v11132-production.mjs",
-      "bytes": 2276,
-      "sha256": "1af5acf12c58715e4244823f4d4c8c791120b4862166b8f4e42f0b442770adc9"
+      "path": "scripts/validate-asset-cleanup.mjs",
+      "bytes": 3862,
+      "sha256": "561f58ec5083f9f12f409f492ea3c5b048cb46f104931989f09e28917499c3aa",
+      "status": "changed"
+    },
+    {
+      "path": "scripts/validate-v11135-upgrade.mjs",
+      "bytes": 6564,
+      "sha256": "66335aba0b198491111d668f82bef9a91cb0f27e3922c372a28e0fb35ca79363",
+      "status": "changed"
+    },
+    {
+      "path": "scripts/validate-v11136-upgrade.mjs",
+      "bytes": 7626,
+      "sha256": "b1a4c99a846385f2a9bb94f5170f9f8da163cecf925444571c38de3cf5f912d1",
+      "status": "added"
+    },
+    {
+      "path": "scripts/verify-v11136-production.mjs",
+      "bytes": 2488,
+      "sha256": "d52505662c72d6fc65fffde9d6aaa109e79df2d8bf6aeb4c95af51ba93b98c96",
+      "status": "added"
     },
     {
       "path": "src/app/brand.ts",
       "bytes": 1064,
-      "sha256": "1fa9dc04286bdcd48707a55e40f0bd5d43dc3cf641cb08da1b267ccaab628796"
+      "sha256": "bc15936371be9c51ae7ce90c3358a5eb0398487b560756bd2e66c1e4c5b94def",
+      "status": "changed"
     },
     {
       "path": "src/core/assets/AssetCatalog.ts",
-      "bytes": 14211,
-      "sha256": "a2971f7656295267d5b84610624c9f5656ce01706acde34db315581c088986bb"
+      "bytes": 23022,
+      "sha256": "c4ad5df3f531800c31554414a6686eb8f21bd83fac9b7d5a725c9dfaed76587b",
+      "status": "changed"
     },
     {
       "path": "src/game/presentation/BattleActorView.ts",
-      "bytes": 44548,
-      "sha256": "ae11fb08ea6e933c18b066a446035d85a33d0492b1cecc6abe79e0dcf392a0b6"
+      "bytes": 47762,
+      "sha256": "01ef181f5650233174751bc5ea2af632c75af95e6e53ea6acce1e79b3d3779a9",
+      "status": "changed"
+    },
+    {
+      "path": "src/game/presentation/BossCoreEventsV20.test.ts",
+      "bytes": 534,
+      "sha256": "c4f4edf890bbdbb2f9958abf07c88fd3b01bc104d5cf3ba08913a29508d8856b",
+      "status": "added"
+    },
+    {
+      "path": "src/game/presentation/BossCoreEventsV20.ts",
+      "bytes": 1073,
+      "sha256": "5ef578b544736b6db42de434f867852bf9973946c0abdce7f2f2ef15b188438d",
+      "status": "added"
+    },
+    {
+      "path": "src/game/presentation/MonsterDamagePartsV20.test.ts",
+      "bytes": 551,
+      "sha256": "514dfd9774cc372913a66d2f028a8045c6e4fa4c327cd3c45a55a6c4860c9b7e",
+      "status": "added"
+    },
+    {
+      "path": "src/game/presentation/MonsterDamagePartsV20.ts",
+      "bytes": 1477,
+      "sha256": "ffc0ac598b2d0b27709e7086b0716805599f4bd431efba655341c07630c8ea1e",
+      "status": "added"
+    },
+    {
+      "path": "src/game/presentation/PlayerWeaponPhasesV20.test.ts",
+      "bytes": 659,
+      "sha256": "18060981b0dd21f44d214ac84a612f167f4851735133de6f5f87a8cf13872fe6",
+      "status": "added"
+    },
+    {
+      "path": "src/game/presentation/PlayerWeaponPhasesV20.ts",
+      "bytes": 1525,
+      "sha256": "38a58519b5ff2fada2e9f945279d8ff6bf1c1176f44b2fc2b572b95ff66c6931",
+      "status": "added"
     },
     {
       "path": "src/game/presentation/PremiumCharacterDetailLayerView.ts",
-      "bytes": 21377,
-      "sha256": "051318b24a87fd61e7b9cfee380553a93210c58b5fb53b232550df68c14add4f"
+      "bytes": 32602,
+      "sha256": "d989114ce53dda7f533331ced58c91e9f8a108d50931fd942e13f8677ffa1441",
+      "status": "changed"
     },
     {
       "path": "src/game/presentation/PremiumMonsterDetailLayerView.ts",
-      "bytes": 17559,
-      "sha256": "5734f33bceec00c494b31d40fd6ab22beabc17339ebab58668e2ce90f4015da8"
+      "bytes": 27012,
+      "sha256": "21329e4639d51474c6cf3afd50de4f2b7a6e62d14f382b32edd57a050a976087",
+      "status": "changed"
     },
     {
-      "path": "src/game/presentation/PremiumPartAtlasV16.test.ts",
-      "bytes": 609,
-      "sha256": "c2a00230ffc3ad4118af1c085914a2b62060e98ef5f61ea5ce1600c5e863c422"
+      "path": "src/game/presentation/PremiumStatusVfxV20.test.ts",
+      "bytes": 442,
+      "sha256": "8d8d6c2c7ec2b9bfd661f55c252c3b7d2f6661b975bba0d110f0b453d86a7776",
+      "status": "added"
     },
     {
-      "path": "src/game/presentation/PremiumPartAtlasV16.ts",
-      "bytes": 4566,
-      "sha256": "8def7ce1ecc0d919e983768bcfd649c3c8c1cd40e4e8d5e7f2d5b2cd31570d6e"
+      "path": "src/game/presentation/PremiumStatusVfxV20.ts",
+      "bytes": 752,
+      "sha256": "0622f46d0b79bd9978e20046d8d31e9b07b63b59486ac4b2c547753c1d5b6a8f",
+      "status": "added"
     },
     {
       "path": "src/scenes/BattleScene.ts",
-      "bytes": 101940,
-      "sha256": "33a89bd629ba88022c87cb9e5dfc6334bf3a5edcd1ba3c0ad124565fcec3bdd8"
+      "bytes": 106351,
+      "sha256": "64141a4035bb3b650729a67ea209137725c68c494043c0b947c02475ef2e0bb0",
+      "status": "changed"
+    },
+    {
+      "path": "src/scenes/CharacterAppearanceCloudScene.ts",
+      "bytes": 12035,
+      "sha256": "8c440f0fed82375e55c5a6714ce91f32edcac62b3385f33754865d6243e10a4a",
+      "status": "changed"
+    },
+    {
+      "path": "src/scenes/CharacterAppearanceRecoveryScene.ts",
+      "bytes": 16483,
+      "sha256": "035d25221d59b271ef1b68042c2aca32eca4f75790541a6cbe9676088dea44e7",
+      "status": "changed"
+    },
+    {
+      "path": "src/scenes/CharacterCalibrationScene.ts",
+      "bytes": 11015,
+      "sha256": "59ca88b3d810404dea83407ba1882d2d5cd644c69c7e5334dac6fffc489b2009",
+      "status": "changed"
     },
     {
       "path": "src/scenes/CharacterWardrobeScene.ts",
-      "bytes": 26573,
-      "sha256": "f67930020015238978ecf8b4a8cab891cc6dc2cf956871c4dfeef87fc6230d20"
+      "bytes": 28728,
+      "sha256": "6346480485150cf5db149cf6fab32a4140bfaa2c94d6bee32c7c2feadcc0a09c",
+      "status": "changed"
     },
     {
-      "path": "src/scenes/InventoryScene.ts",
-      "bytes": 18865,
-      "sha256": "d6fcddbe98e395a2c7dc933afb82f9b81e48f7f79864da000c2d41a4573c7f00"
+      "path": "src/ui/PremiumSupportUiV20.test.ts",
+      "bytes": 540,
+      "sha256": "61dbe2ef58e3ee91261bfeac2c747b46eb88d5838f537743de38f7ee93954c91",
+      "status": "added"
     },
     {
-      "path": "src/ui/PremiumUiIconArtV16.test.ts",
-      "bytes": 723,
-      "sha256": "78e5f3adcce35a47877cea396ce88112112174650e38f23a2530c3b9926b84f7"
+      "path": "src/ui/PremiumSupportUiV20.ts",
+      "bytes": 990,
+      "sha256": "37e693a1605d943b7cd313cacdc9cd835133ee4212473aa6bd5d5f11da4b977e",
+      "status": "added"
     },
     {
-      "path": "src/ui/PremiumUiIconArtV16.ts",
-      "bytes": 2177,
-      "sha256": "f0018cb4146a0ac34e876d6f4ab9cc3944a89a95066ed452e28459c29140729b"
-    },
-    {
-      "path": "tools/build_premium_parts_v16.py",
-      "bytes": 22036,
-      "sha256": "a3070a40552455ec1b1fa9015bfe39f33be8f53628da82b2803bd4d5171a2df5"
+      "path": "tools/build_premium_parts_v20.py",
+      "bytes": 17736,
+      "sha256": "10dd702f48458dcb239ab19a17a40d581e30e73ed2ee2824593d4440ee525914",
+      "status": "added"
     }
+  ],
+  "deleteFiles": [],
+  "deleteCount": 0,
+  "fileCount": 67,
+  "notes": [
+    "PATCH_MANIFEST.json is not self-hashed",
+    "No files are deleted",
+    "Player Save v4 and AttackFootprint remain unchanged"
   ]
 }
