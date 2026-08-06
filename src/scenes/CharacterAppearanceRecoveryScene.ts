@@ -17,6 +17,7 @@ import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
 import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
+import { PREMIUM_SUPPORT_UI_V21_KEYS, premiumSupportUiTextureV21 } from '../ui/PremiumSupportUiV21';
 import { CharacterAppearanceCloudScene } from './CharacterAppearanceCloudScene';
 import { CharacterAppearanceRecoveryCompareScene } from './CharacterAppearanceRecoveryCompareScene';
 
@@ -50,7 +51,10 @@ export class CharacterAppearanceRecoveryScene implements Scene {
       '이름·고정·검색을 지원하며, 고정 3개와 최근 자동 복구 5개를 UID별로 분리 보관합니다.',
     ));
     this.view.addChild(createPanel(18, 158, 504, 788));
-    const recoveryTexture = premiumSupportUiTextureV20(
+    const recoveryTexture = premiumSupportUiTextureV21(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV21Atlas),
+      PREMIUM_SUPPORT_UI_V21_KEYS.restore,
+    ) ?? premiumSupportUiTextureV20(
       context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
       PREMIUM_SUPPORT_UI_V20_KEYS.recovery,
     ) ?? premiumUiV18Texture(

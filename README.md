@@ -1,4 +1,4 @@
-# LUMERIFT: 균열의 계승자 v1.11.36
+# LUMERIFT: 균열의 계승자 v1.11.38
 
 ## v1.11.36 핵심 업데이트
 
@@ -235,3 +235,8 @@ npm run dev
 - 관련 문서: `docs/PATCH_NOTES_v1.11.27.md`, `docs/CHARACTER_APPEARANCE_RECOVERY_DIFF_AUDIT_v1.11.27.md`, `docs/NEXT_UPDATE_v1.11.28.md`
 
 실제 Android/iOS 물리 기기 캡처와 최종 수작업 공격·장비 원화는 완료로 기록하지 않는다.
+
+
+## v1.11.37 update
+- Weapon interpolation v21, monster recovery v21, status lifecycle v21, and support UI v21 are active with v20 and earlier fallbacks.
+- Final full-body hand-painted Atlases and physical-device approval remain pending.

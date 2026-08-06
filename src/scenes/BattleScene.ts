@@ -66,6 +66,7 @@ import { battleHudLayoutKey, resolveBattleHudSafeArea } from '../core/layout/Bat
 import { createCombatOverlayChrome } from '../ui/InterfaceChrome';
 import { resolveCharacterEquipmentAppearance } from '../game/presentation/CharacterEquipmentVisualProfile';
 import { resolveCharacterDisplayCalibration } from '../core/performance/CharacterDisplayCalibration';
+import { integratedVisualReplacementV22Enabled } from '../game/presentation/IntegratedVisualReplacementV22';
 import { applyWeaponMotionProfile } from '../game/combat/WeaponMotionProfile';
 
 interface EnemyActor {
@@ -128,6 +129,9 @@ export class BattleScene implements Scene {
   private premiumMonsterDamageV20Sheet?: Spritesheet;
   private bossCoreEventV20Sheet?: Spritesheet;
   private premiumStatusV20Sheet?: Spritesheet;
+  private premiumPlayerInterpolationV21Sheet?: Spritesheet;
+  private premiumMonsterRecoveryV21Sheet?: Spritesheet;
+  private premiumStatusLifecycleV21Sheet?: Spritesheet;
   private mapTexture?: Texture;
   private readonly bossPortraitTextures: Partial<Record<1 | 2 | 3, Texture>> = {};
   private bossPortraitSprite?: Sprite;
@@ -420,6 +424,9 @@ export class BattleScene implements Scene {
     this.premiumMonsterDamageV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterDamageV20Atlas);
     this.bossCoreEventV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.bossCoreEventV20Atlas);
     this.premiumStatusV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumStatusV20Atlas);
+    this.premiumPlayerInterpolationV21Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerInterpolationV21Atlas);
+    this.premiumMonsterRecoveryV21Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumMonsterRecoveryV21Atlas);
+    this.premiumStatusLifecycleV21Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumStatusLifecycleV21Atlas);
     this.mapTexture = context.assets.get<Texture>(this.resolveStageBackgroundPath());
     this.bossPortraitTextures[1] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase1);
     this.bossPortraitTextures[2] = context.assets.get<Texture>(ASSET_PATHS.bossPortraitPhase2);
@@ -480,10 +487,12 @@ export class BattleScene implements Scene {
       premiumPlayerActionV18Sheet: this.premiumPlayerActionV18Sheet,
       premiumPlayerActionPhaseV19Sheet: this.premiumPlayerActionPhaseV19Sheet,
       premiumPlayerWeaponPhaseV20Sheet: this.premiumPlayerWeaponPhaseV20Sheet,
+      premiumPlayerInterpolationV21Sheet: this.premiumPlayerInterpolationV21Sheet,
       equipmentAppearance,
       displayCalibration: resolveCharacterDisplayCalibration(),
       mirrorWest: false,
       spriteBaseScale: this.usingOwnedPlayerPreview || this.usingOwnedPaintedCandidate ? 1.36 : 2.02,
+      integratedVisualReplacement: integratedVisualReplacementV22Enabled(),
     });
     this.world.addChild(this.playerPresentation.root);
     this.prepareTextureWarmup();
@@ -1613,6 +1622,9 @@ export class BattleScene implements Scene {
         this.premiumMonsterDamageV20Sheet,
         this.bossCoreEventV20Sheet,
         this.premiumStatusV20Sheet,
+        this.premiumMonsterRecoveryV21Sheet,
+        this.premiumStatusLifecycleV21Sheet,
+        integratedVisualReplacementV22Enabled(),
       );
       this.world.addChild(presentation.root);
       this.enemies.push({
@@ -1790,8 +1802,9 @@ export class BattleScene implements Scene {
         );
 
         const status = event.action.statusEffect;
-        if (status && enemy.controller.isAlive && Math.random() <= status.chance) {
-          enemy.controller.applyStatusEffect(status);
+        if (status && enemy.controller.isAlive) {
+          if (Math.random() <= status.chance) enemy.controller.applyStatusEffect(status);
+          else if (enemy.controller.config.rank === 'boss') enemy.controller.notifyStatusImmune(status.id);
         }
 
         this.countDeath(enemy);

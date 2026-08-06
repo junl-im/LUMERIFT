@@ -37,6 +37,7 @@ import {
 } from '../game/presentation/WeaponBodyAttackFrames';
 import { CharacterEquipmentLayerView } from '../game/presentation/CharacterEquipmentLayerView';
 import { PremiumCharacterDetailLayerView } from '../game/presentation/PremiumCharacterDetailLayerView';
+import { integratedVisualReplacementV22Enabled } from '../game/presentation/IntegratedVisualReplacementV22';
 import { createDefaultProfile } from '../repositories/PlayerRepository';
 import { createBadge } from '../ui/PremiumUi';
 import { createBackground, createPanel } from '../ui/SceneChrome';
@@ -92,6 +93,7 @@ export class CharacterWardrobeScene implements Scene {
     const premiumPlayerActionV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionV18Atlas);
     const premiumPlayerActionPhaseV19Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerActionPhaseV19Atlas);
     const premiumPlayerWeaponPhaseV20Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerWeaponPhaseV20Atlas);
+    const premiumPlayerInterpolationV21Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumPlayerInterpolationV21Atlas);
     const premiumUiV18Sheet = context.assets.get<Spritesheet>(ASSET_PATHS.premiumUiIconsV18Atlas);
     const wardrobe = context.characterWardrobe.current;
     const calibration = resolveCharacterDisplayCalibration();
@@ -158,6 +160,7 @@ export class CharacterWardrobeScene implements Scene {
       actionPartSheet: premiumPlayerActionV18Sheet,
       actionPhaseSheet: premiumPlayerActionPhaseV19Sheet,
       weaponPhaseSheet: premiumPlayerWeaponPhaseV20Sheet,
+      weaponInterpolationSheet: premiumPlayerInterpolationV21Sheet,
       calibration,
       isCandidate: false,
     });
@@ -173,6 +176,7 @@ export class CharacterWardrobeScene implements Scene {
       actionPartSheet: premiumPlayerActionV18Sheet,
       actionPhaseSheet: premiumPlayerActionPhaseV19Sheet,
       weaponPhaseSheet: premiumPlayerWeaponPhaseV20Sheet,
+      weaponInterpolationSheet: premiumPlayerInterpolationV21Sheet,
       calibration,
       isCandidate: true,
     });
@@ -285,6 +289,7 @@ export class CharacterWardrobeScene implements Scene {
     readonly actionPartSheet: Spritesheet | undefined;
     readonly actionPhaseSheet: Spritesheet | undefined;
     readonly weaponPhaseSheet: Spritesheet | undefined;
+    readonly weaponInterpolationSheet: Spritesheet | undefined;
     readonly calibration: CharacterDisplayCalibration;
     readonly isCandidate: boolean;
   }): void {
@@ -337,6 +342,7 @@ export class CharacterWardrobeScene implements Scene {
       input.actionPartSheet,
       input.actionPhaseSheet,
       input.weaponPhaseSheet,
+      input.weaponInterpolationSheet,
     );
     premiumLayers.update({
       x: previewX,
@@ -353,6 +359,12 @@ export class CharacterWardrobeScene implements Scene {
       overdrive: wardrobe.pose === 'skill2',
       flashRemaining: 0,
     });
+    if (integratedVisualReplacementV22Enabled()) {
+      premiumLayers.back.visible = false;
+      premiumLayers.front.visible = false;
+      equipmentLayers.back.alpha = 0.12;
+      equipmentLayers.front.alpha = 0.18;
+    }
 
     const body = resolveWeaponBodyTextures(
       input.sheet,

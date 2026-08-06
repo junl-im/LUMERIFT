@@ -1,0 +1,38 @@
+{
+  "schema": "lumerift-premium-support-ui-v21",
+  "version": "1.11.37",
+  "icons": [
+    "stack",
+    "cleanse",
+    "immune",
+    "status-hud",
+    "interpolate",
+    "combo",
+    "stagger",
+    "rise",
+    "recover",
+    "evidence",
+    "capture",
+    "audit-filter",
+    "timeline",
+    "diff",
+    "restore",
+    "verified"
+  ],
+  "frames": 16,
+  "animations": 16,
+  "screens": [
+    "mobile-calibration",
+    "appearance-recovery",
+    "appearance-audit",
+    "cloud-conflict",
+    "battle-status"
+  ],
+  "initialBundleRequired": false,
+  "fallback": [
+    "v20",
+    "v18",
+    "v17",
+    "v16"
+  ]
+}

@@ -48,6 +48,7 @@ export class LobbyScene implements Scene {
     this.lobbyBundleLoaded = true;
     const backgroundTexture = context.assets.get<Texture>(ASSET_PATHS.lobbyBackground);
     const portraitTexture = context.assets.get<Texture>(ASSET_PATHS.heroPortrait);
+    const faceTexture = context.assets.get<Texture>(ASSET_PATHS.heroFacePortrait);
     const equipmentMaterialSheet = context.assets.get<Spritesheet>(ASSET_PATHS.equipmentMaterialAtlas);
 
     const equipment = calculateEquipmentSummary(this.profile, context.gameData);
@@ -62,7 +63,7 @@ export class LobbyScene implements Scene {
     const operationAlerts = operationNotificationCount(this.profile);
 
     this.createBackdrop(backgroundTexture);
-    this.createHeader(power, operationAlerts);
+    this.createHeader(power, operationAlerts, faceTexture);
     this.createHeroPresentation(portraitTexture, power, equipmentMaterialSheet, equipmentAppearance);
     this.createAttendanceCard();
     this.createEventBanner();
@@ -131,13 +132,20 @@ export class LobbyScene implements Scene {
     this.view.addChild(interfaceBackdrop, shade, this.atmosphere);
   }
 
-  private createHeader(power: number, operationAlerts: number): void {
+  private createHeader(power: number, operationAlerts: number, faceTexture?: Texture): void {
     const topBar = createRasterPanel(12, 12, DESIGN_WIDTH - 24, 94, 'panel_strong');
     const commandStamp = createInterfaceStamp('COMMAND HUB', 126);
     commandStamp.position.set(392, 70);
     const updateTag = createComicTag('UX UPGRADE', COLORS.sunrise);
     updateTag.position.set(388, 38);
     const portraitFrame = createRasterPanel(22, 22, 72, 72, 'portrait_small');
+    const face = faceTexture ? new Sprite(faceTexture) : undefined;
+    if (face) {
+      face.position.set(27, 27);
+      face.width = 62;
+      face.height = 62;
+      face.alpha = 0.94;
+    }
     const brand = new Text({
       text: 'LUMERIFT',
       style: new TextStyle({ fill: 0xf4dca0, fontSize: 20, fontWeight: '700', letterSpacing: 1.7 }),
@@ -171,7 +179,9 @@ export class LobbyScene implements Scene {
       count.position.set(508, 18);
       this.view.addChild(dot, count);
     }
-    this.view.addChild(topBar, portraitFrame, brand, identity, exp, energy, gold, crystal, powerText, commandStamp, updateTag);
+    this.view.addChild(topBar, portraitFrame);
+    if (face) this.view.addChild(face);
+    this.view.addChild(brand, identity, exp, energy, gold, crystal, powerText, commandStamp, updateTag);
   }
 
   private createHeroPresentation(

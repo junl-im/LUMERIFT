@@ -1,0 +1,28 @@
+{
+  "schema": "lumerift-monster-recovery-parts-v21",
+  "version": "1.11.37",
+  "variants": [
+    "void",
+    "frost",
+    "inferno",
+    "boss"
+  ],
+  "directions": 8,
+  "states": [
+    "stagger",
+    "rise",
+    "recover"
+  ],
+  "frames": 192,
+  "animations": 96,
+  "gameplayTimingChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "v20",
+    "v19",
+    "v18",
+    "v17",
+    "v16",
+    "established-body"
+  ]
+}

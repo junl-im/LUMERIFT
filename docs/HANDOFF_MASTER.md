@@ -1,10 +1,10 @@
-# HANDOFF MASTER v1.11.36
+# HANDOFF MASTER v1.11.38
 
 # LUMERIFT 통합 인수인계 문서
 
-**현재 버전:** v1.11.36
+**현재 버전:** v1.11.38
 **갱신일:** 2026-08-03  
-**상태:** Premium Art Direction v2 기반 v20 5단계 무기·피격/다운·상태 VFX·지원 UI 배치 완료
+**상태:** Premium Art Direction v2 기반 v21 무기 보간·몬스터 회복·상태 수명주기·지원 UI 배치 완료
 
 ## 1. 프로젝트 목적
 
@@ -560,3 +560,7 @@ CC BY·CC BY-SA 자산의 제작자 표시를 제거하지 않는다. CC BY-SA �
 - 모바일 승인·복구·감사·Cloud 지원 화면용 Premium Support UI 16프레임을 적용했다.
 - v19 이하 폴백, Player Save v4, AttackFootprint, App Check 비활성 정책을 유지했다.
 - 최종 전신 수작업 Atlas, 실기기 승인, 실제 의존성 build는 미완료로 유지했다.
+
+
+## v1.11.37 릴리스 포인트
+- 무기 8프레임 보간, 몬스터 경직·기상·회복, 상태 중첩·해제·면역 VFX, Support UI v21 적용.

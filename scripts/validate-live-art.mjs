@@ -46,15 +46,18 @@ for (const path of expected) {
   }
 }
 
-for (const fragment of [
-  'assets/live/v4/atlases/player/player_live_v4.json',
-  'assets/live/v4/atlases/monsters/monsters_live_v4.json',
-  'assets/live/v4/atlases/effects/combat_effects_v4.json',
-  'assets/live/v4/backgrounds/forest_approach_v4.webp',
-  'assets/live/v4/backgrounds/rift_core_v4.webp',
-  'assets/live/v4/portraits/boss_phase_3_v4.webp',
-]) {
-  if (!catalog.includes(fragment)) errors.push(`AssetCatalog 기본 경로가 v1.7 아트를 가리키지 않습니다: ${fragment}`);
+const defaultPathGroups = [
+  ['assets/live/v22/atlases/player/player_reborn_body_v22.json', 'assets/live/v4/atlases/player/player_live_v4.json'],
+  ['assets/live/v22/atlases/monsters/monsters_reborn_v22.json', 'assets/live/v4/atlases/monsters/monsters_live_v4.json'],
+  ['assets/live/v22/atlases/effects/combat_effects_reborn_v22.json', 'assets/live/v4/atlases/effects/combat_effects_v4.json'],
+  ['assets/live/v4/backgrounds/forest_approach_v4.webp'],
+  ['assets/live/v4/backgrounds/rift_core_v4.webp'],
+  ['assets/live/v22/portraits/boss_phase_3_reborn_v22.webp', 'assets/live/v4/portraits/boss_phase_3_v4.webp'],
+];
+for (const accepted of defaultPathGroups) {
+  if (!accepted.some((fragment) => catalog.includes(fragment))) {
+    errors.push(`AssetCatalog 기본 경로가 실사용 또는 v22 교체 아트를 가리키지 않습니다: ${accepted.join(' | ')}`);
+  }
 }
 if (!battleScene.includes('resolveStageVisualProfile')) errors.push('스테이지별 비주얼 프로필 연결이 없습니다.');
 if (!battleScene.includes('updateBossPortrait')) errors.push('보스 페이즈 초상 전환이 없습니다.');

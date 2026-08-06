@@ -1,0 +1,5011 @@
+{
+  "frames": {
+    "premium.recovery.v21.monster.void.n.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.n.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.n.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.n.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.n.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.n.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.ne.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 96,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.e.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.se.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 192,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.s.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 288,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.sw.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 384,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.w.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.void.nw.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 480,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.n.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 576,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.ne.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 672,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.e.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.se.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 768,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.s.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 864,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.sw.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 960,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.w.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.frost.nw.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 1056,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.n.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 1152,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.ne.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 1248,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.e.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.se.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 1344,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.s.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 1440,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.sw.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 1536,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.w.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.inferno.nw.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 1632,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.n.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 1728,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.ne.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 1824,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.e.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.se.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 1920,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.stagger.0": {
+      "frame": {
+        "x": 0,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.stagger.1": {
+      "frame": {
+        "x": 96,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.rise.0": {
+      "frame": {
+        "x": 192,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.rise.1": {
+      "frame": {
+        "x": 288,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.recover.0": {
+      "frame": {
+        "x": 384,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.s.recover.1": {
+      "frame": {
+        "x": 480,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.stagger.0": {
+      "frame": {
+        "x": 576,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.stagger.1": {
+      "frame": {
+        "x": 672,
+        "y": 2016,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.rise.0": {
+      "frame": {
+        "x": 0,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.rise.1": {
+      "frame": {
+        "x": 96,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.recover.0": {
+      "frame": {
+        "x": 192,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.sw.recover.1": {
+      "frame": {
+        "x": 288,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.stagger.0": {
+      "frame": {
+        "x": 384,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.stagger.1": {
+      "frame": {
+        "x": 480,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.rise.0": {
+      "frame": {
+        "x": 576,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.rise.1": {
+      "frame": {
+        "x": 672,
+        "y": 2112,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.recover.0": {
+      "frame": {
+        "x": 0,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.w.recover.1": {
+      "frame": {
+        "x": 96,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.stagger.0": {
+      "frame": {
+        "x": 192,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.stagger.1": {
+      "frame": {
+        "x": 288,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.rise.0": {
+      "frame": {
+        "x": 384,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.rise.1": {
+      "frame": {
+        "x": 480,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.recover.0": {
+      "frame": {
+        "x": 576,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "premium.recovery.v21.monster.boss.nw.recover.1": {
+      "frame": {
+        "x": 672,
+        "y": 2208,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+    "premium.recovery.v21.monster.void.n.stagger": [
+      "premium.recovery.v21.monster.void.n.stagger.0",
+      "premium.recovery.v21.monster.void.n.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.n.rise": [
+      "premium.recovery.v21.monster.void.n.rise.0",
+      "premium.recovery.v21.monster.void.n.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.n.recover": [
+      "premium.recovery.v21.monster.void.n.recover.0",
+      "premium.recovery.v21.monster.void.n.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.ne.stagger": [
+      "premium.recovery.v21.monster.void.ne.stagger.0",
+      "premium.recovery.v21.monster.void.ne.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.ne.rise": [
+      "premium.recovery.v21.monster.void.ne.rise.0",
+      "premium.recovery.v21.monster.void.ne.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.ne.recover": [
+      "premium.recovery.v21.monster.void.ne.recover.0",
+      "premium.recovery.v21.monster.void.ne.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.e.stagger": [
+      "premium.recovery.v21.monster.void.e.stagger.0",
+      "premium.recovery.v21.monster.void.e.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.e.rise": [
+      "premium.recovery.v21.monster.void.e.rise.0",
+      "premium.recovery.v21.monster.void.e.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.e.recover": [
+      "premium.recovery.v21.monster.void.e.recover.0",
+      "premium.recovery.v21.monster.void.e.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.se.stagger": [
+      "premium.recovery.v21.monster.void.se.stagger.0",
+      "premium.recovery.v21.monster.void.se.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.se.rise": [
+      "premium.recovery.v21.monster.void.se.rise.0",
+      "premium.recovery.v21.monster.void.se.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.se.recover": [
+      "premium.recovery.v21.monster.void.se.recover.0",
+      "premium.recovery.v21.monster.void.se.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.s.stagger": [
+      "premium.recovery.v21.monster.void.s.stagger.0",
+      "premium.recovery.v21.monster.void.s.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.s.rise": [
+      "premium.recovery.v21.monster.void.s.rise.0",
+      "premium.recovery.v21.monster.void.s.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.s.recover": [
+      "premium.recovery.v21.monster.void.s.recover.0",
+      "premium.recovery.v21.monster.void.s.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.sw.stagger": [
+      "premium.recovery.v21.monster.void.sw.stagger.0",
+      "premium.recovery.v21.monster.void.sw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.sw.rise": [
+      "premium.recovery.v21.monster.void.sw.rise.0",
+      "premium.recovery.v21.monster.void.sw.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.sw.recover": [
+      "premium.recovery.v21.monster.void.sw.recover.0",
+      "premium.recovery.v21.monster.void.sw.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.w.stagger": [
+      "premium.recovery.v21.monster.void.w.stagger.0",
+      "premium.recovery.v21.monster.void.w.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.w.rise": [
+      "premium.recovery.v21.monster.void.w.rise.0",
+      "premium.recovery.v21.monster.void.w.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.w.recover": [
+      "premium.recovery.v21.monster.void.w.recover.0",
+      "premium.recovery.v21.monster.void.w.recover.1"
+    ],
+    "premium.recovery.v21.monster.void.nw.stagger": [
+      "premium.recovery.v21.monster.void.nw.stagger.0",
+      "premium.recovery.v21.monster.void.nw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.void.nw.rise": [
+      "premium.recovery.v21.monster.void.nw.rise.0",
+      "premium.recovery.v21.monster.void.nw.rise.1"
+    ],
+    "premium.recovery.v21.monster.void.nw.recover": [
+      "premium.recovery.v21.monster.void.nw.recover.0",
+      "premium.recovery.v21.monster.void.nw.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.n.stagger": [
+      "premium.recovery.v21.monster.frost.n.stagger.0",
+      "premium.recovery.v21.monster.frost.n.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.n.rise": [
+      "premium.recovery.v21.monster.frost.n.rise.0",
+      "premium.recovery.v21.monster.frost.n.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.n.recover": [
+      "premium.recovery.v21.monster.frost.n.recover.0",
+      "premium.recovery.v21.monster.frost.n.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.ne.stagger": [
+      "premium.recovery.v21.monster.frost.ne.stagger.0",
+      "premium.recovery.v21.monster.frost.ne.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.ne.rise": [
+      "premium.recovery.v21.monster.frost.ne.rise.0",
+      "premium.recovery.v21.monster.frost.ne.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.ne.recover": [
+      "premium.recovery.v21.monster.frost.ne.recover.0",
+      "premium.recovery.v21.monster.frost.ne.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.e.stagger": [
+      "premium.recovery.v21.monster.frost.e.stagger.0",
+      "premium.recovery.v21.monster.frost.e.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.e.rise": [
+      "premium.recovery.v21.monster.frost.e.rise.0",
+      "premium.recovery.v21.monster.frost.e.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.e.recover": [
+      "premium.recovery.v21.monster.frost.e.recover.0",
+      "premium.recovery.v21.monster.frost.e.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.se.stagger": [
+      "premium.recovery.v21.monster.frost.se.stagger.0",
+      "premium.recovery.v21.monster.frost.se.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.se.rise": [
+      "premium.recovery.v21.monster.frost.se.rise.0",
+      "premium.recovery.v21.monster.frost.se.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.se.recover": [
+      "premium.recovery.v21.monster.frost.se.recover.0",
+      "premium.recovery.v21.monster.frost.se.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.s.stagger": [
+      "premium.recovery.v21.monster.frost.s.stagger.0",
+      "premium.recovery.v21.monster.frost.s.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.s.rise": [
+      "premium.recovery.v21.monster.frost.s.rise.0",
+      "premium.recovery.v21.monster.frost.s.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.s.recover": [
+      "premium.recovery.v21.monster.frost.s.recover.0",
+      "premium.recovery.v21.monster.frost.s.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.sw.stagger": [
+      "premium.recovery.v21.monster.frost.sw.stagger.0",
+      "premium.recovery.v21.monster.frost.sw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.sw.rise": [
+      "premium.recovery.v21.monster.frost.sw.rise.0",
+      "premium.recovery.v21.monster.frost.sw.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.sw.recover": [
+      "premium.recovery.v21.monster.frost.sw.recover.0",
+      "premium.recovery.v21.monster.frost.sw.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.w.stagger": [
+      "premium.recovery.v21.monster.frost.w.stagger.0",
+      "premium.recovery.v21.monster.frost.w.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.w.rise": [
+      "premium.recovery.v21.monster.frost.w.rise.0",
+      "premium.recovery.v21.monster.frost.w.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.w.recover": [
+      "premium.recovery.v21.monster.frost.w.recover.0",
+      "premium.recovery.v21.monster.frost.w.recover.1"
+    ],
+    "premium.recovery.v21.monster.frost.nw.stagger": [
+      "premium.recovery.v21.monster.frost.nw.stagger.0",
+      "premium.recovery.v21.monster.frost.nw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.frost.nw.rise": [
+      "premium.recovery.v21.monster.frost.nw.rise.0",
+      "premium.recovery.v21.monster.frost.nw.rise.1"
+    ],
+    "premium.recovery.v21.monster.frost.nw.recover": [
+      "premium.recovery.v21.monster.frost.nw.recover.0",
+      "premium.recovery.v21.monster.frost.nw.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.n.stagger": [
+      "premium.recovery.v21.monster.inferno.n.stagger.0",
+      "premium.recovery.v21.monster.inferno.n.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.n.rise": [
+      "premium.recovery.v21.monster.inferno.n.rise.0",
+      "premium.recovery.v21.monster.inferno.n.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.n.recover": [
+      "premium.recovery.v21.monster.inferno.n.recover.0",
+      "premium.recovery.v21.monster.inferno.n.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.ne.stagger": [
+      "premium.recovery.v21.monster.inferno.ne.stagger.0",
+      "premium.recovery.v21.monster.inferno.ne.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.ne.rise": [
+      "premium.recovery.v21.monster.inferno.ne.rise.0",
+      "premium.recovery.v21.monster.inferno.ne.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.ne.recover": [
+      "premium.recovery.v21.monster.inferno.ne.recover.0",
+      "premium.recovery.v21.monster.inferno.ne.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.e.stagger": [
+      "premium.recovery.v21.monster.inferno.e.stagger.0",
+      "premium.recovery.v21.monster.inferno.e.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.e.rise": [
+      "premium.recovery.v21.monster.inferno.e.rise.0",
+      "premium.recovery.v21.monster.inferno.e.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.e.recover": [
+      "premium.recovery.v21.monster.inferno.e.recover.0",
+      "premium.recovery.v21.monster.inferno.e.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.se.stagger": [
+      "premium.recovery.v21.monster.inferno.se.stagger.0",
+      "premium.recovery.v21.monster.inferno.se.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.se.rise": [
+      "premium.recovery.v21.monster.inferno.se.rise.0",
+      "premium.recovery.v21.monster.inferno.se.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.se.recover": [
+      "premium.recovery.v21.monster.inferno.se.recover.0",
+      "premium.recovery.v21.monster.inferno.se.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.s.stagger": [
+      "premium.recovery.v21.monster.inferno.s.stagger.0",
+      "premium.recovery.v21.monster.inferno.s.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.s.rise": [
+      "premium.recovery.v21.monster.inferno.s.rise.0",
+      "premium.recovery.v21.monster.inferno.s.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.s.recover": [
+      "premium.recovery.v21.monster.inferno.s.recover.0",
+      "premium.recovery.v21.monster.inferno.s.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.sw.stagger": [
+      "premium.recovery.v21.monster.inferno.sw.stagger.0",
+      "premium.recovery.v21.monster.inferno.sw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.sw.rise": [
+      "premium.recovery.v21.monster.inferno.sw.rise.0",
+      "premium.recovery.v21.monster.inferno.sw.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.sw.recover": [
+      "premium.recovery.v21.monster.inferno.sw.recover.0",
+      "premium.recovery.v21.monster.inferno.sw.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.w.stagger": [
+      "premium.recovery.v21.monster.inferno.w.stagger.0",
+      "premium.recovery.v21.monster.inferno.w.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.w.rise": [
+      "premium.recovery.v21.monster.inferno.w.rise.0",
+      "premium.recovery.v21.monster.inferno.w.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.w.recover": [
+      "premium.recovery.v21.monster.inferno.w.recover.0",
+      "premium.recovery.v21.monster.inferno.w.recover.1"
+    ],
+    "premium.recovery.v21.monster.inferno.nw.stagger": [
+      "premium.recovery.v21.monster.inferno.nw.stagger.0",
+      "premium.recovery.v21.monster.inferno.nw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.inferno.nw.rise": [
+      "premium.recovery.v21.monster.inferno.nw.rise.0",
+      "premium.recovery.v21.monster.inferno.nw.rise.1"
+    ],
+    "premium.recovery.v21.monster.inferno.nw.recover": [
+      "premium.recovery.v21.monster.inferno.nw.recover.0",
+      "premium.recovery.v21.monster.inferno.nw.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.n.stagger": [
+      "premium.recovery.v21.monster.boss.n.stagger.0",
+      "premium.recovery.v21.monster.boss.n.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.n.rise": [
+      "premium.recovery.v21.monster.boss.n.rise.0",
+      "premium.recovery.v21.monster.boss.n.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.n.recover": [
+      "premium.recovery.v21.monster.boss.n.recover.0",
+      "premium.recovery.v21.monster.boss.n.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.ne.stagger": [
+      "premium.recovery.v21.monster.boss.ne.stagger.0",
+      "premium.recovery.v21.monster.boss.ne.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.ne.rise": [
+      "premium.recovery.v21.monster.boss.ne.rise.0",
+      "premium.recovery.v21.monster.boss.ne.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.ne.recover": [
+      "premium.recovery.v21.monster.boss.ne.recover.0",
+      "premium.recovery.v21.monster.boss.ne.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.e.stagger": [
+      "premium.recovery.v21.monster.boss.e.stagger.0",
+      "premium.recovery.v21.monster.boss.e.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.e.rise": [
+      "premium.recovery.v21.monster.boss.e.rise.0",
+      "premium.recovery.v21.monster.boss.e.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.e.recover": [
+      "premium.recovery.v21.monster.boss.e.recover.0",
+      "premium.recovery.v21.monster.boss.e.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.se.stagger": [
+      "premium.recovery.v21.monster.boss.se.stagger.0",
+      "premium.recovery.v21.monster.boss.se.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.se.rise": [
+      "premium.recovery.v21.monster.boss.se.rise.0",
+      "premium.recovery.v21.monster.boss.se.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.se.recover": [
+      "premium.recovery.v21.monster.boss.se.recover.0",
+      "premium.recovery.v21.monster.boss.se.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.s.stagger": [
+      "premium.recovery.v21.monster.boss.s.stagger.0",
+      "premium.recovery.v21.monster.boss.s.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.s.rise": [
+      "premium.recovery.v21.monster.boss.s.rise.0",
+      "premium.recovery.v21.monster.boss.s.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.s.recover": [
+      "premium.recovery.v21.monster.boss.s.recover.0",
+      "premium.recovery.v21.monster.boss.s.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.sw.stagger": [
+      "premium.recovery.v21.monster.boss.sw.stagger.0",
+      "premium.recovery.v21.monster.boss.sw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.sw.rise": [
+      "premium.recovery.v21.monster.boss.sw.rise.0",
+      "premium.recovery.v21.monster.boss.sw.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.sw.recover": [
+      "premium.recovery.v21.monster.boss.sw.recover.0",
+      "premium.recovery.v21.monster.boss.sw.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.w.stagger": [
+      "premium.recovery.v21.monster.boss.w.stagger.0",
+      "premium.recovery.v21.monster.boss.w.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.w.rise": [
+      "premium.recovery.v21.monster.boss.w.rise.0",
+      "premium.recovery.v21.monster.boss.w.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.w.recover": [
+      "premium.recovery.v21.monster.boss.w.recover.0",
+      "premium.recovery.v21.monster.boss.w.recover.1"
+    ],
+    "premium.recovery.v21.monster.boss.nw.stagger": [
+      "premium.recovery.v21.monster.boss.nw.stagger.0",
+      "premium.recovery.v21.monster.boss.nw.stagger.1"
+    ],
+    "premium.recovery.v21.monster.boss.nw.rise": [
+      "premium.recovery.v21.monster.boss.nw.rise.0",
+      "premium.recovery.v21.monster.boss.nw.rise.1"
+    ],
+    "premium.recovery.v21.monster.boss.nw.recover": [
+      "premium.recovery.v21.monster.boss.nw.recover.0",
+      "premium.recovery.v21.monster.boss.nw.recover.1"
+    ]
+  },
+  "meta": {
+    "app": "LUMERIFT premium runtime v21",
+    "version": "1.11.37",
+    "image": "monster_recovery_parts_v21.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 768,
+      "h": 2304
+    },
+    "scale": "1",
+    "source": "Premium Art Direction v2; supersampled procedural raster overlays",
+    "usage": "runtime overlay; v20 and established body Atlases remain fallback"
+  }
+}

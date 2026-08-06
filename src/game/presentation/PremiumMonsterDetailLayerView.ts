@@ -12,6 +12,7 @@ import { premiumMonsterMotionTextureV18 } from './PremiumMonsterMotionAtlasV18';
 import { premiumMonsterDirectionTextureV19 } from './PremiumMonsterDirectionV19';
 import { monsterDamageTextureV20 } from './MonsterDamagePartsV20';
 import { bossCoreEventTextureV20 } from './BossCoreEventsV20';
+import { monsterRecoveryTextureV21, type MonsterRecoveryStateV21 } from './MonsterRecoveryPartsV21';
 
 export interface PremiumMonsterDetailPose {
   readonly elapsed: number;
@@ -57,6 +58,7 @@ export class PremiumMonsterDetailLayerView {
   private readonly paintedDirectionV19?: Sprite;
   private readonly paintedDamageV20?: Sprite;
   private readonly paintedCoreEventV20?: Sprite;
+  private readonly paintedRecoveryV21?: Sprite;
   private readonly profile: PremiumMonsterVariantProfile;
   private readonly coreFxSheet?: Spritesheet;
   private readonly coreFxV17Sheet?: Spritesheet;
@@ -66,6 +68,9 @@ export class PremiumMonsterDetailLayerView {
   private readonly coreTrailV19Sheet?: Spritesheet;
   private readonly damageV20Sheet?: Spritesheet;
   private readonly coreEventV20Sheet?: Spritesheet;
+  private readonly recoveryV21Sheet?: Spritesheet;
+  private previousState: MonsterState = 'idle';
+  private recoveryStartedAt = -1;
   private observedPhase = 1;
   private phaseStartedAt = 0;
 
@@ -84,6 +89,7 @@ export class PremiumMonsterDetailLayerView {
     coreTrailV19Sheet?: Spritesheet,
     damageV20Sheet?: Spritesheet,
     coreEventV20Sheet?: Spritesheet,
+    recoveryV21Sheet?: Spritesheet,
   ) {
     this.profile = resolvePremiumMonsterVariant(monsterId, rank, visual);
     this.coreFxSheet = coreFxSheet;
@@ -94,6 +100,7 @@ export class PremiumMonsterDetailLayerView {
     this.coreTrailV19Sheet = coreTrailV19Sheet;
     this.damageV20Sheet = damageV20Sheet;
     this.coreEventV20Sheet = coreEventV20Sheet;
+    this.recoveryV21Sheet = recoveryV21Sheet;
     const textures = monsterPartTextures(partsSheet, this.profile.variant);
     const bodyTextures = monsterBodyTexturesV17(bodyPartsV17Sheet, this.profile.variant);
     this.paintedCrest = createMonsterPartSprite(textures.crest);
@@ -132,6 +139,10 @@ export class PremiumMonsterDetailLayerView {
       bossCoreEventTextureV20(coreEventV20Sheet, 'shattered', 0),
       true,
     );
+    this.paintedRecoveryV21 = createMonsterPartSprite(
+      monsterRecoveryTextureV21(recoveryV21Sheet, this.profile.variant, 0, 1, 'stagger', 0),
+      true,
+    );
     this.drawStatic();
     this.back.addChild(
       ...compactMonsterSprites(
@@ -168,6 +179,7 @@ export class PremiumMonsterDetailLayerView {
         this.paintedDirectionV19,
         this.paintedDamageV20,
         this.paintedCoreEventV20,
+        this.paintedRecoveryV21,
       ),
     );
   }
@@ -184,7 +196,8 @@ export class PremiumMonsterDetailLayerView {
     const phaseStrength = this.rank === 'boss' ? Math.max(1, pose.phase) : 1;
     this.updateMotionOverlayV18(pose, telegraph, attack, phaseStrength);
     this.updateDirectionOverlayV19(pose, telegraph, attack, phaseStrength);
-    this.updateDamageOverlayV20(pose); 
+    this.updateDamageOverlayV20(pose);
+    this.updateRecoveryOverlayV21(pose);
     if (pose.phase !== this.observedPhase) {
       this.observedPhase = pose.phase;
       this.phaseStartedAt = pose.elapsed;
@@ -332,6 +345,53 @@ export class PremiumMonsterDetailLayerView {
     this.paintedDamageV20.scale.set(pose.facingSign * baseScale, baseScale);
     this.paintedDamageV20.rotation = pose.alive ? -pose.facingSign * 0.035 : pose.facingSign * 0.08;
     this.paintedDamageV20.alpha = pose.flashRemaining > 0 ? 0.98 : 0.82;
+  }
+
+
+  private updateRecoveryOverlayV21(pose: PremiumMonsterDetailPose): void {
+    if (!this.paintedRecoveryV21) return;
+    if (this.previousState === 'hit' && pose.state !== 'hit' && pose.alive) this.recoveryStartedAt = pose.elapsed;
+    this.previousState = pose.state;
+
+    let state: MonsterRecoveryStateV21 | undefined;
+    let localElapsed = 0;
+    if (!pose.alive) {
+      state = 'stagger';
+      localElapsed = pose.elapsed;
+    } else if (pose.state === 'hit') {
+      state = 'stagger';
+      localElapsed = pose.elapsed;
+    } else if (this.recoveryStartedAt >= 0) {
+      localElapsed = Math.max(0, pose.elapsed - this.recoveryStartedAt);
+      if (localElapsed < 0.22) state = 'rise';
+      else if (localElapsed < 0.48) state = 'recover';
+      else this.recoveryStartedAt = -1;
+    }
+
+    if (!state) {
+      this.paintedRecoveryV21.visible = false;
+      return;
+    }
+    const texture = monsterRecoveryTextureV21(
+      this.recoveryV21Sheet,
+      this.profile.variant,
+      pose.facingX,
+      pose.facingY,
+      state,
+      localElapsed,
+    );
+    if (!texture) {
+      this.paintedRecoveryV21.visible = false;
+      return;
+    }
+    this.paintedRecoveryV21.visible = true;
+    this.paintedRecoveryV21.texture = texture;
+    const baseScale = (this.radius / 48) * (this.rank === 'boss' ? 1.15 : 0.97);
+    const lift = state === 'rise' ? -this.radius * 0.07 : state === 'recover' ? -this.radius * 0.03 : this.radius * 0.03;
+    this.paintedRecoveryV21.position.set(0, lift);
+    this.paintedRecoveryV21.scale.set(pose.facingSign * baseScale, baseScale);
+    this.paintedRecoveryV21.rotation = pose.facingSign * (state === 'stagger' ? 0.055 : state === 'rise' ? -0.028 : 0.012);
+    this.paintedRecoveryV21.alpha = state === 'stagger' ? 0.88 : 0.76;
   }
 
   private updatePaintedParts(

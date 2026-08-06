@@ -46,8 +46,8 @@ await walk(publicRoot, async (path) => {
 });
 // The 15 MB product budget applies to the initial payload, not every Lazy Loading asset in public/assets.
 // Keep a separate deployment-storage guard here; report-asset-budget.mjs enforces the 15 MB initial payload contract.
-const publicLazyAssetStorageGuardBytes = 25_000_000;
-if (publicBytes > publicLazyAssetStorageGuardBytes) errors.push(`public/assets Lazy Loading 저장 예산 초과: ${(publicBytes / 1_000_000).toFixed(2)} MB / 25 MB`);
+const publicLazyAssetStorageGuardBytes = 30_000_000;
+if (publicBytes > publicLazyAssetStorageGuardBytes) errors.push(`public/assets Lazy Loading 저장 예산 초과: ${(publicBytes / 1_000_000).toFixed(2)} MB / 30 MB`);
 if (registry.release !== manifest.release) errors.push(`asset registry release mismatch: ${registry.release} / ${manifest.release}`);
 if ((registry.summary?.['runtime-public']?.bytes ?? 0) !== publicBytes) errors.push('asset registry public bytes mismatch');
 

@@ -1,29 +1,28 @@
 {
   "game": "LUMERIFT: 균열의 계승자",
   "package": "lumerift-web-rpg",
-  "version": "1.11.36",
-  "baseVersion": "1.11.35",
-  "releaseDate": "2026-08-03",
-  "fullArchive": "LUMERIFT_FULL_v1.11.36.zip",
-  "patchArchive": "LUMERIFT_PATCH_v1.11.35_to_v1.11.36_ROOT_OVERWRITE.zip",
-  "qualityStage": "production-candidate-premium-five-phase-damage-status-runtime-v20",
+  "version": "1.11.38",
+  "baseVersion": "1.11.37",
+  "releaseDate": "2026-08-06",
+  "fullArchive": "LUMERIFT_FULL_v1.11.38.zip",
+  "patchArchive": "LUMERIFT_PATCH_v1.11.37_to_v1.11.38_ROOT_OVERWRITE.zip",
+  "qualityStage": "production-candidate-integrated-visual-replacement-v22",
   "features": [
-    "검·대검·균열 장창 8방향 anticipation·contact·sustain·recover·follow-through 120프레임·24애니메이션",
-    "Void·Frost·Inferno·Abyssal Boss 8방향 피격·다운 128프레임·64애니메이션",
-    "보스 코어 충돌·소멸·역재생 24프레임·3애니메이션",
-    "화상·감속 등 상태 이상 Premium VFX 32프레임·8애니메이션",
-    "모바일 승인·복구·감사·Cloud 지원 UI 16프레임·16애니메이션",
-    "v20 실패 시 v19·v18·v17·v16·기존 표현 계층 안전 폴백"
+    "플레이어 기본 본체를 v22 통합 Reborn Atlas 648프레임·80애니메이션으로 교체",
+    "일반·엘리트·보스 몬스터 기본 본체를 v22 통합 Atlas 268프레임·66애니메이션으로 교체",
+    "기본 전투 VFX 40프레임·5애니메이션과 공통 UI 30프레임을 v22 스타일로 교체",
+    "타이틀·로비·플레이어·몬스터·보스 초상화를 통합 비주얼 기준으로 교체",
+    "v16~v21 본체 장식 오버레이 스택을 기본 비활성화하고 레거시 자산은 안전 폴백으로 보존"
   ],
   "assetPolicy": {
-    "publicPolicy": "public/assets manifest-reachable assets; v1.11.36 adds five v20 runtime WebP Atlases, five Atlas JSON files, and five production contracts",
-    "archivePolicy": "v1.11.36 preserves v20 source masters and production notes; final full-body hand-painted character and monster Atlases are not complete",
+    "publicPolicy": "v22 통합 본체·몬스터·VFX·UI·배경·초상화가 기본 런타임 경로이며 이전 자산은 폴백과 품질 갤러리용으로 보존",
+    "archivePolicy": "승인 쇼케이스 원본과 v22 모바일 제작용 마스터를 전체본 art_source에 보존; 최종 전신 수작업 원화 완료로 과장하지 않음",
     "initialPayloadBudgetBytes": 15000000
   },
   "verification": [
-    "TypeScript 5.8.3 strict app check with offline external declarations",
-    "cumulative non-bundle validators v1.11.0 through v1.11.36",
-    "v1.11.36 production contract verifier",
+    "TypeScript strict check when dependencies are available",
+    "cumulative non-bundle validators v1.11.0 through v1.11.38",
+    "v1.11.38 integrated replacement production contract verifier",
     "patch application file hash equivalence",
     "full and patch ZIP CRC"
   ]

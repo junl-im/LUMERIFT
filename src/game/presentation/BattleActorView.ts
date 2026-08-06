@@ -24,6 +24,7 @@ import { CharacterEquipmentLayerView } from './CharacterEquipmentLayerView';
 import { PremiumCharacterDetailLayerView } from './PremiumCharacterDetailLayerView';
 import { PremiumMonsterDetailLayerView } from './PremiumMonsterDetailLayerView';
 import { premiumStatusKeyV20, premiumStatusVfxTexturesV20 } from './PremiumStatusVfxV20';
+import { premiumStatusLifecycleKeyV21, premiumStatusLifecycleTexturesV21, type StatusLifecycleEventV21 } from './StatusLifecycleV21';
 
 export interface PlayerActorViewOptions {
   readonly mirrorWest?: boolean;
@@ -35,9 +36,11 @@ export interface PlayerActorViewOptions {
   readonly premiumPlayerActionV18Sheet?: Spritesheet;
   readonly premiumPlayerActionPhaseV19Sheet?: Spritesheet;
   readonly premiumPlayerWeaponPhaseV20Sheet?: Spritesheet;
+  readonly premiumPlayerInterpolationV21Sheet?: Spritesheet;
   readonly equipmentAppearance?: CharacterEquipmentAppearance;
   readonly spriteBaseScale?: number;
   readonly displayCalibration?: CharacterDisplayCalibration;
+  readonly integratedVisualReplacement?: boolean;
 }
 
 export interface PlayerPresentationFrame {
@@ -133,7 +136,14 @@ export class PlayerActorView {
       options.premiumPlayerActionV18Sheet,
       options.premiumPlayerActionPhaseV19Sheet,
       options.premiumPlayerWeaponPhaseV20Sheet,
+      options.premiumPlayerInterpolationV21Sheet,
     );
+    if (options.integratedVisualReplacement) {
+      this.premiumDetailLayers.back.visible = false;
+      this.premiumDetailLayers.front.visible = false;
+      this.equipmentLayers.back.alpha = 0.12;
+      this.equipmentLayers.front.alpha = 0.18;
+    }
     this.shadow
       .ellipse(0, 22, 31, 12)
       .fill({ color: COLORS.dark, alpha: 0.42 });
@@ -696,6 +706,8 @@ export class MonsterActorView {
   private animationKey = '';
   private readonly statusVfx?: AnimatedSprite;
   private readonly premiumStatusV20Sheet?: Spritesheet;
+  private readonly premiumStatusLifecycleV21Sheet?: Spritesheet;
+  private readonly statusLifecycleVfx?: AnimatedSprite;
   private statusVfxKey = '';
   private readonly statusText = new Text({
     text: '',
@@ -717,9 +729,13 @@ export class MonsterActorView {
     premiumMonsterDamageV20Sheet?: Spritesheet,
     bossCoreEventV20Sheet?: Spritesheet,
     premiumStatusV20Sheet?: Spritesheet,
+    premiumMonsterRecoveryV21Sheet?: Spritesheet,
+    premiumStatusLifecycleV21Sheet?: Spritesheet,
+    integratedVisualReplacement = false,
   ) {
     const { combat, visual } = definition;
     this.premiumStatusV20Sheet = premiumStatusV20Sheet;
+    this.premiumStatusLifecycleV21Sheet = premiumStatusLifecycleV21Sheet;
     this.spriteBaseScale = combat.rank === 'boss' ? 1.22 : combat.rank === 'elite' ? 0.92 : 0.78;
     this.premiumDetailLayers = new PremiumMonsterDetailLayerView(
       combat.id,
@@ -736,7 +752,12 @@ export class MonsterActorView {
       bossCoreTrailV19Sheet,
       premiumMonsterDamageV20Sheet,
       bossCoreEventV20Sheet,
+      premiumMonsterRecoveryV21Sheet,
     );
+    if (integratedVisualReplacement) {
+      this.premiumDetailLayers.back.visible = false;
+      this.premiumDetailLayers.front.visible = false;
+    }
     const shadow = new Graphics()
       .ellipse(0, combat.radius * 0.75, combat.radius * 1.05, combat.radius * 0.38)
       .fill({ color: COLORS.dark, alpha: 0.38 });
@@ -773,6 +794,16 @@ export class MonsterActorView {
       this.statusVfx.blendMode = 'add';
       this.statusVfx.visible = false;
     }
+    const lifecycleTextures = premiumStatusLifecycleTexturesV21(premiumStatusLifecycleV21Sheet, 'burn', 'stack');
+    if (lifecycleTextures) {
+      this.statusLifecycleVfx = new AnimatedSprite({ textures: [...lifecycleTextures], animationSpeed: 0.24, loop: false, autoPlay: false });
+      this.statusLifecycleVfx.anchor.set(0.5);
+      this.statusLifecycleVfx.position.set(0, -combat.radius * 0.1);
+      this.statusLifecycleVfx.scale.set((combat.radius / 48) * (combat.rank === 'boss' ? 1.18 : 0.96));
+      this.statusLifecycleVfx.blendMode = 'add';
+      this.statusLifecycleVfx.visible = false;
+      this.statusLifecycleVfx.onComplete = () => { if (this.statusLifecycleVfx) this.statusLifecycleVfx.visible = false; };
+    }
     this.statusText.anchor.set(0.5, 1);
     this.statusText.position.set(0, -combat.radius - 24);
     this.telegraphText.anchor.set(0.5, 1);
@@ -781,6 +812,7 @@ export class MonsterActorView {
     if (this.sprite) this.root.addChild(this.sprite);
     this.root.addChild(this.premiumDetailLayers.front);
     if (this.statusVfx) this.root.addChild(this.statusVfx);
+    if (this.statusLifecycleVfx) this.root.addChild(this.statusLifecycleVfx);
     this.root.addChild(this.hpBar, this.statusText, this.telegraphText);
   }
 
@@ -819,7 +851,8 @@ export class MonsterActorView {
     this.root.scale.set(stateScale * phaseScale);
     this.drawHp(controller);
     this.drawTelegraph(controller);
-    this.drawStatuses(controller.statuses.activeIds);
+    this.drawStatuses(controller.statuses.activeIds, controller.statuses.activeSnapshots);
+    for (const event of controller.drainStatusLifecycleEvents()) this.playStatusLifecycle(event.id, event.kind);
     this.drawPhaseAura(controller);
     this.premiumDetailLayers.update({
       elapsed: this.elapsed,
@@ -998,7 +1031,18 @@ export class MonsterActorView {
     }
   }
 
-  private drawStatuses(statuses: readonly StatusEffectId[]): void {
+  private playStatusLifecycle(status: StatusEffectId, event: StatusLifecycleEventV21): void {
+    if (!this.statusLifecycleVfx) return;
+    const key = premiumStatusLifecycleKeyV21(status);
+    const textures = premiumStatusLifecycleTexturesV21(this.premiumStatusLifecycleV21Sheet, key, event);
+    if (!textures || textures.length === 0) return;
+    this.statusLifecycleVfx.textures = [...textures];
+    this.statusLifecycleVfx.visible = true;
+    this.statusLifecycleVfx.alpha = event === 'immune' ? 0.96 : event === 'cleanse' ? 0.88 : 0.82;
+    this.statusLifecycleVfx.gotoAndPlay(0);
+  }
+
+  private drawStatuses(statuses: readonly StatusEffectId[], snapshots: readonly { readonly id: StatusEffectId; readonly stacks: number }[]): void {
     const primary = statuses[0];
     if (this.statusVfx) {
       if (!primary) {
@@ -1021,7 +1065,7 @@ export class MonsterActorView {
       this.statusText.text = '';
       return;
     }
-    this.statusText.text = statuses.map((status) => status === 'burn' ? '화상' : '둔화').join(' · ');
+    this.statusText.text = snapshots.map((status) => `${status.id === 'burn' ? '화상' : '둔화'}${status.stacks > 1 ? ` ×${status.stacks}` : ''}`).join(' · ');
   }
 }
 

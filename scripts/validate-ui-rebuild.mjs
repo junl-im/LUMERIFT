@@ -2,9 +2,9 @@ import { readFile, stat } from 'node:fs/promises';
 
 const requirements = {
   'src/core/assets/AssetCatalog.ts': [
-    'assets/live/v5/atlases/ui/ui_luminous_v5.json',
+    'assets/live/v22/atlases/ui/ui_reborn_v22.json',
     'assets/live/v5/atlases/ui/ui_icons_v5.json',
-    'assets/live/v5/backgrounds/title_screen_v5.webp',
+    'assets/live/v22/backgrounds/title_reborn_v22.webp',
   ],
   'src/ui/UiSkin.ts': [
     'getUiIconTexture',

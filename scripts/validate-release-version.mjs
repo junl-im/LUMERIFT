@@ -198,6 +198,11 @@ if (pkg.scripts?.['validate:upgrade:v11135'] !== 'node scripts/validate-v11135-u
 if (pkg.scripts?.['validate:production:v11135'] !== 'node scripts/verify-v11135-production.mjs') errors.push('v1.11.35 production verifier missing');
 if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11135') || !pkg.scripts?.verify?.includes('npm run validate:production:v11135')) errors.push('verify missing v1.11.35');
 
+
+if (pkg.scripts?.['validate:upgrade:v11138'] !== 'node scripts/validate-v11138-upgrade.mjs') errors.push('v1.11.38 validator missing');
+if (pkg.scripts?.['validate:production:v11138'] !== 'node scripts/verify-v11138-production.mjs') errors.push('v1.11.38 production verifier missing');
+if (!pkg.scripts?.verify?.includes('npm run validate:upgrade:v11138') || !pkg.scripts?.verify?.includes('npm run validate:production:v11138')) errors.push('verify missing v1.11.38');
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;

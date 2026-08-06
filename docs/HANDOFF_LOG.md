@@ -509,3 +509,17 @@
 - 보스 코어 충돌·소멸·역재생 24프레임, 상태 이상 VFX 32프레임, 지원 UI 16프레임을 추가했다.
 - v19 이하 폴백, Player Save v4, AttackFootprint, App Check 비활성 정책을 유지했다.
 - 최종 전신 수작업 Atlas와 실기기 승인, 실제 의존성 build는 미완료로 유지했다.
+
+
+## v1.11.37 (2026-08-03)
+- Weapon interpolation v21, monster recovery v21, status lifecycle v21, support UI v21.
+
+
+## v1.11.38 초대규모 통합 교체 업데이트
+
+- 기존 본체 위에 장식 파츠를 계속 쌓던 방식을 기본 경로에서 중단했습니다.
+- 플레이어 648프레임, 몬스터 268프레임, 전투 VFX 40프레임, 공통 UI 30프레임을 v22 통합 스타일로 다시 굽고 기본 경로를 교체했습니다.
+- 타이틀·로비·플레이어·몬스터·보스 초상화를 같은 딥 네이비·바이올렛·소프트 골드 재질 언어로 교체했습니다.
+- v16~v21 오버레이는 기본 비활성화하며 로딩 실패·회귀 비교용 폴백으로만 보존합니다.
+- Player Save v4, AttackFootprint, Firebase App Check 비활성 정책은 변경하지 않았습니다.
+- v22는 production-candidate 통합 아트 패스이며 최종 수작업 원화 완료로 기록하지 않습니다.

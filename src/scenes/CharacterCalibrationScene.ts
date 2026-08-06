@@ -23,6 +23,7 @@ import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { PREMIUM_UI_ICON_V18_KEYS, premiumUiV18Texture } from '../ui/PremiumUiIconArtV18';
 import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
+import { PREMIUM_SUPPORT_UI_V21_KEYS, premiumSupportUiTextureV21 } from '../ui/PremiumSupportUiV21';
 import { CharacterWardrobeScene } from './CharacterWardrobeScene';
 
 export class CharacterCalibrationScene implements Scene {
@@ -42,7 +43,10 @@ export class CharacterCalibrationScene implements Scene {
       '물리 단말 캡처 증빙이 포함된 승인 JSON만 런타임 보정값으로 적용합니다.',
     ));
     this.view.addChild(createPanel(18, 164, 504, 650));
-    const mobileTexture = premiumSupportUiTextureV20(
+    const mobileTexture = premiumSupportUiTextureV21(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV21Atlas),
+      PREMIUM_SUPPORT_UI_V21_KEYS.verified,
+    ) ?? premiumSupportUiTextureV20(
       context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
       PREMIUM_SUPPORT_UI_V20_KEYS.mobileVerify,
     ) ?? premiumUiV18Texture(

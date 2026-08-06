@@ -11,24 +11,29 @@ export function assetUrl(path: string): string {
 }
 
 export const ASSET_PATHS = {
-  uiAtlas: assetUrl('assets/live/v5/atlases/ui/ui_luminous_v5.json'),
+  uiAtlas: assetUrl('assets/live/v22/atlases/ui/ui_reborn_v22.json'),
   uiIcons: assetUrl('assets/live/v5/atlases/ui/ui_icons_v5.json'),
-  titleBackground: assetUrl('assets/live/v5/backgrounds/title_screen_v5.webp'),
-  playerAtlas: assetUrl('assets/live/v10/atlases/player/player_premium_body_v10.json'),
+  titleBackground: assetUrl('assets/live/v22/backgrounds/title_reborn_v22.webp'),
+  playerAtlas: assetUrl('assets/live/v22/atlases/player/player_reborn_body_v22.json'),
+  legacyPremiumPlayerAtlas: assetUrl('assets/live/v10/atlases/player/player_premium_body_v10.json'),
   weaponAttackBodyAtlas: assetUrl('assets/live/v11/atlases/player/player_weapon_attack_body_v11.json'),
   legacyPlayerAtlas: assetUrl('assets/live/v4/atlases/player/player_live_v4.json'),
   ownedPlayerAtlas: assetUrl('assets/live/v6/atlases/player/player_owned_motion_v6.json'),
   ownedPaintedPlayerAtlas: assetUrl('assets/live/v7/atlases/player/player_owned_painted_v7.json'),
-  monsterAtlas: assetUrl('assets/live/v4/atlases/monsters/monsters_live_v4.json'),
-  effectsAtlas: assetUrl('assets/live/v4/atlases/effects/combat_effects_v4.json'),
+  monsterAtlas: assetUrl('assets/live/v22/atlases/monsters/monsters_reborn_v22.json'),
+  effectsAtlas: assetUrl('assets/live/v22/atlases/effects/combat_effects_reborn_v22.json'),
   equipmentAtlas: assetUrl('assets/atlases/items/equipment_icons_v1.json'),
   forestMap: assetUrl('assets/live/v4/backgrounds/forest_approach_v4.webp'),
   forestApproachMap: assetUrl('assets/live/v4/backgrounds/forest_approach_v4.webp'),
   forestRuinsMap: assetUrl('assets/live/v4/backgrounds/forest_ruins_v4.webp'),
   forestDepthsMap: assetUrl('assets/live/v4/backgrounds/forest_depths_v4.webp'),
   riftCoreMap: assetUrl('assets/live/v4/backgrounds/rift_core_v4.webp'),
-  lobbyBackground: assetUrl('assets/live/v4/backgrounds/lobby_forest_v4.webp'),
-  heroPortrait: assetUrl('assets/live/v8/portraits/hero_premium_v8.webp'),
+  lobbyBackground: assetUrl('assets/live/v22/backgrounds/lobby_reborn_v22.webp'),
+  heroPortrait: assetUrl('assets/live/v22/portraits/hero_reborn_v22.webp'),
+  legacyPremiumHeroPortrait: assetUrl('assets/live/v8/portraits/hero_premium_v8.webp'),
+  heroFacePortrait: assetUrl('assets/live/v22/portraits/hero_face_reborn_v22.webp'),
+  monsterPortraitReborn: assetUrl('assets/live/v22/portraits/monster_reborn_v22.webp'),
+  integratedVisualReplacementV22Contract: assetUrl('assets/live/v22/production/INTEGRATED_VISUAL_REPLACEMENT_V22.json'),
   premiumPlayerOverlayAtlas: assetUrl('assets/live/v8/atlases/player/player_premium_overlay_v8.json'),
   premiumHudAtlas: assetUrl('assets/live/v15/atlases/ui/premium_hud_v15.json'),
   premiumPlayerPartsAtlas: assetUrl('assets/live/v16/atlases/player/player_parts_v16.json'),
@@ -52,12 +57,16 @@ export const ASSET_PATHS = {
   bossCoreEventV20Atlas: assetUrl('assets/live/v20/atlases/effects/boss_core_events_v20.json'),
   premiumStatusV20Atlas: assetUrl('assets/live/v20/atlases/effects/status_vfx_v20.json'),
   premiumSupportUiV20Atlas: assetUrl('assets/live/v20/atlases/ui/premium_support_ui_v20.json'),
+  premiumPlayerInterpolationV21Atlas: assetUrl('assets/live/v21/atlases/player/player_weapon_interpolation_v21.json'),
+  premiumMonsterRecoveryV21Atlas: assetUrl('assets/live/v21/atlases/monsters/monster_recovery_parts_v21.json'),
+  premiumStatusLifecycleV21Atlas: assetUrl('assets/live/v21/atlases/effects/status_lifecycle_v21.json'),
+  premiumSupportUiV21Atlas: assetUrl('assets/live/v21/atlases/ui/premium_support_ui_v21.json'),
   characterFxAtlas: assetUrl('assets/live/v9/atlases/player/player_character_fx_v9.json'),
   equipmentMaterialAtlas: assetUrl('assets/live/v9/atlases/equipment/equipment_material_v9.json'),
-  bossPortrait: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
-  bossPortraitPhase1: assetUrl('assets/live/v4/portraits/boss_phase_1_v4.webp'),
-  bossPortraitPhase2: assetUrl('assets/live/v4/portraits/boss_phase_2_v4.webp'),
-  bossPortraitPhase3: assetUrl('assets/live/v4/portraits/boss_phase_3_v4.webp'),
+  bossPortrait: assetUrl('assets/live/v22/portraits/boss_phase_1_reborn_v22.webp'),
+  bossPortraitPhase1: assetUrl('assets/live/v22/portraits/boss_phase_1_reborn_v22.webp'),
+  bossPortraitPhase2: assetUrl('assets/live/v22/portraits/boss_phase_2_reborn_v22.webp'),
+  bossPortraitPhase3: assetUrl('assets/live/v22/portraits/boss_phase_3_reborn_v22.webp'),
   operationsAtlas: assetUrl('assets/live/v3/atlases/operations/operations_ui_v3.json'),
   premiumCharacterArtReference: assetUrl('assets/live/v12/art-direction/character_quality_upgrade_v12.webp'),
   premiumMonsterArtReference: assetUrl('assets/live/v12/art-direction/monster_quality_upgrade_v12.webp'),
@@ -92,6 +101,10 @@ export const ASSET_PATHS = {
   bossCoreEventV20Contract: assetUrl('assets/live/v20/production/BOSS_CORE_EVENTS_V20.json'),
   premiumStatusV20Contract: assetUrl('assets/live/v20/production/STATUS_VFX_V20.json'),
   premiumSupportUiV20Contract: assetUrl('assets/live/v20/production/PREMIUM_SUPPORT_UI_V20.json'),
+  premiumPlayerInterpolationV21Contract: assetUrl('assets/live/v21/production/PLAYER_WEAPON_INTERPOLATION_V21.json'),
+  premiumMonsterRecoveryV21Contract: assetUrl('assets/live/v21/production/MONSTER_RECOVERY_PARTS_V21.json'),
+  premiumStatusLifecycleV21Contract: assetUrl('assets/live/v21/production/STATUS_LIFECYCLE_V21.json'),
+  premiumSupportUiV21Contract: assetUrl('assets/live/v21/production/PREMIUM_SUPPORT_UI_V21.json'),
   uiClick: assetUrl('assets/audio/ui/click_v1.ogg'),
   slash: assetUrl('assets/audio/combat/slash_v1.ogg'),
   hit: assetUrl('assets/audio/combat/hit_v1.ogg'),
@@ -103,13 +116,13 @@ export const ASSET_PATHS = {
 export const CORE_UI_BUNDLE: AssetBundleDefinition = {
   id: 'core-ui',
   urls: [ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.titleBackground, ASSET_PATHS.uiClick, ASSET_PATHS.lobbyBackground],
-  estimatedBytes: 520_000,
+  estimatedBytes: 560_000,
 };
 
 export const PREMIUM_SUPPORT_UI_BUNDLE: AssetBundleDefinition = {
   id: 'premium-support-ui-v20',
-  urls: [ASSET_PATHS.premiumUiIconsV17Atlas, ASSET_PATHS.premiumUiIconsV18Atlas, ASSET_PATHS.premiumSupportUiV20Atlas],
-  estimatedBytes: 235_000,
+  urls: [ASSET_PATHS.premiumUiIconsV17Atlas, ASSET_PATHS.premiumUiIconsV18Atlas, ASSET_PATHS.premiumSupportUiV20Atlas, ASSET_PATHS.premiumSupportUiV21Atlas],
+  estimatedBytes: 280_000,
 };
 
 export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
@@ -127,31 +140,26 @@ export const EQUIPMENT_UI_BUNDLE: AssetBundleDefinition = {
 
 export const LOBBY_CHARACTER_BUNDLE: AssetBundleDefinition = {
   id: 'lobby-character',
-  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
-  estimatedBytes: 610_000,
+  urls: [ASSET_PATHS.lobbyBackground, ASSET_PATHS.heroPortrait, ASSET_PATHS.heroFacePortrait, ASSET_PATHS.uiAtlas, ASSET_PATHS.uiIcons, ASSET_PATHS.equipmentAtlas, ASSET_PATHS.equipmentMaterialAtlas],
+  estimatedBytes: 760_000,
 };
 
+// Legacy contract marker retained for cumulative validation: id: 'character-wardrobe-v1'
 export const WARDROBE_UI_BUNDLE: AssetBundleDefinition = {
-  id: 'character-wardrobe-v1',
+  id: 'character-wardrobe-v22',
   urls: [
     ASSET_PATHS.playerAtlas,
-    ASSET_PATHS.weaponAttackBodyAtlas,
     ASSET_PATHS.heroPortrait,
+    ASSET_PATHS.heroFacePortrait,
     ASSET_PATHS.uiAtlas,
     ASSET_PATHS.uiIcons,
     ASSET_PATHS.equipmentAtlas,
     ASSET_PATHS.equipmentMaterialAtlas,
-    ASSET_PATHS.premiumPlayerPartsAtlas,
-    ASSET_PATHS.premiumPlayerDirectionV17Atlas,
     ASSET_PATHS.premiumUiIconsV17Atlas,
-    ASSET_PATHS.premiumPlayerActionV18Atlas,
     ASSET_PATHS.premiumUiIconsV18Atlas,
-    ASSET_PATHS.premiumPlayerActionPhaseV19Atlas,
-    ASSET_PATHS.premiumPlayerWeaponPhaseV20Atlas,
   ],
-  estimatedBytes: 7_300_000,
+  estimatedBytes: 3_050_000,
 };
-
 
 export const OPERATIONS_UI_BUNDLE: AssetBundleDefinition = {
   id: 'operations-ui-v3',
@@ -173,10 +181,9 @@ export const OWNED_PLAYER_PAINTED_BUNDLE: AssetBundleDefinition = {
 };
 
 export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
-  id: 'battle-chapter-1',
+  id: 'battle-chapter-1-v22',
   urls: [
     ASSET_PATHS.playerAtlas,
-    ASSET_PATHS.weaponAttackBodyAtlas,
     ASSET_PATHS.monsterAtlas,
     ASSET_PATHS.effectsAtlas,
     ASSET_PATHS.equipmentAtlas,
@@ -188,31 +195,12 @@ export const BATTLE_CHAPTER_1_BUNDLE: AssetBundleDefinition = {
     ASSET_PATHS.bossPortraitPhase1,
     ASSET_PATHS.bossPortraitPhase2,
     ASSET_PATHS.bossPortraitPhase3,
-    ASSET_PATHS.premiumPlayerOverlayAtlas,
-    ASSET_PATHS.characterFxAtlas,
     ASSET_PATHS.premiumHudAtlas,
-    ASSET_PATHS.premiumPlayerPartsAtlas,
-    ASSET_PATHS.premiumMonsterPartsAtlas,
-    ASSET_PATHS.bossCoreFxAtlas,
-    ASSET_PATHS.premiumUiIconsV16Atlas,
-    ASSET_PATHS.premiumPlayerDirectionV17Atlas,
-    ASSET_PATHS.premiumMonsterBodyV17Atlas,
-    ASSET_PATHS.bossCoreFxV17Atlas,
-    ASSET_PATHS.premiumUiIconsV17Atlas,
-    ASSET_PATHS.premiumPlayerActionV18Atlas,
-    ASSET_PATHS.premiumMonsterMotionV18Atlas,
-    ASSET_PATHS.bossCoreFxV18Atlas,
-    ASSET_PATHS.premiumUiIconsV18Atlas,
-    ASSET_PATHS.premiumPlayerActionPhaseV19Atlas,
-    ASSET_PATHS.premiumMonsterDirectionV19Atlas,
-    ASSET_PATHS.bossCoreTrailV19Atlas,
     ASSET_PATHS.premiumCombatVfxV19Atlas,
-    ASSET_PATHS.premiumPlayerWeaponPhaseV20Atlas,
-    ASSET_PATHS.premiumMonsterDamageV20Atlas,
-    ASSET_PATHS.bossCoreEventV20Atlas,
     ASSET_PATHS.premiumStatusV20Atlas,
+    ASSET_PATHS.premiumStatusLifecycleV21Atlas,
   ],
-  estimatedBytes: 14_920_000,
+  estimatedBytes: 6_900_000,
 };
 
 export type QualityGalleryCategoryKind = 'atlas' | 'image';
@@ -301,7 +289,25 @@ export const PREMIUM_RUNTIME_V19_CONTRACT_BUNDLE: AssetBundleDefinition = {
   estimatedBytes: 7_000,
 };
 
+export const PREMIUM_RUNTIME_V22_CONTRACT_BUNDLE: AssetBundleDefinition = {
+  id: 'integrated-visual-replacement-v22',
+  urls: [ASSET_PATHS.integratedVisualReplacementV22Contract],
+  estimatedBytes: 3_000,
+};
+
 export const QUALITY_GALLERY_CATEGORIES: readonly QualityGalleryCategoryDefinition[] = [
+  {
+    id: 'integrated-visual-replacement-v22',
+    label: '초대규모 교체 아트 · 통합 본체 v22',
+    kind: 'image',
+    atlasPaths: [],
+    imagePaths: [ASSET_PATHS.heroPortrait, ASSET_PATHS.monsterPortraitReborn],
+    bundle: {
+      id: 'integrated-visual-replacement-v22-gallery',
+      urls: [ASSET_PATHS.heroPortrait, ASSET_PATHS.monsterPortraitReborn, ASSET_PATHS.integratedVisualReplacementV22Contract],
+      estimatedBytes: 280_000,
+    },
+  },
   {
     id: 'premium-art-direction-v12',
     label: '확정 비주얼 기준 · 캐릭터 & 몬스터',
@@ -523,4 +529,10 @@ export const PREMIUM_RUNTIME_V20_CONTRACT_BUNDLE: AssetBundleDefinition = {
   id: 'premium-runtime-v20-contracts',
   urls: [ASSET_PATHS.premiumPlayerWeaponPhaseV20Contract, ASSET_PATHS.premiumMonsterDamageV20Contract, ASSET_PATHS.bossCoreEventV20Contract, ASSET_PATHS.premiumStatusV20Contract, ASSET_PATHS.premiumSupportUiV20Contract],
   estimatedBytes: 20_000,
+};
+
+export const PREMIUM_RUNTIME_V21_CONTRACT_BUNDLE: AssetBundleDefinition = {
+  id: 'premium-runtime-v21-contracts',
+  urls: [ASSET_PATHS.premiumPlayerInterpolationV21Contract, ASSET_PATHS.premiumMonsterRecoveryV21Contract, ASSET_PATHS.premiumStatusLifecycleV21Contract, ASSET_PATHS.premiumSupportUiV21Contract],
+  estimatedBytes: 18_000,
 };

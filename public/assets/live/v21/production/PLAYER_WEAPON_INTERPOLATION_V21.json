@@ -1,0 +1,23 @@
+{
+  "schema": "lumerift-player-weapon-interpolation-v21",
+  "version": "1.11.37",
+  "weapons": [
+    "blade",
+    "greatblade",
+    "riftlance"
+  ],
+  "directions": 8,
+  "framesPerAnimation": 8,
+  "frames": 192,
+  "animations": 24,
+  "attackFootprintChanged": false,
+  "finalFullBodyHandPaintedAtlasComplete": false,
+  "fallback": [
+    "v20",
+    "v19",
+    "v18",
+    "v17",
+    "v16",
+    "established-body"
+  ]
+}

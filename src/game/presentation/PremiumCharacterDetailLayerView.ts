@@ -25,6 +25,7 @@ import {
 import { playerActionPartFrameV18 } from './PlayerActionPartsV18';
 import { playerActionPhaseFrameV19 } from './PlayerActionPhasesV19';
 import { playerWeaponPhaseFrameV20 } from './PlayerWeaponPhasesV20';
+import { playerWeaponInterpolationFrameV21 } from './PlayerWeaponInterpolationV21';
 
 export interface PremiumCharacterDetailPose {
   readonly x: number;
@@ -80,6 +81,7 @@ export class PremiumCharacterDetailLayerView {
   private readonly actionOverlay?: Sprite;
   private readonly actionPhaseOverlayV19?: Sprite;
   private readonly weaponPhaseOverlayV20?: Sprite;
+  private readonly weaponInterpolationOverlayV21?: Sprite;
   private currentDirection: DirectionId = 's';
   private readonly tuning: PremiumCharacterRuntimeTuning;
   private readonly weaponProfile: PremiumWeaponSilhouetteProfile;
@@ -91,6 +93,7 @@ export class PremiumCharacterDetailLayerView {
     private readonly actionSheetV18?: Spritesheet,
     private readonly actionPhaseSheetV19?: Spritesheet,
     private readonly weaponPhaseSheetV20?: Spritesheet,
+    private readonly weaponInterpolationSheetV21?: Spritesheet,
   ) {
     this.tuning = resolvePremiumCharacterRuntimeTuning(appearance);
     this.weaponProfile = premiumWeaponSilhouetteProfile(appearance.weaponVisualFamily);
@@ -115,6 +118,7 @@ export class PremiumCharacterDetailLayerView {
     this.actionOverlay = createTextureSprite(playerActionPartFrameV18(actionSheetV18, 's', 'attacking', 0)?.texture, 0.78, true);
     this.actionPhaseOverlayV19 = createTextureSprite(playerActionPhaseFrameV19(actionPhaseSheetV19, 's', 'attacking', 0)?.texture, 0.74, true);
     this.weaponPhaseOverlayV20 = createTextureSprite(playerWeaponPhaseFrameV20(weaponPhaseSheetV20, appearance.weaponVisualFamily, 's', 'attacking', 0)?.texture, 0.76, true);
+    this.weaponInterpolationOverlayV21 = createTextureSprite(playerWeaponInterpolationFrameV21(weaponInterpolationSheetV21, appearance.weaponVisualFamily, 's', 'attacking', 0)?.texture, 0.78, true);
     this.drawStaticLayers();
     this.back.addChild(this.directionBack,
       ...compactSprites(this.paintedAuraBack, this.paintedCape, this.paintedCapeEdge, this.paintedHairBack),
@@ -146,6 +150,7 @@ export class PremiumCharacterDetailLayerView {
         this.actionOverlay,
         this.actionPhaseOverlayV19,
         this.weaponPhaseOverlayV20,
+        this.weaponInterpolationOverlayV21,
       ),
     );
     this.placeDirectionalSprites(resolvePremiumDirectionPlacement(0, 1));
@@ -177,6 +182,7 @@ export class PremiumCharacterDetailLayerView {
     this.updateActionOverlayV18(pose, directionPlacement);
     this.updateActionPhaseOverlayV19(pose, directionPlacement);
     this.updateWeaponPhaseOverlayV20(pose, directionPlacement);
+    this.updateWeaponInterpolationOverlayV21(pose, directionPlacement);
 
     this.capeFabric.rotation = -directionSign * (0.018 + actionPulse * 0.08)
       + Math.sin(pose.elapsed * 2.05) * 0.018;
@@ -428,6 +434,42 @@ export class PremiumCharacterDetailLayerView {
     this.weaponPhaseOverlayV20.rotation = sign * (resolved.family === 'riftlance' ? 0.01 : resolved.family === 'greatblade' ? 0.045 : 0.03)
       * Math.sin(progress * Math.PI);
     this.weaponPhaseOverlayV20.alpha = resolved.phase === 'contact' ? 0.92 : resolved.phase === 'sustain' ? 0.82 : 0.62;
+  }
+
+
+  private updateWeaponInterpolationOverlayV21(
+    pose: PremiumCharacterDetailPose,
+    directionPlacement: PremiumDirectionPlacementV17,
+  ): void {
+    if (!this.weaponInterpolationOverlayV21) return;
+    const resolved = playerWeaponInterpolationFrameV21(
+      this.weaponInterpolationSheetV21,
+      this.appearance.weaponVisualFamily,
+      directionPlacement.direction,
+      pose.state,
+      pose.actionProgress,
+    );
+    if (!resolved?.texture) {
+      this.weaponInterpolationOverlayV21.visible = false;
+      return;
+    }
+    this.weaponInterpolationOverlayV21.visible = true;
+    this.weaponInterpolationOverlayV21.texture = resolved.texture;
+    const sign = directionPlacement.mirror ? -1 : 1;
+    const progress = Math.max(0, Math.min(1, pose.actionProgress));
+    const pulse = Math.sin(progress * Math.PI);
+    const familyOffset = resolved.family === 'riftlance' ? 5.5 : resolved.family === 'greatblade' ? 2.5 : 0.5;
+    const scale = 0.76 + pulse * (resolved.family === 'greatblade' ? 0.08 : 0.055);
+    this.weaponInterpolationOverlayV21.position.set(
+      directionPlacement.xOffset + sign * familyOffset,
+      -7 + directionPlacement.yOffset - pulse * 1.5,
+    );
+    this.weaponInterpolationOverlayV21.scale.set(
+      sign * scale * directionPlacement.xCompression,
+      scale,
+    );
+    this.weaponInterpolationOverlayV21.rotation = sign * (resolved.family === 'riftlance' ? 0.008 : resolved.family === 'greatblade' ? 0.035 : 0.025) * pulse;
+    this.weaponInterpolationOverlayV21.alpha = 0.38 + pulse * 0.52;
   }
 
   private placeDirectionalSprites(profile: PremiumDirectionPlacementV17): void {

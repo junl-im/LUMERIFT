@@ -15,3 +15,12 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+import 'pixi.js';
+
+declare module 'pixi.js' {
+  interface Ticker {
+    minFPS: number;
+    maxFPS: number;
+  }
+}

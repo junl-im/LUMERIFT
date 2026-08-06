@@ -9,6 +9,7 @@ import { createBackground, createPanel } from '../ui/SceneChrome';
 import { createInlineFeedback } from '../ui/UxFeedback';
 import { UiButton } from '../ui/UiButton';
 import { PREMIUM_SUPPORT_UI_V20_KEYS, premiumSupportUiTextureV20 } from '../ui/PremiumSupportUiV20';
+import { PREMIUM_SUPPORT_UI_V21_KEYS, premiumSupportUiTextureV21 } from '../ui/PremiumSupportUiV21';
 import { AppearancePresetManagerScene } from './AppearancePresetManagerScene';
 import { CharacterAppearanceConflictScene } from './CharacterAppearanceConflictScene';
 import { CharacterAppearanceRecoveryScene } from './CharacterAppearanceRecoveryScene';
@@ -37,7 +38,10 @@ export class CharacterAppearanceCloudScene implements Scene {
       '사용자 동의 후에만 UID 전용 문서로 동기화하며 충돌은 자동 덮어쓰지 않습니다.',
     ));
     this.view.addChild(createPanel(18, 164, 504, 710));
-    const cloudTexture = premiumSupportUiTextureV20(
+    const cloudTexture = premiumSupportUiTextureV21(
+      context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV21Atlas),
+      PREMIUM_SUPPORT_UI_V21_KEYS.diff,
+    ) ?? premiumSupportUiTextureV20(
       context.assets.get<Spritesheet>(ASSET_PATHS.premiumSupportUiV20Atlas),
       PREMIUM_SUPPORT_UI_V20_KEYS.cloud,
     );

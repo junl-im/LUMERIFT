@@ -4,7 +4,7 @@ import type {
   StatusEffectApplication,
 } from '../../combat/combatData';
 import { distance, normalize, type Vec2 } from '../../combat/geometry';
-import { StatusEffectController, type StatusDamageEvent } from '../../status/StatusEffectController';
+import { StatusEffectController, type StatusDamageEvent, type StatusLifecycleEvent } from '../../status/StatusEffectController';
 
 export type MonsterState = 'idle' | 'chase' | 'telegraph' | 'attack' | 'hit' | 'dead';
 
@@ -193,6 +193,15 @@ export class MonsterController {
   public applyStatusEffect(effect: StatusEffectApplication): void {
     if (!this.isAlive) return;
     this.statuses.apply(effect, this.config.statusDurationMultiplier);
+  }
+
+  public notifyStatusImmune(id: StatusEffectApplication['id']): void {
+    if (!this.isAlive) return;
+    this.statuses.notifyImmune(id);
+  }
+
+  public drainStatusLifecycleEvents(): StatusLifecycleEvent[] {
+    return this.statuses.drainLifecycleEvents();
   }
 
   public drainAttackEvents(): MonsterAttackEvent[] {

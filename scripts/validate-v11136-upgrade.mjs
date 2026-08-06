@@ -49,9 +49,9 @@ if(core.frames!==24||core.animations!==3||!core.reverseRegeneration||core.attack
 if(status.frames!==32||status.animations!==8||status.effects.length!==8||status.gameplayDataChanged||!status.adaptiveBudgetPreserved)errors.push('status contract');
 if(ui.frames!==16||ui.animations!==16||ui.icons.length!==16||ui.initialBundleRequired)errors.push('ui contract');
 const pkg=await json('package.json'),state=await json('HANDOFF_STATE.json'),release=await json('RELEASE_MANIFEST.json'),assets=await json('public/assets/ASSET_MANIFEST.json');
-for(const [label,version] of Object.entries({package:pkg.version,state:state.version,release:release.version,assets:assets.release}))if(version!=='1.11.36')errors.push(`${label} version ${version}`);
+const atLeast=(v)=>{const a=String(v).split('.').map(Number),b=[1,11,36];return a[0]>b[0]||(a[0]===b[0]&&(a[1]>b[1]||(a[1]===b[1]&&a[2]>=b[2])));}; for(const [label,version] of Object.entries({package:pkg.version,state:state.version,release:release.version,assets:assets.release}))if(!atLeast(version))errors.push(`${label} version ${version}`);
 if(!pkg.scripts?.verify?.includes('validate:upgrade:v11136')||!pkg.scripts?.verify?.includes('validate:production:v11136'))errors.push('verify chain v11136');
-const brand=await read('src/app/brand.ts');if(!brand.includes("version: '1.11.36'"))errors.push('brand version');
+const brand=await read('src/app/brand.ts');if(!brand.includes(`version: '${pkg.version}'`))errors.push('brand version');
 if(state.featureMetrics?.premiumPlayerWeaponPhaseV20Frames!==120||state.featureMetrics?.premiumMonsterDamageV20Frames!==128||state.featureMetrics?.premiumBossCoreEventsV20Frames!==24||state.featureMetrics?.premiumStatusVfxV20Frames!==32||state.featureMetrics?.premiumSupportUiV20Frames!==16)errors.push('feature metrics');
 if(state.featureMetrics?.finalHandPaintedV20FullBodyAtlasesComplete!==false||state.featureMetrics?.physicalDeviceV11136Approved!==false)errors.push('completion flags');
 if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log('PASS v1.11.36 upgrade: five-phase weapons, 8-direction damage/down, core follow-up events, status VFX, support UI');

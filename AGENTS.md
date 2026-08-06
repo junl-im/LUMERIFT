@@ -447,7 +447,7 @@
 - v19을 최종 8방향 전신 수작업 Atlas 완성으로 보고하지 않는다.
 - 물리 기기 캡처와 정상 npm production build가 없으면 승인·완료로 기록하지 않는다.
 
-## v1.11.36 Five-Phase Damage & Status Runtime v20
+## v1.11.37 Five-Phase Damage & Status Runtime v20
 
 - v20 플레이어 파츠는 검·대검·균열 장창의 anticipation·contact·sustain·recover·follow-through 표현 계층이며 AttackFootprint와 행동 타이밍을 변경하지 않는다.
 - 몬스터 피격·다운 오버레이는 8방향 표현 계층이며 AI·피격 판정·보상 데이터를 변경하지 않는다.
@@ -455,3 +455,17 @@
 - Premium Support UI v20은 모바일 승인·복구·감사·Cloud 화면 표현 전용이며 저장 스키마와 인증 정책을 변경하지 않는다.
 - v20 로딩 실패 시 v19·v18·v17·v16과 기존 표현 계층으로 안전하게 폴백한다.
 - v20을 최종 8방향 전신 수작업 Atlas 완성으로 보고하지 않으며 물리 기기 캡처와 정상 npm production build가 없으면 승인·완료로 기록하지 않는다.
+
+
+## v1.11.37 update
+- Weapon interpolation v21, monster recovery v21, status lifecycle v21, and support UI v21 are active with v20 and earlier fallbacks.
+- Final full-body hand-painted Atlases and physical-device approval remain pending.
+
+
+## v1.11.38 Integrated Visual Replacement v22 고정 규칙
+
+- 기본 플레이어·몬스터·전투 VFX·공통 UI·타이틀·로비·초상화는 v22 통합 교체 자산을 우선 사용한다.
+- v16~v21 본체 장식 오버레이 스택은 기본 비활성화하며 레거시 폴백·회귀 비교 외에는 다시 기본 활성화하지 않는다.
+- v22는 `production-candidate-unified-art-pass`이며 최종 전신 수작업 원화 완료로 보고하지 않는다.
+- Player Save v4, AttackFootprint, Firebase App Check 비활성 정책을 유지한다.
+- 모바일 판독성 80점 미만 자산은 승인하지 않는다.

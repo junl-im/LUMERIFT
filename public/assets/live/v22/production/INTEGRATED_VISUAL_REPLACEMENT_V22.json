@@ -1,0 +1,70 @@
+{
+  "schema": "lumerift-integrated-visual-replacement-v22",
+  "version": "1.11.38",
+  "qualityStage": "production-candidate-unified-art-pass",
+  "defaultRuntimeReplacement": true,
+  "oldOverlayStackDefaultEnabled": false,
+  "finalHandPaintedFullBodyAtlasesComplete": false,
+  "sourceReferences": [
+    "lumerift_캐릭터_업그레이드_쇼케이스.webp",
+    "루메리프트_환상적_업그레이드_쇼케이스.webp",
+    "imagegen.webp"
+  ],
+  "assets": {
+    "playerAtlas": "assets/live/v22/atlases/player/player_reborn_body_v22.json",
+    "monsterAtlas": "assets/live/v22/atlases/monsters/monsters_reborn_v22.json",
+    "effectsAtlas": "assets/live/v22/atlases/effects/combat_effects_reborn_v22.json",
+    "uiAtlas": "assets/live/v22/atlases/ui/ui_reborn_v22.json",
+    "titleBackground": "assets/live/v22/backgrounds/title_reborn_v22.webp",
+    "lobbyBackground": "assets/live/v22/backgrounds/lobby_reborn_v22.webp",
+    "heroPortrait": "assets/live/v22/portraits/hero_reborn_v22.webp",
+    "heroFace": "assets/live/v22/portraits/hero_face_reborn_v22.webp",
+    "monsterPortrait": "assets/live/v22/portraits/monster_reborn_v22.webp",
+    "bossPortraits": [
+      "assets/live/v22/portraits/boss_phase_1_reborn_v22.webp",
+      "assets/live/v22/portraits/boss_phase_2_reborn_v22.webp",
+      "assets/live/v22/portraits/boss_phase_3_reborn_v22.webp"
+    ]
+  },
+  "metrics": {
+    "player_reborn_body_v22": {
+      "frames": 648,
+      "animations": 80
+    },
+    "monsters_reborn_v22": {
+      "frames": 268,
+      "animations": 66
+    },
+    "combat_effects_reborn_v22": {
+      "frames": 40,
+      "animations": 5
+    },
+    "ui_reborn_v22": {
+      "frames": 30,
+      "animations": 0
+    }
+  },
+  "visualPolicy": {
+    "palette": [
+      "deep-navy",
+      "blue-black",
+      "violet",
+      "cyan",
+      "soft-gold"
+    ],
+    "integratedMaterials": [
+      "armor",
+      "cloth",
+      "crystal",
+      "rune-light"
+    ],
+    "mobileReadabilityMinimum": 80,
+    "initialLoadBudgetBytes": 15000000
+  },
+  "fallback": [
+    "v10-player",
+    "v4-monsters",
+    "v4-effects",
+    "v5-ui"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "release": "1.11.36",
-  "generatedAt": "2026-08-03T09:04:38.184Z",
+  "release": "1.11.38",
+  "generatedAt": "2026-08-06T08:10:48.866Z",
   "classifications": {
     "runtime-public": "GitHub Pages에 배포되는 현재 실사용·Lazy Loading 자산",
     "runtime-archive": "전체 통합본에 보존되지만 public 밖에 있어 배포되지 않는 레거시·제작 후보 자산",
@@ -9,8 +9,8 @@
   },
   "summary": {
     "source-master": {
-      "files": 134,
-      "bytes": 89065613,
+      "files": 142,
+      "bytes": 92818983,
       "atlases": 0,
       "frames": 0,
       "animations": 0
@@ -23,11 +23,11 @@
       "animations": 451
     },
     "runtime-public": {
-      "files": 133,
-      "bytes": 16553965,
-      "atlases": 36,
-      "frames": 2640,
-      "animations": 917
+      "files": 162,
+      "bytes": 26002112,
+      "atlases": 44,
+      "frames": 4122,
+      "animations": 1228
     }
   },
   "entries": [
@@ -416,6 +416,46 @@
       "sha256": "c69a81eeb37741637aec310c42854da66eb15ca531115081acd954d0c301cc14"
     },
     {
+      "path": "art_source/lumerift_owned/premium_parts_v21/monster_recovery_parts_v21_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v21/monster_recovery_parts_v21_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 772980,
+      "sha256": "4306bc750a2baab5f669090502619c29ccf5aa71aaeae8b3e79c020bda470a69"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v21/player_weapon_interpolation_v21_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v21/player_weapon_interpolation_v21_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 937310,
+      "sha256": "2650cb951549e083d42fc6e55c50813f8f67618459e49dddf0e37ddbd5d0cb13"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v21/premium_support_ui_v21_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v21/premium_support_ui_v21_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 31342,
+      "sha256": "9d9e255f9fb0ea4ed7363cd5d0d56e5f2b6cb201429ad38d52269040937c6766"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v21/README.md",
+      "relativePath": "lumerift_owned/premium_parts_v21/README.md",
+      "classification": "source-master",
+      "type": "md",
+      "bytes": 390,
+      "sha256": "03d1a16215020952bae5985c651416c079c9ac6c74ed6063d79ab827934fe2e8"
+    },
+    {
+      "path": "art_source/lumerift_owned/premium_parts_v21/status_lifecycle_v21_master.webp",
+      "relativePath": "lumerift_owned/premium_parts_v21/status_lifecycle_v21_master.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 390946,
+      "sha256": "6e2d875d4abb9fbcdd9e2faf2e48c569d01b43aded94608ebf21bd4532e4a0a6"
+    },
+    {
       "path": "art_source/lumerift_owned/premium_ui_v15/premium_hud_v15_master.webp",
       "relativePath": "lumerift_owned/premium_ui_v15/premium_hud_v15_master.webp",
       "classification": "source-master",
@@ -430,6 +470,30 @@
       "type": "md",
       "bytes": 300,
       "sha256": "e4f79d674a2fd371f03f27ed0c75af9c77e59a3d89b6c124739d66dbf464f242"
+    },
+    {
+      "path": "art_source/mobile_masters/v22/imagegen.webp",
+      "relativePath": "mobile_masters/v22/imagegen.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 578066,
+      "sha256": "1519acbe0d282c9d6f027d70f3903c61ff9c3164cb97fa1b76f9cbf97e862469"
+    },
+    {
+      "path": "art_source/mobile_masters/v22/lumerift_캐릭터_업그레이드_쇼케이스.webp",
+      "relativePath": "mobile_masters/v22/lumerift_캐릭터_업그레이드_쇼케이스.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 471804,
+      "sha256": "81edcf969124225cf2370ed5551777991e106311dc2326324b6a57e610e80b22"
+    },
+    {
+      "path": "art_source/mobile_masters/v22/루메리프트_환상적_업그레이드_쇼케이스.webp",
+      "relativePath": "mobile_masters/v22/루메리프트_환상적_업그레이드_쇼케이스.webp",
+      "classification": "source-master",
+      "type": "webp",
+      "bytes": 570532,
+      "sha256": "002b96e3939dc9c3a0ec8666bc2fec4d8ebfdac90d71e88048b30b968a652ae9"
     },
     {
       "path": "art_source/open_art/v1.0.0/backgrounds/fantasy_rpg_background.png",
@@ -2895,8 +2959,8 @@
       "relativePath": "ASSET_MANIFEST.json",
       "classification": "runtime-public",
       "type": "json",
-      "bytes": 15507,
-      "sha256": "3bbd767be684e4485a7fe80aa5deecf80c0b0fd8758750ce7f460a8dc6756a19"
+      "bytes": 16877,
+      "sha256": "ec7c55b27ea59fabc66f69df535b9d8be5a7d2c822f28cd61afd570c7acb9f0a"
     },
     {
       "path": "public/assets/atlases/items/equipment_icons_v1.json",
@@ -3798,6 +3862,278 @@
       "type": "json",
       "bytes": 332,
       "sha256": "f1c8494af8538c030d46ac526a27ed1ddc57dd82f3d6f9530084b156ec993985"
+    },
+    {
+      "path": "public/assets/live/v21/atlases/effects/status_lifecycle_v21.json",
+      "relativePath": "live/v21/atlases/effects/status_lifecycle_v21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 45956,
+      "sha256": "0a16442973c700cd5227ab510435dbbecb97deab5efebf65da3c950fc25f9cce",
+      "atlas": {
+        "frames": 96,
+        "animations": 24,
+        "image": "status_lifecycle_v21.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v21/atlases/effects/status_lifecycle_v21.webp",
+      "relativePath": "live/v21/atlases/effects/status_lifecycle_v21.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 390946,
+      "sha256": "6e2d875d4abb9fbcdd9e2faf2e48c569d01b43aded94608ebf21bd4532e4a0a6"
+    },
+    {
+      "path": "public/assets/live/v21/atlases/monsters/monster_recovery_parts_v21.json",
+      "relativePath": "live/v21/atlases/monsters/monster_recovery_parts_v21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 99854,
+      "sha256": "b3b7032b4b8118d57eb56a7b1eb9620af85f7abd2ddbb7ce70e400a2176a2ec4",
+      "atlas": {
+        "frames": 192,
+        "animations": 96,
+        "image": "monster_recovery_parts_v21.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v21/atlases/monsters/monster_recovery_parts_v21.webp",
+      "relativePath": "live/v21/atlases/monsters/monster_recovery_parts_v21.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 772980,
+      "sha256": "4306bc750a2baab5f669090502619c29ccf5aa71aaeae8b3e79c020bda470a69"
+    },
+    {
+      "path": "public/assets/live/v21/atlases/player/player_weapon_interpolation_v21.json",
+      "relativePath": "live/v21/atlases/player/player_weapon_interpolation_v21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 94759,
+      "sha256": "5d0e89d73e399697140855d54507aa36faba061579957143cde64ea96e7c8060",
+      "atlas": {
+        "frames": 192,
+        "animations": 24,
+        "image": "player_weapon_interpolation_v21.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v21/atlases/player/player_weapon_interpolation_v21.webp",
+      "relativePath": "live/v21/atlases/player/player_weapon_interpolation_v21.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 937310,
+      "sha256": "2650cb951549e083d42fc6e55c50813f8f67618459e49dddf0e37ddbd5d0cb13"
+    },
+    {
+      "path": "public/assets/live/v21/atlases/ui/premium_support_ui_v21.json",
+      "relativePath": "live/v21/atlases/ui/premium_support_ui_v21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 8079,
+      "sha256": "862b26679c24165471319cd61c6c65e77314519236f8a316c1701771cb8ca870",
+      "atlas": {
+        "frames": 16,
+        "animations": 16,
+        "image": "premium_support_ui_v21.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v21/atlases/ui/premium_support_ui_v21.webp",
+      "relativePath": "live/v21/atlases/ui/premium_support_ui_v21.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 31342,
+      "sha256": "9d9e255f9fb0ea4ed7363cd5d0d56e5f2b6cb201429ad38d52269040937c6766"
+    },
+    {
+      "path": "public/assets/live/v21/production/MONSTER_RECOVERY_PARTS_V21.json",
+      "relativePath": "live/v21/production/MONSTER_RECOVERY_PARTS_V21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 449,
+      "sha256": "e11aea8847f2e53559d5b00bf052ebd629e43ff2cb94da741e5866c770f5d821"
+    },
+    {
+      "path": "public/assets/live/v21/production/PLAYER_WEAPON_INTERPOLATION_V21.json",
+      "relativePath": "live/v21/production/PLAYER_WEAPON_INTERPOLATION_V21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 417,
+      "sha256": "36b57140a790b879893c22fbae9b440c345ee2683c0673a94a2c8c40ace18bea"
+    },
+    {
+      "path": "public/assets/live/v21/production/PREMIUM_SUPPORT_UI_V21.json",
+      "relativePath": "live/v21/production/PREMIUM_SUPPORT_UI_V21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 608,
+      "sha256": "0ba0db0cc0ddd73b9453f2a2eb9e0d41e38c089800f0d7faf492dfd7516f9f57"
+    },
+    {
+      "path": "public/assets/live/v21/production/STATUS_LIFECYCLE_V21.json",
+      "relativePath": "live/v21/production/STATUS_LIFECYCLE_V21.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 377,
+      "sha256": "6d160b651b2318a3b9594f4df6ae7700c2ede718085b8e450438565ddd5414a3"
+    },
+    {
+      "path": "public/assets/live/v22/atlases/effects/combat_effects_reborn_v22.json",
+      "relativePath": "live/v22/atlases/effects/combat_effects_reborn_v22.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 17538,
+      "sha256": "827f32cd696ec5324a72980d4146751cda9a8b6928afe1192b76a147a9ed07c2",
+      "atlas": {
+        "frames": 40,
+        "animations": 5,
+        "image": "combat_effects_reborn_v22.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v22/atlases/effects/combat_effects_reborn_v22.webp",
+      "relativePath": "live/v22/atlases/effects/combat_effects_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 117686,
+      "sha256": "cc1d74daee83ae1c866af8d7f9546b617a937a7f06e03955242c992a9365c1f6"
+    },
+    {
+      "path": "public/assets/live/v22/atlases/monsters/monsters_reborn_v22.json",
+      "relativePath": "live/v22/atlases/monsters/monsters_reborn_v22.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 126710,
+      "sha256": "9d4267f1ebed432ecfce132ea12ec6fcaa836a057d7507bd5024499622e869c1",
+      "atlas": {
+        "frames": 268,
+        "animations": 66,
+        "image": "monsters_reborn_v22.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v22/atlases/monsters/monsters_reborn_v22.webp",
+      "relativePath": "live/v22/atlases/monsters/monsters_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 3207252,
+      "sha256": "57ddd6db9354991477f5203d891f58d9391253e1f5d68742f7cf115251d2d371"
+    },
+    {
+      "path": "public/assets/live/v22/atlases/player/player_reborn_body_v22.json",
+      "relativePath": "live/v22/atlases/player/player_reborn_body_v22.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 291981,
+      "sha256": "642e003516d0775b10f75b1361cfd4b817a1ff1215fba94bd69930bfc2714813",
+      "atlas": {
+        "frames": 648,
+        "animations": 80,
+        "image": "player_reborn_body_v22.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v22/atlases/player/player_reborn_body_v22.webp",
+      "relativePath": "live/v22/atlases/player/player_reborn_body_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 2297796,
+      "sha256": "faf17a281b816f4a79507f8be5e70f8e8617699edfdb60d7f7cdf97c8e15a4ac"
+    },
+    {
+      "path": "public/assets/live/v22/atlases/ui/ui_reborn_v22.json",
+      "relativePath": "live/v22/atlases/ui/ui_reborn_v22.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 10595,
+      "sha256": "1d118b09d1480630fb6cf8d06c7082571de13994d4bd8386dc6def8e02206f60",
+      "atlas": {
+        "frames": 30,
+        "animations": 0,
+        "image": "ui_reborn_v22.webp"
+      }
+    },
+    {
+      "path": "public/assets/live/v22/atlases/ui/ui_reborn_v22.webp",
+      "relativePath": "live/v22/atlases/ui/ui_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 88246,
+      "sha256": "2a1b74121a1969b6efb7b6975d5c1d42a0b231259e74e1866ffcb94646f6b8f9"
+    },
+    {
+      "path": "public/assets/live/v22/backgrounds/lobby_reborn_v22.webp",
+      "relativePath": "live/v22/backgrounds/lobby_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 157520,
+      "sha256": "9eb213e0e1169804e689d756df35699651f0492b3c487cf12835e9429c43a8c3"
+    },
+    {
+      "path": "public/assets/live/v22/backgrounds/title_reborn_v22.webp",
+      "relativePath": "live/v22/backgrounds/title_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 119436,
+      "sha256": "8e2f383d7a0e62b4f04dadd960156b5412d52a23acc4e37e139ec7110775ad3c"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/boss_phase_1_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/boss_phase_1_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 93496,
+      "sha256": "1afd4968fe140026feb286ff00db376b6ab6f492a1364c1aab6a676ca5f3d62a"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/boss_phase_2_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/boss_phase_2_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 98228,
+      "sha256": "f150e097e568b1383aac3cad38037fb6516a1619057cea2840464fd975db7598"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/boss_phase_3_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/boss_phase_3_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 103802,
+      "sha256": "f14d6f91982a23dee41993db9c87f7b086952142d9737bf62cbe920ba556992b"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/hero_face_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/hero_face_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 49906,
+      "sha256": "570bf29ed3628de6e4e5cdd95645cb2167bf2a670880654a6710f02ef05d8eb6"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/hero_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/hero_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 139232,
+      "sha256": "c2f27d6f805825a51571513a142c095440ec778076b09067edf96eeaae580162"
+    },
+    {
+      "path": "public/assets/live/v22/portraits/monster_reborn_v22.webp",
+      "relativePath": "live/v22/portraits/monster_reborn_v22.webp",
+      "classification": "runtime-public",
+      "type": "webp",
+      "bytes": 142166,
+      "sha256": "71f43327732df7f6fe34ea367ff27cee530205bdb6aacf0bac8c04c181302604"
+    },
+    {
+      "path": "public/assets/live/v22/production/INTEGRATED_VISUAL_REPLACEMENT_V22.json",
+      "relativePath": "live/v22/production/INTEGRATED_VISUAL_REPLACEMENT_V22.json",
+      "classification": "runtime-public",
+      "type": "json",
+      "bytes": 2110,
+      "sha256": "01895a6a2d7086af830b638ae56c26bbdb81b0956f51c7448db9f1f8929b8ec1"
     },
     {
       "path": "public/assets/live/v3/atlases/operations/operations_ui_v3.json",

@@ -4,7 +4,7 @@ export const BRAND = {
   koreanTitle: '루메리프트',
   subtitle: '균열의 계승자',
   fullTitle: 'LUMERIFT: 균열의 계승자',
-  version: '1.11.36',
+  version: '1.11.38',
 } as const;
 
 export const STORAGE_KEYS = {

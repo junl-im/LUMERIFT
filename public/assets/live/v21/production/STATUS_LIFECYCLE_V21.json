@@ -1,0 +1,27 @@
+{
+  "schema": "lumerift-status-lifecycle-v21",
+  "version": "1.11.37",
+  "effects": [
+    "burn",
+    "slow",
+    "void",
+    "shock",
+    "bleed",
+    "barrier",
+    "haste",
+    "weaken"
+  ],
+  "events": [
+    "stack",
+    "cleanse",
+    "immune"
+  ],
+  "frames": 96,
+  "animations": 24,
+  "statusGameplayChanged": false,
+  "fallback": [
+    "v20",
+    "v19",
+    "v4"
+  ]
+}
